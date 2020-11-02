@@ -7,12 +7,11 @@ platform:
   arch: amd64
 
 steps:
-- name: test
-  pull: default
+- name: docker-build
   image: plugins/docker
   settings:
-    dockerfile: ./Dockerfile
-    dry_run: true
+    context: ./
+    tags: ${DRONE_BRANCH/release\//}-${DRONE_COMMIT}
     repo: supporttools/website
     password:
       from_secret: Docker_Repo_Password
@@ -21,88 +20,4 @@ steps:
   when:
     event:
     - pull_request
-    - push
-
----
-kind: pipeline
-name: dev
-
-platform:
-  os: linux
-  arch: amd64
-
-steps:
-- name: publish-dev
-  pull: default
-  image: plugins/docker
-  settings:
-    context: .
-    dockerfile: Dockerfile.dev
-    group: publish
-    repo: supporttools/website
-    tag: dev
-    password:
-      from_secret: Docker_Repo_Password
-    username:
-      from_secret: Docker_Repo_Username
-  when:
-    branch:
-    - master
-    event:
-    - push
-
----
-kind: pipeline
-name: staging
-
-platform:
-  os: linux
-  arch: amd64
-
-steps:
-- name: publish-staging
-  pull: default
-  image: plugins/docker
-  settings:
-    context: .
-    dockerfile: Dockerfile.staging
-    group: publish
-    repo: rancherlabs/website
-    tag: staging
-    password:
-      from_secret: Docker_Repo_Password
-    username:
-      from_secret: Docker_Repo_Username
-  when:
-    branch:
-    - master
-    event:
-    - push
-
----
-kind: pipeline
-name: production
-
-platform:
-  os: linux
-  arch: amd64
-
-steps:
-- name: publish-latest
-  pull: default
-  image: plugins/docker
-  settings:
-    context: .
-    dockerfile: Dockerfile.prod
-    group: publish
-    repo: rancherlabs/website
-    tag: latest
-    password:
-      from_secret: Docker_Repo_Password
-    username:
-      from_secret: Docker_Repo_Username
-  when:
-    branch:
-    - master
-    event:
     - push
