@@ -1,0 +1,13 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: supporttools-GIT_BRANCH-lb
+  namespace: supporttools-blog-GIT_BRANCH
+spec:
+  rules:
+  - host: GIT_BRANCH.support.tools
+    http:
+      paths:
+      - backend:
+          serviceName: frontend
+          servicePort: 80

@@ -1,0 +1,39 @@
+baseURL = "/"
+languageCode = "en-us"
+title = "Support Tools"
+theme = "hyde"
+watch = "false"
+Copyright = "2020"
+
+[params]
+  Description = "Matthew Mattox"
+  disqusShortname = "SupportTools"
+  GoogleAnalyticsTrackingID = "UA-151436906-1"
+
+[[menu.main]]
+  name = "Rancher"
+  pre = "<i class='fa fa-heart'></i>"
+  weight = -80
+  identifier = "rancher"
+  url = "/categories/rancher/"
+
+[[menu.main]]
+  name = "Ubuntu"
+  pre = "<i class='fa fa-heart'></i>"
+  weight = -80
+  identifier = "ubuntu"
+  url = "/categories/ubuntu/"
+
+[[menu.main]]
+  name = "About Me"
+  pre = "<i class='fa fa-heart'></i>"
+  weight = -80
+  identifier = "about"
+  url = "/about"
+
+[[menu.main]]
+  name = "Certificates"
+  pre = "<i class='fa fa-heart'></i>"
+  weight = -80
+  identifier = "certificates"
+  url = "/certificates"

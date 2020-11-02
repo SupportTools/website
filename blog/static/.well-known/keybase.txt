@@ -1,0 +1,40 @@
+================================================================== https://keybase.io/cube8021 -------------------------------------------------------------------- I hereby claim:
+  * I am an admin of https://support.tools
+  * I am cube8021 (https://keybase.io/cube8021) on keybase.
+  * I have a public key ASAdtuQBjXkjIoRu0H6u_h2UMyfJLjfs18WzHNGHvsiECgo To do so, I am signing this object: {
+  "body": {
+    "key": {
+      "eldest_kid": "01201db6e4018d792322846ed07eaefe1d943327c92e37ecd7c5b31cd187bec8840a0a",
+      "host": "keybase.io",
+      "kid": "01201db6e4018d792322846ed07eaefe1d943327c92e37ecd7c5b31cd187bec8840a0a",
+      "uid": "7b1b5022738f2edba2ef21cf440d8319",
+      "username": "cube8021"
+    },
+    "merkle_root": {
+      "ctime": 1573662258,
+      "hash": "02e6439c19bd88efaa88f2efccccf2d6f06b64319ab69495173dc476750df5cd3d553e44b9e3278bbde2d6ba70c55ea9de74516a70e526add3187a1424c7711c",
+      "hash_meta": "95519163a9fe12a2f4dddb874505c14b8be42cf824d574129d8434c4b895bb78",
+      "seqno": 9375759
+    },
+    "service": {
+      "entropy": "FUN60SUWuB2jp8ESRMDgBNJ8",
+      "hostname": "support.tools",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 2
+  },
+  "client": {
+    "name": "keybase.io go client",
+    "version": "4.7.2"
+  },
+  "ctime": 1573662267,
+  "expire_in": 504576000,
+  "prev": "12670471afda1243e936db3da9307341846befc169164dc514e3375e8f411f5b",
+  "seqno": 32,
+  "tag": "signature"
+}
+which yields the signature: 
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEgHbbkAY15IyKEbtB+rv4dlDMnyS437NfFsxzRh77IhAoKp3BheWxvYWTESpcCIMQgEmcEca/aEkPpNts9qTBzQYRr78FpFk3FFOM3Xo9BH1vEIASPDtVQI5x3kAocfCw4oTB6zsuudmmMiyLnIdACkVIlAgHCo3NpZ8RAmSjNbqxH0dpUJhWX5BFyN8EPcfVmcwta8GtWZl/uaOL44/nxwYm5GBCQ5WSRyIm1EwiPC2IKAZq0CHG0N0TSB6hzaWdfdHlwZSCkaGFzaIKkdHlwZQildmFsdWXEIBOo8uHXhvSQgYKtmxvK9mVJN/F/wcvXGpy8omt5hQgYo3RhZ80CAqd2ZXJzaW9uAQ== 
+And finally, I am proving ownership of this host by posting or appending to this document. View my publicly-auditable identity here: https://keybase.io/cube8021
+==================================================================
