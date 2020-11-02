@@ -11,8 +11,7 @@ steps:
   pull: default
   image: plugins/docker
   settings:
-    context: .
-    dockerfile: Dockerfile
+    dockerfile: ./Dockerfile
     dry_run: true
     repo: supporttools/website
     password:
