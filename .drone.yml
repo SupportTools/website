@@ -12,6 +12,8 @@ steps:
   settings:
     context: ./
     tags: ${DRONE_BUILD_NUMBER}
+    repo: registry-private.support.tools/supporttools/website
+    registry: registry-private.support.tools
     repo: supporttools/website
     password:
       from_secret: Docker_Repo_Password
