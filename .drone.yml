@@ -1,25 +1,18 @@
 ---
 kind: pipeline
-name: pull-request
-
-platform:
-  os: linux
-  arch: amd64
+type: kubernetes
+name: SupportTools
 
 steps:
-- name: docker-build
-  image: plugins/docker
+- name: publish
+  image: banzaicloud/drone-kaniko
   settings:
-    context: ./
-    tags: ${DRONE_BUILD_NUMBER}
-    repo: registry-private.support.tools/supporttools/website
-    registry: registry-private.support.tools
+    registry: registry-private.support.tools # if not provided index.docker.io is supposed
     repo: supporttools/website
-    password:
-      from_secret: Docker_Repo_Password
+    tags: ${DRONE_BUILD_NUMBER}
+    cache: true
+    skip_tls_verify: false # set to true for testing registries ONLY with self-signed certs
     username:
-      from_secret: Docker_Repo_Username
-  when:
-    event:
-    - pull_request
-    - push
+      from_secret: docker-username
+    password:
+      from_secret: docker-password
