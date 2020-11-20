@@ -4,15 +4,56 @@ type: kubernetes
 name: SupportTools
 
 steps:
-- name: publish
-  image: banzaicloud/drone-kaniko
-  settings:
-    registry: registry-private.support.tools # if not provided index.docker.io is supposed
-    repo: supporttools/website
-    tags: ${DRONE_BUILD_NUMBER}
-    cache: true
-    skip_tls_verify: false # set to true for testing registries ONLY with self-signed certs
-    username:
-      from_secret: docker-username
-    password:
-      from_secret: docker-password
+  - name: build-docker
+    image: plugins/docker
+    settings:
+      repo: supporttools/website
+      tags:
+        - ${DRONE_BUILD_NUMBER}
+        - ${DRONE_COMMIT_BRANCH}
+        - latest
+      username:
+        from_secret: docker-username
+      password:
+        from_secret: docker-password
+
+  - name: customize-kube-files
+    image: supporttools/kube-builder
+    pull: true
+    environment:
+      APPENV: ${DRONE_COMMIT_BRANCH}
+    commands:
+      - bash ./deploy.sh
+
+  - name: deploy-npd
+    image: cube8021/drone-kubectl
+    settings:
+      kubernetes_server:
+        from_secret: k8s_server
+      kubernetes_cert:
+        from_secret: k8s_cert
+      kubernetes_token:
+        from_secret: k8s_token
+    commands:
+      - kubectl create ns supporttools-website-${DRONE_BUILD_NUMBER}
+      - kubectl apply -n supporttools-website-${DRONE_BUILD_NUMBER} -k ./deployment-ready/
+    when:
+      branch:
+      - master
+      - feature/*
+
+  - name: deploy-prd
+    image: cube8021/drone-kubectl
+    settings:
+      kubernetes_server:
+        from_secret: k8s_server_prd
+      kubernetes_cert:
+        from_secret: k8s_cert_prd
+      kubernetes_token:
+        from_secret: k8s_token_prd
+    commands:
+      - kubectl create ns supporttools-website
+      - kubectl apply -n supporttools-website -k ./deployment-ready/      
+    when:
+      branch:
+      - live
