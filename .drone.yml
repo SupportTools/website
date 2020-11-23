@@ -34,10 +34,7 @@ steps:
         from_secret: k8s_token_npd
     commands:
       - kubectl create ns supporttools-website-${DRONE_BUILD_NUMBER}
-      - kubectl apply -n supporttools-website-${DRONE_BUILD_NUMBER} -k ./deployment-ready/
-      - kubectl get nodes -o wide
-      - kubectl -n supporttools-website-${DRONE_BUILD_NUMBER} get deployments
-      - kubectl -n supporttools-website-${DRONE_BUILD_NUMBER} get pods
+      - kubectl apply -n supporttools-website-${DRONE_BUILD_NUMBER} -f ./deployment-ready/
 
   - name: deploy-staging
     image: cube8021/drone-kubectl
@@ -48,7 +45,7 @@ steps:
         from_secret: k8s_token_stage
     commands:
       - kubectl create ns supporttools-website
-      - kubectl apply -n supporttools-website -k ./deployment-ready/
+      - kubectl apply -n supporttools-website -f ./deployment-ready/
     when:
      event: deployment
      environment: staging
@@ -62,7 +59,7 @@ steps:
         from_secret: k8s_token_prod
     commands:
       - kubectl create ns supporttools-website
-      - kubectl apply -n supporttools-website -k ./deployment-ready/
+      - kubectl apply -n supporttools-website -f ./deployment-ready/
     when:
      event: deployment
      environment: production
