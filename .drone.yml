@@ -35,7 +35,6 @@ steps:
     commands:
       - kubectl create ns supporttools-website-${DRONE_BUILD_NUMBER}
       - kubectl annotate ns supporttools-website-${DRONE_BUILD_NUMBER} field.cattle.io/projectId=c-mpm6n:p-88dbm
-      - kubectl label ns supporttools-website-${DRONE_BUILD_NUMBER} field.cattle.io/projectId=p-88dbm
       - kubectl apply -n supporttools-website-${DRONE_BUILD_NUMBER} -f ./deployment-ready/
 
   - name: deploy-staging
