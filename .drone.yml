@@ -50,9 +50,10 @@ steps:
      event:
      - deployment
      - promote
-     environment: staging
+     target:
+     - staging
 
-  - name: deploy-prd-b
+  - name: deploy-production
     image: cube8021/drone-kubectl
     settings:
       kubernetes_server:
@@ -66,4 +67,5 @@ steps:
      event:
      - deployment
      - promote
-     environment: production
+     target:
+     - production
