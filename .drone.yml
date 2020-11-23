@@ -47,7 +47,9 @@ steps:
       - kubectl create ns supporttools-website-staging
       - kubectl apply -n supporttools-website-staging -f ./deployment-ready/
     when:
-     event: deployment
+     event:
+     - deployment
+     - promote
      environment: staging
 
   - name: deploy-prd-b
@@ -61,5 +63,7 @@ steps:
       - kubectl create ns supporttools-website-production
       - kubectl apply -n supporttools-website-production -f ./deployment-ready/
     when:
-     event: deployment
+     event:
+     - deployment
+     - promote
      environment: production
