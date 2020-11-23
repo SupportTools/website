@@ -37,6 +37,9 @@ steps:
     commands:
       - kubectl create ns supporttools-website-${DRONE_BUILD_NUMBER}
       - kubectl apply -n supporttools-website-${DRONE_BUILD_NUMBER} -k ./deployment-ready/
+      - kubectl get nodes -o wide
+      - kubectl -n supporttools-website-${DRONE_BUILD_NUMBER} get deployments
+      - kubectl -n supporttools-website-${DRONE_BUILD_NUMBER} get pods
     when:
       branch:
       - master
