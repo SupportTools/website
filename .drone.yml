@@ -25,35 +25,41 @@ steps:
     commands:
       - bash ./deploy.sh
 
-  - name: deploy-npd
+  - name: deploy-nonprod
     image: cube8021/drone-kubectl
     settings:
       kubernetes_server:
-        from_secret: k8s_server
-      kubernetes_cert:
-        from_secret: k8s_cert
+        from_secret: k8s_server_npd
       kubernetes_token:
-        from_secret: k8s_token
+        from_secret: k8s_token_npd
     commands:
       - kubectl create ns supporttools-website-${DRONE_BUILD_NUMBER}
-      - kubectl apply -n supporttools-website-${DRONE_BUILD_NUMBER} -k ./deployment-ready/
-    when:
-      branch:
-      - master
-      - feature/*
+      - kubectl apply -n supporttools-website-${DRONE_BUILD_NUMBER} -f ./deployment-ready/
 
-  - name: deploy-prd
+  - name: deploy-staging
     image: cube8021/drone-kubectl
     settings:
       kubernetes_server:
-        from_secret: k8s_server_prd
-      kubernetes_cert:
-        from_secret: k8s_cert_prd
+        from_secret: k8s_server_stage
       kubernetes_token:
-        from_secret: k8s_token_prd
+        from_secret: k8s_token_stage
     commands:
       - kubectl create ns supporttools-website
-      - kubectl apply -n supporttools-website -k ./deployment-ready/      
+      - kubectl apply -n supporttools-website -f ./deployment-ready/
     when:
-      branch:
-      - live
+     event: deployment
+     environment: staging
+
+  - name: deploy-prd-b
+    image: cube8021/drone-kubectl
+    settings:
+      kubernetes_server:
+        from_secret: k8s_server_prod
+      kubernetes_token:
+        from_secret: k8s_token_prod
+    commands:
+      - kubectl create ns supporttools-website
+      - kubectl apply -n supporttools-website -f ./deployment-ready/
+    when:
+     event: deployment
+     environment: production
