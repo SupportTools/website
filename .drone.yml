@@ -44,8 +44,8 @@ steps:
       kubernetes_token:
         from_secret: k8s_token_stage
     commands:
-      - kubectl create ns supporttools-website
-      - kubectl apply -n supporttools-website -f ./deployment-ready/
+      - kubectl create ns supporttools-website-staging
+      - kubectl apply -n supporttools-website-staging -f ./deployment-ready/
     when:
      event: deployment
      environment: staging
@@ -58,8 +58,8 @@ steps:
       kubernetes_token:
         from_secret: k8s_token_prod
     commands:
-      - kubectl create ns supporttools-website
-      - kubectl apply -n supporttools-website -f ./deployment-ready/
+      - kubectl create ns supporttools-website-production
+      - kubectl apply -n supporttools-website-production -f ./deployment-ready/
     when:
      event: deployment
      environment: production
