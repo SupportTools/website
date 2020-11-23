@@ -25,7 +25,7 @@ steps:
     commands:
       - bash ./deploy.sh
 
-  - name: deploy-npd
+  - name: deploy-NonProd
     image: cube8021/drone-kubectl
     settings:
       kubernetes_server:
@@ -41,7 +41,7 @@ steps:
       - kubectl -n supporttools-website-${DRONE_BUILD_NUMBER} get deployments
       - kubectl -n supporttools-website-${DRONE_BUILD_NUMBER} get pods
 
-  - name: deploy-prd-a
+  - name: deploy-staging
     image: cube8021/drone-kubectl
     settings:
       kubernetes_server:
@@ -54,8 +54,8 @@ steps:
       - kubectl create ns supporttools-website
       - kubectl apply -n supporttools-website -k ./deployment-ready/
     when:
-      branch:
-      - live
+     event: deployment
+     environment: staging
 
   - name: deploy-prd-b
     image: cube8021/drone-kubectl
@@ -70,5 +70,5 @@ steps:
       - kubectl create ns supporttools-website
       - kubectl apply -n supporttools-website -k ./deployment-ready/
     when:
-      branch:
-      - live
+     event: deployment
+     environment: production
