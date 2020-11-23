@@ -29,11 +29,11 @@ steps:
     image: cube8021/drone-kubectl
     settings:
       kubernetes_server:
-        from_secret: k8s_server
+        from_secret: k8s_server_npd
       kubernetes_cert:
-        from_secret: k8s_cert
+        from_secret: k8s_cert_npd
       kubernetes_token:
-        from_secret: k8s_token
+        from_secret: k8s_token_npd
     commands:
       - kubectl create ns supporttools-website-${DRONE_BUILD_NUMBER}
       - kubectl apply -n supporttools-website-${DRONE_BUILD_NUMBER} -k ./deployment-ready/
@@ -42,18 +42,34 @@ steps:
       - master
       - feature/*
 
-  - name: deploy-prd
+  - name: deploy-prd-a
     image: cube8021/drone-kubectl
     settings:
       kubernetes_server:
-        from_secret: k8s_server_prd
+        from_secret: k8s_server_prd-a
       kubernetes_cert:
-        from_secret: k8s_cert_prd
+        from_secret: k8s_cert_prd-a
       kubernetes_token:
-        from_secret: k8s_token_prd
+        from_secret: k8s_token_prd-a
     commands:
       - kubectl create ns supporttools-website
-      - kubectl apply -n supporttools-website -k ./deployment-ready/      
+      - kubectl apply -n supporttools-website -k ./deployment-ready/
+    when:
+      branch:
+      - live
+
+  - name: deploy-prd-b
+    image: cube8021/drone-kubectl
+    settings:
+      kubernetes_server:
+        from_secret: k8s_server_prd-b
+      kubernetes_cert:
+        from_secret: k8s_cert_prd-b
+      kubernetes_token:
+        from_secret: k8s_token_prd-b
+    commands:
+      - kubectl create ns supporttools-website
+      - kubectl apply -n supporttools-website -k ./deployment-ready/
     when:
       branch:
       - live
