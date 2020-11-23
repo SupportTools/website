@@ -25,13 +25,11 @@ steps:
     commands:
       - bash ./deploy.sh
 
-  - name: deploy-NonProd
+  - name: deploy-nonprod
     image: cube8021/drone-kubectl
     settings:
       kubernetes_server:
         from_secret: k8s_server_npd
-      kubernetes_cert:
-        from_secret: k8s_cert_npd
       kubernetes_token:
         from_secret: k8s_token_npd
     commands:
@@ -45,11 +43,9 @@ steps:
     image: cube8021/drone-kubectl
     settings:
       kubernetes_server:
-        from_secret: k8s_server_prd-a
-      kubernetes_cert:
-        from_secret: k8s_cert_prd-a
+        from_secret: k8s_server_stage
       kubernetes_token:
-        from_secret: k8s_token_prd-a
+        from_secret: k8s_token_stage
     commands:
       - kubectl create ns supporttools-website
       - kubectl apply -n supporttools-website -k ./deployment-ready/
@@ -61,11 +57,9 @@ steps:
     image: cube8021/drone-kubectl
     settings:
       kubernetes_server:
-        from_secret: k8s_server_prd-b
-      kubernetes_cert:
-        from_secret: k8s_cert_prd-b
+        from_secret: k8s_server_prod
       kubernetes_token:
-        from_secret: k8s_token_prd-b
+        from_secret: k8s_token_prod
     commands:
       - kubectl create ns supporttools-website
       - kubectl apply -n supporttools-website -k ./deployment-ready/
