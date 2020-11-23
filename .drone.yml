@@ -40,10 +40,6 @@ steps:
       - kubectl get nodes -o wide
       - kubectl -n supporttools-website-${DRONE_BUILD_NUMBER} get deployments
       - kubectl -n supporttools-website-${DRONE_BUILD_NUMBER} get pods
-    when:
-      branch:
-      - master
-      - feature/*
 
   - name: deploy-prd-a
     image: cube8021/drone-kubectl
