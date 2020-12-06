@@ -34,23 +34,10 @@ steps:
         from_secret: k8s_token_npd
     commands:
       - kubectl create ns supporttools-website-${DRONE_BUILD_NUMBER}
+      - kubectl annotate ns supporttools-website-${DRONE_BUILD_NUMBER} field.cattle.io/projectId=c-mpm6n:p-88dbm
       - kubectl apply -n supporttools-website-${DRONE_BUILD_NUMBER} -f ./deployment-ready/
 
   - name: deploy-staging
-    image: cube8021/drone-kubectl
-    settings:
-      kubernetes_server:
-        from_secret: k8s_server_stage
-      kubernetes_token:
-        from_secret: k8s_token_stage
-    commands:
-      - kubectl create ns supporttools-website
-      - kubectl apply -n supporttools-website -f ./deployment-ready/
-    when:
-     event: deployment
-     environment: staging
-
-  - name: deploy-prd-b
     image: cube8021/drone-kubectl
     settings:
       kubernetes_server:
@@ -58,8 +45,26 @@ steps:
       kubernetes_token:
         from_secret: k8s_token_prod
     commands:
-      - kubectl create ns supporttools-website
-      - kubectl apply -n supporttools-website -f ./deployment-ready/
+      - kubectl apply -n supporttools-website-staging -f ./deployment-ready/
     when:
-     event: deployment
-     environment: production
+     event:
+     - deployment
+     - promote
+     target:
+     - staging
+
+  - name: deploy-production
+    image: cube8021/drone-kubectl
+    settings:
+      kubernetes_server:
+        from_secret: k8s_server_prod
+      kubernetes_token:
+        from_secret: k8s_token_prod
+    commands:
+      - kubectl apply -n supporttools-website-production -f ./deployment-ready/
+    when:
+     event:
+     - deployment
+     - promote
+     target:
+     - production
