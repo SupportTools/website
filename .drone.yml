@@ -45,7 +45,6 @@ steps:
       kubernetes_token:
         from_secret: k8s_token_prod
     commands:
-      - kubectl get nodes -v=6
       - kubectl apply -n supporttools-website-staging -f ./deployment-ready/
     when:
      event:
