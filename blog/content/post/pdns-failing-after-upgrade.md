@@ -21,7 +21,7 @@ Backend error: GSQLBackend unable to list keys: Could not prepare statement: sel
 
 # [Fix](#fix)
 
-- Before making any changes, we want to backup the current database.
+- Before making any changes, we want to back up the current database.
 
 <code>
 mysqldump -u root -p -B pdns > pdns_backup.sql
