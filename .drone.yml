@@ -34,6 +34,9 @@ steps:
         from_secret: k8s_token_npd
     commands:
       - kubectl create ns supporttools-website-${DRONE_BUILD_NUMBER}
+      - kubectl label ns supporttools-website-${DRONE_BUILD_NUMBER} team=supporttools
+      - kubectl label ns supporttools-website-${DRONE_BUILD_NUMBER} app=supporttools-website
+      - kubectl label ns supporttools-website-${DRONE_BUILD_NUMBER} ns-purge=true
       - kubectl annotate ns supporttools-website-${DRONE_BUILD_NUMBER} field.cattle.io/projectId=c-96c7n:p-kmkdv
       - kubectl apply -n supporttools-website-${DRONE_BUILD_NUMBER} -f ./deployment-ready/
 
