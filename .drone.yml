@@ -34,7 +34,7 @@ steps:
         from_secret: k8s_token_npd
     commands:
       - kubectl create ns supporttools-website-${DRONE_BUILD_NUMBER}
-      - kubectl annotate ns supporttools-website-${DRONE_BUILD_NUMBER} field.cattle.io/projectId=c-mpm6n:p-88dbm
+      - kubectl annotate ns supporttools-website-${DRONE_BUILD_NUMBER} field.cattle.io/projectId=c-96c7n:p-kmkdv
       - kubectl apply -n supporttools-website-${DRONE_BUILD_NUMBER} -f ./deployment-ready/
 
   - name: deploy-staging
