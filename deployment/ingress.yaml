@@ -1,0 +1,22 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  labels:
+    app: www
+  name: supporttools-public-lb-test
+spec:
+  rules:
+  - host: support.tools
+    http:
+      paths:
+      - backend:
+          serviceName: www
+          servicePort: 80
+        pathType: ImplementationSpecific
+  - host: test-BUILD_NUMBER.support.tools
+    http:
+      paths:
+      - backend:
+          serviceName: www
+          servicePort: 80
+        pathType: ImplementationSpecific
