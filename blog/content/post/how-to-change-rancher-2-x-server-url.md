@@ -1,6 +1,6 @@
 +++
-Categories = ["Rancher", "URL"]
-Tags = ["rancher"
+Categories = ["Rancher"]
+Tags = ["rancher"]
 date = "2021-02-17T19:21:00+00:00"
 more_link = "yes"
 title = "How to change the Rancher 2.x Server URL"
