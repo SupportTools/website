@@ -15,7 +15,7 @@ At times it's necessary to block specific user agents from connecting to workloa
 
 # [Resolution](#resolution)
 
-## Identify the user agents that will be blocked.
+## Identify the user agents that need to be blocked.
 
 There are multiple ways to surface user agents needing to be blocked, the most practical being your nginx ingress controllers' logs. In the logs one would see something similar to the following entries:
 
@@ -26,7 +26,7 @@ There are multiple ways to surface user agents needing to be blocked, the most p
 172.16.10.101 - - [02/Jan/2021:21:51:29 +0000] "GET / HTTP/1.1" 200 45 "-" "Wget/1.20.3 (darwin19.0.0)" 164 0.001 [default-ingress-1db0bf370dd59aa8ff284a4bd4ccdc07-80] [] 10.42.0.10:80 45 0.000 200 5334e799b3268dab31d74a5d2239702b
 ```
 
-We can see three unique user agents here; `curl`, `Wget`, and `Mozilla/5.0`.
+We can see three unique user agents here; `curl,` `wget,` and `Mozilla/5.0`.
 
 ## Modify the cluster.yaml to include the Nginx option to block user agents
 
