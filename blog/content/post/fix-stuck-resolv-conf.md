@@ -10,9 +10,9 @@ In Ubuntu, you may run into an issue when updating /etc/resolv.conf even tho you
 
 Error:
 
-<code>
+```
 rm: cannot remove '/etc/resolv.conf': Operation not permitted
-</code>
+```
 
 <!--more-->
 # [Pre-requisites](#pre-requisites)
@@ -24,32 +24,32 @@ rm: cannot remove '/etc/resolv.conf': Operation not permitted
 
 - Verify the file has be marker as immutable:
 
-<code>
+```
 lsattr /etc/resolv.conf
-</code>
+```
 
 Example output:
 
-<code>
+```
 [root@cube ~]# lsattr /etc/resolv.conf
 ----i--------------- /etc/resolv.conf
-</code>
+```
 
 - Remove the immutable flag
 
-<code>
+```
 sudo chattr -i /etc/resolv.conf
-</code>
+```
 
 - Verify immutable flag has been removed from resolv.conf using the following.
 
-<code>
+```
 lsattr /etc/resolv.conf
-</code>
+```
 
 Example output:
 
-<code>
+```
 [root@cube ~]# lsattr /etc/resolv.conf
 -------------------- /etc/resolv.conf
-</code>
+```
