@@ -3,11 +3,11 @@ languageCode = "en-us"
 title = "Support Tools"
 theme = "hyde"
 watch = "false"
-Copyright = "2020"
+Copyright = "2021"
 
 [params]
   Description = "Matthew Mattox"
-  disqusShortname = "SupportTools"
+  disqusShortname = "support-tools.disqus.com"
   GoogleAnalyticsTrackingID = "UA-151436906-1"
 
 [[menu.main]]
