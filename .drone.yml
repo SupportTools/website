@@ -76,4 +76,4 @@ steps:
      - production
 
 node_selector:
-  beta.kubernetes.io/arch: arm64
+  beta.kubernetes.io/arch: amd64
