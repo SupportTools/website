@@ -8,6 +8,9 @@ steps:
     image: plugins/docker
     settings:
       repo: supporttools/website
+      custom_dns:
+        - 1.1.1.1
+        - 1.0.0.1
       tags:
         - ${DRONE_BUILD_NUMBER}
         - ${DRONE_COMMIT_BRANCH}
@@ -71,3 +74,6 @@ steps:
      - promote
      target:
      - production
+
+node_selector:
+  beta.kubernetes.io/arch: arm64
