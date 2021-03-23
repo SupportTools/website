@@ -74,3 +74,4 @@ steps:
 
 node_selector:
   beta.kubernetes.io/arch: amd64
+  hardware: nvidia
