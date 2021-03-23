@@ -4,8 +4,8 @@ LABEL maintainer Matthew Mattox mmattox@support.tools
 ENV HUGO_VERSION 0.18
 ENV HUGO_BINARY hugo_${HUGO_VERSION}_Linux-64bit.tar.gz
 
-RUN sed -i 's/http\:\/\/dl-cdn.alpinelinux.org/https\:\/\/alpine.global.ssl.fastly.net/g' /etc/apk/repositories
-RUN apk add --update wget ca-certificates
+##RUN sed -i 's/http\:\/\/dl-cdn.alpinelinux.org/https\:\/\/alpine.global.ssl.fastly.net/g' /etc/apk/repositories
+##RUN apk add --update wget ca-certificates
 ##RUN wget https://github.com/spf13/hugo/releases/download/v${HUGO_VERSION}/hugo_${HUGO_VERSION}_Linux-64bit.tar.gz
 COPY hugo_0.18_Linux-64bit.tar.gz
 RUN tar xvzf hugo_0.18_Linux-64bit.tar.gz
