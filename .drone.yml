@@ -10,7 +10,7 @@ steps:
       repo: supporttools/website
       custom_dns:
         - 172.27.2.24
-        - 172.27.2.23  
+        - 172.27.2.23
       tags:
         - ${DRONE_BUILD_NUMBER}
         - ${DRONE_COMMIT_BRANCH}
@@ -32,9 +32,9 @@ steps:
     image: cube8021/drone-kubectl
     settings:
       kubernetes_server:
-        from_secret: k8s_server_npd
+        from_secret: k8s_server_prod
       kubernetes_token:
-        from_secret: k8s_token_npd
+        from_secret: k8s_token_prod
     commands:
       - kubectl create ns supporttools-website-${DRONE_BUILD_NUMBER}
       - kubectl label ns supporttools-website-${DRONE_BUILD_NUMBER} team=supporttools
