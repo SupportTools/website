@@ -8,6 +8,9 @@ steps:
     image: plugins/docker
     settings:
       repo: supporttools/website
+      custom_dns:
+        - 172.27.2.24
+        - 172.27.2.23  
       tags:
         - ${DRONE_BUILD_NUMBER}
         - ${DRONE_COMMIT_BRANCH}
