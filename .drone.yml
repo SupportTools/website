@@ -34,7 +34,6 @@ steps:
      event:
      - deployment
      - promote
-     - tag
 
   - name: Customize-kube-files
     image: supporttools/kube-builder
