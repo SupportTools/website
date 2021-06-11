@@ -13,6 +13,15 @@ steps:
     settings:
       registry: a1-harbor.support.tools
       repo: a1-harbor.support.tools/supporttools/website
+      cache_from: "a1-harbor.support.tools/supporttools/website:latest"
+      dry_run: true
+
+  - name: Docker-Publish
+    image: plugins/docker
+    settings:
+      registry: a1-harbor.support.tools
+      repo: a1-harbor.support.tools/supporttools/website
+      cache_from: "a1-harbor.support.tools/supporttools/website:latest"
       tags:
         - ${DRONE_BUILD_NUMBER}
         - ${DRONE_COMMIT_BRANCH}
@@ -21,6 +30,11 @@ steps:
         from_secret: harbor-username
       password:
         from_secret: harbor-password
+    when:
+     event:
+     - deployment
+     - promote
+     - tag
 
   - name: Customize-kube-files
     image: supporttools/kube-builder
@@ -30,7 +44,7 @@ steps:
     commands:
       - bash ./deploy.sh
 
-  - name: Deploy-to-Master
+  - name: Deploy-to-Staging
     image: cube8021/drone-kubectl
     settings:
       kubernetes_server:
@@ -38,12 +52,13 @@ steps:
       kubernetes_token:
         from_secret: k8s_token
     commands:
-      - kubectl create ns supporttools-website-${DRONE_BUILD_NUMBER}
-      - kubectl label ns supporttools-website-${DRONE_BUILD_NUMBER} team=supporttools
-      - kubectl label ns supporttools-website-${DRONE_BUILD_NUMBER} app=supporttools-website
-      - kubectl label ns supporttools-website-${DRONE_BUILD_NUMBER} ns-purge=true
-      - kubectl annotate ns supporttools-website-${DRONE_BUILD_NUMBER} field.cattle.io/projectId=c-qh2jx:p-lrfx5
-      - kubectl apply -n supporttools-website-${DRONE_BUILD_NUMBER} -f ./deployment-ready/
+      - kubectl apply -n supporttools-website-dev -f ./deployment-ready/
+    when:
+     event:
+     - deployment
+     - promote
+     target:
+     - dev
 
   - name: Deploy-to-Staging
     image: cube8021/drone-kubectl
