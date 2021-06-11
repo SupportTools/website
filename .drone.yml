@@ -12,7 +12,7 @@ steps:
     image: plugins/docker
     settings:
       registry: a1-harbor.support.tools
-      repo: a1-harbor.support.toolssupporttools/website
+      repo: a1-harbor.support.tools/supporttools/website
       tags:
         - ${DRONE_BUILD_NUMBER}
         - ${DRONE_COMMIT_BRANCH}
