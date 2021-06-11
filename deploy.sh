@@ -1,5 +1,6 @@
 #!/bin/bash
 
+cd 	/drone/src/k8s/
 echo "customizing Deployment files..."
 mkdir ./deployment-ready/
 cd ./deployment

@@ -53,9 +53,9 @@ steps:
     image: supporttools/kube-builder:32
     settings:
       kubernetes_server:
-        from_secret: a1-k3s-prd_server
+        from_secret: a1-rke1-prd_server
       kubernetes_token:
-        from_secret: a1-k3s-prd_token
+        from_secret: a1-rke1-prd_token
     commands:
       - kubectl apply -n supporttools-website-dev -f ./deployment-ready/
     when:
@@ -69,9 +69,9 @@ steps:
     image: supporttools/kube-builder:32
     settings:
       kubernetes_server:
-        from_secret: a1-k3s-prd_server
+        from_secret: a1-rke1-prd_server
       kubernetes_token:
-        from_secret: a1-k3s-prd_token
+        from_secret: a1-rke1-prd_token
     commands:
       - kubectl apply -n supporttools-website-staging -f ./deployment-ready/
     when:
@@ -85,9 +85,9 @@ steps:
     image: supporttools/kube-builder:32
     settings:
       kubernetes_server:
-        from_secret: a1-k3s-prd_server
+        from_secret: a1-rke1-prd_server
       kubernetes_token:
-        from_secret: a1-k3s-prd_token
+        from_secret: a1-rke1-prd_token
     commands:
       - kubectl apply -n supporttools-website-production -f ./deployment-ready/
     when:

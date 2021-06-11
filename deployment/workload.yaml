@@ -2,11 +2,11 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: www
+  name: supporttools
 spec:
   selector:
     matchLabels:
-      app: www
+      app: supporttools
   strategy:
     rollingUpdate:
       maxSurge: 1
@@ -15,17 +15,23 @@ spec:
   template:
     metadata:
       labels:
-        app: www
+        app: supporttools
     spec:
       imagePullSecrets:
       - name: regcred
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: beta.kubernetes.io/arch
+                operator: In
+                values:
+                - amd64
       containers:
-      - env:
-        - name: site
-          value: blog
-        image: a1-harbor.support.tools/supporttools/website:BUILD_NUMBER
+      - image: a1-harbor.support.tools/supporttools/website:BUILD_NUMBER
         imagePullPolicy: IfNotPresent
-        name: www
+        name: supporttools
         livenessProbe:
           failureThreshold: 3
           httpGet:
