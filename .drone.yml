@@ -58,6 +58,7 @@ steps:
         from_secret: a1-rke1-prd_token
     commands:
       - kubectl apply -n supporttools-website-dev -f ./deployment-ready/
+      - kubectl apply -n supporttools-website-dev -f ./deployment/ingress/dev.yaml
     when:
      event:
      - deployment
@@ -74,6 +75,7 @@ steps:
         from_secret: a1-rke1-prd_token
     commands:
       - kubectl apply -n supporttools-website-staging -f ./deployment-ready/
+      - kubectl apply -n supporttools-website-staging -f ./deployment/ingress/staging.yaml
     when:
      event:
      - deployment
@@ -90,6 +92,7 @@ steps:
         from_secret: a1-rke1-prd_token
     commands:
       - kubectl apply -n supporttools-website-production -f ./deployment-ready/
+      - kubectl apply -n supporttools-website-production -f ./deployment/ingress/production.yaml
     when:
      event:
      - deployment
