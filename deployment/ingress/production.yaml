@@ -8,6 +8,7 @@ metadata:
     external-dns.alpha.kubernetes.io/hostname: "prod.support.tools,www.support.tools,support.tools"
     external-dns.alpha.kubernetes.io/ttl: "120"
     external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
+    kubernetes.io/ingress.allow-http: "false"
   name: lb
 spec:
   rules:
