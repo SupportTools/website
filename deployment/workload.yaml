@@ -2,11 +2,11 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: supporttools
+  name: www
 spec:
   selector:
     matchLabels:
-      app: supporttools
+      app: www
   strategy:
     rollingUpdate:
       maxSurge: 1
@@ -15,7 +15,7 @@ spec:
   template:
     metadata:
       labels:
-        app: supporttools
+        app: www
     spec:
       imagePullSecrets:
       - name: regcred
@@ -31,7 +31,7 @@ spec:
       containers:
       - image: a1-harbor.support.tools/supporttools/website:BUILD_NUMBER
         imagePullPolicy: IfNotPresent
-        name: supporttools
+        name: www
         livenessProbe:
           failureThreshold: 3
           httpGet:
