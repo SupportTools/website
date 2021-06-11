@@ -96,9 +96,7 @@ steps:
      - production
 
 node_selector:
-  beta.kubernetes.io/arch: amd64
   drone-runner: true
 
 image_pull_secrets:
 - regcreds
-
