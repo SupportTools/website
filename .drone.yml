@@ -42,7 +42,7 @@ steps:
      - promote
 
   - name: Customize-kube-files
-    image: supporttools/kube-builder
+    image: a1-harbor.support.tools/cache/supporttools/kube-builder:32
     pull: true
     environment:
       APPENV: ${DRONE_COMMIT_BRANCH}
@@ -50,7 +50,7 @@ steps:
       - bash ./deploy.sh
 
   - name: Deploy-to-Dev
-    image: supporttools/kube-builder:32
+    image: a1-harbor.support.tools/cache/supporttools/kube-builder:32
     settings:
       kubernetes_server:
         from_secret: a1-rke1-prd_server
@@ -67,7 +67,7 @@ steps:
      - dev
 
   - name: Deploy-to-Staging
-    image: supporttools/kube-builder:32
+    image: a1-harbor.support.tools/cache/supporttools/kube-builder:32
     settings:
       kubernetes_server:
         from_secret: a1-rke1-prd_server
@@ -84,7 +84,7 @@ steps:
      - staging
 
   - name: Deploy-to-Production
-    image: supporttools/kube-builder:32
+    image: a1-harbor.support.tools/cache/supporttools/kube-builder:32
     settings:
       kubernetes_server:
         from_secret: a1-rke1-prd_server
