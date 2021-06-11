@@ -15,6 +15,7 @@ steps:
       repo: a1-harbor.support.tools/supporttools/website
       cache_from: "a1-harbor.support.tools/supporttools/website:latest"
       dry_run: true
+      purge: false
       tags:
         - ${DRONE_BUILD_NUMBER}
         - ${DRONE_COMMIT_BRANCH}
@@ -26,6 +27,7 @@ steps:
       registry: a1-harbor.support.tools
       repo: a1-harbor.support.tools/supporttools/website
       cache_from: "a1-harbor.support.tools/supporttools/website:latest"
+      purge: false
       tags:
         - ${DRONE_BUILD_NUMBER}
         - ${DRONE_COMMIT_BRANCH}
@@ -48,14 +50,15 @@ steps:
       - bash ./deploy.sh
 
   - name: Deploy-to-Dev
-    image: cube8021/drone-kubectl
+    image: supporttools/kube-builder:32
     settings:
       kubernetes_server:
-        from_secret: a1-k3s-prd_server
+        from_secret: a1-rke1-prd_server
       kubernetes_token:
-        from_secret: k8s_token
+        from_secret: a1-rke1-prd_token
     commands:
       - kubectl apply -n supporttools-website-dev -f ./deployment-ready/
+      - kubectl apply -n supporttools-website-dev -f ./deployment/ingress/dev.yaml
     when:
      event:
      - deployment
@@ -64,14 +67,15 @@ steps:
      - dev
 
   - name: Deploy-to-Staging
-    image: cube8021/drone-kubectl
+    image: supporttools/kube-builder:32
     settings:
       kubernetes_server:
-        from_secret: a1-k3s-prd_server
+        from_secret: a1-rke1-prd_server
       kubernetes_token:
-        from_secret: k8s_token
+        from_secret: a1-rke1-prd_token
     commands:
       - kubectl apply -n supporttools-website-staging -f ./deployment-ready/
+      - kubectl apply -n supporttools-website-staging -f ./deployment/ingress/staging.yaml
     when:
      event:
      - deployment
@@ -80,14 +84,15 @@ steps:
      - staging
 
   - name: Deploy-to-Production
-    image: cube8021/drone-kubectl
+    image: supporttools/kube-builder:32
     settings:
       kubernetes_server:
-        from_secret: a1-k3s-prd_server
+        from_secret: a1-rke1-prd_server
       kubernetes_token:
-        from_secret: k8s_token
+        from_secret: a1-rke1-prd_token
     commands:
       - kubectl apply -n supporttools-website-production -f ./deployment-ready/
+      - kubectl apply -n supporttools-website-production -f ./deployment/ingress/production.yaml
     when:
      event:
      - deployment

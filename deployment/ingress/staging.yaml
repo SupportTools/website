@@ -1,0 +1,24 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  labels:
+    app: supporttools
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: staging.support.tools
+    external-dns.alpha.kubernetes.io/ttl: "120"
+    external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
+    kubernetes.io/ingress.allow-http: "false"
+  name: lb
+spec:
+  rules:
+  - host: staging.support.tools
+    http:
+      paths:
+      - backend:
+          serviceName: www
+          servicePort: 80
+        pathType: ImplementationSpecific
+  tls:
+  - hosts:
+    - staging.support.tools
+    secretName: star-support-tools
