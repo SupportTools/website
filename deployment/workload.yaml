@@ -23,7 +23,7 @@ spec:
       - env:
         - name: site
           value: blog
-        image: supporttools/website:BUILD_NUMBER
+        image: a1-harbor.support.tools/supporttools/website:BUILD_NUMBER
         imagePullPolicy: IfNotPresent
         name: www
         livenessProbe:

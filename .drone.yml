@@ -1,26 +1,34 @@
 ---
 kind: pipeline
 type: kubernetes
-name: SupportTools
+name: SupportToolsBuild-amd64
+
+platform:
+  os: linux
+  arch: amd64
+
+trigger:
+  branches:
+    - master
+  event:
+    - push
 
 steps:
-  - name: build-docker
+  - name: Docker-Build
     image: plugins/docker
     settings:
-      repo: supporttools/website
-      custom_dns:
-        - 172.27.2.24
-        - 172.27.2.23
+      registry: a1-harbor.support.tools
+      repo: a1-harbor.support.toolssupporttools/website
       tags:
         - ${DRONE_BUILD_NUMBER}
         - ${DRONE_COMMIT_BRANCH}
         - latest
       username:
-        from_secret: docker-username
+        from_secret: harbor-username
       password:
-        from_secret: docker-password
+        from_secret: harbor-password
 
-  - name: customize-kube-files
+  - name: Customize-kube-files
     image: supporttools/kube-builder
     pull: true
     environment:
@@ -28,11 +36,11 @@ steps:
     commands:
       - bash ./deploy.sh
 
-  - name: deploy-nonprod
+  - name: Deploy-to-Master
     image: cube8021/drone-kubectl
     settings:
       kubernetes_server:
-        from_secret: k8s_server
+        from_secret: a1-k3s-prd_server
       kubernetes_token:
         from_secret: k8s_token
     commands:
@@ -40,14 +48,14 @@ steps:
       - kubectl label ns supporttools-website-${DRONE_BUILD_NUMBER} team=supporttools
       - kubectl label ns supporttools-website-${DRONE_BUILD_NUMBER} app=supporttools-website
       - kubectl label ns supporttools-website-${DRONE_BUILD_NUMBER} ns-purge=true
-      - kubectl annotate ns supporttools-website-${DRONE_BUILD_NUMBER} field.cattle.io/projectId=c-96c7n:p-kmkdv
+      - kubectl annotate ns supporttools-website-${DRONE_BUILD_NUMBER} field.cattle.io/projectId=c-qh2jx:p-lrfx5
       - kubectl apply -n supporttools-website-${DRONE_BUILD_NUMBER} -f ./deployment-ready/
 
-  - name: deploy-staging
+  - name: Deploy-to-Staging
     image: cube8021/drone-kubectl
     settings:
       kubernetes_server:
-        from_secret: k8s_server
+        from_secret: a1-k3s-prd_server
       kubernetes_token:
         from_secret: k8s_token
     commands:
@@ -59,11 +67,11 @@ steps:
      target:
      - staging
 
-  - name: deploy-production
+  - name: Deploy-to-Production
     image: cube8021/drone-kubectl
     settings:
       kubernetes_server:
-        from_secret: k8s_server
+        from_secret: a1-k3s-prd_server
       kubernetes_token:
         from_secret: k8s_token
     commands:
@@ -77,4 +85,8 @@ steps:
 
 node_selector:
   beta.kubernetes.io/arch: amd64
-  hardware: nvidia
+  drone-runner: true
+
+image_pull_secrets:
+- regcreds
+
