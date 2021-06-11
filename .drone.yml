@@ -15,6 +15,10 @@ steps:
       repo: a1-harbor.support.tools/supporttools/website
       cache_from: "a1-harbor.support.tools/supporttools/website:latest"
       dry_run: true
+      tags:
+        - ${DRONE_BUILD_NUMBER}
+        - ${DRONE_COMMIT_BRANCH}
+        - latest      
 
   - name: Docker-Publish
     image: plugins/docker
