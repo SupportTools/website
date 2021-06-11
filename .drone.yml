@@ -47,7 +47,7 @@ steps:
     commands:
       - bash ./deploy.sh
 
-  - name: Deploy-to-Staging
+  - name: Deploy-to-Dev
     image: cube8021/drone-kubectl
     settings:
       kubernetes_server:
