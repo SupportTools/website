@@ -49,13 +49,13 @@ steps:
     commands:
       - bash ./deploy.sh
 
-  - name: Deploy-to-Dev
+  - name: Deploy-to-Dev-A1
     image: a1-harbor.support.tools/cache/supporttools/kube-builder:32
     settings:
       kubernetes_server:
-        from_secret: a1-rke1-prd_server
+        from_secret: k8s_server_a1-rke-prd
       kubernetes_token:
-        from_secret: a1-rke1-prd_token
+        from_secret: k8s_token_a1-rke-prd
     commands:
       - kubectl apply -n supporttools-website-dev -f ./deployment-ready/
       - kubectl apply -n supporttools-website-dev -f ./deployment/ingress/dev.yaml
@@ -66,13 +66,13 @@ steps:
      target:
      - dev
 
-  - name: Deploy-to-Staging
+  - name: Deploy-to-Staging-B1
     image: a1-harbor.support.tools/cache/supporttools/kube-builder:32
     settings:
       kubernetes_server:
-        from_secret: a1-rke1-prd_server
+        from_secret: k8s_server_b1-rke-prd
       kubernetes_token:
-        from_secret: a1-rke1-prd_token
+        from_secret: k8s_token_b1-rke-prd
     commands:
       - kubectl apply -n supporttools-website-staging -f ./deployment-ready/
       - kubectl apply -n supporttools-website-staging -f ./deployment/ingress/staging.yaml
@@ -83,13 +83,13 @@ steps:
      target:
      - staging
 
-  - name: Deploy-to-Production
+  - name: Deploy-to-Production-B1
     image: a1-harbor.support.tools/cache/supporttools/kube-builder:32
     settings:
       kubernetes_server:
-        from_secret: a1-rke1-prd_server
+        from_secret: k8s_server_b1-rke-prd
       kubernetes_token:
-        from_secret: a1-rke1-prd_token
+        from_secret: k8s_token_b1-rke-prd
     commands:
       - kubectl apply -n supporttools-website-production -f ./deployment-ready/
       - kubectl apply -n supporttools-website-production -f ./deployment/ingress/production.yaml
