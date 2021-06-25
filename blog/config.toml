@@ -18,18 +18,18 @@ Copyright = "2021"
   url = "/categories/rancher/"
 
 [[menu.main]]
-  name = "Ubuntu"
-  pre = "<i class='fa fa-heart'></i>"
-  weight = -80
-  identifier = "ubuntu"
-  url = "/categories/ubuntu/"
-
-[[menu.main]]
   name = "Kubernetes"
   pre = "<i class='fa fa-heart'></i>"
   weight = -80
   identifier = "kubernetes"
   url = "/categories/kubernetes/"
+
+[[menu.main]]
+  name = "Ubuntu"
+  pre = "<i class='fa fa-heart'></i>"
+  weight = -80
+  identifier = "ubuntu"
+  url = "/categories/ubuntu/"
 
 [[menu.main]]
   name = "About Me"
