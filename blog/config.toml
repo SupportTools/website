@@ -25,6 +25,13 @@ Copyright = "2021"
   url = "/categories/ubuntu/"
 
 [[menu.main]]
+  name = "Kubernetes"
+  pre = "<i class='fa fa-heart'></i>"
+  weight = -80
+  identifier = "kubernetes"
+  url = "/categories/kubernetes/"
+
+[[menu.main]]
   name = "About Me"
   pre = "<i class='fa fa-heart'></i>"
   weight = -80
