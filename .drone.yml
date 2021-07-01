@@ -11,9 +11,8 @@ steps:
   - name: Docker-Build
     image: plugins/docker
     settings:
-      registry: a1-harbor.support.tools
-      repo: a1-harbor.support.tools/supporttools/website
-      cache_from: "a1-harbor.support.tools/supporttools/website:latest"
+      repo: supporttools/website
+      cache_from: "supporttools/website:latest"
       dry_run: true
       purge: false
       tags:
@@ -24,25 +23,24 @@ steps:
   - name: Docker-Publish
     image: plugins/docker
     settings:
-      registry: a1-harbor.support.tools
-      repo: a1-harbor.support.tools/supporttools/website
-      cache_from: "a1-harbor.support.tools/supporttools/website:latest"
+      repo: supporttools/website
+      cache_from: "supporttools/website:latest"
       purge: false
       tags:
         - ${DRONE_BUILD_NUMBER}
         - ${DRONE_COMMIT_BRANCH}
         - latest
       username:
-        from_secret: harbor-username
+        from_secret: docker-username
       password:
-        from_secret: harbor-password
+        from_secret: docker-password
     when:
      event:
      - deployment
      - promote
 
   - name: Customize-kube-files
-    image: a1-harbor.support.tools/cache/supporttools/kube-builder:32
+    image: supporttools/kube-builder:32
     pull: true
     environment:
       APPENV: ${DRONE_COMMIT_BRANCH}
@@ -50,7 +48,7 @@ steps:
       - bash ./deploy.sh
 
   - name: Deploy-to-Dev-A1
-    image: a1-harbor.support.tools/cache/supporttools/kube-builder:32
+    image: supporttools/kube-builder:32
     settings:
       kubernetes_server:
         from_secret: k8s_server_a1-rke-prd
@@ -67,7 +65,7 @@ steps:
      - dev
 
   - name: Deploy-to-Staging-B1
-    image: a1-harbor.support.tools/cache/supporttools/kube-builder:32
+    image: supporttools/kube-builder:32
     settings:
       kubernetes_server:
         from_secret: k8s_server_b1-rke-prd
@@ -84,7 +82,7 @@ steps:
      - staging
 
   - name: Deploy-to-Production-B1
-    image: a1-harbor.support.tools/cache/supporttools/kube-builder:32
+    image: supporttools/kube-builder:32
     settings:
       kubernetes_server:
         from_secret: k8s_server_b1-rke-prd
@@ -101,7 +99,5 @@ steps:
      - production
 
 node_selector:
+  beta.kubernetes.io/arch: amd64
   drone-runner: true
-
-image_pull_secrets:
-- regcreds
