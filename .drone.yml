@@ -58,15 +58,13 @@ steps:
       kubernetes_token:
         from_secret: k8s_token_a1-rke-dev
     commands:
-      - kubectl get cluster-info
-      - kubectl get nodes -o wide
       - kubectl create ns supporttools-website-master-${CI_BUILD_NUMBER}
       - kubectl label ns supporttools-website-master-${CI_BUILD_NUMBER} team=supporttools --overwrite
       - kubectl label ns supporttools-website-master-${CI_BUILD_NUMBER} app=supporttools-www --overwrite
       - kubectl label ns supporttools-website-master-${CI_BUILD_NUMBER} ns-purge=true --overwrite
       - kubectl label ns supporttools-website-master-${CI_BUILD_NUMBER} team=supporttools --overwrite
-      - kubectl apply -n supporttools-website-master-${CI_BUILD_NUMBER} -f ./deployment-ready/
-      - kubectl apply -n supporttools-website-master-${CI_BUILD_NUMBER} -f ./deployment/ingress/dev.yaml
+      - kubectl apply -n supporttools-website-master-${CI_BUILD_NUMBER} -f /drone/src/deployment-ready/
+      - kubectl apply -n supporttools-website-master-${CI_BUILD_NUMBER} -f /drone/src/deployment/ingress/master.yaml
 
   - name: Deploy-to-Dev
     image: supporttools/kube-builder:latest
@@ -77,8 +75,8 @@ steps:
       kubernetes_token:
         from_secret: k8s_token_a1-rke-dev
     commands:
-      - kubectl apply -n supporttools-website-dev -f ./deployment-ready/
-      - kubectl apply -n supporttools-website-dev -f ./deployment/ingress/dev.yaml
+      - kubectl apply -n supporttools-website-dev -f /drone/src/deployment-ready/
+      - kubectl apply -n supporttools-website-dev -f /drone/src/deployment/ingress/dev.yaml
     when:
      event:
      - deployment
@@ -95,8 +93,8 @@ steps:
       kubernetes_token:
         from_secret: k8s_token_b1-rke-prd
     commands:
-      - kubectl apply -n supporttools-website-staging -f ./deployment-ready/
-      - kubectl apply -n supporttools-website-staging -f ./deployment/ingress/staging.yaml
+      - kubectl apply -n supporttools-website-staging -f /drone/src/deployment-ready/
+      - kubectl apply -n supporttools-website-staging -f /drone/src/deployment/ingress/staging.yaml
     when:
      event:
      - deployment
@@ -113,8 +111,8 @@ steps:
       kubernetes_token:
         from_secret: k8s_token_b1-rke-prd
     commands:
-      - kubectl apply -n supporttools-website-production -f ./deployment-ready/
-      - kubectl apply -n supporttools-website-production -f ./deployment/ingress/production.yaml
+      - kubectl apply -n supporttools-website-production -f /drone/src/deployment-ready/
+      - kubectl apply -n supporttools-website-production -f /drone/src/deployment/ingress/production.yaml
     when:
      event:
      - deployment
