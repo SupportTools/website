@@ -13,7 +13,6 @@ steps:
     settings:
       registry: a1-harbor.support.tools
       repo: a1-harbor.support.tools/supporttools/website
-      cache_from: "a1-harbor.support.tools/supporttools/website:latest"
       dry_run: true
       purge: false
       tags:
