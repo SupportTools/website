@@ -58,6 +58,8 @@ steps:
       kubernetes_token:
         from_secret: k8s_token_a1-rke-dev
     commands:
+      - kubectl get cluster-info
+      - kubectl get nodes -o wide
       - kubectl create ns supporttools-website-master-${CI_BUILD_NUMBER}
       - kubectl label ns supporttools-website-master-${CI_BUILD_NUMBER} team=supporttools --overwrite
       - kubectl label ns supporttools-website-master-${CI_BUILD_NUMBER} app=supporttools-www --overwrite
