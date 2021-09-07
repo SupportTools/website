@@ -10,6 +10,7 @@ platform:
 steps:
   - name: Docker-Build
     image: plugins/docker
+    pull: always
     settings:
       repo: supporttools/website
       cache_from: "supporttools/website:latest"
@@ -22,6 +23,7 @@ steps:
 
   - name: Docker-Publish
     image: plugins/docker
+    pull: always
     settings:
       repo: supporttools/website
       cache_from: "supporttools/website:latest"
@@ -41,19 +43,39 @@ steps:
 
   - name: Customize-kube-files
     image: supporttools/kube-builder:32
-    pull: true
+    pull: always
     environment:
       APPENV: ${DRONE_COMMIT_BRANCH}
     commands:
       - bash ./deploy.sh
 
-  - name: Deploy-to-Dev-A1
-    image: supporttools/kube-builder:32
+  - name: Deploy-to-Master
+    image: supporttools/kube-builder:latest
+    pull: always
     settings:
       kubernetes_server:
-        from_secret: k8s_server_a1-rke-prd
+        from_secret: k8s_server_a1-rke-dev
       kubernetes_token:
-        from_secret: k8s_token_a1-rke-prd
+        from_secret: k8s_token_a1-rke-dev
+    commands:
+      - kubectl get cluster-info
+      - kubectl get nodes -o wide
+      - kubectl create ns supporttools-website-master-${CI_BUILD_NUMBER}
+      - kubectl label ns supporttools-website-master-${CI_BUILD_NUMBER} team=supporttools --overwrite
+      - kubectl label ns supporttools-website-master-${CI_BUILD_NUMBER} app=supporttools-www --overwrite
+      - kubectl label ns supporttools-website-master-${CI_BUILD_NUMBER} ns-purge=true --overwrite
+      - kubectl label ns supporttools-website-master-${CI_BUILD_NUMBER} team=supporttools --overwrite
+      - kubectl apply -n supporttools-website-master-${CI_BUILD_NUMBER} -f ./deployment-ready/
+      - kubectl apply -n supporttools-website-master-${CI_BUILD_NUMBER} -f ./deployment/ingress/dev.yaml
+
+  - name: Deploy-to-Dev
+    image: supporttools/kube-builder:latest
+    pull: always
+    settings:
+      kubernetes_server:
+        from_secret: k8s_server_a1-rke-dev
+      kubernetes_token:
+        from_secret: k8s_token_a1-rke-dev
     commands:
       - kubectl apply -n supporttools-website-dev -f ./deployment-ready/
       - kubectl apply -n supporttools-website-dev -f ./deployment/ingress/dev.yaml
@@ -64,8 +86,9 @@ steps:
      target:
      - dev
 
-  - name: Deploy-to-Staging-B1
-    image: supporttools/kube-builder:32
+  - name: Deploy-to-Staging
+    image: supporttools/kube-builder:latest
+    pull: always
     settings:
       kubernetes_server:
         from_secret: k8s_server_b1-rke-prd
@@ -81,8 +104,9 @@ steps:
      target:
      - staging
 
-  - name: Deploy-to-Production-B1
-    image: supporttools/kube-builder:32
+  - name: Deploy-to-Production
+    image: supporttools/kube-builder:latest
+    pull: always
     settings:
       kubernetes_server:
         from_secret: k8s_server_b1-rke-prd
@@ -101,3 +125,6 @@ steps:
 node_selector:
   beta.kubernetes.io/arch: amd64
   drone-runner: true
+
+image_pull_secrets:
+- regcred

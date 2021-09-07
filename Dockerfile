@@ -7,6 +7,7 @@ COPY ./blog/ /site
 WORKDIR /site
 RUN /usr/bin/hugo
 FROM nginx:alpine
+LABEL maintainer Matthew Mattox mmattox@support.tools
 COPY ./conf/default.conf /etc/nginx/conf.d/default.conf
 COPY --from=build /site/public /var/www/site
 WORKDIR /var/www/site
