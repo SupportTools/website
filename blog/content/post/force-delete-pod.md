@@ -89,7 +89,7 @@ To force-delete the pod, run:
 kubectl -n <Namespace>  delete pod --grace-period=0 --force <PodName>
 ```
 
-If this [does not work]{#check-resolution}, then return to the previous step.
+If this does not work, then return to the previous step.
 
 - Solution C - Restart kubelet
 Suppose you can SSH to the node and restart the kubelet process. If you do not have access or permission, this may require an administrator to get involved.
