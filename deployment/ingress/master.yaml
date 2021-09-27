@@ -3,11 +3,6 @@ kind: Ingress
 metadata:
   labels:
     app: supporttools
-  annotations:
-    external-dns.alpha.kubernetes.io/hostname: master-BUILD_NUMBER.support.tools
-    external-dns.alpha.kubernetes.io/ttl: "120"
-    external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
-    kubernetes.io/ingress.allow-http: "false"
   name: lb
 spec:
   rules:
