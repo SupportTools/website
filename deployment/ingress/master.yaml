@@ -15,5 +15,5 @@ spec:
         pathType: ImplementationSpecific
   tls:
   - hosts:
-    - dev.support.tools
+    - master-BUILD_NUMBER.support.tools
     secretName: star-support-tools
