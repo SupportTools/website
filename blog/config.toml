@@ -1,7 +1,7 @@
 baseURL = "/"
 languageCode = "en-us"
 title = "Support Tools"
-theme = "hyde"
+theme = "learn"
 watch = "false"
 Copyright = "2021"
 
