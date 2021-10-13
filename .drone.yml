@@ -19,9 +19,11 @@ steps:
       cache_from: "supporttools/website:latest"
       dry_run: true
       purge: false
+      dockerfile: Dockerfile.AMD64
       tags:
         - ${DRONE_BUILD_NUMBER}
         - ${DRONE_COMMIT_BRANCH}
+        - latest-amd64
         - latest      
 
   - name: Docker-Publish
@@ -31,9 +33,11 @@ steps:
       repo: supporttools/website
       cache_from: "supporttools/website:latest"
       purge: false
+      dockerfile: Dockerfile.AMD64
       tags:
         - ${DRONE_BUILD_NUMBER}
         - ${DRONE_COMMIT_BRANCH}
+        - latest-amd64
         - latest
       username:
         from_secret: docker-username
@@ -73,9 +77,11 @@ steps:
       cache_from: "supporttools/website:latest"
       dry_run: true
       purge: false
+      dockerfile: Dockerfile.ARM64
       tags:
         - ${DRONE_BUILD_NUMBER}
         - ${DRONE_COMMIT_BRANCH}
+        - latest-arm64
         - latest      
 
   - name: Docker-Publish
@@ -85,9 +91,11 @@ steps:
       repo: supporttools/website
       cache_from: "supporttools/website:latest"
       purge: false
+      dockerfile: Dockerfile.ARM64
       tags:
         - ${DRONE_BUILD_NUMBER}
         - ${DRONE_COMMIT_BRANCH}
+        - latest-arm64
         - latest
       username:
         from_secret: docker-username
