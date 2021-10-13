@@ -19,7 +19,7 @@ RUN set -x && \
   chmod +x /usr/bin/hugo && \
   rm -rf hugo_*.tar.gz
 
-COPY ./site/ /site
+COPY ./blog/ /site
 WORKDIR /site
 RUN hugo
 
