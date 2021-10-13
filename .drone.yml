@@ -39,9 +39,9 @@ steps:
         - latest-amd64
         - latest
       username:
-        from_secret: docker-username
+        from_secret: harbor-username
       password:
-        from_secret: docker-password
+        from_secret: harbor-password
       privileged: true
       volumes:
       - name: docker-data
@@ -96,9 +96,9 @@ steps:
         - latest-arm64
         - latest
       username:
-        from_secret: docker-username
+        from_secret: harbor-username
       password:
-        from_secret: docker-password
+        from_secret: harbor-password
       privileged: true
       volumes:
       - name: docker-data
