@@ -1,46 +1,60 @@
 baseURL = "/"
-languageCode = "en-us"
-title = "Support Tools"
+languageCode = "en-US"
+defaultContentLanguage = "en"
+
+title = "Support Tools - Matthew Mattox"
 theme = "learn"
-watch = "false"
-Copyright = "2021"
+metaDataFormat = "yaml"
+defaultContentLanguageInSubdir= true
 
 [params]
-  Description = "Matthew Mattox"
-  disqusShortname = "support-tools.disqus.com"
-  GoogleAnalyticsTrackingID = "UA-151436906-1"
+  description = "Matthew Mattox Personal Site"
+  author = "Matthew Mattox"
+  showVisitedLinks = true
+  disableBreadcrumb = false
+  disableNextPrev = false
+  disableLandingPageButton = true
+  disableMermaid = false
+  customMermaidURL = "https://unpkg.com/mermaid@8.8.0/dist/mermaid.min.js"
+  titleSeparator = "::"
 
-[[menu.main]]
-  name = "Rancher"
-  pre = "<i class='fa fa-heart'></i>"
-  weight = -80
-  identifier = "rancher"
-  url = "/categories/rancher/"
+[outputs]
+home = [ "HTML", "RSS", "JSON"]
 
-[[menu.main]]
-  name = "Kubernetes"
-  pre = "<i class='fa fa-heart'></i>"
-  weight = -80
-  identifier = "kubernetes"
-  url = "/categories/kubernetes/"
+[Languages]
+[Languages.en]
+title = "Documentation for Hugo Learn Theme"
+weight = 1
+languageName = "English"
+landingPageURL = "/en"
+landingPageName = "<i class='fas fa-home'></i> Home"
 
-[[menu.main]]
-  name = "Ubuntu"
-  pre = "<i class='fa fa-heart'></i>"
-  weight = -80
-  identifier = "ubuntu"
-  url = "/categories/ubuntu/"
+[[Languages.en.menu.shortcuts]]
+name = "<i class='fab fa-fw fa-github'></i> Rancher"
+identifier = "ds"
+url = "/categories/rancher/"
+weight = 10
 
-[[menu.main]]
-  name = "About Me"
-  pre = "<i class='fa fa-heart'></i>"
-  weight = -80
-  identifier = "about"
-  url = "/about"
+[[Languages.en.menu.shortcuts]]
+name = "<i class='fab fa-fw fa-github'></i> Kubernetes"
+identifier = "ds"
+url = "/categories/kubernetes/"
+weight = 11
 
-[[menu.main]]
-  name = "Certificates"
-  pre = "<i class='fa fa-heart'></i>"
-  weight = -80
-  identifier = "certificates"
-  url = "/certificates"
+[[Languages.en.menu.shortcuts]]
+name = "<i class='fab fa-fw fa-github'></i> Ubuntu"
+identifier = "ds"
+url = "/categories/ubuntu/"
+weight = 12
+
+[[Languages.en.menu.shortcuts]]
+name = "<i class='fab fa-fw fa-github'></i> About Me"
+identifier = "ds"
+url = "/about"
+weight = 13
+
+[[Languages.en.menu.shortcuts]]
+name = "<i class='fab fa-fw fa-github'></i> Certificates"
+identifier = "ds"
+url = "/certificates"
+weight = 14
