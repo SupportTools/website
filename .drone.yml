@@ -16,7 +16,6 @@ steps:
     pull: always
     settings:
       repo: supporttools/website
-      cache_from: "supporttools/website:latest"
       dry_run: true
       purge: false
       dockerfile: Dockerfile.AMD64
@@ -74,7 +73,6 @@ steps:
     pull: always
     settings:
       repo: supporttools/website
-      cache_from: "supporttools/website:latest"
       dry_run: true
       purge: false
       dockerfile: Dockerfile.ARM64
