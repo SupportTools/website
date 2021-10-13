@@ -215,7 +215,17 @@ steps:
 
 node_selector:
   beta.kubernetes.io/arch: amd64
-  drone-runner: true
+  beta.kubernetes.io/os: linux
+  runner: true
+
+tolerations:
+- key: drone-runner
+  operator: Exists
+  effect: NoSchedule
 
 image_pull_secrets:
-- regcred
+- harbor
+
+depends_on:
+- Docker-Build-AMD64
+- Docker-Build-ARM64
