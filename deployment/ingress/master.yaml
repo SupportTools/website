@@ -13,7 +13,3 @@ spec:
           serviceName: www
           servicePort: 80
         pathType: ImplementationSpecific
-  tls:
-  - hosts:
-    - master-BUILD_NUMBER.support.tools
-    secretName: star-support-tools
