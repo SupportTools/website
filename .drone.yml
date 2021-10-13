@@ -15,6 +15,7 @@ steps:
     image: plugins/docker
     pull: always
     settings:
+      registry: harbor.support.tools
       repo: harbor.support.tools/supporttools/website
       dry_run: true
       purge: false
@@ -29,6 +30,7 @@ steps:
     image: plugins/docker
     pull: always
     settings:
+      registry: harbor.support.tools
       repo: harbor.support.tools/supporttools/website
       cache_from: "harbor.support.tools/supporttools/website:latest"
       purge: false
@@ -72,6 +74,7 @@ steps:
     image: plugins/docker
     pull: always
     settings:
+      registry: harbor.support.tools
       repo: harbor.support.tools/supporttools/website
       dry_run: true
       purge: false
@@ -86,6 +89,7 @@ steps:
     image: plugins/docker
     pull: always
     settings:
+      registry: harbor.support.tools
       repo: harbor.support.tools/supporttools/website
       cache_from: "harbor.support.tools/supporttools/website:latest"
       purge: false
