@@ -15,7 +15,7 @@ steps:
     image: plugins/docker
     pull: always
     settings:
-      repo: supporttools/website
+      repo: harbor.support.tools/supporttools/website
       dry_run: true
       purge: false
       dockerfile: Dockerfile.AMD64
@@ -29,8 +29,8 @@ steps:
     image: plugins/docker
     pull: always
     settings:
-      repo: supporttools/website
-      cache_from: "supporttools/website:latest"
+      repo: harbor.support.tools/supporttools/website
+      cache_from: "harbor.support.tools/supporttools/website:latest"
       purge: false
       dockerfile: Dockerfile.AMD64
       tags:
@@ -72,7 +72,7 @@ steps:
     image: plugins/docker
     pull: always
     settings:
-      repo: supporttools/website
+      repo: harbor.support.tools/supporttools/website
       dry_run: true
       purge: false
       dockerfile: Dockerfile.ARM64
@@ -86,8 +86,8 @@ steps:
     image: plugins/docker
     pull: always
     settings:
-      repo: supporttools/website
-      cache_from: "supporttools/website:latest"
+      repo: harbor.support.tools/supporttools/website
+      cache_from: "harbor.support.tools/supporttools/website:latest"
       purge: false
       dockerfile: Dockerfile.ARM64
       tags:

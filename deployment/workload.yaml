@@ -18,7 +18,7 @@ spec:
         app: www
     spec:
       imagePullSecrets:
-      - name: regcred
+      - name: harbor
       affinity:
         nodeAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
@@ -29,7 +29,7 @@ spec:
                 values:
                 - amd64
       containers:
-      - image: supporttools/website:BUILD_NUMBER
+      - image: harbor.support.tools/supporttools/website:BUILD_NUMBER
         imagePullPolicy: IfNotPresent
         name: www
         livenessProbe:
