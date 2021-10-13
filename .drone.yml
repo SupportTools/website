@@ -1,11 +1,14 @@
 ---
 kind: pipeline
-type: kubernetes
-name: SupportTools-Build-amd64
+type: docker
+name: Docker-Build-AMD64
 
 platform:
   os: linux
   arch: amd64
+
+clone:
+  depth: 1
 
 steps:
   - name: Docker-Build
@@ -36,11 +39,86 @@ steps:
         from_secret: docker-username
       password:
         from_secret: docker-password
+      privileged: true
+      volumes:
+      - name: docker-data
+        path: /var/lib/docker
     when:
      event:
      - deployment
      - promote
 
+volumes:
+- name: docker-data
+  host:
+    path: /opt/docker
+---
+kind: pipeline
+type: docker
+name: Docker-Build-ARM64
+
+platform:
+  os: linux
+  arch: arm64
+
+clone:
+  depth: 1
+
+steps:
+  - name: Docker-Build
+    image: plugins/docker
+    pull: always
+    settings:
+      repo: supporttools/website
+      cache_from: "supporttools/website:latest"
+      dry_run: true
+      purge: false
+      tags:
+        - ${DRONE_BUILD_NUMBER}
+        - ${DRONE_COMMIT_BRANCH}
+        - latest      
+
+  - name: Docker-Publish
+    image: plugins/docker
+    pull: always
+    settings:
+      repo: supporttools/website
+      cache_from: "supporttools/website:latest"
+      purge: false
+      tags:
+        - ${DRONE_BUILD_NUMBER}
+        - ${DRONE_COMMIT_BRANCH}
+        - latest
+      username:
+        from_secret: docker-username
+      password:
+        from_secret: docker-password
+      privileged: true
+      volumes:
+      - name: docker-data
+        path: /var/lib/docker
+    when:
+     event:
+     - deployment
+     - promote
+
+volumes:
+- name: docker-data
+  host:
+    path: /opt/docker
+---
+kind: pipeline
+type: kubernetes
+name: Deploy
+
+platform:
+  os: linux
+  arch: amd64
+
+clone:
+  depth: 1
+
+steps:
   - name: Customize-kube-files
     image: supporttools/kube-builder:32
     pull: always
