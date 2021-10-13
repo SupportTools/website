@@ -1,0 +1,3 @@
+[submodule "blog/themes/--name"]
+	path = blog/themes/--name
+	url = https://github.com/SupportTools/hugo-theme-learn.git
