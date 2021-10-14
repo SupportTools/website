@@ -12,5 +12,3 @@ done
 ls -l /drone/src/deployment-ready/
 cat /drone/src/deployment/ingress/master.yaml | sed "s/BUILD_NUMBER/${CI_BUILD_NUMBER}/g" > /drone/src/deployment/ingress/master.yaml-tmp
 mv /drone/src/deployment/ingress/master.yaml-tmp /drone/src/deployment/ingress/master.yaml
-
-cat /drone/src/deployment/ingress/master.yaml

@@ -137,24 +137,6 @@ steps:
     commands:
       - bash ./deploy.sh
 
-  - name: Deploy-to-Master
-    image: supporttools/kube-builder:latest
-    pull: always
-    settings:
-      kubernetes_server:
-        from_secret: k8s_server
-      kubernetes_token:
-        from_secret: k8s_token
-    commands:
-      - kubectl create ns supporttools-website-master-${CI_BUILD_NUMBER}
-      - kubectl label ns supporttools-website-master-${CI_BUILD_NUMBER} team=supporttools --overwrite
-      - kubectl label ns supporttools-website-master-${CI_BUILD_NUMBER} app=supporttools-www --overwrite
-      - kubectl label ns supporttools-website-master-${CI_BUILD_NUMBER} ns-purge=true --overwrite
-      - kubectl label ns supporttools-website-master-${CI_BUILD_NUMBER} team=supporttools --overwrite
-      - kubectl -n supporttools-website-master-${CI_BUILD_NUMBER} create rolebinding system-unrestricted-psp-role-default --clusterrole=system-unrestricted-psp-role --serviceaccount=supporttools-website-master-${CI_BUILD_NUMBER}:default
-      - kubectl apply -n supporttools-website-master-${CI_BUILD_NUMBER} -f /drone/src/deployment-ready/
-      - kubectl apply -n supporttools-website-master-${CI_BUILD_NUMBER} -f /drone/src/deployment/ingress/master.yaml
-
   - name: Deploy-to-Dev
     image: supporttools/kube-builder:latest
     pull: always
