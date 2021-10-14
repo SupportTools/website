@@ -31,22 +31,18 @@ spec:
       containers:
       - image: harbor.support.tools/supporttools/website:BUILD_NUMBER
         imagePullPolicy: IfNotPresent
-        name: www
         livenessProbe:
           failureThreshold: 3
-          httpGet:
-            path: /images/healthz
-            port: 80
-            scheme: HTTP
           periodSeconds: 2
           successThreshold: 1
+          tcpSocket:
+            port: 80
           timeoutSeconds: 2
+        name: www
         readinessProbe:
           failureThreshold: 3
-          httpGet:
-            path: /images/healthz
-            port: 80
-            scheme: HTTP
           periodSeconds: 2
           successThreshold: 2
+          tcpSocket:
+            port: 80
           timeoutSeconds: 2
