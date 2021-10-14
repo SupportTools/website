@@ -1,5 +1,6 @@
-baseURL = "/"
-title = "Support Tools"
+baseURL = "https://example.com"
+title = "Your title"
+themesDir = "../.."
 theme = "m10c"
 paginate = 8
 
@@ -10,44 +11,28 @@ paginate = 8
     url = "/"
     weight = 1
   [[menu.main]]
+    identifier = "tags"
+    name = "Tags"
+    url = "/tags/"
+    weight = 2
+  [[menu.main]]
     identifier = "about"
     name = "About"
     url = "/about/"
-    weight = 2
-  [[menu.main]]
-    identifier = "certificates"
-    name = "Certificates"
-    url = "/certificates/"
     weight = 3
-  [[menu.main]]
-    identifier = "kubernetes"
-    name = "Kubernetes"
-    url = "/categories/rancher/"
-    weight = 4
-  [[menu.main]]
-    identifier = "rancher"
-    name = "Rancher"
-    url = "/categories/rancher/"
-    weight = 5
-  [[menu.main]]
-    identifier = "ubuntu"
-    name = "Ubuntu"
-    url = "/categories/ubuntu/"
-    weight = 6
 
 [params]
-  author = "Matthew Mattox"
-  description = "Matthew Mattox Personal Tech Blog"
-  avatar = "/images/avatar.png"
+  author = "John Doe"
+  description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
   menu_item_separator = " - "
   [[params.social]]
     icon = "github"
     name = "Github"
-    url = "https://github.com/mattmattox"
+    url = "https://github.com/gohugoio"
   [[params.social]]
     icon = "twitter"
     name = "Twitter"
-    url = "https://twitter.com/cube8021"
+    url = "https://twitter.com/gohugoio"
 
   # Default theme
   #[params.style]
