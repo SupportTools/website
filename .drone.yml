@@ -118,7 +118,7 @@ volumes:
     path: /opt/docker
 ---
 kind: pipeline
-type: kubernetes
+type: docker
 name: Deploy
 
 platform:
