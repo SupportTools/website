@@ -38,7 +38,7 @@ paginate = 8
 [params]
   author = "Matthew Mattox"
   description = "Matthew Mattox Personal Tech Blog"
-  avatar = "/images/avatar.png"
+  avatar = "/images/avatar-shifted_down.png"
   menu_item_separator = " - "
   [[params.social]]
     icon = "github"
