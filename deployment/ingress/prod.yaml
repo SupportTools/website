@@ -33,4 +33,4 @@ spec:
     - prod.support.tools
     - www.support.tools
     - support.tools
-    secretName: star-support-tools
+    secretName: prd-supporttools-tls

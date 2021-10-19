@@ -16,4 +16,4 @@ spec:
   tls:
   - hosts:
     - staging.support.tools
-    secretName: star-support-tools
+    secretName: stg-supporttools-tls

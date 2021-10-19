@@ -130,7 +130,7 @@ clone:
 
 steps:
   - name: Customize-kube-files
-    image: supporttools/kube-builder:32
+    image: supporttools/kube-builder:latest
     pull: always
     environment:
       APPENV: ${DRONE_COMMIT_BRANCH}
@@ -149,6 +149,7 @@ steps:
       - if ! kubectl get ns supporttools-website-dev; then kubectl create ns supporttools-website-dev; fi
       - if ! kubectl -n supporttools-website-dev get rolebinding system-unrestricted-psp-role-default; then kubectl -n supporttools-website-dev create rolebinding system-unrestricted-psp-role-default --clusterrole=system-unrestricted-psp-role --serviceaccount=supporttools-website-dev:default; fi
       - kubectl apply -n supporttools-website-dev -f /drone/src/deployment-ready/
+      - kubectl apply -n supporttools-website-dev -f /drone/src/deployment/certificate/dev.yaml
       - kubectl apply -n supporttools-website-dev -f /drone/src/deployment/ingress/dev.yaml
       - kubectl scale -n supporttools-website-dev deployments/www --replicas=1
     when:
@@ -170,6 +171,7 @@ steps:
       - if ! kubectl get ns supporttools-website-staging; then kubectl create ns supporttools-website-staging; fi
       - if ! kubectl -n supporttools-website-staging get rolebinding system-unrestricted-psp-role-default; then kubectl -n supporttools-website-staging create rolebinding system-unrestricted-psp-role-default --clusterrole=system-unrestricted-psp-role --serviceaccount=supporttools-website-staging:default; fi
       - kubectl apply -n supporttools-website-staging -f /drone/src/deployment-ready/
+      - kubectl apply -n supporttools-website-staging -f /drone/src/deployment/certificate/staging.yaml
       - kubectl apply -n supporttools-website-staging -f /drone/src/deployment/ingress/staging.yaml
       - kubectl scale -n supporttools-website-staging deployments/www --replicas=3
     when:
@@ -191,6 +193,7 @@ steps:
       - if ! kubectl get ns supporttools-website-production; then kubectl create ns supporttools-website-production; fi
       - if ! kubectl -n supporttools-website-production get rolebinding system-unrestricted-psp-role-default; then kubectl -n supporttools-website-production create rolebinding system-unrestricted-psp-role-default --clusterrole=system-unrestricted-psp-role --serviceaccount=supporttools-website-production:default; fi
       - kubectl apply -n supporttools-website-production -f /drone/src/deployment-ready/
+      - kubectl apply -n supporttools-website-production -f /drone/src/deployment/certificate/prod.yaml
       - kubectl apply -n supporttools-website-production -f /drone/src/deployment/ingress/production.yaml
       - kubectl scale -n supporttools-website-production deployments/www --replicas=5
     when:

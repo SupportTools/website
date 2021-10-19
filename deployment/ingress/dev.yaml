@@ -16,4 +16,4 @@ spec:
   tls:
   - hosts:
     - dev.support.tools
-    secretName: star-support-tools
+    secretName: dev-supporttools-tls
