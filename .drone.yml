@@ -130,7 +130,7 @@ clone:
 
 steps:
   - name: Customize-kube-files
-    image: supporttools/kube-builder:latest
+    image: harbor.support.tools/supporttools/kube-builder:latest
     pull: always
     environment:
       APPENV: ${DRONE_COMMIT_BRANCH}
@@ -138,7 +138,7 @@ steps:
       - bash ./deploy.sh
 
   - name: Deploy-to-Dev
-    image: supporttools/kube-builder:latest
+    image: harbor.support.tools/supporttools/kube-builder:latest
     pull: always
     settings:
       kubernetes_server:
@@ -160,7 +160,7 @@ steps:
      - dev
 
   - name: Deploy-to-Staging
-    image: supporttools/kube-builder:latest
+    image: harbor.support.tools/supporttools/kube-builder:latest
     pull: always
     settings:
       kubernetes_server:
@@ -182,7 +182,7 @@ steps:
      - staging
 
   - name: Deploy-to-Production
-    image: supporttools/kube-builder:latest
+    image: harbor.support.tools/supporttools/kube-builder:latest
     pull: always
     settings:
       kubernetes_server:
