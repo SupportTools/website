@@ -22,7 +22,7 @@ RUN apt-get update && apt-get install -yq --no-install-recommends \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 COPY build.sh /tmp/
-EUN chmod u+x /tmp/bash.sh && /tmp/bash.sh $TARGETARCH
+RUN chmod u+x /tmp/bash.sh && /tmp/bash.sh $TARGETARCH
 
 COPY ./blog/ /site
 WORKDIR /site
