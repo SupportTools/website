@@ -1,7 +1,7 @@
 ---
 kind: pipeline
-type: kubernetes
-name: Support.Tools
+type: docker
+name: Build
 
 platform:
   os: linux
@@ -46,6 +46,19 @@ steps:
       - deployment
       - promote
 
+---
+kind: pipeline
+type: kubernetes
+name: Deploy
+
+platform:
+  os: linux
+  arch: amd64
+
+clone:
+  depth: 1
+
+steps:
 - name: Customize-kube-files
   image: supporttools/kube-builder:32
   pull: always
@@ -133,3 +146,6 @@ tolerations:
 
 image_pull_secrets:
 - harbor
+
+depends_on:
+- Build
