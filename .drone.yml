@@ -1,7 +1,7 @@
 ---
 kind: pipeline
 type: docker
-name: Docker-Build-AMD64
+name: Support.Tools
 
 platform:
   os: linux
@@ -10,125 +10,38 @@ platform:
 clone:
   depth: 1
 
-steps:
-  - name: Docker-Build
-    image: plugins/docker
-    pull: always
-    settings:
-      registry: harbor.support.tools
-      repo: harbor.support.tools/supporttools/website
-      dry_run: true
-      purge: false
-      dockerfile: Dockerfile.AMD64
-      tags:
-        - ${DRONE_BUILD_NUMBER}
-        - ${DRONE_COMMIT_BRANCH}
-        - latest-amd64
-        - latest      
-
-  - name: Docker-Publish
-    image: plugins/docker
-    pull: always
-    settings:
-      registry: harbor.support.tools
-      repo: harbor.support.tools/supporttools/website
-      cache_from: "harbor.support.tools/supporttools/website:latest"
-      purge: false
-      dockerfile: Dockerfile.AMD64
-      tags:
-        - ${DRONE_BUILD_NUMBER}
-        - ${DRONE_COMMIT_BRANCH}
-        - latest-amd64
-        - latest
-      username:
-        from_secret: harbor-username
-      password:
-        from_secret: harbor-password
-      privileged: true
-      volumes:
-      - name: docker-data
-        path: /var/lib/docker
-    when:
-     event:
-     - deployment
-     - promote
-
-volumes:
-- name: docker-data
-  host:
-    path: /opt/docker
----
-kind: pipeline
-type: docker
-name: Docker-Build-ARM64
-
-platform:
-  os: linux
-  arch: arm64
-
-clone:
-  depth: 1
+environment:
+  DOCKER_HOST: tcp://docker-in-docker:2375
+  DOCKER_CLI_EXPERIMENTAL: enabled
 
 steps:
-  - name: Docker-Build
-    image: plugins/docker
-    pull: always
-    settings:
-      registry: harbor.support.tools
-      repo: harbor.support.tools/supporttools/website
-      dry_run: true
-      purge: false
-      dockerfile: Dockerfile.ARM64
-      tags:
-        - ${DRONE_BUILD_NUMBER}
-        - ${DRONE_COMMIT_BRANCH}
-        - latest-arm64
-        - latest      
+- name: Docker Build
+  image: ncrmro/docker-buildx:19.03.10
+  commands:
+  - docker version
+  - docker buildx version
+  - docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
+  - docker buildx create --name multiarch --use
+  - docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 -t supporttools/website:latest -t supporttools/website:${DRONE_BUILD_NUMBER} -t supporttools/website:$DRONE_COMMIT_SHA -f Dockerfile .
 
-  - name: Docker-Publish
-    image: plugins/docker
-    pull: always
-    settings:
-      registry: harbor.support.tools
-      repo: harbor.support.tools/supporttools/website
-      cache_from: "harbor.support.tools/supporttools/website:latest"
-      purge: false
-      dockerfile: Dockerfile.ARM64
-      tags:
-        - ${DRONE_BUILD_NUMBER}
-        - ${DRONE_COMMIT_BRANCH}
-        - latest-arm64
-        - latest
-      username:
-        from_secret: harbor-username
-      password:
-        from_secret: harbor-password
-      privileged: true
-      volumes:
-      - name: docker-data
-        path: /var/lib/docker
-    when:
-     event:
-     - deployment
-     - promote
-
-volumes:
-- name: docker-data
-  host:
-    path: /opt/docker
----
-kind: pipeline
-type: kubernetes
-name: Deploy
-
-platform:
-  os: linux
-  arch: amd64
-
-clone:
-  depth: 1
-
-steps:
+- name: Docker Publish
+  image: ncrmro/docker-buildx:19.03.10
+  environment:
+    DOCKER_USERNAME:
+      from_secret: docker-username
+    DOCKER_PASSWORD:
+      from_secret: docker-password
+  commands:
+  - docker version
+  - docker buildx version
+  - echo ${DOCKER_PASSWORD} | docker login -u ${DOCKER_USERNAME} --password-stdin
+  - docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
+  - docker buildx create --name multiarch --use
+  - docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 -t supporttools/website:latest -t supporttools/website:${DRONE_BUILD_NUMBER} -t supporttools/website:$DRONE_COMMIT_SHA --push -f Dockerfile .
+  when:
+    event:
+    - deployment
+    - promote
   - name: Customize-kube-files
     image: supporttools/kube-builder:32
     pull: always
@@ -200,19 +113,13 @@ steps:
      target:
      - production
 
+services:
+- name: docker-in-docker
+  docker:
+  image: docker:19.03.12-dind
+  command: ["dockerd", "--host", "0.0.0.0", "--experimental"]
+  privileged: true
+
 node_selector:
   beta.kubernetes.io/arch: amd64
-  beta.kubernetes.io/os: linux
-  runner: true
-
-tolerations:
-- key: drone-runner
-  operator: Exists
-  effect: NoSchedule
-
-image_pull_secrets:
-- harbor
-
-depends_on:
-- Docker-Build-AMD64
-- Docker-Build-ARM64
+  drone-runner: true
