@@ -42,6 +42,7 @@ steps:
     event:
     - deployment
     - promote
+
 - name: Customize-kube-files
   image: supporttools/kube-builder:32
   pull: always
