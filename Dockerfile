@@ -21,13 +21,13 @@ RUN apt-get update && apt-get install -yq --no-install-recommends \
     bash \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-RUN if [ ${TARGETARCH} == "amd64" ]; then wget --no-check-certificate https://github.com/gohugoio/hugo/releases/download/v0.88.1/hugo_0.88.1_Linux-64bit.tar.gz; fi
-RUN if [ ${TARGETARCH} == "arm64" ]; then wget --no-check-certificate https://github.com/gohugoio/hugo/releases/download/v0.88.1/hugo_0.88.1_Linux-ARM64.tar.gz; fi
 RUN set -x && \
-  tar xvzf hugo_*.tar.gz && \
-  cp hugo /usr/bin/hugo && \
-  chmod +x /usr/bin/hugo && \
-  rm -rf hugo_*.tar.gz
+if ${TARGETARCH} == "amd64"; then wget --no-check-certificate https://github.com/gohugoio/hugo/releases/download/v0.88.1/hugo_0.88.1_Linux-64bit.tar.gz; fi && \
+if ${TARGETARCH} == "arm64"; then wget --no-check-certificate https://github.com/gohugoio/hugo/releases/download/v0.88.1/hugo_0.88.1_Linux-ARM64.tar.gz; fi && \
+tar xvzf hugo_*.tar.gz && \
+cp hugo /usr/bin/hugo && \
+chmod +x /usr/bin/hugo && \
+rm -rf hugo_*.tar.gz
 
 COPY ./blog/ /site
 WORKDIR /site
