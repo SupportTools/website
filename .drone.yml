@@ -29,22 +29,22 @@ steps:
   - docker buildx version
   - docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
   - docker buildx create --name multiarch --use
-  - docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 -t supporttools/website:latest -t supporttools/website:${DRONE_BUILD_NUMBER} -t supporttools/website:$DRONE_COMMIT_SHA -f Dockerfile .
+  - docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 --dry-run -f Dockerfile .
 
 - name: Docker Publish
   image: ncrmro/docker-buildx:19.03.10
   environment:
     DOCKER_USERNAME:
-      from_secret: docker-username
+      from_secret: harbor-username
     DOCKER_PASSWORD:
-      from_secret: docker-password
+      from_secret: harbor-password
   commands:
   - docker version
   - docker buildx version
-  - echo ${DOCKER_PASSWORD} | docker login -u ${DOCKER_USERNAME} --password-stdin
+  - docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD} harbor.support.tools
   - docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
   - docker buildx create --name multiarch --use
-  - docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 -t supporttools/website:latest -t supporttools/website:${DRONE_BUILD_NUMBER} -t supporttools/website:$DRONE_COMMIT_SHA --push -f Dockerfile .
+  - docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 -t harbor.support.tools/supporttools/website:latest -t harbor.support.tools/supporttools/website:${DRONE_BUILD_NUMBER} -t harbor.support.tools/supporttools/website:$DRONE_COMMIT_SHA --push -f Dockerfile .
   when:
     event:
     - deployment
