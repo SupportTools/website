@@ -30,6 +30,11 @@ steps:
   - docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
   - docker buildx create --name multiarch --use
   - docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 -f Dockerfile .
+  when:
+    event:
+      exclude:
+      - deployment
+      - promote
 
 - name: Docker Publish
   image: ncrmro/docker-buildx:19.03.10
@@ -49,6 +54,9 @@ steps:
     event:
     - deployment
     - promote
+      exclude:
+      - deployment
+      - promote    
 
 - name: Customize-kube-files
   image: supporttools/kube-builder:32
@@ -75,7 +83,7 @@ steps:
   when:
    event:
    - deployment
-   - promote
+   - promote   
    target:
    - dev
 
