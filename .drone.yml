@@ -1,6 +1,6 @@
 ---
 kind: pipeline
-type: kubernetes
+type: docker
 name: Support.Tools
 
 platform:
@@ -13,6 +13,13 @@ clone:
 environment:
   DOCKER_HOST: tcp://docker-in-docker:2375
   DOCKER_CLI_EXPERIMENTAL: enabled
+
+services:
+- name: docker-in-docker
+  docker:
+  image: docker:19.03.12-dind
+  command: ["dockerd", "--host", "0.0.0.0", "--experimental"]
+  privileged: true
 
 steps:
 - name: Docker Build
@@ -113,13 +120,6 @@ steps:
    - promote
    target:
    - production
-
-services:
-- name: docker-in-docker
-  docker:
-  image: docker:19.03.12-dind
-  command: ["dockerd", "--host", "0.0.0.0", "--experimental"]
-  privileged: true
 
 node_selector:
   beta.kubernetes.io/arch: amd64
