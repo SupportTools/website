@@ -35,7 +35,6 @@ steps:
     platforms:
       - linux/amd64
       - linux/arm64
-      - linux/arm/v7
     username:
       from_secret: harbor-username
     password:
