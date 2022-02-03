@@ -17,6 +17,10 @@ spec:
       labels:
         app: www
     spec:
+      securityContext:
+        runAsUser: 1000
+        runAsGroup: 3000
+        fsGroup: 2000
       affinity:
         nodeAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
@@ -29,21 +33,29 @@ spec:
       containers:
       - image: supporttools/website:BUILD_NUMBER
         imagePullPolicy: IfNotPresent
+        name: www
         livenessProbe:
           failureThreshold: 3
+          httpGet:
+            path: /images/healthz
+            port: 8080
+            scheme: HTTP
           periodSeconds: 2
           successThreshold: 1
-          tcpSocket:
-            port: 8080
           timeoutSeconds: 2
-        name: www
         readinessProbe:
           failureThreshold: 3
+          httpGet:
+            path: /images/healthz
+            port: 8080
+            scheme: HTTP
           periodSeconds: 2
           successThreshold: 2
-          tcpSocket:
-            port: 8080
           timeoutSeconds: 2
+        securityContext:
+          allowPrivilegeEscalation: false
+          runAsGroup: 3000
+          runAsUser: 1000
         volumeMounts:
         - mountPath: /etc/nginx/client_body_temp
           name: cache-volume
