@@ -37,7 +37,7 @@ spec:
         livenessProbe:
           failureThreshold: 3
           httpGet:
-            path: /images/healthz
+            path: /healthz/
             port: 8080
             scheme: HTTP
           periodSeconds: 2
@@ -46,7 +46,7 @@ spec:
         readinessProbe:
           failureThreshold: 3
           httpGet:
-            path: /images/healthz
+            path: /healthz/
             port: 8080
             scheme: HTTP
           periodSeconds: 2
@@ -66,6 +66,8 @@ spec:
         - mountPath: /etc/nginx/uwsgi_temp
           name: cache-volume
         - mountPath: /var/run
+          name: cache-volume
+        - mountPath: /var/nginx/log
           name: cache-volume
       imagePullSecrets:
       - name: dockerhub-supporttools

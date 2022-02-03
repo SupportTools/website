@@ -26,7 +26,6 @@ FROM wernight/alpine-nginx-pagespeed:latest
 COPY ./conf/default.conf /etc/nginx/conf.d/default.conf
 COPY ./conf/nginx.conf /etc/nginx/nginx.conf
 COPY --from=builder /site/public /etc/nginx/html
-WORKDIR /var/www/site
+WORKDIR /etc/nginx/html
 
 EXPOSE 8080
-EXPOSE 8443
