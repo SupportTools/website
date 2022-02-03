@@ -34,24 +34,24 @@ spec:
       - image: supporttools/website:BUILD_NUMBER
         imagePullPolicy: IfNotPresent
         name: www
-        livenessProbe:
-          failureThreshold: 3
-          httpGet:
-            path: /healthz/
-            port: 8080
-            scheme: HTTP
-          periodSeconds: 2
-          successThreshold: 1
-          timeoutSeconds: 2
-        readinessProbe:
-          failureThreshold: 3
-          httpGet:
-            path: /healthz/
-            port: 8080
-            scheme: HTTP
-          periodSeconds: 2
-          successThreshold: 2
-          timeoutSeconds: 2
+        # livenessProbe:
+        #   failureThreshold: 3
+        #   httpGet:
+        #     path: /healthz/
+        #     port: 8080
+        #     scheme: HTTP
+        #   periodSeconds: 2
+        #   successThreshold: 1
+        #   timeoutSeconds: 2
+        # readinessProbe:
+        #   failureThreshold: 3
+        #   httpGet:
+        #     path: /healthz/
+        #     port: 8080
+        #     scheme: HTTP
+        #   periodSeconds: 2
+        #   successThreshold: 2
+        #   timeoutSeconds: 2
         securityContext:
           allowPrivilegeEscalation: false
           runAsGroup: 3000
