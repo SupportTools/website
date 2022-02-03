@@ -2,12 +2,6 @@ FROM harbor.support.tools/dockerhub-proxy/library/ubuntu:latest AS builder
 
 ARG TARGETPLATFORM
 ARG TARGETARCH
-#ARG TARGETVARIANT
-#RUN printf "I'm building for TARGETPLATFORM=${TARGETPLATFORM}" \
-#    && printf ", TARGETARCH=${TARGETARCH}" \
-#    && printf ", TARGETVARIANT=${TARGETVARIANT} \n" \
-#    && printf "With uname -s : " && uname -s \
-#    && printf "and  uname -m : " && uname -mm
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -28,7 +22,11 @@ COPY ./blog/ /site
 WORKDIR /site
 RUN hugo
 
-FROM harbor.support.tools/dockerhub-proxy/wernight/alpine-nginx-pagespeed:latest
+FROM wernight/alpine-nginx-pagespeed:latest
 COPY ./conf/default.conf /etc/nginx/conf.d/default.conf
+COPY ./conf/nginx.conf /etc/nginx/nginx.conf
 COPY --from=builder /site/public /etc/nginx/html
 WORKDIR /var/www/site
+
+EXPOSE 8080
+EXPOSE 8443
