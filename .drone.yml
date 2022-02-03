@@ -68,7 +68,7 @@ steps:
     environment:
       APPENV: ${DRONE_COMMIT_BRANCH}
     commands:
-      - bash /drone/src/k8s/deploy.sh
+      - bash /drone/src/deployment/deploy.sh
 
   - name: Deploy-to-Dev
     image: supporttools/kube-builder:latest
