@@ -17,8 +17,6 @@ spec:
       labels:
         app: www
     spec:
-      imagePullSecrets:
-      - name: dockerhub-supporttools
       affinity:
         nodeAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
@@ -46,3 +44,19 @@ spec:
           tcpSocket:
             port: 8080
           timeoutSeconds: 2
+        volumeMounts:
+        - mountPath: /etc/nginx/client_body_temp
+          name: cache-volume
+        - mountPath: /etc/nginx/proxy_temp
+          name: cache-volume
+        - mountPath: /etc/nginx/fastcgi_temp
+          name: cache-volume
+        - mountPath: /etc/nginx/uwsgi_temp
+          name: cache-volume
+        - mountPath: /var/run
+          name: cache-volume
+      imagePullSecrets:
+      - name: dockerhub-supporttools
+      volumes:
+      - emptyDir: {}
+        name: cache-volume    
