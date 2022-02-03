@@ -2,7 +2,7 @@
 
 if [[ -z $BUILD_NUMBER ]]
 then
-  BUILD_NUMBER=${CI_BUILD_NUMBER}
+  BUILD_NUMBER=${DRONE_BUILD_NUMBER}
 fi
 
 echo "customizing Deployment files..."
