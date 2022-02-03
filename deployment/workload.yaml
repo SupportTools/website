@@ -18,7 +18,7 @@ spec:
         app: www
     spec:
       imagePullSecrets:
-      - name: harbor
+      - name: dockerhub-supporttools
       affinity:
         nodeAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
@@ -29,14 +29,14 @@ spec:
                 values:
                 - amd64
       containers:
-      - image: harbor.support.tools/supporttools/website:BUILD_NUMBER
+      - image: supporttools/website:BUILD_NUMBER
         imagePullPolicy: IfNotPresent
         livenessProbe:
           failureThreshold: 3
           periodSeconds: 2
           successThreshold: 1
           tcpSocket:
-            port: 80
+            port: 8080
           timeoutSeconds: 2
         name: www
         readinessProbe:
@@ -44,5 +44,5 @@ spec:
           periodSeconds: 2
           successThreshold: 2
           tcpSocket:
-            port: 80
+            port: 8080
           timeoutSeconds: 2

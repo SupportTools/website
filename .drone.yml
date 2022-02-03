@@ -1,7 +1,7 @@
 ---
 kind: pipeline
 type: docker
-name: Build
+name: SupportTools-www
 
 platform:
   os: linux
@@ -10,9 +10,140 @@ platform:
 clone:
   depth: 1
 
+concurrency:
+  limit: 1
+
 environment:
   DOCKER_HOST: tcp://docker-in-docker:2375
   DOCKER_CLI_EXPERIMENTAL: enabled
+
+steps:
+  - name: Waiting for Docker to start
+    image: ncrmro/docker-buildx:19.03.10
+    commands:
+    - echo 'Waiting for docker to start...'
+    - while ! docker info; do sleep 1; done
+
+  - name: Docker-Build
+    image: ncrmro/docker-buildx:19.03.10
+    environment:
+      DOCKER_USERNAME:
+        from_secret: docker-username
+      DOCKER_PASSWORD:
+        from_secret: docker-password    
+    commands:
+    - docker version
+    - docker buildx version
+    - docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
+    - docker buildx create --name multiarch --use
+    - docker buildx build --platform linux/amd64 -f ./Dockerfile .
+    when:
+      event:
+        - push
+        - pull_request
+
+  - name: Docker-Publish
+    image: ncrmro/docker-buildx:19.03.10
+    environment:
+      DOCKER_USERNAME:
+        from_secret: docker-username
+      DOCKER_PASSWORD:
+        from_secret: docker-password
+    commands:
+    - docker version
+    - docker buildx version
+    - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+    - docker pull supporttools/website:latest
+    - docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
+    - docker buildx create --name multiarch --use
+    - docker buildx build --cache-from type=registry,ref=supporttools/website:latest --platform linux/amd64 -t supporttools/website:latest -t supporttools/website:${DRONE_BUILD_NUMBER} --push -f ./Dockerfile .
+    when:
+      event:
+      - deployment
+      - promote
+
+  - name: Customize-kube-files
+    image: supporttools/kube-builder:latest
+    pull: true
+    environment:
+      APPENV: ${DRONE_COMMIT_BRANCH}
+    commands:
+      - bash /drone/src/k8s/deploy.sh
+
+  - name: Deploy-to-Dev
+    image: supporttools/kube-builder:latest
+    settings:
+      kubernetes_server:
+        from_secret: k8s_dev_server
+      kubernetes_token:
+        from_secret: k8s_dev_token
+    commands:
+      - bash /usr/local/bin/init-kubectl
+      - if ! kubectl get ns supporttools-website-dev; then kubectl create ns supporttools-website-dev; fi
+      - kubectl label ns supporttools-website-dev team=tools --overwrite
+      - kubectl label ns supporttools-website-dev app=website --overwrite
+      - kubectl label ns supporttools-website-dev ns-purge=false --overwrite
+      - kubectl annotate ns supporttools-website-dev field.cattle.io/projectId=c-m-gt566p9p:p-2w6ng --overwrite
+      - kubectl apply -n supporttools-website-dev -f /drone/src/deployment-ready/
+      - kubectl apply -n supporttools-website-dev -f /drone/src/deployment/certs/dev.yaml
+      - kubectl apply -n supporttools-website-dev -f /drone/src/deployment/ingress/dev.yaml
+      - kubectl scale -n supporttools-website-dev deployments/www --replicas=1
+    when:
+     event:
+     - deployment
+     - promote
+     target:
+     - dev
+
+  - name: Deploy-to-Staging
+    image: supporttools/kube-builder:latest
+    settings:
+      kubernetes_server:
+        from_secret: k8s_prd_server
+      kubernetes_token:
+        from_secret: k8s_prd_token
+    commands:
+      - bash /usr/local/bin/init-kubectl
+      - if ! kubectl get ns supporttools-website-staging; then kubectl create ns supporttools-website-staging; fi
+      - kubectl label ns supporttools-website-staging team=tools --overwrite
+      - kubectl label ns supporttools-website-staging app=website --overwrite
+      - kubectl label ns supporttools-website-staging ns-purge=false --overwrite
+      - kubectl annotate ns supporttools-website-staging field.cattle.io/projectId=c-m-8kd54qrg:p-lj8gw --overwrite
+      - kubectl apply -n supporttools-website-staging -f /drone/src/deployment-ready/
+      - kubectl apply -n supporttools-website-staging -f /drone/src/deployment/certs/staging.yaml
+      - kubectl apply -n supporttools-website-staging -f /drone/src/deployment/ingress/staging.yaml
+      - kubectl scale -n supporttools-website-staging deployments/www --replicas=3
+    when:
+     event:
+     - deployment
+     - promote
+     target:
+     - staging
+
+  - name: Deploy-to-Production
+    image: supporttools/kube-builder:latest
+    settings:
+      kubernetes_server:
+        from_secret: k8s_prd_server
+      kubernetes_token:
+        from_secret: k8s_prd_token
+    commands:
+      - bash /usr/local/bin/init-kubectl
+      - if ! kubectl get ns supporttools-website-prod; then kubectl create ns supporttools-website-prod; fi
+      - kubectl label ns supporttools-website-prod team=tools --overwrite
+      - kubectl label ns supporttools-website-prod app=website --overwrite
+      - kubectl label ns supporttools-website-prod ns-purge=false --overwrite
+      - kubectl annotate ns supporttools-website-prod field.cattle.io/projectId=c-m-8kd54qrg:p-lj8gw --overwrite
+      - kubectl apply -n supporttools-website-prod -f /drone/src/deployment-ready/
+      - kubectl apply -n supporttools-website-prod -f /drone/src/deployment/certs/prod.yaml
+      - kubectl apply -n supporttools-website-prod -f /drone/src/deployment/ingress/prod.yaml
+      - kubectl scale -n supporttools-website-prod deployments/www --replicas=5
+    when:
+     event:
+     - deployment
+     - promote
+     target:
+     - production
 
 services:
 - name: docker-in-docker
@@ -20,132 +151,3 @@ services:
   image: docker:19.03.12-dind
   command: ["dockerd", "--host", "0.0.0.0", "--experimental"]
   privileged: true
-
-steps:
-- name: Docker-Build
-  image: thegeeklab/drone-docker-buildx
-  settings:
-    registry: harbor.support.tools
-    repo: harbor.support.tools/supporttools/website
-    dockerfile: Dockerfile
-    tags:
-      - ${DRONE_BUILD_NUMBER}
-      - ${DRONE_COMMIT_BRANCH}
-      - latest
-    platforms:
-      - linux/amd64
-      - linux/arm64
-    username:
-      from_secret: harbor-username
-    password:
-      from_secret: harbor-password
-    privileged: true
-  when:
-    event:
-      exclude:
-      - deployment
-      - promote
-
----
-kind: pipeline
-type: kubernetes
-name: Deploy
-
-platform:
-  os: linux
-  arch: amd64
-
-clone:
-  depth: 1
-
-steps:
-- name: Customize-kube-files
-  image: supporttools/kube-builder:85
-  pull: always
-  environment:
-    APPENV: ${DRONE_COMMIT_BRANCH}
-  commands:
-    - bash ./deploy.sh
-  when:
-   event:
-   - deployment
-   - promote   
-
-- name: Deploy-to-Dev
-  image: supporttools/kube-builder:85
-  pull: always
-  settings:
-    kubernetes_server:
-      from_secret: k8s_server
-    kubernetes_token:
-      from_secret: k8s_token
-  commands:
-    - if ! kubectl get ns supporttools-website-dev; then kubectl create ns supporttools-website-dev; fi
-    - if ! kubectl -n supporttools-website-dev get rolebinding system-unrestricted-psp-role-default; then kubectl -n supporttools-website-dev create rolebinding system-unrestricted-psp-role-default --clusterrole=system-unrestricted-psp-role --serviceaccount=supporttools-website-dev:default; fi
-    - kubectl apply -n supporttools-website-dev -f /drone/src/deployment-ready/
-    - kubectl apply -n supporttools-website-dev -f /drone/src/deployment/ingress/dev.yaml
-    - kubectl scale -n supporttools-website-dev deployments/www --replicas=1
-  when:
-   event:
-   - deployment
-   - promote   
-   target:
-   - dev
-
-- name: Deploy-to-Staging
-  image: supporttools/kube-builder:85
-  pull: always
-  settings:
-    kubernetes_server:
-      from_secret: k8s_server
-    kubernetes_token:
-      from_secret: k8s_token
-  commands:
-    - if ! kubectl get ns supporttools-website-staging; then kubectl create ns supporttools-website-staging; fi
-    - if ! kubectl -n supporttools-website-staging get rolebinding system-unrestricted-psp-role-default; then kubectl -n supporttools-website-staging create rolebinding system-unrestricted-psp-role-default --clusterrole=system-unrestricted-psp-role --serviceaccount=supporttools-website-staging:default; fi
-    - kubectl apply -n supporttools-website-staging -f /drone/src/deployment-ready/
-    - kubectl apply -n supporttools-website-staging -f /drone/src/deployment/ingress/staging.yaml
-    - kubectl scale -n supporttools-website-staging deployments/www --replicas=3
-  when:
-   event:
-   - deployment
-   - promote
-   target:
-   - staging
-
-- name: Deploy-to-Production
-  image: supporttools/kube-builder:85
-  pull: always
-  settings:
-    kubernetes_server:
-      from_secret: k8s_server
-    kubernetes_token:
-      from_secret: k8s_token
-  commands:
-    - if ! kubectl get ns supporttools-website-production; then kubectl create ns supporttools-website-production; fi
-    - if ! kubectl -n supporttools-website-production get rolebinding system-unrestricted-psp-role-default; then kubectl -n supporttools-website-production create rolebinding system-unrestricted-psp-role-default --clusterrole=system-unrestricted-psp-role --serviceaccount=supporttools-website-production:default; fi
-    - kubectl apply -n supporttools-website-production -f /drone/src/deployment-ready/
-    - kubectl apply -n supporttools-website-production -f /drone/src/deployment/ingress/production.yaml
-    - kubectl scale -n supporttools-website-production deployments/www --replicas=5
-  when:
-   event:
-   - deployment
-   - promote
-   target:
-   - production
-
-node_selector:
-  beta.kubernetes.io/arch: amd64
-  beta.kubernetes.io/os: linux
-  runner: true
-
-tolerations:
-- key: drone-runner
-  operator: Exists
-  effect: NoSchedule
-
-image_pull_secrets:
-- harbor
-
-depends_on:
-- Build

@@ -1,19 +1,25 @@
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   labels:
-    app: supporttools
+    app: website
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: dev.support.tools
+    external-dns.alpha.kubernetes.io/ttl: "120"    
   name: lb
 spec:
+  tls:
+  - hosts:
+      - dev.support.tools
+    secretName: support-tools-tls
   rules:
   - host: dev.support.tools
     http:
       paths:
-      - backend:
-          serviceName: www
-          servicePort: 80
-        pathType: ImplementationSpecific
-  tls:
-  - hosts:
-    - dev.support.tools
-    secretName: star-support-tools
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: www
+            port:
+              name: http

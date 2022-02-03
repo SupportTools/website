@@ -1,0 +1,151 @@
+---
+kind: pipeline
+type: docker
+name: Build
+
+platform:
+  os: linux
+  arch: amd64
+
+clone:
+  depth: 1
+
+environment:
+  DOCKER_HOST: tcp://docker-in-docker:2375
+  DOCKER_CLI_EXPERIMENTAL: enabled
+
+services:
+- name: docker-in-docker
+  docker:
+  image: docker:19.03.12-dind
+  command: ["dockerd", "--host", "0.0.0.0", "--experimental"]
+  privileged: true
+
+steps:
+- name: Docker-Build
+  image: thegeeklab/drone-docker-buildx
+  settings:
+    registry: harbor.support.tools
+    repo: harbor.support.tools/supporttools/website
+    dockerfile: Dockerfile
+    tags:
+      - ${DRONE_BUILD_NUMBER}
+      - ${DRONE_COMMIT_BRANCH}
+      - latest
+    platforms:
+      - linux/amd64
+      - linux/arm64
+    username:
+      from_secret: harbor-username
+    password:
+      from_secret: harbor-password
+    privileged: true
+  when:
+    event:
+      exclude:
+      - deployment
+      - promote
+
+---
+kind: pipeline
+type: kubernetes
+name: Deploy
+
+platform:
+  os: linux
+  arch: amd64
+
+clone:
+  depth: 1
+
+steps:
+- name: Customize-kube-files
+  image: supporttools/kube-builder:85
+  pull: always
+  environment:
+    APPENV: ${DRONE_COMMIT_BRANCH}
+  commands:
+    - bash ./deploy.sh
+  when:
+   event:
+   - deployment
+   - promote   
+
+- name: Deploy-to-Dev
+  image: supporttools/kube-builder:85
+  pull: always
+  settings:
+    kubernetes_server:
+      from_secret: k8s_server
+    kubernetes_token:
+      from_secret: k8s_token
+  commands:
+    - if ! kubectl get ns supporttools-website-dev; then kubectl create ns supporttools-website-dev; fi
+    - if ! kubectl -n supporttools-website-dev get rolebinding system-unrestricted-psp-role-default; then kubectl -n supporttools-website-dev create rolebinding system-unrestricted-psp-role-default --clusterrole=system-unrestricted-psp-role --serviceaccount=supporttools-website-dev:default; fi
+    - kubectl apply -n supporttools-website-dev -f /drone/src/deployment-ready/
+    - kubectl apply -n supporttools-website-dev -f /drone/src/deployment/ingress/dev.yaml
+    - kubectl scale -n supporttools-website-dev deployments/www --replicas=1
+  when:
+   event:
+   - deployment
+   - promote   
+   target:
+   - dev
+
+- name: Deploy-to-Staging
+  image: supporttools/kube-builder:85
+  pull: always
+  settings:
+    kubernetes_server:
+      from_secret: k8s_server
+    kubernetes_token:
+      from_secret: k8s_token
+  commands:
+    - if ! kubectl get ns supporttools-website-staging; then kubectl create ns supporttools-website-staging; fi
+    - if ! kubectl -n supporttools-website-staging get rolebinding system-unrestricted-psp-role-default; then kubectl -n supporttools-website-staging create rolebinding system-unrestricted-psp-role-default --clusterrole=system-unrestricted-psp-role --serviceaccount=supporttools-website-staging:default; fi
+    - kubectl apply -n supporttools-website-staging -f /drone/src/deployment-ready/
+    - kubectl apply -n supporttools-website-staging -f /drone/src/deployment/ingress/staging.yaml
+    - kubectl scale -n supporttools-website-staging deployments/www --replicas=3
+  when:
+   event:
+   - deployment
+   - promote
+   target:
+   - staging
+
+- name: Deploy-to-Production
+  image: supporttools/kube-builder:85
+  pull: always
+  settings:
+    kubernetes_server:
+      from_secret: k8s_server
+    kubernetes_token:
+      from_secret: k8s_token
+  commands:
+    - if ! kubectl get ns supporttools-website-production; then kubectl create ns supporttools-website-production; fi
+    - if ! kubectl -n supporttools-website-production get rolebinding system-unrestricted-psp-role-default; then kubectl -n supporttools-website-production create rolebinding system-unrestricted-psp-role-default --clusterrole=system-unrestricted-psp-role --serviceaccount=supporttools-website-production:default; fi
+    - kubectl apply -n supporttools-website-production -f /drone/src/deployment-ready/
+    - kubectl apply -n supporttools-website-production -f /drone/src/deployment/ingress/production.yaml
+    - kubectl scale -n supporttools-website-production deployments/www --replicas=5
+  when:
+   event:
+   - deployment
+   - promote
+   target:
+   - production
+
+node_selector:
+  beta.kubernetes.io/arch: amd64
+  beta.kubernetes.io/os: linux
+  runner: true
+
+tolerations:
+- key: drone-runner
+  operator: Exists
+  effect: NoSchedule
+
+image_pull_secrets:
+- harbor
+
+depends_on:
+- Build
