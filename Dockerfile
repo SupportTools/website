@@ -1,4 +1,4 @@
-FROM harbor.support.tools/dockerhub-proxy/library/ubuntu:latest AS builder
+FROM ubuntu:latest AS builder
 
 ARG TARGETPLATFORM
 ARG TARGETARCH
