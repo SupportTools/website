@@ -3,29 +3,14 @@
 echo "Setting docker environment"
 docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD harbor.support.tools
 
-if [[ -z "${TAG}" ]];
+echo "Building..."
+if ! docker build -t harbor.support.tools/supporttools/website:${DRONE_BUILD_NUMBER} --cache-from harbor.support.tools/supporttools/website:latest -f Dockerfile .
 then
-    echo "Building..."
-    if ! docker build -t harbor.support.tools/supporttools/website:${DRONE_BUILD_NUMBER} --cache-from harbor.support.tools/supporttools/website:latest -f Dockerfile .
-    then
-        echo "Docker build failed"
-        exit 127
-    fi
-else
-    echo "Pulling..."
-    if ! docker pull harbor.support.tools/supporttools/website:${TAG}
-    then
-        echo "Docker pull failed"
-        exit 125
-    fi
-    echo "Retagging..."
-    if ! docker tag harbor.support.tools/supporttools/website:${TAG} harbor.support.tools/supporttools/website:${DRONE_BUILD_NUMBER}
-    then
-        echo "Docker tag failed"
-        exit 124
-    fi
+    echo "Docker build failed"
+    exit 127
 fi
 
+echo "Pushing..."
 if ! docker push harbor.support.tools/supporttools/website:${DRONE_BUILD_NUMBER}
 then
     echo "Docker push failed"
@@ -37,6 +22,8 @@ then
     echo "Docker tag failed"
     exit 123
 fi
+
+echo "Pushing latest..."
 if ! docker push harbor.support.tools/supporttools/website:latest
 then
     echo "Docker push failed"
