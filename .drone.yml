@@ -62,23 +62,20 @@ steps:
      - dev
 
   - name: Deploy-to-Staging
-    image: supporttools/kube-builder:latest
-    settings:
-      kubernetes_server:
-        from_secret: k8s_prd_server
-      kubernetes_token:
-        from_secret: k8s_prd_token
+    image: supporttools/kube-builder
+    environment:
+      DOCKER_USERNAME:
+        from_secret: harbor-username
+      DOCKER_PASSWORD:
+        from_secret: harbor-password
+      CATTLE_SERVER:
+        from_secret: cattle_server
+      CATTLE_ACCESS_KEY:
+        from_secret: cattle_accesskey
+      CATTLE_SECRET_KEY:
+        from_secret: cattle_secretkey        
     commands:
-      - bash /usr/local/bin/init-kubectl
-      - if ! kubectl get ns supporttools-website-staging; then kubectl create ns supporttools-website-staging; fi
-      - kubectl label ns supporttools-website-staging team=tools --overwrite
-      - kubectl label ns supporttools-website-staging app=website --overwrite
-      - kubectl label ns supporttools-website-staging ns-purge=false --overwrite
-      - kubectl annotate ns supporttools-website-staging field.cattle.io/projectId=c-m-8kd54qrg:p-lj8gw --overwrite
-      - kubectl apply -n supporttools-website-staging -f /drone/src/deployment-ready/
-      - kubectl apply -n supporttools-website-staging -f /drone/src/deployment/certs/staging.yaml
-      - kubectl apply -n supporttools-website-staging -f /drone/src/deployment/ingress/staging.yaml
-      - kubectl scale -n supporttools-website-staging deployments/www --replicas=3
+      - bash deploy.sh stg ${BUILD_NUMBER}
     when:
      event:
      - deployment
@@ -87,23 +84,20 @@ steps:
      - staging
 
   - name: Deploy-to-Production
-    image: supporttools/kube-builder:latest
-    settings:
-      kubernetes_server:
-        from_secret: k8s_prd_server
-      kubernetes_token:
-        from_secret: k8s_prd_token
+    image: supporttools/kube-builder
+    environment:
+      DOCKER_USERNAME:
+        from_secret: harbor-username
+      DOCKER_PASSWORD:
+        from_secret: harbor-password
+      CATTLE_SERVER:
+        from_secret: cattle_server
+      CATTLE_ACCESS_KEY:
+        from_secret: cattle_accesskey
+      CATTLE_SECRET_KEY:
+        from_secret: cattle_secretkey        
     commands:
-      - bash /usr/local/bin/init-kubectl
-      - if ! kubectl get ns supporttools-website-prod; then kubectl create ns supporttools-website-prod; fi
-      - kubectl label ns supporttools-website-prod team=tools --overwrite
-      - kubectl label ns supporttools-website-prod app=website --overwrite
-      - kubectl label ns supporttools-website-prod ns-purge=false --overwrite
-      - kubectl annotate ns supporttools-website-prod field.cattle.io/projectId=c-m-8kd54qrg:p-lj8gw --overwrite
-      - kubectl apply -n supporttools-website-prod -f /drone/src/deployment-ready/
-      - kubectl apply -n supporttools-website-prod -f /drone/src/deployment/certs/prod.yaml
-      - kubectl apply -n supporttools-website-prod -f /drone/src/deployment/ingress/prod.yaml
-      - kubectl scale -n supporttools-website-prod deployments/www --replicas=5
+      - bash deploy.sh prd ${BUILD_NUMBER}
     when:
      event:
      - deployment
@@ -114,6 +108,6 @@ steps:
 services:
 - name: docker-in-docker
   docker:
-  image: docker:19.03.12-dind
+  image: docker:20.10.14-dind
   command: ["dockerd", "--host", "0.0.0.0", "--experimental"]
   privileged: true
