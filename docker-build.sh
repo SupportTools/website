@@ -1,7 +1,5 @@
 #!/bin/sh
 
-printenv
-
 echo "Setting docker environment"
 docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD harbor.support.tools
 
@@ -9,7 +7,7 @@ if [[ -z "${TAG}" ]];
 then
 docker pull harbor.support.tools/supporttools/website:latest
 echo "Building..."
-if ! docker build -t harbor.support.tools/supporttools/website:${DRONE_BUILD_NUMBER} --cache-from harbor.support.tools/supporttools/website:latest --build-arg REACT_APP_URL="/api" --build-arg GIT_COMMIT=${GIT_COMMIT} -f Dockerfile .
+if ! docker build -t harbor.support.tools/supporttools/website:${DRONE_BUILD_NUMBER} --cache-from harbor.support.tools/supporttools/website:latest -f Dockerfile .
 then
     echo "Docker build failed"
     exit 127
