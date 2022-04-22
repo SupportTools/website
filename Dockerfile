@@ -1,8 +1,5 @@
 FROM ubuntu:latest AS builder
 
-ARG TARGETPLATFORM
-ARG TARGETARCH
-
 ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && apt-get install -yq --no-install-recommends \
@@ -15,17 +12,16 @@ RUN apt-get update && apt-get install -yq --no-install-recommends \
     bash \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-COPY build.sh /tmp/
-RUN chmod u+x /tmp/build.sh && /tmp/build.sh $TARGETARCH
+RUN wget --no-check-certificate https://github.com/gohugoio/hugo/releases/download/v0.97.3/hugo_0.97.3_Linux-64bit.tar.gz && \
+tar xvzf hugo_*.tar.gz && \
+cp hugo /usr/bin/hugo && \
+chmod +x /usr/bin/hugo && \
+rm -rf hugo_*.tar.gz
 
 COPY ./blog/ /site
 WORKDIR /site
 RUN hugo
 
-FROM wernight/alpine-nginx-pagespeed:latest
-COPY ./conf/default.conf /etc/nginx/conf.d/default.conf
-COPY ./conf/nginx.conf /etc/nginx/nginx.conf
-COPY --from=builder /site/public /var/www/site
-WORKDIR /var/www/site
-
-EXPOSE 8080
+FROM nginx:latest
+COPY --from=builder /site/public /usr/share/nginx/html
+COPY nginx.conf /etc/nginx/conf.d/default.conf

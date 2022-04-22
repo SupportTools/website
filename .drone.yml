@@ -1,6 +1,6 @@
 ---
 kind: pipeline
-type: docker
+type: kubernetes
 name: SupportTools-www
 
 platform:
@@ -19,75 +19,41 @@ environment:
 
 steps:
   - name: Waiting for Docker to start
-    image: ncrmro/docker-buildx:19.03.10
+    image: cube8021/docker-buildx:20.10.14-0.8.2
     commands:
     - echo 'Waiting for docker to start...'
     - while ! docker info; do sleep 1; done
 
-  - name: Docker-Build
-    image: ncrmro/docker-buildx:19.03.10
+  - name: Docker Build
+    image: cube8021/docker-buildx:20.10.14-0.8.2
     environment:
       DOCKER_USERNAME:
-        from_secret: docker-username
+        from_secret: harbor-username
       DOCKER_PASSWORD:
-        from_secret: docker-password    
+        from_secret: harbor-password
     commands:
-    - docker version
-    - docker buildx version
-    - docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
-    - docker buildx create --name multiarch --use
-    - docker buildx build --platform linux/amd64 -f ./Dockerfile .
-    when:
-      event:
-        - push
-        - pull_request
-
-  - name: Docker-Publish
-    image: ncrmro/docker-buildx:19.03.10
-    environment:
-      DOCKER_USERNAME:
-        from_secret: docker-username
-      DOCKER_PASSWORD:
-        from_secret: docker-password
     commands:
-    - docker version
-    - docker buildx version
-    - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-    - docker pull supporttools/website:latest
-    - docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
-    - docker buildx create --name multiarch --use
-    - docker buildx build --cache-from type=registry,ref=supporttools/website:latest --platform linux/amd64 -t supporttools/website:latest -t supporttools/website:${DRONE_BUILD_NUMBER} --push -f ./Dockerfile .
+    - sh ./docker-build.sh
     when:
       event:
       - deployment
       - promote
 
-  - name: Customize-kube-files
-    image: supporttools/kube-builder:latest
-    pull: true
-    environment:
-      APPENV: ${DRONE_COMMIT_BRANCH}
-    commands:
-      - bash /drone/src/deployment/deploy.sh
-
   - name: Deploy-to-Dev
     image: supporttools/kube-builder:latest
-    settings:
-      kubernetes_server:
-        from_secret: k8s_dev_server
-      kubernetes_token:
-        from_secret: k8s_dev_token
+    environment:
+      DOCKER_USERNAME:
+        from_secret: harbor-username
+      DOCKER_PASSWORD:
+        from_secret: harbor-password
+      CATTLE_SERVER:
+        from_secret: cattle_server
+      CATTLE_ACCESS_KEY:
+        from_secret: cattle_accesskey
+      CATTLE_SECRET_KEY:
+        from_secret: cattle_secretkey        
     commands:
-      - bash /usr/local/bin/init-kubectl
-      - if ! kubectl get ns supporttools-website-dev; then kubectl create ns supporttools-website-dev; fi
-      - kubectl label ns supporttools-website-dev team=tools --overwrite
-      - kubectl label ns supporttools-website-dev app=website --overwrite
-      - kubectl label ns supporttools-website-dev ns-purge=false --overwrite
-      - kubectl annotate ns supporttools-website-dev field.cattle.io/projectId=c-m-gt566p9p:p-2w6ng --overwrite
-      - kubectl apply -n supporttools-website-dev -f /drone/src/deployment-ready/
-      - kubectl apply -n supporttools-website-dev -f /drone/src/deployment/certs/dev.yaml
-      - kubectl apply -n supporttools-website-dev -f /drone/src/deployment/ingress/dev.yaml
-      - kubectl scale -n supporttools-website-dev deployments/www --replicas=1
+      - bash deploy.sh dev ${BUILD_NUMBER}
     when:
      event:
      - deployment
