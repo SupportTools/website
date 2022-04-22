@@ -2,8 +2,9 @@ FROM supporttools/kube-builder:latest AS builder
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-RUN wget --no-check-certificate https://github.com/gohugoio/hugo/releases/download/v0.97.3/hugo_0.97.3_Linux-64bit.tar.gz && \
-tar xvzf hugo_*.tar.gz && \
+WORKDIR /root
+COPY hugo_*.tar.gz /root/
+RUN tar xvzf hugo_*.tar.gz && \
 cp hugo /usr/bin/hugo && \
 chmod +x /usr/bin/hugo && \
 rm -rf hugo_*.tar.gz
