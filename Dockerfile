@@ -1,16 +1,6 @@
-FROM ubuntu:latest AS builder
+FROM supporttools/kube-builder:latest AS builder
 
 ENV DEBIAN_FRONTEND=noninteractive
-
-RUN apt-get update && apt-get install -yq --no-install-recommends \
-    apt-utils \
-    curl \
-    wget \
-    openssl \
-    nano \
-    git \
-    bash \
-    && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 RUN wget --no-check-certificate https://github.com/gohugoio/hugo/releases/download/v0.97.3/hugo_0.97.3_Linux-64bit.tar.gz && \
 tar xvzf hugo_*.tar.gz && \
