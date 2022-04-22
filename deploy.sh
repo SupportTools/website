@@ -7,6 +7,8 @@ then
   imagetag=${BUILD_NUMBER}
   purge=false
   hpa=false
+  minReplicas=1
+  maxReplicas=1
   ingress='dev.support.tools'
 elif [[ "$1" == 'stg' ]];
 then
@@ -15,6 +17,8 @@ then
   imagetag=${BUILD_NUMBER}
   purge=false
   hpa=true
+  minReplicas=3
+  maxReplicas=5
   ingress='stg.support.tools'
 elif [[ "$1" == 'prd' ]];
 then
@@ -23,14 +27,17 @@ then
   imagetag=${BUILD_NUMBER}
   purge=false
   hpa=true
+  minReplicas=3
+  maxReplicas=7
   ingress='support.tools'
 else
   cluster='a0-rke2-devops'
   namespace=portal-${DRONE_BUILD_NUMBER}
   imagetag=${DRONE_BUILD_NUMBER}
   purge=true
-  dbreplicas=3
   hpa=true
+  minReplicas=1
+  maxReplicas=1
   ingress=`echo "master-${DRONE_BUILD_NUMBER}.support.tools"`
 fi
 
@@ -76,7 +83,9 @@ helm upgrade --install website ./chart \
 --namespace ${namespace} \
 -f ./chart/values.yaml \
 --set image.tag=${DRONE_BUILD_NUMBER} \
---set ingress.host=${ingress}
+--set ingress.host=${ingress} \
+--set autoscaling.minReplicas=${maxReplicas} \
+--set autoscaling.maxReplicas=${maxReplicas}
 
 echo "Waiting for deploying to become ready..."
 
