@@ -53,7 +53,7 @@ echo "Settings up project, namespace, and kubeconfig"
 wget -O rancher-projects https://raw.githubusercontent.com/SupportTools/rancher-projects/main/rancher-projects.sh
 chmod +x rancher-projects
 mv rancher-projects /usr/local/bin/
-rancher-projects --cluster-name ${cluster} --project-name Portal --namespace ${namespace} --create-project true --create-namespace true --create-kubeconfig true --kubeconfig ~/.kube/config
+rancher-projects --cluster-name ${cluster} --project-name SupportTools --namespace ${namespace} --create-project true --create-namespace true --create-kubeconfig true --kubeconfig ~/.kube/config
 if ! kubectl cluster-info
 then
   echo "Problem connecting to the cluster"
