@@ -10,6 +10,7 @@ then
   minReplicas=1
   maxReplicas=1
   ingress='dev.support.tools'
+  class="dev"
 elif [[ "$1" == 'stg' ]];
 then
   cluster='a1-rke2-devops'
@@ -20,6 +21,7 @@ then
   minReplicas=3
   maxReplicas=5
   ingress='stg.support.tools'
+  class="staging"
 elif [[ "$1" == 'prd' ]];
 then
   cluster='a1-rke2-devops'
@@ -30,15 +32,17 @@ then
   minReplicas=3
   maxReplicas=7
   ingress='support.tools'
+  class="production"
 else
   cluster='a0-rke2-devops'
-  namespace=supporttools--mst-${DRONE_BUILD_NUMBER}
+  namespace=supporttools-mst-${DRONE_BUILD_NUMBER}
   imagetag=${DRONE_BUILD_NUMBER}
   purge=true
   hpa=true
   minReplicas=1
   maxReplicas=1
   ingress=`echo "master-${DRONE_BUILD_NUMBER}.support.tools"`
+  class="master"
 fi
 
 echo "Cluster:" ${cluster}
@@ -64,6 +68,7 @@ echo "Adding labels to namespace"
 kubectl label ns ${namespace} team=SupportTools --overwrite
 kubectl label ns ${namespace} app=website --overwrite
 kubectl label ns ${namespace} ns-purge=${purge} --overwrite
+kubectl label ns ${namespace} class=${class} --overwrite
 
 echo "Creating registry secret"
 kubectl -n ${namespace} create secret docker-registry harbor-registry-secret \
