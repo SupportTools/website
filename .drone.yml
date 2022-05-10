@@ -34,10 +34,6 @@ steps:
     commands:
     commands:
     - sh ./docker-build.sh
-    when:
-      event:
-      - deployment
-      - promote
 
   - name: Deploy-to-Master
     image: supporttools/kube-builder:latest
