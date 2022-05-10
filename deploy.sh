@@ -12,7 +12,7 @@ then
   ingress='dev.support.tools'
 elif [[ "$1" == 'stg' ]];
 then
-  cluster='a0-rke2-devops'
+  cluster='a1-rke2-devops'
   namespace='website-stg'
   imagetag=${BUILD_NUMBER}
   purge=false
@@ -22,7 +22,7 @@ then
   ingress='stg.support.tools'
 elif [[ "$1" == 'prd' ]];
 then
-  cluster='a1-rke2-prd'
+  cluster='a1-rke2-devops'
   namespace='website'
   imagetag=${BUILD_NUMBER}
   purge=false
