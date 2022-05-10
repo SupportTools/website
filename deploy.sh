@@ -3,7 +3,7 @@
 if [[ "$1" == 'dev' ]];
 then
   cluster='a0-rke2-devops'
-  namespace='website-dev'
+  namespace='supporttools-dev'
   imagetag=${BUILD_NUMBER}
   purge=false
   hpa=false
@@ -13,7 +13,7 @@ then
 elif [[ "$1" == 'stg' ]];
 then
   cluster='a1-rke2-devops'
-  namespace='website-stg'
+  namespace='supporttools-stg'
   imagetag=${BUILD_NUMBER}
   purge=false
   hpa=true
@@ -23,7 +23,7 @@ then
 elif [[ "$1" == 'prd' ]];
 then
   cluster='a1-rke2-devops'
-  namespace='website'
+  namespace='supporttools-prd'
   imagetag=${BUILD_NUMBER}
   purge=false
   hpa=true
@@ -32,7 +32,7 @@ then
   ingress='support.tools'
 else
   cluster='a0-rke2-devops'
-  namespace=portal-${DRONE_BUILD_NUMBER}
+  namespace=supporttools--mst-${DRONE_BUILD_NUMBER}
   imagetag=${DRONE_BUILD_NUMBER}
   purge=true
   hpa=true
