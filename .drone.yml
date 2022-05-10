@@ -39,6 +39,22 @@ steps:
       - deployment
       - promote
 
+  - name: Deploy-to-Master
+    image: supporttools/kube-builder:latest
+    environment:
+      DOCKER_USERNAME:
+        from_secret: harbor-username
+      DOCKER_PASSWORD:
+        from_secret: harbor-password
+      CATTLE_SERVER:
+        from_secret: cattle_server
+      CATTLE_ACCESS_KEY:
+        from_secret: cattle_accesskey
+      CATTLE_SECRET_KEY:
+        from_secret: cattle_secretkey        
+    commands:
+      - bash deploy.sh
+
   - name: Deploy-to-Dev
     image: supporttools/kube-builder:latest
     environment:
