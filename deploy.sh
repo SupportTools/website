@@ -35,13 +35,13 @@ then
   class="production"
 else
   cluster='a0-rke2-devops'
-  namespace=supporttools-mst-${DRONE_BUILD_NUMBER}
+  namespace='supporttools-mst'
   imagetag=${DRONE_BUILD_NUMBER}
-  purge=true
+  purge=false
   hpa=true
   minReplicas=1
   maxReplicas=1
-  ingress=`echo "master-${DRONE_BUILD_NUMBER}.support.tools"`
+  ingress='mst.support.tools'
   class="master"
 fi
 
