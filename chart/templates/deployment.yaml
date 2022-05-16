@@ -4,15 +4,15 @@ metadata:
   name: frontend
   labels:
     app: website
-    team: SupportTools
-    component: frontend
+    team: supporttools
+    component: website
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
       app: website
-      team: SupportTools    
-      component: frontend
+      team: supporttools
+      component: website
   strategy:
     rollingUpdate:
       maxSurge: 1
@@ -22,8 +22,8 @@ spec:
     metadata:
       labels:
         app: website
-        team: SupportTools
-        component: frontend      
+        team: supporttools
+        component: website
     spec:
       imagePullSecrets:
         - name: harbor-registry-secret
