@@ -4,7 +4,7 @@ metadata:
   name: website
   labels:
     app: website
-    team: supporttools
+    team: SupportTools
     component: website
 spec:
   type: ClusterIP
@@ -15,5 +15,5 @@ spec:
       name: http
   selector:
     app: website
-    team: supporttools
+    team: SupportTools
     component: website

@@ -4,7 +4,7 @@ metadata:
   name: website
   labels:
     app: website
-    team: supporttools
+    team: SupportTools
     component: website
   annotations:
     kubernetes.io/ingress.class: "nginx"

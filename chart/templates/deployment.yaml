@@ -4,14 +4,14 @@ metadata:
   name: frontend
   labels:
     app: website
-    team: supporttools
+    team: SupportTools
     component: website
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
       app: website
-      team: supporttools
+      team: SupportTools
       component: website
   strategy:
     rollingUpdate:
@@ -22,7 +22,7 @@ spec:
     metadata:
       labels:
         app: website
-        team: supporttools
+        team: SupportTools
         component: website
     spec:
       imagePullSecrets:
