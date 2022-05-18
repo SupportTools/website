@@ -4,8 +4,8 @@ metadata:
   name: website
   labels:
     app: website
+    component: frontend
     team: SupportTools
-    component: website
 spec:
   type: ClusterIP
   ports:
@@ -15,5 +15,5 @@ spec:
       name: http
   selector:
     app: website
+    component: frontend
     team: SupportTools
-    component: website
