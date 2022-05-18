@@ -73,6 +73,50 @@ steps:
      target:
      - dev
 
+  - name: Deploy-to-QAS
+    image: supporttools/kube-builder
+    environment:
+      DOCKER_USERNAME:
+        from_secret: harbor-username
+      DOCKER_PASSWORD:
+        from_secret: harbor-password
+      CATTLE_SERVER:
+        from_secret: cattle_server
+      CATTLE_ACCESS_KEY:
+        from_secret: cattle_accesskey
+      CATTLE_SECRET_KEY:
+        from_secret: cattle_secretkey        
+    commands:
+      - bash deploy.sh qas ${BUILD_NUMBER}
+    when:
+     event:
+     - deployment
+     - promote
+     target:
+     - qas
+
+  - name: Deploy-to-TST
+    image: supporttools/kube-builder
+    environment:
+      DOCKER_USERNAME:
+        from_secret: harbor-username
+      DOCKER_PASSWORD:
+        from_secret: harbor-password
+      CATTLE_SERVER:
+        from_secret: cattle_server
+      CATTLE_ACCESS_KEY:
+        from_secret: cattle_accesskey
+      CATTLE_SECRET_KEY:
+        from_secret: cattle_secretkey        
+    commands:
+      - bash deploy.sh tst ${BUILD_NUMBER}
+    when:
+     event:
+     - deployment
+     - promote
+     target:
+     - tst
+
   - name: Deploy-to-Staging
     image: supporttools/kube-builder
     environment:
@@ -93,7 +137,7 @@ steps:
      - deployment
      - promote
      target:
-     - staging
+     - stg
 
   - name: Deploy-to-Production
     image: supporttools/kube-builder
@@ -115,7 +159,7 @@ steps:
      - deployment
      - promote
      target:
-     - production
+     - prd
 
 services:
 - name: docker-in-docker
