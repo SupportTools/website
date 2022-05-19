@@ -8,6 +8,14 @@ metadata:
     team: SupportTools
   annotations:
     kubernetes.io/ingress.class: "nginx"
+    external-dns.alpha.kubernetes.io/hostname: {{ .Values.ingress.host | quote }}
+    external-dns.alpha.kubernetes.io/ttl: "120"
+    external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
+    kubernetes.io/tls-acme: "true"
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    cert-manager.io/cluster-issuer-duration: "8760h"
+    cert-manager.io/cluster-issuer-email: "mmattox@support.tools"
+    cert-manager.io/issue-temporary-certificate: "true"
 spec:
   rules:
   - host: {{ .Values.ingress.host | quote }}

@@ -11,6 +11,28 @@ then
   maxReplicas=1
   ingress='dev.support.tools'
   class="dev"
+elif [[ "$1" == 'qas' ]];
+then
+  cluster='a0-rke2-devops'
+  namespace='supporttools-qas'
+  imagetag=${BUILD_NUMBER}
+  purge=false
+  hpa=true
+  minReplicas=3
+  maxReplicas=5
+  ingress='qas.support.tools'
+  class="qas"  
+elif [[ "$1" == 'tst' ]];
+then
+  cluster='a0-rke2-devops'
+  namespace='supporttools-tst'
+  imagetag=${BUILD_NUMBER}
+  purge=false
+  hpa=true
+  minReplicas=3
+  maxReplicas=5
+  ingress='tst.support.tools'
+  class="tst"
 elif [[ "$1" == 'stg' ]];
 then
   cluster='a1-rke2-devops'
@@ -21,7 +43,7 @@ then
   minReplicas=3
   maxReplicas=5
   ingress='stg.support.tools'
-  class="staging"
+  class="stg"
 elif [[ "$1" == 'prd' ]];
 then
   cluster='a1-rke2-devops'
@@ -32,7 +54,7 @@ then
   minReplicas=3
   maxReplicas=7
   ingress='support.tools'
-  class="production"
+  class="prd"
 else
   cluster='a0-rke2-devops'
   namespace='supporttools-mst'
@@ -42,7 +64,7 @@ else
   minReplicas=1
   maxReplicas=1
   ingress='mst.support.tools'
-  class="master"
+  class="mst"
 fi
 
 echo "Cluster:" ${cluster}
@@ -90,7 +112,8 @@ helm upgrade --install website ./chart \
 --set image.tag=${DRONE_BUILD_NUMBER} \
 --set ingress.host=${ingress} \
 --set autoscaling.minReplicas=${maxReplicas} \
---set autoscaling.maxReplicas=${maxReplicas}
+--set autoscaling.maxReplicas=${maxReplicas} \
+--force
 
 echo "Waiting for deploying to become ready..."
 

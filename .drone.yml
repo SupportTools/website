@@ -50,6 +50,10 @@ steps:
         from_secret: cattle_secretkey        
     commands:
       - bash deploy.sh
+    when:
+      event:
+        - push
+        - pull_request
 
   - name: Deploy-to-Dev
     image: supporttools/kube-builder:latest
