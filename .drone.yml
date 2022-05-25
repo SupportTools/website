@@ -39,7 +39,7 @@ steps:
   - name: link-validation
     image: thegeeklab/link-validator
     commands:
-      - link-validator --exclude "https://support.tools/*" --verbose public/
+      - link-validator --verbose public/
     environment:
       LINK_VALIDATOR_BASE_DIR: public
 
