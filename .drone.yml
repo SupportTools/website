@@ -40,7 +40,7 @@ steps:
     image: thegeeklab/link-validator
     commands:
       - cd blog/    
-      - link-validator -ro --exclude "https://support.tools/*"
+      - link-validator --exclude "https://support.tools/*"
     environment:
       LINK_VALIDATOR_BASE_DIR: public
 
