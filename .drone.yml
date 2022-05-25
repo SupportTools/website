@@ -36,14 +36,6 @@ steps:
       - cd blog/    
       - vnu --skip-non-html --errors-only --filterfile .vnuignore public/
 
-  - name: link-validation
-    image: thegeeklab/link-validator
-    commands:
-      - link-validator -e http://localhost/
-    environment:
-      LINK_VALIDATOR_BASE_DIR: /drone/src/blog/public/
-      LINK_VALIDATOR_SERVER_PORT: 8000
-
   - name: cleanup-test-build
     image: thegeeklab/hugo
     commands:
