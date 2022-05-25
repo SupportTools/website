@@ -39,7 +39,7 @@ steps:
   - name: link-validation
     image: thegeeklab/link-validator
     commands:
-      - link-validator --verbose public/
+      - link-validator public/
     environment:
       LINK_VALIDATOR_BASE_DIR: public
 
