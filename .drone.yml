@@ -39,11 +39,10 @@ steps:
   - name: link-validation
     image: thegeeklab/link-validator
     commands:
-      - cd blog/
-      - ls -l
-      - link-validator --recursive --ordered --verbose --exclude "https://support.tools/*"
+      - link-validator -e http://localhost/
     environment:
-      LINK_VALIDATOR_BASE_DIR: public
+      LINK_VALIDATOR_BASE_DIR: /drone/src/public/
+      LINK_VALIDATOR_SERVER_PORT: 8000
 
   - name: cleanup-test-build
     image: thegeeklab/hugo
