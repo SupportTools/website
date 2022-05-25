@@ -41,7 +41,7 @@ steps:
     commands:
       - link-validator -e http://localhost/
     environment:
-      LINK_VALIDATOR_BASE_DIR: /drone/src/public/
+      LINK_VALIDATOR_BASE_DIR: /drone/src/blog/public/
       LINK_VALIDATOR_SERVER_PORT: 8000
 
   - name: cleanup-test-build
