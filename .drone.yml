@@ -36,12 +36,12 @@ steps:
     commands:
       - vnu --skip-non-html --errors-only --filterfile .vnuignore public/
 
-  - name: link-validation
-    image: thegeeklab/link-validator
-    commands:
-      - link-validator --nice --external --skip-file .linkcheckignore
-    environment:
-      LINK_VALIDATOR_BASE_DIR: public
+  # - name: link-validation
+  #   image: thegeeklab/link-validator
+  #   commands:
+  #     - link-validator --nice --external --skip-file .linkcheckignore
+  #   environment:
+  #     LINK_VALIDATOR_BASE_DIR: public
 
   - name: cleanup-test-build
     image: thegeeklab/hugo
