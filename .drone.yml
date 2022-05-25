@@ -39,8 +39,9 @@ steps:
   - name: link-validation
     image: thegeeklab/link-validator
     commands:
-      - cd blog/    
-      - link-validator --exclude "https://support.tools/*"
+      - cd blog/
+      - ls -l
+      - link-validator --recursive --ordered --verbose --exclude "https://support.tools/*"
     environment:
       LINK_VALIDATOR_BASE_DIR: public
 
