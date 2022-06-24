@@ -1,6 +1,6 @@
 ---
 title: "How to install system-upgrade-controller for RKE2"
-date: 2022-06-23T23:52:00-05:00
+date: 2022-06-24T01:20:00-05:00
 draft: false
 tags: ["system-upgrade-controller", "rke2"]
 categories:
