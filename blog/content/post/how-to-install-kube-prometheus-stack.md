@@ -1,7 +1,7 @@
 ---
 title: "How to install kube-prometheus-stack"
 date: 2022-07-12T00:21:00-05:00
-draft: true
+draft: false
 tags: ["Kubernetes", "prometheus", "kube-prometheus-stack"]
 categories:
 - Kubernetes
