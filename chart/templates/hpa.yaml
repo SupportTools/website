@@ -1,15 +1,17 @@
 {{- if .Values.autoscaling.enabled }}
-apiVersion: autoscaling/v2beta1
+apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: {{ include "supporttools.fullname" . }}
+  name: frontend
   labels:
-    {{- include "supporttools.labels" . | nindent 4 }}
+    app: website
+    component: frontend
+    team: SupportTools
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: {{ include "supporttools.fullname" . }}
+    name: frontend
   minReplicas: {{ .Values.autoscaling.minReplicas }}
   maxReplicas: {{ .Values.autoscaling.maxReplicas }}
   metrics:
