@@ -65,6 +65,9 @@ steps:
     commands:
     commands:
     - sh ./docker-build.sh
+    when:
+      repo:
+        - supporttools/website
 
   - name: Deploy-to-Master
     image: supporttools/kube-builder:latest
@@ -85,6 +88,8 @@ steps:
       event:
         - push
         - pull_request
+      repo:
+        - supporttools/website
 
   - name: Deploy-to-Dev
     image: supporttools/kube-builder:latest
@@ -107,6 +112,8 @@ steps:
      - promote
      target:
      - dev
+     repo:
+       - supporttools/website
 
   - name: Deploy-to-QAS
     image: supporttools/kube-builder
@@ -129,6 +136,8 @@ steps:
      - promote
      target:
      - qas
+     repo:
+       - supporttools/website
 
   - name: Deploy-to-TST
     image: supporttools/kube-builder
@@ -151,6 +160,8 @@ steps:
      - promote
      target:
      - tst
+     repo:
+       - supporttools/website
 
   - name: Deploy-to-Staging
     image: supporttools/kube-builder
@@ -173,6 +184,8 @@ steps:
      - promote
      target:
      - stg
+     repo:
+       - supporttools/website
 
   - name: Deploy-to-Production
     image: supporttools/kube-builder
@@ -195,6 +208,8 @@ steps:
      - promote
      target:
      - prd
+     repo:
+       - supporttools/website
 
 services:
 - name: docker-in-docker
