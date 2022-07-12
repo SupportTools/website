@@ -18,12 +18,12 @@ environment:
   DOCKER_CLI_EXPERIMENTAL: enabled
 
 steps:
-  - name: fossa  
-    image: rancher/drone-fossa:latest
-    settings:
-      api_key:
-        from_secret: FOSSA_API_KEY
-      command: analyze
+  # - name: fossa  
+  #   image: rancher/drone-fossa:latest
+  #   settings:
+  #     api_key:
+  #       from_secret: FOSSA_API_KEY
+  #     command: analyze
 
   - name: Waiting for Docker to start
     image: cube8021/docker-buildx:20.10.14-0.8.2
