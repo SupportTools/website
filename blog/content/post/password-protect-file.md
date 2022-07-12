@@ -1,6 +1,6 @@
 ---
 title: "How to password protect a file in Linux"
-date: 2022-07-11T19:26:00-05:00
+date: 2022-07-11T19:37:00-05:00
 draft: false
 tags: ["Linux"]
 categories:
