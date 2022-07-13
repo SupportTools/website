@@ -2,6 +2,10 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: frontend
+  annotations:
+    prometheus.io/scrape: 'true'
+    prometheus.io/port: '9113'
+    prometheus.io/path: '/metrics'
   labels:
     app: website
     component: frontend
@@ -61,6 +65,23 @@ spec:
             requests:
               cpu: {{ .Values.resources.requests.cpu }}
               memory: {{ .Values.resources.requests.memory }}
+        - name: exporter
+          image: nginx/nginx-prometheus-exporter:latest
+          imagePullPolicy: Always
+          args:
+            - -nginx.scrape-uri
+            - http://127.0.0.1:8080/metrics      
+          resources:
+            limits:
+              cpu: 100m
+              memory: 128Mi
+            requests:
+              cpu: 10m
+              memory: 32Mi
+          ports:
+            - name: metrics
+              containerPort: 9113
+              protocol: TCP
       volumes:
       - emptyDir: {}
         name: nginx-cache
