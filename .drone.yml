@@ -10,8 +10,8 @@ platform:
 clone:
   depth: 1
 
-concurrency:
-  limit: 1
+#concurrency:
+#  limit: 1
 
 environment:
   DOCKER_HOST: tcp://docker-in-docker:2375
