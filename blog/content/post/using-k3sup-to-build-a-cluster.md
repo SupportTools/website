@@ -1,7 +1,7 @@
 ---
 title: "Using k3sups to build a cluster"
-date: 2022-07-11T19:26:00-05:00
-draft: true
+date: 2022-07-14T22:57:00-05:00
+draft: false
 tags: ["k3s", "kubernetes", "k3sup"]
 categories:
 - k3s
