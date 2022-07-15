@@ -130,7 +130,11 @@ steps:
       CATTLE_ACCESS_KEY:
         from_secret: cattle_accesskey
       CATTLE_SECRET_KEY:
-        from_secret: cattle_secretkey        
+        from_secret: cattle_secretkey    
+      AWS_ACCESS_KEY_ID:
+        from_secret: s3_accesskey
+      AWS_SECRET_ACCESS_KEY:
+        from_secret: s3_secretkey
     commands:
       - bash deploy.sh qas ${BUILD_NUMBER}
     when:
@@ -156,6 +160,10 @@ steps:
         from_secret: cattle_accesskey
       CATTLE_SECRET_KEY:
         from_secret: cattle_secretkey        
+      AWS_ACCESS_KEY_ID:
+        from_secret: s3_accesskey
+      AWS_SECRET_ACCESS_KEY:
+        from_secret: s3_secretkey
     commands:
       - bash deploy.sh tst ${BUILD_NUMBER}
     when:
@@ -181,6 +189,10 @@ steps:
         from_secret: cattle_accesskey
       CATTLE_SECRET_KEY:
         from_secret: cattle_secretkey        
+      AWS_ACCESS_KEY_ID:
+        from_secret: s3_accesskey
+      AWS_SECRET_ACCESS_KEY:
+        from_secret: s3_secretkey
     commands:
       - bash deploy.sh stg ${BUILD_NUMBER}
     when:
@@ -206,6 +218,10 @@ steps:
         from_secret: cattle_accesskey
       CATTLE_SECRET_KEY:
         from_secret: cattle_secretkey        
+      AWS_ACCESS_KEY_ID:
+        from_secret: s3_accesskey
+      AWS_SECRET_ACCESS_KEY:
+        from_secret: s3_secretkey
     commands:
       - bash deploy.sh prd ${BUILD_NUMBER}
     when:

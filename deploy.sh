@@ -11,6 +11,7 @@ then
   maxReplicas=1
   ingress='dev.support.tools'
   class="dev"
+  synccdn=false
 elif [[ "$1" == 'qas' ]];
 then
   cluster='a0-rke2-devops'
@@ -21,7 +22,8 @@ then
   minReplicas=3
   maxReplicas=5
   ingress='qas.support.tools'
-  class="qas"  
+  class="qas"
+  synccdn=true
 elif [[ "$1" == 'tst' ]];
 then
   cluster='a0-rke2-devops'
@@ -33,6 +35,7 @@ then
   maxReplicas=5
   ingress='tst.support.tools'
   class="tst"
+  synccdn=true
 elif [[ "$1" == 'stg' ]];
 then
   cluster='a1-rke2-devops'
@@ -44,6 +47,7 @@ then
   maxReplicas=5
   ingress='stg.support.tools'
   class="stg"
+  synccdn=true
 elif [[ "$1" == 'prd' ]];
 then
   cluster='a1-rke2-devops'
@@ -55,6 +59,7 @@ then
   maxReplicas=7
   ingress='support.tools'
   class="prd"
+  synccdn=true
 else
   cluster='a0-rke2-devops'
   namespace='supporttools-mst'
@@ -65,6 +70,7 @@ else
   maxReplicas=1
   ingress='mst.support.tools'
   class="mst"
+  synccdn=false
 fi
 
 echo "Cluster:" ${cluster}
@@ -99,12 +105,6 @@ kubectl -n ${namespace} create secret docker-registry harbor-registry-secret \
 --docker-password=${DOCKER_PASSWORD} \
 --dry-run=client -o yaml | kubectl apply -f -
 
-echo "Creating S3 secret"
-kubectl -n ${namespace} create secret generic s3-secret \
---from-literal=s3_accesskey=${s3_accesskey} \
---from-literal=s3_secretkey=${s3_secretkey} \
---dry-run=client -o yaml | kubectl apply -f -
-
 echo "Deploying website"
 helm upgrade --install website ./chart \
 --namespace ${namespace} \
@@ -115,11 +115,18 @@ helm upgrade --install website ./chart \
 --set autoscaling.maxReplicas=${maxReplicas} \
 --force
 
-echo "Waiting for deploying to become ready..."
-
+echo "Waiting for pods to become ready..."
 echo "Checking Deployments"
 for deployment in `kubectl -n ${namespace} get deployment -o name`
 do
   echo "Checking ${deployment}"
   kubectl -n ${namespace} rollout status ${deployment}
 done
+
+if [ ${synccdn} == true ];
+then
+  echo "Syncing files to S3..."
+  aws s3 sync /mnt/data/cdn.support.tools/ s3://cdn.support.tools/ --delete --endpoint-url=https://s3.us-east-1.wasabisys.com
+else
+  echo "Skipping S3 sync"
+fi
