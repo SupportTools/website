@@ -1,5 +1,5 @@
 ---
-title: "service "rancher-monitoring-operator" not found"
+title: "service rancher-monitoring-operator not found"
 date: 2022-09-29T00:51:00-05:00
 draft: true
 tags: ["Kubernetes", "RKE2", "Rancher", "Monitoring"]
