@@ -14,7 +14,7 @@ more_link: "yes"
 ---
 
 Error:
-```bash
+```
 Error: Internal error occurred: failed calling webhook "prometheusrulemutate.monitoring.coreos.com": failed to call webhook: Post "https://rancher-monitoring-operator.cattle-monitoring-system.svc:443/admission-prometheusrules/mutate?timeout=10s": service "rancher-monitoring-operator" not found
 ```
 
@@ -34,6 +34,6 @@ If you are using Rancher Monitoring v2, then you should be using the `rancher-mo
 
 If you were using Rancher monitoring v2, then uninstall it. This should remove the CRDs and the webhook but it might not. So we need to manually remove the webhook using the following command:
 
-```bash
+```
 kubectl delete validatingwebhookconfiguration.admissionregistration.k8s.io rancher-monitoring-admission
 ```
