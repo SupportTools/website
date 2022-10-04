@@ -1,5 +1,5 @@
 apiVersion: v2
-name: website
+name: website-helm
 description: A Helm chart for support.tools website
 
 # A chart can be either an 'application' or a 'library' chart.
