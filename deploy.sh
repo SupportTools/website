@@ -88,6 +88,12 @@ mv rancher-projects /usr/local/bin/
 rancher-projects --cluster-name ${cluster} --project-name SupportTools --namespace ${namespace} --create-project true --create-namespace true --create-kubeconfig true --kubeconfig ~/.kube/config
 export KUBECONFIG=~/.kube/config
 
+if ! kubectl cluster-info
+then
+  echo "Problem connecting to the cluster"
+  exit 1
+fi
+
 echo "Adding labels to namespace"
 kubectl label ns ${namespace} team=SupportTools --overwrite
 kubectl label ns ${namespace} app=website --overwrite
