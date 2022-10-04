@@ -117,6 +117,13 @@ helm upgrade --install website ./chart \
 --set autoscaling.maxReplicas=${maxReplicas} \
 --force
 
+echo "Package and publish Helm chart"
+export HELM_EXPERIMENTAL_OCI=1
+helm registry login harbor.support.tools --username ${DOCKER_USERNAME} --password ${DOCKER_PASSWORD}
+helm package ./chart/ --version ${DRONE_BUILD_NUMBER} --app-version ${DRONE_BUILD_NUMBER}
+helm push website-${DRONE_BUILD_NUMBER}.tgz oci://harbor.support.tools/supporttools
+rm -f website-${DRONE_BUILD_NUMBER}.tgz
+
 echo "Waiting for pods to become ready..."
 echo "Checking Deployments"
 for deployment in `kubectl -n ${namespace} get deployment -o name`
