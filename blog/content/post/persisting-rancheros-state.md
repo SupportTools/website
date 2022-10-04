@@ -29,10 +29,10 @@ Configure your VM and point to the RancherOS ISO image as boot media. The ISO im
 
 Run the following commands:
 
-<code>
+```
 sudo su -
 passwd rancher
-</code>
+```
 
 [Generate SSH keypairs](#keypairs)
 
@@ -40,20 +40,20 @@ passwd rancher
 
 Open a terminal window. At the shell prompt, type the following command:
 
-<code>
+```
 ssh-keygen -t rsa
-</code>
+```
 
 The ssh-keygen program will prompt you for the location of the key file. Press Return to accept the defaults. You can optionally specify a passphrase to protect your key material. Press Return to omit the passphrase. The output of the program will look similar to this:
 
-<code>
+```
 Enter file in which to save the key (/home/cube8021/.ssh/id_rsa):
 Created directory '/home/cube8021/.ssh'.
 Enter passphrase (empty for no passphrase):
 Enter same passphrase again:
 Your identification has been saved in /home/cube8021/.ssh/id_rsa.
 Your public key has been saved in /home/cube8021/.ssh/id_rsa.pub.
-</code>
+```
 
 ## Windows
 
@@ -72,12 +72,12 @@ Close the PuTTY Key Generator.
 Using the SSH session we opened before, we will create our cloud-config.yml file.
 
 Running the following command:
-<code>
+```
 vi cloud-config.yml
-</code>
+```
 
 Type in the relevant information for your system. I have provided my cloud-config.yml file as an example.
-<code>
+```
 #cloud-config
 
 hostname: rancher-node01
@@ -97,29 +97,29 @@ rancher:
 
 ssh_authorized_keys:
   - ssh-rsa AAAAB3NzaC1yc......aVvEZIDjc1mahwfI7IFh8iZ RancherOS
-</code>
+```
 
 Validating a Configuration File:
 
-<code>
+```
 sudo ros config validate -i cloud-config.yml
-</code>
+```
 
 [Install RancherOS to disk](#install-rancheros)
 
 Installing RancherOS to disk is a single line command. If your VM does not have internet access, go back to the documentation [link](https://rancher.com/docs/os/v1.x/en/installation/running-rancheros/server/install-to-disk/). Rancher provides details on that method.
 
-<code>
+```
 sudo ros install -c cloud-config.yml -d /dev/sda
-</code>
+```
 
 Note: For doing mass deployments, I normally to store the cloud-config.yml on a shared web server.
 
-<code>
+```
 sudo ros install -c https://ros.support.tools/rancher-node01.yml -d /dev/sda
-</code>
+```
 
 Finally reboot the VM to apply changes:
-<code>
+```
 sudo reboot
-</code>
+```

@@ -15,10 +15,10 @@ This article is only applicable to Kubernetes cluster launched by RKE v0.1.x, v0
 
 # [Fix](#fix)
 
-Updating the <code>docker0</code> bridge IP range (and <code>docker-sys</code> bridge IP range in RancherOS) is possible in an RKE or Rancher v2.x provisioned Kubernetes cluster, where no cluster containers are in fact running attached to the Docker bridge network. The only impact of the change should be some downtime, as you will be required to restart the Docker daemon for the change to take effect.
+Updating the `docker0` bridge IP range (and `docker-sys` bridge IP range in RancherOS) is possible in an RKE or Rancher v2.x provisioned Kubernetes cluster, where no cluster containers are in fact running attached to the Docker bridge network. The only impact of the change should be some downtime, as you will be required to restart the Docker daemon for the change to take effect.
 
-On RancherOS the bridge IP range (<code>bip</code>) can be updated for docker and system-docker per the RancherOS documentation on (Configuring Docker or System Docker)[https://rancher.com/docs/os/v1.x/en/installation/configuration/docker/]. You will need to reboot the host for the change to take effect after updating the settings.
+On RancherOS the bridge IP range (`bip`) can be updated for docker and system-docker per the RancherOS documentation on (Configuring Docker or System Docker)[https://rancher.com/docs/os/v1.x/en/installation/configuration/docker/]. You will need to reboot the host for the change to take effect after updating the settings.
 
-For other operating systems, where Docker is installed from the upstream Docker repositories, you should update the <code>bip</code> configuration in <code>/etc/docker/daemon.json</code> per the (dockerd documentation)[https://docs.docker.com/engine/reference/commandline/dockerd/#daemon-configuration-file].
+For other operating systems, where Docker is installed from the upstream Docker repositories, you should update the `bip` configuration in `/etc/docker/daemon.json` per the (dockerd documentation)[https://docs.docker.com/engine/reference/commandline/dockerd/#daemon-configuration-file].
 
-On CentOS 7, RHEL 7 and SLES 12 you should also check the configuration in /etc/sysconfig/docker to ensure <code>--bip</code> has not been configured there.
+On CentOS 7, RHEL 7 and SLES 12 you should also check the configuration in /etc/sysconfig/docker to ensure `--bip` has not been configured there.
