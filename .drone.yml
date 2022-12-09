@@ -13,7 +13,7 @@ clone:
 #  limit: 1
 
 environment:
-  DOCKER_HOST: tcp://localhost:2375
+  DOCKER_HOST: tcp://docker-in-docker:2375
   DOCKER_CLI_EXPERIMENTAL: enabled
 
 steps:
