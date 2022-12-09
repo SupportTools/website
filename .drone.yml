@@ -233,9 +233,9 @@ steps:
        included:
          - supporttools/website
 
-# services:
-# - name: docker-in-docker
-#   docker:
-#   image: docker:20.10.14-dind
-#   command: ["dockerd", "--host", "0.0.0.0", "--experimental"]
-#   privileged: true
+services:
+- name: docker-in-docker
+  docker:
+  image: docker:20.10.14-dind
+  command: ["dockerd", "--host", "0.0.0.0", "--experimental"]
+  privileged: true
