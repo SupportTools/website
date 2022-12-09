@@ -1,7 +1,6 @@
 FROM supporttools/kube-builder:latest AS builder
 
 #ARG HUGO=0.98.0
-ENV DEBIAN_FRONTEND=noninteractive
 
 WORKDIR /root
 COPY hugo_*.tar.gz /root/hugo.tar.gz
@@ -14,6 +13,16 @@ COPY ./blog/ /site
 WORKDIR /site
 RUN hugo
 
+
 FROM nginx:latest
+
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get update && apt-get install -y \
+    wget \
+    gzip \
+    libmaxminddb0 \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY --from=anroe/nginx-geoip2:1.19.2-geoip2-3.3 /usr/lib/nginx/modules/ngx_http_geoip2_module.so /usr/lib/nginx/modules/ngx_http_geoip2_module.so
 COPY --from=builder /site/public /usr/share/nginx/html
 COPY nginx.conf /etc/nginx/conf.d/default.conf
