@@ -1,7 +1,6 @@
 ---
 kind: pipeline
-type: kubernetes
-name: SupportTools-www
+name: SupportTools-website
 
 platform:
   os: linux
