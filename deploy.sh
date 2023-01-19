@@ -73,6 +73,12 @@ else
   synccdn=false
 fi
 
+if [ ! -z "${TAG}" ]
+then
+  echo "Using tag ${TAG}"
+  imagetag=${TAG}
+fi
+
 echo "Cluster:" ${cluster}
 echo "Deploying to namespace: ${namespace}"
 echo "Image tag: ${imagetag}"
@@ -82,9 +88,6 @@ echo "HPA: ${hpa}"
 bash /usr/local/bin/init-kubectl
 
 echo "Settings up project, namespace, and kubeconfig"
-wget -O rancher-projects https://raw.githubusercontent.com/SupportTools/rancher-projects/main/rancher-projects.sh
-chmod +x rancher-projects
-mv rancher-projects /usr/local/bin/
 rancher-projects --cluster-name ${cluster} --project-name SupportTools --namespace ${namespace} --create-project true --create-namespace true --create-kubeconfig true --kubeconfig ~/.kube/config
 export KUBECONFIG=~/.kube/config
 
@@ -124,13 +127,13 @@ helm package ./chart/ --version ${DRONE_BUILD_NUMBER} --app-version ${DRONE_BUIL
 helm push website-helm-${DRONE_BUILD_NUMBER}.tgz oci://harbor.support.tools/supporttools
 rm -f website-helm-${DRONE_BUILD_NUMBER}.tgz
 
-# echo "Waiting for pods to become ready..."
-# echo "Checking Deployments"
-# for deployment in `kubectl -n ${namespace} get deployment -o name`
-# do
-#   echo "Checking ${deployment}"
-#   kubectl -n ${namespace} rollout status ${deployment}
-# done
+echo "Waiting for pods to become ready..."
+echo "Checking Deployments"
+for deployment in `kubectl -n ${namespace} get deployment -o name`
+do
+  echo "Checking ${deployment}"
+  kubectl -n ${namespace} rollout status ${deployment}
+done
 
 if [ ${synccdn} == true ];
 then
