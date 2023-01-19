@@ -91,3 +91,5 @@ spec:
         name: nginx-config
       - emptyDir: {}
         name: var-run
+      - emptyDir: {}
+        name: nginx-log
