@@ -249,3 +249,7 @@ services:
   image: docker:20.10.14-dind
   command: ["dockerd", "--host", "0.0.0.0", "--experimental"]
   privileged: true
+  when:
+    event:
+      - push
+      - pull_request
