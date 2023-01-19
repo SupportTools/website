@@ -138,7 +138,7 @@ done
 if [ ${synccdn} == true ];
 then
   echo "Syncing files to S3..."
-  aws s3 sync ./cdn.support.tools/ s3://cdn.support.tools/ --endpoint-url=https://s3.us-east-1.wasabisys.com
+  aws s3 sync ./cdn.support.tools/ s3://cdn.support.tools/ --endpoint-url=https://s3.us-east-1.wasabisys.com --no-verify-ssl
 else
   echo "Skipping S3 sync"
 fi

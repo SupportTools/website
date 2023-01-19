@@ -8,7 +8,7 @@ then
   docker push harbor.support.tools/supporttools/website:${DRONE_BUILD_NUMBER}
 else
   echo "Building image"
-  docker pull harbor.support.tools/supporttools/website:latest
+  #docker pull harbor.support.tools/supporttools/website:latest
   if ! docker build -t harbor.support.tools/supporttools/website:${DRONE_BUILD_NUMBER} --cache-from harbor.support.tools/supporttools/website:latest -f Dockerfile .
   then
     echo "Problem building latest image"
