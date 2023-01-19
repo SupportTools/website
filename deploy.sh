@@ -114,7 +114,7 @@ echo "Deploying website"
 helm upgrade --install website ./chart \
 --namespace ${namespace} \
 -f ./chart/values.yaml \
---set image.tag=${DRONE_BUILD_NUMBER} \
+--set image.tag=${imagetag} \
 --set ingress.host=${ingress} \
 --set autoscaling.minReplicas=${maxReplicas} \
 --set autoscaling.maxReplicas=${maxReplicas} \
@@ -123,7 +123,7 @@ helm upgrade --install website ./chart \
 echo "Package and publish Helm chart"
 export HELM_EXPERIMENTAL_OCI=1
 helm registry login harbor.support.tools --username ${DOCKER_USERNAME} --password ${DOCKER_PASSWORD}
-helm package ./chart/ --version ${DRONE_BUILD_NUMBER} --app-version ${DRONE_BUILD_NUMBER}
+helm package ./chart/ --version ${DRONE_BUILD_NUMBER} --app-version ${imagetag}
 helm push website-helm-${DRONE_BUILD_NUMBER}.tgz oci://harbor.support.tools/supporttools
 rm -f website-helm-${DRONE_BUILD_NUMBER}.tgz
 
