@@ -85,6 +85,9 @@ echo "Image tag: ${imagetag}"
 echo "Purge: ${purge}"
 echo "HPA: ${hpa}"
 
+PUBLIC_IP=$(curl ifconfig.me)
+echo "Public IP: ${PUBLIC_IP}"
+
 bash /usr/local/bin/init-kubectl
 
 echo "Settings up project, namespace, and kubeconfig"
