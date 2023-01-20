@@ -31,13 +31,6 @@ steps:
         - push
         - pull_request
 
-  # - name: link-validation
-  #   image: thegeeklab/link-validator
-  #   commands:
-  #     - link-validator --nice --external --skip-file .linkcheckignore
-  #   environment:
-  #     LINK_VALIDATOR_BASE_DIR: public
-
   - name: cleanup-test-build
     image: thegeeklab/hugo
     commands:
@@ -54,9 +47,6 @@ steps:
         from_secret: harbor-username
       DOCKER_PASSWORD:
         from_secret: harbor-password
-    volumes:
-      - name: docker
-        path: /var/run/docker.sock
     commands:
     - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD harbor.support.tools
     - sh ./build-docker-images.sh
@@ -250,8 +240,3 @@ steps:
      repo:
        included:
          - supporttools/website
-
-volumes:
-  - name: docker
-    host:
-      path: /var/run/docker.sock
