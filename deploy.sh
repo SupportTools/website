@@ -106,12 +106,6 @@ kubectl label ns ${namespace} app=website --overwrite
 kubectl label ns ${namespace} ns-purge=${purge} --overwrite
 kubectl label ns ${namespace} class=${class} --overwrite
 
-echo "Creating registry secret"
-kubectl -n ${namespace} create secret docker-registry dockerhub-registry-secret \
---docker-username=${DOCKER_USERNAME} \
---docker-password=${DOCKER_PASSWORD} \
---dry-run=client -o yaml | kubectl apply -f -
-
 echo "Deploying website"
 helm upgrade --install website ./chart \
 --namespace ${namespace} \
