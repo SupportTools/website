@@ -107,8 +107,7 @@ kubectl label ns ${namespace} ns-purge=${purge} --overwrite
 kubectl label ns ${namespace} class=${class} --overwrite
 
 echo "Creating registry secret"
-kubectl -n ${namespace} create secret docker-registry harbor-registry-secret \
---docker-server=harbor.support.tools \
+kubectl -n ${namespace} create secret docker-registry dockerhub-registry-secret \
 --docker-username=${DOCKER_USERNAME} \
 --docker-password=${DOCKER_PASSWORD} \
 --dry-run=client -o yaml | kubectl apply -f -
@@ -123,17 +122,17 @@ helm upgrade --install website ./chart \
 --set autoscaling.maxReplicas=${maxReplicas} \
 --force
 
-echo "Package and publish Helm chart"
-export HELM_EXPERIMENTAL_OCI=1
-helm registry login harbor.support.tools --username ${DOCKER_USERNAME} --password ${DOCKER_PASSWORD}
-helm package ./chart/ --version ${DRONE_BUILD_NUMBER} --app-version ${imagetag}
-helm push website-helm-${DRONE_BUILD_NUMBER}.tgz oci://harbor.support.tools/supporttools
-rm -f website-helm-${DRONE_BUILD_NUMBER}.tgz
+# echo "Package and publish Helm chart"
+# export HELM_EXPERIMENTAL_OCI=1
+# helm registry login harbor.support.tools --username ${DOCKER_USERNAME} --password ${DOCKER_PASSWORD}
+# helm package ./chart/ --version ${DRONE_BUILD_NUMBER} --app-version ${imagetag}
+# helm push website-helm-${DRONE_BUILD_NUMBER}.tgz oci://harbor.support.tools/supporttools
+# rm -f website-helm-${DRONE_BUILD_NUMBER}.tgz
 
-# echo "Waiting for pods to become ready..."
-# echo "Checking Deployments"
-# for deployment in `kubectl -n ${namespace} get deployment -o name`
-# do
-#   echo "Checking ${deployment}"
-#   kubectl -n ${namespace} rollout status ${deployment}
-# done
+echo "Waiting for pods to become ready..."
+echo "Checking Deployments"
+for deployment in `kubectl -n ${namespace} get deployment -o name`
+do
+  echo "Checking ${deployment}"
+  kubectl -n ${namespace} rollout status ${deployment}
+done
