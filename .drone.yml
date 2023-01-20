@@ -254,10 +254,13 @@ steps:
       delete: false
     when:
       event:
-        - push
-        - pull_request
+      - push
+      - pull_request
      target:
      - prd        
+     repo:
+       included:
+         - supporttools/website
 
 services:
 - name: docker-in-docker
