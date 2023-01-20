@@ -31,10 +31,10 @@ spec:
     spec:
       imagePullSecrets:
         - name: harbor-registry-secret
-      securityContext:
-        runAsUser: 1000
-        runAsGroup: 3000
-        fsGroup: 2000
+      # securityContext:
+      #   runAsUser: 1000
+      #   runAsGroup: 3000
+      #   fsGroup: 2000
       containers:
         - name: website
           image: "{{ .Values.image.repository }}/website:{{ .Values.image.tag | default .Chart.AppVersion }}"
