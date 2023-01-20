@@ -44,11 +44,11 @@ steps:
     image: cube8021/docker-buildx:20.10.14-0.8.2
     environment:
       DOCKER_USERNAME:
-        from_secret: harbor-username
+        from_secret: docker-username
       DOCKER_PASSWORD:
-        from_secret: harbor-password
+        from_secret: docker-password
     commands:
-    - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD harbor.support.tools
+    - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD docker.io
     - sh ./build-docker-images.sh
     when:
       repo:
@@ -62,9 +62,9 @@ steps:
     image: supporttools/kube-builder:latest
     environment:
       DOCKER_USERNAME:
-        from_secret: harbor-username
+        from_secret: docker-username
       DOCKER_PASSWORD:
-        from_secret: harbor-password
+        from_secret: docker-password
       CATTLE_SERVER:
         from_secret: cattle_server
       CATTLE_ACCESS_KEY:
@@ -85,9 +85,9 @@ steps:
     image: supporttools/kube-builder:latest
     environment:
       DOCKER_USERNAME:
-        from_secret: harbor-username
+        from_secret: docker-username
       DOCKER_PASSWORD:
-        from_secret: harbor-password
+        from_secret: docker-password
       CATTLE_SERVER:
         from_secret: cattle_server
       CATTLE_ACCESS_KEY:
@@ -110,9 +110,9 @@ steps:
     image: supporttools/kube-builder
     environment:
       DOCKER_USERNAME:
-        from_secret: harbor-username
+        from_secret: docker-username
       DOCKER_PASSWORD:
-        from_secret: harbor-password
+        from_secret: docker-password
       CATTLE_SERVER:
         from_secret: cattle_server
       CATTLE_ACCESS_KEY:
@@ -139,9 +139,9 @@ steps:
     image: supporttools/kube-builder
     environment:
       DOCKER_USERNAME:
-        from_secret: harbor-username
+        from_secret: docker-username
       DOCKER_PASSWORD:
-        from_secret: harbor-password
+        from_secret: docker-password
       CATTLE_SERVER:
         from_secret: cattle_server
       CATTLE_ACCESS_KEY:
@@ -168,9 +168,9 @@ steps:
     image: supporttools/kube-builder
     environment:
       DOCKER_USERNAME:
-        from_secret: harbor-username
+        from_secret: docker-username
       DOCKER_PASSWORD:
-        from_secret: harbor-password
+        from_secret: docker-password
       CATTLE_SERVER:
         from_secret: cattle_server
       CATTLE_ACCESS_KEY:
@@ -197,9 +197,9 @@ steps:
     image: supporttools/kube-builder
     environment:
       DOCKER_USERNAME:
-        from_secret: harbor-username
+        from_secret: docker-username
       DOCKER_PASSWORD:
-        from_secret: harbor-password
+        from_secret: docker-password
       CATTLE_SERVER:
         from_secret: cattle_server
       CATTLE_ACCESS_KEY:
