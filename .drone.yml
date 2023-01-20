@@ -253,11 +253,11 @@ steps:
       target: /
       delete: false
     when:
-      event:
-      - push
-      - pull_request
+     event:
+     - deployment
+     - promote
      target:
-     - prd        
+     - prd
      repo:
        included:
          - supporttools/website
