@@ -127,19 +127,10 @@ helm package ./chart/ --version ${DRONE_BUILD_NUMBER} --app-version ${imagetag}
 helm push website-helm-${DRONE_BUILD_NUMBER}.tgz oci://harbor.support.tools/supporttools
 rm -f website-helm-${DRONE_BUILD_NUMBER}.tgz
 
-# echo "Waiting for pods to become ready..."
-# echo "Checking Deployments"
-# for deployment in `kubectl -n ${namespace} get deployment -o name`
-# do
-#   echo "Checking ${deployment}"
-#   kubectl -n ${namespace} rollout status ${deployment}
-# done
-
-echo "Syncing files to CDN..."
-if [ ${synccdn} == true ];
-then
-  echo "Syncing files to S3..."
-  aws s3 sync ./cdn.support.tools/ s3://cdn.support.tools/ --endpoint-url=https://s3.us-east-1.wasabisys.com
-else
-  echo "Skipping S3 sync"
-fi
+echo "Waiting for pods to become ready..."
+echo "Checking Deployments"
+for deployment in `kubectl -n ${namespace} get deployment -o name`
+do
+  echo "Checking ${deployment}"
+  kubectl -n ${namespace} rollout status ${deployment}
+done

@@ -14,10 +14,10 @@ WORKDIR /site
 RUN hugo
 
 
-FROM nginx:latest
+FROM ubuntu/nginx:latest
 
 ENV DEBIAN_FRONTEND=noninteractive
-RUN apt-get update && apt-get install -y \
+RUN apt update && apt install -y \
     wget \
     gzip \
     libmaxminddb0 \

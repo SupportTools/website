@@ -227,10 +227,6 @@ steps:
         from_secret: cattle_accesskey
       CATTLE_SECRET_KEY:
         from_secret: cattle_secretkey        
-      AWS_ACCESS_KEY_ID:
-        from_secret: s3_accesskey
-      AWS_SECRET_ACCESS_KEY:
-        from_secret: s3_secretkey
     commands:
       - bash deploy.sh prd ${BUILD_NUMBER}
     when:
@@ -242,6 +238,26 @@ steps:
      repo:
        included:
          - supporttools/website
+
+  - name: Sync-to-CDN
+    image: plugins/s3-sync
+    settings:
+      access_key:
+        from_secret: s3_accesskey
+      secret_key:
+        from_secret: s3_secretkey
+      region: us-east-1
+      bucket: cdn.support.tools
+      endpoint: https://s3.us-east-1.wasabisys.com
+      source: cdn.support.tools/
+      target: /
+      delete: false
+    when:
+      event:
+        - push
+        - pull_request
+     target:
+     - prd        
 
 services:
 - name: docker-in-docker
