@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Networking: Understanding the Basics"
 date: 2023-02-02T19:52:00-06:00
-draft: true
+draft: false
 tags: ["Kubernetes", "CPU requests", "compute capacity", "Service Level Agreement (SLA)", "pod", "runtime", "example"]
 categories:
 - Kubernetes

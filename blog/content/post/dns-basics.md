@@ -1,7 +1,7 @@
 ---
 title: "DNS Basics"
 date: 2022-07-11T19:26:00-05:00
-draft: true
+draft: false
 tags: ["DNS"]
 categories:
 - DNS

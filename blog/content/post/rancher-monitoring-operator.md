@@ -1,7 +1,7 @@
 ---
 title: "service rancher-monitoring-operator not found"
 date: 2022-09-29T00:51:00-05:00
-draft: true
+draft: false
 tags: ["Kubernetes", "RKE2", "Rancher", "Monitoring"]
 categories:
 - kubernetes

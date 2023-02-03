@@ -1,7 +1,7 @@
 ---
 title: "What is kubectl?"
 date: 2022-12-09T13:19:00-06:00
-draft: true
+draft: false
 tags: ["kubernetes", "tools"]
 categories:
 - Kubernetes
