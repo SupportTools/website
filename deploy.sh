@@ -123,15 +123,33 @@ helm upgrade --install website ./chart \
 # helm push website-helm-${DRONE_BUILD_NUMBER}.tgz oci://harbor.support.tools/supporttools
 # rm -f website-helm-${DRONE_BUILD_NUMBER}.tgz
 
-echo "Waiting for pods to become ready..."
 echo "Checking Deployments"
 for deployment in `kubectl -n ${namespace} get deployment -o name`
 do
-<<<<<<< HEAD
-  echo "Working on $file"
-  cat $file | sed "s/BUILD_NUMBER/${CI_BUILD_NUMBER}/g" > /drone/src/deployment-ready/"$file"
-=======
   echo "Checking ${deployment}"
   kubectl -n ${namespace} rollout status ${deployment}
->>>>>>> main
+done
+
+echo "Checking StatefulSets"
+for statefulset in `kubectl -n ${namespace} get statefulset -o name`
+do
+  kubectl -n ${namespace} rollout status ${statefulset}
+done
+
+echo "Checking DaemonSets"
+for daemonset in `kubectl -n ${namespace} get daemonset -o name`
+do
+  kubectl -n ${namespace} rollout status ${daemonset}
+done
+
+echo "Checking Jobs"
+for job in `kubectl -n ${namespace} get job -o name`
+do
+  kubectl -n ${namespace} rollout status ${job}
+done
+
+echo "Checking Pods"
+for pod in `kubectl -n ${namespace} get pod -o name`
+do
+  kubectl -n ${namespace} rollout status ${pod}
 done
