@@ -1,5 +1,5 @@
 ---
-title: "Kubernetes Networking: Understanding Overlay Networks and Traffic Flow"
+title: "Kubernetes Networking Deep Dive - Overlay Networks and Traffic Flow"
 date: 2023-02-03T02:44:00-06:00
 draft: false
 tags: ["Kubernetes networking", "overlay network", "traffic flow", "Pods", "network plugins", "canal", "flannel", "calico", "network segmentation", "isolation", "security", "performance"]categories:
