@@ -34,8 +34,7 @@ steps:
   - name: checking-for-draft-content
     image: supporttools/kube-builder
     commands:
-      - cd blog/content/post/
-      - if [[ -z $(grep -R 'draft: true' . | grep -v '_template.md') ]]; then echo "No draft content found"; else echo "Draft content found"; exit 1; fi
+      - bash checks.sh
     when:
       event:
         - push
