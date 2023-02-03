@@ -1,7 +1,7 @@
 ---
 kind: pipeline
+name: SupportTools-website
 type: vm
-name: SupportTools-www
 
 platform:
   os: linux
