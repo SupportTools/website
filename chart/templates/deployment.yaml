@@ -30,22 +30,24 @@ spec:
         team: SupportTools
     spec:
       imagePullSecrets:
-        - name: harbor-registry-secret
-      securityContext:
-        runAsUser: 1000
-        runAsGroup: 3000
-        fsGroup: 2000
+      - name: dockerhub-supporttools
+      # securityContext:
+      #   runAsUser: 1000
+      #   runAsGroup: 3000
+      #   fsGroup: 2000
       containers:
         - name: website
-          image: "{{ .Values.image.repository }}/website:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           volumeMounts:
-          - name : nginx-cache
+          - name: nginx-cache
             mountPath: /var/cache/nginx/
-          - name : nginx-config
+          - name: nginx-config
             mountPath: /var/config/nginx/
           - name: var-run
-            mountPath: /var/run/          
+            mountPath: /var/run/
+          - name: nginx-log
+            mountPath: /var/log/nginx/
           ports:
             - name: http
               containerPort: 8080
@@ -89,3 +91,5 @@ spec:
         name: nginx-config
       - emptyDir: {}
         name: var-run
+      - emptyDir: {}
+        name: nginx-log

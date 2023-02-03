@@ -73,18 +73,24 @@ else
   synccdn=false
 fi
 
+if [ ! -z "${TAG}" ]
+then
+  echo "Using tag ${TAG}"
+  imagetag=${TAG}
+fi
+
 echo "Cluster:" ${cluster}
 echo "Deploying to namespace: ${namespace}"
 echo "Image tag: ${imagetag}"
 echo "Purge: ${purge}"
 echo "HPA: ${hpa}"
 
+PUBLIC_IP=$(curl ifconfig.me)
+echo "Public IP: ${PUBLIC_IP}"
+
 bash /usr/local/bin/init-kubectl
 
 echo "Settings up project, namespace, and kubeconfig"
-wget -O rancher-projects https://raw.githubusercontent.com/SupportTools/rancher-projects/main/rancher-projects.sh
-chmod +x rancher-projects
-mv rancher-projects /usr/local/bin/
 rancher-projects --cluster-name ${cluster} --project-name SupportTools --namespace ${namespace} --create-project true --create-namespace true --create-kubeconfig true --kubeconfig ~/.kube/config
 export KUBECONFIG=~/.kube/config
 
@@ -100,42 +106,32 @@ kubectl label ns ${namespace} app=website --overwrite
 kubectl label ns ${namespace} ns-purge=${purge} --overwrite
 kubectl label ns ${namespace} class=${class} --overwrite
 
-echo "Creating registry secret"
-kubectl -n ${namespace} create secret docker-registry harbor-registry-secret \
---docker-server=harbor.support.tools \
---docker-username=${DOCKER_USERNAME} \
---docker-password=${DOCKER_PASSWORD} \
---dry-run=client -o yaml | kubectl apply -f -
-
 echo "Deploying website"
 helm upgrade --install website ./chart \
 --namespace ${namespace} \
 -f ./chart/values.yaml \
---set image.tag=${DRONE_BUILD_NUMBER} \
+--set image.tag=${imagetag} \
 --set ingress.host=${ingress} \
 --set autoscaling.minReplicas=${maxReplicas} \
 --set autoscaling.maxReplicas=${maxReplicas} \
 --force
 
-echo "Package and publish Helm chart"
-export HELM_EXPERIMENTAL_OCI=1
-helm registry login harbor.support.tools --username ${DOCKER_USERNAME} --password ${DOCKER_PASSWORD}
-helm package ./chart/ --version ${DRONE_BUILD_NUMBER} --app-version ${DRONE_BUILD_NUMBER}
-helm push website-helm-${DRONE_BUILD_NUMBER}.tgz oci://harbor.support.tools/supporttools
-rm -f website-helm-${DRONE_BUILD_NUMBER}.tgz
+# echo "Package and publish Helm chart"
+# export HELM_EXPERIMENTAL_OCI=1
+# helm registry login harbor.support.tools --username ${DOCKER_USERNAME} --password ${DOCKER_PASSWORD}
+# helm package ./chart/ --version ${DRONE_BUILD_NUMBER} --app-version ${imagetag}
+# helm push website-helm-${DRONE_BUILD_NUMBER}.tgz oci://harbor.support.tools/supporttools
+# rm -f website-helm-${DRONE_BUILD_NUMBER}.tgz
 
-# echo "Waiting for pods to become ready..."
-# echo "Checking Deployments"
-# for deployment in `kubectl -n ${namespace} get deployment -o name`
-# do
-#   echo "Checking ${deployment}"
-#   kubectl -n ${namespace} rollout status ${deployment}
-# done
-
-if [ ${synccdn} == true ];
-then
-  echo "Syncing files to S3..."
-  aws s3 sync ./cdn.support.tools/ s3://cdn.support.tools/ --endpoint-url=https://s3.us-east-1.wasabisys.com
-else
-  echo "Skipping S3 sync"
-fi
+echo "Waiting for pods to become ready..."
+echo "Checking Deployments"
+for deployment in `kubectl -n ${namespace} get deployment -o name`
+do
+<<<<<<< HEAD
+  echo "Working on $file"
+  cat $file | sed "s/BUILD_NUMBER/${CI_BUILD_NUMBER}/g" > /drone/src/deployment-ready/"$file"
+=======
+  echo "Checking ${deployment}"
+  kubectl -n ${namespace} rollout status ${deployment}
+>>>>>>> main
+done
