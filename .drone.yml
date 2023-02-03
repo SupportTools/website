@@ -31,6 +31,25 @@ steps:
         - push
         - pull_request
 
+  - name: checking-for-broken-links
+    image: thegeeklab/hugo
+    commands:
+      - hugo --baseUrl http://localhost/ --config config.toml,config-broken-links.toml
+    when:
+      event:
+        - push
+        - pull_request
+
+  - name: checking-for-draft-content
+    image: thegeeklab/hugo
+    commands:
+      - cd blog/content/post/
+      - if [[ -z $(grep -R 'draft: true' . | grep -v '_template.md') ]]; then echo "No draft content found"; else echo "Draft content found"; exit 1; fi
+    when:
+      event:
+        - push
+        - pull_request
+
   - name: cleanup-test-build
     image: thegeeklab/hugo
     commands:
