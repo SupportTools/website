@@ -1,7 +1,7 @@
 ---
 kind: pipeline
-name: SupportTools-website
 type: vm
+name: SupportTools-www
 
 platform:
   os: linux
@@ -11,129 +11,8 @@ clone:
   depth: 1
 
 steps:
-  - name: Docker-Build
-    image: plugins/docker
-    pull: always
-    settings:
-      registry: harbor.support.tools
-      repo: harbor.support.tools/supporttools/website
-      dry_run: true
-      purge: false
-      dockerfile: Dockerfile.AMD64
-      tags:
-        - ${DRONE_BUILD_NUMBER}
-        - ${DRONE_COMMIT_BRANCH}
-        - latest-amd64
-        - latest      
-
-  - name: Docker-Publish
-    image: plugins/docker
-    pull: always
-    settings:
-      registry: harbor.support.tools
-      repo: harbor.support.tools/supporttools/website
-      cache_from: "harbor.support.tools/supporttools/website:latest"
-      purge: false
-      dockerfile: Dockerfile.AMD64
-      tags:
-        - ${DRONE_BUILD_NUMBER}
-        - ${DRONE_COMMIT_BRANCH}
-        - latest-amd64
-        - latest
-      username:
-        from_secret: harbor-username
-      password:
-        from_secret: harbor-password
-      privileged: true
-      volumes:
-      - name: docker-data
-        path: /var/lib/docker
-    when:
-     event:
-     - deployment
-     - promote
-
-volumes:
-- name: docker-data
-  host:
-    path: /opt/docker
----
-kind: pipeline
-type: docker
-name: Docker-Build-ARM64
-
-platform:
-  os: linux
-  arch: arm64
-
-clone:
-  depth: 1
-
-steps:
-  - name: Docker-Build
-    image: plugins/docker
-    pull: always
-    settings:
-      registry: harbor.support.tools
-      repo: harbor.support.tools/supporttools/website
-      dry_run: true
-      purge: false
-      dockerfile: Dockerfile.ARM64
-      tags:
-        - ${DRONE_BUILD_NUMBER}
-        - ${DRONE_COMMIT_BRANCH}
-        - latest-arm64
-        - latest      
-
-  - name: Docker-Publish
-    image: plugins/docker
-    pull: always
-    settings:
-      registry: harbor.support.tools
-      repo: harbor.support.tools/supporttools/website
-      cache_from: "harbor.support.tools/supporttools/website:latest"
-      purge: false
-      dockerfile: Dockerfile.ARM64
-      tags:
-        - ${DRONE_BUILD_NUMBER}
-        - ${DRONE_COMMIT_BRANCH}
-        - latest-arm64
-        - latest
-      username:
-        from_secret: harbor-username
-      password:
-        from_secret: harbor-password
-      privileged: true
-      volumes:
-      - name: docker-data
-        path: /var/lib/docker
-    when:
-     event:
-     - deployment
-     - promote
-
-volumes:
-- name: docker-data
-  host:
-    path: /opt/docker
----
-kind: pipeline
-type: docker
-name: Deploy
-
-platform:
-  os: linux
-  arch: amd64
-
-clone:
-  depth: 1
-
-steps:
-  - name: Customize-kube-files
-    image: harbor.support.tools/supporttools/kube-builder:latest
-    pull: always
-    environment:
-      APPENV: ${DRONE_COMMIT_BRANCH}
+  - name: hugo-test-build
+    image: thegeeklab/hugo
     commands:
       - cd blog/
       - hugo --panicOnWarning --baseUrl http://localhost/
@@ -203,20 +82,20 @@ steps:
           - supporttools/website
 
   - name: Deploy-to-Dev
-    image: harbor.support.tools/supporttools/kube-builder:latest
-    pull: always
-    settings:
-      kubernetes_server:
-        from_secret: k8s_server
-      kubernetes_token:
-        from_secret: k8s_token
+    image: supporttools/kube-builder:latest
+    environment:
+      DOCKER_USERNAME:
+        from_secret: docker-username
+      DOCKER_PASSWORD:
+        from_secret: docker-password
+      CATTLE_SERVER:
+        from_secret: cattle_server
+      CATTLE_ACCESS_KEY:
+        from_secret: cattle_accesskey
+      CATTLE_SECRET_KEY:
+        from_secret: cattle_secretkey        
     commands:
-      - if ! kubectl get ns supporttools-website-dev; then kubectl create ns supporttools-website-dev; fi
-      - if ! kubectl -n supporttools-website-dev get rolebinding system-unrestricted-psp-role-default; then kubectl -n supporttools-website-dev create rolebinding system-unrestricted-psp-role-default --clusterrole=system-unrestricted-psp-role --serviceaccount=supporttools-website-dev:default; fi
-      - kubectl apply -n supporttools-website-dev -f /drone/src/deployment-ready/
-      - kubectl apply -n supporttools-website-dev -f /drone/src/deployment/certificate/dev.yaml
-      - kubectl apply -n supporttools-website-dev -f /drone/src/deployment/ingress/dev.yaml
-      - kubectl scale -n supporttools-website-dev deployments/www --replicas=1
+      - bash deploy.sh dev ${BUILD_NUMBER}
     when:
      event:
      - deployment
@@ -286,20 +165,24 @@ steps:
          - supporttools/website
 
   - name: Deploy-to-Staging
-    image: harbor.support.tools/supporttools/kube-builder:latest
-    pull: always
-    settings:
-      kubernetes_server:
-        from_secret: k8s_server
-      kubernetes_token:
-        from_secret: k8s_token
+    image: supporttools/kube-builder
+    environment:
+      DOCKER_USERNAME:
+        from_secret: docker-username
+      DOCKER_PASSWORD:
+        from_secret: docker-password
+      CATTLE_SERVER:
+        from_secret: cattle_server
+      CATTLE_ACCESS_KEY:
+        from_secret: cattle_accesskey
+      CATTLE_SECRET_KEY:
+        from_secret: cattle_secretkey        
+      AWS_ACCESS_KEY_ID:
+        from_secret: s3_accesskey
+      AWS_SECRET_ACCESS_KEY:
+        from_secret: s3_secretkey
     commands:
-      - if ! kubectl get ns supporttools-website-staging; then kubectl create ns supporttools-website-staging; fi
-      - if ! kubectl -n supporttools-website-staging get rolebinding system-unrestricted-psp-role-default; then kubectl -n supporttools-website-staging create rolebinding system-unrestricted-psp-role-default --clusterrole=system-unrestricted-psp-role --serviceaccount=supporttools-website-staging:default; fi
-      - kubectl apply -n supporttools-website-staging -f /drone/src/deployment-ready/
-      - kubectl apply -n supporttools-website-staging -f /drone/src/deployment/certificate/staging.yaml
-      - kubectl apply -n supporttools-website-staging -f /drone/src/deployment/ingress/staging.yaml
-      - kubectl scale -n supporttools-website-staging deployments/www --replicas=3
+      - bash deploy.sh stg ${BUILD_NUMBER}
     when:
      event:
      - deployment
@@ -311,20 +194,20 @@ steps:
          - supporttools/website
 
   - name: Deploy-to-Production
-    image: harbor.support.tools/supporttools/kube-builder:latest
-    pull: always
-    settings:
-      kubernetes_server:
-        from_secret: k8s_server
-      kubernetes_token:
-        from_secret: k8s_token
+    image: supporttools/kube-builder
+    environment:
+      DOCKER_USERNAME:
+        from_secret: docker-username
+      DOCKER_PASSWORD:
+        from_secret: docker-password
+      CATTLE_SERVER:
+        from_secret: cattle_server
+      CATTLE_ACCESS_KEY:
+        from_secret: cattle_accesskey
+      CATTLE_SECRET_KEY:
+        from_secret: cattle_secretkey        
     commands:
-      - if ! kubectl get ns supporttools-website-production; then kubectl create ns supporttools-website-production; fi
-      - if ! kubectl -n supporttools-website-production get rolebinding system-unrestricted-psp-role-default; then kubectl -n supporttools-website-production create rolebinding system-unrestricted-psp-role-default --clusterrole=system-unrestricted-psp-role --serviceaccount=supporttools-website-production:default; fi
-      - kubectl apply -n supporttools-website-production -f /drone/src/deployment-ready/
-      - kubectl apply -n supporttools-website-production -f /drone/src/deployment/certificate/prod.yaml
-      - kubectl apply -n supporttools-website-production -f /drone/src/deployment/ingress/production.yaml
-      - kubectl scale -n supporttools-website-production deployments/www --replicas=5
+      - bash deploy.sh prd ${BUILD_NUMBER}
     when:
      event:
      - deployment
