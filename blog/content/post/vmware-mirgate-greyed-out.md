@@ -20,24 +20,24 @@ Note: All examples will use the URL https://vcenter. It would be best if you cha
 - Copy the URL in the browser
 
 Example:
-<code>
+```
 https://vcenter/ui/#?extensionId=vsphere.core.vm.summary&objectId=urn:vmomi:VirtualMachine:vm-15:......
-</code>
+```
 
 - Grab the VM ID from the URL. In the example the ID is "15"
 - Open a new browser windows to https://vcenter/mob/?moid=AuthorizationManager&method=enableMethods
 - Login with an Admin user. Example: administrator@vsphere.local
 - Enter the following in the value fields replacing the VM ID.
 - Entity
-<code>
+```
 <!-- array start -->
 <entity type="ManagedEntity" xsi:type="ManagedObjectReference">vm-15</entity>
 <!-- array end -->
-<code>
+```
 
 - Method
 <method>RelocateVM_Task</method>
-</code>
+```
 
 - Click Invoke Method
 - Go back to your vCenter URL and refresh the page.

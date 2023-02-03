@@ -9,7 +9,7 @@ title = "How to access a protected server using a Jumpbox"
 It is a common practice to access servers remotely via SSH. Typically, you may have, which is commonly referred to as a "Jumpbox." This server is accessible from the internet or other lesser trusted networks (sometimes this Jumpbox would be in a DMZ or have special firewall rules).
 
 TL;DR
-To SSH to a server through a jumpbox, you can use <code>ssh -J matt@jump.support.tools root@webserver.support.tools</code>.
+To SSH to a server through a jumpbox, you can use `ssh -J matt@jump.support.tools root@webserver.support.tools`.
 
 <!--more-->
 # [Longer Version](#long-version)

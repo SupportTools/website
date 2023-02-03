@@ -1,41 +1,56 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "supporttools.fullname" . }}
+  name: frontend
+  annotations:
+    prometheus.io/scrape: 'true'
+    prometheus.io/port: '9113'
+    prometheus.io/path: '/metrics'
   labels:
-    {{- include "supporttools.labels" . | nindent 4 }}
+    app: website
+    component: frontend
+    team: SupportTools
 spec:
-  {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
-  {{- end }}
   selector:
     matchLabels:
-      {{- include "supporttools.selectorLabels" . | nindent 6 }}
+      app: website
+      component: frontend
+      team: SupportTools
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+    type: RollingUpdate      
   template:
     metadata:
-      {{- with .Values.podAnnotations }}
-      annotations:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
       labels:
-        {{- include "supporttools.selectorLabels" . | nindent 8 }}
+        app: website
+        component: frontend
+        team: SupportTools
     spec:
-      {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      serviceAccountName: {{ include "supporttools.serviceAccountName" . }}
-      securityContext:
-        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      - name: dockerhub-supporttools
+      # securityContext:
+      #   runAsUser: 1000
+      #   runAsGroup: 3000
+      #   fsGroup: 2000
       containers:
-        - name: {{ .Chart.Name }}
-          securityContext:
-            {{- toYaml .Values.securityContext | nindent 12 }}
+        - name: website
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          volumeMounts:
+          - name: nginx-cache
+            mountPath: /var/cache/nginx/
+          - name: nginx-config
+            mountPath: /var/config/nginx/
+          - name: var-run
+            mountPath: /var/run/
+          - name: nginx-log
+            mountPath: /var/log/nginx/
           ports:
             - name: http
-              containerPort: 80
+              containerPort: 8080
               protocol: TCP
           livenessProbe:
             httpGet:
@@ -46,16 +61,35 @@ spec:
               path: /
               port: http
           resources:
-            {{- toYaml .Values.resources | nindent 12 }}
-      {{- with .Values.nodeSelector }}
-      nodeSelector:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      {{- with .Values.affinity }}
-      affinity:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      {{- with .Values.tolerations }}
-      tolerations:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
+            limits:
+              cpu: {{ .Values.resources.limits.cpu }}
+              memory: {{ .Values.resources.limits.memory }}
+            requests:
+              cpu: {{ .Values.resources.requests.cpu }}
+              memory: {{ .Values.resources.requests.memory }}
+        - name: exporter
+          image: nginx/nginx-prometheus-exporter:latest
+          imagePullPolicy: Always
+          args:
+            - -nginx.scrape-uri
+            - http://127.0.0.1:8080/metrics      
+          resources:
+            limits:
+              cpu: 100m
+              memory: 128Mi
+            requests:
+              cpu: 10m
+              memory: 32Mi
+          ports:
+            - name: metrics
+              containerPort: 9113
+              protocol: TCP
+      volumes:
+      - emptyDir: {}
+        name: nginx-cache
+      - emptyDir: {}
+        name: nginx-config
+      - emptyDir: {}
+        name: var-run
+      - emptyDir: {}
+        name: nginx-log

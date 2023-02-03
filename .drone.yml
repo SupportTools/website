@@ -1,7 +1,7 @@
 ---
 kind: pipeline
-type: docker
-name: Docker-Build-AMD64
+type: vm
+name: SupportTools-www
 
 platform:
   os: linux
@@ -135,7 +135,72 @@ steps:
     environment:
       APPENV: ${DRONE_COMMIT_BRANCH}
     commands:
-      - bash ./deploy.sh
+      - cd blog/
+      - hugo --panicOnWarning --baseUrl http://localhost/
+      - mv public/ ../../
+    when:
+      event:
+        - push
+        - pull_request
+
+  - name: html-validation
+    image: thegeeklab/vnu
+    commands:
+      - vnu --skip-non-html --errors-only --filterfile .vnuignore public/
+    when:
+      event:
+        - push
+        - pull_request
+
+  - name: cleanup-test-build
+    image: thegeeklab/hugo
+    commands:
+      - rm -rf public
+    when:
+      event:
+        - push
+        - pull_request
+
+  - name: Docker Build
+    image: cube8021/docker-buildx:20.10.14-0.8.2
+    environment:
+      DOCKER_USERNAME:
+        from_secret: docker-username
+      DOCKER_PASSWORD:
+        from_secret: docker-password
+    commands:
+    - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD docker.io
+    - sh ./build-docker-images.sh
+    when:
+      repo:
+        included:
+          - supporttools/website
+      event:
+        - push
+        - pull_request
+
+  - name: Deploy-to-Master
+    image: supporttools/kube-builder:latest
+    environment:
+      DOCKER_USERNAME:
+        from_secret: docker-username
+      DOCKER_PASSWORD:
+        from_secret: docker-password
+      CATTLE_SERVER:
+        from_secret: cattle_server
+      CATTLE_ACCESS_KEY:
+        from_secret: cattle_accesskey
+      CATTLE_SECRET_KEY:
+        from_secret: cattle_secretkey        
+    commands:
+      - bash deploy.sh
+    when:
+      event:
+        - push
+        - pull_request
+      repo:
+        included:
+          - supporttools/website
 
   - name: Deploy-to-Dev
     image: harbor.support.tools/supporttools/kube-builder:latest
@@ -158,6 +223,67 @@ steps:
      - promote
      target:
      - dev
+     repo:
+       included:
+         - supporttools/website
+
+  - name: Deploy-to-QAS
+    image: supporttools/kube-builder
+    environment:
+      DOCKER_USERNAME:
+        from_secret: docker-username
+      DOCKER_PASSWORD:
+        from_secret: docker-password
+      CATTLE_SERVER:
+        from_secret: cattle_server
+      CATTLE_ACCESS_KEY:
+        from_secret: cattle_accesskey
+      CATTLE_SECRET_KEY:
+        from_secret: cattle_secretkey    
+      AWS_ACCESS_KEY_ID:
+        from_secret: s3_accesskey
+      AWS_SECRET_ACCESS_KEY:
+        from_secret: s3_secretkey
+    commands:
+      - bash deploy.sh qas ${BUILD_NUMBER}
+    when:
+     event:
+     - deployment
+     - promote
+     target:
+     - qas
+     repo:
+       included:
+         - supporttools/website
+
+  - name: Deploy-to-TST
+    image: supporttools/kube-builder
+    environment:
+      DOCKER_USERNAME:
+        from_secret: docker-username
+      DOCKER_PASSWORD:
+        from_secret: docker-password
+      CATTLE_SERVER:
+        from_secret: cattle_server
+      CATTLE_ACCESS_KEY:
+        from_secret: cattle_accesskey
+      CATTLE_SECRET_KEY:
+        from_secret: cattle_secretkey        
+      AWS_ACCESS_KEY_ID:
+        from_secret: s3_accesskey
+      AWS_SECRET_ACCESS_KEY:
+        from_secret: s3_secretkey
+    commands:
+      - bash deploy.sh tst ${BUILD_NUMBER}
+    when:
+     event:
+     - deployment
+     - promote
+     target:
+     - tst
+     repo:
+       included:
+         - supporttools/website
 
   - name: Deploy-to-Staging
     image: harbor.support.tools/supporttools/kube-builder:latest
@@ -179,7 +305,10 @@ steps:
      - deployment
      - promote
      target:
-     - staging
+     - stg
+     repo:
+       included:
+         - supporttools/website
 
   - name: Deploy-to-Production
     image: harbor.support.tools/supporttools/kube-builder:latest
@@ -201,21 +330,30 @@ steps:
      - deployment
      - promote
      target:
-     - production
+     - prd
+     repo:
+       included:
+         - supporttools/website
 
-node_selector:
-  beta.kubernetes.io/arch: amd64
-  beta.kubernetes.io/os: linux
-  runner: true
-
-tolerations:
-- key: drone-runner
-  operator: Exists
-  effect: NoSchedule
-
-image_pull_secrets:
-- harbor
-
-depends_on:
-- Docker-Build-AMD64
-- Docker-Build-ARM64
+  - name: Sync-to-CDN
+    image: plugins/s3-sync
+    settings:
+      access_key:
+        from_secret: s3_accesskey
+      secret_key:
+        from_secret: s3_secretkey
+      region: us-east-1
+      bucket: cdn.support.tools
+      endpoint: https://s3.us-east-1.wasabisys.com
+      source: cdn.support.tools/
+      target: /
+      delete: false
+    when:
+     event:
+     - deployment
+     - promote
+     target:
+     - prd
+     repo:
+       included:
+         - supporttools/website

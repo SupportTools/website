@@ -1,10 +1,137 @@
-#!/bin/bash
+#!/bin/bash -x
 
-echo "customizing Deployment files..."
-mkdir /drone/src/deployment-ready/
-cd /drone/src/deployment/
-for file in `ls *.yaml`
+if [[ "$1" == 'dev' ]];
+then
+  cluster='a1-rke2-prd'
+  namespace='supporttools-dev'
+  imagetag=${BUILD_NUMBER}
+  purge=false
+  hpa=false
+  minReplicas=1
+  maxReplicas=1
+  ingress='dev.support.tools'
+  class="dev"
+  synccdn=false
+elif [[ "$1" == 'qas' ]];
+then
+  cluster='a1-rke2-prd'
+  namespace='supporttools-qas'
+  imagetag=${BUILD_NUMBER}
+  purge=false
+  hpa=true
+  minReplicas=3
+  maxReplicas=5
+  ingress='qas.support.tools'
+  class="qas"
+  synccdn=true
+elif [[ "$1" == 'tst' ]];
+then
+  cluster='a1-rke2-prd'
+  namespace='supporttools-tst'
+  imagetag=${BUILD_NUMBER}
+  purge=false
+  hpa=true
+  minReplicas=3
+  maxReplicas=5
+  ingress='tst.support.tools'
+  class="tst"
+  synccdn=true
+elif [[ "$1" == 'stg' ]];
+then
+  cluster='a1-rke2-prd'
+  namespace='supporttools-stg'
+  imagetag=${BUILD_NUMBER}
+  purge=false
+  hpa=true
+  minReplicas=3
+  maxReplicas=5
+  ingress='stg.support.tools'
+  class="stg"
+  synccdn=true
+elif [[ "$1" == 'prd' ]];
+then
+  cluster='a1-rke2-prd'
+  namespace='supporttools-prd'
+  imagetag=${BUILD_NUMBER}
+  purge=false
+  hpa=true
+  minReplicas=3
+  maxReplicas=7
+  ingress='support.tools'
+  class="prd"
+  synccdn=true
+else
+  cluster='a1-rke2-prd'
+  namespace='supporttools-mst'
+  imagetag=${DRONE_BUILD_NUMBER}
+  purge=false
+  hpa=true
+  minReplicas=1
+  maxReplicas=1
+  ingress='mst.support.tools'
+  class="mst"
+  synccdn=false
+fi
+
+if [ ! -z "${TAG}" ]
+then
+  echo "Using tag ${TAG}"
+  imagetag=${TAG}
+fi
+
+echo "Cluster:" ${cluster}
+echo "Deploying to namespace: ${namespace}"
+echo "Image tag: ${imagetag}"
+echo "Purge: ${purge}"
+echo "HPA: ${hpa}"
+
+PUBLIC_IP=$(curl ifconfig.me)
+echo "Public IP: ${PUBLIC_IP}"
+
+bash /usr/local/bin/init-kubectl
+
+echo "Settings up project, namespace, and kubeconfig"
+rancher-projects --cluster-name ${cluster} --project-name SupportTools --namespace ${namespace} --create-project true --create-namespace true --create-kubeconfig true --kubeconfig ~/.kube/config
+export KUBECONFIG=~/.kube/config
+
+if ! kubectl cluster-info
+then
+  echo "Problem connecting to the cluster"
+  exit 1
+fi
+
+echo "Adding labels to namespace"
+kubectl label ns ${namespace} team=SupportTools --overwrite
+kubectl label ns ${namespace} app=website --overwrite
+kubectl label ns ${namespace} ns-purge=${purge} --overwrite
+kubectl label ns ${namespace} class=${class} --overwrite
+
+echo "Deploying website"
+helm upgrade --install website ./chart \
+--namespace ${namespace} \
+-f ./chart/values.yaml \
+--set image.tag=${imagetag} \
+--set ingress.host=${ingress} \
+--set autoscaling.minReplicas=${maxReplicas} \
+--set autoscaling.maxReplicas=${maxReplicas} \
+--force
+
+# echo "Package and publish Helm chart"
+# export HELM_EXPERIMENTAL_OCI=1
+# helm registry login harbor.support.tools --username ${DOCKER_USERNAME} --password ${DOCKER_PASSWORD}
+# helm package ./chart/ --version ${DRONE_BUILD_NUMBER} --app-version ${imagetag}
+# helm push website-helm-${DRONE_BUILD_NUMBER}.tgz oci://harbor.support.tools/supporttools
+# rm -f website-helm-${DRONE_BUILD_NUMBER}.tgz
+
+echo "Waiting for pods to become ready..."
+echo "Checking Deployments"
+for deployment in `kubectl -n ${namespace} get deployment -o name`
 do
+<<<<<<< HEAD
   echo "Working on $file"
   cat $file | sed "s/BUILD_NUMBER/${CI_BUILD_NUMBER}/g" > /drone/src/deployment-ready/"$file"
+=======
+  echo "Checking ${deployment}"
+  kubectl -n ${namespace} rollout status ${deployment}
+>>>>>>> main
 done

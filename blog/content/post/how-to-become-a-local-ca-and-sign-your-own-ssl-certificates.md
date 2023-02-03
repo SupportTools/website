@@ -19,11 +19,15 @@ It's pretty easy, you need a linux box with openssl installed, then follow these
 
 To become a CA, you need a key and certificate pair. To create the key, execute:
 
-<code> openssl genrsa -des3 -out myCA.key 2048 </code>
+```
+openssl genrsa -des3 -out myCA.key 2048
+```
 
 To generate the certificate, execute the following:
 
-<code> openssl req -x509 -new -nodes -key myCA.key -sha256 -days 1925 -out myCA.pem </code>
+```
+openssl req -x509 -new -nodes -key myCA.key -sha256 -days 1925 -out myCA.pem
+```
 
 That's it! Now after you import the CA certificate to your machine, every certificate signed by it is going to be trusted!
 
@@ -31,18 +35,22 @@ That's it! Now after you import the CA certificate to your machine, every certif
 
 First thing you need is a private key:
 
-<code> openssl genrsa -out rancher.example.com.key 2048 </code>
+```
+openssl genrsa -out rancher.example.com.key 2048
+```
 
 Then create the signing request:
 
-<code> openssl req -new -key rancher.example.com.key -out rancher.example.com.csr </code>
+```
+openssl req -new -key rancher.example.com.key -out rancher.example.com.csr
+```
 
 Answer the question asked, one potentially important is the Common Name.
 
 Now to sign it with the CA key and certificate, you need the config file with Subject Alternative Name (SAN) specified.
 
 The config I used comes from here:
-<code>
+```
 authorityKeyIdentifier=keyid,issuer
 basicConstraints=CA:FALSE
 keyUsage = digitalSignature, nonRepudiation, keyEncipherment, dataEncipherment
@@ -50,12 +58,12 @@ subjectAltName = @alt_names
 
 [alt_names]
 DNS.1 = rancher.example.com
-</code>
+```
 
 Now the final command to sign the certificate:
-<code>
+```
 openssl x509 -req -in rancher.example.com.csr -CA myCA.pem -CAkey myCA.key -CAcreateserial -out rancher.example.com.crt -days 1825 -sha256 -extfile config.conf
-</code>
+```
 
 Now you should have the working and signed certificate.
 
