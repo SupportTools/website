@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1alpha2
+kind: Certificate
+metadata:
+  name: stg-supporttools-tls
+spec:
+  secretName: stg-supporttools-tls
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: 'staging.support.tools'
+  dnsNames:
+  - staging.support.tools

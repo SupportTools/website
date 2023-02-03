@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1alpha2
+kind: Certificate
+metadata:
+  name: dev-supporttools-tls
+spec:
+  secretName: dev-supporttools-tls
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: 'dev.support.tools'
+  dnsNames:
+  - dev.support.tools

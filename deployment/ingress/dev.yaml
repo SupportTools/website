@@ -1,0 +1,19 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  labels:
+    app: supporttools
+  name: lb
+spec:
+  rules:
+  - host: dev.support.tools
+    http:
+      paths:
+      - backend:
+          serviceName: www
+          servicePort: 80
+        pathType: ImplementationSpecific
+  tls:
+  - hosts:
+    - dev.support.tools
+    secretName: dev-supporttools-tls

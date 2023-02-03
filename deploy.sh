@@ -127,6 +127,11 @@ echo "Waiting for pods to become ready..."
 echo "Checking Deployments"
 for deployment in `kubectl -n ${namespace} get deployment -o name`
 do
+<<<<<<< HEAD
+  echo "Working on $file"
+  cat $file | sed "s/BUILD_NUMBER/${CI_BUILD_NUMBER}/g" > /drone/src/deployment-ready/"$file"
+=======
   echo "Checking ${deployment}"
   kubectl -n ${namespace} rollout status ${deployment}
+>>>>>>> main
 done

@@ -1,0 +1,14 @@
+apiVersion: cert-manager.io/v1alpha2
+kind: Certificate
+metadata:
+  name: prd-supporttools-tls
+spec:
+  secretName: prd-supporttools-tls
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: 'support.tools'
+  dnsNames:
+  - prod.support.tools
+  - www.support.tools
+  - support.tools
