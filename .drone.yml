@@ -67,6 +67,23 @@ steps:
         - push
         - pull_request
 
+  - name: clair
+    image: jmccann/drone-clair:1
+    settings:
+      url: https://clair.support.tools
+      scan_image: supporttools/website:${DRONE_BUILD_NUMBER}
+      
+    commands:
+      - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD docker.io
+      - sh ./clair-scanner.sh
+    when:
+      repo:
+        included:
+          - supporttools/website
+      event:
+        - push
+        - pull_request
+
   - name: Deploy-to-Master
     image: supporttools/kube-builder:latest
     environment:
