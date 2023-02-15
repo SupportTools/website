@@ -68,7 +68,7 @@ steps:
         - pull_request
 
   - name: clair
-    image: jmccann/drone-clair:1
+    image: josebovet/drone-clair:lastest
     environment:
       DOCKER_USERNAME:
         from_secret: docker-username
