@@ -67,16 +67,16 @@ steps:
         - push
         - pull_request
 
-  - name: clair
-    image: josebovet/drone-clair:lastest
-    environment:
-      DOCKER_USERNAME:
-        from_secret: docker-username
-      DOCKER_PASSWORD:
-        from_secret: docker-password
-    settings:
-      url: https://clair.support.tools
-      scan_image: supporttools/website:${DRONE_BUILD_NUMBER}
+  # - name: clair
+  #   image: josebovet/drone-clair:lastest
+  #   environment:
+  #     DOCKER_USERNAME:
+  #       from_secret: docker-username
+  #     DOCKER_PASSWORD:
+  #       from_secret: docker-password
+  #   settings:
+  #     url: https://clair.support.tools
+  #     scan_image: supporttools/website:${DRONE_BUILD_NUMBER}
 
   - name: Deploy-to-Master
     image: supporttools/kube-builder:latest
