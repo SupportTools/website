@@ -1,7 +1,7 @@
 ---
 title: "Deploying an EKS Cluster with NodeLocal DNSCache"
 date: 2023-05-10T17:03:00-06:00
-draft: true
+draft: false
 tags: ["Amazon EKS", "Kubernetes", "NodeLocal DNSCache", "Terraform"]
 categories:
 - Amazon EKS
