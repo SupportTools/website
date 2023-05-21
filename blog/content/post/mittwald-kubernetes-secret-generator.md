@@ -1,13 +1,13 @@
 ---
 title: "Using the Mittwald Kubernetes Secret Generator"
-date: 2023-05-20T19:26:00-05:00
+date: 2023-05-20T23:23:00-05:00
 draft: false
 tags: ["Kubernetes", "Mittwald", "Secret Generator"]
 categories:
 - Kubernetes
 - Mittwald
 author: "Matthew Mattox - mmattox@support.tools."
-description: "A guide on how to use the Mittwald Kubernetes Secret Generator to manage secrets in your Kubernetes cluster."
+description: "A guide on using the Mittwald Kubernetes Secret Generator to manage secrets in your Kubernetes cluster."
 more_link: "yes"
 ---
 
@@ -16,7 +16,7 @@ In this blog post, we will walk through the process of using the Mittwald Kubern
 <!--more-->
 # [Introduction](#introduction)
 
-Managing secrets in Kubernetes can be a complex task, especially when you have a large number of applications running. The Mittwald Kubernetes Secret Generator simplifies this process by automatically generating and managing secrets for you.
+Managing secrets in Kubernetes can be complex, especially when many applications are running. The Mittwald Kubernetes Secret Generator simplifies this process by automatically generating and managing your secrets.
 
 # [Prerequisites](#prerequisites)
 
@@ -49,7 +49,7 @@ helm install secret-generator mittwald/kubernetes-secret-generator
 
 # [Using the Secret Generator](#using-the-secret-generator)
 
-To use the Secret Generator, you need to create a Secret resource with the `secret-generator.v1.mittwald.de/autogenerate` annotation.
+To use the Secret Generator, you must create a Secret resource with the `secret-generator.v1.mittwald.de/autogenerate` annotation.
 
 Here's an example:
 
@@ -66,4 +66,4 @@ In this example, the Secret Generator will automatically create a secret with th
 
 # [Conclusion](#conclusion)
 
-The Mittwald Kubernetes Secret Generator is a powerful tool that can simplify the management of secrets in your Kubernetes cluster. By automating the process of secret generation, you can ensure that your applications have the secrets they need without having to manually create and manage them. Happy deploying!
+The Mittwald Kubernetes Secret Generator is a powerful tool that can simplify the secrets management in your Kubernetes cluster. By automating the process of secret generation, you can ensure that your applications have the secrets they need without having to create and manage them manually. Happy deploying!
