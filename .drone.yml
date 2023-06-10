@@ -16,7 +16,7 @@ environment:
 
 steps:
   - name: hugo-test-build
-    image: thegeeklab/hugo
+    image: supporttools/hugo:latest
     commands:
       - cd blog/
       - hugo --panicOnWarning --baseUrl http://localhost/
