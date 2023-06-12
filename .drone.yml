@@ -16,7 +16,7 @@ environment:
 
 steps:
   - name: hugo-test-build
-    image: supporttools/hugo:latest
+    image: eclipsefdn/hugo-node:latest
     commands:
       - cd blog/
       - hugo --panicOnWarning --baseUrl http://localhost/
