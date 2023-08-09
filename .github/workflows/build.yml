@@ -14,7 +14,7 @@ jobs:
       - name: HUGO test build
         run: |
           cd blog/
-          docker run --rm -v $(pwd):/src -w /src thegeeklab/hugo:0.105 hugo --panicOnWarning --baseUrl http://localhost/
+          docker run --rm -v $(pwd):/src -w /src thegeeklab/hugo:0.105 --panicOnWarning --baseUrl http://localhost/
           mv blog/public/ $GITHUB_WORKSPACE/
       
       - name: html-validation
@@ -25,17 +25,17 @@ jobs:
       - name: Checking for draft content
         run: |
           cd blog/
-          docker run --rm -v $(pwd):/src -w /src thegeeklab/hugo:0.105 hugo list drafts
+          docker run --rm -v $(pwd):/src -w /src thegeeklab/hugo:0.105 list drafts
       
       - name: Checking for orphaned content
         run: |
           cd blog/
-          docker run --rm -v $(pwd):/src -w /src thegeeklab/hugo:0.105 hugo list orphan
+          docker run --rm -v $(pwd):/src -w /src thegeeklab/hugo:0.105 list orphan
 
       - name: Checking for dead links
         run: |
           cd blog/
-          docker run --rm -v $(pwd):/src -w /src thegeeklab/hugo:0.105 hugo --quiet --baseUrl http://localhost/ && docker run --rm -v $(pwd):/src -w /src thegeeklab/hugo:0.105 htmlproofer --check-html --disable-external --allow-hash-href --assume-extension --url-ignore "/localhost/,/github.com/,/github.io/,/githubusercontent.com/" ./public
+          docker run --rm -v $(pwd):/src -w /src thegeeklab/hugo:0.105 --quiet --baseUrl http://localhost/ && docker run --rm -v $(pwd):/src -w /src thegeeklab/hugo:0.105 htmlproofer --check-html --disable-external --allow-hash-href --assume-extension --url-ignore "/localhost/,/github.com/,/github.io/,/githubusercontent.com/" ./public
       
       - name: Docker build
         run: |
