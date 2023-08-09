@@ -18,7 +18,6 @@ jobs:
           sudo chown -R $USER:$USER public/
           mv public/ ../../
           cd ../../
-          ls -la
       
       - name: html-validation
         run: |
@@ -27,8 +26,8 @@ jobs:
 
       - name: Checking for draft content
         run: |
-          CWPD=$(pwd)
           cd blog/
+          docker run --rm -v $(pwd):/src -w /src thegeeklab/hugo:0.105 list drafts
           if [[ -z `docker run --rm -v $(pwd):/src -w /src thegeeklab/hugo:0.105 list drafts | grep -v '_template.md'` ]] 
           then
             echo "Draft content found"
