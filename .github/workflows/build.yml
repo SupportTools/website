@@ -26,9 +26,7 @@ jobs:
 
       - name: Checking for draft content
         run: |
-          pwd
-          ls -l 
-          grep -R 'draft: true' blog/content/post
+          grep -R 'draft: true' blog/content/post | grep -v '_template.md'
       
       - name: Checking for orphaned content
         run: |
