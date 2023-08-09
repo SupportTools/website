@@ -15,7 +15,6 @@ jobs:
         run: |
           cd blog/
           docker run --rm -v $(pwd):/src -w /src thegeeklab/hugo:0.105 --panicOnWarning --baseUrl http://localhost/
-          mv blog/public/ $GITHUB_WORKSPACE/
       
       - name: html-validation
         run: |
