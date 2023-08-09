@@ -36,8 +36,8 @@ jobs:
       - name: Checking for dead links
         run: |
           cd blog/
-          docker run --rm -v $(pwd):/src -w /src thegeeklab/hugo:0.105 --quiet --baseUrl http://localhost/ && docker run --rm -v $(pwd):/src -w /src thegeeklab/hugo:0.105 htmlproofer --check-html --disable-external --allow-hash-href --assume-extension --url-ignore "/localhost/,/github.com/,/github.io/,/githubusercontent.com/" ./public
-      
+          docker run --rm -v $(pwd):/src -w /src -e LINK_VALIDATOR_BASE_DIR="/src/blog/public" -e LINK_VALIDATOR_RETRIES=3 thegeeklab/link-validator --color=always --rate-limit 10 -e https://support.tools
+
       - name: Docker build
         run: |
           cd blog/
