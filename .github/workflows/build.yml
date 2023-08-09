@@ -1,0 +1,53 @@
+name: Build
+
+on:
+  [workflow_dispatch, push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: HUGO test build
+        run: |
+          cd blog/
+          docker run --rm -v $(pwd):/src -w /src thegeeklab/hugo:0.105 hugo --panicOnWarning --baseUrl http://localhost/
+          mv blog/public/ $GITHUB_WORKSPACE/
+      
+      - name: html-validation
+        run: |
+          cd blog/
+          docker run --rm -v $(pwd):/src -w /src thegeeklab/hugo:0.105 htmlproofer --check-html --disable-external --allow-hash-href --assume-extension --url-ignore "/localhost/,/github.com/,/github.io/,/githubusercontent.co
+      
+      - name: Checking for draft content
+        run: |
+          cd blog/
+          docker run --rm -v $(pwd):/src -w /src thegeeklab/hugo:0.105 hugo list drafts
+      
+      - name: Checking for orphaned content
+        run: |
+          cd blog/
+          docker run --rm -v $(pwd):/src -w /src thegeeklab/hugo:0.105 hugo list orphan
+
+      - name: Checking for dead links
+        run: |
+          cd blog/
+          docker run --rm -v $(pwd):/src -w /src thegeeklab/hugo:0.105 hugo --quiet --baseUrl http://localhost/ && docker run --rm -v $(pwd):/src -w /src thegeeklab/hugo:0.105 htmlproofer --check-html --disable-external --allow-hash-href --assume-extension --url-ignore "/localhost/,/github.com/,/github.io/,/githubusercontent.com/" ./public
+      
+      - name: Docker build
+        run: |
+          cd blog/
+          docker build -t supporttools/website:latest .
+
+      - name: Docker push
+        run: |
+          echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
+          docker push supporttools/website:latest
+
+
+
+      
+      
