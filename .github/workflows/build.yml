@@ -13,10 +13,9 @@ jobs:
 
       - name: HUGO test build
         run: |
-          CWPD=$(pwd)
           cd blog/
           docker run --rm -v $(pwd):/src -w /src thegeeklab/hugo:0.105 --panicOnWarning --baseUrl http://localhost/
-          sudo mv public/ $CWPD/
+          sudo mv public/ ../../
       
       - name: html-validation
         run: |
