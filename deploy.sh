@@ -2,7 +2,7 @@
 
 if [[ "$1" == 'dev' ]];
 then
-  cluster='a1-rke2-prd'
+  cluster='a1-rke2-devops'
   namespace='supporttools-dev'
   imagetag=${BUILD_NUMBER}
   purge=false
@@ -14,7 +14,7 @@ then
   synccdn=false
 elif [[ "$1" == 'qas' ]];
 then
-  cluster='a1-rke2-prd'
+  cluster='a1-rke2-devops'
   namespace='supporttools-qas'
   imagetag=${BUILD_NUMBER}
   purge=false
@@ -26,7 +26,7 @@ then
   synccdn=true
 elif [[ "$1" == 'tst' ]];
 then
-  cluster='a1-rke2-prd'
+  cluster='a1-rke2-devops'
   namespace='supporttools-tst'
   imagetag=${BUILD_NUMBER}
   purge=false
@@ -38,7 +38,7 @@ then
   synccdn=true
 elif [[ "$1" == 'stg' ]];
 then
-  cluster='a1-rke2-prd'
+  cluster='a1-rke2-devops'
   namespace='supporttools-stg'
   imagetag=${BUILD_NUMBER}
   purge=false
@@ -50,7 +50,7 @@ then
   synccdn=true
 elif [[ "$1" == 'prd' ]];
 then
-  cluster='a1-rke2-prd'
+  cluster='a1-rke2-devops'
   namespace='supporttools-prd'
   imagetag=${BUILD_NUMBER}
   purge=false
@@ -61,7 +61,7 @@ then
   class="prd"
   synccdn=true
 else
-  cluster='a1-rke2-prd'
+  cluster='a1-rke2-devops'
   namespace='supporttools-mst'
   imagetag=${DRONE_BUILD_NUMBER}
   purge=false
