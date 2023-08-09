@@ -16,7 +16,7 @@ jobs:
           CWPD=$(pwd)
           cd blog/
           docker run --rm -v $(pwd):/src -w /src thegeeklab/hugo:0.105 --panicOnWarning --baseUrl http://localhost/
-          mv public/ $CWPD/
+          sudo mv public/ $CWPD/
       
       - name: html-validation
         run: |
