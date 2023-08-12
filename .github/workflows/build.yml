@@ -35,7 +35,6 @@ jobs:
 
       - name: Docker build
         run: |
-          cd blog/
           docker build -t supporttools/website:${GITHUB_SHA} .
 
       - name: Docker push

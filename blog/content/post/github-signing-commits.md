@@ -1,7 +1,7 @@
 ---
 title: "How to Sign Commits for GitHub"
 date: 2023-08-12T02:00:00-05:00
-draft: true
+draft: false
 tags: ["GitHub", "Git"]
 categories:
 - GitHub
