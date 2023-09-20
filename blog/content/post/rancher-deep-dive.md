@@ -1,6 +1,6 @@
 ---
 title: "A Deep Dive into Rancher: Managing Kubernetes at Scale"
-date: "2023-02-03T02:51:00-06:00"
+date: "2023-09-19T21:50:00-06:00"
 draft: false
 tags: ["Rancher", "Kubernetes management", "controllers", "ag6ents", "WebSockets", "Rancher API", "CRDs"]
 categories:
