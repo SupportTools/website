@@ -1,5 +1,7 @@
 #!/bin/sh
 
+docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD docker.io
+
 if [ ! -z "${TAG}" ]
 then
   echo "TAG is set to ${TAG}"
