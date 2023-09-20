@@ -67,7 +67,6 @@ steps:
       DOCKER_PASSWORD:
         from_secret: docker-password
     commands:
-    - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD docker.io
     - sh ./build-docker-images.sh
     when:
       repo:
