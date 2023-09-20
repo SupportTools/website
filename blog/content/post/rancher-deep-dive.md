@@ -1,16 +1,19 @@
 ---
 title: "A Deep Dive into Rancher: Managing Kubernetes at Scale"
-date: "2023-02-03T02:51:00-06:00"
+date: 2023-09-19T21:50:00-06:00
 draft: false
 tags: ["Rancher", "Kubernetes management", "controllers", "ag6ents", "WebSockets", "Rancher API", "CRDs"]
 categories:
 - Rancher
 - Kubernetes
-
 author: "Matthew Mattox - mmattox@support.tools."
-description: "This comprehensive blog post explores Rancher's role in managing Kubernetes at scale. We delve into Rancher's architecture, covering controllers, agents, WebSockets, the Rancher API, and the use of Custom Resource Definitions (CRDs). Additionally, we'll explore Rancher's integration with Kubernetes networking, overlay networks, and traffic flows, including network plugins such as canal, flannel, and calico."
+description: "This comprehensive blog post explores Rancher. We delve into Rancher's architecture, covering controllers, agents, WebSockets, the Rancher API, and the use of Custom Resource Definitions (CRDs)."
 more_link: "yes"
 ---
+
+In this blog post, we will explore Rancher, a powerful platform designed to simplify the management of Kubernetes clusters at scale. We will delve into Rancher's architecture, covering controllers, agents, WebSockets, the Rancher API, and the use of Custom Resource Definitions (CRDs).
+
+<!--more-->
 
 # [Introduction to Rancher](#introduction-to-rancher)
 
@@ -20,7 +23,7 @@ Rancher is a powerful platform designed to simplify the management of Kubernetes
 
 Rancher's architecture is the backbone of its functionality, ensuring that Kubernetes clusters are orchestrated, monitored, and maintained seamlessly. This section will dissect Rancher's architecture, highlighting the critical components that power this Kubernetes management platform.
 
-## Rancher API - Norman
+## [Rancher API](#rancher-api)
 
 [Code](https://github.com/rancher/norman)
 
@@ -36,7 +39,7 @@ This is how Rancher's API works:
 
 It is important to note that some safeguards are in place inside Normon. For example, validating that all the required fields are present in the request before sending it to the Kubernetes API. This ensures that the Kubernetes API doesn't receive invalid requests. The Rancher UI handles most safeguards, for example, doing input validation. For example, making sure a blob of text looks like a plaintext cert.
 
-## Rancher Controllers
+## [Rancher Controllers](#rancher-controllers)
 
 Rancher's controllers are responsible for managing the state of the cluster and ensuring that the desired configuration is maintained. They are the brains behind Rancher's orchestration capabilities, making it possible to deploy, scale, and monitor Kubernetes clusters seamlessly. Here's a breakdown of the various types of controllers in Rancher:
 
@@ -63,11 +66,11 @@ kubectl -n kube-system get configmap cattle-controllers -o jsonpath='{.metadata.
 }
 ```
 
-### Cluster Controller
+### [Cluster Controller](#cluster-controller)
 
 The Cluster Controller is responsible for creating and managing Kubernetes clusters. It handles cluster provisioning, configuration, and monitoring.
 
-#### RKE1
+#### [RKE1](#rke1)
 
 In RKE1, the Cluster Controller creates and manages RKE1 clusters. The basic workflow is as follows:
 
@@ -78,7 +81,7 @@ In RKE1, the Cluster Controller creates and manages RKE1 clusters. The basic wor
 
 NOTE: There is a process of pulling the `cluster.yaml` and `cluster.rkestate` from the cluster object and then writing them to disk. You may run the RKE binary against the cluster. However, you must configure SSH access to the nodes, as the Cluster Controller does not handle this. Once this is done, it should be assumed that the Cluster Controller will no longer be able to manage the cluster. This should only be done for disaster recovery purposes, with the plan being to build a replacement cluster and migrate the workloads over to the new cluster after service has been restored.
 
-#### RKE2/k3s
+#### [RKE2/k3s](#rke2k3s)
 
 In RKE2/k3s, the Cluster Controller creates and manages RKE2/k3s clusters. The basic workflow is as follows:
 
@@ -100,7 +103,7 @@ mmattox@a0ubthorp01:~$
 
 It's important to note that RKE2/k3s clusters are designed to be self-managing. You can manage the cluster directly using the RKE2/k3s binary. Rancher only manages the cluster during the initial creation process. After that, the cluster is managed by RKE2/k3s itself. Also, an imported RKE2/k3s cluster can be controlled by Rancher in the sense that we can update the CRD to kick off upgrades. However, the actual upgrade process is handled by RKE2/k3s itself.
 
-### Project Controller
+### [Project Controller](#project-controller)
 
 The Project Controller manages projects within a cluster. It handles project creation and configuration. It also handles project membership, ensuring only authorized users can access the project. It's imperative to understand that Projects are a Rancher concept, not a Kubernetes concept. This means that Rancher is responsible for managing projects rather than Kubernetes. This is why you can't see projects in the Kubernetes API. They are only visible in the Rancher API. For the namespaces, they only have some weird labels and annotations. This is because Rancher uses the labels and annotations to map the namespaces to the projects.
 
@@ -108,7 +111,7 @@ The Project controllers handle syncing objects in both the namespaces. For examp
 
 [code](https://github.com/rancher/rancher/blob/master/pkg/generated/norman/management.cattle.io/v3/zz_generated_project_controller.go)
 
-### RBAC Controller
+### [RBAC Controller](#rbac-controller)
 
 The RBAC Controller manages the syncing of users, roles, and permissions on the downstream cluster. A downstream cluster needs to learn what a GitHub or AD user is. This is done by creating a service account on the downstream cluster and then creating a token for that service account. The token is then used to authenticate the user to the downstream cluster. The RBAC controller also handles syncing the roles and permissions from Rancher to the downstream cluster. This is done by creating a role on the downstream cluster and then binding the role to the service account. This ensures that the user has the correct permissions on the downstream cluster.
 
@@ -116,19 +119,23 @@ NOTE: It's crucial to understand that you should limit the number of roles and u
 
 [code](https://github.com/rancher/rancher/blob/master/pkg/generated/norman/management.cattle.io/v3/zz_generated_cluster_role_template_binding_controller.go)
 
-## Agents in Rancher
+## [Agents in Rancher](#agents-in-rancher)
 
 Rancher does not directly reach out to the Kubernetes APIs for the downstream clusters that it manages. Instead, it uses agents to communicate with the Kubernetes API. Agents are responsible for managing individual nodes within a Kubernetes cluster. They interact with controllers to ensure proper node configuration, deployment of workloads, and monitoring.
 
 There are several different types of agents in Rancher:
 
-- **Cluster Agent**: The Cluster Agent is responsible for managing the state of the cluster. It handles cluster provisioning, configuration, and monitoring. In v2.6+, the Cluster Agent runs in HA mode with two pods running simultaneously but only one active at a time. Inside the agent, a caching layer stores information about the cluster, with the startup process being that it pulls the data from the cluster and then caches it locally. Several informers watch for changes to the cluster and then update the cache accordingly.
+### [Cluster Agent](#cluster-agent)
+
+The Cluster Agent is responsible for managing the state of the cluster. It handles cluster provisioning, configuration, and monitoring. In v2.6+, the Cluster Agent runs in HA mode with two pods running simultaneously but only one active at a time. Inside the agent, a caching layer stores information about the cluster, with the startup process being that it pulls the data from the cluster and then caches it locally. Several informers watch for changes to the cluster and then update the cache accordingly.
 
 In addition to providing a caching layer, the Cluster Agent also handles proxying Kubernetes API requests to the downstream cluster. This ensures that all requests are routed through the Cluster Agent, preventing direct access to the Kubernetes API. This is done by creating a WebSocket connection to the Rancher leader pod and then inside that pod. It binds to a random port on `127.0.0.1`. Then, when Rancher wants to communicate with the downstream cluster, it sends the request to `127.0.0.1:RandomPort`, which is then proxied to the Cluster Agent. The Cluster Agent then forwards the request to the Kubernetes API.
 
 [code](https://github.com/rancher/rancher/blob/master/cmd/agent/main.go)
 
-- **Node Agent**: The Node Agent manages individual nodes within a Kubernetes cluster. It handles node provisioning and configuration. The Node Agent runs on each node in the cluster, ensuring that all nodes are appropriately configured.
+### [Node Agent](#node-agent)
+
+The Node Agent manages individual nodes within a Kubernetes cluster. It handles node provisioning and configuration. The Node Agent runs on each node in the cluster, ensuring that all nodes are appropriately configured.
 
 It is important to note that not all Rancher clusters will have node agents. For example, imported clusters do not have node agents. This is because Rancher does not directly access the nodes in an imported cluster. Instead, it relies on the cluster's existing infrastructure to manage the nodes.
 
@@ -136,7 +143,9 @@ NOTE: In older versions of Rancher (2.4 and below), the Node Agent was also used
 
 [code](https://github.com/rancher/rancher/blob/master/cmd/agent/main.go)
 
-- **Rancher System Agent**: The Rancher System Agent is responsible for managing installing RKE2/k3s on the nodes in a cluster. It handles creating the RKE2/k3s config files and then running the install script. It does this by running a systemd service on each node in the cluster. The service is called `rancher-system-agent`. This service calls the Rancher API to register the node with the cluster. It creates the config files in the location specified by the `RANCHER_SYSTEM_AGENT_CONFIG_DIR` environment variable, which defaults to `/var/lib/rancher/system-agent/etc.`.
+### [Rancher System Agent](#rancher-system-agent)
+
+The Rancher System Agent is responsible for managing installing RKE2/k3s on the nodes in a cluster. It handles creating the RKE2/k3s config files and then running the install script. It does this by running a systemd service on each node in the cluster. The service is called `rancher-system-agent`. This service calls the Rancher API to register the node with the cluster. It creates the config files in the location specified by the `RANCHER_SYSTEM_AGENT_CONFIG_DIR` environment variable, which defaults to `/var/lib/rancher/system-agent/etc.`.
 
 It then downloads the RKE2/k3s install script and runs it. Once the install script is complete, the service calls the Rancher API to update the node status to `Waiting to register with Kubernetes.` This means the node is ready to be added to the cluster. The node will remain in this state until it is added to the cluster. Once the node is added to the cluster, the service calls the Rancher API to update the node status to `Active`, but it gets this from the Kubernetes API. This means the node is now part of the cluster and ready to be used.
 
@@ -144,7 +153,7 @@ NOTE: The Rancher System Agent is only used for RKE2/k3s clusters. For RKE clust
 
 [code](https://github.com/rancher/system-agent)
 
-### Limitations of Agents
+### [Limitations of Agents in Rancher](#limitations-of-agents-in-rancher)
 
 Agents are a powerful tool for managing Kubernetes clusters but have some limitations. 
 
@@ -154,7 +163,7 @@ Agents are a powerful tool for managing Kubernetes clusters but have some limita
 - Sticky connection to Rancher - The agents are designed to connect to Rancher and hold that connection forever. If you are making DNS names or IP changes, the agents will pick the changes up once they reconnect to Rancher. The agents also cache the DNS record, so restarting the agent after making DNS changes is essential. For example, in a DR failover scenario, you would need to restart the agents after the updated DNS records. NOTE: After 5 to 10 minutes, the agents should reconnect independently, but recycling the agents after making DNS changes is still a good idea.
 - Caching is crazy - The agents like to cache resources because they rely on the Informer's hooks to update the cache. If that connection is unstable (Control plane nodes restarting, for example), the cache can get out of sync. This can cause issues with the agents where the agent shows as up and active, but you can't see resources inside the cluster in Rancher. Restarting the agent will fix this issue, tho it could be better. NOTE: This is a known issue and is being worked on. Grab the logs before restarting the agent and open a support ticket.
 
-## WebSockets in Rancher
+## [WebSockets in Rancher](#websockets-in-rancher)
 
 WebSockets are the communication glue that binds Rancher's components together. They enable real-time communication, allowing controllers, agents, and other components to exchange information and updates instantly. WebSockets are pivotal in Rancher's responsiveness and agility, ensuring that changes and events are quickly propagated throughout the system.
 
