@@ -1,7 +1,7 @@
 ---
 title: "Installing Custom CA Certificates on Ubuntu 22.04"
 date: 2023-10-12T23:18:00-05:00
-draft: true
+draft: false
 tags: ["Certificates", "Ubuntu"]
 categories:
 - Certificates
