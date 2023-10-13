@@ -11,7 +11,7 @@ author: "Matthew Mattox - mattox@support.tools."
 description: "Managing resized block volumes in Longhorn.IO with RKE2 on Dell R720xd servers."
 ---
 
-For my RKE2 clusters, but because I'm running on physical servers (3 x Dell R720xd with 12x3TB SAS drives), I have to use Longhorn.IO for storage. I have a few block volumes that I need to resize. I found this article on how to do it. I'm going to document it here for my reference.
+For my RKE2 clusters, but because I'm running on physical servers (3 x Dell R720xd with 12x3TB SAS drives), I have to use Longhorn.IO for storage. I have a few block volumes that I need to resize.
 
 ## Resizing a Longhorn Block Volume
 
