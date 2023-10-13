@@ -23,7 +23,7 @@ To resize a Longhorn block volume, you'll need to do the following:
 kubectl patch persistentvolumeclaim my-volume -p '{"spec":{"resources":{"requests":{"storage":"100Gi"}}}}'
 ```
 
-NOTE: It may take a few minutes for the volume to resize and to reflect the new size in the Longhorn UI. You may need to restart the pod that uses the volume for the new size to be reflected in the pod.
+NOTE: The volume may take a few minutes to resize and reflect the new size in the Longhorn UI. You should restart the pod that uses the volume for the new size to be reflected in the pod.
 
 ## References
 
