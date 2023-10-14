@@ -10,7 +10,11 @@ description: "Exploring whether multiple applications can listen on the same por
 more_link: "yes"
 ---
 
-## Can Multiple Applications Share the Same Port?
+This article explores whether multiple applications can listen on the same port.
+
+<!--more-->
+
+## [Can Multiple Applications Share the Same Port?](#can-multiple-applications-share-the-same-port)
 
 The straightforward answer is, "No, not on the same host."
 

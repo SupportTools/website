@@ -13,6 +13,7 @@ more_link: "yes"
 DNS is a topic that some people just don't get. My goal is to make it as simple as possible for you to understand.
 
 DNS zones fall into three categories:
+
 - Forwarders
 - Conditional Forwarders
 - Zone Transfers

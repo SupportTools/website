@@ -11,7 +11,6 @@ description: "Caching NFS files with cachefilesd"
 more_link: "yes"
 ---
 
-
 The cachefilesd tool is great for caching network filesystems like NFS mounts! In addition to its ease of use, it provides a substantial amount of stats. For more information, see [https://www.kernel.org/doc/Documentation/filesystems/caching/fscache.txt](https://www.kernel.org/doc/Documentation/filesystems/caching/fscache.txt)
 
 The following steps will help you cache an NFS mount (this will also work for NFS-Ganesha servers):
@@ -25,9 +24,10 @@ Check the stats to see if file caching is working.
 In most Linux distributions, it will be almost the same as the example below, which uses Ubuntu 22.04.
 
 <!--more-->
-# [Install](#install)
 
-## Install the daemon tool cachefilesd
+## [Install](#install)
+
+### Install the daemon tool cachefilesd
 
 It's as simple as installing it through the package manager:
 
@@ -35,12 +35,14 @@ It's as simple as installing it through the package manager:
 sudo apt install cachefilesd -y
 ```
 
-## Configure cachefilesd
+### [Configure cachefilesd](#configure-cachefilesd)
+
 Check the configuration file and tune for your system.
 
 It is usually a good idea to start with the defaults in /etc/cachefilesd.conf:
 
 Example:
+
 ```bash
 dir /var/cache/fscache
 tag mycache
@@ -59,7 +61,8 @@ fstop 3%
 The lines with percentages indicate how much disk space is limited in the directory where the cache will be housed. As long as the disk space does not drop below 10%, the cache can run freely. In the man page (or at https://linux.die.net/man/5/cachefilesd.conf) you can find more information. "bcull 7%" - culling the cache when the free space drops below "7%"
 Therefore, the configuration file should be edited if the disk free space is below 10%.
 
-## Start the daemon
+### [Start the daemon](#start-the-daemon)
+
 Enable cachefilesd to run automatically on boot and start the service.
 
 ```bash
@@ -67,7 +70,8 @@ sudo systemctl enable --now cachefilesd
 sudo systemctl status cachefilesd
 ```
 
-## Mount the NFS shares
+### [Mount the NFS shares](#mount-the-nfs-shares)
+
 The mount option fsc must be included in the mount options of cachefilesd cache to make it a network mount. In case remounting does not work, a full umount/mount should be performed. The following is an example of a /etc/fstab file:
 
 ```bash
@@ -75,19 +79,19 @@ nas1.support.tools:/mnt/DiskPool0/steam /mnt/steam nfs defaults,hard,intr,noexec
 ```
 
 Mount with the following command:
-    
+
 ```bash
 sudo mount /mnt/steam
 ```
 
 Remount with the following command:
-    
+
 ```bash
 sudo mount -o remount /mnt/steam
 ```
 
 If the remount fails, you can try the following command:
-    
+
 ```bash
 sudo umount /mnt/steam
 sudo mount /mnt/steam

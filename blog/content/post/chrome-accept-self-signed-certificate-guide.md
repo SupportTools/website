@@ -11,7 +11,9 @@ description: "A step-by-step guide on making Chrome accept a self-signed certifi
 more_link: "yes"
 ---
 
-## How to Get Chrome to Accept a Self-Signed Certificate
+This guide explains how to make Chrome accept a self-signed certificate. It is based on Chrome 68 on Windows 10, but the steps should be similar for other versions and platforms.
+
+## [How to Get Chrome to Accept a Self-Signed Certificate](#how-to-get-chrome-to-accept-a-self-signed-certificate)
 
 If you're working with a self-signed certificate and need to make Chrome accept it, here's a step-by-step procedure that works for Chrome 68 on Windows 10. This method allows you to trust the certificate and use it without encountering constant security warnings.
 
