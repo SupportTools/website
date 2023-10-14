@@ -1,7 +1,7 @@
 ---
 title: "Resolving the Cert-manager Bug: Unexpected EOF Lockup Issue"
 date: 2023-10-13T23:15:00-05:00
-draft: true
+draft: false
 tags: ["cert-manager", "kubernetes", "bug"]
 categories:
 - kubernetes
