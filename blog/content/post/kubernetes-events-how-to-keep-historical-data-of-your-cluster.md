@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Events: How to Keep Historical Data of Your Cluster Elasticsearch"
 date: 2022-10-13T09:30:00-05:00
-draft: true
+draft: false
 tags: ["Kubernetes", "Cluster Management", "Event Logging"]
 categories:
 - Kubernetes
