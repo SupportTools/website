@@ -1,6 +1,5 @@
 +++
 title = "Publications"
-menu = "main"
 +++
 
 ## Books
