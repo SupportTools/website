@@ -9,23 +9,23 @@ categories:
 - RKE2
 - Disaster Recovery
 author: "Matthew Mattox - mmattox@support.tools."
-description: "This comprehensive guide covers essential steps for disaster recovery in RKE2 clusters not managed by Rancher."
+description: "This comprehensive guide covers essential steps for disaster recovery of RKE2 clusters not managed by Rancher."
 more_link: "yes"
 ---
 
-# RKE2 Standalone - Disaster Recovery Guide
+## RKE2 Standalone - Disaster Recovery Guide
 
-## Introduction
+### Introduction
 
-The RKE2 Standalone Disaster Recovery Guide aims to provide comprehensive instructions for recovering a standalone RKE2 cluster that Rancher does not manage. RKE2, a lightweight Kubernetes distribution, is a robust solution, but disasters can happen. In this guide, we'll address common scenarios like recovering after etcd quorum loss, restoring a cluster from a backup, and troubleshooting issues when nodes cannot join the cluster.
+The purpose of this guide is to provide comprehensive instructions for recovering a standalone RKE2 cluster that Rancher does not manage. RKE2, a lightweight Kubernetes distribution, is a robust solution, but disasters can happen. In this guide, we'll address common scenarios like recovering after etcd quorum loss, restoring a cluster from a backup, and troubleshooting issues when nodes cannot join the cluster.
 
 Please note that this guide assumes a basic familiarity with RKE2 and Kubernetes concepts. If you encounter any challenges or have questions, please ask for assistance.
 
 <!--more-->
 
-# [RKE2 Disaster Recovery](#rke2-disaster-recovery)
+## [RKE2 Disaster Recovery](#rke2-disaster-recovery)
 
-## [Overview](#overview)
+### [Overview](#overview)
 
 This document is intended to provide a comprehensive guide to recovering an RKE2 cluster not managed by Rancher. This document will cover the following scenarios:
 
@@ -33,7 +33,7 @@ This document is intended to provide a comprehensive guide to recovering an RKE2
 - [Restoring a cluster from a backup](#restoring-a-cluster-from-a-backup)
 - [Nodes are not able to join the cluster](#nodes-are-not-able-to-join-the-cluster)
 
-## [Recovering after etcd quorum loss](#recovering-after-etcd-quorum-loss)
+### [Recovering after etcd quorum loss](#recovering-after-etcd-quorum-loss)
 
 If the etcd quorum is lost, the cluster will be in a non-functional state. This can be caused by several different scenarios, including:
 
@@ -43,11 +43,11 @@ If the etcd quorum is lost, the cluster will be in a non-functional state. This 
 
 The following steps can be used to recover from a lost etcd quorum:
 
-### [SSH access to all master/etcd nodes](#ssh-access-to-all-masteretcd-nodes)
+#### [SSH access to all master/etcd nodes](#ssh-access-to-all-masteretcd-nodes)
 
 All the master/etcd nodes will need to be accessed via SSH. If SSH access is unavailable, the nodes must be accessed via the console or other remote access method. You should have root or sudo access to the nodes.
 
-### [Before proceeding, capture logs from all master/etcd nodes](#before-proceeding-capture-logs-from-all-masteretcd-nodes)
+#### [Before proceeding, capture logs from all master/etcd nodes](#before-proceeding-capture-logs-from-all-masteretcd-nodes)
 
 Before proceeding, it is recommended to capture logs from all master/etcd nodes. This can be done by running the following command on each master/etcd node:
 
@@ -59,7 +59,7 @@ This will create a tarball of the logs in the `/tmp` directory. If needed, the t
 
 This is very important to do before proceeding, as the following steps will remove the etcd data directory, and the logs will be lost, so things like an RCA will be much more difficult.
 
-### [Find out if there is still an etcd member running](#find-out-if-there-is-still-an-etcd-member-running)
+#### [Find out if there is still an etcd member running](#find-out-if-there-is-still-an-etcd-member-running)
 
 The first step is to determine if an etcd member is still running. This can be done by running the following command on each master/etcd node:
 
@@ -93,7 +93,7 @@ If an etcd member is running, then that node will be used to recover the etcd cl
 ls -l /var/lib/rancher/rke2/server/db/etcd/member/wal/
 ```
 
-### [Backup the etcd data directory](#backup-the-etcd-data-directory)
+#### [Backup the etcd data directory](#backup-the-etcd-data-directory)
 
 The next step is to back up the etcd data directory. This can be done by running the following command on all master/etcd nodes:
 
@@ -122,7 +122,7 @@ systemctl stop rke2-server
 rke2-killall.sh
 ```
 
-### [Reset the etcd cluster from the surviving etcd member](#reset-the-etcd-cluster-from-the-surviving-etcd-member)
+#### [Reset the etcd cluster from the surviving etcd member](#reset-the-etcd-cluster-from-the-surviving-etcd-member)
 
 The next step is to reset the etcd cluster from the surviving etcd member. This can be done by running the following command on the surviving etcd member:
 
@@ -134,7 +134,7 @@ This will reset the etcd cluster and remove the other etcd members from the etcd
 
 This command usually takes a few minutes to complete.
 
-### [Start the RKE2 service on the surviving etcd member](#start-the-rke2-service-on-all-masteretcd-nodes)
+#### [Start the RKE2 service on the surviving etcd member](#start-the-rke2-service-on-all-masteretcd-nodes)
 
 At this point, the etcd data should be recovered, and the surviving etcd member should be able to start. This can be done by running the following command on the surviving etcd member:
 
@@ -150,7 +150,7 @@ To monitor the logs, you can run the following command:
 journalctl -u rke2-server -f
 ```
 
-### [Verify the master node is back online](#verify-the-master-node-is-back-online)
+#### [Verify the master node is back online](#verify-the-master-node-is-back-online)
 
 Once the RKE2 service is started, the master node should return online. This can be verified by running the following command on the master node:
 
@@ -160,7 +160,7 @@ kubectl get nodes -o wide
 
 **NOTE** You might see some nodes in a `Ready` state even though they are not online. This is because the nodes have not timed out yet, and if you wait a few minutes, they will be marked as `NotReady`.
 
-### [Start the RKE2 service on the other master/etcd nodes](#start-the-rke2-service-on-the-other-masteretcd-nodes)
+#### [Start the RKE2 service on the other master/etcd nodes](#start-the-rke2-service-on-the-other-masteretcd-nodes)
 
 Our cluster is back online, but we still need to start the RKE2 service on the other master/etcd nodes. This can be done by running the following command on the other master/etcd nodes one at a time:
 
@@ -173,7 +173,7 @@ systemctl start rke2-server
 
 We must refrain from running these commands on the surviving etcd member, as we do not want to remove the etcd data we just recovered.
 
-### [Verify all master nodes are back online](#verify-all-master-nodes-are-back-online)
+#### [Verify all master nodes are back online](#verify-all-master-nodes-are-back-online)
 
 Once the RKE2 service is started on all the master/etcd nodes, the master nodes should be back online. This can be verified by running the following command on the master nodes:
 
@@ -220,7 +220,7 @@ If you see any errors like the following, then the etcd cluster is not healthy:
 Error from server: error dialing backend: proxy error from 127.0.0.1:9345 while dialing 172.28.3.63:10250, code 503: 503 Service Unavailable
 ```
 
-## [Restoring a cluster from a backup](#restoring-a-cluster-from-a-backup)
+### [Restoring a cluster from a backup](#restoring-a-cluster-from-a-backup)
 
 The cluster will be non-functional if the etcd data directory is lost or corrupted. This can be caused by several different scenarios, including:
 
@@ -246,7 +246,7 @@ If you are using S3 as your backup location, go to the S3 bucket and get the nam
 
 Understanding that only that data is lost if the snapshots are stored locally is vital. We can only do something other than rebuilding the cluster. This goes the same for the token. If the token is lost then even with the etcd snapshots, we will be unable to recover the cluster. However, you can find the token on worker nodes, too, under the config file `/etc/rancher/rke2/config.yaml`
 
-## [Nodes are not able to join the cluster](#nodes-are-not-able-to-join-the-cluster)
+### [Nodes are not able to join the cluster](#nodes-are-not-able-to-join-the-cluster)
 
 If the nodes cannot join the cluster, you must troubleshoot the issue. The following steps can be used to troubleshoot the issue:
 
@@ -256,7 +256,7 @@ If the nodes cannot join the cluster, you must troubleshoot the issue. The follo
 - The bootstrap server defined in the `config.yaml` file is not reachable from the nodes
 - If using a load balancer, the load balancer is not configured correctly or has failed nodes in the backend pool that requests are being sent to
 
-### [Bootstrap token is not valid on some nodes](#bootstrap-token-is-not-valid-on-some-nodes)
+#### [Bootstrap token is not valid on some nodes](#bootstrap-token-is-not-valid-on-some-nodes)
 
 All nodes in the cluster will need to have the same token in the `/etc/rancher/rke2/config.yaml` file. This token is created when the cluster is created and is stored in the `/var/lib/rancher/rke2/server/token` file on the master/etcd nodes.
 
@@ -276,7 +276,7 @@ For worker nodes, you can run the following command:
 curl -ks https://node:`cat /var/lib/rancher/rke2/server/agent-token  | awk -F ':' '{print $4}'`@node01:9345/v1-rke2/readyz
 ```
 
-### [Master/etcd node(s) are not able to communicate with each other](#masteretcd-nodes-are-not-able-to-communicate-with-each-other)
+#### [Master/etcd node(s) are not able to communicate with each other](#masteretcd-nodes-are-not-able-to-communicate-with-each-other)
 
 If the master/etcd nodes cannot communicate with each other, then the cluster will not be able to form. This can be caused by several different scenarios, including:
 
@@ -295,7 +295,7 @@ You should get the word `pong` back from each node.
 
 All the firewall ports that need to be open can be found in the [RKE2 documentation](https://docs.rke2.io/install/requirements#inbound-network-rules).
 
-### [Worker node(s) are not able to communicate with the master/etcd nodes](#worker-nodes-are-not-able-to-communicate-with-the-masteretcd-nodes)
+#### [Worker node(s) are not able to communicate with the master/etcd nodes](#worker-nodes-are-not-able-to-communicate-with-the-masteretcd-nodes)
 
 If the worker nodes cannot communicate with the master/etcd nodes, then the worker nodes will not be able to join the cluster. This can be caused by several different scenarios, including:
 
@@ -316,6 +316,6 @@ It's important to understand that worker nodes use `9345` to communicate with th
 
 Once the worker node is joined to the cluster, RKE2 will get a list of all master nodes and will use that list to communicate with the master/etcd nodes. This means that if you are using a load balancer, then the load balancer will need to be configured to send traffic to all master/etcd nodes. The server defined in the `config.yaml` file is an introduction server only used during the bootstrap process.
 
-# [Conclusion](#conclusion)
+## [Conclusion](#conclusion)
 
 This concludes the RKE2 Disaster Recovery guide. If you have any questions or comments, don't hesitate to contact me on [Twitter](https://twitter.com/cube8021).
