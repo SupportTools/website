@@ -1,5 +1,5 @@
 ---
-title: "RKE2: A Deep Dive into Rancher's Kubernetes Distributions"
+title: "RKE2: A Deep Dive into Rancher's Kubernetes Distribution"
 date: 2022-10-24T21:01:00-05:00
 draft: false
 tags: ["RKE2", "Kubernetes", "Rancher"]
@@ -428,7 +428,7 @@ The token uses the following format:
 K10<CA-HASH>::<USERNAME>:<PASSWORD>
 ```
 
-RKE2 called the URL `https://SERVER:93459345/v1-rke2/readyz` to check if the server was ready. If the server is not ready, it will try again in 5 seconds. If the server is ready, then it will continue.
+RKE2 called the URL `https://SERVER:9345/v1-rke2/readyz` to check if the server was ready. If the server is not ready, it will try again in 5 seconds. If the server is ready, then it will continue.
 
 Example CURL:
 
