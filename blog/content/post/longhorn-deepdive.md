@@ -1,11 +1,12 @@
 ---
-title: "Unlocking the Potential of Kubernetes Storage with Rancher Longhorn"
+title: "Unlocking the Potential of Kubernetes Storage with Longhorn"
 date: 2023-11-01T14:30:00-05:00
 draft: false
 tags: ["Rancher", "Longhorn", "Kubernetes", "Storage"]
 categories:
 - Rancher
 - Kubernetes
+- Storage
 author: "Matthew Mattox - mmattox@support.tools."
 description: "An in-depth look into Rancher Longhorn and how it revolutionizes Kubernetes storage solutions."
 more_link: "yes"
@@ -81,7 +82,7 @@ In a transformative move that solidified its significance within the Kubernetes 
 
 This journey, from its humble beginnings at Rancher Labs to its esteemed place within the CNCF, exemplifies Longhorn's unwavering dedication to enhancing the storage landscape for Kubernetes environments. It is a testament to the power of open-source initiatives and community-driven innovation, with Longhorn at the forefront of revolutionizing how Kubernetes administrators and developers manage their persistent storage needs.
 
-![Longhorn Architecture](https://cdn.support.tools/posts/longhrn-deepdive/how-longhorn-works.svg)
+![Longhorn Architecture](https://cdn.support.tools/posts/longhorn-deepdive/how-longhorn-works.svg)
 
 ## [Core Features](#core-features)
 
@@ -167,7 +168,7 @@ Longhorn supports ReadWriteMany (RWX), allowing multiple pods to read from and w
 
 Longhorn does this by creating an RWO volume that is mounted to a share-manager pod that runs an NFS server, which then makes an NFS share that is mounted to the pod that is requesting the RWX volume.
 
-![Longhorn RWX](https://cdn.support.tools/posts/longhrn-deepdive/rwx-arch.png)
+![Longhorn RWX](https://cdn.support.tools/posts/longhorn-deepdive/rwx-arch.png)
 
 ### [Performance Benchmarking](#performance-benchmarking)
 
