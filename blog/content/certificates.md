@@ -35,6 +35,17 @@ Issued On: July 30, 2021
 
 ***
 
+## AWS Certified Cloud Practitioner
+![](https://cdn.support.tools/matthew-mattox-certified-aws-cloud-practitioner-certificate.jpg)
+[Verification](https://www.credly.com/badges/a453d4d7-9bb0-4a96-80a6-f32463784659/public_url)
+
+```
+Certificate ID Number: 38LL07MKVBF4QD93
+Issued On: Aug 07, 2023
+```
+
+***
+
 ## Certified Rancher Operator: Level One
 ![](/images/RancherCertificate2020.png)
 
