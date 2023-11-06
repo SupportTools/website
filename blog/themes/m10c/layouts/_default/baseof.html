@@ -44,6 +44,12 @@
     <main class="app-container">
       {{ block "main" . }}
         {{ .Content }}
+        {{ if .Page.Store.Get "hasMermaid" }}
+          <script type="module">
+            import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.esm.min.mjs';
+            mermaid.initialize({ startOnLoad: true });
+          </script>
+        {{ end }}
       {{ end }}
     </main>
   </body>
