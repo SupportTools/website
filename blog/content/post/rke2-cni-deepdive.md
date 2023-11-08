@@ -72,7 +72,7 @@ The following diagram illustrates how the Canal works:
 
 #### [Canal Troubleshooting](#canal-troubleshooting)
 
-- [Canal Troubleshooting](https://docs.tigera.io/troubleshooting/canal)'
+- [Canal Troubleshooting](https://docs.tigera.io/troubleshooting/canal)
 - [Canal Troubleshooting: Flannel](https://docs.tigera.io/troubleshooting/canal/flannel)
 - [Increase log level for Canal](https://www.suse.com/support/kb/doc/?id=000020075)
 - [Flannel troubleshooting documentation](https://coreos.com/flannel/docs/latest/troubleshooting.html)
