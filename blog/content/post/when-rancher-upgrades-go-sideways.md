@@ -25,7 +25,6 @@ Upgrading Rancher, the popular Kubernetes management platform, can be an essenti
 
 It's important to note that Rancher is not compatible with every version of Kubernetes. For example, Rancher v2.7.9 only supports Kubernetes v1.23 through v1.26. So if you're running Kubernetes v1.22, you'll need to upgrade your cluster to v1.23 or higher before upgrading Rancher. There of course overlap between Rancher and Kubernetes versions, so you'll review the official [Support Matrix](https://www.suse.com/suse-rancher/support-matrix/all-supported-versions/) to determine which versions are compatible.
 
-
 Resolution:
 
 Before upgrading Rancher, your should review the [Support Matrix](https://www.suse.com/suse-rancher/support-matrix/all-supported-versions/). Then you should use that information to plan your Kubernetes upgrade. Once your cluster is running a supported version of Kubernetes, you can proceed with the Rancher upgrade.
@@ -40,7 +39,7 @@ You should review the [Upgrade Path](https://rancher.com/docs/rancher/v2.7/en/up
 
 ## Broken rancher-webhook
 
-The 
+The rancher-webhook is a Kubernetes Validating Admission Webhook that is used to validate namespaces. If the webhook is broken, it can cause a number of issues, including preventing the creation of namespaces. This can cause the Rancher upgrade to fail.
 
 Example error message:
 
