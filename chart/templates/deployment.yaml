@@ -28,6 +28,10 @@ spec:
         app: website
         component: frontend
         team: SupportTools
+      annotations:
+        prometheus.io/scrape: 'true'
+        prometheus.io/port: '9113'
+        prometheus.io/path: '/metrics'
     spec:
       imagePullSecrets:
       - name: dockerhub-supporttools
