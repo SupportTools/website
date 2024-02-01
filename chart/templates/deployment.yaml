@@ -88,6 +88,36 @@ spec:
             - name: metrics
               containerPort: 9113
               protocol: TCP
+        - args:
+            - tail
+            - '-f'
+            - /var/log/nginx/access.log
+          image: busybox
+          imagePullPolicy: Always
+          name: access-logs
+          volumeMounts:
+            - mountPath: /var/log/nginx/
+              name: nginx-log
+        - args:
+            - tail
+            - '-f'
+            - /var/log/nginx/error.log
+          image: busybox
+          imagePullPolicy: Always
+          name: error-log
+          volumeMounts:
+            - mountPath: /var/log/nginx/
+              name: nginx-log
+        - args:
+            - tail
+            - '-f'
+            - /var/log/nginx/json_access.log
+          image: busybox
+          imagePullPolicy: Always
+          name: json-access-log
+          volumeMounts:
+            - mountPath: /var/log/nginx/
+              name: nginx-log
       volumes:
       - emptyDir: {}
         name: nginx-cache
