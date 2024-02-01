@@ -8,7 +8,7 @@ categories:
 - Kubernetes
 - Virtualization
 - Hyperconverged Infrastructure
-author: "Matthew Mattox - mmattox@support.tools
+author: "Matthew Mattox - mmattox@support.tools"
 description: "An in-depth exploration of Rancher Harvester and its role in revolutionizing virtualization in Kubernetes environments."
 more_link: "yes"
 ---
