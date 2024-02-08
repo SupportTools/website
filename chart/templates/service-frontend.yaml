@@ -13,6 +13,10 @@ spec:
       targetPort: http
       protocol: TCP
       name: http
+    - port: 9113
+      targetPort: metrics
+      protocol: TCP
+      name: metrics
   selector:
     app: website
     component: frontend

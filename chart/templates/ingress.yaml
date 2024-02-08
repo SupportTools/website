@@ -23,7 +23,7 @@ spec:
       paths:
       - backend:
           service:
-            name: website
+            name: web-cache
             port:
               number: 8080
         path: /
