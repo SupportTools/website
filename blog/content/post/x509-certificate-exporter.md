@@ -1,7 +1,7 @@
 ---
 title: "Monitoring RKE2 certs with x509-certificate-exporter"
 date: 2024-02-08T03:24:00-05:00
-draft: true
+draft: false
 tags: ["RKE2", "Prometheus", "Grafana"]
 categories:
 - RKE2
