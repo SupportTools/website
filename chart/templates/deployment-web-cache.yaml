@@ -39,7 +39,7 @@ spec:
         - name: go-web-cache
           image: docker.io/supporttools/go-web-cache:latest
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          evn:
+          env:
             - name: DEBUG
               value: 'true'
             - name: METRICS_PORT
