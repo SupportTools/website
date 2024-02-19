@@ -85,10 +85,19 @@ echo "Image tag: ${imagetag}"
 echo "Purge: ${purge}"
 echo "HPA: ${hpa}"
 
-PUBLIC_IP=$(curl ifconfig.me)
-echo "Public IP: ${PUBLIC_IP}"
+echo "Installing kubectl"
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 
-bash /usr/local/bin/init-kubectl
+echo "Installing helm"
+curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3
+chmod 700 get_helm.sh
+bash get_helm.sh
+
+echo "Installing rancher-projects"
+curl -fsSL -o rancher-projects https://github.com/SupportTools/rancher-projects/raw/main/rancher-projects
+chmod +x rancher-projects
+sudo mv rancher-projects /usr/local/bin/rancher-projects
 
 echo "Settings up project, namespace, and kubeconfig"
 rancher-projects --cluster-name ${cluster} --project-name SupportTools --namespace ${namespace} --create-project true --create-namespace true --create-kubeconfig true --kubeconfig ~/.kube/config
