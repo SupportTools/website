@@ -19,7 +19,7 @@ steps:
     image: thegeeklab/hugo:0.122.0
     commands:
       - cd blog/
-      - hugo --panicOnWarning --baseUrl http://localhost/
+      - hugo --panicOnWarning --minify --gc --cleanDestinationDir --destination public --baseURL http://localhost
       - mv public/ ../../
     when:
       event:
