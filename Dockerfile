@@ -4,6 +4,6 @@ COPY ./blog/ /site
 WORKDIR /site
 RUN hugo --minify --gc --cleanDestinationDir --destination /site/public
 
-FROM openbridge/nginx:latest
+FROM nginx:alpine-slim
 COPY --from=builder /site/public /usr/share/nginx/html
-COPY main.conf /etc/nginx/conf.d/default.conf
+COPY nginx.conf /etc/nginx/conf.d/default.conf
