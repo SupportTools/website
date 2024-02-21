@@ -33,6 +33,17 @@ spec:
         prometheus.io/port: '9113'
         prometheus.io/path: '/metrics'
     spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            podAffinityTerm:
+              labelSelector:
+                matchLabels:
+                  app: website
+                  component: frontend
+                  team: SupportTools
+              topologyKey: "kubernetes.io/hostname"    
       imagePullSecrets:
       - name: dockerhub-supporttools
       # securityContext:
