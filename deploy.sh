@@ -95,7 +95,7 @@ chmod 700 get_helm.sh
 bash get_helm.sh
 
 echo "Installing rancher-projects"
-curl -fsSL -o rancher-projects.tar.gz https://github.com/SupportTools/rancher-projects/releases/download/v0.2.1/rancher-projects_0.2.1_linux_amd64.tar.gz
+curl -fsSL -o rancher-projects.tar.gz https://github.com/SupportTools/rancher-projects/releases/download/v0.2.1/rancher-projects_0.2.2_linux_amd64.tar.gz
 tar -xvf rancher-projects.tar.gz
 chmod +x rancher-projects
 mv rancher-projects /usr/local/bin/rancher-projects
@@ -108,9 +108,7 @@ rancher-projects \
 --cluster-name ${cluster} \
 --project-name "SupportTools" \
 --namespace ${namespace} \
---create-project true \
---create-namespace true \
---create-kubeconfig true \
+--create-kubeconfig \
 --kubeconfig "~/.kube/config"
 export KUBECONFIG=~/.kube/config
 
