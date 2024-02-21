@@ -1,4 +1,4 @@
-FROM hugomods/hugo:exts AS builder
+FROM thegeeklab/hugo:0.122.0 AS builder
 
 COPY ./blog/ /site
 WORKDIR /site

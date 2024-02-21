@@ -98,6 +98,13 @@ spec:
           volumeMounts:
             - mountPath: /var/log/nginx/
               name: nginx-log
+          resources:
+            limits:
+              cpu: 100m
+              memory: 128Mi
+            requests:
+              cpu: 10m
+              memory: 32Mi
         - args:
             - tail
             - '-f'
@@ -108,6 +115,13 @@ spec:
           volumeMounts:
             - mountPath: /var/log/nginx/
               name: nginx-log
+          resources:
+            limits:
+              cpu: 100m
+              memory: 128Mi
+            requests:
+              cpu: 10m
+              memory: 32Mi
         - args:
             - tail
             - '-f'

@@ -70,8 +70,8 @@ spec:
               port: admin
           resources:
             limits:
-              cpu: {{ .Values.resources.limits.cpu }}
-              memory: {{ .Values.resources.limits.memory }}
+              cpu: 1000m
+              memory: 512Mi
             requests:
-              cpu: {{ .Values.resources.requests.cpu }}
-              memory: {{ .Values.resources.requests.memory }}
+              cpu: 500m
+              memory: 256Mi
