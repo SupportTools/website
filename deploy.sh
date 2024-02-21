@@ -109,8 +109,8 @@ rancher-projects \
 --project-name "SupportTools" \
 --namespace ${namespace} \
 --create-kubeconfig \
---kubeconfig "~/.kube/config"
-export KUBECONFIG=~/.kube/config
+--kubeconfig "kubeconfig"
+export KUBECONFIG=kubeconfig
 
 if ! kubectl cluster-info
 then
