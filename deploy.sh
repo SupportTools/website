@@ -97,7 +97,7 @@ bash get_helm.sh
 echo "Installing rancher-projects"
 curl -fsSL -o rancher-projects https://github.com/SupportTools/rancher-projects/raw/main/rancher-projects
 chmod +x rancher-projects
-sudo mv rancher-projects /usr/local/bin/rancher-projects
+mv rancher-projects /usr/local/bin/rancher-projects
 
 echo "Settings up project, namespace, and kubeconfig"
 rancher-projects \
