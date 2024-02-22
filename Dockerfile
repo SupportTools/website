@@ -22,7 +22,7 @@ WORKDIR /usr/share/nginx/html
 COPY --from=builder /site/public .
 
 # Copy the Nginx config
-COPY nginx.conf /etc/nginx/nginx.conf
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 # Change the ownership of the Nginx web root to the non-root user
 RUN chown -R www:www /usr/share/nginx/html /var/cache/nginx /var/run /var/log/nginx
