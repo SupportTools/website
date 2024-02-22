@@ -56,10 +56,10 @@ steps:
   - name: Waiting for Docker to start
     image: cube8021/docker-buildx:20.10.14-0.8.2
     commands:
-    - echo 'Waiting for docker to start...'
-    - while ! docker info; do sleep 1; done
+      - echo 'Waiting for docker to start...'
+      - while ! docker info; do sleep 1; done
 
-  - name: Docker Build
+  - name: Docker Build and Push
     image: cube8021/docker-buildx:20.10.14-0.8.2
     environment:
       DOCKER_USERNAME:
@@ -67,7 +67,7 @@ steps:
       DOCKER_PASSWORD:
         from_secret: docker-password
     commands:
-    - sh ./build-docker-images.sh
+      - sh build-docker-images.sh
     when:
       repo:
         included:
@@ -88,7 +88,7 @@ steps:
       CATTLE_ACCESS_KEY:
         from_secret: cattle_accesskey
       CATTLE_SECRET_KEY:
-        from_secret: cattle_secretkey        
+        from_secret: cattle_secretkey
     commands:
       - bash deploy.sh
     when:
@@ -111,18 +111,18 @@ steps:
       CATTLE_ACCESS_KEY:
         from_secret: cattle_accesskey
       CATTLE_SECRET_KEY:
-        from_secret: cattle_secretkey        
+        from_secret: cattle_secretkey
     commands:
       - bash deploy.sh dev ${BUILD_NUMBER}
     when:
-     event:
-     - deployment
-     - promote
-     target:
-     - dev
-     repo:
-       included:
-         - supporttools/website
+      event:
+        - deployment
+        - promote
+      target:
+        - dev
+      repo:
+        included:
+          - supporttools/website
 
   - name: Deploy-to-QAS
     image: supporttools/kube-builder
@@ -136,7 +136,7 @@ steps:
       CATTLE_ACCESS_KEY:
         from_secret: cattle_accesskey
       CATTLE_SECRET_KEY:
-        from_secret: cattle_secretkey    
+        from_secret: cattle_secretkey
       AWS_ACCESS_KEY_ID:
         from_secret: s3_accesskey
       AWS_SECRET_ACCESS_KEY:
@@ -144,14 +144,14 @@ steps:
     commands:
       - bash deploy.sh qas ${BUILD_NUMBER}
     when:
-     event:
-     - deployment
-     - promote
-     target:
-     - qas
-     repo:
-       included:
-         - supporttools/website
+      event:
+        - deployment
+        - promote
+      target:
+        - qas
+      repo:
+        included:
+          - supporttools/website
 
   - name: Deploy-to-TST
     image: supporttools/kube-builder
@@ -165,7 +165,7 @@ steps:
       CATTLE_ACCESS_KEY:
         from_secret: cattle_accesskey
       CATTLE_SECRET_KEY:
-        from_secret: cattle_secretkey        
+        from_secret: cattle_secretkey
       AWS_ACCESS_KEY_ID:
         from_secret: s3_accesskey
       AWS_SECRET_ACCESS_KEY:
@@ -173,14 +173,14 @@ steps:
     commands:
       - bash deploy.sh tst ${BUILD_NUMBER}
     when:
-     event:
-     - deployment
-     - promote
-     target:
-     - tst
-     repo:
-       included:
-         - supporttools/website
+      event:
+        - deployment
+        - promote
+      target:
+        - tst
+      repo:
+        included:
+          - supporttools/website
 
   - name: Deploy-to-Staging
     image: supporttools/kube-builder
@@ -194,7 +194,7 @@ steps:
       CATTLE_ACCESS_KEY:
         from_secret: cattle_accesskey
       CATTLE_SECRET_KEY:
-        from_secret: cattle_secretkey        
+        from_secret: cattle_secretkey
       AWS_ACCESS_KEY_ID:
         from_secret: s3_accesskey
       AWS_SECRET_ACCESS_KEY:
@@ -202,14 +202,14 @@ steps:
     commands:
       - bash deploy.sh stg ${BUILD_NUMBER}
     when:
-     event:
-     - deployment
-     - promote
-     target:
-     - stg
-     repo:
-       included:
-         - supporttools/website
+      event:
+        - deployment
+        - promote
+      target:
+        - stg
+      repo:
+        included:
+          - supporttools/website
 
   - name: Deploy-to-Production
     image: supporttools/kube-builder
@@ -223,18 +223,18 @@ steps:
       CATTLE_ACCESS_KEY:
         from_secret: cattle_accesskey
       CATTLE_SECRET_KEY:
-        from_secret: cattle_secretkey        
+        from_secret: cattle_secretkey
     commands:
       - bash deploy.sh prd ${BUILD_NUMBER}
     when:
-     event:
-     - deployment
-     - promote
-     target:
-     - prd
-     repo:
-       included:
-         - supporttools/website
+      event:
+        - deployment
+        - promote
+      target:
+        - prd
+      repo:
+        included:
+          - supporttools/website
 
   - name: Sync-to-CDN
     image: plugins/s3-sync
@@ -250,18 +250,18 @@ steps:
       target: /
       delete: false
     when:
-     event:
-     - deployment
-     - promote
-     target:
-     - prd
-     repo:
-       included:
-         - supporttools/website
+      event:
+        - deployment
+        - promote
+      target:
+        - prd
+      repo:
+        included:
+          - supporttools/website
 
 services:
-- name: docker-in-docker
-  docker:
-  image: docker:20.10.14-dind
-  command: ["dockerd", "--host", "0.0.0.0", "--experimental"]
-  privileged: true
+  - name: docker-in-docker
+    docker:
+    image: docker:20.10.14-dind
+    command: ["dockerd", "--host", "0.0.0.0", "--experimental"]
+    privileged: true

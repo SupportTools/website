@@ -152,10 +152,11 @@ helm upgrade --install website ./chart \
 # helm push website-helm-${DRONE_BUILD_NUMBER}.tgz oci://harbor.support.tools/supporttools
 # rm -f website-helm-${DRONE_BUILD_NUMBER}.tgz
 
-echo "Waiting for pods to become ready..."
-echo "Checking Deployments"
-for deployment in `kubectl -n ${namespace} get deployment -o name`
-do
-  echo "Checking ${deployment}"
-  kubectl -n ${namespace} rollout status ${deployment}
-done
+echo "Recycling web-cache"
+kubectl -n ${namespace} rollout restart deployment web-cache
+
+# echo "Waiting for web-cache to be ready"
+# kubectl -n ${namespace} rollout status deployment web-cache --timeout=15m
+
+# echo "Waiting for frontend to be ready"
+# kubectl -n ${namespace} rollout status deployment frontend --timeout=15m

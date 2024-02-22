@@ -1,4 +1,4 @@
-FROM thegeeklab/hugo:0.122.0 AS builder
+FROM thegeeklab/hugo:0.122.0 AS hugo-builder
 
 # Copy the source code
 COPY ./blog/ /site
@@ -9,29 +9,40 @@ WORKDIR /site
 # Build the site
 RUN hugo
 
-# Use the Nginx image
-FROM nginx:alpine-slim
+# Use a full-featured base image for building
+FROM golang:1.21.6-alpine3.18 AS go-builder
 
-# Create a group and user
-RUN addgroup -S www && adduser -S www -G www
+# Install git if your project requires
+RUN apk update && apk add --no-cache git
 
-# Set the working directory
-WORKDIR /usr/share/nginx/html
+# Set the Current Working Directory inside the container
+WORKDIR /src
 
-# Copy the built site
-COPY --from=builder /site/public .
+# Copy the source code into the container
+COPY . .
 
-# Copy the Nginx config
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+# Fetch dependencies using go mod if your project uses Go modules
+RUN go mod download
 
-# Change the ownership of the Nginx web root to the non-root user
-RUN chown -R www:www /usr/share/nginx/html /var/cache/nginx /var/run /var/log/nginx /etc/nginx/
+# Version and Git Commit build arguments
+ARG VERSION
+ARG GIT_COMMIT
+ARG BUILD_DATE
 
-# Use the non-root user to run Nginx
-USER www
+# Build the Go app with versioning information
+RUN GOOS=linux GOARCH=amd64 go build -ldflags "-X github.com/supporttools/website/pkg/health.version=$VERSION -X github.com/supporttools/website/pkg/health.GitCommit=$GIT_COMMIT -X github.com/supporttools/website/pkg/health.BuildTime=$BUILD_DATE" -o /bin/webserver
 
-# Expose your desired port
-EXPOSE 8080
+# Start from scratch for the runtime stage
+FROM scratch
 
-# Start Nginx
-CMD ["nginx", "-c", "/etc/nginx/nginx.conf", "-g", "daemon off;"]
+# Set the working directory to /app
+WORKDIR /app
+
+# Copy the built binary and config file from the builder stage
+COPY --from=go-builder /bin/webserver /app/webserver
+
+# Copy the website from the hugo-builder stage
+COPY --from=hugo-builder /site/public /app/public
+
+# Set the binary as the entrypoint of the container
+ENTRYPOINT ["/app/webserver"]
