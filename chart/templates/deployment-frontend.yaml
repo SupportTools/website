@@ -4,7 +4,7 @@ metadata:
   name: frontend
   annotations:
     prometheus.io/scrape: 'true'
-    prometheus.io/port: '9113'
+    prometheus.io/port: '9090'
     prometheus.io/path: '/metrics'
   labels:
     app: website
@@ -30,7 +30,7 @@ spec:
         team: SupportTools
       annotations:
         prometheus.io/scrape: 'true'
-        prometheus.io/port: '9113'
+        prometheus.io/port: '9090'
         prometheus.io/path: '/metrics'
     spec:
       affinity:
@@ -50,35 +50,29 @@ spec:
         - name: website
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          volumeMounts:
-          - name: nginx-cache
-            mountPath: /var/cache/nginx/
-          - name: nginx-config
-            mountPath: /var/config/nginx/
-          - name: var-run
-            mountPath: /var/run/
-          - name: nginx-log
-            mountPath: /var/log/nginx/
           ports:
             - name: http
               containerPort: 8080
               protocol: TCP
+            - name: metrics
+              containerPort: 9090
+              protocol: TCP
           livenessProbe:
             httpGet:
-              path: /
-              port: http
+              path: /healthz
+              port: metrics
           readinessProbe:
             httpGet:
-              path: /
-              port: http
-          # securityContext:
-          #   runAsNonRoot: true
-          #   runAsUser: 1000
-          #   runAsGroup: 1000
-          #   allowPrivilegeEscalation: false
-          #   capabilities:
-          #     drop:
-          #     - ALL
+              path: /healthz
+              port: metrics
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 1000
+            runAsGroup: 1000
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+              - ALL
           resources:
             limits:
               cpu: {{ .Values.resources.limits.cpu }}
@@ -86,100 +80,3 @@ spec:
             requests:
               cpu: {{ .Values.resources.requests.cpu }}
               memory: {{ .Values.resources.requests.memory }}
-        - name: exporter
-          image: nginx/nginx-prometheus-exporter:latest
-          imagePullPolicy: Always
-          args:
-            - -nginx.scrape-uri
-            - http://127.0.0.1:8080/metrics      
-          resources:
-            limits:
-              cpu: 100m
-              memory: 128Mi
-            requests:
-              cpu: 10m
-              memory: 32Mi
-          ports:
-            - name: metrics
-              containerPort: 9113
-              protocol: TCP
-          # securityContext:
-          #   runAsNonRoot: true
-          #   runAsUser: 1000
-          #   runAsGroup: 1000
-          #   readOnlyRootFilesystem: true
-          #   allowPrivilegeEscalation: false
-          #   capabilities:
-          #     drop:
-          #     - ALL
-        - args:
-            - tail
-            - '-f'
-            - /var/log/nginx/access.log
-          image: busybox
-          imagePullPolicy: Always
-          name: access-logs
-          volumeMounts:
-            - mountPath: /var/log/nginx/
-              name: nginx-log
-          resources:
-            limits:
-              cpu: 100m
-              memory: 128Mi
-            requests:
-              cpu: 10m
-              memory: 32Mi
-          # securityContext:
-          #   runAsNonRoot: true
-          #   runAsUser: 1000
-          #   runAsGroup: 1000
-          #   readOnlyRootFilesystem: true
-          #   allowPrivilegeEscalation: false
-          #   capabilities:
-          #     drop:
-          #     - ALL
-        - args:
-            - tail
-            - '-f'
-            - /var/log/nginx/error.log
-          image: busybox
-          imagePullPolicy: Always
-          name: error-log
-          volumeMounts:
-            - mountPath: /var/log/nginx/
-              name: nginx-log
-          resources:
-            limits:
-              cpu: 100m
-              memory: 128Mi
-            requests:
-              cpu: 10m
-              memory: 32Mi
-          # securityContext:
-          #   runAsNonRoot: true
-          #   runAsUser: 1000
-          #   runAsGroup: 1000
-          #   readOnlyRootFilesystem: true
-          #   allowPrivilegeEscalation: false
-          #   capabilities:
-          #     drop:
-          #     - ALL
-        - args:
-            - tail
-            - '-f'
-            - /var/log/nginx/json_access.log
-          image: busybox
-          imagePullPolicy: Always
-          name: json-access-log
-          volumeMounts:
-            - mountPath: /var/log/nginx/
-              name: nginx-log
-      volumes:
-      - emptyDir: {}
-        name: nginx-cache
-      - emptyDir: {}
-        name: nginx-config
-      - emptyDir: {}
-        name: var-run
-      - emptyDir: {}
-        name: nginx-log
