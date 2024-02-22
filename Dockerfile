@@ -25,9 +25,9 @@ COPY . .
 RUN go mod download
 
 # Version and Git Commit build arguments
-ARG VERSION="0.0.0"
-ARG GIT_COMMIT="unknown"
-ARG BUILD_DATE=""
+ARG VERSION
+ARG GIT_COMMIT
+ARG BUILD_DATE
 
 # Build the Go app with versioning information
 RUN GOOS=linux GOARCH=amd64 go build -ldflags "-X github.com/supporttools/website/pkg/health.version=$VERSION -X github.com/supporttools/website/pkg/health.GitCommit=$GIT_COMMIT -X github.com/supporttools/website/pkg/health.BuildTime=$BUILD_DATE" -o /bin/webserver
