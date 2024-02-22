@@ -25,7 +25,7 @@ COPY --from=builder /site/public .
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 # Change the ownership of the Nginx web root to the non-root user
-RUN chown -R www:www /usr/share/nginx/html /var/cache/nginx /var/run /var/log/nginx /etc/nginx/on
+RUN chown -R www:www /usr/share/nginx/html /var/cache/nginx /var/run /var/log/nginx /etc/nginx/
 
 # Use the non-root user to run Nginx
 USER www
