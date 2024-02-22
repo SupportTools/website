@@ -71,14 +71,14 @@ spec:
             httpGet:
               path: /
               port: http
-          securityContext:
-            runAsNonRoot: true
-            runAsUser: 1000
-            runAsGroup: 1000
-            allowPrivilegeEscalation: false
-            capabilities:
-              drop:
-              - ALL
+          # securityContext:
+          #   runAsNonRoot: true
+          #   runAsUser: 1000
+          #   runAsGroup: 1000
+          #   allowPrivilegeEscalation: false
+          #   capabilities:
+          #     drop:
+          #     - ALL
           resources:
             limits:
               cpu: {{ .Values.resources.limits.cpu }}
@@ -103,15 +103,15 @@ spec:
             - name: metrics
               containerPort: 9113
               protocol: TCP
-          securityContext:
-            runAsNonRoot: true
-            runAsUser: 1000
-            runAsGroup: 1000
-            readOnlyRootFilesystem: true
-            allowPrivilegeEscalation: false
-            capabilities:
-              drop:
-              - ALL
+          # securityContext:
+          #   runAsNonRoot: true
+          #   runAsUser: 1000
+          #   runAsGroup: 1000
+          #   readOnlyRootFilesystem: true
+          #   allowPrivilegeEscalation: false
+          #   capabilities:
+          #     drop:
+          #     - ALL
         - args:
             - tail
             - '-f'
@@ -129,15 +129,15 @@ spec:
             requests:
               cpu: 10m
               memory: 32Mi
-          securityContext:
-            runAsNonRoot: true
-            runAsUser: 1000
-            runAsGroup: 1000
-            readOnlyRootFilesystem: true
-            allowPrivilegeEscalation: false
-            capabilities:
-              drop:
-              - ALL
+          # securityContext:
+          #   runAsNonRoot: true
+          #   runAsUser: 1000
+          #   runAsGroup: 1000
+          #   readOnlyRootFilesystem: true
+          #   allowPrivilegeEscalation: false
+          #   capabilities:
+          #     drop:
+          #     - ALL
         - args:
             - tail
             - '-f'
@@ -155,15 +155,15 @@ spec:
             requests:
               cpu: 10m
               memory: 32Mi
-          securityContext:
-            runAsNonRoot: true
-            runAsUser: 1000
-            runAsGroup: 1000
-            readOnlyRootFilesystem: true
-            allowPrivilegeEscalation: false
-            capabilities:
-              drop:
-              - ALL
+          # securityContext:
+          #   runAsNonRoot: true
+          #   runAsUser: 1000
+          #   runAsGroup: 1000
+          #   readOnlyRootFilesystem: true
+          #   allowPrivilegeEscalation: false
+          #   capabilities:
+          #     drop:
+          #     - ALL
         - args:
             - tail
             - '-f'
