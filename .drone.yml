@@ -59,7 +59,7 @@ steps:
       - echo 'Waiting for docker to start...'
       - while ! docker info; do sleep 1; done
 
-  - name: Docker Build
+  - name: Docker Build and Push
     image: cube8021/docker-buildx:20.10.14-0.8.2
     environment:
       DOCKER_USERNAME:
@@ -67,26 +67,7 @@ steps:
       DOCKER_PASSWORD:
         from_secret: docker-password
     commands:
-      - docker build --platform linux/amd64 --pull --build-arg GIT_COMMIT=`git rev-parse HEAD` --build-arg VERSION=${BUILD_NUMBER} --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` -t supporttools/website:${BUILD_NUMBER} .
-    when:
-      repo:
-        included:
-          - supporttools/website
-      event:
-        - push
-        - pull_request
-
-  - name: Docker Push
-    image: cube8021/docker-buildx:20.10.14-0.8.2
-    environment:
-      DOCKER_USERNAME:
-        from_secret: docker-username
-      DOCKER_PASSWORD:
-        from_secret: docker-password
-    commands:
-      - docker push supporttools/website:${BUILD_NUMBER}
-      - docker tag supporttools/website:${BUILD_NUMBER} supporttools/website:latest
-      - docker push supporttools/website:latest
+      - sh build-docker-images.sh
     when:
       repo:
         included:

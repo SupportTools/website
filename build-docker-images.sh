@@ -11,7 +11,7 @@ then
 else
   echo "Building image"
   #docker pull supporttools/website:latest
-  if ! docker build -t supporttools/website:${DRONE_BUILD_NUMBER} --cache-from supporttools/website:latest -f Dockerfile .
+  if ! docker build --platform linux/amd64 --pull --build-arg GIT_COMMIT=`git rev-parse HEAD` --build-arg VERSION=${DRONE_BUILD_NUMBER} --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --cache-from supporttools/website:latest -t supporttools/website:${DRONE_BUILD_NUMBER} -f Dockerfile .
   then
     echo "Problem building latest image"
     exit 1
