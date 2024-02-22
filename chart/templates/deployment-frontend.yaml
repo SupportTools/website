@@ -75,8 +75,8 @@ spec:
               - ALL
           resources:
             limits:
-              cpu: {{ .Values.resources.limits.cpu }}
-              memory: {{ .Values.resources.limits.memory }}
+              cpu: 100m
+              memory: 128Mi
             requests:
-              cpu: {{ .Values.resources.requests.cpu }}
-              memory: {{ .Values.resources.requests.memory }}
+              cpu: 50m
+              memory: 64Mi
