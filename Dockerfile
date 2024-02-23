@@ -44,5 +44,9 @@ COPY --from=go-builder /bin/webserver /app/webserver
 # Copy the website from the hugo-builder stage
 COPY --from=hugo-builder /site/public /app/public
 
+# Copy the /etc/passwd file from the builder stage to run as a non-root user
+COPY --from=0 /etc/passwd /etc/passwd
+USER appuser
+
 # Set the binary as the entrypoint of the container
 ENTRYPOINT ["/app/webserver"]
