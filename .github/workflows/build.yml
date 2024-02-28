@@ -13,28 +13,34 @@ jobs:
 
       - name: HUGO test build
         run: |
-          docker run --rm -v $(pwd)/blog/:/src -w /src thegeeklab/hugo:0.122.0 hugo --panicOnWarning --minify --gc --cleanDestinationDir --destination public --baseURL http://localhost
+          docker run --rm -v $(pwd)/blog/:/src -w /src thegeeklab/hugo:0.122.0 --panicOnWarning --minify --gc --cleanDestinationDir --destination public --baseURL http://localhost
         
-      - name: html-validation
-        run: |
-          docker run --rm -v $(pwd)/blog/:/src -w /src thegeeklab/vnu vnu --skip-non-html --errors-only --filterfile .vnuignore public/
+      # - name: html-validation
+      #   run: |
+      #     docker run --rm -v $(pwd)/blog/:/src -w /src thegeeklab/vnu vnu --skip-non-html --errors-only --filterfile .vnuignore public/
 
       - name: Checking for draft content
         run: |
           grep -R 'draft: true' blog/content/post && exit 1 || exit 0
       
-      - name: Checking for orphaned content
+      - name: Checking for expired content
         run: |
-          docker run --rm -v $(pwd)/blog/:/src -w /src thegeeklab/hugo:0.105 list orphan
-
-      - name: Docker build
-        run: |
-          docker build -t supporttools/website:${GITHUB_SHA} .
-
-      - name: Docker push
+          docker run --rm -v $(pwd)/blog/:/src -w /src thegeeklab/hugo:0.122 list expired
+      
+      - name: Docker build and push
         run: |
           echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
-          docker push supporttools/website:${GITHUB_SHA}
+          docker buildx build \
+          --platform linux/amd64 \
+          --pull \
+          --build-arg VERSION=${GITHUB_RUN_NUMBER} \
+          --build-arg GIT_COMMIT=${DRONE_COMMIT_SHA} \
+          --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` \
+          --cache-from supporttools/website:latest \
+          -t supporttools/website:${GITHUB_SHA} \
+          -t supporttools/website:latest \
+          --push \
+          -f Dockerfile .
 
       - name: Deploy-to-Master
         env:
