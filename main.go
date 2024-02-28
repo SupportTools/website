@@ -153,6 +153,19 @@ func serveFromMemory(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 	}
+	// Set Cache-Control header
+	w.Header().Set("Cache-Control", "max-age=31536000")
+
+	// Set Content-Length header
+	w.Header().Set("Content-Length", string(len(fd.content)))
+
+	// Set Last-Modified header
+	w.Header().Set("Last-Modified", fd.modTime.UTC().Format(http.TimeFormat))
+
+	// Set ETag header
+	w.Header().Set("ETag", `"`+http.TimeFormat+`"`)
+
+	// Set Content-Type header and serve the content
 	w.Header().Set("Content-Type", fd.contentType)
 	http.ServeContent(w, r, r.URL.Path, fd.modTime, bytes.NewReader(fd.content))
 }
