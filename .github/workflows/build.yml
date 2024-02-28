@@ -60,13 +60,13 @@ jobs:
           CATTLE_ACCESS_KEY: ${{ secrets.CATTLE_ACCESS_KEY }}
           CATTLE_SECRET_KEY: ${{ secrets.CATTLE_SECRET_KEY }}
         run: |
-          docker run --rm -v $(pwd):/src -w /src 
-          -e DOCKER_USERNAME=$DOCKER_USERNAME 
-          -e DOCKER_PASSWORD=$DOCKER_PASSWORD 
-          -e CATTLE_SERVER=$CATTLE_SERVER 
-          -e CATTLE_ACCESS_KEY=$CATTLE_ACCESS_KEY 
-          -e CATTLE_SECRET_KEY=$CATTLE_SECRET_KEY 
-          supporttools/kube-builder:latest 
+          docker run --rm -v $(pwd):/src -w /src \
+          -e DOCKER_USERNAME=$DOCKER_USERNAME \
+          -e DOCKER_PASSWORD=$DOCKER_PASSWORD \
+          -e CATTLE_SERVER=$CATTLE_SERVER \
+          -e CATTLE_ACCESS_KEY=$CATTLE_ACCESS_KEY \
+          -e CATTLE_SECRET_KEY=$CATTLE_SECRET_KEY \
+          supporttools/kube-builder:latest \
           bash deploy.sh dev ${GITHUB_SHA}
 
       - name: Deploy-to-QAS
@@ -77,13 +77,13 @@ jobs:
           CATTLE_ACCESS_KEY: ${{ secrets.CATTLE_ACCESS_KEY }}
           CATTLE_SECRET_KEY: ${{ secrets.CATTLE_SECRET_KEY }}
         run: |
-          docker run --rm -v $(pwd):/src -w /src 
-          -e DOCKER_USERNAME=$DOCKER_USERNAME 
-          -e DOCKER_PASSWORD=$DOCKER_PASSWORD 
-          -e CATTLE_SERVER=$CATTLE_SERVER 
-          -e CATTLE_ACCESS_KEY=$CATTLE_ACCESS_KEY 
-          -e CATTLE_SECRET_KEY=$CATTLE_SECRET_KEY 
-          supporttools/kube-builder:latest 
+          docker run --rm -v $(pwd):/src -w /src \
+          -e DOCKER_USERNAME=$DOCKER_USERNAME \
+          -e DOCKER_PASSWORD=$DOCKER_PASSWORD \
+          -e CATTLE_SERVER=$CATTLE_SERVER \
+          -e CATTLE_ACCESS_KEY=$CATTLE_ACCESS_KEY \
+          -e CATTLE_SECRET_KEY=$CATTLE_SECRET_KEY \
+          supporttools/kube-builder:latest \
           bash deploy.sh qas ${GITHUB_SHA}
 
       - name: Deploy-to-TST
@@ -94,13 +94,13 @@ jobs:
           CATTLE_ACCESS_KEY: ${{ secrets.CATTLE_ACCESS_KEY }}
           CATTLE_SECRET_KEY: ${{ secrets.CATTLE_SECRET_KEY }}
         run: |
-          docker run --rm -v $(pwd):/src -w /src 
-          -e DOCKER_USERNAME=$DOCKER_USERNAME 
-          -e DOCKER_PASSWORD=$DOCKER_PASSWORD 
-          -e CATTLE_SERVER=$CATTLE_SERVER 
-          -e CATTLE_ACCESS_KEY=$CATTLE_ACCESS_KEY 
-          -e CATTLE_SECRET_KEY=$CATTLE_SECRET_KEY 
-          supporttools/kube-builder:latest 
+          docker run --rm -v $(pwd):/src -w /src \
+          -e DOCKER_USERNAME=$DOCKER_USERNAME \
+          -e DOCKER_PASSWORD=$DOCKER_PASSWORD \
+          -e CATTLE_SERVER=$CATTLE_SERVER \
+          -e CATTLE_ACCESS_KEY=$CATTLE_ACCESS_KEY \
+          -e CATTLE_SECRET_KEY=$CATTLE_SECRET_KEY \
+          supporttools/kube-builder:latest \
           bash deploy.sh tst ${GITHUB_SHA}
 
       - name: Deploy-to-TST
@@ -111,13 +111,13 @@ jobs:
           CATTLE_ACCESS_KEY: ${{ secrets.CATTLE_ACCESS_KEY }}
           CATTLE_SECRET_KEY: ${{ secrets.CATTLE_SECRET_KEY }}
         run: |
-          docker run --rm -v $(pwd):/src -w /src 
-          -e DOCKER_USERNAME=$DOCKER_USERNAME 
-          -e DOCKER_PASSWORD=$DOCKER_PASSWORD 
-          -e CATTLE_SERVER=$CATTLE_SERVER 
-          -e CATTLE_ACCESS_KEY=$CATTLE_ACCESS_KEY 
-          -e CATTLE_SECRET_KEY=$CATTLE_SECRET_KEY 
-          supporttools/kube-builder:latest 
+          docker run --rm -v $(pwd):/src -w /src \
+          -e DOCKER_USERNAME=$DOCKER_USERNAME \
+          -e DOCKER_PASSWORD=$DOCKER_PASSWORD \
+          -e CATTLE_SERVER=$CATTLE_SERVER \
+          -e CATTLE_ACCESS_KEY=$CATTLE_ACCESS_KEY \
+          -e CATTLE_SECRET_KEY=$CATTLE_SECRET_KEY \
+          supporttools/kube-builder:latest \
           bash deploy.sh tst ${GITHUB_SHA}
 
       - name: Deploy-to-STG
@@ -128,13 +128,13 @@ jobs:
           CATTLE_ACCESS_KEY: ${{ secrets.CATTLE_ACCESS_KEY }}
           CATTLE_SECRET_KEY: ${{ secrets.CATTLE_SECRET_KEY }}
         run: |
-          docker run --rm -v $(pwd):/src -w /src 
-          -e DOCKER_USERNAME=$DOCKER_USERNAME 
-          -e DOCKER_PASSWORD=$DOCKER_PASSWORD 
-          -e CATTLE_SERVER=$CATTLE_SERVER 
-          -e CATTLE_ACCESS_KEY=$CATTLE_ACCESS_KEY 
-          -e CATTLE_SECRET_KEY=$CATTLE_SECRET_KEY 
-          supporttools/kube-builder:latest 
+          docker run --rm -v $(pwd):/src -w /src \
+          -e DOCKER_USERNAME=$DOCKER_USERNAME \
+          -e DOCKER_PASSWORD=$DOCKER_PASSWORD \
+          -e CATTLE_SERVER=$CATTLE_SERVER \
+          -e CATTLE_ACCESS_KEY=$CATTLE_ACCESS_KEY \
+          -e CATTLE_SECRET_KEY=$CATTLE_SECRET_KEY \
+          supporttools/kube-builder:latest \
           bash deploy.sh stg ${GITHUB_SHA}
 
       - name: Deploy-to-PRD
@@ -145,11 +145,11 @@ jobs:
           CATTLE_ACCESS_KEY: ${{ secrets.CATTLE_ACCESS_KEY }}
           CATTLE_SECRET_KEY: ${{ secrets.CATTLE_SECRET_KEY }}
         run: |
-          docker run --rm -v $(pwd):/src -w /src 
-          -e DOCKER_USERNAME=$DOCKER_USERNAME 
-          -e DOCKER_PASSWORD=$DOCKER_PASSWORD 
-          -e CATTLE_SERVER=$CATTLE_SERVER 
-          -e CATTLE_ACCESS_KEY=$CATTLE_ACCESS_KEY 
-          -e CATTLE_SECRET_KEY=$CATTLE_SECRET_KEY 
-          supporttools/kube-builder:latest 
+          docker run --rm -v $(pwd):/src -w /src \
+          -e DOCKER_USERNAME=$DOCKER_USERNAME \
+          -e DOCKER_PASSWORD=$DOCKER_PASSWORD \
+          -e CATTLE_SERVER=$CATTLE_SERVER \
+          -e CATTLE_ACCESS_KEY=$CATTLE_ACCESS_KEY \
+          -e CATTLE_SECRET_KEY=$CATTLE_SECRET_KEY \
+          supporttools/kube-builder:latest \
           bash deploy.sh prd ${GITHUB_SHA}          
