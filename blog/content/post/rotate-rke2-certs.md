@@ -46,7 +46,7 @@ rke2 etcd snapshot --name pre-rotate-snapshot
 tar -czvf /var/lib/rancher/rke2/server/tls/pre-rotate-tls.tar.gz /var/lib/rancher/rke2/server/tls
 ```
 
-Note: Repeat on all master nodes.
+Note: Repeat on all master nodes
 
 3. Rotate the certificates by running the following command on each master node:
 
