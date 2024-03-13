@@ -10,7 +10,7 @@ author: "Matthew Mattox - mmattox@support.tools."
 description: "Explore the power of webhooks in Kubernetes to automate and secure your cluster operations. Learn how to implement admission and mutating webhooks for enhanced control and efficiency."
 ---
 
-![Kubernetes Webhooks](https://cdn.support.tools/posts/harnessing-webhooks-in-kubernetes-a-comprehensive-guide/overview.png)
+![Kubernetes Webhooks](https://s3.us-east-1.wasabisys.com/cdn.support.tools/posts/harnessing-webhooks-in-kubernetes-a-comprehensive-guide/overview.png)
 
 Kubernetes, the cornerstone of modern container orchestration, offers a plethora of features aimed at simplifying deployment, scaling, and operations of application containers. Among its numerous features, webhooks stand out as a powerful tool for extending Kubernetes functionality in a dynamic and automated fashion. This guide delves into the world of webhooks within Kubernetes, highlighting their significance, types, and practical applications to enhance your cluster's operations.
 
@@ -26,7 +26,7 @@ Admission webhooks are invoked before an object is persisted in the Kubernetes c
 
 - **Mutating Admission Webhooks**: They not only inspect the requests but can also modify the objects sent to the API server. This is useful for enforcing default values, correcting minor errors in requests, or adding annotations automatically.
 
-![Sequence Diagram](https://cdn.support.tools/posts/harnessing-webhooks-in-kubernetes-a-comprehensive-guide/sequence-diagram.webp)
+![Sequence Diagram](https://s3.us-east-1.wasabisys.com/cdn.support.tools/posts/harnessing-webhooks-in-kubernetes-a-comprehensive-guide/sequence-diagram.webp)
 
 ### Implementing Webhooks in Your Cluster
 
