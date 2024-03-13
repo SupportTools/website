@@ -1,6 +1,6 @@
 ---
 title: "Harnessing Webhooks in Kubernetes: A Comprehensive Guide"
-date: 2024-03-13T10:00:00Z
+date: 2024-03-12T00:00:00Z
 draft: false
 tags: ["Kubernetes", "Webhooks", "DevOps"]
 categories:
