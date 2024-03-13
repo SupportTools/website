@@ -153,7 +153,7 @@ helm upgrade --install website ./chart \
 # rm -f website-helm-${DRONE_BUILD_NUMBER}.tgz
 
 echo "Recycling web-cache"
-kubectl -n ${namespace} rollout restart deployment web-cache
+kubectl -n ${namespace} rollout restart deployment go-web-cache --timeout=15m || true
 
 # echo "Waiting for web-cache to be ready"
 # kubectl -n ${namespace} rollout status deployment web-cache --timeout=15m
