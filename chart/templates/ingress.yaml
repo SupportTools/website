@@ -23,7 +23,7 @@ spec:
       paths:
       - backend:
           service:
-            name: web-cache
+            name: go-web-cache
             port:
               number: 8080
         path: /
