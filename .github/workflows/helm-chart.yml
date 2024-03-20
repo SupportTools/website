@@ -1,0 +1,48 @@
+name: Helm Packaging and Repository Update
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  helm-packaging-and-repo-update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Set up Helm
+        uses: azure/setup-helm@v1
+        with:
+          version: v3.7.1
+
+      - name: Package Helm chart
+        run: |
+          export CHART_VERSION="${{ github.run_number }}"
+          export APP_VERSION="${{ github.run_number }}"
+          export IMAGE_TAG="${{ github.run_number }}"
+          echo "CHART_VERSION=${CHART_VERSION}"
+          echo "APP_VERSION=${APP_VERSION}"
+          envsubst < charts/go-sql-proxy/Chart.yaml.template > charts/go-sql-proxy/Chart.yaml
+          envsubst < charts/go-sql-proxy/values.yaml.template > charts/go-sql-proxy/values.yaml
+          helm package charts/go-sql-proxy --destination helm/repo
+
+      - name: Checkout helm-chart repository
+        uses: actions/checkout@v2
+        with:
+          repository: SupportTools/helm-chart
+          path: helm-chart
+          token: ${{ secrets.BOT_TOKEN }}
+
+      - name: Configure Git
+        run: |
+          git config --global user.email "github-action@users.noreply.github.com"
+          git config --global user.name "GitHub Action"
+
+      - name: Update Helm repository
+        run: |
+          cp helm/repo/go-sql-proxy-*.tgz helm-chart/
+          cd helm-chart
+          helm repo index . --url https://charts.support.tools/
+          git add .
+          git commit -m "Update Helm chart for support.tools"
+          git push
