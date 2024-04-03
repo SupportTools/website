@@ -15,47 +15,47 @@ Embarking on a journey to unravel the complexities of Kubernetes networking, thi
 
 <!--more-->
 
-# Introduction to Cilium and Kubernetes Networking
+## Introduction to Cilium and Kubernetes Networking(#introduction-to-cilium-and-kubernetes-networking)
 
 In the dynamic world of Kubernetes, the quest for a robust and scalable networking solution is perpetual. Amidst this quest, Cilium emerges as a beacon of innovation, leveraging the cutting-edge eBPF technology to offer unparalleled networking capabilities. This section delves into the essence of Cilium and its strategic advantage in Kubernetes environments, setting the stage for a deep dive into its architecture, performance, and security features.
 
-# The Magic of eBPF in Cilium
+## The Magic of eBPF in Cilium(#the-magic-of-ebpf-in-cilium)
 
 Extended Berkeley Packet Filter (eBPF) stands at the core of Cilium's prowess, enabling it to perform highly efficient packet processing, implement advanced security policies, and provide deep observability into network flows. We'll explore how eBPF transforms traditional networking paradigms, offering insights into its mechanism and its impact on Cilium's functionality within Kubernetes clusters.
 
-# Setting the Stage: Configuring Cilium in Kubernetes
+## Setting the Stage: Configuring Cilium in Kubernetes(#setting-the-stage-configuring-cilium-in-kubernetes)
 
 The journey begins with preparing the Kubernetes environment for Cilium's integration. This involves a series of steps, from initializing the cluster with specific configurations to ensuring a seamless transition from existing CNI solutions. Detailed instructions and best practices for deploying Cilium, including version selection and environment preparation, will guide you through creating a robust foundation for your Kubernetes network.
 
-# Unlocking Network Observability with Hubble
+## Unlocking Network Observability with Hubble(#unlocking-network-observability-with-hubble)
 
 Hubble, as Cilium's observability companion, enhances the visibility into network activities, offering real-time monitoring and troubleshooting capabilities. This section highlights the integration of Hubble into the Kubernetes network, illustrating how it leverages eBPF to provide a comprehensive view of network flows and security policies in action.
 
-# Overcoming Challenges: Practical Insights and Solutions
+## Overcoming Challenges: Practical Insights and Solutions(#overcoming-challenges-practical-insights-and-solutions)
 
 Implementing Cilium within Kubernetes is not without its hurdles. From configuration challenges to performance tuning, this part shares practical insights and solutions to common obstacles encountered during deployment. It also covers strategic decisions, such as namespace allocation and node taint considerations, ensuring a smooth and efficient Cilium integration.
 
-# Advanced Topics: Security, Performance, and Beyond
+## Advanced Topics: Security, Performance, and Beyond(#advanced-topics-security-performance-and-beyond)
 
 Diving deeper, we explore advanced aspects of Cilium's capabilities in Kubernetes networking. This includes leveraging eBPF for fine-grained security policies, optimizing network performance for high-load scenarios, and extending Cilium's functionality with custom eBPF programs.
 
-## Understanding Data Flow in Kubernetes Networking
+### Understanding Data Flow in Kubernetes Networking(#understanding-data-flow-in-kubernetes-networking)
 
 In the realm of Kubernetes networking, understanding the flow of data is crucial for optimizing performance, ensuring security, and maintaining efficient communication patterns. Cilium, utilizing eBPF technology, offers a sophisticated approach to managing these data flows, adapting dynamically to the complexities of modern cloud-native environments.
 
-### Pod-to-Node Communication
+#### Pod-to-Node Communication(#pod-to-node-communication)
 
 This section delves into the mechanisms behind the communication from a pod to its host node. We'll explore how Cilium facilitates this interaction, leveraging eBPF to efficiently route traffic to and from pods and the underlying node, ensuring minimal latency and optimal resource utilization.
 
-### Node-to-Node Communication
+#### Node-to-Node Communication(#node-to-node-communication)
 
 Node-to-node communication is a backbone of Kubernetes networking, enabling clusters to function as cohesive units. Here, we'll dissect how Cilium secures and streamlines this process, using eBPF to implement routing, load balancing, and encryption across nodes, fostering a secure and resilient network topology.
 
-### Pod-to-Pod Communication
+#### Pod-to-Pod Communication(#pod-to-pod-communication)
 
 The intricacies of pod-to-pod communication, whether within the same node or across different nodes, are critical for the operation of Kubernetes services. This section highlights how Cilium ensures efficient, secure communication paths between pods, utilizing eBPF to bypass traditional kernel networking stacks for enhanced performance.
 
-```
+```text
  Pod A (Pod IP: 10.42.1.1/24)
             |
         veth (Pod side)
@@ -92,11 +92,11 @@ The intricacies of pod-to-pod communication, whether within the same node or acr
 
 ```
 
-### [External-to-Pod Communication](#external-to-pod-communication)
+#### [External-to-Pod Communication](#external-to-pod-communication)
 
 Integrating Kubernetes clusters with external networks requires careful consideration of security and routing. We'll examine how Cilium manages ingress traffic, enabling external clients to communicate with services running in pods while implementing security policies and load balancing to protect and optimize these interactions.
 
-```
+```text
     External Source
             |
     [ Internet / External Network ]
@@ -130,13 +130,13 @@ Integrating Kubernetes clusters with external networks requires careful consider
 - veth (Node side) / veth (Pod side): Virtual Ethernet devices that bridge the network namespace of the node with that of Pod A, enabling the transfer of network packets to and from the pod.
 - Pod A (Pod IP: 10.42.1.1/24, Service Port: 80): The destination pod within the Kubernetes cluster that is exposed externally via the NodePort. The service running in the pod listens on a specific port (in this case, 80), which is mapped to the NodePort, allowing external traffic to access it.
 
-### [Pod-to-External Communication - Default](#pod-to-external-communication-default)
+#### [Pod-to-External Communication - Default](#pod-to-external-communication-default)
 
 Similarly, pods often need to initiate communication with external services and resources. This section will cover how Cilium handles egress traffic, using eBPF to apply security policies, perform DNS filtering, and route traffic from pods to the external world, ensuring compliance and security.
 
 By comprehensively understanding these data flow mechanisms, Kubernetes administrators and developers can leverage Cilium's advanced networking features to create robust, efficient, and secure applications in cloud-native environments.
 
-```
+```text
       Pod A (Pod IP: 10.42.1.1/24)
             |
         veth (Pod side)
@@ -167,7 +167,7 @@ By comprehensively understanding these data flow mechanisms, Kubernetes administ
 - Internet / External Network: Represents the broader internet or an external network that the packet traverses to reach the specified external destination.
 - External Destination (IP: 203.0.113.5): The target of the outbound communication from Pod A. This could be any service or server outside the Kubernetes cluster that Pod A needs to interact with, identified by its IP address.
 
-### [Pod-to-External Communication - Egress Gateway](#pod-to-external-communication-egress-gateway)
+#### [Pod-to-External Communication - Egress Gateway](#pod-to-external-communication-egress-gateway)
 
 To implement an egress policy using Cilium and manage traffic flow, including Source NAT (SNAT) for changing the source IP and ensuring the traffic correctly flows back to the originating pod, you can define CiliumNetworkPolicies (CNPs). These policies allow you to specify egress rules for pods, including which egress endpoints pods can communicate with, and apply SNAT to outbound traffic to mask the pod IPs with the egress gateway's IP.
 
@@ -224,7 +224,7 @@ spec:
 
 By utilizing Cilium's egress policy with SNAT through an egress gateway, administrators can effectively manage and secure pod egress traffic, ensuring both compliance with network policies and seamless communication with external services.
 
-# [Conclusion: The Future of Kubernetes Networking with Cilium](#conclusion-the-future-of-kubernetes-networking-with-cilium)
+## [Conclusion: The Future of Kubernetes Networking with Cilium](#conclusion-the-future-of-kubernetes-networking-with-cilium)
 
 As we conclude our journey, the horizon of Kubernetes networking with Cilium appears broader and more promising than ever. This final section reflects on the lessons learned, the challenges overcome, and the potential future developments in container networking, underscoring Cilium's pivotal role in shaping the next generation of Kubernetes infrastructure.
 
