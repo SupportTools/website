@@ -1,7 +1,7 @@
 ---
 title: "Navigating the Depths of Kubernetes Networking with Cilium: A Comprehensive Guide"
 date: 2024-03-27T10:00:00-05:00
-draft: true
+draft: false
 tags: ["Cilium", "Kubernetes", "eBPF", "Networking", "Security", "Observability"]
 categories:
 - Kubernetes

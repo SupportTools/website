@@ -1,7 +1,7 @@
 ---
 title: "Cilium Troubleshooting Guide"
 date: 2024-03-27T10:00:00-05:00
-draft: true
+draft: false
 tags: ["Cilium", "Kubernetes"]
 categories:
 - Networking
