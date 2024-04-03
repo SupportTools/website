@@ -15,14 +15,14 @@ Troubleshooting Cilium in Kubernetes can be daunting. This guide provides steps 
 
 <!--more-->
 
-# [Upstream Guides](#upstream-guides)
+## [Upstream Guides](#upstream-guides)
 
 Refer to the official Cilium documentation for troubleshooting and performance tuning:
 
 - [Cilium Troubleshooting Guide](https://docs.cilium.io/en/stable/operations/troubleshooting/)
 - [Cilium Performance Tuning](https://docs.cilium.io/en/stable/operations/performance/tuning/)
 
-# [Cluster Health](#cluster-health)
+## [Cluster Health](#cluster-health)
 
 Ensure that all nodes have a Cilium agent pod in the Running state:
 
@@ -42,7 +42,7 @@ Inspect agent logs for more insights:
 kubectl -n kube-system logs --timestamps <agent-pod>
 ```
 
-# [Connectivity Health](#connectivity-health)
+## [Connectivity Health](#connectivity-health)
 
 Perform upstream validation to ensure proper operation:
 
@@ -53,7 +53,7 @@ kubectl apply -n cilium-test -f https://raw.githubusercontent.com/cilium/cilium/
 
 This creates pods to verify connectivity, network policies, etc. All pods must be Running to conclude successful setup. It's crucial to replace `<cilium_version>` with your Cilium version.
 
-# [Services](#services)
+## [Services](#services)
 
 Cilium translates the frontend cluster IP address into a backend pod IP. To list and inspect services:
 
@@ -62,7 +62,7 @@ cilium status --verbose
 cilium service list
 ```
 
-# [Endpoint Health & Monitoring](#endpoint-health--monitoring)
+## [Endpoint Health & Monitoring](#endpoint-health--monitoring)
 
 Identify and monitor the health and status of endpoints. To list endpoints:
 
@@ -83,7 +83,7 @@ Monitor events for a specific endpoint to troubleshoot connectivity or policy en
 kubectl -n kube-system exec -it <agent-pod> -- cilium endpoint monitor --related-to <id>
 ```
 
-# [kube-proxyless](#kube-proxyless)
+## [kube-proxyless](#kube-proxyless)
 
 Details for managing services in a kube-proxyless environment using Cilium. For IP masquerading and viewing NAT entries:
 
@@ -103,7 +103,7 @@ List load-balanced services managed by Cilium:
 kubectl exec -it <agent-pod> -n kube-system -- cilium bpf lb list
 ```
 
-# [Miscellaneous](#miscellaneous)
+## [Miscellaneous](#miscellaneous)
 
 For diagnosing common issues, finding the lxc interface of a pod can be crucial for debugging. To find the lxc interface:
 
@@ -120,7 +120,7 @@ To inspect packets dropped by network policies, which is useful for diagnosing c
 kubectl -n kube-system exec -it <agent-pod> -- cilium monitor --type drop
 ```
 
-# [Tools](#tools)
+## [Tools](#tools)
 
 For managing and diagnosing Cilium within your cluster, these tools can be very helpful. To retrieve a Cilium pod managing a particular Kubernetes pod:
 
@@ -143,7 +143,7 @@ curl -sLO releases.cilium.io/v1.1.0/tools/k8s-unmanaged.sh
 ./k8s-unmanaged.sh
 ```
 
-# [Data Collection](#data-collection)
+## [Data Collection](#data-collection)
 
 Automate log and state collection for deep analysis. This can be crucial for troubleshooting complex issues or for providing information to support cases:
 
