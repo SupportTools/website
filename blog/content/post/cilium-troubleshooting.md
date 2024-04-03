@@ -53,6 +53,8 @@ kubectl apply -n cilium-test -f https://raw.githubusercontent.com/cilium/cilium/
 
 This creates pods to verify connectivity, network policies, etc. All pods must be Running to conclude successful setup. It's crucial to replace `<cilium_version>` with your Cilium version.
 
+![Cilium Connectivity Check](https://cdn.support.tools/posts/cilium-troubleshooting/connectivity-health.png)
+
 ## [Services](#services)
 
 Cilium translates the frontend cluster IP address into a backend pod IP. To list and inspect services:
@@ -61,6 +63,9 @@ Cilium translates the frontend cluster IP address into a backend pod IP. To list
 cilium status --verbose
 cilium service list
 ```
+
+![Cilium Status](https://cdn.support.tools/posts/cilium-troubleshooting/cilium-status.png)
+![Cilium Service List](https://cdn.support.tools/posts/cilium-troubleshooting/cilium-service-list.png)
 
 ## [Endpoint Health & Monitoring](#endpoint-health--monitoring)
 
