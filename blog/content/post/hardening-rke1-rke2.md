@@ -1,7 +1,7 @@
 ---
 title: "Hardening RKE1 and RKE2 in Rancher: A Comprehensive Training Guide"
-date: 2022-07-11T19:26:00-05:00
-draft: true
+date: 2024-05-08T04:30:00-05:00
+draft: false
 tags: ["Rancher", "Kubernetes", "Security"]
 categories:
 - Rancher
