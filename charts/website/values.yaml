@@ -6,7 +6,7 @@ image:
 
 replicaCount: 1
 
-web-cache:
+webcache:
   enabled: true
   settings:
     backend:
