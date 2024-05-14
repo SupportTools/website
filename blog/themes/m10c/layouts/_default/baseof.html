@@ -1,38 +1,28 @@
 <!doctype html>
-<html lang="{{ .Site.LanguageCode | default " en-us" }}">
+<html lang="en-us">
 
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-151436906-1"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-
-    gtag('config', 'UA-151436906-1');
-  </script>
   <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} // {{ .Site.Title }}{{ end }}</title>
-  <link rel="shortcut icon" href="{{ .Site.Params.favicon | default " /favicon.ico" }}" />
+  <link rel="shortcut icon" href="{{ .Site.Params.favicon }}" />
   <meta charset="utf-8" />
   {{ hugo.Generator }}
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="author" content="{{ .Site.Params.author | default " John Doe" }}" />
+  <meta name="author" content="{{ .Site.Params.author }}" />
   <meta name="description"
     content="{{ if .IsHome }}{{ .Site.Params.description }}{{ else }}{{ .Description }}{{ end }}" />
   {{ $style := resources.Get "css/main.scss" | resources.ExecuteAsTemplate "css/main.scss" . | resources.ToCSS |
-  resources.Minify | resources.Fingerprint -}}
+  resources.Minify | resources.Fingerprint }}
   <link rel="stylesheet" href="{{ $style.Permalink }}" />
 
   {{ template "_internal/google_analytics.html" . }}
   {{ template "_internal/twitter_cards.html" . }}
   {{ template "_internal/opengraph.html" . }}
-
 </head>
 
 <body>
   <header class="app-header">
-    <a href="{{ .Site.BaseURL }}"><img class="app-header-avatar" src="{{ .Site.Params.avatar | default " avatar.jpg" |
-        relURL }}" alt="{{ .Site.Params.author | default " John Doe" }}" /></a>
+    <a href="{{ .Site.BaseURL }}"><img class="app-header-avatar" src="{{ .Site.Params.avatar }}"
+        alt="{{ .Site.Params.author}}" /></a>
     <h1>{{ .Site.Title }}</h1>
     {{- with .Site.Menus.main }}
     <nav class="app-header-menu">
@@ -44,8 +34,7 @@
       {{- end }}
     </nav>
     {{- end }}
-    <p>{{ .Site.Params.description | default "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vehicula
-      turpis sit amet elit pretium." }}</p>
+    <p>{{ .Site.Params.description }}</p>
     {{- with .Site.Params.social }}
     <div class="app-header-social">
       {{ range . }}
