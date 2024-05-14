@@ -18,9 +18,9 @@ Learn how to set up Chromium in kiosk mode to run a Grafana dashboard on a TV st
 <!--more-->
 # [Running Chromium as a Grafana Dashboard](#running-chromium-as-a-grafana-dashboard)
 
-In my office, I have a dedicated TV stand displaying a Grafana dashboard that serves as an “information radiator.” This setup shows various critical metrics such as the status of Jenkins jobs, clocks for different time zones (since Electric Imp operates globally), and more.
+In my office, I have a dedicated TV stand displaying a Grafana dashboard that serves as an "OPS Dashboard" This setup shows various critical metrics such as the status of Drone CI builds, K8s cluster health, and more.
 
-The dashboard is powered by an Acer nettop running Chromium in kiosk mode. Here’s how I configured it to start everything automatically.
+The dashboard is powered by an Intel NUC running Chromium in kiosk mode. Here’s how I configured it to start everything automatically.
 
 ## Setting Up the Dashboard Web Server
 
