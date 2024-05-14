@@ -6,6 +6,29 @@ image:
 
 replicaCount: 1
 
+web-cache:
+  enabled: true
+  settings:
+    backend:
+      host: "web"
+      scheme: "http"
+      port: 8080
+      timeout: 10000 ## Milliseconds
+      healthCheck:
+        enabled: true
+        path: "/healthz"
+        interval: 5s
+        timeout: 3s
+        retries: 3
+    cache:
+      size: 0 # 0 means no limit
+    configFile: "/app/config.json"
+    debug: false
+    metrics:
+      enabled: true
+      port: 9090
+  replicaCount: 1
+
 imagePullSecrets: []
 
 ingress:

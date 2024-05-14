@@ -1,0 +1,20 @@
+apiVersion: v2
+version: 0.1.0
+appVersion: 0.1.0
+name: website
+description: A Helm chart for support.tools website
+keywords:
+  - kubernetes
+  - website
+home: https://support.tools
+sources:
+  - https://github.com/supporttools/website
+maintainers:
+  - name: mattmattox
+    email: mmattox@support.tools
+icon: https://cdn.support.tools/profiles/avatar-centered.png
+dependencies:
+  - name: go-web-cache
+    version: v1.2.11
+    repository: https://charts.support.tools/
+    condition: web-cache.enabled

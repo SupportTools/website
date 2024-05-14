@@ -1,0 +1,15 @@
+apiVersion: v2
+name: website
+version: ${CHART_VERSION}
+appVersion: ${APP_VERSION}
+description: A Helm chart for support.tools website
+keywords:
+- kubernetes
+- website
+home: https://support.tools
+sources:
+- https://github.com/supporttools/website
+maintainers:
+- name: mattmattox
+  email: mmattox@support.tools
+icon: https://cdn.support.tools/profiles/avatar-centered.png

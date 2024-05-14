@@ -1,0 +1,6 @@
+dependencies:
+- name: go-web-cache
+  repository: https://charts.support.tools/
+  version: v1.2.11
+digest: sha256:8a40c49455b772f7e26fbcc45d24b63244e83a76cab519b69dbf1e59b0a77d49
+generated: "2024-05-10T13:20:26.517379165-05:00"

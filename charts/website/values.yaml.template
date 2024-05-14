@@ -1,0 +1,27 @@
+image:
+  repository: docker.io/supporttools/website
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: ${IMAGE_TAG}
+
+replicaCount: 1
+
+imagePullSecrets: []
+
+ingress:
+  host: support.tools
+
+autoscaling:
+  minReplicas: 3
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 80
+  targetMemoryUtilizationPercentage: 80
+  enabled: true
+
+resources:
+  limits:
+    cpu: 100m
+    memory: 128Mi
+  requests:
+    cpu: 10m
+    memory: 64Mi

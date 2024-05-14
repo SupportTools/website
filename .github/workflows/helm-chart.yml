@@ -22,9 +22,9 @@ jobs:
           export IMAGE_TAG="${{ github.run_number }}"
           echo "CHART_VERSION=${CHART_VERSION}"
           echo "APP_VERSION=${APP_VERSION}"
-          envsubst < charts/go-sql-proxy/Chart.yaml.template > charts/go-sql-proxy/Chart.yaml
-          envsubst < charts/go-sql-proxy/values.yaml.template > charts/go-sql-proxy/values.yaml
-          helm package charts/go-sql-proxy --destination helm/repo
+          envsubst < charts/website/Chart.yaml.template > charts/website/Chart.yaml
+          envsubst < charts/website/values.yaml.template > charts/website/values.yaml
+          helm package charts/website --destination helm/repo
 
       - name: Checkout helm-chart repository
         uses: actions/checkout@v2
@@ -40,7 +40,7 @@ jobs:
 
       - name: Update Helm repository
         run: |
-          cp helm/repo/go-sql-proxy-*.tgz helm-chart/
+          cp helm/repo/website-*.tgz helm-chart/
           cd helm-chart
           helm repo index . --url https://charts.support.tools/
           git add .

@@ -23,7 +23,11 @@ spec:
       paths:
       - backend:
           service:
-            name: go-web-cache
+            if {{ .Values.web-cache.enabled }} then
+              name: go-web-cache
+            else
+              name: frontend
+            end
             port:
               number: 8080
         path: /
