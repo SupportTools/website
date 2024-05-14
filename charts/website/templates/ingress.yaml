@@ -25,7 +25,7 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: {{ if .Values.webcache.enabled }}go-web-cache{{ else }}frontend{{ end }}
+            name: {{ if .Values.webcache.enabled }}go-web-cache{{ else }}website{{ end }}
             port:
               number: 8080
   tls:

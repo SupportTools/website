@@ -129,6 +129,9 @@ echo "Node information"
 kubectl get nodes -o wide
 echo "#############################################################################"
 
+echo "Creating namespace"
+kubectl create ns ${namespace} --dry-run=client -o yaml | kubectl apply -f -
+
 echo "Adding labels to namespace"
 kubectl label ns ${namespace} team=SupportTools --overwrite
 kubectl label ns ${namespace} app=website --overwrite
@@ -143,6 +146,7 @@ helm upgrade --install website ./charts/website \
 --set ingress.host=${ingress} \
 --set autoscaling.minReplicas=${maxReplicas} \
 --set autoscaling.maxReplicas=${maxReplicas} \
+--set webcache.replicaCount=${maxReplicas} \
 --force
 
 # echo "Package and publish Helm chart"

@@ -10,7 +10,7 @@ webcache:
   enabled: true
   settings:
     backend:
-      host: "web"
+      host: "website"
       scheme: "http"
       port: 8080
       timeout: 10000 ## Milliseconds
