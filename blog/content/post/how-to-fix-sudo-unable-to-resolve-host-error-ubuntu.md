@@ -1,7 +1,7 @@
 ---
 title: "How to Fix 'sudo: unable to resolve host' Error in Ubuntu"
 date: 2024-05-14T02:24:00-05:00
-draft: true
+draft: false
 tags: ["Ubuntu", "Linux", "sudo error", "host resolution"]
 categories:
 - Ubuntu
