@@ -23,7 +23,7 @@ webcache:
     cache:
       size: 0 # 0 means no limit
     configFile: "/app/config.json"
-    debug: false
+    debug: true
     metrics:
       enabled: true
       port: 9090
