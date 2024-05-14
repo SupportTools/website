@@ -138,7 +138,7 @@ kubectl label ns ${namespace} class=${class} --overwrite
 echo "Deploying website"
 helm upgrade --install website ./chart \
 --namespace ${namespace} \
--f ./chart/values.yaml \
+-f ./charts/website/values.yaml \
 --set image.tag=${imagetag} \
 --set ingress.host=${ingress} \
 --set autoscaling.minReplicas=${maxReplicas} \
