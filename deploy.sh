@@ -136,7 +136,7 @@ kubectl label ns ${namespace} ns-purge=${purge} --overwrite
 kubectl label ns ${namespace} class=${class} --overwrite
 
 echo "Deploying website"
-helm upgrade --install website ./chart \
+helm upgrade --install website ./charts/website \
 --namespace ${namespace} \
 -f ./charts/website/values.yaml \
 --set image.tag=${imagetag} \
