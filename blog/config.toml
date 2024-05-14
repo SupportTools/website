@@ -59,6 +59,8 @@ paginate = 8
     name = "Twitter"
     url = "https://twitter.com/cube8021"
 
+  googleAnalytics = "UA-151436906-1"
+
   # Default theme
   #[params.style]
   #  darkestColor = "#242930"
