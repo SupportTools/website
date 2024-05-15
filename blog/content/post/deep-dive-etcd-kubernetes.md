@@ -66,23 +66,23 @@ In Kubernetes, etcd stores all cluster data, including the state and configurati
 **Key Concepts:**
 
 - **Raft Algorithm:** Provides a distributed consensus algorithm for managing a replicated log.
-  - [Raft Consensus Algorithm](https://raft.github.io/raft.pdf): The official paper describing the algorithm.
-  - [Raft Visualization](https://raft.github.io/): A visualization tool for understanding Raft.
+- [Raft Consensus Algorithm](https://raft.github.io/raft.pdf): The official paper describing the algorithm.
+- [Raft Visualization](https://raft.github.io/): A visualization tool for understanding Raft.
 
 - **Consensus:** etcd uses the Raft algorithm to ensure data consistency across multiple nodes.
-  - **Leader Election:** Determines which node is the leader for handling requests.
-  - **Log Replication:** Ensures all nodes have the same data.
+- **Leader Election:** Determines which node is the leader for handling requests.
+- **Log Replication:** Ensures all nodes have the same data.
 
 - **WAL (Write-Ahead Log):** This ensures that data is not lost in a crash.
-  - [etcd Data model](https://etcd.io/docs/v3.5/learning/data_model/)
-  - [etcd WAL](https://etcd.io/docs/v3.5/learning/wal/)
-  - [etcd persistent storage files](https://etcd.io/docs/v3.5/learning/persistent-storage-files/)
+- [etcd Data model](https://etcd.io/docs/v3.5/learning/data_model/)
+- [etcd WAL](https://etcd.io/docs/v3.5/learning/wal/)
+- [etcd persistent storage files](https://etcd.io/docs/v3.5/learning/persistent-storage-files/)
 
 - **Snapshots:** Periodically created to provide a point-in-time copy of data.
 
 **Diagrams:**
 
-![Raft Consensus](https://cdn.support.tools/posts/deep-dive-etcd-kubernetes/leader_election.png)
+![Raft Consensus](https://cdn.support.tools/posts/deep-dive-etcd-kubernetes/leader-election.png)
 
 ![read-flow](https://cdn.support.tools/posts/deep-dive-etcd-kubernetes/etcd-read-flow.png)
 
@@ -93,9 +93,11 @@ In Kubernetes, etcd stores all cluster data, including the state and configurati
 **Architecture:**
 
 - **Components:** etcd consists of multiple components that can be broken down into Client, API, Raft, Etcd Server, Storage, MVCC Store
+
 ![Architecture](https://cdn.support.tools/posts/deep-dive-etcd-kubernetes/etcd-components.png)
 
 - **Leader-Follower:** etcd runs on each machine in a cluster and handles leader election during network partitions and the loss of the current leader using the Raft consensus algorithm.
+
 ![Leader Election](https://cdn.support.tools/posts/deep-dive-etcd-kubernetes/etcd-leader-election.png)
 
 - **High Availability:** Communication between etcd machines is handled via the Raft consensus algorithm.
@@ -138,24 +140,24 @@ etcd is used in a variety of applications for different purposes:
 
 - Download the latest etcd release from the official GitHub repository.
 
-    ```sh
-    wget https://github.com/etcd-io/etcd/releases/download/v3.4.15/etcd-v3.4.15-linux-amd64.tar.gz
-    tar xvf etcd-v3.4.15-linux-amd64.tar.gz
-    cd etcd-v3.4.15-linux-amd64
-    ```
+```sh
+wget https://github.com/etcd-io/etcd/releases/download/v3.4.15/etcd-v3.4.15-linux-amd64.tar.gz
+tar xvf etcd-v3.4.15-linux-amd64.tar.gz
+cd etcd-v3.4.15-linux-amd64
+```
 
 - Move the binaries to `/usr/local/bin`.
 
-    ```sh
-    sudo mv etcd etcdctl /usr/local/bin/
-    ```
+```sh
+sudo mv etcd etcdctl /usr/local/bin/
+```
 
 - Verify the installation.
 
-    ```sh
-    etcd --version
-    etcdctl --version
-    ```
+```sh
+etcd --version
+etcdctl --version
+```
 
 ## [Running etcd as a Container Using Docker](#running-etcd-as-a-container-using-docker)
 
@@ -163,30 +165,30 @@ etcd is used in a variety of applications for different purposes:
 
 - Pull the etcd Docker image.
 
-    ```sh
-    docker pull quay.io/coreos/etcd:v3.4.15
-    ```
+```sh
+docker pull quay.io/coreos/etcd:v3.4.15
+```
 
 - Run etcd as a Docker container.
 
-    ```sh
-    docker run -d \
-        -p 2379:2379 \
-        -p 2380:2380 \
-        --name etcd \
-        quay.io/coreos/etcd:v3.4.15 \
-        /usr/local/bin/etcd \
-        --name s1 \
-        --data-dir /etcd-data \
-        --listen-client-urls http://0.0.0.0:2379 \
-        --advertise-client-urls http://0.0.0.0:2379
-    ```
+```sh
+docker run -d \
+-p 2379:2379 \
+-p 2380:2380 \
+--name etcd \
+quay.io/coreos/etcd:v3.4.15 \
+/usr/local/bin/etcd \
+--name s1 \
+--data-dir /etcd-data \
+--listen-client-urls http://0.0.0.0:2379 \
+--advertise-client-urls http://0.0.0.0:2379
+```
 
 - Verify the container is running.
 
-    ```sh
-    docker ps
-    ```
+```sh
+docker ps
+```
 
 ## [Connecting to etcd](#connecting-to-etcd)
 
@@ -194,37 +196,37 @@ etcd is used in a variety of applications for different purposes:
 
 - Set environment variables for easier access.
 
-    ```sh
-    export ETCDCTL_API=3
-    export ETCDCTL_ENDPOINTS=http://localhost:2379
-    ```
+```sh
+export ETCDCTL_API=3
+export ETCDCTL_ENDPOINTS=http://localhost:2379
+```
 
 - Verify connection.
 
-    ```sh
-    etcdctl endpoint health
-    ```
+```sh
+etcdctl endpoint health
+```
 
 ## [Putting and Pulling Data from etcd](#putting-and-pulling-data-from-etcd)
 
 **Put Data:**
 
-    ```sh
-    etcdctl put foo "Hello, etcd"
-    ```
+```sh
+etcdctl put foo "Hello, etcd"
+```
 
 **Get Data:**
 
-    ```sh
-    etcdctl get foo
-    ```
+```sh
+etcdctl get foo
+```
 
 **Output:**
 
-    ```sh
-    foo
-    Hello, etcd
-    ```
+```sh
+foo
+Hello, etcd
+```
 
 **Pulling Kubernetes Secrets from etcd:**
 
@@ -232,40 +234,40 @@ To pull Kubernetes secrets from etcd, you need to base64 decode the values store
 
 - **Retrieve the secret:**
 
-    ```sh
-    etcdctl get /registry/secrets/default/mysecret
-    ```
+```sh
+etcdctl get /registry/secrets/default/mysecret
+```
 
 **Output:**
 
-    ```sh
-    /registry/secrets/default/mysecret
-    {"kind
+```sh
+/registry/secrets/default/mysecret
+{"kind
 
 ":"Secret","apiVersion":"v1","metadata":{"name":"mysecret","namespace":"default","..."},"data":{"username":"dXNlcm5hbWU=","password":"cGFzc3dvcmQ="}}
-    ```
+```
 
 - **Decode the secret values:**
 
-    ```sh
-    echo "dXNlcm5hbWU=" | base64 --decode
-    ```
+```sh
+echo "dXNlcm5hbWU=" | base64 --decode
+```
 
 **Output:**
 
-    ```sh
-    username
-    ```
+```sh
+username
+```
 
-    ```sh
-    echo "cGFzc3dvcmQ=" | base64 --decode
-    ```
+```sh
+echo "cGFzc3dvcmQ=" | base64 --decode
+```
 
 **Output:**
 
-    ```sh
-    password
-    ```
+```sh
+password
+```
 
 ## [Troubleshooting Common Issues](#troubleshooting-common-issues)
 
@@ -273,9 +275,9 @@ To pull Kubernetes secrets from etcd, you need to base64 decode the values store
 
 - **Cluster Unavailability:**
 
-  ```sh
-  etcdctl endpoint status --write-out=table
-  ```
+```sh
+etcdctl endpoint status --write-out=table
+```
 
 - **Network Issues:** Ensure ports 2379 and 2380 are open.
 - **Data Corruption:** Check logs for `etcd` and `etcdctl`.
@@ -289,46 +291,52 @@ To pull Kubernetes secrets from etcd, you need to base64 decode the values store
 - Tune etcd configurations (e.g., `--snapshot-count`).
 
 **Example Configuration:**
-    ```sh
-    etcd --name s1 \
-      --data-dir /etcd-data \
-      --listen-client-urls http://0.0.0.0:2379 \
-      --advertise-client-urls http://0.0.0.0:2379 \
-      --snapshot-count 10000
-    ```
+
+```sh
+etcd --name s1 \
+    --data-dir /etcd-data \
+    --listen-client-urls http://0.0.0.0:2379 \
+    --advertise-client-urls http://0.0.0.0:2379 \
+    --snapshot-count 10000
+```
 
 ## [Backup and Restore from Snapshot](#backup-and-restore-from-snapshot)
 
 **Backup:**
-    ```sh
-    etcdctl snapshot save backup.db
-    ```
+
+```sh
+etcdctl snapshot save backup.db
+```
 
 **Restore:**
-    ```sh
-    etcdctl snapshot restore backup.db \
-      --name s1 \
-      --data-dir /var/lib/etcd \
-      --initial-cluster s1=http://localhost:2380 \
-      --initial-cluster-token etcd-cluster-1
-    ```
+
+```sh
+etcdctl snapshot restore backup.db \
+    --name s1 \
+    --data-dir /var/lib/etcd \
+    --initial-cluster s1=http://localhost:2380 \
+    --initial-cluster-token etcd-cluster-1
+```
 
 ## [Adding and Removing Members](#adding-and-removing-members)
 
 **Add Member:**
-    ```sh
-    etcdctl member add s2 http://<new-member-ip>:2380
-    ```
+
+```sh
+etcdctl member add s2 http://<new-member-ip>:2380
+```
 
 **Remove Member:**
-    ```sh
-    etcdctl member remove <member-id>
-    ```
+
+```sh
+etcdctl member remove <member-id>
+```
 
 **Check Member List:**
-    ```sh
-    etcdctl member list
-    ```
+
+```sh
+etcdctl member list
+```
 
 ## [Manually Recovering from an Outage](#manually-recovering-from-an-outage)
 
@@ -337,18 +345,19 @@ To pull Kubernetes secrets from etcd, you need to base64 decode the values store
 - Identify the latest snapshot and WAL files.
 - Restore from a snapshot if necessary.
 
-    ```sh
-    etcdctl snapshot restore <snapshot-file>
-    ```
+```sh
+etcdctl snapshot restore <snapshot-file>
+```
 
 - Restart, etcd, with restored data.
 
 **Example Commands:**
-    ```sh
-    systemctl stop etcd
-    etcdctl snapshot restore backup.db --data-dir /var/lib/etcd
-    systemctl start etcd
-    ```
+
+```sh
+systemctl stop etcd
+etcdctl snapshot restore backup.db --data-dir /var/lib/etcd
+systemctl start etcd
+```
 
 ## [Setting Up Certificates for etcd](#setting-up-certificates-for-etcd)
 
@@ -356,43 +365,43 @@ Certificates are used to secure communication between etcd nodes and clients. He
 
 - **Generate CA Certificate:**
 
-    ```sh
-    openssl genrsa -out ca.key 2048
-    openssl req -x509 -new -nodes -key ca.key -subj "/CN=etcd-ca" -days 10000 -out ca.crt
-    ```
+```sh
+openssl genrsa -out ca.key 2048
+openssl req -x509 -new -nodes -key ca.key -subj "/CN=etcd-ca" -days 10000 -out ca.crt
+```
 
 - **Generate Server Certificate:**
 
-    ```sh
-    openssl genrsa -out server.key 2048
-    openssl req -new -key server.key -subj "/CN=<your-etcd-server-ip>" -out server.csr
-    openssl x509 -req -in server.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out server.crt -days 365
-    ```
+```sh
+openssl genrsa -out server.key 2048
+openssl req -new -key server.key -subj "/CN=<your-etcd-server-ip>" -out server.csr
+openssl x509 -req -in server.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out server.crt -days 365
+```
 
 - **Generate Client Certificate:**
 
-    ```sh
-    openssl genrsa -out client.key 2048
-    openssl req -new -key client.key -subj "/CN=etcd-client" -out client.csr
-    openssl x509 -req -in client.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out client.crt -days 365
-    ```
+```sh
+openssl genrsa -out client.key 2048
+openssl req -new -key client.key -subj "/CN=etcd-client" -out client.csr
+openssl x509 -req -in client.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out client.crt -days 365
+```
 
 - **Configure etcd to Use Certificates:**
 
-    ```sh
-    etcd --name s1 \
-      --data-dir /etcd-data \
-      --listen-client-urls https://0.0.0.0:2379 \
-      --advertise-client-urls https://0.0.0.0:2379 \
-      --cert-file=server.crt \
-      --key-file=server.key \
-      --client-cert-auth \
-      --trusted-ca-file=ca.crt \
-      --peer-cert-file=server.crt \
-      --peer-key-file=server.key \
-      --peer-client-cert-auth \
-      --peer-trusted-ca-file=ca.crt
-    ```
+```sh
+etcd --name s1 \
+    --data-dir /etcd-data \
+    --listen-client-urls https://0.0.0.0:2379 \
+    --advertise-client-urls https://0.0.0.0:2379 \
+    --cert-file=server.crt \
+    --key-file=server.key \
+    --client-cert-auth \
+    --trusted-ca-file=ca.crt \
+    --peer-cert-file=server.crt \
+    --peer-key-file=server.key \
+    --peer-client-cert-auth \
+    --peer-trusted-ca-file=ca.crt
+```
 
 ## [API](#api)
 
@@ -414,13 +423,13 @@ or
 ```sh
 $ curl --cacert ca.crt --cert client.crt --key client.key -X PUT http://127.0.0.1:2379/v2/keys/message -d value="Hello"
 {
-  "action": "set",
-  "node": {
-    "key": "/message",
-    "value": "Hello",
-    "modifiedIndex": 4,
-    "createdIndex": 4
-  }
+"action": "set",
+"node": {
+"key": "/message",
+"value": "Hello",
+"modifiedIndex": 4,
+"createdIndex": 4
+}
 }
 ```
 
@@ -438,13 +447,13 @@ or
 ```sh
 $ curl --cacert ca.crt --cert client.crt --key client.key http://127.0.0.1:2379/v2/keys/message
 {
-  "action": "get",
-  "node": {
-    "key": "/message",
-    "value": "Hello",
-    "modifiedIndex": 4,
-    "createdIndex": 4
-  }
+"action": "get",
+"node": {
+"key": "/message",
+"value": "Hello",
+"modifiedIndex": 4,
+"createdIndex": 4
+}
 }
 ```
 
@@ -459,12 +468,12 @@ or
 ```sh
 $ curl --cacert ca.crt --cert client.crt --key client.key -X DELETE http://127.0.0.1:2379/v2/keys/message
 {
-  "action": "delete",
-  "node": {
-    "key": "/message",
-    "modifiedIndex": 19,
-    "createdIndex": 4
-  }
+"action": "delete",
+"node": {
+"key": "/message",
+"modifiedIndex": 19,
+"createdIndex": 4
+}
 }
 ```
 
@@ -473,25 +482,25 @@ $ curl --cacert ca.crt --cert client.crt --key client.key -X DELETE http://127.0
 ```sh
 $ curl --cacert ca.crt --cert client.crt --key client.key -X PUT http://127.0.0.1:2379/v2/keys/foo?ttl=20 -d value=bar
 {
-  "action": "set",
-  "node": {
-    "key": "/foo",
-    "value": "bar",
-    "expiration": "2014-02-10T19:54:49.357382223Z",
-    "ttl": 20,
-    "modifiedIndex": 31,
-    "createdIndex" :31
-  }
+"action": "set",
+"node": {
+"key": "/foo",
+"value": "bar",
+"expiration": "2014-02-10T19:54:49.357382223Z",
+"ttl": 20,
+"modifiedIndex": 31,
+"createdIndex" :31
+}
 }
 ```
 
 ```sh
 $ curl --cacert ca.crt --cert client.crt --key client.key http://127.0.0.1:2379/v2/keys/foo
 {
-  "errorCode": 100,
-  "message": "Key not found",
-  "cause": "/foo",
-  "index": 32
+"errorCode": 100,
+"message": "Key not found",
+"cause": "/foo",
+"index": 32
 }
 ```
 
@@ -507,14 +516,14 @@ $ curl --cacert ca.crt --cert client.crt --key client.key http://127.0.0.1:2379/
 # to instances of Container Linux.
 
 etcd:
-  name:                        my-etcd-1
-  listen_client_urls:          https://10.240.0.1:2379
-  advertise_client_urls:       https://10.240.0.1:2379
-  listen_peer_urls:            https://10.240.0.1:2380
-  initial_advertise_peer_urls: https://10.240.0.1:2380
-  initial_cluster:             my-etcd-1=https://10.240.0.1:2380,my-etcd-2=https://10.240.0.2:2380,my-etcd-3=https://10.240.0.3:2380
-  initial_cluster_token:       my-etcd-token
-  initial_cluster_state:       new
+name:                        my-etcd-1
+listen_client_urls:          https://10.240.0.1:2379
+advertise_client_urls:       https://10.240.0.1:2379
+listen_peer_urls:            https://10.240.0.1:2380
+initial_advertise_peer_urls: https://10.240.0.1:2380
+initial_cluster:             my-etcd-1=https://10.240.0.1:2380,my-etcd-2=https://10.240.0.2:2380,my-etcd-3=https://10.240.0.3:2380
+initial_cluster_token:       my-etcd-token
+initial_cluster_state:       new
 ```
 
 ### Clustering
@@ -534,7 +543,7 @@ etcdctl member add <name> <peerURL>
 # e.g.:
 ectdctl member add
 
- etcd5 http://etcd5:2380
+etcd5 http://etcd5:2380
 ```
 
 On new member
@@ -553,7 +562,7 @@ Raft uses a more robust form of leadership than other consensus algorithms. For 
 
 Raft uses randomized timers to elect leaders. This adds only a tiny amount of mechanism to the heartbeats already required for any consensus algorithm,
 
- while resolving conflicts simply and rapidly.
+while resolving conflicts simply and rapidly.
 
 ### Membership Changes
 
