@@ -15,6 +15,6 @@ maintainers:
 icon: https://cdn.support.tools/profiles/avatar-centered.png
 dependencies:
   - name: go-web-cache
-    version: v1.3.1
+    version: v1.3.2
     repository: https://charts.support.tools/
     condition: web-cache.enabled
