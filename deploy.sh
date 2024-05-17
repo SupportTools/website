@@ -149,18 +149,11 @@ helm upgrade --install website ./charts/website \
 --set webcache.replicaCount=${maxReplicas} \
 --force
 
-# echo "Package and publish Helm chart"
-# export HELM_EXPERIMENTAL_OCI=1
-# helm registry login harbor.support.tools --username ${DOCKER_USERNAME} --password ${DOCKER_PASSWORD}
-# helm package ./chart/ --version ${DRONE_BUILD_NUMBER} --app-version ${imagetag}
-# helm push website-helm-${DRONE_BUILD_NUMBER}.tgz oci://harbor.support.tools/supporttools
-# rm -f website-helm-${DRONE_BUILD_NUMBER}.tgz
+echo "Waiting for frontend to be ready"
+kubectl -n ${namespace} rollout status deployment frontend --timeout=15m
 
-# echo "Recycling web-cache"
-# kubectl -n ${namespace} rollout restart deployment go-web-cache --timeout=15m || true
+echo "Recycling web-cache"
+kubectl -n ${namespace} rollout restart deployment go-web-cache --timeout=15m || true
 
-# echo "Waiting for web-cache to be ready"
-# kubectl -n ${namespace} rollout status deployment web-cache --timeout=15m
-
-# echo "Waiting for frontend to be ready"
-# kubectl -n ${namespace} rollout status deployment frontend --timeout=15m
+echo "Waiting for web-cache to be ready"
+kubectl -n ${namespace} rollout status deployment web-cache --timeout=15m
