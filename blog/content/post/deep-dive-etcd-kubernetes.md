@@ -66,6 +66,7 @@ In Kubernetes, etcd stores all cluster data, including the state and configurati
 **Key Concepts:**
 
 - **Raft Algorithm:** Provides a distributed consensus algorithm for managing a replicated log.
+
 - [Raft Consensus Algorithm](https://raft.github.io/raft.pdf): The official paper describing the algorithm.
 - [Raft Visualization](https://raft.github.io/): A visualization tool for understanding Raft.
 
@@ -74,6 +75,7 @@ In Kubernetes, etcd stores all cluster data, including the state and configurati
 - **Log Replication:** Ensures all nodes have the same data.
 
 - **WAL (Write-Ahead Log):** This ensures that data is not lost in a crash.
+
 - [etcd Data model](https://etcd.io/docs/v3.5/learning/data_model/)
 - [etcd WAL](https://etcd.io/docs/v3.5/learning/wal/)
 - [etcd persistent storage files](https://etcd.io/docs/v3.5/learning/persistent-storage-files/)
