@@ -153,7 +153,7 @@ echo "Waiting for frontend to be ready"
 timeout 15m kubectl -n ${namespace} rollout status deployment frontend
 
 echo "Recycling web-cache"
-timeout 15m kubectl -n ${namespace} rollout restart deployment web-cache
+timeout 15m kubectl -n ${namespace} rollout restart deployment web-cache --ignore-not-found
 
 echo "Waiting for web-cache to be ready"
-timeout 15m kubectl -n ${namespace} rollout status deployment web-cache
+timeout 15m kubectl -n ${namespace} rollout status deployment web-cache || true
