@@ -10,6 +10,7 @@ author: "Matthew Mattox - mmattox@support.tools."
 description: "Learn how to restrict Longhorn access to specific nodes in your K3s cluster to avoid replication issues."
 more_link: "yes"
 url: "/how-to-restrict-longhorn-in-k3s-cluster/"
+---
 
 ## [How to Restrict Longhorn Access to Specific Nodes in K3s Cluster](#how-to-restrict-longhorn-access-to-specific-nodes-in-k3s-cluster)
 
@@ -43,7 +44,7 @@ kubectl label node roger-nuc0 differentpla.net/longhorn-storage-node=true
 Given the installation of Longhorn via Helm chart...
 
 ```sh
-$ helm list -A | grep longhorn
+helm list -A | grep longhorn
 ```
 
 ...retrieve the values file for editing.
