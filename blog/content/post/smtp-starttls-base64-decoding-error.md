@@ -10,6 +10,7 @@ author: "Matthew Mattox - mmattox@support.tools."
 description: "Learn how to resolve a common issue with SMTP STARTTLS connections encountering 'Base64 Decoding Error'."
 more_link: "yes"
 url: "/smtp-starttls-base64-decoding-error/"
+---
 
 Troubleshooting SMTP STARTTLS Connection Error: Base64 Decoding Error
 
@@ -32,8 +33,8 @@ After further investigation, I discovered that the error message was misleading.
 To rectify this issue, follow these steps:
 
 ```
-$ cp foo.key foo.key.orig
-$ openssl rsa -in foo.key.orig --out foo.key
+cp foo.key foo.key.orig
+openssl rsa -in foo.key.orig --out foo.key
 ```
 
 By removing the passphrase from the key file, the SMTP STARTTLS connection error related to 'Base64 Decoding Error' should be resolved effectively.
