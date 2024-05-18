@@ -9,6 +9,7 @@ categories:
 author: "Matthew Mattox - mmattox@support.tools."
 description: "TEMPLATE"
 more_link: "yes"
+url: "/template/"
 ---
 
 TEMPLATE

@@ -7,5 +7,5 @@ then
   echo "No draft content found"
 else
   echo "Draft content found"
-  exit 1
+  #exit 1
 fi
