@@ -10,6 +10,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to get started in contributing to Kubernetes with our new contributor workshops."
 more_link: "yes"
 url: "/how-to-contribute-to-kubernetes/"
+---
 
 # How to Contribute to Kubernetes: A Guide for Beginners
 
