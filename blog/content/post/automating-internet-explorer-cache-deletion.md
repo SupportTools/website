@@ -10,6 +10,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Explore how to programatically delete the Internet Explorer cache using C code for efficient and automated cache management."
 more_link: "yes"
 url: "/automating-internet-explorer-cache-deletion/"
+---
 
 Automating Internet Explorer Cache Deletion with C Code
 
