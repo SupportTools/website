@@ -150,10 +150,10 @@ helm upgrade --install website ./charts/website \
 --force
 
 echo "Waiting for frontend to be ready"
-kubectl -n ${namespace} rollout status deployment frontend --timeout=15m
+timeout 15m kubectl -n ${namespace} rollout status deployment frontend
 
 echo "Recycling web-cache"
-kubectl -n ${namespace} rollout restart deployment go-web-cache --timeout=15m || true
+timeout 15m kubectl -n ${namespace} rollout restart deployment web-cache
 
 echo "Waiting for web-cache to be ready"
-kubectl -n ${namespace} rollout status deployment web-cache --timeout=15m
+timeout 15m kubectl -n ${namespace} rollout status deployment web-cache
