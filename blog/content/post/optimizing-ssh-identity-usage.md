@@ -10,6 +10,7 @@ author: "Matthew Mattox - mmattox@support.tools."
 description: "Learn how to efficiently manage SSH identities in Docker builds to avoid conflicts and streamline your workflow."
 more_link: "yes"
 url: "/optimizing-ssh-identity-usage/"
+---
 
 # [Optimizing SSH Identity Usage in Docker Builds](#optimizing-ssh-identity-usage-in-docker-builds)
 
@@ -61,9 +62,9 @@ _DOCKER_BUILD_GIT_CONFIG_ARG = --build-arg GIT_SSH_COMMAND="ssh -i /run/secrets/
 endif
 
 docker-image:
-	docker build \
-		$(_DOCKER_BUILD_SECRET_ARG) \
-		$(_DOCKER_BUILD_GIT_CONFIG_ARG) \
-		--ssh default \
-		.
+ docker build \
+  $(_DOCKER_BUILD_SECRET_ARG) \
+  $(_DOCKER_BUILD_GIT_CONFIG_ARG) \
+  --ssh default \
+  .
 ```
