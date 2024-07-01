@@ -1,0 +1,35 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: supporttools-mst
+  namespace: argocd
+spec:
+  destination:
+    namespace: supporttools-mst
+    server: https://kubernetes.default.svc
+  project: SupportTools
+  source:
+    chart: website
+    helm:
+      parameters:
+        - name: webcache.enable
+          value: "true"
+        - name: replicaCount
+          value: "1"
+        - name: ingress.host
+          value: mst.support.tools
+    repoURL: https://charts.support.tools
+    targetRevision: CHARTVERSION
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+    automated:
+      prune: true
+      selfHeal: true
+    retry:
+      limit: 3
+      backoff:
+        duration: "30m"
+        factor: 2
+        maxDuration: "5m"

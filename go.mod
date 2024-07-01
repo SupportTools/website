@@ -1,6 +1,6 @@
 module github.com/supporttools/website
 
-go 1.21.6
+go 1.22.2
 
 require (
 	github.com/prometheus/client_golang v1.18.0
