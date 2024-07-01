@@ -6,6 +6,7 @@ image:
 
 webcache:
   enabled: true
+  replicaCount: 3
   settings:
     backend:
       host: "website"

@@ -33,37 +33,4 @@ spec:
     kind: Deployment
     name: frontend  
 ---
-apiVersion: autoscaling/v2
-kind: HorizontalPodAutoscaler
-metadata:
-  name: go-web-cache
-  labels:
-    app: website
-    component: go-web-cache
-    team: SupportTools
-spec:
-  minReplicas: {{ .Values.autoscaling.minReplicas }}
-  maxReplicas: {{ .Values.autoscaling.maxReplicas }}
-  metrics:
-  {{- if .Values.autoscaling.targetCPUUtilizationPercentage }}
-  - resource:
-      name: cpu
-      target:
-        averageUtilization: {{ .Values.autoscaling.targetCPUUtilizationPercentage }}
-        type: Utilization
-    type: Resource
-  {{- end }}
-  {{- if .Values.autoscaling.targetMemoryUtilizationPercentage }}
-  - resource:
-      name: memory
-      target:
-        averageUtilization: {{ .Values.autoscaling.targetMemoryUtilizationPercentage }}
-        type: Utilization
-    type: Resource  
-  {{- end }}
-  scaleTargetRef:
-    apiVersion: apps/v1
-    kind: Deployment
-    name: go-web-cache  
----
 {{- end }}
