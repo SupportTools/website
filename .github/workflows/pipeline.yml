@@ -105,3 +105,32 @@ jobs:
           git add .
           git commit -m "Update Helm chart for support.tools"
           git push
+
+  deploy-to-master:
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up environment variables
+        run: |
+          echo "DOCKER_USERNAME=${{ secrets.DOCKER_USERNAME }}" >> $GITHUB_ENV
+          echo "DOCKER_PASSWORD=${{ secrets.DOCKER_PASSWORD }}" >> $GITHUB_ENV
+          echo "CATTLE_SERVER=${{ secrets.CATTLE_SERVER }}" >> $GITHUB_ENV
+          echo "CATTLE_ACCESS_KEY=${{ secrets.CATTLE_ACCESS_KEY }}" >> $GITHUB_ENV
+          echo "CATTLE_SECRET_KEY=${{ secrets.CATTLE_SECRET_KEY }}" >> $GITHUB_ENV
+
+      - name: Setup Kube-Builder
+        uses: docker://supporttools/kube-builder:latest
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+          CATTLE_SERVER: ${{ secrets.CATTLE_SERVER }}
+          CATTLE_ACCESS_KEY: ${{ secrets.CATTLE_ACCESS_KEY }}
+          CATTLE_SECRET_KEY: ${{ secrets.CATTLE_SECRET_KEY }}
+
+      - name: Deploy to K8s
+        run: |
+          bash deploy.sh
