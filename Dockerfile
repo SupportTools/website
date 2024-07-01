@@ -1,4 +1,4 @@
-FROM thegeeklab/hugo:0.122.0 AS hugo-builder
+FROM thegeeklab/hugo:latest AS hugo-builder
 
 # Copy the source code
 COPY ./blog/ /site
@@ -10,7 +10,7 @@ WORKDIR /site
 RUN hugo
 
 # Use a full-featured base image for building
-FROM golang:1.21.6-alpine3.18 AS go-builder
+FROM golang:1.22.4-alpine3.20 AS go-builder
 
 # Install git if your project requires
 RUN apk update && apk add --no-cache git
@@ -30,7 +30,8 @@ ARG GIT_COMMIT
 ARG BUILD_DATE
 
 # Build the Go app with versioning information
-RUN GOOS=linux go build -ldflags "-X github.com/supporttools/website/pkg/health.version=$VERSION -X github.com/supporttools/website/pkg/health.GitCommit=$GIT_COMMIT -X github.com/supporttools/website/pkg/health.BuildTime=$BUILD_DATE" -o /bin/webserver
+RUN GOOS=linux GOARCH=amd64 go build -ldflags "-X github.com/supporttools/website/pkg/version.Version=$VERSION -X github.com/supporttools/website/pkg/version.GitCommit=$GIT_COMMIT -X github.com/supporttools/website/pkg/version.BuildTime=$BUILD_DATE" -o /bin/webserver
+RUN chmod +x /bin/webserver
 
 # Start from scratch for the runtime stage
 FROM scratch

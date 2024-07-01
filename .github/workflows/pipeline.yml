@@ -108,7 +108,7 @@ jobs:
 
   deploy-to-master:
     runs-on: ubuntu-latest
-    needs: build
+    needs: publish
 
     steps:
       - name: Checkout repository
@@ -133,4 +133,4 @@ jobs:
 
       - name: Deploy to K8s
         run: |
-          bash deploy.sh
+          kubectl get nodes -o wide
