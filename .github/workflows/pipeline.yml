@@ -123,7 +123,6 @@ jobs:
           chmod +x rancher-projects
           mv rancher-projects /usr/local/bin/
           rancher-projects --rancher-server ${{ secrets.CATTLE_SERVER }} --rancher-access-key ${{ secrets.CATTLE_ACCESS_KEY }} --rancher-secret-key ${{ secrets.CATTLE_SECRET_KEY }} --cluster-name a1-ops-dev --project-name "SupportTools" --namespace supporttools-mst --create-kubeconfig --kubeconfig "kubeconfig"
-          kubectl --kubeconfig kubeconfig get nodes -o wide
   
       - name: Deploy to K8s
         run: |
