@@ -4,7 +4,7 @@ image:
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
 
-webcache:
+go-web-cache:
   enabled: true
   replicaCount: 3
   settings:

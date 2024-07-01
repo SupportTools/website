@@ -17,4 +17,4 @@ dependencies:
   - name: go-web-cache
     version: v1.3.2
     repository: https://charts.support.tools/
-    condition: web-cache.enabled
+    condition: go-web-cache.enabled
