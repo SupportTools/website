@@ -11,7 +11,7 @@ metadata:
     external-dns.alpha.kubernetes.io/ttl: "120"
     external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
     kubernetes.io/tls-acme: "true"
-    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    cert-manager.io/cluster-issuer: "letsencrypt-dns01"
     cert-manager.io/cluster-issuer-duration: "8760h"
     cert-manager.io/cluster-issuer-email: "mmattox@support.tools"
     cert-manager.io/issue-temporary-certificate: "true"
@@ -25,7 +25,7 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: {{ if .Values.go-web-cache.enabled }}go-web-cache{{ else }}website{{ end }}
+            name: go-web-cache
             port:
               number: 8080
   tls:
