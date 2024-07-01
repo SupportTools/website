@@ -132,7 +132,7 @@ jobs:
           SLEEP_TIME=10
           COUNTER=0
           while [ $COUNTER -lt $MAX_TRIES ]; do
-            HEALTH_STATUS=$(kubectl get app supporttools-mst -n argocd -o jsonpath='{.status.health.status}' --kubeconfig kubeconfig)
+            HEALTH_STATUS=$(kubectl get applications.argoproj.io supporttools-mst -n argocd -o jsonpath='{.status.health.status}' --kubeconfig kubeconfig)
             echo "Current health status: $HEALTH_STATUS"
             if [ "$HEALTH_STATUS" = "Healthy" ]; then
               echo "Application is healthy."
@@ -155,7 +155,7 @@ jobs:
           SLEEP_TIME=10
           COUNTER=0
           while [ $COUNTER -lt $MAX_TRIES ]; do
-            HEALTH_STATUS=$(kubectl get app supporttools-dev -n argocd -o jsonpath='{.status.health.status}' --kubeconfig kubeconfig)
+            HEALTH_STATUS=$(kubectl get applications.argoproj.io supporttools-dev -n argocd -o jsonpath='{.status.health.status}' --kubeconfig kubeconfig)
             echo "Current health status: $HEALTH_STATUS"
             if [ "$HEALTH_STATUS" = "Healthy" ]; then
               echo "Application is healthy."
@@ -178,7 +178,7 @@ jobs:
           SLEEP_TIME=10
           COUNTER=0
           while [ $COUNTER -lt $MAX_TRIES ]; do
-            HEALTH_STATUS=$(kubectl get app supporttools-qas -n argocd -o jsonpath='{.status.health.status}' --kubeconfig kubeconfig)
+            HEALTH_STATUS=$(kubectl get applications.argoproj.io supporttools-qas -n argocd -o jsonpath='{.status.health.status}' --kubeconfig kubeconfig)
             echo "Current health status: $HEALTH_STATUS"
             if [ "$HEALTH_STATUS" = "Healthy" ]; then
               echo "Application is healthy."
@@ -220,7 +220,7 @@ jobs:
           SLEEP_TIME=10
           COUNTER=0
           while [ $COUNTER -lt $MAX_TRIES ]; do
-            HEALTH_STATUS=$(kubectl get app supporttools-tst -n argocd -o jsonpath='{.status.health.status}' --kubeconfig kubeconfig)
+            HEALTH_STATUS=$(kubectl get applications.argoproj.io supporttools-tst -n argocd -o jsonpath='{.status.health.status}' --kubeconfig kubeconfig)
             echo "Current health status: $HEALTH_STATUS"
             if [ "$HEALTH_STATUS" = "Healthy" ]; then
               echo "Application is healthy."
@@ -243,7 +243,7 @@ jobs:
           SLEEP_TIME=10
           COUNTER=0
           while [ $COUNTER -lt $MAX_TRIES ]; do
-            HEALTH_STATUS=$(kubectl get app supporttools-sts -n argocd -o jsonpath='{.status.health.status}' --kubeconfig kubeconfig)
+            HEALTH_STATUS=$(kubectl get applications.argoproj.io supporttools-sts -n argocd -o jsonpath='{.status.health.status}' --kubeconfig kubeconfig)
             echo "Current health status: $HEALTH_STATUS"
             if [ "$HEALTH_STATUS" = "Healthy" ]; then
               echo "Application is healthy."
@@ -266,7 +266,7 @@ jobs:
           SLEEP_TIME=10
           COUNTER=0
           while [ $COUNTER -lt $MAX_TRIES ]; do
-            HEALTH_STATUS=$(kubectl get app supporttools-prd -n argocd -o jsonpath='{.status.health.status}' --kubeconfig kubeconfig)
+            HEALTH_STATUS=$(kubectl get applications.argoproj.io supporttools-prd -n argocd -o jsonpath='{.status.health.status}' --kubeconfig kubeconfig)
             echo "Current health status: $HEALTH_STATUS"
             if [ "$HEALTH_STATUS" = "Healthy" ]; then
               echo "Application is healthy."
