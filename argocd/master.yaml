@@ -2,7 +2,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: AppProject
 metadata:
-  name: SupportTools
+  name: supporttools
   namespace: argocd
 spec:
   clusterResourceWhitelist:
@@ -24,7 +24,7 @@ spec:
   destination:
     namespace: supporttools-mst
     server: https://kubernetes.default.svc
-  project: SupportTools
+  project: supporttools
   source:
     chart: website
     helm:
