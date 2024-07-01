@@ -31,6 +31,8 @@ spec:
       parameters:
         - name: webcache.enable
           value: "true"
+        - name: webcache.replicaCount
+          value: "3"
         - name: ingress.host
           value: qas.support.tools
     repoURL: https://charts.support.tools
