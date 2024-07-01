@@ -13,7 +13,7 @@ jobs:
 
       - name: HUGO test build
         run: |
-          docker run --rm -v $(pwd)/blog/:/src -w /src thegeeklab/hugo:latest--panicOnWarning --minify --gc --cleanDestinationDir --destination public --baseURL http://localhost
+          docker run --rm -v $(pwd)/blog/:/src -w /src thegeeklab/hugo:0.127.0--panicOnWarning --minify --gc --cleanDestinationDir --destination public --baseURL http://localhost
         
       # - name: html-validation
       #   run: |
