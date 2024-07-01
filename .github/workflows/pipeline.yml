@@ -127,6 +127,7 @@ jobs:
       - name: Deploy Master
         run: |
           cat ./argocd/mst.yaml | sed "s/CHARTVERSION/v${{ github.run_number }}/g" | kubectl --kubeconfig kubeconfig apply -f -
+          sleep 30
           # Wait for the application to become healthy
           MAX_TRIES=30
           SLEEP_TIME=10
@@ -150,6 +151,7 @@ jobs:
       - name: Deploy Dev
         run: |
           cat ./argocd/dev.yaml | sed "s/CHARTVERSION/v${{ github.run_number }}/g" | kubectl --kubeconfig kubeconfig apply -f -
+          sleep 30
           # Wait for the application to become healthy
           MAX_TRIES=30
           SLEEP_TIME=10
@@ -173,6 +175,7 @@ jobs:
       - name: Deploy QAS
         run: |
           cat ./argocd/qas.yaml | sed "s/CHARTVERSION/v${{ github.run_number }}/g" | kubectl --kubeconfig kubeconfig apply -f -
+          sleep 30
           # Wait for the application to become healthy
           MAX_TRIES=30
           SLEEP_TIME=10
@@ -215,6 +218,7 @@ jobs:
       - name: Deploy Test
         run: |
           cat ./argocd/tst.yaml | sed "s/CHARTVERSION/v${{ github.run_number }}/g" | kubectl --kubeconfig kubeconfig apply -f -
+          sleep 30
           # Wait for the application to become healthy
           MAX_TRIES=30
           SLEEP_TIME=10
@@ -238,6 +242,7 @@ jobs:
       - name: Deploy Staging
         run: |
           cat ./argocd/stg.yaml | sed "s/CHARTVERSION/v${{ github.run_number }}/g" | kubectl --kubeconfig kubeconfig apply -f -
+          sleep 30
           # Wait for the application to become healthy
           MAX_TRIES=30
           SLEEP_TIME=10
@@ -261,6 +266,7 @@ jobs:
       - name: Deploy Prod
         run: |
           cat ./argocd/prd.yaml | sed "s/CHARTVERSION/v${{ github.run_number }}/g" | kubectl --kubeconfig kubeconfig apply -f -
+          sleep 30
           # Wait for the application to become healthy
           MAX_TRIES=30
           SLEEP_TIME=10
