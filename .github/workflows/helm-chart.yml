@@ -10,16 +10,20 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
       - name: Set up Helm
-        uses: azure/setup-helm@v1
-        with:
-          version: v3.7.1
+        uses: azure/setup-helm@v4.2.0
+
+      - name: Helm Lint
+        run: helm lint charts/website/
 
       - name: Package Helm chart
         run: |
-          export CHART_VERSION="${{ github.run_number }}"
-          export APP_VERSION="${{ github.run_number }}"
-          export IMAGE_TAG="${{ github.run_number }}"
+          export CHART_VERSION="v${{ github.run_number }}"
+          export APP_VERSION="v${{ github.run_number }}"
+          export IMAGE_TAG="v${{ github.run_number }}"
           echo "CHART_VERSION=${CHART_VERSION}"
           echo "APP_VERSION=${APP_VERSION}"
           echo "IMAGE_TAG=${IMAGE_TAG}"
@@ -28,7 +32,7 @@ jobs:
           helm package charts/website --destination helm/repo
 
       - name: Checkout helm-chart repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           repository: SupportTools/helm-chart
           path: helm-chart
