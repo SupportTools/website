@@ -131,7 +131,7 @@ jobs:
   
       - name: Deploy to Dev
         run: |
-          rancher-projects --rancher-server ${{ secrets.CATTLE_SERVER }} --rancher-access-key ${{ secrets.CATTLE_ACCESS_KEY }} --rancher-secret-key ${{ secrets.CATTLE_SECRET_KEY }} --cluster-name a1-ops-dev --create-project --project-name "SupportTools" --create-namespace --namespace supporttools-dev --create-kubeconfig --kubeconfig "kubeconfig"
+          rancher-projects --rancher-server ${{ secrets.CATTLE_SERVER }} --rancher-access-key ${{ secrets.CATTLE_ACCESS_KEY }} --rancher-secret-key ${{ secrets.CATTLE_SECRET_KEY }} --cluster-name a1-ops-dev --create-kubeconfig --kubeconfig "kubeconfig"
           cat ./argocd/dev.yaml | sed "s/CHARTVERSION/v${{ github.run_number }}/g" | kubectl --kubeconfig kubeconfig apply -f -
           rm kubeconfig
 
