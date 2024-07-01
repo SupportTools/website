@@ -124,29 +124,11 @@ jobs:
           mv rancher-projects /usr/local/bin/
           rancher-projects --rancher-server ${{ secrets.CATTLE_SERVER }} --rancher-access-key ${{ secrets.CATTLE_ACCESS_KEY }} --rancher-secret-key ${{ secrets.CATTLE_SECRET_KEY }} --cluster-name a1-ops-dev --project-name "SupportTools" --create-namespace true --namespace supporttools --kubeconfig "a1-ops-dev"
           rancher-projects --rancher-server ${{ secrets.CATTLE_SERVER }} --rancher-access-key ${{ secrets.CATTLE_ACCESS_KEY }} --rancher-secret-key ${{ secrets.CATTLE_SECRET_KEY }} --cluster-name a1-ops-prd --project-name "SupportTools" --create-namespace true --namespace supporttools --kubeconfig "a1-ops-prd"
-      
-      - name: Deploy to Master
-        run: |
           cat ./argocd/mst.yaml | sed "s/CHARTVERSION/v${{ github.run_number }}/g" | kubectl --kubeconfig kubeconfig-a1-ops-dev apply -f -
-  
-      - name: Deploy to Dev
-        run: |
           cat ./argocd/dev.yaml | sed "s/CHARTVERSION/v${{ github.run_number }}/g" | kubectl --kubeconfig kubeconfig-a1-ops-dev apply -f -
-
-      - name: Deploy to QAS
-        run: |
           cat ./argocd/qas.yaml | sed "s/CHARTVERSION/v${{ github.run_number }}/g" |kubectl --kubeconfig kubeconfig-a1-ops-dev apply -f -
-
-      - name: Deploy to TST
-        run: |
           cat ./argocd/tst.yaml | sed "s/CHARTVERSION/v${{ github.run_number }}/g" | kubectl --kubeconfig kubeconfig-a1-ops-prd apply -f -
-
-      - name: Deploy to Staging
-        run: |
           cat ./argocd/sts.yaml | sed "s/CHARTVERSION/v${{ github.run_number }}/g" | kubectl --kubeconfig kubeconfig-a1-ops-prd apply -f -
-
-      - name: Deploy to Production
-        run: |
           cat ./argocd/prd.yaml | sed "s/CHARTVERSION/v${{ github.run_number }}/g" | kubectl --kubeconfig kubeconfig-a1-ops-prd apply -f -
         
   Deploy-to-Cloud:
@@ -168,11 +150,5 @@ jobs:
           mv rancher-projects /usr/local/bin/
           rancher-projects --rancher-server ${{ secrets.CATTLE_SERVER }} --rancher-access-key ${{ secrets.CATTLE_ACCESS_KEY }} --rancher-secret-key ${{ secrets.CATTLE_SECRET_KEY }} --cluster-name r1-spot-ord --create-project true --project-name "SupportTools" --create-namespace true --namespace supporttools --create-kubeconfig true --kubeconfig "kubeconfig-r1-spot-ord"
           rancher-projects --rancher-server ${{ secrets.CATTLE_SERVER }} --rancher-access-key ${{ secrets.CATTLE_ACCESS_KEY }} --rancher-secret-key ${{ secrets.CATTLE_SECRET_KEY }} --cluster-name r2-spot-dfw --create-project true --project-name "SupportTools" --create-namespace true --namespace supporttools --create-kubeconfig true --kubeconfig "kubeconfig-r2-spot-dfw"
-          
-      - name: Deploy to R1-Spot-ORD
-        run: |
           cat ./argocd/prd.yaml | sed "s/CHARTVERSION/v${{ github.run_number }}/g" | kubectl --kubeconfig kubeconfig-r1-spot-ord apply -f -
-
-      - name: Deploy to R2-Spot-DFW
-        run: |
           cat ./argocd/prd.yaml | sed "s/CHARTVERSION/v${{ github.run_number }}/g" | kubectl --kubeconfig kubeconfig-r2-spot-dfw apply -f -
