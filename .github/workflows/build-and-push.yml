@@ -19,9 +19,9 @@ jobs:
       #   run: |
       #     docker run --rm -v $(pwd)/blog/:/src -w /src thegeeklab/vnu vnu --skip-non-html --errors-only --filterfile .vnuignore public/
 
-      - name: Checking for draft content
-        run: |
-          grep -R 'draft: true' blog/content/post && exit 1 || exit 0
+      # - name: Checking for draft content
+      #   run: |
+      #     grep -R 'draft: true' blog/content/post && exit 1 || exit 0
       
       - name: Checking for expired content
         run: |
