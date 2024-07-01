@@ -22,6 +22,7 @@ jobs:
           export IMAGE_TAG="${{ github.run_number }}"
           echo "CHART_VERSION=${CHART_VERSION}"
           echo "APP_VERSION=${APP_VERSION}"
+          echo "IMAGE_TAG=${IMAGE_TAG}"
           envsubst < charts/website/Chart.yaml.template > charts/website/Chart.yaml
           envsubst < charts/website/values.yaml.template > charts/website/values.yaml
           helm package charts/website --destination helm/repo
