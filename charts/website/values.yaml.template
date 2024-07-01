@@ -4,8 +4,6 @@ image:
   # Overrides the image tag whose default is the chart appVersion.
   tag: ${IMAGE_TAG}
 
-replicaCount: 1
-
 webcache:
   enabled: true
   settings:
@@ -27,7 +25,6 @@ webcache:
     metrics:
       enabled: true
       port: 9090
-  replicaCount: 1
 
 imagePullSecrets: []
 

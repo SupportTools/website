@@ -11,7 +11,6 @@ metadata:
     component: frontend
     team: SupportTools
 spec:
-  replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
       app: website

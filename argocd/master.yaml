@@ -32,8 +32,6 @@ spec:
       parameters:
         - name: webcache.enable
           value: "true"
-        - name: replicaCount
-          value: "1"
         - name: ingress.host
           value: mst.support.tools
     repoURL: https://charts.support.tools
