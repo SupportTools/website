@@ -6,15 +6,14 @@ metadata:
   namespace: argocd
 spec:
   clusterResourceWhitelist:
-    - group: ""
-      kind: "Namespace"
-  description: "Project for managing SupportTools applications"
+    - group: "*"
+      kind: "*"
+  description: Support.Tools
   destinations:
-    - namespace: "supporttools-prd"
-      server: "https://kubernetes.default.svc"
+    - namespace: "*"
+      server: "*"
   sourceRepos:
-    - "github.com/supporttools/website.git"
-    - "https://charts.support.tools"
+    - "*"
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
