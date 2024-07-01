@@ -1,0 +1,50 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: supporttools
+  namespace: argocd
+spec:
+  clusterResourceWhitelist:
+    - group: ""
+      kind: "Namespace"
+  description: "Project for managing SupportTools applications"
+  destinations:
+    - namespace: "supporttools-stg"
+      server: "https://kubernetes.default.svc"
+  sourceRepos:
+    - "github.com/supporttools/website.git"
+    - "https://charts.support.tools"
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: supporttools-stg
+  namespace: argocd
+spec:
+  destination:
+    namespace: supporttools-stg
+    server: https://kubernetes.default.svc
+  project: supporttools
+  source:
+    chart: website
+    helm:
+      parameters:
+        - name: webcache.enable
+          value: "true"
+        - name: ingress.host
+          value: stg.support.tools
+    repoURL: https://charts.support.tools
+    targetRevision: CHARTVERSION
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+    automated:
+      prune: true
+      selfHeal: true
+    retry:
+      limit: 3
+      backoff:
+        duration: "30m"
+        factor: 2
+        maxDuration: "5m"
