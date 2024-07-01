@@ -1,5 +1,21 @@
 ---
 apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: SupportTools
+  namespace: argocd
+spec:
+  clusterResourceWhitelist:
+    - group: ""
+      kind: "Namespace"
+  description: "Project for managing SupportTools applications"
+  destinations:
+    - namespace: "supporttools-mst"
+      server: "https://kubernetes.default.svc"
+  sourceRepos:
+    - "github.com/supporttools/website.git"
+---
+apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: supporttools-mst
