@@ -264,7 +264,7 @@ jobs:
             exit 1
           fi
         
-  Deploy-to-ORD:
+  Deploy-to-NYC3:
     runs-on: self-hosted-runner
     needs: Deploy-to-LOM
 
@@ -281,10 +281,10 @@ jobs:
           tar -xvf rancher-projects.tar.gz
           chmod +x rancher-projects
           mv rancher-projects /usr/local/bin/
-          rancher-projects --rancher-server ${{ secrets.CATTLE_SERVER }} --rancher-access-key ${{ secrets.CATTLE_ACCESS_KEY }} --rancher-secret-key ${{ secrets.CATTLE_SECRET_KEY }} --cluster-name r1-spot-ord --project-name "SupportTools" --namespace argocd --create-kubeconfig --kubeconfig "kubeconfig"
+          rancher-projects --rancher-server ${{ secrets.CATTLE_SERVER }} --rancher-access-key ${{ secrets.CATTLE_ACCESS_KEY }} --rancher-secret-key ${{ secrets.CATTLE_SECRET_KEY }} --cluster-name d1-doks-nyc3 --project-name "SupportTools" --namespace argocd --create-kubeconfig --kubeconfig "kubeconfig"
           cat ./argocd/prd.yaml | sed "s/CHARTVERSION/v${{ github.run_number }}/g" | kubectl --kubeconfig kubeconfig apply -f -
 
-  Deploy-to-DFW:
+  Deploy-to-SFO3:
     runs-on: self-hosted-runner
     needs: Deploy-to-LOM
 
@@ -301,25 +301,5 @@ jobs:
           tar -xvf rancher-projects.tar.gz
           chmod +x rancher-projects
           mv rancher-projects /usr/local/bin/
-          rancher-projects --rancher-server ${{ secrets.CATTLE_SERVER }} --rancher-access-key ${{ secrets.CATTLE_ACCESS_KEY }} --rancher-secret-key ${{ secrets.CATTLE_SECRET_KEY }} --cluster-name r2-spot-dfw --project-name "SupportTools" --namespace argocd --create-kubeconfig --kubeconfig "kubeconfig"
-          cat ./argocd/prd.yaml | sed "s/CHARTVERSION/v${{ github.run_number }}/g" | kubectl --kubeconfig kubeconfig apply -f -
-
-  Deploy-to-IAD:
-    runs-on: self-hosted-runner
-    needs: Deploy-to-LOM
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Setup kubectl
-        uses: azure/setup-kubectl@v3
-  
-      - name: Install and Configure rancher-projects
-        run: |
-          curl -fsSL -o rancher-projects.tar.gz https://github.com/SupportTools/rancher-projects/releases/download/v0.2.2/rancher-projects_0.2.2_linux_amd64.tar.gz
-          tar -xvf rancher-projects.tar.gz
-          chmod +x rancher-projects
-          mv rancher-projects /usr/local/bin/
-          rancher-projects --rancher-server ${{ secrets.CATTLE_SERVER }} --rancher-access-key ${{ secrets.CATTLE_ACCESS_KEY }} --rancher-secret-key ${{ secrets.CATTLE_SECRET_KEY }} --cluster-name r3-spot-iad --project-name "SupportTools" --namespace argocd --create-kubeconfig --kubeconfig "kubeconfig"
+          rancher-projects --rancher-server ${{ secrets.CATTLE_SERVER }} --rancher-access-key ${{ secrets.CATTLE_ACCESS_KEY }} --rancher-secret-key ${{ secrets.CATTLE_SECRET_KEY }} --cluster-name d2-doks-sfo3 --project-name "SupportTools" --namespace argocd --create-kubeconfig --kubeconfig "kubeconfig"
           cat ./argocd/prd.yaml | sed "s/CHARTVERSION/v${{ github.run_number }}/g" | kubectl --kubeconfig kubeconfig apply -f -
