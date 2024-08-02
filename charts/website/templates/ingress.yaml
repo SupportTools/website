@@ -20,7 +20,7 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: go-web-cache
+            name: website
             port:
               number: 8080
   tls:
