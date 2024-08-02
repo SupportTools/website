@@ -61,6 +61,10 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      - name: Install gettext
+        run: |
+          sudo apt-get update && sudo apt-get install -y gettext        
       
       - name: Set up Helm
         uses: azure/setup-helm@v4.2.0
