@@ -37,7 +37,8 @@ RUN GOOS=linux GOARCH=amd64 go build -ldflags "-X github.com/supporttools/websit
 RUN chmod +x /bin/webserver
 
 # Stage 3: Prepare final runtime image
-FROM scratch
+#FROM scratch
+FROM ubuntu
 
 # Set the working directory to /app
 WORKDIR /app
