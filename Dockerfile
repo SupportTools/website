@@ -1,5 +1,7 @@
-# Stage 1: Build the Hugo site
-FROM thegeeklab/hugo:latest AS hugo-builder
+FROM alpine AS hugo-builder
+
+# Install Hugo
+RUN apk add --no-cache hugo
 
 # Copy the source code
 COPY ./blog/ /site
