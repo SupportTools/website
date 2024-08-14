@@ -1,7 +1,7 @@
 ---
 title: "A Deep Dive into CoreDNS with Rancher: Best Practices and Troubleshooting"
 date: 2024-08-14T05:15:00-05:00
-draft: true
+draft: false
 tags: ["CoreDNS", "Kubernetes", "Rancher", "RKE1", "RKE2", "Troubleshooting"]
 categories:
 - Kubernetes
