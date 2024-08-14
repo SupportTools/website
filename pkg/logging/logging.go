@@ -2,6 +2,7 @@ package logging
 
 import (
 	"net/http"
+	"net/url"
 	"os"
 	"path/filepath"
 	"runtime"
@@ -61,10 +62,19 @@ func GetRelativePath(filePath string) string {
 	return relPath
 }
 
-// LogRequest is a middleware that logs the HTTP method, URL, and the remote address of each request
+// LogRequest is a middleware that logs the HTTP method, URL, and remote address of each request
 func LogRequest(handler http.Handler) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		log.Printf("%s %s %s\n", r.RemoteAddr, r.Method, r.URL)
+		remoteAddr := url.QueryEscape(r.RemoteAddr) // Sanitize remote address
+		method := url.QueryEscape(r.Method)         // Sanitize HTTP method
+		uri := url.QueryEscape(r.URL.String())      // Sanitize URL
+
+		log.WithFields(logrus.Fields{
+			"remote_addr": remoteAddr,
+			"method":      method,
+			"url":         uri,
+		}).Info("Received request")
+
 		handler.ServeHTTP(w, r)
 	}
 }
