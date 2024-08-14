@@ -12,6 +12,7 @@ type AppConfig struct {
 	Port        int    `json:"port"`
 	MetricsPort int    `json:"metricsPort"`
 	WebRoot     string `json:"webroot"`
+	UseMemory   bool   `json:"useMemory"`
 }
 
 var CFG AppConfig
@@ -22,6 +23,7 @@ func LoadConfiguration() {
 	CFG.Port = parseEnvInt("PORT", 8080)                    // Assuming 8080 as the default port
 	CFG.MetricsPort = parseEnvInt("METRICS_PORT", 9090)     // Assuming 9090 as the default port
 	CFG.WebRoot = getEnvOrDefault("WEBROOT", "/app/public") // Assuming "/app/public" as the default web root
+	CFG.UseMemory = parseEnvBool("USE_MEMORY", false)       // Assuming false as the default value
 }
 
 func getEnvOrDefault(key, defaultValue string) string {
