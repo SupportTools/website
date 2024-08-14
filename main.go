@@ -5,6 +5,7 @@ import (
 	"io/fs"
 	"log"
 	"net/http"
+	"net/url"
 	"os"
 	"path/filepath"
 	"strconv"
@@ -80,11 +81,15 @@ func webserver() {
 func promMiddleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		startTime := time.Now()
-		logger.Infof("Processing request for: %s", r.URL.Path)
+
+		// Sanitize the URL path to prevent log injection
+		sanitizedPath := url.QueryEscape(r.URL.Path)
+
+		logger.Infof("Processing request for: %s", sanitizedPath)
 		next.ServeHTTP(w, r)
 		duration := time.Since(startTime).Seconds()
-		logger.Infof("Request for %s processed in %f seconds", r.URL.Path, duration)
-		metrics.RecordMetrics(r.URL.Path, duration)
+		logger.Infof("Request for %s processed in %f seconds", sanitizedPath, duration)
+		metrics.RecordMetrics(sanitizedPath, duration)
 	})
 }
 
