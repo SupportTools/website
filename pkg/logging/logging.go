@@ -2,10 +2,10 @@ package logging
 
 import (
 	"net/http"
-	"net/url"
 	"os"
 	"path/filepath"
 	"runtime"
+	"strings"
 
 	"github.com/sirupsen/logrus"
 	"github.com/supporttools/website/pkg/config"
@@ -62,12 +62,22 @@ func GetRelativePath(filePath string) string {
 	return relPath
 }
 
+// sanitizeLogField sanitizes the log fields to prevent log injection
+func sanitizeLogField(input string) string {
+	replacer := strings.NewReplacer(
+		"\n", "\\n",
+		"\r", "\\r",
+		"\t", "\\t",
+	)
+	return replacer.Replace(input)
+}
+
 // LogRequest is a middleware that logs the HTTP method, URL, and remote address of each request
 func LogRequest(handler http.Handler) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		remoteAddr := url.QueryEscape(r.RemoteAddr) // Sanitize remote address
-		method := url.QueryEscape(r.Method)         // Sanitize HTTP method
-		uri := url.QueryEscape(r.URL.String())      // Sanitize URL
+		remoteAddr := sanitizeLogField(r.RemoteAddr) // Sanitize remote address
+		method := sanitizeLogField(r.Method)         // Sanitize HTTP method
+		uri := sanitizeLogField(r.URL.String())      // Sanitize URL
 
 		log.WithFields(logrus.Fields{
 			"remote_addr": remoteAddr,
