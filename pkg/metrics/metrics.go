@@ -6,11 +6,12 @@ import (
 
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
+	"github.com/supporttools/website/pkg/config"
 	"github.com/supporttools/website/pkg/health"
 	"github.com/supporttools/website/pkg/logging"
 )
 
-var logger = logging.SetupLogging()
+var logger = logging.SetupLogging(&config.CFG)
 
 var (
 	// Register a counter metric for counting the total number of requests

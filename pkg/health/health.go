@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/supporttools/website/pkg/config"
 	"github.com/supporttools/website/pkg/logging"
 )
 
@@ -15,7 +16,7 @@ type VersionInfo struct {
 	BuildTime string `json:"buildTime"`
 }
 
-var logger = logging.SetupLogging()
+var logger = logging.SetupLogging(&config.CFG)
 var version = "MISSING VERSION INFO"
 var GitCommit = "MISSING GIT COMMIT"
 var BuildTime = "MISSING BUILD TIME"

@@ -35,7 +35,7 @@ type fileData struct {
 
 func main() {
 	config.LoadConfiguration()
-	logger = logging.SetupLogging()
+	logger = logging.SetupLogging(&config.CFG)
 	logger.Info("Debug logging enabled")
 	if config.CFG.Debug {
 		logger.Infoln("Debug mode enabled")
@@ -81,10 +81,7 @@ func webserver() {
 func promMiddleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		startTime := time.Now()
-
-		// Sanitize the URL path to prevent log injection
-		sanitizedPath := url.QueryEscape(r.URL.Path)
-
+		sanitizedPath := sanitizePath(r.URL.Path)
 		logger.Infof("Processing request for: %s", sanitizedPath)
 		next.ServeHTTP(w, r)
 		duration := time.Since(startTime).Seconds()
@@ -96,10 +93,7 @@ func promMiddleware(next http.Handler) http.Handler {
 func logRequest(handler http.Handler) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		start := time.Now()
-
-		// Sanitize the URL path to prevent log injection
-		sanitizedPath := url.QueryEscape(r.URL.Path)
-
+		sanitizedPath := sanitizePath(r.URL.Path)
 		logger.Infof("Incoming request: %s %s from %s", r.Method, sanitizedPath, r.RemoteAddr)
 
 		lrw := &loggingResponseWriter{ResponseWriter: w, statusCode: http.StatusOK}
@@ -189,21 +183,23 @@ func loadFilesIntoMemory(rootDir string) {
 }
 
 func serveFromMemory(w http.ResponseWriter, r *http.Request) {
-	path := r.URL.Path
-	logger.Infof("Serving request for: %s", path)
+	sanitizedPath := sanitizePath(r.URL.Path)
+
+	logger.Infof("Serving request for: %s", sanitizedPath)
 
 	// If the path ends with a slash, try to serve the directory's index.html
-	if strings.HasSuffix(path, "/") {
-		logger.Infof("Request is for a directory, attempting to serve index.html for: %s", path)
-		path += "index.html"
+	if strings.HasSuffix(sanitizedPath, "/") {
+		logger.Infof("Request is for a directory, attempting to serve index.html for: %s", sanitizedPath)
+		sanitizedPath += "index.html"
 	}
 
-	fd, found := memoryFiles[path]
+	// Attempt to find the file in memory
+	fd, found := memoryFiles[sanitizedPath]
 	if !found {
-		logger.Infof("File not found in memory for path: %s", path)
+		logger.Infof("File not found in memory for path: %s", sanitizedPath)
 		// Attempt to serve the directory's index.html explicitly if not found with a trailing slash
-		if !strings.HasSuffix(path, "/index.html") {
-			indexPath := path + "/index.html"
+		if !strings.HasSuffix(sanitizedPath, "/index.html") {
+			indexPath := sanitizedPath + "/index.html"
 			if indexFd, indexFound := memoryFiles[indexPath]; indexFound {
 				fd = indexFd
 				found = true
@@ -214,18 +210,33 @@ func serveFromMemory(w http.ResponseWriter, r *http.Request) {
 
 	// If still not found, return a 404
 	if !found {
-		logger.Infof("Returning 404 for path: %s", path)
+		logger.Infof("Returning 404 for path: %s", sanitizedPath)
 		http.NotFound(w, r)
 		return
 	}
 
-	// Set response headers and serve the content
-	logger.Printf("Serving file from memory: %s", path)
+	logger.WithField("path", sanitizedPath).Info("Serving file from memory")
 	w.Header().Set("Cache-Control", "max-age=31536000")
+	w.Header().Set("X-Content-Type-Options", "nosniff")
 	w.Header().Set("Content-Length", strconv.Itoa(len(fd.content)))
 	w.Header().Set("Last-Modified", fd.modTime.UTC().Format(http.TimeFormat))
 	w.Header().Set("ETag", `"`+strconv.FormatInt(fd.modTime.Unix(), 10)+`"`)
 	w.Header().Set("Content-Type", fd.contentType)
 
-	http.ServeContent(w, r, r.URL.Path, fd.modTime, bytes.NewReader(fd.content))
+	http.ServeContent(w, r, sanitizedPath, fd.modTime, bytes.NewReader(fd.content))
+}
+
+func sanitizePath(path string) string {
+	sanitizedPath := url.QueryEscape(path)
+	sanitizedPath = strings.Replace(sanitizedPath, "%2F", "/", -1)
+	sanitizedPath = strings.ReplaceAll(sanitizedPath, "\n", "")
+	sanitizedPath = strings.ReplaceAll(sanitizedPath, "\r", "")
+	sanitizedPath = strings.ReplaceAll(sanitizedPath, "\t", "")
+	sanitizedPath = strings.Map(func(r rune) rune {
+		if r < 32 || r == 127 {
+			return -1
+		}
+		return r
+	}, sanitizedPath)
+	return sanitizedPath
 }
