@@ -96,13 +96,17 @@ func promMiddleware(next http.Handler) http.Handler {
 func logRequest(handler http.Handler) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		start := time.Now()
-		logger.Infof("Incoming request: %s %s from %s", r.Method, r.URL.Path, r.RemoteAddr)
+
+		// Sanitize the URL path to prevent log injection
+		sanitizedPath := url.QueryEscape(r.URL.Path)
+
+		logger.Infof("Incoming request: %s %s from %s", r.Method, sanitizedPath, r.RemoteAddr)
 
 		lrw := &loggingResponseWriter{ResponseWriter: w, statusCode: http.StatusOK}
 		handler.ServeHTTP(lrw, r)
 
 		duration := time.Since(start)
-		logger.Infof("Request %s %s completed with status %d in %s", r.Method, r.URL.Path, lrw.statusCode, duration)
+		logger.Infof("Request %s %s completed with status %d in %s", r.Method, sanitizedPath, lrw.statusCode, duration)
 	}
 }
 
