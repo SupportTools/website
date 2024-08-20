@@ -1,7 +1,7 @@
 ---
 title: "Why Deploying Containers With the 'Latest' Tag is a Bad Idea"
 date: 2024-08-20T02:26:00-05:00
-draft: true
+draft: false
 tags: ["Containers", "Best Practices", "Kubernetes"]
 categories:
 - Containers
