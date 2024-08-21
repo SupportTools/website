@@ -9,7 +9,6 @@ categories:
 author: "Matthew Mattox - mmattox@support.tools."
 description: "A guide for support engineers on how to read, navigate, and understand the Rancher codebase on GitHub, including key concepts of Go, essential packages, and using Sourcegraph and VS Code for navigation."
 more_link: "yes"
-url: "/rancher-codebase-guide/"
 ---
 
 As a support engineer working with Rancher, understanding the codebase on GitHub is essential for troubleshooting, debugging, and providing effective support. The Rancher codebase is extensive and involves multiple components that work together to deliver the full functionality of the platform. This guide will help you navigate the codebase, understand its structure, and identify where to look when addressing common support issues. Additionally, we’ll dive into the Go programming language basics, which is used extensively in Rancher, and introduce tools like Sourcegraph and Visual Studio Code (VS Code) to help you navigate the code more effectively.
