@@ -1,7 +1,7 @@
 ---
 title: "How to Create a Swap File on Linux Using the dd Command"
 date: 2024-09-04T19:26:00-05:00
-draft: true
+draft: false
 tags: ["Linux", "swap", "dd", "fstab", "swapfile"]
 categories:
 - Linux
