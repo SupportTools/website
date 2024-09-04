@@ -2,7 +2,7 @@
 
 title: "Create a Bootable Linux USB from ISO with DD"
 date: 2024-09-04T19:26:00-05:00
-draft: true
+draft: false
 tags: ["Linux", "USB", "dd", "ISO", "bootable"]
 categories:
 - Linux
