@@ -57,15 +57,18 @@ http {
 This configuration allows NGINX to bind to port 80 and serve web traffic as the root user.
 
 #### Root User Caveats
+
 While running NGINX as root provides access to privileged resources, it also exposes your system to greater security risks. A better practice is to run NGINX as a **non-root** user wherever possible.
 
 ### Step 2: Running NGINX as a Non-Root User
 
 To run NGINX as a **non-root** user, you need to ensure the following:
+
 1. **Use a non-privileged port** (e.g., port 8080) since non-root users cannot bind to ports below 1024.
 2. Adjust file and directory permissions to allow the non-root user to read NGINX configuration files and serve content.
 
 #### 1. Create a Non-Root User for NGINX
+
 First, create a dedicated user for running NGINX:
 
 ```bash
@@ -85,6 +88,7 @@ sudo chown -R nginxuser:nginxuser /var/www/html
 This ensures the **nginxuser** has the necessary read and write access to the web directory.
 
 #### 3. Modify the NGINX Configuration
+
 Update the NGINX configuration file to run as the **nginxuser** and use a non-privileged port:
 
 ```nginx
@@ -103,6 +107,7 @@ http {
 ```
 
 In this configuration:
+
 - NGINX runs as `nginxuser`.
 - NGINX binds to port **8080**, which does not require root privileges.
 
@@ -141,6 +146,7 @@ CMD ["nginx", "-g", "daemon off;"]
 ```
 
 In this Dockerfile:
+
 - We create a **non-root user** (`nginxuser`).
 - We change the ownership of the NGINX directory.
 - We switch to the non-root user and expose port **8080**.
@@ -157,4 +163,3 @@ docker run -p 8080:8080 nginx-nonroot
 Running NGINX as both root and non-root users gives you flexibility in different environments. For development and testing environments, running NGINX as root may be convenient, but in production, running as a non-root user enhances security by limiting access to critical system resources.
 
 By following the steps outlined in this post, you can easily configure NGINX to run with the necessary privileges for your use case—whether you need root access for privileged ports or a secure, non-root configuration for increased safety.
-

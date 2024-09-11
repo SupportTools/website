@@ -27,7 +27,7 @@ OpenVPN is a popular open-source VPN solution that provides secure remote access
 
 ### Step 1: Deploy OpenVPN on Kubernetes
 
-#### 1. **Create a Kubernetes Deployment for OpenVPN**:
+#### 1. **Create a Kubernetes Deployment for OpenVPN**
 
 First, we need to create a Kubernetes deployment for the OpenVPN server. You can use a pre-built OpenVPN Docker image, or build your own if you have specific requirements.
 
@@ -63,7 +63,7 @@ spec:
 
 This creates a single OpenVPN server pod using the `kylemanna/openvpn` image. It mounts an empty directory volume for storing OpenVPN configuration files.
 
-#### 2. **Create a Service for OpenVPN**:
+#### 2. **Create a Service for OpenVPN**
 
 Expose the OpenVPN server using a Kubernetes service:
 
@@ -88,7 +88,7 @@ This service uses a `LoadBalancer` type to expose the OpenVPN server on port `11
 
 Now that the OpenVPN server is deployed, we need to configure it for client access.
 
-#### 1. **Initialize OpenVPN Configuration**:
+#### 1. **Initialize OpenVPN Configuration**
 
 Use the `kylemanna/openvpn` image to initialize the server configuration and generate certificates:
 
@@ -100,7 +100,7 @@ ovpn_initpki
 
 Make sure to replace `<EXTERNAL-IP>` with the external IP assigned to your OpenVPN service by Kubernetes.
 
-#### 2. **Create Client Certificates**:
+#### 2. **Create Client Certificates**
 
 Generate client certificates for each user that needs access to the VPN:
 
@@ -115,7 +115,7 @@ This will generate an `.ovpn` configuration file for the client, which contains 
 
 To avoid losing configuration files when the OpenVPN pod is restarted or redeployed, it’s a good idea to use persistent storage.
 
-#### 1. **Create a Persistent Volume and Claim**:
+#### 1. **Create a Persistent Volume and Claim**
 
 Define a persistent volume and persistent volume claim for the OpenVPN server:
 
@@ -147,7 +147,7 @@ This ensures that OpenVPN configuration files are stored persistently across pod
 
 Once the OpenVPN server is running and configured, distribute the `.ovpn` configuration files to your clients.
 
-#### 1. **Install OpenVPN on the Client**:
+#### 1. **Install OpenVPN on the Client**
 
 On the client machine, install OpenVPN (available on Linux, macOS, and Windows):
 
@@ -156,7 +156,7 @@ sudo apt-get install openvpn  # On Debian-based systems
 brew install openvpn  # On macOS using Homebrew
 ```
 
-#### 2. **Connect to the VPN**:
+#### 2. **Connect to the VPN**
 
 Use the `.ovpn` file generated earlier to connect to the VPN:
 
@@ -173,4 +173,3 @@ To ensure the OpenVPN server is running smoothly, you can set up monitoring usin
 ### Final Thoughts
 
 Setting up an OpenVPN server on Kubernetes is an effective way to manage secure remote access to your cluster or internal network. With Kubernetes' built-in scalability and orchestration capabilities, you can easily manage and scale your VPN infrastructure while ensuring high availability. This solution provides a secure and efficient way to access resources without exposing them to the internet.
-

@@ -79,6 +79,6 @@ After making these changes, deploy the updated configuration to your Kubernetes 
 
 By adding the `--web.enable-lifecycle` flag and the `configmap-reload` container, you can make your Prometheus configuration dynamic and reload changes seamlessly, avoiding downtime and improving overall efficiency.
 
-# [Reload Prometheus ConfigMap without Restarting the Kubernetes Pod](#reload-prometheus-configmap-without-restarting-the-kubernetes-pod)
+## [Reload Prometheus ConfigMap without Restarting the Kubernetes Pod](#reload-prometheus-configmap-without-restarting-the-kubernetes-pod)
 
 Utilizing the HTTP reload endpoint and the configmap-reload container, you can make Prometheus reload its configuration without restarting the pod.

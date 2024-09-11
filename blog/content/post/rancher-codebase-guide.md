@@ -112,7 +112,7 @@ The `go.sum` file works in tandem with `go.mod`. While `go.mod` specifies the re
 
 Here’s an example of what might appear in a `go.sum` file:
 
-```
+```bash
 github.com/gorilla/mux v1.8.0 h1:LCu1...
 github.com/gorilla/mux v1.8.0/go.mod h1:5cbs...
 ```

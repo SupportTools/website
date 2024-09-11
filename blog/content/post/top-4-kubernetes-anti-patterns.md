@@ -60,12 +60,14 @@ resources:
 
 Kubernetes provides **Liveness** and **Readiness Probes** to help determine the state of your applications. Ignoring or misconfiguring these probes is another common anti-pattern.
 
-#### Why It’s a Problem:
+#### Why It’s a Problem
+
 - **Unhealthy Pods**: Without proper health checks, unhealthy Pods may continue running, leading to degraded performance.
 - **Delayed Failover**: If the Readiness Probe isn’t configured, Kubernetes may continue sending traffic to Pods that aren’t ready to handle requests, causing user-facing issues.
 - **Inefficient Scaling**: Misconfigured probes can cause Pods to be terminated prematurely or fail to scale efficiently during traffic spikes.
 
-#### Best Practice:
+#### Best Practice
+
 Always configure **Liveness** and **Readiness Probes** to ensure Kubernetes can correctly manage the lifecycle of your Pods. For example, a Readiness Probe can be used to delay traffic until your application is fully initialized.
 
 Example configuration:
@@ -90,12 +92,14 @@ readinessProbe:
 
 By default, Kubernetes places all Pods in the **default namespace** if not specified. This leads to a common anti-pattern where environments and services are not properly isolated.
 
-#### Why It’s a Problem:
+#### Why It’s a Problem
+
 - **Lack of Segregation**: Running multiple environments (e.g., dev, staging, prod) in the same namespace can lead to name collisions and accidental modifications of critical services.
 - **Security Risks**: Without namespace-level isolation, there’s a higher risk of accidental or malicious access to resources that should be restricted.
 - **Harder to Manage**: Mixing different teams' workloads in the same namespace makes it difficult to manage and monitor resource usage and permissions.
 
-#### Best Practice:
+#### Best Practice
+
 Use **namespaces** to separate environments, teams, or services within the same cluster. This approach provides better security, isolation, and resource management.
 
 For example:
@@ -110,4 +114,3 @@ You can also use **Role-Based Access Control (RBAC)** to limit access to namespa
 ### Conclusion
 
 Avoiding these Kubernetes anti-patterns can help improve the overall stability, performance, and security of your cluster. By simplifying microservices, properly configuring resource limits, utilizing health checks, and organizing workloads with namespaces, you ensure that your Kubernetes environment runs smoothly and scales efficiently.
-

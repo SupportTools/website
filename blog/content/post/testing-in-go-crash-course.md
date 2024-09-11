@@ -177,7 +177,7 @@ Go will execute the benchmark and show how long it takes to run the function.
 
 Organizing your tests is important for maintainability. Here’s a common structure for Go projects with testing:
 
-```
+```bash
 /myproject
   /math
     math.go

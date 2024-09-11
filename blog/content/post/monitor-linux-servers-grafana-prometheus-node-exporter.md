@@ -52,7 +52,7 @@ Access Grafana via your browser at `http://localhost:3000` and log in using the 
 
 `node_exporter` is a Prometheus exporter that collects system metrics from Linux servers, such as CPU, memory, disk usage, and network performance.
 
-1. **Download and install node_exporter**:
+- **Download and install node_exporter**:
 
 ```bash
 wget https://github.com/prometheus/node_exporter/releases/download/v1.3.1/node_exporter-1.3.1.linux-amd64.tar.gz
@@ -60,7 +60,7 @@ tar xvfz node_exporter-1.3.1.linux-amd64.tar.gz
 sudo mv node_exporter-1.3.1.linux-amd64/node_exporter /usr/local/bin/
 ```
 
-2. **Start node_exporter**:
+- **Start node_exporter**:
 
 Run the `node_exporter` binary:
 
@@ -120,13 +120,13 @@ sudo systemctl restart prometheus
 
 Now that Prometheus is scraping metrics from `node_exporter`, you can visualize the data in Grafana.
 
-1. **Add Prometheus as a Data Source**:
+- **Add Prometheus as a Data Source**:
 
 - In Grafana, go to **Configuration > Data Sources**.
 - Click **Add data source**, select **Prometheus**, and enter the Prometheus URL (e.g., `http://localhost:9090`).
 - Click **Save & Test** to verify the connection.
 
-2. **Import a Linux Server Dashboard**:
+- **Import a Linux Server Dashboard**:
 
 Grafana has many pre-built dashboards available for monitoring Linux servers. You can import a popular one to quickly get started:
 
@@ -145,13 +145,13 @@ This dashboard provides comprehensive monitoring of Linux system metrics, includ
 
 To proactively monitor your servers, you can set up alerts in Grafana. For example, you can create alerts for high CPU usage, low disk space, or high memory consumption.
 
-1. **Create a new alert**:
+- **Create a new alert**:
 
 - Go to the relevant panel (e.g., "CPU Usage") where you want to create an alert.
 - Click the panel title and select **Edit**.
 - Go to the **Alert** tab and set your alert conditions (e.g., CPU usage > 80%).
 
-2. **Configure notification channels**:
+- **Configure notification channels**:
 
 - Go to **Alerting > Notification channels**.
 - Add your preferred notification method (email, Slack, etc.) and link it to the alert.
