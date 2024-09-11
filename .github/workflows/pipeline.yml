@@ -1,7 +1,10 @@
 name: Docker Build and Push
 
 on:
-  [workflow_dispatch, push]
+  workflow_dispatch:
+  push:
+  schedule:
+    - cron: '0 0 * * *' # This will run every day at midnight UTC
 
 jobs:
   Test:
