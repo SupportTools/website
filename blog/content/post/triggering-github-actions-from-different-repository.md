@@ -1,7 +1,7 @@
 ---
 title: "Triggering GitHub Actions from a Different Repository"
 date: 2024-05-18T19:26:00-05:00
-draft: true
+draft: false
 tags: ["GitHub Actions", "CI/CD"]
 categories:
 - DevOps

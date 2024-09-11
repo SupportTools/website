@@ -1,7 +1,7 @@
 ---
 title: "Setting Up Static Persistent Volumes in k3s on Raspberry Pi"
 date: 2024-05-18T19:26:00-05:00
-draft: true
+draft: false
 tags: ["k3s", "Raspberry Pi", "Persistent Volumes", "Kubernetes"]
 categories:
 - DevOps

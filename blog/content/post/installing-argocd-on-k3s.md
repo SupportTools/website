@@ -1,7 +1,7 @@
 ---
 title: "Installing ArgoCD on k3s"
 date: 2024-05-18T19:26:00-05:00
-draft: true
+draft: false
 tags: ["ArgoCD", "Kubernetes", "k3s"]
 categories:
 - DevOps

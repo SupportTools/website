@@ -1,7 +1,7 @@
 ---
 title: "Installing Grafana on Kubernetes with k3s"
 date: 2024-05-18T19:26:00-05:00
-draft: true
+draft: false
 tags: ["k3s", "Kubernetes", "Grafana", "Monitoring"]
 categories:
 - DevOps

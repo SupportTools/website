@@ -1,7 +1,7 @@
 ---
 title: "Running Elixir Livebook on k3s"
 date: 2024-05-18T19:26:00-05:00
-draft: true
+draft: false
 tags: ["k3s", "Elixir", "Livebook", "Kubernetes"]
 categories:
 - DevOps

@@ -1,7 +1,7 @@
 ---
 title: "Installing k3s on Ubuntu on Raspberry Pi"
 date: 2024-05-18T19:26:00-05:00
-draft: true
+draft: false
 tags: ["Raspberry Pi", "k3s", "Ubuntu"]
 categories:
 - DevOps

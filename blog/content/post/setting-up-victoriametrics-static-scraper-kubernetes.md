@@ -1,7 +1,7 @@
 ---
 title: "Setting Up a VictoriaMetrics Static Scraper on Kubernetes"
 date: 2024-05-18T19:26:00-05:00
-draft: true
+draft: false
 tags: ["k3s", "Kubernetes", "VictoriaMetrics", "Electric Imp"]
 categories:
 - DevOps

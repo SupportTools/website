@@ -1,7 +1,7 @@
 ---
 title: "Using CoreDNS for LoadBalancer Addresses in Kubernetes"
 date: 2024-05-18T19:26:00-05:00
-draft: true
+draft: false
 tags: ["CoreDNS", "Kubernetes", "LoadBalancer"]
 categories:
 - DevOps

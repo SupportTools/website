@@ -1,7 +1,7 @@
 ---
 title: "Upgrading RaspiOS to arm64 on Raspberry Pi"
 date: 2024-05-18T19:26:00-05:00
-draft: true
+draft: false
 tags: ["Raspberry Pi", "RaspiOS", "arm64", "Upgrade"]
 categories:
 - DevOps

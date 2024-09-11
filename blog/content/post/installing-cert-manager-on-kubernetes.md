@@ -1,7 +1,7 @@
 ---
 title: "Installing cert-manager on Kubernetes"
 date: 2024-05-18T19:26:00-05:00
-draft: true
+draft: false
 tags: ["Kubernetes", "cert-manager", "TLS", "Certificates"]
 categories:
 - DevOps

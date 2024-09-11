@@ -1,7 +1,7 @@
 ---
 title: "Using NodePort with Multiple Replicas in k3s on Raspberry Pi"
 date: 2024-05-18T19:26:00-05:00
-draft: true
+draft: false
 tags: ["k3s", "Raspberry Pi", "NodePort", "Kubernetes"]
 categories:
 - DevOps
