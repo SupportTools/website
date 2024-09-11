@@ -66,13 +66,13 @@ To receive alerts in Slack, you need to create an incoming webhook:
 
 To integrate Alertmanager with Slack, we need to edit the Alertmanager configuration and add the Slack webhook URL.
 
-1. **Edit the Alertmanager ConfigMap**:
+- **Edit the Alertmanager ConfigMap**:
 
 ```bash
 kubectl edit configmap prometheus-prometheus-alertmanager -n monitoring
 ```
 
-2. **Add Slack Configuration**:
+- **Add Slack Configuration**:
 
 Modify the `alertmanager.yml` section to include your Slack webhook URL:
 
@@ -106,7 +106,7 @@ data:
 
 Replace `'https://hooks.slack.com/services/your/slack/webhook'` with the actual Slack webhook URL you copied earlier.
 
-3. **Save and Exit**.
+- **Save and Exit**.
 
 Once the changes are saved, Alertmanager will reload its configuration, and you’ll start receiving alerts in the specified Slack channel.
 
@@ -138,7 +138,7 @@ spec:
         description: "Available memory is below 10% on instance {{ $labels.instance }}."
 ```
 
-2. **Apply the Alerting Rule**:
+- **Apply the Alerting Rule**:
 
 ```bash
 kubectl apply -f test-alert.yaml

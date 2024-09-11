@@ -47,17 +47,17 @@ An **audit policy controls audit logs** that defines what actions get logged and
 
 For a basic audit policy, you can log minimal metadata about key resources like pods, services, and roles. This is useful when you want to keep logs small but still capture essential events.
 
-"`yaml
+```yaml
 apiVersion: audit.k8s.io/v1
 kind: Policy
 rules:
- - level: Metadata
+- level: Metadata
     resources:
- - group:"  "
+- group:"  "
       resources: ["pods", "services"]
- - level: RequestResponse
+- level: RequestResponse
     resources:
- - group: "rbac.authorization.k8s.io"
+- group: "rbac.authorization.k8s.io"
       resources: ["roles", "rolebindings"]
 ```
 
@@ -72,7 +72,7 @@ Save this file as `/etc/rancher/rke2/audit-policy.yaml`.
 
 For more comprehensive logging, you can use a detailed audit policy that captures request and response data for a wide range of Kubernetes resources. This is useful for environments requiring strict security monitoring or regulatory compliance.
 
-"`yaml
+```yaml
 apiVersion: audit.k8s.io/v1
 kind: Policy
 rules:
@@ -108,10 +108,10 @@ When configuring detailed logging, it's crucial to avoid inadvertently capturing
 
 To avoid capturing secrets, you can modify your audit policy to either **exclude secrets** from being logged or limit logging to metadata only:
 
-"`yaml
+```yaml
 - level: Metadata
   resources:
- - group:"  "
+- group:"  "
     resources: ["secrets", "configmaps"]
 ```
 
@@ -121,7 +121,7 @@ This configuration logs only the metadata (e.g., timestamps, user, and action) f
 
 Now that you have an audit policy file reference it in the RKE2 configuration file (`/etc/rancher/rke2/config.yaml`).
 
-"`yaml
+```yaml
 kube-apiserver-arg:
  - "--audit-log-path=/var/log/kubernetes/audit/audit.log"
  - "--audit-policy-file=/etc/rancher/rke2/audit-policy.yaml"
@@ -140,7 +140,7 @@ Explanation of the flags:
 
 Once you've updated the config file, restart the RKE2 service to apply the changes:
 
-"`bash
+```bash
 sudo systemctl restart rke2-server
 ```
 
@@ -154,7 +154,7 @@ After enabling audit logging, you'll see logs generated based on your policy. Le
 
 Here's an example of a basic audit log entry capturing metadata for a pod creation event:
 
-"`json
+```json
 {
   "kind": "Event",
   "apiVersion": "audit.k8s.io/v1",
@@ -187,7 +187,7 @@ This log captures:
 
 Here's an example of a more detailed audit log entry with request and response data for a rolebinding update:
 
-"`json
+```json
 {
   "kind": "Event",
   "apiVersion": "audit.k8s.io/v1",
@@ -232,10 +232,8 @@ Here's an example of a more detailed audit log entry with request and response d
     "kind": "RoleBinding",
     "metadata": {
       "name": "admin-binding",
-     
-
+    },
  "namespace": "kube-system"
- }
  }
 }
 ```

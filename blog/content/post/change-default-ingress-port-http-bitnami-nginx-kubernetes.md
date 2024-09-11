@@ -22,6 +22,7 @@ In this post, we will walk through how to modify the default Ingress port for Bi
 ### Why Change the Default Ingress Port to HTTP?
 
 By default, the Bitnami/nginx Helm chart for Kubernetes may be set up to handle secure traffic via HTTPS on port 443. While HTTPS is essential for production environments where security is a priority, there are several reasons why you might want to configure your Ingress controller to use **HTTP (port 80)** instead:
+
 - **Local Development**: For development and testing environments where encryption isn't necessary.
 - **Non-HTTPS Services**: Some legacy services or APIs may not require HTTPS traffic.
 - **Custom Routing**: You may want to expose services over HTTP for specific internal use cases or to offload SSL termination elsewhere.
@@ -56,6 +57,7 @@ controller:
 ```
 
 In this configuration:
+
 - **http: 80**: This line tells the Ingress controller to listen on port **80** for HTTP traffic.
 - **https: 443**: You can keep HTTPS configured if you want dual support or remove it entirely for an HTTP-only setup.
 
@@ -133,4 +135,3 @@ You can apply the configuration using the same Helm command as before, and NGINX
 Configuring the **Bitnami/nginx** Ingress controller to use **HTTP (port 80)** in Kubernetes is a simple process that allows you to handle non-secured traffic for development, internal services, or custom routing purposes. By modifying the Helm values or `values.yaml` file, you can quickly adjust the NGINX Ingress controller to fit your specific use case.
 
 For environments where HTTPS is not a priority, setting up NGINX to listen on port **80** streamlines access to services without the overhead of SSL configuration. However, it’s always best practice to secure production environments with SSL/TLS, even if SSL termination occurs outside of Kubernetes.
-

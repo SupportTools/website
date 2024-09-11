@@ -24,6 +24,7 @@ In this guide, we will walk through the process of cloning or backing up drives 
 ### Lab Setup
 
 For this example, we have two systems:
+
 - **Source Machine** (the machine to back up or clone from).
 - **Destination Machine** (the machine that will store the backup).
 
@@ -45,6 +46,7 @@ nc -l -p 12345 | dd of=/path/to/destination/backup.img
 ```
 
 Here’s what this command does:
+
 - `nc -l -p 12345`: Listens for incoming data on port 12345.
 - `dd of=/path/to/destination/backup.img`: Writes the incoming data to a file called `backup.img`.
 
@@ -57,6 +59,7 @@ dd if=/dev/sda | nc <destination-ip> 12345
 ```
 
 Here’s what this command does:
+
 - `dd if=/dev/sda`: Reads the input from the source drive (`/dev/sda`).
 - `nc <destination-ip> 12345`: Sends the data over the network to the destination machine listening on port 12345.
 

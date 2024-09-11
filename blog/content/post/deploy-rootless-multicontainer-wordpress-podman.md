@@ -134,6 +134,6 @@ curl -L http://127.0.0.1:8080
 
 Using Podman, we’ve successfully deployed a rootless, multi-container WordPress application with persistent storage and SELinux configuration. This setup is lightweight and fully open-source.
 
-# [Deploying a Rootless Multi-Container WordPress Application with Podman](#deploying-a-rootless-multi-container-wordpress-application-with-podman)
+## [Deploying a Rootless Multi-Container WordPress Application with Podman](#deploying-a-rootless-multi-container-wordpress-application-with-podman)
 
 Follow this guide to deploy a WordPress application in a secure, rootless environment using Podman.

@@ -122,7 +122,7 @@ spec:
 
 Back up the ETCD cluster data and restore it from a backup.
 
-1. **Backup**:
+- **Backup**:
 
 ```bash
 ETCDCTL_API=3 etcdctl snapshot save /path/to/backup.db \
@@ -132,7 +132,7 @@ ETCDCTL_API=3 etcdctl snapshot save /path/to/backup.db \
   --key=/etc/kubernetes/pki/etcd/server.key
 ```
 
-2. **Restore**:
+- **Restore**:
 
 ```bash
 ETCDCTL_API=3 etcdctl snapshot restore /path/to/backup.db

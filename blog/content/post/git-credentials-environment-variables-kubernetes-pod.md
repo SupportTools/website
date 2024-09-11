@@ -118,4 +118,3 @@ This updates the Secret, and the next time a Pod is deployed using this Secret, 
 Using environment variables to manage Git credentials in Kubernetes Pods is a secure and flexible way to handle authentication for Git operations. By storing credentials in Kubernetes Secrets and injecting them into Pods, you can ensure that your sensitive information is managed separately from your code and is more secure.
 
 This approach also makes it easy to manage, rotate, and update credentials without needing to redeploy your entire application. With proper access controls and security measures, you can securely manage Git authentication in any Kubernetes environment.
-

@@ -116,6 +116,6 @@ Now you can enjoy using OpenLens, the open-source version of Lens IDE!
 
 Migrating from Lens to OpenLens offers a license-friendly, open-source solution without the need for a Lens ID. With OpenLens, you maintain the same Kubernetes insights without any proprietary components.
 
-# [Build and Install OpenLens on Linux](#build-and-install-openlens-on-linux)
+## [Build and Install OpenLens on Linux](#build-and-install-openlens-on-linux)
 
 Follow this guide to build and install OpenLens on Linux, a powerful Kubernetes IDE free of proprietary restrictions.

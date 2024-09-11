@@ -31,7 +31,7 @@ This approach offers several benefits:
 
 To implement Blue/Green deployment in Kubernetes, we’ll first create the Blue environment, which represents the current version of the application running in production.
 
-#### 1. **Create a Kubernetes Deployment for Blue**:
+#### 1. **Create a Kubernetes Deployment for Blue**
 
 ```yaml
 apiVersion: apps/v1
@@ -59,7 +59,7 @@ spec:
 
 This defines a deployment for the Blue version of the application, running version `v1` of the `myapp` image.
 
-#### 2. **Expose the Blue Environment Using a Service**:
+#### 2. **Expose the Blue Environment Using a Service**
 
 Next, create a service to expose the Blue deployment to external traffic:
 
@@ -85,7 +85,7 @@ This service routes external traffic to the Blue environment by selecting pods l
 
 Now that the Blue environment is up and running, we’ll deploy the Green environment, representing the new version of the application.
 
-#### 1. **Create a Kubernetes Deployment for Green**:
+#### 1. **Create a Kubernetes Deployment for Green**
 
 ```yaml
 apiVersion: apps/v1
@@ -113,7 +113,7 @@ spec:
 
 In this deployment, we use the `myapp:v2` image, representing the new version of the application. This deployment runs alongside the Blue environment but doesn’t yet receive external traffic.
 
-#### 2. **Update the Service to Point to the Green Environment**:
+#### 2. **Update the Service to Point to the Green Environment**
 
 Once the Green environment is validated and ready for production, update the service to point to the Green deployment:
 

@@ -102,6 +102,7 @@ spec:
 ```
 
 In this setup:
+
 - We define a volume mount for the ConfigMap that mounts the `nginx.conf` file at `/opt/bitnami/nginx/conf/nginx.conf`, which is the expected configuration path for Bitnami/nginx.
 - The **subPath** ensures that only the `nginx.conf` file from the ConfigMap is mounted.
 

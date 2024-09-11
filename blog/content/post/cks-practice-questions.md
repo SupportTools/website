@@ -233,13 +233,13 @@ spec:
 
 Enable the Pod Security Admission Controller in Kubernetes to enforce security profiles like `baseline` and `restricted`:
 
-1. Modify the `kube-apiserver` flags to enable Pod Security Admission:
+- Modify the `kube-apiserver` flags to enable Pod Security Admission:
 
 ```bash
 --enable-admission-plugins=PodSecurity
 ```
 
-2. Apply a `PodSecurity` label to enforce a baseline security level on a namespace:
+- Apply a `PodSecurity` label to enforce a baseline security level on a namespace:
 
 ```bash
 kubectl label namespace my-namespace pod-security.kubernetes.io/enforce=baseline
@@ -248,4 +248,3 @@ kubectl label namespace my-namespace pod-security.kubernetes.io/enforce=baseline
 ### Final Thoughts
 
 The CKS exam focuses heavily on securing Kubernetes clusters, workloads, and operations. These practice questions cover essential Kubernetes security topics and provide hands-on experience with tools like `kube-bench`, `trivy`, and RBAC policies. By mastering these concepts and commands, you'll be well-prepared for the CKS exam and confident in securing Kubernetes environments.
-
