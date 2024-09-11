@@ -46,7 +46,7 @@ This installs Prometheus, Alertmanager, and Grafana, along with default configur
 
 By default, Prometheus may not be configured to scrape Etcd metrics. We need to update the `prometheus` configuration to scrape Etcd metrics.
 
-1. Add a `ServiceMonitor` for Etcd. Create a YAML file named `etcd-servicemonitor.yaml`:
+- Add a `ServiceMonitor` for Etcd. Create a YAML file named `etcd-servicemonitor.yaml`:
 
 ```yaml
 apiVersion: monitoring.coreos.com/v1
@@ -66,7 +66,7 @@ spec:
     - kube-system
 ```
 
-2. Apply the ServiceMonitor:
+- Apply the ServiceMonitor:
 
 ```bash
 kubectl apply -f etcd-servicemonitor.yaml

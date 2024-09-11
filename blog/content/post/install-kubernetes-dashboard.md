@@ -40,7 +40,7 @@ This will download and deploy the necessary resources, such as the dashboard’s
 
 To access the Dashboard, you’ll need to create an admin user and a ServiceAccount with the necessary permissions.
 
-1. Create a YAML file to define the admin ServiceAccount and ClusterRoleBinding:
+- Create a YAML file to define the admin ServiceAccount and ClusterRoleBinding:
 
 ```yaml
 apiVersion: v1
@@ -63,7 +63,7 @@ subjects:
   namespace: kubernetes-dashboard
 ```
 
-2. Apply the YAML file to create the admin account:
+- Apply the YAML file to create the admin account:
 
 ```bash
 kubectl apply -f admin-user.yaml
@@ -103,20 +103,20 @@ If you need to access the Dashboard externally (without using `kubectl proxy`), 
 
 Here’s an example of exposing the Dashboard with a NodePort:
 
-1. Edit the Kubernetes Dashboard service to change the type to `NodePort`:
+- Edit the Kubernetes Dashboard service to change the type to `NodePort`:
 
 ```bash
 kubectl -n kubernetes-dashboard edit svc kubernetes-dashboard
 ```
 
-2. Change the service type from `ClusterIP` to `NodePort`:
+- Change the service type from `ClusterIP` to `NodePort`:
 
 ```yaml
 spec:
   type: NodePort
 ```
 
-3. Save the file and find the assigned port:
+- Save the file and find the assigned port:
 
 ```bash
 kubectl -n kubernetes-dashboard get svc kubernetes-dashboard

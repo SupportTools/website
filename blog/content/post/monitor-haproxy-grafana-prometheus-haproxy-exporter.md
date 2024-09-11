@@ -27,7 +27,7 @@ With Prometheus scraping HAProxy metrics and Grafana visualizing them, you can s
 
 If you haven’t already installed Prometheus and Grafana, follow these steps to get them up and running:
 
-#### Install Prometheus:
+#### Install Prometheus
 
 ```bash
 # Download and install Prometheus
@@ -37,7 +37,7 @@ cd prometheus-2.32.0.linux-amd64
 ./prometheus --config.file=prometheus.yml
 ```
 
-#### Install Grafana:
+#### Install Grafana
 
 ```bash
 # Install Grafana on a Debian-based system
@@ -54,7 +54,7 @@ Access Grafana by navigating to `http://localhost:3000` in your browser, and log
 
 The `haproxy_exporter` exposes HAProxy metrics in a format that Prometheus can scrape. Install it on the same server running HAProxy or on a separate monitoring server.
 
-1. **Download and install haproxy_exporter**:
+- **Download and install haproxy_exporter**
 
 ```bash
 wget https://github.com/prometheus/haproxy_exporter/releases/download/v0.12.0/haproxy_exporter-0.12.0.linux-amd64.tar.gz
@@ -62,7 +62,7 @@ tar xvfz haproxy_exporter-0.12.0.linux-amd64.tar.gz
 sudo mv haproxy_exporter /usr/local/bin/
 ```
 
-2. **Configure HAProxy to expose statistics**:
+- **Configure HAProxy to expose statistics**
 
 To allow `haproxy_exporter` to collect metrics, HAProxy needs to expose its statistics endpoint. Edit your `haproxy.cfg` file and add a stats section:
 
@@ -81,7 +81,7 @@ Restart HAProxy to apply the changes:
 sudo systemctl restart haproxy
 ```
 
-3. **Start haproxy_exporter**:
+- **Start haproxy_exporter**:
 
 Run the `haproxy_exporter` with the HAProxy stats URL and credentials:
 
@@ -110,13 +110,13 @@ sudo systemctl reload prometheus
 
 Now that Prometheus is scraping HAProxy metrics, you can visualize them in Grafana.
 
-1. **Add Prometheus as a Data Source**:
+- **Add Prometheus as a Data Source**:
 
 - In Grafana, go to **Configuration > Data Sources**.
 - Click **Add data source**, select **Prometheus**, and enter the URL for your Prometheus instance (e.g., `http://localhost:9090`).
 - Click **Save & Test** to verify the connection.
 
-2. **Import HAProxy Dashboard**:
+- **Import HAProxy Dashboard**:
 
 To save time, you can import a pre-configured HAProxy dashboard. Here’s how to import one:
 
@@ -125,6 +125,7 @@ To save time, you can import a pre-configured HAProxy dashboard. Here’s how to
 - Select your Prometheus data source and click **Import**.
 
 This dashboard provides real-time metrics such as:
+
 - Active and inactive sessions.
 - Request rates and response times.
 - Backend status and health checks.
@@ -134,13 +135,13 @@ This dashboard provides real-time metrics such as:
 
 You can set up alerts in Grafana for critical HAProxy metrics, such as high response times, connection errors, or overloaded backends.
 
-1. **Create a new alert**:
+- **Create a new alert**:
 
 - Go to the panel (e.g., "Response Time") where you want to create an alert.
 - Click the panel title and select **Edit**.
 - Go to the **Alert** tab and define your alert conditions (e.g., trigger an alert if the response time exceeds 500ms).
 
-2. **Configure notification channels**:
+- **Configure notification channels**:
 
 - Go to **Alerting > Notification channels**.
 - Add your preferred notification method (email, Slack, etc.) and link it to the alert you’ve created.

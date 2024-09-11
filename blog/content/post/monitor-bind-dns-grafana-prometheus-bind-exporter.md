@@ -52,7 +52,7 @@ Once Grafana is installed, open the web interface at `http://localhost:3000` and
 
 `bind_exporter` is a Prometheus exporter that collects metrics from Bind’s statistics channels and makes them available for Prometheus to scrape.
 
-1. **Download bind_exporter**:
+- **Download bind_exporter**
 
 ```bash
 # Download and install bind_exporter
@@ -61,7 +61,7 @@ tar xvfz bind_exporter-0.4.0.linux-amd64.tar.gz
 sudo mv bind_exporter /usr/local/bin/
 ```
 
-2. **Expose Bind Statistics**:
+- **Expose Bind Statistics**
 
 Bind needs to be configured to expose statistics via HTTP so that `bind_exporter` can collect metrics. Edit your Bind configuration file (`/etc/named.conf` or `/etc/bind/named.conf.options`) to add a statistics channel:
 
@@ -77,7 +77,7 @@ Restart Bind to apply the changes:
 sudo systemctl restart bind9
 ```
 
-3. **Run bind_exporter**:
+- **Run bind_exporter**
 
 Now, start `bind_exporter` to scrape metrics from Bind:
 
@@ -108,13 +108,13 @@ sudo systemctl restart prometheus
 
 With Prometheus scraping Bind metrics, the next step is to visualize the data in Grafana.
 
-1. **Add Prometheus as a Data Source**:
+- **Add Prometheus as a Data Source**
 
 - In Grafana, go to **Configuration > Data Sources**.
 - Click **Add data source**, select **Prometheus**, and enter the Prometheus server URL (e.g., `http://localhost:9090`).
 - Click **Save & Test** to ensure the connection works.
 
-2. **Import a Bind Dashboard**:
+- **Import a Bind Dashboard**
 
 To speed up the setup, you can use a pre-configured Bind DNS monitoring dashboard. Here’s how to import one:
 
@@ -128,13 +128,13 @@ This dashboard will display metrics such as DNS query rates, cache performance, 
 
 To be proactive about DNS performance issues, you can set up alerts in Grafana for critical metrics such as query failures, high query rates, or resource exhaustion.
 
-1. **Create a New Alert**:
+- **Create a New Alert**:
 
 - In the imported dashboard, choose a panel (e.g., DNS Query Rate).
 - Click the panel title and select **Edit**.
 - Go to the **Alert** tab, click **Create Alert**, and define your alert conditions (e.g., alert if query rate exceeds 10,000 QPS).
 
-2. **Configure Alert Notification Channels**:
+- **Configure Alert Notification Channels**:
 
 - Go to **Alerting > Notification channels**.
 - Add your preferred alerting method (email, Slack, etc.).

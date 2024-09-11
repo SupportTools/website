@@ -25,7 +25,7 @@ When deploying services in Kubernetes, managing external traffic securely is a c
 
 ### Step 1: Install MetalLB
 
-#### 1. **Install MetalLB with Manifest**:
+#### 1. **Install MetalLB with Manifest**
 
 MetalLB requires a Layer 2 configuration for bare-metal environments, assigning IP addresses from a predefined pool.
 
@@ -33,7 +33,7 @@ MetalLB requires a Layer 2 configuration for bare-metal environments, assigning 
 kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.12.1/manifests/metallb.yaml
 ```
 
-#### 2. **Configure MetalLB IP Pool**:
+#### 2. **Configure MetalLB IP Pool**
 
 Create a Layer 2 configuration file for MetalLB. This file defines the IP address pool that MetalLB will use to assign external IPs to services.
 
@@ -64,7 +64,7 @@ MetalLB is now configured and ready to assign external IPs to services in your K
 
 ### Step 2: Install Istio and Enable Ingress Gateway
 
-#### 1. **Install Istio**:
+#### 1. **Install Istio**
 
 Download and install Istio with Helm:
 
@@ -80,7 +80,7 @@ Install the Istio components:
 istioctl install --set profile=default
 ```
 
-#### 2. **Enable Istio Ingress Gateway**:
+#### 2. **Enable Istio Ingress Gateway**
 
 The Istio Ingress Gateway is responsible for managing incoming external traffic. By default, the Ingress Gateway is installed but not exposed.
 
@@ -115,7 +115,7 @@ MetalLB will assign an external IP to the Istio Ingress Gateway, making it acces
 
 Mutual TLS (mTLS) ensures that both the client and server authenticate each other. Istio makes it easy to configure mTLS for incoming traffic to the Ingress Gateway.
 
-#### 1. **Create a Root Certificate Authority (CA)**:
+#### 1. **Create a Root Certificate Authority (CA)**
 
 First, generate a root certificate and key to serve as the root CA for mTLS.
 
@@ -123,7 +123,7 @@ First, generate a root certificate and key to serve as the root CA for mTLS.
 openssl req -x509 -newkey rsa:4096 -keyout ca.key -out ca.crt -days 365 -nodes -subj "/CN=RootCA"
 ```
 
-#### 2. **Generate Certificates for the Ingress Gateway**:
+#### 2. **Generate Certificates for the Ingress Gateway**
 
 Generate a private key and certificate for the Istio Ingress Gateway.
 
@@ -132,7 +132,7 @@ openssl req -newkey rsa:4096 -keyout istio-ingressgateway.key -out istio-ingress
 openssl x509 -req -in istio-ingressgateway.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out istio-ingressgateway.crt -days 365
 ```
 
-#### 3. **Create a Secret for the Gateway Certificates**:
+#### 3. **Create a Secret for the Gateway Certificates**
 
 Store the certificates as Kubernetes secrets in the `istio-system` namespace:
 
@@ -141,7 +141,7 @@ kubectl create -n istio-system secret tls istio-ingressgateway-certs --key istio
 kubectl create -n istio-system secret generic ca-cert --from-file=ca.crt=ca.crt
 ```
 
-#### 4. **Configure Gateway for mTLS**:
+#### 4. **Configure Gateway for mTLS**
 
 Update the Istio `Gateway` resource to enforce mTLS for incoming traffic:
 
@@ -178,7 +178,7 @@ kubectl apply -f mtls-gateway.yaml
 
 To verify the mTLS setup, you’ll need to configure a client to authenticate with the Ingress Gateway using a client certificate signed by the same CA.
 
-#### 1. **Generate a Client Certificate**:
+#### 1. **Generate a Client Certificate**
 
 Create a certificate for the client:
 
@@ -187,7 +187,7 @@ openssl req -newkey rsa:4096 -keyout client.key -out client.csr -nodes -subj "/C
 openssl x509 -req -in client.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out client.crt -days 365
 ```
 
-#### 2. **Test the Connection**:
+#### 2. **Test the Connection**
 
 Use `curl` to test the connection between the client and the Istio Ingress Gateway:
 
@@ -200,4 +200,3 @@ If everything is configured correctly, you should see a successful response from
 ### Final Thoughts
 
 By combining MetalLB with Istio Ingress Gateway and Mutual TLS, you can ensure secure external access to your Kubernetes services while maintaining control over load balancing and routing. This setup provides enhanced security, particularly for homelab or bare-metal environments, and gives you the flexibility to manage traffic securely and efficiently.
-

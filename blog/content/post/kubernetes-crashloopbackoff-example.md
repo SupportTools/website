@@ -23,6 +23,7 @@ In this post, we'll explore what **CrashLoopBackOff** means, provide a real-worl
 When Kubernetes puts a Pod into a **CrashLoopBackOff** state, it means that the container inside the Pod has failed to start successfully, and Kubernetes is retrying to launch it. The **BackOff** part refers to the exponential backoff mechanism used by Kubernetes to avoid restarting the container too quickly.
 
 **Common causes** for CrashLoopBackOff include:
+
 - Misconfigured environment variables
 - Application crashes due to missing dependencies
 - Port conflicts or misconfigurations
@@ -62,7 +63,7 @@ kubectl get pod my-app
 
 This will show the status as `CrashLoopBackOff`:
 
-```
+```bash
 NAME      READY   STATUS             RESTARTS   AGE
 my-app    0/1     CrashLoopBackOff    3          1m
 ```
@@ -77,7 +78,7 @@ kubectl describe pod my-app
 
 This command will provide details such as container states, events, and failure messages. Look for the **Events** section, which may reveal why the container is crashing:
 
-```
+```bash
 Events:
   Type     Reason     Age                   From               Message
   ----     ------     ----                  ----               -------
@@ -96,7 +97,7 @@ kubectl logs my-app
 
 In our example, the logs might show an error like this:
 
-```
+```bash
 Error: Cannot connect to database at 'mysql://invalid-url'
 ```
 
@@ -140,7 +141,7 @@ kubectl get pod my-app
 
 The Pod should now be in the **Running** state:
 
-```
+```bash
 NAME      READY   STATUS    RESTARTS   AGE
 my-app    1/1     Running   0          1m
 ```
@@ -148,4 +149,3 @@ my-app    1/1     Running   0          1m
 ### Conclusion
 
 The **CrashLoopBackOff** state in Kubernetes can be caused by various factors, including misconfigurations and application-level errors. By following the steps outlined in this post—checking logs, describing the Pod, and fixing the issue—you can efficiently troubleshoot and resolve CrashLoopBackOff issues in your Kubernetes cluster.
-

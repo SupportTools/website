@@ -23,6 +23,7 @@ In this post, we’ll explore the differences between static and dynamic ConfigM
 A **ConfigMap** is a key-value store that Kubernetes uses to hold configuration data for applications running inside Pods. It allows you to externalize configuration from the container image, making it easy to update application settings without the need for changing the application code or rebuilding the image.
 
 ConfigMaps are commonly used to:
+
 - Store environment variables
 - Define application settings
 - Hold configuration files or scripts
@@ -31,7 +32,7 @@ ConfigMaps are commonly used to:
 
 A **Static ConfigMap** is a configuration that is loaded once when the Pod is created. It remains unchanged throughout the lifetime of the Pod unless manually updated and reloaded through a redeployment. Static ConfigMaps are typically used in scenarios where the configuration is not expected to change frequently.
 
-#### Example of a Static ConfigMap:
+#### Example of a Static ConfigMap
 
 ```yaml
 apiVersion: v1
@@ -46,7 +47,8 @@ data:
 
 In this example, the static configuration includes environment variables for an application. Once this ConfigMap is created, the configuration will not change unless you manually update it and restart the Pod.
 
-#### Use Cases for Static ConfigMaps:
+#### Use Cases for Static ConfigMaps
+
 - **Environment variables**: Settings that do not change often, such as production or testing configurations.
 - **Application defaults**: Defaults that are set once and don't need frequent adjustments, such as database connections or API keys.
 
@@ -56,7 +58,7 @@ A **Dynamic ConfigMap** refers to a configuration that is updated during the run
 
 This approach is useful for applications that need to adapt to changing configurations or settings, such as feature toggles, thresholds, or dynamically updated configurations.
 
-#### Example of a Dynamic ConfigMap:
+#### Example of a Dynamic ConfigMap
 
 ```yaml
 apiVersion: v1
@@ -98,9 +100,11 @@ spec:
 ```
 
 In this configuration:
+
 - The **configmap-reload** sidecar container monitors the `/etc/config` directory for changes. When a change is detected, it triggers the main application to reload the updated configuration without restarting the Pod.
 
-#### Use Cases for Dynamic ConfigMaps:
+#### Use Cases for Dynamic ConfigMaps
+
 - **Feature toggles**: Turning features on or off without redeploying the application.
 - **Thresholds or limits**: Adjusting performance parameters such as connection limits, memory thresholds, or request timeouts.
 - **Runtime configuration updates**: Any configuration that may need to change based on the operational needs of the application.
@@ -124,4 +128,3 @@ In this configuration:
 ### Conclusion
 
 Choosing between **Static** and **Dynamic ConfigMaps** depends on the nature of your application and its configuration needs. Static ConfigMaps work well for stable settings that don’t change often, while dynamic ConfigMaps are ideal for applications that need to adapt to changing configurations in real time. By using the right type of ConfigMap and following best practices, you can optimize the performance and flexibility of your Kubernetes applications.
-

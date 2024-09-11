@@ -105,7 +105,7 @@ In this configuration, Pods communicate directly with each other using IPs, bypa
 
 For example, a StatefulSet with three replicas will result in the following DNS entries:
 
-```
+```bash
 pod-0.my-statefulset.default.svc.cluster.local
 pod-1.my-statefulset.default.svc.cluster.local
 pod-2.my-statefulset.default.svc.cluster.local
