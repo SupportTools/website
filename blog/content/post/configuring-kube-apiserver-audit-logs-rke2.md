@@ -1,6 +1,6 @@
 ---
 title: "Configuring Kube-apiserver Audit Logs in RKE2"
-date: 2024-09-11T19:26:00-05:00
+date: 2024-09-11T03:26:00-05:00
 draft: false
 tags: ["RKE2", "Kube-apiserver", "Audit Logging", "Kubernetes"]  
 categories:  

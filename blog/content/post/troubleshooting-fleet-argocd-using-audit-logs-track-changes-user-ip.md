@@ -1,6 +1,6 @@
 ---
 title: "Using Audit Logs to Track Changes in Fleet or ArgoCD"
-date: 2024-09-11T19:26:00-05:00
+date: 2024-09-11T02:26:00-05:00
 draft: false  
 tags: ["Rancher", "Audit Logging", "Fleet", "ArgoCD", "Kubernetes"]  
 categories:  
