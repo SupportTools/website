@@ -1,0 +1,40 @@
+---
+apiVersion: tor.k8s.torproject.org/v1alpha2
+kind: OnionService
+metadata:
+  name: onion-service
+spec:
+  privateKeySecret:
+    name: my-full-onion-secret
+  version: 3
+  rules:
+    - port:
+        number: 80
+      backend:
+        service:
+          name: website
+          port:
+            number: 8080
+---
+apiVersion: tor.k8s.torproject.org/v1alpha2
+kind: OnionBalancedService
+metadata:
+  name: onionbalanced-service
+spec:
+  privateKeySecret:
+    name: my-full-onion-secret
+  backends: 2
+  serviceMonitor: true
+  template:
+    spec:
+      version: 3
+      serviceMonitor: true
+      rules:
+        - port:
+            number: 80
+          backend:
+            service:
+              name: website
+              port:
+                number: 8080
+---
