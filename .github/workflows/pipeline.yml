@@ -152,8 +152,6 @@ jobs:
           fi
           # Recycle webcache
           kubectl --kubeconfig kubeconfig -n supporttools-mst rollout restart deployment/go-web-cache
-          # Wait for pods to be ready
-          kubectl --kubeconfig kubeconfig -n supporttools-mst wait --for=condition=ready pod -l app=go-web-cache --timeout=300s
   
       - name: Deploy Dev
         run: |
@@ -180,8 +178,6 @@ jobs:
           fi
           # Recycle webcache
           kubectl --kubeconfig kubeconfig -n supporttools-dev rollout restart deployment/go-web-cache
-          # Wait for pods to be ready
-          kubectl --kubeconfig kubeconfig -n supporttools-dev wait --for=condition=ready pod -l app=go-web-cache --timeout=300s
   
       - name: Deploy QAS
         run: |
@@ -208,8 +204,6 @@ jobs:
           fi
           # Recycle webcache
           kubectl --kubeconfig kubeconfig -n supporttools-qas rollout restart deployment/go-web-cache
-          # Wait for pods to be ready
-          kubectl --kubeconfig kubeconfig -n supporttools-qas wait --for=condition=ready pod -l app=go-web-cache --timeout=300s
           
       - name: Deploy Test
         run: |
@@ -236,8 +230,6 @@ jobs:
           fi
           # Recycle webcache
           kubectl --kubeconfig kubeconfig -n supporttools-tst rollout restart deployment/go-web-cache
-          # Wait for pods to be ready
-          kubectl --kubeconfig kubeconfig -n supporttools-tst wait --for=condition=ready pod -l app=go-web-cache --timeout=300s
 
       - name: Deploy Staging
         run: |
@@ -264,8 +256,6 @@ jobs:
           fi
           # Recycle webcache
           kubectl --kubeconfig kubeconfig -n supporttools-stg rollout restart deployment/go-web-cache
-          # Wait for pods to be ready
-          kubectl --kubeconfig kubeconfig -n supporttools-stg wait --for=condition=ready pod -l app=go-web-cache --timeout=300s
           
       - name: Deploy Prod
         run: |
@@ -292,8 +282,6 @@ jobs:
           fi
           # Recycle webcache
           kubectl --kubeconfig kubeconfig -n supporttools-prd rollout restart deployment/go-web-cache
-          # Wait for pods to be ready
-          kubectl --kubeconfig kubeconfig -n supporttools-prd wait --for=condition=ready pod -l app=go-web-cache --timeout=300s
         
   Deploy-to-NYC3:
     runs-on: ubuntu-latest
