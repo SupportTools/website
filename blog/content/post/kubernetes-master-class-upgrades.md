@@ -1,6 +1,6 @@
 ---
 title: "Kubernetes Master Class: A Seamless Approach to Rancher & Kubernetes Upgrades"
-date: 2024-10-15T17:30:00-05:00
+date: 2024-10-14T17:30:00-05:00
 draft: false
 tags: ["Kubernetes", "Rancher", "RKE1", "RKE2", "Backup", "Upgrades"]
 categories:
