@@ -35,7 +35,7 @@ By default, Kubernetes pods use **UTC (Coordinated Universal Time)**. If no spec
 
 ### Steps to Configure Timezone in a Kubernetes Pod
 
-Let’s walk through the process of setting a specific timezone in a pod. For this example, we’ll set the timezone to **Asia/Kolkata**.
+Let’s walk through the process of setting a specific timezone in a pod. For this example, we’ll set the timezone to **America/Chicago**.
 
 ### Step 1: Write the Pod Manifest
 
@@ -58,10 +58,10 @@ spec:
   volumes:
   - name: tz-config
     hostPath:
-      path: /usr/share/zoneinfo/Asia/Kolkata
+      path: /usr/share/zoneinfo/America/Chicago
 ```
 
-This pod uses a `busybox` container and mounts the timezone configuration from the host’s timezone data (`/usr/share/zoneinfo/Asia/Kolkata`) to the pod’s `/etc/localtime` directory, thus changing its timezone to Asia/Kolkata.
+This pod uses a `busybox` container and mounts the timezone configuration from the host’s timezone data (`/usr/share/zoneinfo/America/Chicago`) to the pod’s `/etc/localtime` directory, thus changing its timezone to America/Chicago.
 
 ### Step 2: Create the Pod
 
@@ -91,7 +91,7 @@ To verify that the timezone has been correctly configured, use the following com
 kubectl exec timezone-pod -- date
 ```
 
-This command will show the current date and time inside the pod, reflecting the timezone set in the configuration (Asia/Kolkata in this example).
+This command will show the current date and time inside the pod, reflecting the timezone set in the configuration (America/Chicago in this example).
 
 ### Final Thoughts
 
