@@ -73,7 +73,7 @@ spec:
               path: /usr/share/zoneinfo/America/Chicago
 ```
 
-#### Explanation of the CronJob Manifest:
+#### Explanation of the CronJob Manifest
 
 1. **Schedule:** The schedule uses the cron format (`* * * * *`) which runs the job every minute. You can modify this to suit your actual schedule.
 2. **Timezone Configuration:** The key to setting the timezone is to mount the host’s timezone data (`/usr/share/zoneinfo/America/Chicago`) into the pod’s `/etc/localtime` directory. This ensures that the container uses the specified timezone.
@@ -115,7 +115,7 @@ You should see the current date and time, printed in the configured timezone (Am
 Here’s an example output when checking the logs for a job running in the **America/Chicago** timezone:
 
 ```bash
-Tue Oct 15 18:30:00 IST 2024
+Tue Oct 15 18:30:00 CDT 2024
 ```
 
 This confirms that the job is running at the correct local time.
