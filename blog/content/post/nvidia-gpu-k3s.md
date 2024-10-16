@@ -11,7 +11,6 @@ description: "A detailed guide on installing Nvidia GPU drivers on K3s for machi
 more_link: "yes"
 url: "/nvidia-gpu-k3s/"
 ---
-```
 
 ## How to Install Nvidia GPU Drivers on K3s
 
@@ -22,6 +21,7 @@ If you're running a K3s cluster and need to leverage Nvidia GPUs for AI or machi
 ### 1. Prerequisites
 
 Ensure the following before proceeding:
+
 - A K3s cluster running on compatible nodes with Nvidia GPUs.
 - Access to the node's terminal.
 
