@@ -6,14 +6,20 @@ tags: ["Nvidia", "k3s"]
 categories:
 - Nvidia
 - k3s
-author: "Matthew Mattox - mmattox@support.tools."
-description: "TEMPLATE"
+author: "Matthew Mattox - mmattox@support.tools"
+description: "TEMPLATE"  # Add a brief description
 more_link: "yes"
-url: "/template/"
+url: "/template/"  # Adjust as per the content
 ---
 
-TEMPLATE
+TEMPLATE CONTENT
 
 <!--more-->
+
 # [Temp](#temp)
-TEMPLATES
+## Section 1: TEMPLATE  
+Add your section content here.
+
+## Section 2: TEMPLATE  
+More content or subsections if needed.
+
