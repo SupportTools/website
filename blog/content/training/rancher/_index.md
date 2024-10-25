@@ -1,6 +1,8 @@
 ---
 title: "Rancher"
-date: 2021-11-22T02:25:51+11:00
+date: 2024-10-25
 draft: false
-hideMeta: true
+description: "Learn how to manage Kubernetes with Rancher."
 ---
+
+Rancher provides powerful tools to simplify multi-cluster management. In this section, explore guides, troubleshooting tips, and strategies for getting the most out of Rancher.

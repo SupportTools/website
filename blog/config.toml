@@ -9,55 +9,88 @@ paginate = 8
     name = "Home"
     url = "/"
     weight = 1
+
   [[menu.main]]
     identifier = "about"
     name = "About"
     url = "/about/"
     weight = 2
+
   [[menu.main]]
     identifier = "certificates"
     name = "Certificates"
     url = "/certificates/"
     weight = 3
+
   [[menu.main]]
-    identifier = "Publications"
+    identifier = "publications"
     name = "Publications"
     url = "/publications/"
     weight = 4
+
   [[menu.main]]
     identifier = "portfolio"
     name = "Portfolio"
     url = "/portfolio/"
     weight = 5
+
   [[menu.main]]
-    identifier = "Training"
+    identifier = "training"
     name = "Training"
     url = "/training/"
+    weight = 6
+
+  [[menu.main]]
+    identifier = "fleet"
+    name = "Fleet"
+    url = "/training/fleet/"
+    parent = "training"
+    weight = 7
+
+  [[menu.main]]
+    identifier = "rancher"
+    name = "Rancher"
+    url = "/training/rancher/"
+    parent = "training"
+    weight = 8
+
+  [[menu.main]]
+    identifier = "rke"
+    name = "RKE"
+    url = "/training/rke/"
+    parent = "training"
+    weight = 9
+
+  [[menu.main]]
+    identifier = "rke2"
+    name = "RKE2"
+    url = "/training/rke2/"
+    parent = "training"
+    weight = 10
+
   [[menu.main]]
     identifier = "kubernetes"
     name = "Kubernetes"
     url = "/categories/kubernetes/"
-    weight = 6
-  [[menu.main]]
-    identifier = "rancher"
-    name = "Rancher"
-    url = "/categories/rancher/"
-    weight = 7
+    weight = 11
+
   [[menu.main]]
     identifier = "ubuntu"
     name = "Ubuntu"
     url = "/categories/ubuntu/"
-    weight = 8
+    weight = 12
 
 [params]
   author = "Matthew Mattox"
   description = "Matthew Mattox Personal Tech Blog"
   avatar = "https://cdn.support.tools/profiles/avatar-centered.png"
   menu_item_separator = " - "
+
   [[params.social]]
     icon = "github"
     name = "Github"
     url = "https://github.com/mattmattox"
+
   [[params.social]]
     icon = "twitter"
     name = "Twitter"

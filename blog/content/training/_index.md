@@ -1,6 +1,8 @@
 ---
-title: "Training"
-date: 2021-11-22T02:25:51+11:00
+title: "RKE2"
+date: 2024-10-25
 draft: false
-hideMeta: true
+description: "Master RKE2, the next-generation Kubernetes distribution from Rancher."
 ---
+
+RKE2 brings enhanced security and performance improvements to Kubernetes clusters. This section covers setup, configuration, and troubleshooting of RKE2 clusters.
