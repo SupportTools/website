@@ -30,6 +30,10 @@ paginate = 8
     url = "/portfolio/"
     weight = 5
   [[menu.main]]
+    identifier = "Training"
+    name = "Training"
+    url = "/training/"
+  [[menu.main]]
     identifier = "kubernetes"
     name = "Kubernetes"
     url = "/categories/kubernetes/"
