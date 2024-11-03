@@ -1,6 +1,6 @@
 ---
 title: "Rancher Backups and Disaster Recovery for RKE1"
-date: 2022-05-05T24:23:50-05:00
+date: 2024-06-30T23:18:00-05:00
 draft: false
 tags: ["rancher", "rancher-2.x", "backups", "disaster-recovery"]
 categories:
