@@ -1,6 +1,6 @@
 ---
 title: "Installing 'robot-detect' to Check for The ROBOT Attack"
-date: 2024-05-T16:15:00-05:00
+date: 2024-05-30T16:15:00-05:00
 draft: false
 tags: ["ROBOT Attack", "Security", "Python", "Linux"]
 categories:
