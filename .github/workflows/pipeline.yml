@@ -149,7 +149,9 @@ jobs:
           if [ $COUNTER -eq $MAX_TRIES ]; then
             echo "Application did not become healthy in time."
             exit 1
-            fi
+          fi
+          # Recycle webcache
+          kubectl --kubeconfig kubeconfig -n supporttools-mst rollout restart deployment/go-web-cache
   
       - name: Deploy Dev
         run: |
@@ -174,6 +176,8 @@ jobs:
             echo "Application did not become healthy in time."
             exit 1
           fi
+          # Recycle webcache
+          kubectl --kubeconfig kubeconfig -n supporttools-dev rollout restart deployment/go-web-cache
   
       - name: Deploy QAS
         run: |
@@ -198,6 +202,8 @@ jobs:
             echo "Application did not become healthy in time."
             exit 1
           fi
+          # Recycle webcache
+          kubectl --kubeconfig kubeconfig -n supporttools-qas rollout restart deployment/go-web-cache
           
       - name: Deploy Test
         run: |
@@ -222,6 +228,8 @@ jobs:
             echo "Application did not become healthy in time."
             exit 1
           fi
+          # Recycle webcache
+          kubectl --kubeconfig kubeconfig -n supporttools-tst rollout restart deployment/go-web-cache
 
       - name: Deploy Staging
         run: |
@@ -245,7 +253,9 @@ jobs:
           if [ $COUNTER -eq $MAX_TRIES ]; then
             echo "Application did not become healthy in time."
             exit 1
-          fi          
+          fi
+          # Recycle webcache
+          kubectl --kubeconfig kubeconfig -n supporttools-stg rollout restart deployment/go-web-cache
           
       - name: Deploy Prod
         run: |
@@ -270,6 +280,8 @@ jobs:
             echo "Application did not become healthy in time."
             exit 1
           fi
+          # Recycle webcache
+          kubectl --kubeconfig kubeconfig -n supporttools-prd rollout restart deployment/go-web-cache
         
   Deploy-to-NYC3:
     runs-on: ubuntu-latest
@@ -290,6 +302,7 @@ jobs:
           sudo mv rancher-projects /usr/local/bin/
           rancher-projects --rancher-server ${{ secrets.CATTLE_SERVER }} --rancher-access-key ${{ secrets.CATTLE_ACCESS_KEY }} --rancher-secret-key ${{ secrets.CATTLE_SECRET_KEY }} --cluster-name d1-doks-nyc3 --project-name "SupportTools" --namespace argocd --create-kubeconfig --kubeconfig "kubeconfig"
           cat ./argocd/prd.yaml | sed "s/CHARTVERSION/v${{ github.run_number }}/g" | kubectl --kubeconfig kubeconfig apply -f -
+          kubectl --kubeconfig kubeconfig -n supporttools-prd rollout restart deployment/go-web-cache
 
   Deploy-to-SFO3:
     runs-on: ubuntu-latest
@@ -310,3 +323,4 @@ jobs:
           sudo mv rancher-projects /usr/local/bin/
           rancher-projects --rancher-server ${{ secrets.CATTLE_SERVER }} --rancher-access-key ${{ secrets.CATTLE_ACCESS_KEY }} --rancher-secret-key ${{ secrets.CATTLE_SECRET_KEY }} --cluster-name d2-doks-sfo3 --project-name "SupportTools" --namespace argocd --create-kubeconfig --kubeconfig "kubeconfig"
           cat ./argocd/prd.yaml | sed "s/CHARTVERSION/v${{ github.run_number }}/g" | kubectl --kubeconfig kubeconfig apply -f -
+          kubectl --kubeconfig kubeconfig -n supporttools-prd rollout restart deployment/go-web-cache
