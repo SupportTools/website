@@ -27,12 +27,15 @@ jobs:
        - name: Checkout repository
          uses: actions/checkout@v3
 
-       - name: EthicalCheck  Free & Automated API Security Testing Service
+       - name: EthicalCheck Free & Automated API Security Testing Service
          uses: apisec-inc/ethicalcheck-action@005fac321dd843682b1af6b72f30caaf9952c641
          with:
           oas-url: ${{ env.OAS_URL }}
           email: ${{ env.REPORT_EMAIL }}
           sarif-result-file: "ethicalcheck-results.sarif"
+
+       - name: Wait for SARIF generation
+         run: sleep 5
 
        - name: Verify SARIF file exists and is not empty
          run: |
@@ -40,6 +43,9 @@ jobs:
              echo "SARIF file is empty or does not exist."
              exit 1
            fi
+
+       - name: Output SARIF content for debugging
+         run: cat ./ethicalcheck-results.sarif || echo "SARIF file is empty or missing"
 
        - name: Upload SARIF file to repository
          uses: github/codeql-action/upload-sarif@v3
