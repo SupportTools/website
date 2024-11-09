@@ -8,7 +8,7 @@ on:
 
 jobs:
   Test:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted-runner
 
     steps:
       - name: Checkout repository
@@ -27,7 +27,7 @@ jobs:
           docker run --rm -v $(pwd)/blog/:/src -w /src thegeeklab/hugo:0.122 list expired
 
   Build:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted-runner
     needs: Test
 
     steps:
@@ -58,7 +58,7 @@ jobs:
             -f Dockerfile .
 
   Publish:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted-runner
     needs: Build
 
     steps:
@@ -109,7 +109,7 @@ jobs:
           git push
 
   Deploy-to-LOM:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted-runner
     needs: Publish
 
     steps:
@@ -284,7 +284,7 @@ jobs:
           kubectl --kubeconfig kubeconfig -n supporttools-prd rollout restart deployment/go-web-cache
         
   Deploy-to-NYC3:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted-runner
     needs: Deploy-to-LOM
 
     steps:
@@ -305,7 +305,7 @@ jobs:
           kubectl --kubeconfig kubeconfig -n supporttools-prd rollout restart deployment/go-web-cache
 
   Deploy-to-SFO3:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted-runner
     needs: Deploy-to-LOM
 
     steps:
