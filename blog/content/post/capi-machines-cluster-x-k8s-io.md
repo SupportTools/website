@@ -1,7 +1,7 @@
 ---
 title: "Understanding CAPI and machines.cluster.x-k8s.io in Kubernetes"
-date: 2024-11-13T21:00:00-05:00
-draft: true
+date: 2024-11-12T21:00:00-05:00
+draft: false
 tags: ["CAPI", "Cluster API", "Kubernetes", "Automation"]
 categories:
 - Kubernetes

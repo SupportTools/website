@@ -1,7 +1,7 @@
 ---
 title: "Understanding Rancher System Agent: Installing RKE2 and Managing Configuration"
-date: 2024-11-13T20:00:00-05:00
-draft: true
+date: 2024-11-12T20:00:00-05:00
+draft: false
 tags: ["Rancher", "RKE2", "Kubernetes", "Automation"]
 categories:
 - Rancher
