@@ -6,6 +6,7 @@ metadata:
     app: website
     component: frontend
     team: SupportTools
+    cloud-lb: "true"
   annotations:
     external-dns.alpha.kubernetes.io/hostname: {{ .Values.ingress.host | quote }}
     external-dns.alpha.kubernetes.io/ttl: "120"
