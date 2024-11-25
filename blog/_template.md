@@ -1,6 +1,6 @@
 ---
 title: "TEMPLATE"
-date: 2022-07-11T19:26:00-05:00
+date: 2025-01-01T00:00:00-05:00
 draft: true
 tags: ["Nvidia", "k3s"]
 categories:
