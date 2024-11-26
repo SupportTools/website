@@ -1,7 +1,7 @@
 ---
 title: "How to Set the Host Header with cURL (Easily)"
 date: 2024-11-25T23:00:00-05:00
-draft: true
+draft: false
 tags: ["curl", "HTTP", "Host Header", "Bash", "TCSH"]
 categories:
 - HTTP
