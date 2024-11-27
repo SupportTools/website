@@ -32,9 +32,10 @@ func SetupLogging(cfg *config.AppConfig) *logrus.Logger {
 	logger = logrus.New()
 	logger.SetReportCaller(true)
 
-	customFormatter := new(logrus.TextFormatter)
-	customFormatter.TimestampFormat = "2006-01-02 15:04:05"
-	customFormatter.FullTimestamp = true
+	customFormatter := &logrus.TextFormatter{
+		DisableTimestamp: true, // Disable timestamps in logs
+		FullTimestamp:    false,
+	}
 	logger.SetFormatter(customFormatter)
 
 	logger.SetOutput(os.Stderr)

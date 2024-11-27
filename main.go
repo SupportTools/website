@@ -66,11 +66,11 @@ func webserver() {
 
 	if config.CFG.UseMemory {
 		logger.Println("Serving files from memory")
-		http.Handle("/", gzipMiddleware(promMiddleware(logRequest(http.HandlerFunc(serveFromMemory)))))
+		http.Handle("/", gzipMiddleware(logRequest(promMiddleware(http.HandlerFunc(serveFromMemory)))))
 	} else {
 		logger.Println("Serving files directly from filesystem")
 		fs := http.FileServer(http.Dir(config.CFG.WebRoot))
-		http.Handle("/", gzipMiddleware(promMiddleware(logRequest(fs))))
+		http.Handle("/", gzipMiddleware(logRequest(promMiddleware(fs))))
 	}
 
 	// Expose the registered Prometheus metrics via HTTP.
@@ -85,12 +85,17 @@ func webserver() {
 func promMiddleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		startTime := time.Now()
-		sanitizedPath := sanitizePath(r.URL.Path)
-		logger.Infof("Processing request for: %s", sanitizedPath)
+
+		// Pass the request to the next middleware or handler
 		next.ServeHTTP(w, r)
+
+		// Record metrics for Prometheus
+		sanitizedPath := sanitizePath(r.URL.Path)
 		duration := time.Since(startTime).Seconds()
-		logger.Infof("Request for %s processed in %f seconds", sanitizedPath, duration)
 		metrics.RecordMetrics(sanitizedPath, duration)
+
+		// Optional: Remove this log if you only want Nginx-style logs from logRequest
+		logger.Debugf("Processed request for %s in %.6f seconds", sanitizedPath, duration)
 	})
 }
 
