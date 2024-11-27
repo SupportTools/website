@@ -123,11 +123,14 @@ func LogRequest(handler http.Handler) http.HandlerFunc {
 		lrw := &loggingResponseWriter{ResponseWriter: w, statusCode: http.StatusOK}
 		handler.ServeHTTP(lrw, r)
 
+		// Format the current time in UTC
+		timestamp := time.Now().UTC().Format("02/Jan/2006:15:04:05 -0700")
+
 		// Format access log entry
 		logEntry := fmt.Sprintf("%s %s [%s] \"%s %s %s\" %d %d \"%s\" \"%s\"\n",
-			vHost,    // Virtual host
-			clientIP, // Real client IP address
-			time.Now().Format("02/Jan/2006:15:04:05 -0700"), // Timestamp
+			vHost,            // Virtual host
+			clientIP,         // Real client IP address
+			timestamp,        // Timestamp in UTC
 			method,           // HTTP method
 			uri,              // Request URI
 			proto,            // Protocol
