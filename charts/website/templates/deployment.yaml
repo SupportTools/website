@@ -74,8 +74,7 @@ spec:
               - ALL
           volumeMounts:
             - name: access-log
-              mountPath: /var/log/access.log
-              subPath: access.log
+              mountPath: /var/log/
           resources:
             limits:
               cpu: 100m
@@ -91,8 +90,7 @@ spec:
             - tail -n 0 -f /var/log/access.log;
           volumeMounts:
             - name: access-log
-              mountPath: /var/log/access.log
-              subPath: access.log
+              mountPath: /var/log/
           securityContext:
             runAsNonRoot: true
             runAsUser: 1000
