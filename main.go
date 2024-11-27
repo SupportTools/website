@@ -2,6 +2,7 @@ package main
 
 import (
 	"bytes"
+	"fmt"
 	"io/fs"
 	"log"
 	"net/http"
@@ -58,6 +59,7 @@ func main() {
 	metrics.StartMetricsServer(config.CFG.MetricsPort)
 }
 
+// webserver starts the HTTP server and serves files from the filesystem or memory
 func webserver() {
 	logger.Println("Starting web server...")
 
@@ -78,6 +80,7 @@ func webserver() {
 	log.Fatal(http.ListenAndServe(serverAddress, nil))
 }
 
+// promMiddleware records request duration as a Prometheus metric
 func promMiddleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		startTime := time.Now()
@@ -90,30 +93,55 @@ func promMiddleware(next http.Handler) http.Handler {
 	})
 }
 
+// logRequest logs the request in the Nginx access log format
 func logRequest(handler http.Handler) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		start := time.Now()
-		sanitizedPath := sanitizePath(r.URL.Path)
-		logger.Infof("Incoming request: %s %s from %s", r.Method, sanitizedPath, r.RemoteAddr)
+		// Get the real client IP, falling back to RemoteAddr if not behind Cloudflare
+		clientIP := r.Header.Get("CF-Connecting-IP")
+		if clientIP == "" {
+			clientIP = r.RemoteAddr
+		}
 
+		// Create a custom response writer to capture the status code and response size
 		lrw := &loggingResponseWriter{ResponseWriter: w, statusCode: http.StatusOK}
 		handler.ServeHTTP(lrw, r)
 
-		duration := time.Since(start)
-		logger.Infof("Request %s %s completed with status %d in %s", r.Method, sanitizedPath, lrw.statusCode, duration)
+		// Format log like Nginx access log
+		logLine := fmt.Sprintf("%s - - [%s] \"%s %s %s\" %d %d \"%s\" \"%s\"",
+			clientIP, // $remote_addr (real client IP)
+			time.Now().Format("02/Jan/2006:15:04:05 -0700"), // [$time_local]
+			r.Method,         // $request method
+			r.RequestURI,     // $request URI
+			r.Proto,          // $request protocol
+			lrw.statusCode,   // $status
+			lrw.responseSize, // $body_bytes_sent
+			r.Referer(),      // $http_referer
+			r.UserAgent(),    // $http_user_agent
+		)
+		logger.Info(logLine)
 	}
 }
 
 type loggingResponseWriter struct {
 	http.ResponseWriter
-	statusCode int
+	statusCode   int
+	responseSize int
 }
 
+// Implement the http.ResponseWriter interface
 func (lrw *loggingResponseWriter) WriteHeader(code int) {
 	lrw.statusCode = code
 	lrw.ResponseWriter.WriteHeader(code)
 }
 
+// Implement the http.ResponseWriter interface
+func (lrw *loggingResponseWriter) Write(b []byte) (int, error) {
+	size, err := lrw.ResponseWriter.Write(b)
+	lrw.responseSize += size
+	return size, err
+}
+
+// loadFilesIntoMemory reads all files and directories from the web root directory into memory
 func loadFilesIntoMemory(rootDir string) {
 	memoryFiles = make(map[string]*fileData)
 	err := filepath.WalkDir(rootDir, func(path string, d fs.DirEntry, err error) error {
@@ -182,6 +210,7 @@ func loadFilesIntoMemory(rootDir string) {
 	logger.Println("All files and directories successfully loaded into memory.")
 }
 
+// serveFromMemory serves files from memory
 func serveFromMemory(w http.ResponseWriter, r *http.Request) {
 	sanitizedPath := sanitizePath(r.URL.Path)
 
@@ -226,6 +255,7 @@ func serveFromMemory(w http.ResponseWriter, r *http.Request) {
 	http.ServeContent(w, r, sanitizedPath, fd.modTime, bytes.NewReader(fd.content))
 }
 
+// sanitizePath sanitizes the path by escaping special characters and removing control characters
 func sanitizePath(path string) string {
 	sanitizedPath := url.QueryEscape(path)
 	sanitizedPath = strings.Replace(sanitizedPath, "%2F", "/", -1)
