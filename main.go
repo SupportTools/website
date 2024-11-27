@@ -2,6 +2,7 @@ package main
 
 import (
 	"bytes"
+	"compress/gzip"
 	"fmt"
 	"io/fs"
 	"log"
@@ -65,11 +66,11 @@ func webserver() {
 
 	if config.CFG.UseMemory {
 		logger.Println("Serving files from memory")
-		http.Handle("/", promMiddleware(logRequest(http.HandlerFunc(serveFromMemory))))
+		http.Handle("/", gzipMiddleware(promMiddleware(logRequest(http.HandlerFunc(serveFromMemory)))))
 	} else {
 		logger.Println("Serving files directly from filesystem")
 		fs := http.FileServer(http.Dir(config.CFG.WebRoot))
-		http.Handle("/", promMiddleware(logRequest(fs)))
+		http.Handle("/", gzipMiddleware(promMiddleware(logRequest(fs))))
 	}
 
 	// Expose the registered Prometheus metrics via HTTP.
@@ -269,4 +270,38 @@ func sanitizePath(path string) string {
 		return r
 	}, sanitizedPath)
 	return sanitizedPath
+}
+
+// gzipMiddleware compresses the response using gzip if the client supports it.
+func gzipMiddleware(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		// Check if the client supports gzip compression
+		if !strings.Contains(r.Header.Get("Accept-Encoding"), "gzip") {
+			// If not, simply pass the request to the next handler
+			next.ServeHTTP(w, r)
+			return
+		}
+
+		// Create a gzip response writer
+		gzw := gzip.NewWriter(w)
+		defer gzw.Close()
+
+		// Set the appropriate headers
+		w.Header().Set("Content-Encoding", "gzip")
+		w.Header().Set("Vary", "Accept-Encoding")
+
+		// Wrap the original ResponseWriter with a gzip writer
+		grw := &gzipResponseWriter{ResponseWriter: w, Writer: gzw}
+		next.ServeHTTP(grw, r)
+	})
+}
+
+type gzipResponseWriter struct {
+	http.ResponseWriter
+	Writer *gzip.Writer
+}
+
+// Write method to implement the http.ResponseWriter interface
+func (grw *gzipResponseWriter) Write(b []byte) (int, error) {
+	return grw.Writer.Write(b)
 }
