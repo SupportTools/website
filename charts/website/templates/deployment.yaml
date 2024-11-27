@@ -82,7 +82,7 @@ spec:
             requests:
               cpu: 50m
               memory: 64Mi
-        - name: access-log-tailer
+        - name: access-log
           image: busybox
           imagePullPolicy: IfNotPresent
           command: ["/bin/sh", "-c"]

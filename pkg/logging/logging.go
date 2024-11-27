@@ -104,11 +104,10 @@ func CloseAccessLog() {
 // LogRequest logs HTTP requests to the access log file
 func LogRequest(handler http.Handler) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		// Get the real client IP from CF-Connecting-IP header, fallback to RemoteAddr
-		clientIP := r.Header.Get("CF-Connecting-IP")
-		if clientIP == "" {
-			clientIP = r.RemoteAddr
-		}
+		vHost := r.Host
+		xForwardedFor := r.Header.Get("X-Forwarded-For")
+		cfConnectingIP := r.Header.Get("CF-Connecting-IP")
+		clientIP := r.RemoteAddr
 
 		method := r.Method
 		uri := r.URL.String()
@@ -121,8 +120,11 @@ func LogRequest(handler http.Handler) http.HandlerFunc {
 		handler.ServeHTTP(lrw, r)
 
 		// Format access log entry
-		logEntry := fmt.Sprintf("%s - - [%s] \"%s %s %s\" %d %d \"%s\" \"%s\"\n",
-			clientIP, // Real client IP (CF-Connecting-IP or RemoteAddr)
+		logEntry := fmt.Sprintf("%s %s %s %s - - [%s] \"%s %s %s\" %d %d \"%s\" \"%s\"\n",
+			vHost,          // Virtual host
+			clientIP,       // Real client IP
+			xForwardedFor,  // X-Forwarded-For
+			cfConnectingIP, // CF-Connecting-IP
 			time.Now().Format("02/Jan/2006:15:04:05 -0700"), // Timestamp
 			method,           // HTTP method
 			uri,              // Request URI
