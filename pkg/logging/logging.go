@@ -101,9 +101,11 @@ func CloseAccessLog() {
 	}
 }
 
-// LogRequest logs HTTP requests to the access log file
 func LogRequest(handler http.Handler) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
+		// Start time to measure response duration
+		startTime := time.Now()
+
 		vHost := r.Host
 		clientIP := r.Header.Get("CF-Connecting-IP")
 		if clientIP == "" {
@@ -123,11 +125,14 @@ func LogRequest(handler http.Handler) http.HandlerFunc {
 		lrw := &loggingResponseWriter{ResponseWriter: w, statusCode: http.StatusOK}
 		handler.ServeHTTP(lrw, r)
 
+		// Calculate response time
+		responseTime := time.Since(startTime)
+
 		// Format the current time in UTC
 		timestamp := time.Now().UTC().Format("02/Jan/2006:15:04:05 -0700")
 
-		// Format access log entry
-		logEntry := fmt.Sprintf("%s %s [%s] \"%s %s %s\" %d %d \"%s\" \"%s\"\n",
+		// Format access log entry with response time
+		logEntry := fmt.Sprintf("%s %s [%s] %s %s %s %d %d %s %s %v\n",
 			vHost,            // Virtual host
 			clientIP,         // Real client IP address
 			timestamp,        // Timestamp in UTC
@@ -138,6 +143,7 @@ func LogRequest(handler http.Handler) http.HandlerFunc {
 			lrw.responseSize, // Response size
 			referer,          // Referer
 			userAgent,        // User-Agent
+			responseTime,     // Response time
 		)
 
 		// Write to the access log file
