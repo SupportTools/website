@@ -4,29 +4,6 @@ image:
   # Overrides the image tag whose default is the chart appVersion.
   tag: ${IMAGE_TAG}
 
-go-web-cache:
-  enabled: true
-  replicaCount: 3
-  settings:
-    backend:
-      host: "website"
-      scheme: "http"
-      port: 8080
-      timeout: 10000 ## Milliseconds
-      healthCheck:
-        enabled: true
-        path: "/healthz"
-        interval: 5s
-        timeout: 3s
-        retries: 3
-    cache:
-      size: 0 # 0 means no limit
-    configFile: "/app/config.json"
-    debug: true
-    metrics:
-      enabled: true
-      port: 9090
-
 imagePullSecrets: []
 
 ingress:

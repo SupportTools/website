@@ -13,8 +13,3 @@ maintainers:
   - name: mattmattox
     email: mmattox@support.tools
 icon: https://cdn.support.tools/profiles/avatar-centered.png
-dependencies:
-  - name: go-web-cache
-    version: v1.3.2
-    repository: https://charts.support.tools/
-    condition: go-web-cache.enabled
