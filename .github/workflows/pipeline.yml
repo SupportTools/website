@@ -150,8 +150,6 @@ jobs:
             echo "Application did not become healthy in time."
             exit 1
           fi
-          # Recycle webcache
-          kubectl --kubeconfig kubeconfig -n supporttools-mst rollout restart deployment/go-web-cache
   
       - name: Deploy Dev
         run: |
@@ -176,8 +174,6 @@ jobs:
             echo "Application did not become healthy in time."
             exit 1
           fi
-          # Recycle webcache
-          kubectl --kubeconfig kubeconfig -n supporttools-dev rollout restart deployment/go-web-cache
   
       - name: Deploy QAS
         run: |
@@ -202,8 +198,6 @@ jobs:
             echo "Application did not become healthy in time."
             exit 1
           fi
-          # Recycle webcache
-          kubectl --kubeconfig kubeconfig -n supporttools-qas rollout restart deployment/go-web-cache
           
       - name: Deploy Test
         run: |
@@ -228,8 +222,6 @@ jobs:
             echo "Application did not become healthy in time."
             exit 1
           fi
-          # Recycle webcache
-          kubectl --kubeconfig kubeconfig -n supporttools-tst rollout restart deployment/go-web-cache
 
       - name: Deploy Staging
         run: |
@@ -254,8 +246,6 @@ jobs:
             echo "Application did not become healthy in time."
             exit 1
           fi
-          # Recycle webcache
-          kubectl --kubeconfig kubeconfig -n supporttools-stg rollout restart deployment/go-web-cache
           
       - name: Deploy Prod
         run: |
@@ -280,8 +270,6 @@ jobs:
             echo "Application did not become healthy in time."
             exit 1
           fi
-          # Recycle webcache
-          kubectl --kubeconfig kubeconfig -n supporttools-prd rollout restart deployment/go-web-cache
 
   Deploy-to-BUR:
     runs-on: ubuntu-latest
@@ -325,5 +313,3 @@ jobs:
             echo "Application did not become healthy in time."
             exit 1
           fi
-          # Recycle webcache
-          kubectl --kubeconfig kubeconfig -n supporttools-prd rollout restart deployment/go-web-cache
