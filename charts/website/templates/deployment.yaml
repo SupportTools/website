@@ -72,6 +72,10 @@ spec:
             capabilities:
               drop:
               - ALL
+          volumeMounts:
+            - name: access-log
+              mountPath: /var/log/access.log
+              subPath: access.log
           resources:
             limits:
               cpu: 100m
@@ -79,3 +83,28 @@ spec:
             requests:
               cpu: 50m
               memory: 64Mi
+        - name: access-log-tailer
+          image: busybox
+          imagePullPolicy: IfNotPresent
+          command: ["/bin/sh", "-c"]
+          args:
+            - tail -n 0 -f /var/log/access.log;
+          volumeMounts:
+            - name: access-log
+              mountPath: /var/log/access.log
+              subPath: access.log
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 1000
+            runAsGroup: 1000
+            allowPrivilegeEscalation: false
+          resources:
+            limits:
+              cpu: 50m
+              memory: 64Mi
+            requests:
+              cpu: 20m
+              memory: 32Mi
+      volumes:
+        - name: access-log
+          emptyDir: {}

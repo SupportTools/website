@@ -43,6 +43,9 @@ WORKDIR /app
 # Create a non-root user and group to run the app
 RUN useradd -m appuser
 
+# Create the /var/log directory and access.log file
+RUN mkdir -p /var/log && touch /var/log/access.log && chown appuser:appuser /var/log/access.log
+
 # Copy the built binary from the go-builder stage
 COPY --from=go-builder /bin/webserver /app/webserver
 
@@ -51,6 +54,9 @@ COPY --from=hugo-builder /site/public /app/public
 
 # Set ownership of the /app directory to appuser
 RUN chown -R appuser:appuser /app
+
+# Set environment variables for local dev (optional)
+ENV LOG_FILE_PATH=/var/log/access.log
 
 # User appuser to run the container securely
 USER appuser

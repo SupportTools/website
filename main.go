@@ -36,9 +36,12 @@ type fileData struct {
 }
 
 func main() {
+	defer logging.CloseAccessLog() // Close the access log file when the program exits
+
 	config.LoadConfiguration()
 	logger = logging.SetupLogging(&config.CFG)
 	logger.Info("Debug logging enabled")
+
 	if config.CFG.Debug {
 		logger.Infoln("Debug mode enabled")
 		logger.Infoln("Configuration:")
@@ -66,17 +69,17 @@ func webserver() {
 
 	if config.CFG.UseMemory {
 		logger.Println("Serving files from memory")
-		http.Handle("/", gzipMiddleware(logRequest(promMiddleware(http.HandlerFunc(serveFromMemory)))))
+		http.Handle("/", logging.LogRequest(gzipMiddleware(promMiddleware(http.HandlerFunc(serveFromMemory)))))
 	} else {
 		logger.Println("Serving files directly from filesystem")
 		fs := http.FileServer(http.Dir(config.CFG.WebRoot))
-		http.Handle("/", gzipMiddleware(logRequest(promMiddleware(fs))))
+		http.Handle("/", logging.LogRequest(gzipMiddleware(promMiddleware(fs))))
 	}
 
 	// Expose the registered Prometheus metrics via HTTP.
 	http.Handle("/metrics", promhttp.Handler())
 
-	serverAddress := ":8080"
+	serverAddress := fmt.Sprintf(":%d", config.CFG.Port)
 	logger.Printf("Serving %s on HTTP port: %s\n", config.CFG.WebRoot, serverAddress)
 	log.Fatal(http.ListenAndServe(serverAddress, nil))
 }
@@ -97,54 +100,6 @@ func promMiddleware(next http.Handler) http.Handler {
 		// Optional: Remove this log if you only want Nginx-style logs from logRequest
 		logger.Debugf("Processed request for %s in %.6f seconds", sanitizedPath, duration)
 	})
-}
-
-// logRequest logs the request in the Nginx access log format
-func logRequest(handler http.Handler) http.HandlerFunc {
-	return func(w http.ResponseWriter, r *http.Request) {
-		// Get the real client IP, falling back to RemoteAddr if not behind Cloudflare
-		clientIP := r.Header.Get("CF-Connecting-IP")
-		if clientIP == "" {
-			clientIP = r.RemoteAddr
-		}
-
-		// Create a custom response writer to capture the status code and response size
-		lrw := &loggingResponseWriter{ResponseWriter: w, statusCode: http.StatusOK}
-		handler.ServeHTTP(lrw, r)
-
-		// Format log like Nginx access log
-		logLine := fmt.Sprintf("%s - - [%s] \"%s %s %s\" %d %d \"%s\" \"%s\"",
-			clientIP, // $remote_addr (real client IP)
-			time.Now().Format("02/Jan/2006:15:04:05 -0700"), // [$time_local]
-			r.Method,         // $request method
-			r.RequestURI,     // $request URI
-			r.Proto,          // $request protocol
-			lrw.statusCode,   // $status
-			lrw.responseSize, // $body_bytes_sent
-			r.Referer(),      // $http_referer
-			r.UserAgent(),    // $http_user_agent
-		)
-		logger.Info(logLine)
-	}
-}
-
-type loggingResponseWriter struct {
-	http.ResponseWriter
-	statusCode   int
-	responseSize int
-}
-
-// Implement the http.ResponseWriter interface
-func (lrw *loggingResponseWriter) WriteHeader(code int) {
-	lrw.statusCode = code
-	lrw.ResponseWriter.WriteHeader(code)
-}
-
-// Implement the http.ResponseWriter interface
-func (lrw *loggingResponseWriter) Write(b []byte) (int, error) {
-	size, err := lrw.ResponseWriter.Write(b)
-	lrw.responseSize += size
-	return size, err
 }
 
 // loadFilesIntoMemory reads all files and directories from the web root directory into memory
