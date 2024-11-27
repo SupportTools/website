@@ -124,7 +124,7 @@ func LogRequest(handler http.Handler) http.HandlerFunc {
 		handler.ServeHTTP(lrw, r)
 
 		// Format access log entry
-		logEntry := fmt.Sprintf("%s %s - - [%s] \"%s %s %s\" %d %d \"%s\" \"%s\"\n",
+		logEntry := fmt.Sprintf("%s %s [%s] \"%s %s %s\" %d %d \"%s\" \"%s\"\n",
 			vHost,    // Virtual host
 			clientIP, // Real client IP address
 			time.Now().Format("02/Jan/2006:15:04:05 -0700"), // Timestamp
