@@ -1,6 +1,7 @@
 ---
 title: "Rancher and CAPI Finalizers: Managing Kubernetes Clusters Effectively"  
-draft: false  
+date: 2024-12-03T21:00:00-05:00
+draft: false
 tags: ["Kubernetes", "Rancher", "Cluster API", "Finalizers"]  
 categories:  
 - Kubernetes  

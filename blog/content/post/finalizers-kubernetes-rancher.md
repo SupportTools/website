@@ -1,6 +1,6 @@
 ---
 title: "What Are Finalizers? When We Should Fear Them and When We Shouldn't"  
-date: 2024-12-03T20:00:00-05:00  
+date: 2024-12-03T20:00:00-05:00
 draft: false  
 tags: ["Kubernetes", "Rancher", "CRDs"]  
 categories:  
