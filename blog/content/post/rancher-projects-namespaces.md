@@ -1,7 +1,7 @@
 ---
 title: "Understanding Rancher Projects and Namespaces"
 date: 2024-12-10T13:30:00-05:00
-draft: true
+draft: false
 tags: ["Rancher", "Kubernetes"]
 categories:
 - Rancher
