@@ -129,7 +129,7 @@ jobs:
 
       - name: Deploy Master
         run: |
-          cat ./argocd/mst.yaml | sed "s/CHARTVERSION/v${{ github.run_number }}/g" | kubectl --kubeconfig kubeconfig apply -f -
+          cat ./argocd/mst.yaml | ${{ github.run_number }}/g" | kubectl --kubeconfig kubeconfig apply -f -
           sleep 30
           # Wait for the application to become healthy
           MAX_TRIES=30
