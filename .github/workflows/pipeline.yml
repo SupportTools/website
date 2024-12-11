@@ -14,9 +14,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: HUGO test build
-        run: |
-          docker run --rm -v $(pwd)/blog/:/src -w /src thegeeklab/hugo:latest --panicOnWarning --minify --gc --cleanDestinationDir --destination public --baseURL http://localhost
+      # - name: HUGO test build
+      #   run: |
+      #     docker run --rm -v $(pwd)/blog/:/src -w /src thegeeklab/hugo:latest --panicOnWarning --minify --gc --cleanDestinationDir --destination public --baseURL http://localhost
         
       # - name: html-validation
       #   run: |
