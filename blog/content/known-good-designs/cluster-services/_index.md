@@ -1,7 +1,8 @@
 ---
 title: "Cluster Services"
-description: "Known good designs for cluster services like cert-manager and ingress controllers."
-draft: false
+menu:
+  main:
+    parent: "known-good-designs"
+    name: "Cluster Services"
+    weight: 4
 ---
-
-This section includes designs for critical cluster services.
