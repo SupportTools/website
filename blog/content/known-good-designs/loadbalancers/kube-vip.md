@@ -12,7 +12,7 @@ more_link: "yes"
 url: "/known-good-designs/loadbalancers/kube-vip-layer2/"
 ---
 
-![Kube-VIP Layer2 Load Balancer](https://cdn.support.tools/known-good-designs/load-balancers/kube-vip-layer2/kube-vip-architecture.png)
+![Kube-VIP Layer2 Load Balancer](https://cdn.support.tools/known-good-designs/load-balancers/kube-vip/kube-vip.png)
 
 This guide explains how to set up Kube-VIP as a Layer2 TCP/UDP load balancer for an RKE2 cluster.
 
@@ -31,6 +31,8 @@ Kube-VIP is a lightweight virtual IP (VIP) manager that provides TCP/UDP load ba
 - **High Availability**: Ensures failover between nodes for VIPs.
 
 For more details, visit the [Kube-VIP Documentation](https://kube-vip.io/).
+
+![Kube-VIP Architecture](https://cdn.support.tools/known-good-designs/load-balancers/kube-vip/diagram.png)
 
 ---
 

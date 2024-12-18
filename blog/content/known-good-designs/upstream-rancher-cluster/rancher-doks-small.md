@@ -1,54 +1,45 @@
 ---
-title: "Rancher on Small EKS Cluster"
+title: "Rancher on Small DOKS Cluster"
 date: 2024-12-17T00:00:00-05:00
 draft: false
-tags: ["Known Good Designs", "Upstream Rancher Cluster", "EKS", "Rancher", "Kubernetes"]
+tags: ["Known Good Designs", "Upstream Rancher Cluster", "DOKS", "Rancher", "Kubernetes"]
 categories:
 - Known Good Designs
 - Upstream Rancher Cluster
 author: "Matthew Mattox - mmattox@support.tools"
-description: "Deploy a small EKS cluster with Rancher using Terraform and Helm."
+description: "Deploy a small DOKS cluster with Rancher using Terraform and Helm."
 more_link: "yes"
-url: "/known-good-designs/upstream-rancher-cluster/rancher-eks-small/"
+url: "/known-good-designs/upstream-rancher-cluster/rancher-doks-small/"
 ---
 
-This guide demonstrates how to deploy a small EKS cluster with Rancher installed, using Terraform for infrastructure provisioning and Helm for application deployment.
+This guide demonstrates how to deploy a small DOKS (DigitalOcean Kubernetes Service) cluster with Rancher installed, using Terraform for infrastructure provisioning and Helm for application deployment.
 
 <!--more-->
 
 # [Overview](#overview)
 
-## [Small EKS Cluster for Rancher](#small-eks-cluster-for-rancher)
-This configuration deploys a lightweight Amazon EKS cluster consisting of two `c8g.xlarge` nodes, the NGINX ingress controller, and Rancher as the Kubernetes management platform. This setup is ideal for development and testing environments.
+## [Small DOKS Cluster for Rancher](#small-doks-cluster-for-rancher)
+This configuration deploys a lightweight DigitalOcean Kubernetes cluster consisting of two nodes, the NGINX ingress controller, and Rancher as the Kubernetes management platform. This setup is ideal for development and testing environments.
 
 ---
 
 # [Terraform Script](#terraform-script)
 
 ### Infrastructure Provisioning
-The following Terraform script provisions the EKS cluster:
+The following Terraform script provisions the DOKS cluster:
 
 ```terraform
-provider "aws" {
-  region = "us-west-2"
+provider "digitalocean" {
+  token = "${var.digitalocean_token}" # Replace with your DigitalOcean API token
 }
 
-module "eks" {
-  source          = "terraform-aws-modules/eks/aws"
-  cluster_name    = "rancher-eks-small"
-  cluster_version = "1.27"
-  subnets         = ["subnet-abc123", "subnet-def456"] # Replace with your subnet IDs
-  vpc_id          = "vpc-123456" # Replace with your VPC ID
-
-  node_groups = {
-    rancher = {
-      desired_capacity = 2
-      max_capacity     = 3
-      min_capacity     = 2
-
-      instance_type = "c8g.xlarge"
-    }
-  }
+module "kubernetes" {
+  source         = "terraform-digitalocean-modules/kubernetes/digitalocean"
+  cluster_name   = "rancher-doks-small"
+  region         = "nyc3"
+  version        = "1.27"
+  node_pool_size = 2
+  node_pool_type = "s-4vcpu-8gb"
 }
 ```
 
@@ -82,18 +73,18 @@ resource "helm_release" "nginx_ingress" {
   }
 
   set {
-    name  = "controller.service.annotations.service\.beta\.kubernetes\.io/aws-load-balancer-backend-protocol"
-    value = "HTTP"
+    name  = "controller.service.annotations.service\.beta\.kubernetes\.io/do-loadbalancer-sticky-sessions-type"
+    value = "cookies"
   }
 
   set {
-    name  = "controller.service.annotations.service\.beta\.kubernetes\.io/aws-load-balancer-ssl-ports"
-    value = "443"
+    name  = "controller.service.annotations.service\.beta\.kubernetes\.io/do-loadbalancer-protocol"
+    value = "http"
   }
 
   set {
-    name  = "controller.service.annotations.service\.beta\.kubernetes\.io/aws-load-balancer-ssl-cert"
-    value = "arn:aws:acm:region:account-id:certificate/certificate-id" # Replace with your ACM cert ARN
+    name  = "controller.service.annotations.service\.beta\.kubernetes\.io/do-loadbalancer-healthcheck-path"
+    value = "/healthz"
   }
 }
 ```
@@ -163,6 +154,6 @@ Deploy a sample application and verify ingress access using the LoadBalancer end
 ---
 
 # [References](#references)
-- [Terraform AWS EKS Module Documentation](https://github.com/terraform-aws-modules/terraform-aws-eks)
+- [Terraform DigitalOcean Kubernetes Module Documentation](https://github.com/terraform-digitalocean-modules/terraform-digitalocean-kubernetes)
 - [Ingress NGINX Documentation](https://kubernetes.github.io/ingress-nginx/)
 - [Rancher Helm Chart Documentation](https://rancher.com/docs/rancher/v2.7/en/installation/helm-chart-install/)
