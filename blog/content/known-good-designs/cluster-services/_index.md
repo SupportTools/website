@@ -1,8 +1,4 @@
 ---
 title: "Cluster Services"
-menu:
-  main:
-    parent: "known-good-designs"
-    name: "Cluster Services"
-    weight: 4
+description: "Discover essential Kubernetes cluster services, including tools like ArgoCD and Cert-Manager, that ensure efficient orchestration, security, and automation for Kubernetes operations."
 ---

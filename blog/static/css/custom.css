@@ -1,0 +1,17 @@
+.sections section {
+    margin-bottom: 2rem;
+}
+
+.sections h2 {
+    margin-top: 1rem;
+    color: #57cc8a;
+    /* Adjust to match your theme */
+}
+
+.sections ul {
+    padding-left: 1.5rem;
+}
+
+.sections li {
+    margin-bottom: 0.5rem;
+}

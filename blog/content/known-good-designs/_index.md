@@ -1,17 +1,6 @@
 ---
 title: "Known Good Designs"
-menu:
-  main:
-    identifier: "known-good-designs"
-    name: "Known Good Designs"
-    weight: 13
+description: "Explore validated Kubernetes cluster designs and configurations, including Cluster Services, Load Balancers, and Upstream/Downstream designs."
 ---
 
-Welcome to the **Known Good Designs** section!  
-Here you’ll find validated cluster designs and configurations.
-
-{{< ul >}}
-{{ range .Pages }}
-  <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
-{{ end }}
-{{< /ul >}}
+Welcome to the **Known Good Designs** section! Here you’ll find various validated designs for Kubernetes clusters.

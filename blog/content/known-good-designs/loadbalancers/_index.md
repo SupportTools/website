@@ -1,8 +1,4 @@
 ---
 title: "Load Balancers"
-menu:
-  main:
-    parent: "known-good-designs"
-    name: "Load Balancers"
-    weight: 3
+description: "Learn how Kubernetes load balancers distribute traffic across nodes to achieve high availability, scalability, and reliability for containerized applications."
 ---

@@ -1,8 +1,4 @@
 ---
 title: "Upstream Cluster Designs for Rancher"
-menu:
-  main:
-    parent: "known-good-designs"
-    name: "Upstream Cluster Designs for Rancher"
-    weight: 1
+description: "Discover upstream Kubernetes cluster designs tailored for Rancher, enabling seamless management, scalability, and automation of Kubernetes environments."
 ---
