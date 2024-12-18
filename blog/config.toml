@@ -79,6 +79,11 @@ pagination.pagerSize = 8  # Updated from paginate
     name = "Ubuntu"
     url = "/categories/ubuntu/"
     weight = 12
+  [[menu.main]]
+    identifier = "known-good-designs"
+    name = "Known Good Designs"
+    url = "/known-good-designs/"
+    weight = 13    
 
 [params]
   author = "Matthew Mattox"
