@@ -1,6 +1,6 @@
 ---
 title: "5 Game-Changing Features in Kubernetes 1.31 That Will Transform Your Workflows"
-date: 2025-03-15T09:00:00-05:00
+date: 2025-01-05T09:00:00-05:00
 draft: false
 tags: ["Kubernetes", "DevOps", "Kubernetes 1.31", "Cloud Native", "Containers"]
 categories:
