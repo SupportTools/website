@@ -1,6 +1,6 @@
 ---
 title: "Streamlining Kubernetes Deployments with Helm"
-date: 2025-12-25T00:00:00-05:00
+date: 2024-12-25T00:00:00-05:00
 draft: false
 tags: ["Kubernetes", "Helm", "DevOps"]
 categories:
