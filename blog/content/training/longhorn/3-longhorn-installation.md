@@ -10,7 +10,7 @@ categories:
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn the various ways to install Longhorn, including Rancher Apps & Marketplace, Helm, and kubectl, with step-by-step instructions."
 more_link: "yes"
-url: "/longhorn-installation/"
+url: "/training/longhorn/installation/"
 ---
 
 In this section of the **Longhorn Basics** course, we explore the different ways to install Longhorn, Rancher's cloud-native distributed block storage solution for Kubernetes.

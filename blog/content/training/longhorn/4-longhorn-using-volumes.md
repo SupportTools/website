@@ -10,7 +10,7 @@ categories:
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to use Longhorn volumes in Kubernetes, including creating volumes, attaching them to pods, accessing the Longhorn UI, and backup/restore functionality."
 more_link: "yes"
-url: "/longhorn-using-volumes/"
+url: "/training/longhorn/using-volumes/"
 ---
 
 In this section of the **Longhorn Basics** course, we will cover using Longhorn volumes in Kubernetes, including their types, usage, and backup/restore functionalities.
