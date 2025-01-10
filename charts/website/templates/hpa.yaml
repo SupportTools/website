@@ -9,28 +9,27 @@ metadata:
     component: frontend
     team: SupportTools
 spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: frontend
   minReplicas: {{ .Values.autoscaling.minReplicas }}
   maxReplicas: {{ .Values.autoscaling.maxReplicas }}
   metrics:
   {{- if .Values.autoscaling.targetCPUUtilizationPercentage }}
-  - resource:
-      name: cpu
-      target:
-        averageUtilization: {{ .Values.autoscaling.targetCPUUtilizationPercentage }}
-        type: Utilization
-    type: Resource
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: {{ .Values.autoscaling.targetCPUUtilizationPercentage }}
   {{- end }}
   {{- if .Values.autoscaling.targetMemoryUtilizationPercentage }}
-  - resource:
-      name: memory
-      target:
-        averageUtilization: {{ .Values.autoscaling.targetMemoryUtilizationPercentage }}
-        type: Utilization
-    type: Resource  
+    - type: Resource
+      resource:
+        name: memory
+        target:
+          type: Utilization
+          averageUtilization: {{ .Values.autoscaling.targetMemoryUtilizationPercentage }}
   {{- end }}
-  scaleTargetRef:
-    apiVersion: apps/v1
-    kind: Deployment
-    name: frontend  
----
 {{- end }}
