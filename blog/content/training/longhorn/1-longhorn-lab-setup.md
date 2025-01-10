@@ -11,6 +11,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "A guide to setting up the lab environment for the Longhorn Basics course, including cluster requirements and necessary tools."
 more_link: "yes"
 url: "/training/longhorn/lab-setup/"
+weight: 1
 ---
 
 Welcome to the **Longhorn Basics** course! This section provides step-by-step instructions for setting up the lab environment required to follow this course effectively.
