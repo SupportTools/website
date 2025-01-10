@@ -2,6 +2,7 @@
 <h1>{{ .Title }}</h1>
 <p>{{ .Description }}</p>
 
+{{ if .Sections }}
 <h2>Subsections</h2>
 <ul>
     {{ range .Sections }}
@@ -10,13 +11,13 @@
     </li>
     {{ end }}
 </ul>
+{{ end }}
 
-<h2>Posts</h2>
+<h2>Guides</h2>
 <ul>
-    {{ range .Pages }}
+    {{ range sort .Pages.ByWeight "Weight" "asce" }}
     <li>
         <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-        <span>— {{ .Date.Format "Jan 2, 2006" }}</span>
     </li>
     {{ end }}
 </ul>

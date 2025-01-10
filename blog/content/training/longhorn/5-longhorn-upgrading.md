@@ -1,6 +1,6 @@
 ---
 title: "Upgrading Longhorn"
-date: 2025-01-09T00:00:00-05:00
+date: 2025-01-06T00:00:00-05:00
 draft: false
 tags: ["Longhorn", "Kubernetes", "Upgrade"]
 categories:

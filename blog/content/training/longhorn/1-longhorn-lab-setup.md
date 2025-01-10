@@ -1,6 +1,6 @@
 ---
 title: "Setting Up the Lab Environment for Longhorn Basics"
-date: 2025-01-09T00:00:00-05:00
+date: 2025-01-02T00:00:00-05:00
 draft: false
 tags: ["Longhorn", "Kubernetes", "Lab Setup"]
 categories:
