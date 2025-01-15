@@ -21,6 +21,8 @@ CoreDNS is a flexible, extensible DNS server that serves as the default DNS prov
 - DNS query forwarding for external domains.
 - Plugin-based architecture for customization.
 
+![CoreDNS](https://cdn.support.tools/posts/coredns/nodelocaldns.svg)
+
 #### CoreDNS in RKE2
 In RKE2, CoreDNS is deployed as a system Pod managed by the `rke2-coredns-addon`. It resides in the `kube-system` namespace and is integrated into the cluster's networking stack. RKE2 customizes CoreDNS through its ConfigMap, enabling features such as:
 
