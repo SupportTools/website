@@ -49,6 +49,49 @@ To enable NodeLocalDNS in RKE2, configure the following:
 1. Update the RKE2 config file (`/etc/rancher/rke2/config.yaml`) to include NodeLocalDNS settings.
 2. Deploy the `nodelocaldns` Helm chart using RKE2's Helm controller.
 
+Applying the following configuration to the RKE2 config file will enable NodeLocalDNS if you are running cilium as the CNI:
+
+```yaml
+---
+apiVersion: helm.cattle.io/v1
+kind: HelmChartConfig
+metadata:
+  name: rke2-cilium
+  namespace: kube-system
+spec:
+  valuesContent: |-
+    kubeProxyReplacement: true
+    k8sServiceHost: 127.0.0.1
+    k8sServicePort: 6443
+    localRedirectPolicy: true
+---
+apiVersion: helm.cattle.io/v1
+kind: HelmChartConfig
+metadata:
+  name: rke2-coredns
+  namespace: kube-system
+spec:
+  valuesContent: |-
+    nodelocal:
+      enabled: true
+      use_cilium_lrp: true
+---
+```
+
+If you are using Canal as the CNI, you can enable NodeLocalDNS by applying the following configuration:
+
+```yaml
+apiVersion: helm.cattle.io/v1
+kind: HelmChartConfig
+metadata:
+  name: rke2-coredns
+  namespace: kube-system
+spec:
+  valuesContent: |-
+    nodelocal:
+      enabled: true
+```
+
 ---
 
 ### Troubleshooting CoreDNS and NodeLocalDNS
