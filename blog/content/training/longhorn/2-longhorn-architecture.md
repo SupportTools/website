@@ -11,7 +11,6 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "A guide to understanding the architecture of Longhorn, including its components and data flow."
 more_link: "yes"
 url: "/training/longhorn/architecture/"
-weight: 2
 ---
 
 In this section of the **Longhorn Basics** course, we will delve into the architecture of Longhorn, exploring its components and understanding the data flow.

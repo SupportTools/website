@@ -11,7 +11,6 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive guide to upgrading Longhorn, covering planning, the upgrade process, and rollback options."
 more_link: "yes"
 url: "/training/longhorn/upgrading/"
-weight: 5
 ---
 
 In this section of the **Longhorn Basics** course, we will cover the steps for upgrading Longhorn, including planning, the upgrade process, and rollback options.

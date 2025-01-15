@@ -11,7 +11,6 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "An introductory guide to the Longhorn Basics course, covering distributed block storage for Kubernetes."
 more_link: "yes"
 url: "/training/longhorn/basics/"
-weight: 0
 ---
 
 # Longhorn Basics: Introduction Guide
