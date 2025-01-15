@@ -13,7 +13,12 @@ body {
   color: $light-color;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   color: $lightest-color;
 }
 
@@ -32,7 +37,7 @@ a {
 // small inline code-blocks in the middle of normal text (mainly because of
 // the very noticeable difference in x-height). This CSS corrects that problem.
 code {
-  font-family: monospace,monospace;
+  font-family: monospace, monospace;
   font-size: 1em;
   color: rgba($light-color, .8);
 }
@@ -54,6 +59,108 @@ pre {
 ::selection {
   background: rgba($light-color, .25);
 }
+
 ::-moz-selection {
   background: rgba($light-color, .25);
+}
+
+/* Sidebar General Styling */
+.sidebar {
+  background-color: #2b2b2b;
+  /* A slightly darker background for contrast */
+  padding: 20px;
+  /* Add padding for breathing room */
+  border-radius: 8px;
+  /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  /* Subtle shadow for depth */
+}
+
+/* Sidebar Header Styling */
+.sidebar h1 {
+  font-size: 1.5rem;
+  color: #ffffff;
+  /* Ensure good contrast */
+  margin-bottom: 10px;
+}
+
+/* Sidebar Link List Styling */
+.sidebar ul {
+  list-style-type: none;
+  /* Remove default bullets */
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar ul li {
+  margin-bottom: 8px;
+  /* Add space between links */
+}
+
+.sidebar ul li a {
+  color: #00ff00;
+  /* Match the green accent color */
+  text-decoration: none;
+  /* Remove underline */
+  font-weight: 500;
+  /* Medium font weight */
+  transition: color 0.3s ease;
+  /* Smooth color change on hover */
+}
+
+.sidebar ul li a:hover {
+  color: #1aff1a;
+  /* Lighter green for hover */
+  text-decoration: underline;
+  /* Add underline on hover */
+}
+
+/* Sidebar Footer Styling */
+.sidebar footer {
+  margin-top: 20px;
+  font-size: 0.9rem;
+  color: #cccccc;
+  /* Lighter text for the footer */
+  text-align: center;
+}
+
+/* Main Content Styling */
+.main-content {
+  padding: 20px;
+  background-color: #f9f9f9;
+  /* Light background for better readability */
+  border-radius: 8px;
+  /* Match sidebar corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* Subtle shadow */
+}
+
+/* Content Headings */
+.main-content h1 {
+  font-size: 2rem;
+  color: #333333;
+  /* Darker text for emphasis */
+  margin-bottom: 15px;
+}
+
+.main-content h2 {
+  font-size: 1.5rem;
+  color: #555555;
+  /* Slightly lighter heading */
+  margin-bottom: 10px;
+}
+
+/* Link Styling in Main Content */
+.main-content a {
+  color: #007bff;
+  /* Blue links for contrast */
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.main-content a:hover {
+  color: #0056b3;
+  /* Darker blue on hover */
+  text-decoration: underline;
 }

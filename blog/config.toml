@@ -1,7 +1,7 @@
 baseURL = "/"
 title = "Support Tools"
 theme = "m10c"
-pagination.pagerSize = 8  # Updated from paginate
+pagination.pagerSize = 8 # Updated from paginate
 
 [menu]
   [[menu.main]]
@@ -11,27 +11,27 @@ pagination.pagerSize = 8  # Updated from paginate
     weight = 1
 
   [[menu.main]]
+    identifier = "posts"
+    name = "Posts"
+    url = "/posts/"
+    weight = 2
+
+  [[menu.main]]
     identifier = "about"
     name = "About"
     url = "/about/"
-    weight = 2
+    weight = 3
 
   [[menu.main]]
     identifier = "certificates"
     name = "Certificates"
     url = "/certificates/"
-    weight = 3
+    weight = 4
 
   [[menu.main]]
     identifier = "publications"
     name = "Publications"
     url = "/publications/"
-    weight = 4
-
-  [[menu.main]]
-    identifier = "portfolio"
-    name = "Portfolio"
-    url = "/portfolio/"
     weight = 5
 
   [[menu.main]]
@@ -41,50 +41,10 @@ pagination.pagerSize = 8  # Updated from paginate
     weight = 6
 
   [[menu.main]]
-    identifier = "fleet"
-    name = "Fleet"
-    url = "/training/fleet/"
-    parent = "training"
-    weight = 7
-
-  [[menu.main]]
-    identifier = "rancher"
-    name = "Rancher"
-    url = "/training/rancher/"
-    parent = "training"
-    weight = 8
-
-  [[menu.main]]
-    identifier = "rke"
-    name = "RKE"
-    url = "/training/rke/"
-    parent = "training"
-    weight = 9
-
-  [[menu.main]]
-    identifier = "rke2"
-    name = "RKE2"
-    url = "/training/rke2/"
-    parent = "training"
-    weight = 10
-
-  [[menu.main]]
-    identifier = "kubernetes"
-    name = "Kubernetes"
-    url = "/categories/kubernetes/"
-    weight = 11
-
-  [[menu.main]]
-    identifier = "ubuntu"
-    name = "Ubuntu"
-    url = "/categories/ubuntu/"
-    weight = 12
-
-  [[menu.main]]
     identifier = "known-good-designs"
     name = "Known Good Designs"
     url = "/known-good-designs/"
-    weight = 13    
+    weight = 7
 
 [params]
   author = "Matthew Mattox"
@@ -94,7 +54,7 @@ pagination.pagerSize = 8  # Updated from paginate
 
   [[params.social]]
     icon = "github"
-    name = "Github"
+    name = "GitHub"
     url = "https://github.com/mattmattox"
 
   [[params.social]]
@@ -102,28 +62,45 @@ pagination.pagerSize = 8  # Updated from paginate
     name = "Twitter"
     url = "https://twitter.com/cube8021"
 
+  [[params.social]]
+    icon = "brand-bluesky"
+    name = "BlueSky"
+    url = "https://bsky.app/profile/support.tools"
+
+  [[params.social]]
+    icon = "linkedin"
+    name = "LinkedIn"
+    url = "https://www.linkedin.com/in/matthewmattox/"
+
+  [[params.social]]
+    icon = "reddit"
+    name = "Reddit"
+    url = "https://www.reddit.com/user/cube8021/"
+
   googleAnalytics = "UA-151436906-1"
 
-  # Default theme
-  #[params.style]
-  #  darkestColor = "#242930"
-  #  darkColor = "#353b43"
-  #  lightColor = "#afbac4"
-  #  lightestColor = "#ffffff"
-  #  primaryColor = "#57cc8a"
+# Uncomment one of the following style sections to customize the theme colors.
 
-  # Green theme
-  #[params.style]
-  #  darkestColor = "#315659"
-  #  darkColor = "#253031"
-  #  lightColor = "#96a879"
-  #  lightestColor = "#fff"
-  #  primaryColor = "#dad865"
+# Default theme
+#[params.style]
+#  darkestColor = "#242930"
+#  darkColor = "#353b43"
+#  lightColor = "#afbac4"
+#  lightestColor = "#ffffff"
+#  primaryColor = "#57cc8a"
 
-  # Red theme
-  #[params.style]
-  #  darkestColor = "#d35050"
-  #  darkColor = "#212121"
-  #  lightColor = "#d6d6d6"
-  #  lightestColor = "#d3d3d3"
-  #  primaryColor = "#ffffff"
+# Green theme
+#[params.style]
+#  darkestColor = "#315659"
+#  darkColor = "#253031"
+#  lightColor = "#96a879"
+#  lightestColor = "#fff"
+#  primaryColor = "#dad865"
+
+# Red theme
+#[params.style]
+#  darkestColor = "#d35050"
+#  darkColor = "#212121"
+#  lightColor = "#d6d6d6"
+#  lightestColor = "#d3d3d3"
+#  primaryColor = "#ffffff"

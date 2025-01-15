@@ -1,2 +1,59 @@
 // Do not add any CSS to this file in the theme sources.
 // This file can be overridden to add project-specific CSS.
+/* Remove dots (bullets) from the list */
+.app-header-menu ul {
+    list-style-type: none;
+    /* Removes the bullet points */
+    padding: 0;
+    /* Removes padding around the list */
+    margin: 0;
+    /* Removes default margin */
+}
+
+/* Optional: Style list items */
+.app-header-menu ul li {
+    margin-bottom: 10px;
+    /* Adds spacing between items */
+}
+
+/* Style links in the menu */
+.app-header-menu ul li a {
+    text-decoration: none;
+    /* Removes underline from links */
+    color: inherit;
+    /* Ensures the text inherits color */
+    font-weight: 500;
+    /* Optional: Makes links slightly bolder */
+    display: block;
+    /* Ensures links span the full width of the container */
+}
+
+/* Highlight menu item on hover */
+.app-header-menu ul li a:hover {
+    color: #57cc8a;
+    /* Optional: Change text color on hover */
+    text-decoration: underline;
+    /* Optional: Add underline on hover */
+}
+
+/* BlueSky Share Button */
+.share-link.share-bluesky {
+    color: #1DA1F2;
+    /* Adjust color to BlueSky's brand */
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.share-link.share-bluesky .share-icon svg {
+    width: 24px;
+    height: 24px;
+    fill: currentColor;
+    margin-right: 5px;
+}
+
+.share-link.share-bluesky:hover {
+    color: #0d87d1;
+    /* Slightly darker shade on hover */
+}
