@@ -1,7 +1,7 @@
 ---
 title: "Setting Up Harbor Registry on Kubernetes Using Helm Chart"
 date: 2025-02-19T18:30:00-05:00
-draft: true
+draft: false
 tags: ["Harbor", "Kubernetes", "Registry", "Helm", "Containers"]
 categories:
 - Harbor

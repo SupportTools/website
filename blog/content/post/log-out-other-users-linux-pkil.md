@@ -1,7 +1,7 @@
 ---
 title: "How to Log Out Other Users in Linux Using pkill: A Comprehensive Guide"
 date: 2025-09-12T00:00:00-05:00
-draft: true
+draft: false
 tags: ["Linux Command Line", "Terminal", "User Management", "pkill", "Session Management"]
 categories:
 - Linux

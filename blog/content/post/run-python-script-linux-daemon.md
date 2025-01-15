@@ -1,7 +1,7 @@
 ---
 title: "Run Your Python Script as a Linux Daemon: A Step-by-Step Guide"
 date: 2025-06-15T00:00:00-05:00
-draft: true
+draft: false
 tags: ["Linux", "Daemon", "Services", "Python", "Programming"]
 categories:
 - Linux

@@ -1,7 +1,7 @@
 ---
 title: "Monitoring PostgreSQL Using PostgreSQL Exporter on Kubernetes"
 date: 2025-06-15T18:15:00-05:00
-draft: true
+draft: false
 tags: ["Postgres", "Kubernetes", "Helm", "PostgreSQL", "Monitoring"]
 categories:
 - Postgres

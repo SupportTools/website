@@ -1,7 +1,7 @@
 ---
 title: "Deploying Nvidia GPU Workloads with k3s: A Comprehensive Guide"
 date: 2025-01-15T00:00:00-05:00
-draft: true
+draft: false
 tags: ["Nvidia", "k3s"]
 categories:
 - Nvidia

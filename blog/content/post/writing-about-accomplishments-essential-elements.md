@@ -1,7 +1,7 @@
 ---
 title: "5 Essential Elements to Include When Writing About an Accomplishment"
 date: 2024-11-22T00:00:00-05:00
-draft: true
+draft: false
 tags: ["Professional Development", "Career Growth", "Accomplishments", "Writing Tips", "Support.Tools"]
 categories:
 - Professional Development

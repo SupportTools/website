@@ -1,7 +1,7 @@
 ---
 title: "How to Upgrade Your Omnibus GitLab: A Step-by-Step Guide"
 date: 2025-07-25T03:00:00-05:00
-draft: true
+draft: false
 tags: ["GitLab", "Upgrade", "Omnibus", "Linux", "System Administration"]
 categories:
 - DevOps

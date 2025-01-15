@@ -1,7 +1,7 @@
 ---
 title: "How to Deploy a Kubernetes Cluster in 60 Seconds Using KinD on Ubuntu EC2 Instance"
 date: 2025-06-07T13:15:00-05:00
-draft: true
+draft: false
 tags: ["Kubernetes", "KinD", "Docker", "AWS", "EC2"]
 categories:
 - Kubernetes

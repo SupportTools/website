@@ -1,7 +1,7 @@
 ---
 title: "High Availability Setup with CNPG PostgreSQL Operator"
 date: 2025-01-15T22:45:00-05:00
-draft: true
+draft: false
 tags: ["Postgres", "High Availability", "Kubernetes", "CNPG"]
 categories:
 - Postgres

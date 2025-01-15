@@ -1,7 +1,7 @@
 ---
 title: "Deploying a Syslog Server on Linux: A Comprehensive Guide"
 date: 2024-12-20T05:00:00-05:00
-draft: true
+draft: false
 tags: ["Logs", "Syslog", "Rsyslog", "Linux", "Server Deployment"]
 categories:
 - Linux

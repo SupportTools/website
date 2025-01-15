@@ -1,7 +1,7 @@
 ---
 title: "Mastering X11 Forwarding in Linux: A Comprehensive Beginner's Guide"
 date: 2025-08-22T00:00:00-05:00
-draft: true
+draft: false
 tags: ["X11 Forwarding", "Linux", "SSH", "Remote Server", "GUI"]
 categories:
 - Linux
