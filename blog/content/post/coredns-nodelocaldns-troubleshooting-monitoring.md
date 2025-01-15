@@ -1,7 +1,7 @@
 ---
 title: "Understanding CoreDNS and NodeLocalDNS: Troubleshooting and Monitoring"
 date: 2025-01-14T00:00:00-05:00
-draft: true
+draft: false
 tags: ["CoreDNS", "NodeLocalDNS", "Kubernetes", "DNS", "RKE2"]
 categories:
 - Kubernetes
