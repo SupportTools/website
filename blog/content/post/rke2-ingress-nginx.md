@@ -1,5 +1,5 @@
 ---
-title: "RKE2 Ingress-NGINX: Overview, Troubleshooting, and Common Configurations"
+title: "Ingress-NGINX for RKE2: Overview, Troubleshooting, and Common Configurations"
 date: 2025-01-22T00:00:00-05:00
 draft: false
 tags: ["RKE2", "Kubernetes", "Ingress"]
@@ -16,9 +16,9 @@ RKE2's Ingress-NGINX controller is a powerful solution for managing incoming HTT
 
 <!--more-->
 
-# RKE2 Ingress-NGINX
+# Ingress-NGINX for RKE2
 
-## How RKE2 Ingress-NGINX Works
+## How Ingress-NGINX Works for RKE2
 
 ### Architecture
 RKE2 uses the Ingress-NGINX controller to expose services running within the Kubernetes cluster to the external world. Key components include:
