@@ -1,7 +1,7 @@
 ---
 title: "RKE2 Ingress-NGINX: Overview, Troubleshooting, and Common Configurations"
 date: 2025-01-22T00:00:00-05:00
-draft: true
+draft: false
 tags: ["RKE2", "Kubernetes", "Ingress"]
 categories:
 - RKE2
