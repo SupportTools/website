@@ -182,7 +182,7 @@ Settings that customize how the Ingress-NGINX controller operates:
 #### **Extra Arguments**
 Allows additional arguments to be passed to the NGINX controller:
 
-- **`publish-status-address: "96.90.99.201"`**:
+- **`publish-status-address: "11.22.33.44"`**:
   - Configures the external IP address used to publish the Ingress status.
   
 - **`default-ssl-certificate: "kube-system/wildcard-tls"`**:
@@ -192,7 +192,7 @@ Allows additional arguments to be passed to the NGINX controller:
   - Allows encrypted traffic (HTTPS) to be passed directly to the backend without termination at the Ingress.
 
 - **`report-status-classes: true`**:
-  - Enables HTTP status code breakdowns in metrics.
+  - Enables HTTP status code breakdowns in metrics. For example, you can see 2XX, 3XX, 4XX, and 5XX response counts grouped together instead individual status codes.
 
 - **`disable-catch-all: true`**:
   - Prevents requests without matching Ingress rules from being routed to the default backend, improving security and performance.
