@@ -2,12 +2,17 @@
 <h1>{{ .Title }}</h1>
 <p>{{ .Description }}</p>
 
+{{ if .Content }}
+{{ .Content }}
+{{ else }}
 <h2>Guides</h2>
 <ul>
-    {{ range sort .Pages.ByWeight "Weight" "asce" }}
+    {{ range sort .Pages "Weight" }}
     <li>
         <a href="{{ .RelPermalink }}">{{ .Title }}</a>
     </li>
     {{ end }}
 </ul>
+{{ end }}
+
 {{ end }}

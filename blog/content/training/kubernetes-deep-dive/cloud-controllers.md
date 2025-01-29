@@ -27,6 +27,8 @@ In this post, we’ll explore:
 
 A **Cloud Controller** in Kubernetes is a component responsible for **integrating cloud provider resources** (such as networking, storage, and compute) with a Kubernetes cluster. It ensures that Kubernetes can provision and manage cloud resources automatically.
 
+![Cloud Controller Diagram](https://kubernetes.io/images/docs/kubernetes-cluster-architecture.svg)
+
 ### Why Cloud Controllers are Needed
 
 Without Cloud Controllers, Kubernetes would **not be able to provision, manage, or update cloud-based resources** dynamically. Instead, administrators would have to manually configure resources like:
