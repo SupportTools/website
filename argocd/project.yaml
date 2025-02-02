@@ -1,0 +1,14 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: supporttools
+spec:
+  clusterResourceWhitelist:
+    - group: "*"
+      kind: "*"
+  description: Support.Tools
+  destinations:
+    - namespace: "*"
+      server: "*"
+  sourceRepos:
+    - "*"

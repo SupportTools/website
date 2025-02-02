@@ -3,8 +3,10 @@ name: Docker Build and Push
 on:
   workflow_dispatch:
   push:
+    branches:
+      - main
   schedule:
-    - cron: '0 0 * * *' # This will run every day at midnight UTC
+    - cron: "0 0 * * *" # This will run every day at midnight UTC
 
 jobs:
   Test:
@@ -17,11 +19,11 @@ jobs:
       # - name: HUGO test build
       #   run: |
       #     docker run --rm -v $(pwd)/blog/:/src -w /src thegeeklab/hugo:latest --panicOnWarning --minify --gc --cleanDestinationDir --destination public --baseURL http://localhost
-        
+
       # - name: html-validation
       #   run: |
       #     docker run --rm -v $(pwd)/blog/:/src -w /src thegeeklab/vnu vnu --skip-non-html --errors-only --filterfile .vnuignore public/
-      
+
       - name: Checking for expired content
         run: |
           docker run --rm -v $(pwd)/blog/:/src -w /src thegeeklab/hugo:0.122 list expired
@@ -42,7 +44,7 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-      
+
       - name: Docker build and push
         run: |
           docker buildx build \
@@ -67,8 +69,8 @@ jobs:
 
       - name: Install gettext
         run: |
-          sudo apt-get update && sudo apt-get install -y gettext        
-      
+          sudo apt-get update && sudo apt-get install -y gettext
+
       - name: Set up Helm
         uses: azure/setup-helm@v4.2.0
 
@@ -108,9 +110,13 @@ jobs:
           git commit -m "Update Helm chart for support.tools"
           git push
 
-  Deploy-to-NPD:
-    runs-on: ubuntu-latest
+  Deploy:
+    runs-on: self-hosted-linux
     needs: Publish
+    strategy:
+      max-parallel: 1
+      matrix:
+        environment: [mst, dev, qas, tst, stg, prd]
 
     steps:
       - name: Checkout repository
@@ -118,145 +124,40 @@ jobs:
 
       - name: Setup kubectl
         uses: azure/setup-kubectl@v4
-  
-      - name: Install and Configure rancher-projects
+
+      - name: Create Kubeconfig
         run: |
           curl -fsSL -o rancher-projects.tar.gz https://github.com/SupportTools/rancher-projects/releases/download/v0.2.2/rancher-projects_0.2.2_linux_amd64.tar.gz
           tar -xvf rancher-projects.tar.gz
           chmod +x rancher-projects
           sudo mv rancher-projects /usr/local/bin/
-          rancher-projects --rancher-server ${{ secrets.CATTLE_SERVER }} --rancher-access-key ${{ secrets.CATTLE_ACCESS_KEY }} --rancher-secret-key ${{ secrets.CATTLE_SECRET_KEY }} --cluster-name a1-ops-prd --project-name "SupportTools" --namespace supporttools --create-kubeconfig --kubeconfig "kubeconfig"
+          rancher-projects --rancher-server ${{ secrets.CATTLE_SERVER }} \
+          --rancher-access-key ${{ secrets.CATTLE_ACCESS_KEY }} \
+          --rancher-secret-key ${{ secrets.CATTLE_SECRET_KEY }} \
+          --cluster-name a1-ops-prd --project-name "SupportTools" \
+          --namespace supporttools --create-kubeconfig --kubeconfig "kubeconfig"
 
-      - name: Deploy Master
+      - name: Deploy ArgoCD Project
+        run: kubectl --kubeconfig kubeconfig apply -f argocd/project.yaml
+
+      - name: Deploy Environment - ${{ matrix.environment }}
         run: |
-          kubectl --kubeconfig kubeconfig -n argocd patch appproject supporttools --type merge --patch "$(cat ./argocd/mst.yaml)"
-          sleep 30
-          # Wait for the application to become healthy
-          MAX_TRIES=30
-          SLEEP_TIME=10
-          COUNTER=0
-          while [ $COUNTER -lt $MAX_TRIES ]; do
-            HEALTH_STATUS=$(kubectl get applications.argoproj.io supporttools-mst -n argocd -o jsonpath='{.status.health.status}' --kubeconfig kubeconfig)
-            echo "Current health status: $HEALTH_STATUS"
-            if [ "$HEALTH_STATUS" = "Healthy" ]; then
-              echo "Application is healthy."
-              break
-            fi
-            echo "Waiting for application to become healthy..."
-            sleep $SLEEP_TIME
-            let COUNTER=COUNTER+1
-          done
-          if [ $COUNTER -eq $MAX_TRIES ]; then
-            echo "Application did not become healthy in time."
-            exit 1
-          fi
-  
-      - name: Deploy Dev
-        run: |
-          kubectl --kubeconfig kubeconfig -n argocd patch appproject supporttools-dev --type merge --patch "$(cat ./argocd/dev.yaml)"
-          sleep 30
-          # Wait for the application to become healthy
-          MAX_TRIES=30
-          SLEEP_TIME=10
-          COUNTER=0
-          while [ $COUNTER -lt $MAX_TRIES ]; do
-            HEALTH_STATUS=$(kubectl get applications.argoproj.io supporttools-dev -n argocd -o jsonpath='{.status.health.status}' --kubeconfig kubeconfig)
-            echo "Current health status: $HEALTH_STATUS"
-            if [ "$HEALTH_STATUS" = "Healthy" ]; then
-              echo "Application is healthy."
-              break
-            fi
-            echo "Waiting for application to become healthy..."
-            sleep $SLEEP_TIME
-            let COUNTER=COUNTER+1
-          done
-          if [ $COUNTER -eq $MAX_TRIES ]; then
-            echo "Application did not become healthy in time."
-            exit 1
-          fi
-  
-      - name: Deploy QAS
-        run: |
-          kubectl --kubeconfig kubeconfig -n argocd patch appproject supporttools-qas --type merge --patch "$(cat ./argocd/qas.yaml)"
-          sleep 30
-          # Wait for the application to become healthy
-          MAX_TRIES=30
-          SLEEP_TIME=10
-          COUNTER=0
-          while [ $COUNTER -lt $MAX_TRIES ]; do
-            HEALTH_STATUS=$(kubectl get applications.argoproj.io supporttools-qas -n argocd -o jsonpath='{.status.health.status}' --kubeconfig kubeconfig)
-            echo "Current health status: $HEALTH_STATUS"
-            if [ "$HEALTH_STATUS" = "Healthy" ]; then
-              echo "Application is healthy."
-              break
-            fi
-            echo "Waiting for application to become healthy..."
-            sleep $SLEEP_TIME
-            let COUNTER=COUNTER+1
-          done
-          if [ $COUNTER -eq $MAX_TRIES ]; then
-            echo "Application did not become healthy in time."
-            exit 1
-          fi
-          
-      - name: Deploy Test
-        run: |
-          kubectl --kubeconfig kubeconfig -n argocd patch appproject supporttools-tst --type merge --patch "$(cat ./argocd/tst.yaml)"
-          sleep 30
-          # Wait for the application to become healthy
-          MAX_TRIES=30
-          SLEEP_TIME=10
-          COUNTER=0
-          while [ $COUNTER -lt $MAX_TRIES ]; do
-            HEALTH_STATUS=$(kubectl get applications.argoproj.io supporttools-tst -n argocd -o jsonpath='{.status.health.status}' --kubeconfig kubeconfig)
-            echo "Current health status: $HEALTH_STATUS"
-            if [ "$HEALTH_STATUS" = "Healthy" ]; then
-              echo "Application is healthy."
-              break
-            fi
-            echo "Waiting for application to become healthy..."
-            sleep $SLEEP_TIME
-            let COUNTER=COUNTER+1
-          done
-          if [ $COUNTER -eq $MAX_TRIES ]; then
-            echo "Application did not become healthy in time."
-            exit 1
+          ENVIRONMENT=${{ matrix.environment }}
+          if kubectl --kubeconfig kubeconfig -n argocd get applications supporttools-${ENVIRONMENT} &>/dev/null; then
+            echo "AppProject already exists."
+            kubectl --kubeconfig kubeconfig -n argocd get applications supporttools-${ENVIRONMENT} -o yaml | sed "s/CHARTVERSION/v${{ github.run_number }}/g" | kubectl --kubeconfig kubeconfig apply -f -
+          else
+            echo "AppProject does not exist. Creating..."
+            cat argocd/${ENVIRONMENT}.yaml | sed "s/CHARTVERSION/v${{ github.run_number }}/g" | kubectl --kubeconfig kubeconfig -n argocd apply -f -
           fi
 
-      - name: Deploy Staging
+      - name: Wait for Deployment to Stabilize
         run: |
-          kubectl --kubeconfig kubeconfig -n argocd patch appproject supporttools-stg --type merge --patch "$(cat ./argocd/stg.yaml)"
-          sleep 30
-          # Wait for the application to become healthy
           MAX_TRIES=30
           SLEEP_TIME=10
           COUNTER=0
           while [ $COUNTER -lt $MAX_TRIES ]; do
-            HEALTH_STATUS=$(kubectl get applications.argoproj.io supporttools-stg -n argocd -o jsonpath='{.status.health.status}' --kubeconfig kubeconfig)
-            echo "Current health status: $HEALTH_STATUS"
-            if [ "$HEALTH_STATUS" = "Healthy" ]; then
-              echo "Application is healthy."
-              break
-            fi
-            echo "Waiting for application to become healthy..."
-            sleep $SLEEP_TIME
-            let COUNTER=COUNTER+1
-          done
-          if [ $COUNTER -eq $MAX_TRIES ]; then
-            echo "Application did not become healthy in time."
-            exit 1
-          fi
-
-      - name: Deploy Production
-        run: |
-          kubectl --kubeconfig kubeconfig -n argocd patch appproject supporttools-prd --type merge --patch "$(cat ./argocd/prd.yaml)"
-          sleep 30
-          # Wait for the application to become healthy
-          MAX_TRIES=30
-          SLEEP_TIME=10
-          COUNTER=0
-          while [ $COUNTER -lt $MAX_TRIES ]; do
-            HEALTH_STATUS=$(kubectl get applications.argoproj.io supporttools-prd -n argocd -o jsonpath='{.status.health.status}' --kubeconfig kubeconfig)
+            HEALTH_STATUS=$(kubectl --kubeconfig kubeconfig -n argocd get applications supporttools-${{ matrix.environment }} -o jsonpath='{.status.health.status}')
             echo "Current health status: $HEALTH_STATUS"
             if [ "$HEALTH_STATUS" = "Healthy" ]; then
               echo "Application is healthy."

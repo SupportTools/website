@@ -1,25 +1,7 @@
----
-apiVersion: argoproj.io/v1alpha1
-kind: AppProject
-metadata:
-  name: supporttools
-  namespace: argocd
-spec:
-  clusterResourceWhitelist:
-    - group: "*"
-      kind: "*"
-  description: Support.Tools
-  destinations:
-    - namespace: "*"
-      server: "*"
-  sourceRepos:
-    - "*"
----
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: supporttools-tst
-  namespace: argocd
 spec:
   destination:
     namespace: supporttools-tst
