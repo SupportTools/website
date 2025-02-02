@@ -153,7 +153,7 @@ jobs:
   
       - name: Deploy Dev
         run: |
-          kubectl --kubeconfig kubeconfig -n argocd patch appproject supporttools --type merge --patch "$(cat ./argocd/dev.yaml)"
+          kubectl --kubeconfig kubeconfig -n argocd patch appproject supporttools-dev --type merge --patch "$(cat ./argocd/dev.yaml)"
           sleep 30
           # Wait for the application to become healthy
           MAX_TRIES=30
@@ -177,7 +177,7 @@ jobs:
   
       - name: Deploy QAS
         run: |
-          kubectl --kubeconfig kubeconfig -n argocd patch appproject supporttools --type merge --patch "$(cat ./argocd/qas.yaml)"
+          kubectl --kubeconfig kubeconfig -n argocd patch appproject supporttools-qas --type merge --patch "$(cat ./argocd/qas.yaml)"
           sleep 30
           # Wait for the application to become healthy
           MAX_TRIES=30
@@ -201,7 +201,7 @@ jobs:
           
       - name: Deploy Test
         run: |
-          kubectl --kubeconfig kubeconfig -n argocd patch appproject supporttools --type merge --patch "$(cat ./argocd/tst.yaml)"
+          kubectl --kubeconfig kubeconfig -n argocd patch appproject supporttools-tst --type merge --patch "$(cat ./argocd/tst.yaml)"
           sleep 30
           # Wait for the application to become healthy
           MAX_TRIES=30
@@ -225,7 +225,7 @@ jobs:
 
       - name: Deploy Staging
         run: |
-          kubectl --kubeconfig kubeconfig -n argocd patch appproject supporttools --type merge --patch "$(cat ./argocd/stg.yaml)"
+          kubectl --kubeconfig kubeconfig -n argocd patch appproject supporttools-stg --type merge --patch "$(cat ./argocd/stg.yaml)"
           sleep 30
           # Wait for the application to become healthy
           MAX_TRIES=30
@@ -249,7 +249,7 @@ jobs:
 
       - name: Deploy Production
         run: |
-          kubectl --kubeconfig kubeconfig -n argocd patch appproject supporttools --type merge --patch "$(cat ./argocd/prd.yaml)"
+          kubectl --kubeconfig kubeconfig -n argocd patch appproject supporttools-prd --type merge --patch "$(cat ./argocd/prd.yaml)"
           sleep 30
           # Wait for the application to become healthy
           MAX_TRIES=30
