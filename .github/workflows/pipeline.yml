@@ -129,7 +129,7 @@ jobs:
 
       - name: Deploy Master
         run: |
-          cat ./argocd/mst.yaml | sed "s/CHARTVERSION/v${{ github.run_number }}/g" | kubectl --kubeconfig kubeconfig replace -f -
+          kubectl --kubeconfig kubeconfig -n argocd patch appproject supporttools --type merge --patch "$(cat ./argocd/mst.yaml)"
           sleep 30
           # Wait for the application to become healthy
           MAX_TRIES=30
@@ -153,7 +153,7 @@ jobs:
   
       - name: Deploy Dev
         run: |
-          cat ./argocd/dev.yaml | sed "s/CHARTVERSION/v${{ github.run_number }}/g" | kubectl --kubeconfig kubeconfig replace -f -
+          kubectl --kubeconfig kubeconfig -n argocd patch appproject supporttools --type merge --patch "$(cat ./argocd/dev.yaml)"
           sleep 30
           # Wait for the application to become healthy
           MAX_TRIES=30
@@ -177,7 +177,7 @@ jobs:
   
       - name: Deploy QAS
         run: |
-          cat ./argocd/qas.yaml | sed "s/CHARTVERSION/v${{ github.run_number }}/g" | kubectl --kubeconfig kubeconfig replace -f -
+          kubectl --kubeconfig kubeconfig -n argocd patch appproject supporttools --type merge --patch "$(cat ./argocd/qas.yaml)"
           sleep 30
           # Wait for the application to become healthy
           MAX_TRIES=30
@@ -201,7 +201,7 @@ jobs:
           
       - name: Deploy Test
         run: |
-          cat ./argocd/tst.yaml | sed "s/CHARTVERSION/v${{ github.run_number }}/g" | kubectl --kubeconfig kubeconfig replace -f -
+          kubectl --kubeconfig kubeconfig -n argocd patch appproject supporttools --type merge --patch "$(cat ./argocd/tst.yaml)"
           sleep 30
           # Wait for the application to become healthy
           MAX_TRIES=30
@@ -225,7 +225,7 @@ jobs:
 
       - name: Deploy Staging
         run: |
-          cat ./argocd/stg.yaml | sed "s/CHARTVERSION/v${{ github.run_number }}/g" | kubectl --kubeconfig kubeconfig replace -f -
+          kubectl --kubeconfig kubeconfig -n argocd patch appproject supporttools --type merge --patch "$(cat ./argocd/stg.yaml)"
           sleep 30
           # Wait for the application to become healthy
           MAX_TRIES=30
@@ -249,7 +249,7 @@ jobs:
 
       - name: Deploy Production
         run: |
-          cat ./argocd/prd.yaml | sed "s/CHARTVERSION/v${{ github.run_number }}/g" | kubectl --kubeconfig kubeconfig replace -f -
+          kubectl --kubeconfig kubeconfig -n argocd patch appproject supporttools --type merge --patch "$(cat ./argocd/prd.yaml)"
           sleep 30
           # Wait for the application to become healthy
           MAX_TRIES=30
