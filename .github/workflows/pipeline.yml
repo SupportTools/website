@@ -16,6 +16,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      # Uncomment if you want to do a Hugo test build or HTML validation
       # - name: HUGO test build
       #   run: |
       #     docker run --rm -v $(pwd)/blog/:/src -w /src thegeeklab/hugo:latest --panicOnWarning --minify --gc --cleanDestinationDir --destination public --baseURL http://localhost
@@ -143,12 +144,18 @@ jobs:
       - name: Deploy Environment - ${{ matrix.environment }}
         run: |
           ENVIRONMENT=${{ matrix.environment }}
-          if kubectl --kubeconfig kubeconfig -n argocd get applications supporttools-${ENVIRONMENT} &>/dev/null; then
-            echo "AppProject already exists."
-            kubectl --kubeconfig kubeconfig -n argocd get applications supporttools-${ENVIRONMENT} -o yaml | sed "s/CHARTVERSION/v${{ github.run_number }}/g" | kubectl --kubeconfig kubeconfig apply -f -
+          CHART_VERSION="v${{ github.run_number }}"
+
+          # Check if application exists
+          if kubectl --kubeconfig kubeconfig -n argocd get application supporttools-${ENVIRONMENT} &>/dev/null; then
+            echo "ArgoCD Application 'supporttools-${ENVIRONMENT}' exists. Patching targetRevision to ${CHART_VERSION}."
+            kubectl --kubeconfig kubeconfig -n argocd patch application "supporttools-${ENVIRONMENT}" \
+              --type merge \
+              -p "{\"spec\":{\"source\":{\"targetRevision\":\"${CHART_VERSION}\"}}}"
           else
-            echo "AppProject does not exist. Creating..."
-            cat argocd/${ENVIRONMENT}.yaml | sed "s/CHARTVERSION/v${{ github.run_number }}/g" | kubectl --kubeconfig kubeconfig -n argocd apply -f -
+            echo "ArgoCD Application 'supporttools-${ENVIRONMENT}' does not exist. Creating..."
+            sed "s/CHARTVERSION/${CHART_VERSION}/g" argocd/${ENVIRONMENT}.yaml \
+            | kubectl --kubeconfig kubeconfig -n argocd apply -f -
           fi
 
       - name: Wait for Deployment to Stabilize
