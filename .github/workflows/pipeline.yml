@@ -111,7 +111,7 @@ jobs:
           git push
 
   Deploy:
-    runs-on: self-hosted-linux
+    runs-on: ubuntu-latest
     needs: Publish
     strategy:
       max-parallel: 1
