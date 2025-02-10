@@ -1,34 +1,126 @@
 ---
 title: "Deep Dive into Kubernetes Components"
-description: "Explore in-depth insights into Kubernetes core components, their roles, architecture, and best practices."
+description: "Comprehensive deep dives into Kubernetes core components, their roles, architecture, and best practices"
 tags: ["Kubernetes", "Deep Dive", "Training"]
 categories:
 - Kubernetes
 - Training
+url: "/training/kubernetes-deep-dive/"
 ---
 
-## Kubernetes Deep Dive
+Welcome to our comprehensive Kubernetes Deep Dive series. These guides provide detailed technical insights into Kubernetes components, their architecture, and internal workings.
 
-Learn how Kubernetes works under the hood by exploring key control plane and worker node components in detail. This series covers the **critical elements** of Kubernetes architecture, troubleshooting guides, and best practices.
+## Control Plane Components
 
-### Control Plane Components
-- [Kube-API Server](/training/kubernetes-deep-dive/kube-apiserver/) - The gateway to Kubernetes, handling all API requests and authentication.
-- [Kube Controller Manager](/training/kubernetes-deep-dive/kube-controller-manager/) - Manages controllers that regulate the cluster state.
-- [Kube Scheduler](/training/kubernetes-deep-dive/kube-scheduler/) - Assigns workloads to nodes based on resource availability and scheduling policies.
-- [etcd](/training/kubernetes-deep-dive/etcd/) - A distributed key-value store for cluster state and configuration.
+### API Server
+- [API Server Deep Dive](/training/kubernetes-deep-dive/kube-apiserver/): The central management point for the Kubernetes cluster
+  - Authentication and Authorization
+  - Admission Controllers
+  - API Extensions
+  - Performance Tuning
 
-### Node Components
-- [Kubelet](/training/kubernetes-deep-dive/kubelet/) - The agent responsible for managing container execution on a node.
-- [Kube Proxy](/training/kubernetes-deep-dive/kube-proxy/) - Maintains network rules and service discovery.
-- [Containerd](/training/kubernetes-deep-dive/containerd/) - A container runtime that runs and manages container lifecycles.
+### Controller Manager
+- [Controller Manager Deep Dive](/training/kubernetes-deep-dive/kube-controller-manager/): Core controllers and reconciliation loops
+  - Built-in Controllers
+  - Custom Controllers
+  - Reconciliation Patterns
+  - High Availability
 
-### Storage and Networking
-- [Cloud Controllers](/training/kubernetes-deep-dive/cloud-controllers/) - Integrate Kubernetes with cloud providers for storage, networking, and load balancing.
-- [Cluster DNS (CoreDNS)](/training/kubernetes-deep-dive/cluster-dns-coredns/) - Handles internal DNS resolution for services and pods.
-- [CSI Driver](/training/kubernetes-deep-dive/csi-driver/) - Manages storage provisioning and volume attachments.
-- [Kubectl](/training/kubernetes-deep-dive/kubectl/) - The command-line tool for interacting with Kubernetes.
+### Scheduler
+- [Scheduler Deep Dive](/training/kubernetes-deep-dive/kube-scheduler/): Pod scheduling and placement decisions
+  - Scheduling Algorithms
+  - Resource Management
+  - Custom Schedulers
+  - Advanced Scheduling
 
-### What's Next?
-Stay tuned for **more deep dives** into Kubernetes internals, troubleshooting tips, and advanced configurations.
+### etcd
+- [etcd Deep Dive](/training/kubernetes-deep-dive/etcd/): Distributed key-value store
+  - Data Storage
+  - Consistency Models
+  - Backup and Recovery
+  - Performance Optimization
 
-For more Kubernetes insights, visit [support.tools](https://support.tools).
+## Node Components
+
+### Kubelet
+- [Kubelet Deep Dive](/training/kubernetes-deep-dive/kubelet/): Node agent and container management
+  - Container Lifecycle
+  - Volume Management
+  - Resource Management
+  - Node Health
+
+### Container Runtime
+- [Container Runtime Deep Dive](/training/kubernetes-deep-dive/containerd/): Container execution and management
+  - Runtime Interface
+  - Image Management
+  - Container Operations
+  - Security Features
+
+### Kube Proxy
+- [Kube Proxy Deep Dive](/training/kubernetes-deep-dive/kube-proxy/): Network proxy and load balancing
+  - Service Implementation
+  - Proxy Modes
+  - Network Rules
+  - Performance Tuning
+
+## Networking Components
+
+### DNS (CoreDNS)
+- [CoreDNS Deep Dive](/training/kubernetes-deep-dive/cluster-dns-coredns/): Service discovery and DNS resolution
+  - DNS Architecture
+  - Custom DNS Configuration
+  - Performance Optimization
+  - Troubleshooting
+
+### CSI Drivers
+- [CSI Driver Deep Dive](/training/kubernetes-deep-dive/csi-driver/): Storage integration and management
+  - Volume Lifecycle
+  - Storage Classes
+  - Volume Snapshots
+  - Storage Features
+
+### Cloud Controllers
+- [Cloud Controller Deep Dive](/training/kubernetes-deep-dive/cloud-controllers/): Cloud provider integration
+  - Load Balancers
+  - Storage Management
+  - Node Lifecycle
+  - Network Routes
+
+## Best Practices
+
+1. **High Availability**
+   - Component redundancy
+   - Leader election
+   - Failure recovery
+   - Backup strategies
+
+2. **Performance**
+   - Resource optimization
+   - Scaling considerations
+   - Monitoring setup
+   - Tuning guidelines
+
+3. **Security**
+   - Authentication
+   - Authorization
+   - Network policies
+   - Security contexts
+
+4. **Monitoring**
+   - Metrics collection
+   - Log aggregation
+   - Alerting
+   - Troubleshooting
+
+## Prerequisites
+Before diving into these guides, you should have:
+- Basic understanding of Kubernetes concepts
+- Experience with kubectl and cluster operations
+- Familiarity with container technologies
+- Basic understanding of networking concepts
+
+## Additional Resources
+- [Kubernetes Documentation](https://kubernetes.io/docs/)
+- [Kubernetes GitHub Repository](https://github.com/kubernetes/kubernetes)
+- [Kubernetes Enhancement Proposals](https://github.com/kubernetes/enhancements)
+- [Kubernetes Community](https://kubernetes.io/community/)

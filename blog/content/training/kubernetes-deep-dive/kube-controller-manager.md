@@ -1,74 +1,221 @@
 ---
-title: "Deep Dive into Kube Controller Manager"
-date: 2025-01-29T00:00:00-00:00
+title: "Deep Dive: Kubernetes Controller Manager"
+date: 2025-01-01T00:00:00-05:00
 draft: false
-tags: ["kubernetes", "kube-controller-manager", "control plane", "deep dive"]
+tags: ["kubernetes", "controller-manager", "control plane", "controllers"]
 categories: ["Kubernetes Deep Dive"]
-author: "Matthew Mattox"
-description: "A comprehensive deep dive into the Kube Controller Manager, its role in Kubernetes, key functions, and how it manages controllers for maintaining cluster state."
+author: "Matthew Mattox - mmattox@support.tools"
+description: "Comprehensive deep dive into the Kubernetes Controller Manager architecture, controllers, and reconciliation loops"
 url: "/training/kubernetes-deep-dive/kube-controller-manager/"
 ---
 
-## Introduction
+The Kubernetes Controller Manager is responsible for running controllers that regulate the state of the cluster. This deep dive explores its architecture, built-in controllers, and how they maintain desired state.
 
-The **Kube Controller Manager** is one of the core components of the Kubernetes control plane. It runs multiple controller processes that manage different aspects of the cluster, ensuring that the desired state defined by users is maintained at all times. Understanding how it works is crucial for Kubernetes administrators and developers who want to optimize cluster operations and troubleshoot issues effectively.
+<!--more-->
 
-## What is the Kube Controller Manager?
+# [Architecture Overview](#architecture)
 
-The Kube Controller Manager is a **monolithic process** that runs controllers responsible for various cluster functions. These controllers interact with the Kubernetes API server to reconcile resources and maintain cluster integrity. Each controller is responsible for a specific function, such as managing nodes, pods, services, and persistent volumes.
+## Component Architecture
+```plaintext
+API Server -> Controller Manager -> Controllers
+                               -> Work Queues
+                               -> Informers
+```
 
-### Key Responsibilities:
-- Ensuring that the actual cluster state matches the desired state.
-- Managing node lifecycles.
-- Maintaining the number of pod replicas.
-- Managing service accounts and token controllers.
-- Orchestrating cloud provider integrations for storage and networking.
+## Key Components
+1. **Core Controllers**
+   - Node Controller
+   - Replication Controller
+   - Endpoints Controller
+   - Service Account Controller
 
-## Controllers Managed by Kube Controller Manager
+2. **Informer Pattern**
+   - Cache
+   - Event Handlers
+   - Work Queues
 
-The **Kube Controller Manager** runs multiple controllers, each with a distinct responsibility. Below are some of the most critical ones:
+3. **Reconciliation Loops**
+   - Observe Current State
+   - Compare with Desired State
+   - Take Action
 
-### 1. **Node Controller**
-   - Monitors the health of nodes.
-   - Detects and handles node failures.
-   - Marks nodes as **NotReady** or **Unreachable** if they fail to respond.
-   - Evicts pods from failed nodes.
+# [Core Controllers](#core-controllers)
 
-### 2. **Replication Controller**
-   - Ensures that the specified number of pod replicas are running at all times.
-   - Scales pods up or down as necessary.
+## 1. Node Controller
+```go
+// Node controller workflow
+type NodeController struct {
+    knownNodes    map[string]*v1.Node
+    healthyNodes  map[string]*v1.Node
+    zonePodEvictor map[string]*RateLimitedTimedQueue
+}
 
-### 3. **Service Account and Token Controllers**
-   - Manages service accounts for pods to interact securely with the API server.
-   - Creates API tokens for service accounts.
+func (nc *NodeController) monitorNodeHealth() {
+    for node := range nc.knownNodes {
+        if !isNodeHealthy(node) {
+            nc.markNodeUnhealthy(node)
+        }
+    }
+}
+```
 
-### 4. **Endpoint Controller**
-   - Populates the `Endpoints` object with the addresses of healthy pods backing a service.
+## 2. Replication Controller
+```go
+// Replication controller reconciliation
+func (rc *ReplicationController) syncReplicaSet(key string) error {
+    namespace, name := cache.SplitMetaNamespaceKey(key)
+    rs := rc.getReplicaSet(namespace, name)
+    
+    currentReplicas := rc.getCurrentReplicas(rs)
+    desiredReplicas := rs.Spec.Replicas
+    
+    if currentReplicas < desiredReplicas {
+        rc.createPods(rs, desiredReplicas - currentReplicas)
+    } else if currentReplicas > desiredReplicas {
+        rc.deletePods(rs, currentReplicas - desiredReplicas)
+    }
+    return nil
+}
+```
 
-### 5. **Persistent Volume Controller**
-   - Manages PersistentVolumes (PVs) and PersistentVolumeClaims (PVCs).
-   - Binds PVs to PVCs according to storage policies.
+# [Controller Implementation](#implementation)
 
-### 6. **Job and CronJob Controller**
-   - Ensures that Jobs and CronJobs are scheduled and executed correctly.
+## 1. Basic Controller Structure
+```go
+type Controller struct {
+    queue    workqueue.RateLimitingInterface
+    informer cache.SharedIndexInformer
+    lister   listers.PodLister
+}
 
-### 7. **Cloud Controller Manager (Optional)**
-   - When running Kubernetes in a cloud environment, the Kube Controller Manager delegates cloud-specific operations to the **Cloud Controller Manager (CCM)**.
+func (c *Controller) Run(workers int, stopCh <-chan struct{}) {
+    defer c.queue.ShutDown()
+    
+    // Start informer
+    go c.informer.Run(stopCh)
+    
+    // Wait for cache sync
+    if !cache.WaitForCacheSync(stopCh, c.informer.HasSynced) {
+        return
+    }
+    
+    // Start workers
+    for i := 0; i < workers; i++ {
+        go wait.Until(c.runWorker, time.Second, stopCh)
+    }
+    
+    <-stopCh
+}
+```
 
-## How Kube Controller Manager Works
+## 2. Reconciliation Loop
+```go
+func (c *Controller) reconcile(key string) error {
+    // Get object
+    obj, exists, err := c.informer.GetIndexer().GetByKey(key)
+    if err != nil {
+        return err
+    }
+    
+    // Handle deletion
+    if !exists {
+        return c.handleDeletion(key)
+    }
+    
+    // Handle update/creation
+    return c.handleSync(obj)
+}
+```
 
-### Reconciliation Loop
-All Kubernetes controllers operate using a **reconciliation loop**:
-1. **Watch:** The controller watches for changes in the cluster state via the API server.
-2. **Compare:** It compares the actual state with the desired state.
-3. **Act:** If discrepancies exist, the controller makes the necessary changes to align the actual state with the desired state.
+# [Controller Configuration](#configuration)
 
-### Leader Election
-In high-availability (HA) Kubernetes setups, the Kube Controller Manager runs on multiple control plane nodes, but only one instance becomes the active leader. Leader election ensures only one instance of each controller operates at a time, preventing conflicts.
+## 1. Controller Settings
+```yaml
+apiVersion: kubecontroller.config.k8s.io/v1alpha1
+kind: KubeControllerManagerConfiguration
+controllers:
+- "*"
+nodeMonitorPeriod: 5s
+nodeMonitorGracePeriod: 40s
+podEvictionTimeout: 5m
+```
 
-### Configuring Kube Controller Manager
-The Kube Controller Manager is typically deployed as a static pod on the control plane nodes. Key configuration options include:
+## 2. Leader Election
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kube-controller-manager
+  namespace: kube-system
+data:
+  config.yaml: |
+    apiVersion: kubecontroller.config.k8s.io/v1alpha1
+    kind: KubeControllerManagerConfiguration
+    leaderElection:
+      leaderElect: true
+      resourceLock: endpoints
+      leaseDuration: 15s
+      renewDeadline: 10s
+      retryPeriod: 2s
+```
 
+# [Custom Controllers](#custom-controllers)
+
+## 1. Custom Controller Example
+```go
+type CustomController struct {
+    clientset    kubernetes.Interface
+    customLister listers.CustomResourceLister
+    customSynced cache.InformerSynced
+    workqueue    workqueue.RateLimitingInterface
+}
+
+func (c *CustomController) processNextWorkItem() bool {
+    obj, shutdown := c.workqueue.Get()
+    if shutdown {
+        return false
+    }
+    
+    defer c.workqueue.Done(obj)
+    
+    key, ok := obj.(string)
+    if !ok {
+        c.workqueue.Forget(obj)
+        return true
+    }
+    
+    if err := c.syncHandler(key); err != nil {
+        c.workqueue.AddRateLimited(key)
+        return true
+    }
+    
+    c.workqueue.Forget(obj)
+    return true
+}
+```
+
+## 2. Custom Resource Definition
+```yaml
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: customresources.example.com
+spec:
+  group: example.com
+  versions:
+    - name: v1
+      served: true
+      storage: true
+  scope: Namespaced
+  names:
+    plural: customresources
+    singular: customresource
+    kind: CustomResource
+```
+
+# [Performance Tuning](#performance)
+
+## 1. Resource Management
 ```yaml
 apiVersion: v1
 kind: Pod
@@ -78,42 +225,101 @@ metadata:
 spec:
   containers:
   - name: kube-controller-manager
-    image: k8s.gcr.io/kube-controller-manager:v1.27.0
-    command:
-    - kube-controller-manager
-    - --allocate-node-cidrs=true
-    - --cluster-cidr=10.244.0.0/16
-    - --leader-elect=true
+    resources:
+      requests:
+        cpu: "200m"
+        memory: "512Mi"
+      limits:
+        cpu: "1"
+        memory: "1Gi"
 ```
 
-## Monitoring and Troubleshooting
-
-### Checking Controller Logs
-To view logs for the Kube Controller Manager, run:
-```sh
-kubectl logs -n kube-system kube-controller-manager-<node-name>
+## 2. Concurrency Settings
+```yaml
+apiVersion: kubecontroller.config.k8s.io/v1alpha1
+kind: KubeControllerManagerConfiguration
+concurrentDeploymentSyncs: 5
+concurrentEndpointSyncs: 5
+concurrentRCSyncs: 5
+concurrentServiceSyncs: 1
 ```
 
-### Checking Controller Health
-Verify the status of the Kube Controller Manager:
-```sh
-kubectl get pods -n kube-system | grep kube-controller-manager
+# [Monitoring and Debugging](#monitoring)
+
+## 1. Metrics Collection
+```yaml
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: controller-manager
+spec:
+  endpoints:
+  - interval: 30s
+    port: https-metrics
+    scheme: https
+    bearerTokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
+    tlsConfig:
+      insecureSkipVerify: true
 ```
 
-### Debugging Common Issues
-| Issue | Cause | Solution |
-|--------|---------|-----------|
-| Pods not scaling | Replication controller misconfigured | Check `kubectl describe deployment <deployment-name>` |
-| Nodes marked as `NotReady` | Node Controller detecting failure | Investigate node logs and network connectivity |
-| PVs not binding | Persistent Volume Controller issues | Verify PV and PVC status with `kubectl get pvc` |
+## 2. Controller Logs
+```bash
+# View controller manager logs
+kubectl logs -n kube-system kube-controller-manager-master
 
-## Best Practices
-1. **Use Leader Election in HA Setups** – Ensures failover in case of a control plane node failure.
-2. **Monitor Logs and Metrics** – Integrate with Prometheus and Grafana for better observability.
-3. **Secure API Access** – Ensure controllers communicate securely with the API server.
-4. **Use Resource Limits** – Prevent excessive resource consumption with CPU and memory limits.
+# Debug specific controller
+kubectl logs -n kube-system kube-controller-manager-master | grep "replication controller"
+```
 
-## Conclusion
-The **Kube Controller Manager** is a vital part of Kubernetes, managing controllers that maintain cluster state. Understanding its role helps Kubernetes administrators troubleshoot issues, optimize cluster operations, and maintain stability.
+# [Troubleshooting](#troubleshooting)
 
-For more Kubernetes deep-dive articles, visit the [Kubernetes Deep Dive](https://support.tools/categories/kubernetes-deep-dive/) series!
+## Common Issues
+
+1. **Controller Not Reconciling**
+```bash
+# Check controller manager status
+kubectl get pods -n kube-system | grep controller-manager
+
+# View controller logs
+kubectl logs -n kube-system kube-controller-manager-master
+```
+
+2. **Leader Election Issues**
+```bash
+# Check leader election status
+kubectl get endpoints kube-controller-manager -n kube-system -o yaml
+
+# View election events
+kubectl get events -n kube-system | grep "leader election"
+```
+
+3. **Resource Synchronization Problems**
+```bash
+# Check resource status
+kubectl describe deployment failing-deployment
+
+# View controller events
+kubectl get events --field-selector reason=FailedSync
+```
+
+# [Best Practices](#best-practices)
+
+1. **High Availability**
+   - Enable leader election
+   - Configure proper timeouts
+   - Monitor controller health
+
+2. **Performance**
+   - Set appropriate concurrency
+   - Configure resource limits
+   - Use efficient work queues
+
+3. **Monitoring**
+   - Track reconciliation loops
+   - Monitor resource usage
+   - Set up alerting
+
+For more information, check out:
+- [API Server Deep Dive](/training/kubernetes-deep-dive/kube-apiserver/)
+- [Custom Controllers](/training/kubernetes-deep-dive/custom-controllers/)
+- [Resource Management](/training/kubernetes-deep-dive/resource-management/)

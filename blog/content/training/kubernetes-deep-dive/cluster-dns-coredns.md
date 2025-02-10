@@ -1,184 +1,320 @@
 ---
-title: "Understanding Cluster DNS with CoreDNS in Kubernetes"
-date: 2025-01-29T00:00:00-00:00
+title: "Deep Dive: Kubernetes DNS (CoreDNS)"
+date: 2025-01-01T00:00:00-05:00
 draft: false
-tags: ["kubernetes", "coredns", "cluster dns", "networking"]
+tags: ["kubernetes", "coredns", "dns", "service-discovery"]
 categories: ["Kubernetes Deep Dive"]
-author: "Matthew Mattox"
-description: "A deep dive into CoreDNS, Kubernetes' default Cluster DNS service, its architecture, configuration, and troubleshooting."
+author: "Matthew Mattox - mmattox@support.tools"
+description: "Comprehensive deep dive into Kubernetes DNS architecture, CoreDNS configuration, and service discovery"
 url: "/training/kubernetes-deep-dive/cluster-dns-coredns/"
 ---
 
-## Introduction
+CoreDNS serves as the DNS server in Kubernetes clusters, providing service discovery and name resolution. This deep dive explores its architecture, configuration, and advanced features.
 
-In a Kubernetes cluster, DNS plays a crucial role in **service discovery and inter-pod communication**. Kubernetes uses **CoreDNS** as the default DNS server to resolve internal and external domain names efficiently.
+<!--more-->
 
-In this deep dive, we'll cover:
-- What CoreDNS is and why it's important
-- How CoreDNS integrates with Kubernetes
-- CoreDNS configuration and customization
-- Common troubleshooting steps
+# [Architecture Overview](#architecture)
 
----
-
-## What is CoreDNS?
-
-**CoreDNS** is a flexible, extensible, and high-performance **DNS server** designed specifically for **Kubernetes environments**. It serves as the **Cluster DNS**, resolving internal Kubernetes services and external domains.
-
-### **Why CoreDNS?**
-- **Scalable & Lightweight** – Designed for high-performance DNS resolution.
-- **Pluggable Architecture** – Allows custom DNS functionalities through plugins.
-- **Secure** – Supports DNSSEC, caching, and request filtering.
-- **Cloud-Native** – Runs as a **Kubernetes-native** service.
-
-CoreDNS was introduced in Kubernetes **v1.11**, replacing **kube-dns** as the default DNS service.
-
----
-
-## How CoreDNS Works in Kubernetes
-
-CoreDNS runs as a **Deployment** in the `kube-system` namespace and operates as a **DNS Service** (`kube-dns`). It listens on port `53` (UDP and TCP) and resolves **internal Kubernetes services**.
-
-### **CoreDNS Workflow**
-1. **A pod makes a DNS request** (e.g., `curl http://my-service.default.svc.cluster.local`).
-2. **CoreDNS checks its local cache** for an existing record.
-3. **If not cached, CoreDNS queries the Kubernetes API** to resolve the requested service.
-4. **The IP of the service is returned** to the pod.
-5. **If the request is for an external domain**, CoreDNS forwards it to an upstream resolver (e.g., Google DNS, Cloudflare).
-
----
-
-## CoreDNS Configuration in Kubernetes
-
-The CoreDNS configuration is stored in a **ConfigMap** in the `kube-system` namespace:
-
-### **View CoreDNS ConfigMap**
-```bash
-kubectl get configmap coredns -n kube-system -o yaml
+## Component Architecture
+```plaintext
+Pod -> kubelet -> CoreDNS -> Service Discovery
+                         -> External DNS
+                         -> Custom DNS
 ```
 
-### **Default CoreDNS Configuration**
+## Key Components
+1. **CoreDNS Server**
+   - DNS Service
+   - Plugin Chain
+   - Caching Layer
+
+2. **Service Discovery**
+   - Service Records
+   - Pod Records
+   - External Services
+
+3. **DNS Resolution**
+   - Internal Resolution
+   - Forward Resolution
+   - Custom Domains
+
+# [CoreDNS Configuration](#configuration)
+
+## 1. Basic Corefile
+```corefile
+.:53 {
+    errors
+    health {
+        lameduck 5s
+    }
+    ready
+    kubernetes cluster.local in-addr.arpa ip6.arpa {
+        pods insecure
+        fallthrough in-addr.arpa ip6.arpa
+        ttl 30
+    }
+    prometheus :9153
+    forward . /etc/resolv.conf
+    cache 30
+    loop
+    reload
+    loadbalance
+}
+```
+
+## 2. Custom DNS Configuration
+```corefile
+example.com:53 {
+    file /etc/coredns/example.com.db
+    prometheus
+    errors
+    log
+}
+
+.:53 {
+    kubernetes cluster.local {
+        pods insecure
+        upstream
+        fallthrough in-addr.arpa ip6.arpa
+    }
+    forward . 8.8.8.8 8.8.4.4
+    cache 30
+    loop
+    reload
+    loadbalance
+}
+```
+
+# [Service Discovery](#service-discovery)
+
+## 1. DNS Records
+```yaml
+# Service DNS Records
+<service-name>.<namespace>.svc.cluster.local
+# Example: my-service.default.svc.cluster.local
+
+# Pod DNS Records
+<pod-ip>.<namespace>.pod.cluster.local
+# Example: 10-244-1-10.default.pod.cluster.local
+```
+
+## 2. Custom DNS Entries
 ```yaml
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: coredns
+  name: coredns-custom
   namespace: kube-system
 data:
-  Corefile: |
-    .:53 {
-        errors
-        health
-        ready
-        kubernetes cluster.local in-addr.arpa ip6.arpa {
-            pods insecure
-            fallthrough in-addr.arpa ip6.arpa
-        }
-        forward . /etc/resolv.conf
-        cache 30
-        loop
-        reload
-        loadbalance
+  example.server: |
+    example.org {
+        forward . 8.8.8.8
     }
 ```
 
-### **Key Directives in the Corefile**
-- **`kubernetes cluster.local`** – Handles internal service resolution.
-- **`forward . /etc/resolv.conf`** – Forwards external queries to upstream DNS.
-- **`cache 30`** – Caches DNS responses for 30 seconds.
-- **`health` & `ready`** – Provide health checks for CoreDNS pods.
-- **`reload`** – Enables dynamic reloading of configuration.
+# [Advanced Features](#features)
 
----
-
-## Customizing CoreDNS
-
-### **1. Changing Upstream DNS Servers**
-Modify the `forward` directive to use custom resolvers (e.g., Google DNS, Cloudflare):
+## 1. DNS Policies
 ```yaml
-forward . 8.8.8.8 8.8.4.4
-```
-Apply the changes:
-```bash
-kubectl apply -f coredns-config.yaml -n kube-system
-kubectl rollout restart deployment coredns -n kube-system
+apiVersion: v1
+kind: Pod
+metadata:
+  name: custom-dns
+spec:
+  dnsPolicy: "None"
+  dnsConfig:
+    nameservers:
+      - 1.1.1.1
+    searches:
+      - ns1.svc.cluster.local
+      - my.dns.search.suffix
+    options:
+      - name: ndots
+        value: "2"
+      - name: edns0
 ```
 
-### **2. Adding Custom Domain Resolutions**
-To manually define **static DNS entries**, use the `hosts` plugin:
+## 2. Auto Scaling
 ```yaml
-hosts {
-    192.168.1.100 custom-app.local
-    fallthrough
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: coredns
+spec:
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+  template:
+    spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: k8s-app
+                operator: In
+                values:
+                - kube-dns
+            topologyKey: kubernetes.io/hostname
+```
+
+# [Performance Tuning](#performance)
+
+## 1. Cache Configuration
+```corefile
+.:53 {
+    cache {
+        success 10000
+        denial 5000
+        prefetch 10 10m 10%
+    }
 }
 ```
 
-### **3. Enabling Log Output for Debugging**
-To log DNS queries:
+## 2. Resource Management
 ```yaml
-log
-errors
+apiVersion: v1
+kind: Pod
+metadata:
+  name: coredns
+spec:
+  containers:
+  - name: coredns
+    resources:
+      requests:
+        memory: 70Mi
+        cpu: 100m
+      limits:
+        memory: 170Mi
+        cpu: 200m
 ```
-Apply the changes and check logs:
-```bash
-kubectl logs -n kube-system deployment/coredns
+
+# [Monitoring and Metrics](#monitoring)
+
+## 1. Prometheus Metrics
+```yaml
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: coredns
+  namespace: monitoring
+spec:
+  endpoints:
+  - bearerTokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
+    interval: 15s
+    port: metrics
+  selector:
+    matchLabels:
+      k8s-app: kube-dns
 ```
 
----
+## 2. Important Metrics
+```plaintext
+# Key metrics to monitor
+coredns_dns_requests_total
+coredns_dns_responses_total
+coredns_cache_hits_total
+coredns_cache_misses_total
+```
 
-## Troubleshooting CoreDNS Issues
+# [Troubleshooting](#troubleshooting)
 
-### **1. Check CoreDNS Pods**
+## Common Issues
+
+1. **DNS Resolution Problems**
 ```bash
+# Check CoreDNS pods
 kubectl get pods -n kube-system -l k8s-app=kube-dns
+
+# View CoreDNS logs
+kubectl logs -n kube-system -l k8s-app=kube-dns
+
+# Test DNS resolution
+kubectl run dnsutils --image=gcr.io/kubernetes-e2e-test-images/dnsutils:1.3 \
+  -- sleep infinity
+kubectl exec -it dnsutils -- nslookup kubernetes.default
 ```
 
-### **2. Check DNS Resolution Inside a Pod**
+2. **Cache Issues**
 ```bash
-kubectl run -it --rm --restart=Never --image=busybox dns-test -- nslookup my-service.default.svc.cluster.local
+# Clear CoreDNS cache
+kubectl delete pod -n kube-system -l k8s-app=kube-dns
+
+# Monitor cache metrics
+curl http://localhost:9153/metrics | grep coredns_cache
 ```
 
-### **3. Restart CoreDNS Deployment**
+3. **Performance Problems**
 ```bash
-kubectl rollout restart deployment coredns -n kube-system
+# Check resource usage
+kubectl top pod -n kube-system -l k8s-app=kube-dns
+
+# Monitor DNS latency
+coredns_dns_request_duration_seconds_bucket
 ```
 
-### **4. Verify DNS ConfigMap**
-```bash
-kubectl describe configmap coredns -n kube-system
+# [Best Practices](#best-practices)
+
+1. **High Availability**
+   - Run multiple replicas
+   - Use pod anti-affinity
+   - Configure proper health checks
+   - Implement proper monitoring
+
+2. **Performance**
+   - Optimize cache settings
+   - Configure proper TTLs
+   - Monitor resource usage
+   - Use autoscaling
+
+3. **Security**
+   - Restrict external queries
+   - Implement DNSSEC
+   - Use proper RBAC
+   - Monitor DNS traffic
+
+# [Advanced Configuration](#advanced)
+
+## 1. Custom Plugins
+```corefile
+.:53 {
+    errors
+    health
+    kubernetes cluster.local {
+        pods verified
+        fallthrough in-addr.arpa ip6.arpa
+    }
+    hosts custom.hosts {
+        10.0.0.1 my.custom.domain
+        fallthrough
+    }
+    prometheus :9153
+    forward . 8.8.8.8 {
+        max_concurrent 1000
+    }
+    cache 30
+    reload
+}
 ```
 
-### **5. Test External DNS Resolution**
-```bash
-kubectl run -it --rm --restart=Never --image=busybox dns-test -- nslookup google.com
+## 2. Split DNS
+```corefile
+internal:53 {
+    kubernetes cluster.local {
+        pods insecure
+    }
+    cache 30
+}
+
+external:53 {
+    forward . 8.8.8.8
+    cache 30
+}
 ```
 
----
-
-## Best Practices for CoreDNS Management
-
-1. **Monitor CoreDNS Logs & Metrics**  
-   - Use **Prometheus** & **Grafana** to track DNS performance.
-
-2. **Optimize DNS Cache TTL**  
-   - Adjust the `cache` setting based on workload requirements.
-
-3. **Load Balance DNS Queries**  
-   - Enable `loadbalance` to distribute DNS traffic evenly.
-
-4. **Use Multiple DNS Pods for High Availability**  
-   - Increase replicas for better resilience:
-   ```bash
-   kubectl scale deployment coredns --replicas=3 -n kube-system
-   ```
-
-5. **Secure External DNS Requests**  
-   - Restrict outgoing DNS queries to prevent DNS leaks.
-
----
-
-## Conclusion
-
-CoreDNS is a **critical component** of Kubernetes networking, ensuring **service discovery and efficient DNS resolution**. By understanding how it works, configuring it properly, and troubleshooting effectively, you can maintain a **reliable and scalable** Kubernetes cluster.
-
-For more Kubernetes deep dives, visit [support.tools](https://support.tools)!
+For more information, check out:
+- [Service Discovery Deep Dive](/training/kubernetes-deep-dive/service-discovery/)
+- [Networking Deep Dive](/training/kubernetes-deep-dive/networking/)
+- [DNS Best Practices](/training/kubernetes-deep-dive/dns-best-practices/)
