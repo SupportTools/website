@@ -3,4 +3,5 @@ blog/public/
 blog/resources/_gen/
 blog/content/source
 blog/content/archive
+blog/scripts/
 logs/
