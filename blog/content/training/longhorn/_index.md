@@ -26,7 +26,7 @@ Welcome to our comprehensive Longhorn training series. Learn how to deploy, mana
 - [Troubleshooting Guide](/training/longhorn/troubleshooting/): Comprehensive troubleshooting and recovery procedures
 
 ## Best Practices
-- Performance optimization
+- [Performance optimization](/training/longhorn/performance/): Tuning Longhorn for optimal performance
 - High availability configuration
 - Backup and disaster recovery
 - Monitoring and maintenance
