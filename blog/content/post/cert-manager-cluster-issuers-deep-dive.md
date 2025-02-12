@@ -9,23 +9,12 @@ categories:
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive guide to understanding and implementing cert-manager and Cluster Issuers in Kubernetes"
 more_link: "yes"
-url: "/cert-manager-cluster-issuers-deep-dive/"
+url: "/cert-manager-deep-dive/"
 ---
 
 Learn how cert-manager automates certificate management in Kubernetes and how to effectively use Cluster Issuers for TLS certificate automation.
 
 <!--more-->
-
-# Table of Contents
-- [Introduction to cert-manager](#introduction)
-- [Architecture Overview](#architecture)
-- [Installation and Setup](#installation)
-- [Understanding Cluster Issuers](#cluster-issuers)
-- [Certificate Resources](#certificate-resources)
-- [Troubleshooting and Best Practices](#troubleshooting)
-- [Real-world Use Cases](#use-cases)
-- [Advanced Configuration](#advanced-config)
-- [Monitoring and Metrics](#monitoring)
 
 # [Introduction to cert-manager](#introduction)
 cert-manager is a powerful Kubernetes add-on that automates the management and issuance of TLS certificates. It ensures your applications in Kubernetes clusters have up-to-date certificates, supporting various certificate authorities including Let's Encrypt, HashiCorp Vault, and Venafi.
