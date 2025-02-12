@@ -27,9 +27,9 @@ Welcome to our comprehensive Longhorn training series. Learn how to deploy, mana
 
 ## Best Practices
 - [Performance optimization](/training/longhorn/performance/): Tuning Longhorn for optimal performance
-- High availability configuration
-- Backup and disaster recovery
-- Monitoring and maintenance
+- [High Availability Configuration](/training/longhorn/ha/): Configuring Longhorn for high availability
+- [Backup and Disaster Recovery](/training/longhorn/backup/): Implementing backup and recovery strategies
+- [Monitoring and Maintenance](/training/longhorn/monitoring/): Setting up monitoring and routine maintenance
 
 Each section includes practical examples, configuration samples, and best practices to help you effectively implement and manage Longhorn in your Kubernetes environment.
 
