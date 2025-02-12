@@ -9,13 +9,7 @@ pagination.pagerSize = 8 # Updated from paginate
     name = "Home"
     url = "/"
     weight = 1
-
-  [[menu.main]]
-    identifier = "posts"
-    name = "Posts"
-    url = "/posts/"
-    weight = 2
-
+    
   [[menu.main]]
     identifier = "about"
     name = "About"
