@@ -11,6 +11,8 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Master SSH key management with AddKeysToAgent: Learn how to automate key handling, enhance security, and streamline your workflow across different platforms."
 more_link: "yes"
 url: "/automatic-ssh-add/"
+socialMedia:
+  buffer: true
 ---
 
 Tired of entering your SSH key password repeatedly during deployments or Git operations? There's a simple way to manage your keys securely and efficiently by enabling automatic addition to `ssh-agent`. This guide covers everything from basic setup to advanced configurations across different platforms.

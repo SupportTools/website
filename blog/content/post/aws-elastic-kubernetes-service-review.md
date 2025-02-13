@@ -10,6 +10,8 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "AWS EKS has evolved over the years, but is it the right choice for your Kubernetes needs? This review covers its history, strengths, and pain points."
 more_link: "yes"
 url: "/aws-elastic-kubernetes-service-review/"
+socialMedia:
+  buffer: true
 ---
 
 **AWS Elastic Kubernetes Service (EKS): A Journey Through Its Evolution**
