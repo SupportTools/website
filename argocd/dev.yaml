@@ -11,10 +11,6 @@ spec:
     chart: website
     helm:
       parameters:
-        - name: webcache.enable
-          value: "true"
-        - name: webcache.replicaCount
-          value: "1"
         - name: ingress.host
           value: dev.support.tools
     repoURL: https://charts.support.tools
