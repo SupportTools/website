@@ -7,7 +7,7 @@ categories:
 - Rancher
 - Kubernetes
 - Data Protection
-author: "Matthew Mattox - mmattox@support.tools."
+author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to effectively back up Rancher and its Kubernetes clusters, ensuring data safety and continuity."
 more_link: "yes"
 ---
@@ -198,11 +198,11 @@ NOTE: It's important to understand that ETCD snapshots are for the whole cluster
 
 #### What is Velero?
 
-Velero is an open-source tool that backs up and restores Kubernetes cluster resources and persistent volumes. It's a popular tool for backing up Kubernetes clusters.
+Velero is an open-source tool that backs up and restores Kubernetes cluster resources and persistent volumes. It's a popular tool for backing up Kubernetes clusters, offering features like scheduled backups, disaster recovery, and data migration between clusters.
 
 #### How to install Velero?
 
-To install Velero CLI, You can download it from the [releases page](https://github.com/vmware-tanzu/velero/releases).
+To install Velero CLI, download the latest version from the [releases page](https://github.com/vmware-tanzu/velero/releases). As of February 2024, the latest stable version is v1.12.1.
 
 Next, create a credentials file for the cloud storage provider:
 
@@ -219,11 +219,11 @@ Next, install Velero:
 ```bash
 velero install \
     --provider aws \
-    --bucket mattox-velero \
+    --bucket YOUR_BUCKET_NAME \
     --secret-file ./credentials-velero \
     --backup-location-config region=us-central-1,s3ForcePathStyle="true",s3Url=https://s3.us-central-1.wasabisys.com \
     --snapshot-location-config region=us-central-1 \
-    --plugins velero/velero-plugin-for-aws:v1.6.0,velero/velero-plugin-for-csi:v0.4.0 \
+    --plugins velero/velero-plugin-for-aws:v1.12.0,velero/velero-plugin-for-csi:v0.6.0 \
     --features EnableCSI
 ```
 
@@ -250,6 +250,18 @@ To restore a backup, run the following command:
 velero restore create --from-backup daily-everything-backup
 ```
 
+## Version Compatibility Note
+
+The Rancher Backup Operator is compatible with Rancher Manager versions 2.5.0 and above. However, it's recommended to use the latest version of the backup operator that matches your Rancher Manager version for optimal compatibility and feature support.
+
 ## Conclusion
 
-It's important to back up Rancher and its clusters to ensure data safety and continuity. It's also important to understand that Rancher and the downstream clusters are separate entities. Therefore, they need to be backed up separately. And it's important that you try to keep that in mind when designing your backup strategy. For example, if you create a new downstream cluster then restore the Rancher server backup, the new cluster will become orphaned. This is because the Rancher server backup does not contain any information about the new cluster. Therefore, it's important to have a backup strategy that includes both Rancher and its clusters. Also, it is recommended to use a backup tool like Velero that supports CSI snapshots for backing up the clusters as it will provide the ability to restore a volumes along with k8s resources.
+It's crucial to maintain a comprehensive backup strategy for both Rancher and its managed clusters to ensure data safety and continuity. Key points to remember:
+
+1. Rancher and downstream clusters are separate entities requiring independent backup strategies
+2. New clusters created after a Rancher server backup restoration may become orphaned
+3. Implement a backup strategy that covers both Rancher server and all managed clusters
+4. Use modern tools like Velero with CSI snapshot support for complete cluster backups including persistent volumes
+5. Regularly test your backup and restore procedures to ensure they work as expected
+
+Following these guidelines will help ensure your Rancher environment remains protected and recoverable in case of any issues.

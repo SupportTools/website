@@ -6,11 +6,11 @@ on:
     branches:
       - main
   schedule:
-    - cron: "0 0 * * *" # This will run every day at midnight UTC
+    - cron: "0 * * * *" # This will run every hour
 
 jobs:
   Test:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted-linux
 
     steps:
       - name: Checkout repository
@@ -30,7 +30,7 @@ jobs:
           docker run --rm -v $(pwd)/blog/:/src -w /src thegeeklab/hugo:0.122 list expired
 
   Build:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted-linux
     needs: Test
 
     steps:
@@ -61,7 +61,7 @@ jobs:
             -f Dockerfile .
 
   Publish:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted-linux
     needs: Build
 
     steps:
@@ -112,7 +112,7 @@ jobs:
           git push
 
   Deploy:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted-linux
     needs: Publish
     strategy:
       max-parallel: 1
