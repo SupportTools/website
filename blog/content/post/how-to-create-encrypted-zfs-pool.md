@@ -17,18 +17,19 @@ url: "/how-to-create-encrypted-zfs-pool/"
 <!--more-->
 
 ## Table of Contents
-- [Why Encrypt Your ZFS Pool?](#why-encrypt-your-zfs-pool-in-2025)
-- [Prerequisites](#prerequisites)
-- [Installation](#installing-zfs-on-linux)
-- [Creating Encrypted Pool](#creating-an-encrypted-zfs-pool)
-- [Automation](#automating-decryption-on-boot)
-- [Performance Optimization](#optimizing-zfs-pool-performance)
-- [Dataset Management](#creating-zfs-datasets)
-- [TLER Configuration](#enabling-tler-for-raid-reliability)
-- [Monitoring and Maintenance](#monitoring-and-maintenance)
-- [Backup and Recovery](#backup-and-recovery)
-- [Troubleshooting](#troubleshooting)
-- [Security Best Practices](#security-best-practices)
+1. [Why Encrypt Your ZFS Pool?](#why-encrypt-your-zfs-pool-in-2025)
+2. [Prerequisites](#prerequisites)
+3. [Installing ZFS](#installing-zfs-on-linux)
+4. [Generating Encryption Key](#generating-a-secure-encryption-key)
+5. [Creating Encrypted Pool](#creating-an-encrypted-zfs-pool)
+6. [Automating Decryption](#automating-decryption-on-boot)
+7. [Performance Optimization](#optimizing-zfs-pool-performance)
+8. [Security Best Practices](#security-best-practices)
+9. [Monitoring and Maintenance](#monitoring-and-maintenance)
+10. [Backup and Recovery](#backup-and-recovery)
+11. [Troubleshooting](#troubleshooting)
+12. [Creating Datasets](#creating-zfs-datasets)
+13. [TLER Configuration](#enabling-tler-for-raid-reliability)
 
 ## Why Encrypt Your ZFS Pool in 2025?
 With increasing concerns over data security, encrypting your **ZFS pool** ensures that backups, personal files, and archives remain inaccessible to unauthorized users. This updated guide covers the latest best practices for encryption, automation, and system compatibility.
@@ -53,9 +54,19 @@ With increasing concerns over data security, encrypting your **ZFS pool** ensure
 ## Installing ZFS on Linux
 First, install ZFS utilities:
 ```bash
+# For Ubuntu/Debian
 sudo apt install -y zfsutils-linux zfs-zed
+
+# For Fedora
+sudo dnf install -y zfs-dkms zfs-dracut zfs-utils
+
+# For RHEL/CentOS
+sudo dnf install -y epel-release
+sudo dnf install -y zfs-dkms zfs-dracut zfs-utils
+
+# For Arch Linux
+sudo pacman -S zfs-dkms zfs-utils
 ```
-(For Fedora, use `sudo dnf install -y zfs`.)
 
 ## Generating a Secure Encryption Key
 To encrypt/decrypt the file system, create a secure key file stored in `/root`:
@@ -73,10 +84,11 @@ sudo zpool create \
   -O encryption=on \
   -O keylocation=file:///root/.zfs-encrypt.key \
   -O keyformat=raw \
-  storage raidz1 \
-    ata-WDC_WD140EDGZ-11B1PA0_9MGJK4YK \
-    ata-WDC_WD140EDGZ-11B1PA0_Y6GVH40C \
-    ata-WDC_WD140EDGZ-11B1PA0_Y6GWHD3C
+  tank raidz1 \
+    scsi-SATA_HGST_HUS724040AL_PK1331PAKDXUGS \
+    scsi-SATA_HGST_HUS724040AL_PK1334P1KUK10Y \
+    scsi-SATA_HGST_HUS724040AL_PK1334P1KUV2PY \
+    scsi-SATA_HGST_HUS724040AL_PK1334PAKTU7GS
 ```
 ### Key Configuration Updates:
 - `bs=64 count=1`: Uses a stronger encryption key.
@@ -114,38 +126,38 @@ sudo systemctl enable zfs-load-key
 Apply these performance settings post-creation:
 ```bash
 # Basic Optimization
-sudo zpool set autoexpand=on storage
-sudo zpool set autoreplace=on storage
-sudo zfs set compression=zstd storage
-sudo zfs set atime=off storage
+sudo zpool set autoexpand=on tank
+sudo zpool set autoreplace=on tank
+sudo zfs set compression=zstd tank
+sudo zfs set atime=off tank
 
 # Advanced Performance Tuning
-sudo zfs set xattr=sa storage
-sudo zfs set dnodesize=auto storage
-sudo zfs set recordsize=1M storage
-sudo zfs set primarycache=all storage
-sudo zfs set secondarycache=all storage
-sudo zfs set sync=standard storage
+sudo zfs set xattr=sa tank
+sudo zfs set dnodesize=auto tank
+sudo zfs set recordsize=1M tank
+sudo zfs set primarycache=all tank
+sudo zfs set secondarycache=all tank
+sudo zfs set sync=standard tank
 
 # Memory Management
-sudo zfs set dedup=off storage  # Enable only if needed
-sudo zfs set metadata_cache:max=2g storage  # Adjust based on available RAM
+sudo zfs set dedup=off tank  # Enable only if needed
+sudo zfs set metadata_cache:max=2g tank  # Adjust based on available RAM
 ```
 
 ### Performance Monitoring
 Monitor ZFS performance using:
 ```bash
 # Pool health and status
-zpool status -v storage
+zpool status -v tank
 
 # I/O statistics
-zpool iostat -v storage 5
+zpool iostat -v tank 5
 
 # Cache hit ratio
 arc_summary
 
 # Dataset statistics
-zfs get all storage
+zfs get all tank
 ```
 
 ## Security Best Practices
@@ -170,9 +182,29 @@ zfs get all storage
 # Daily health check script
 sudo tee /etc/cron.daily/zfs-health-check <<EOF
 #!/bin/bash
-zpool status -x | grep -v "pools are healthy" && \
-    echo "ZFS pool issue detected" | mail -s "ZFS Health Alert" root
-zpool scrub storage  # Monthly scrub
+
+# Function to send notifications
+notify() {
+    local message="\$1"
+    # Try different notification methods
+    if command -v notify-send >/dev/null 2>&1; then
+        notify-send "ZFS Health Alert" "\$message"
+    elif command -v wall >/dev/null 2>&1; then
+        echo "\$message" | wall
+    else
+        logger -p user.warn "ZFS Health Alert: \$message"
+    fi
+}
+
+# Check pool health
+if ! zpool status -x | grep -q "all pools are healthy"; then
+    notify "ZFS pool issue detected. Check 'zpool status' for details."
+fi
+
+# Monthly scrub (on the 1st of each month)
+if [ "\$(date +%d)" = "01" ]; then
+    zpool scrub tank
+fi
 EOF
 sudo chmod +x /etc/cron.daily/zfs-health-check
 ```
@@ -180,7 +212,14 @@ sudo chmod +x /etc/cron.daily/zfs-health-check
 ### Performance Monitoring
 ```bash
 # Install monitoring tools
+# For Ubuntu/Debian
 sudo apt install -y sysstat iotop
+
+# For RHEL/Fedora/CentOS
+sudo dnf install -y sysstat iotop
+
+# For Arch Linux
+sudo pacman -S sysstat iotop
 
 # Monitor ZFS ARC statistics
 arc_summary
@@ -192,21 +231,42 @@ iostat -mx 5
 ## Backup and Recovery
 ### Snapshot Management
 ```bash
-# Create automated snapshots
-sudo zfs set snapdir=visible storage
-sudo zfs snapshot storage@$(date +%Y%m%d)
+# Enable snapshot visibility
+sudo zfs set snapdir=visible tank
+
+# Create daily snapshot with retention
+SNAPSHOT_NAME="daily-$(date +%Y%m%d)"
+sudo zfs snapshot tank@$SNAPSHOT_NAME
+
+# Keep only last 30 daily snapshots
+zfs list -t snapshot -o name | grep "tank@daily-" | sort -r | tail -n +31 | xargs -r zfs destroy
+
+# Create monthly snapshot (on the 1st)
+if [ "$(date +%d)" = "01" ]; then
+    MONTHLY_SNAPSHOT="monthly-$(date +%Y%m)"
+    sudo zfs snapshot tank@$MONTHLY_SNAPSHOT
+fi
 
 # Backup snapshots to remote location
-zfs send storage@snapshot | ssh backup-server "zfs receive backup/storage"
+# Using compression and progress monitoring
+zfs send -v tank@$SNAPSHOT_NAME | pv | zstd | \
+    ssh backup-server "zstd -d | zfs receive backup/tank"
+
+# Verify backup integrity
+ssh backup-server "zfs list -t snapshot backup/tank"
 ```
 
 ### Recovery Procedures
 ```bash
 # Recover from snapshot
-sudo zfs rollback storage@snapshot
+sudo zfs rollback tank@$SNAPSHOT_NAME
 
 # Import pool from backup
-sudo zpool import -d /dev/disk/by-id storage
+sudo zpool import -d /dev/disk/by-id tank
+
+# Verify data integrity
+sudo zpool scrub tank
+sudo zpool status tank
 ```
 
 ## Troubleshooting
@@ -214,22 +274,22 @@ sudo zpool import -d /dev/disk/by-id storage
 1. **Pool Import Failures**
    ```bash
    # Force import if needed
-   sudo zpool import -f storage
+   sudo zpool import -f tank
    ```
 
 2. **Encryption Issues**
    ```bash
    # Verify encryption status
-   sudo zfs get encryption,keylocation,keyformat storage
+   sudo zfs get encryption,keylocation,keyformat tank
    
    # Manually load keys
-   sudo zfs load-key storage
+   sudo zfs load-key tank
    ```
 
 3. **Performance Problems**
    ```bash
    # Check fragmentation
-   sudo zpool status -v storage
+   sudo zpool status -v tank
    
    # Monitor cache hits
    arc_summary | grep "cache hit"
@@ -238,13 +298,13 @@ sudo zpool import -d /dev/disk/by-id storage
 ## Creating ZFS Datasets
 Datasets organize storage efficiently within your ZFS pool:
 ```bash
-sudo zfs create storage/photos
-sudo zfs set compression=off storage/photos
+sudo zfs create tank/photos
+sudo zfs set compression=off tank/photos
 
-sudo zfs create storage/backup
-sudo zfs set compression=zstd storage/backup
+sudo zfs create tank/backup
+sudo zfs set compression=zstd tank/backup
 
-sudo zfs create -o mountpoint=/home/timor/Downloads storage/downloads
+sudo zfs create -o mountpoint=/home/$USER/Downloads tank/downloads
 ```
 
 ## Enabling TLER for RAID Reliability
@@ -252,11 +312,18 @@ Enable Time-Limited Error Recovery (TLER) for better RAID performance:
 
 ### Check TLER Support:
 ```bash
-sudo smartctl -l scterc /dev/sdd
+# Check TLER status for all drives
+for i in PK1331PAKDXUGS PK1334P1KUK10Y PK1334P1KUV2PY PK1334PAKTU7GS; do
+    sudo smartctl -l scterc /dev/disk/by-id/scsi-SATA_HGST_HUS724040AL_$i
+done
 ```
-If TLER is disabled, enable it:
+
+### Enable TLER:
 ```bash
-sudo smartctl -l scterc,70,70 /dev/sdd
+# Enable TLER on all drives
+for i in PK1331PAKDXUGS PK1334P1KUK10Y PK1334P1KUV2PY PK1334PAKTU7GS; do
+    sudo smartctl -l scterc,70,70 /dev/disk/by-id/scsi-SATA_HGST_HUS724040AL_$i
+done
 ```
 
 ### Persist TLER Settings Across Reboots:
@@ -264,8 +331,8 @@ sudo smartctl -l scterc,70,70 /dev/sdd
 sudo tee /etc/rc.local <<EOF
 #!/bin/bash
 
-for i in 9MGJK4YK Y6GVH40C Y6GWHD3C; do
-  echo smartctl -l scterc,70,70 /dev/disk/by-id/ata-WDC_WD140EDGZ-11B1PA0_\$i > /dev/null;
+for i in PK1331PAKDXUGS PK1334P1KUK10Y PK1334P1KUV2PY PK1334PAKTU7GS; do
+    sudo smartctl -l scterc,70,70 /dev/disk/by-id/scsi-SATA_HGST_HUS724040AL_\$i
 done
 EOF
 
@@ -274,10 +341,7 @@ sudo systemctl enable rc-local.service
 ```
 
 ## Conclusion
-By following this guide, you've successfully created an **encrypted ZFS pool** with automated decryption and enhanced system performance. Your data is now secure from unauthorized access, hardware failures, and performance issues.
-
-### Support My Work ☕
-If this guide was helpful, consider buying me a coffee at [ko-fi.com/supporttools](https://ko-fi.com/supporttools).
+By following this guide, you've successfully created an **encrypted ZFS pool** with automated decryption and enhanced system performance. Your data is now secure from unauthorized access, hardware failures, and performance issues. Regular monitoring, maintenance, and backups will ensure the integrity and availability of your data.
 
 ## References
 1. [Encrypting ZFS Pools](https://serverfault.com/questions/972496/can-i-encrypt-a-whole-pool-with-zfsol-0-8-1)
@@ -286,4 +350,3 @@ If this guide was helpful, consider buying me a coffee at [ko-fi.com/supporttool
 4. [ZFS Native Encryption](https://wiki.archlinux.org/title/ZFS#Native_encryption)
 5. [ZFS Best Practices](https://pthree.org/2012/12/13/zfs-administration-part-viii-zpool-best-practices-and-caveats/)
 6. [Linux TLER Settings](https://www.timlinden.com/checking-tler-setting-for-linux-hard-drives/)
-```
