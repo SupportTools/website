@@ -1,0 +1,22 @@
+# SupportTools Website Rules
+
+## Content Organization Pattern
+- Blog posts should be placed directly in the `blog/content/post/` directory
+- Do NOT create subdirectories for blog posts within the post directory
+- Social media content MUST be organized in dedicated subdirectories:
+  - Structure: `social-media-post/[blog-post-name]/`
+  - Example: `social-media-post/cilium-troubleshooting-2025/`
+  - Include platform-specific files (e.g., `bluesky.md`, `linkedin.md`)
+- When updating URLs in social media posts, use direct paths to blog posts:
+  - Correct: `https://support.tools/post/cilium-troubleshooting-2025/`
+  - Incorrect: `https://support.tools/post/cilium-troubleshooting/cilium-troubleshooting-2025/`
+
+## Link Management
+- Links between blog posts should use relative paths
+- When referencing the original post in an update, use the format `../original-post-name`
+- For external resources, use absolute URLs
+
+## Memory Bank Updates
+- When creating a new blog post, update all relevant memory bank files
+- Pay special attention to `activeContext.md` and `progress.md` to reflect the new content
+- Follow the established content organization pattern documented here

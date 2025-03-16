@@ -6,7 +6,7 @@ on:
     branches:
       - main
   schedule:
-    - cron: "0 0 * * *" # This will run every hour
+    - cron: "0 0 * * *" # This will run daily at midnight
 
 jobs:
   Test:
@@ -29,16 +29,32 @@ jobs:
         run: |
           docker run --rm -v $(pwd)/blog/:/src -w /src thegeeklab/hugo:0.122 list expired
 
+  SecurityScan:
+    runs-on: self-hosted-linux
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
   Build:
     runs-on: self-hosted-linux
-    needs: Test
-
+    needs: [Test, SecurityScan]
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
+        with:
+          buildkitd-flags: "--debug"
+
+      # Cache Docker layers for improved build performance
+      - name: Cache Docker layers
+        uses: actions/cache@v3
+        with:
+          path: /tmp/.buildx-cache
+          key: ${{ runner.os }}-buildx-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-buildx-
 
       - name: Login to DockerHub
         uses: docker/login-action@v3
@@ -46,19 +62,41 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Docker build and push
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          platforms: linux/amd64
+          tags: |
+            supporttools/website:v${{ github.run_number }}
+            supporttools/website:latest
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
+          build-args: |
+            VERSION=v${{ github.run_number }}
+            GIT_COMMIT=${{ github.sha }}
+            BUILD_DATE=${{ fromJSON('["' + github.event.repository.updated_at + '"]')[0] }}
+
+      # Move cache for next build
+      - name: Move cache
         run: |
-          docker buildx build \
-            --platform linux/amd64 \
-            --pull \
-            --build-arg VERSION="v${{ github.run_number }}" \
-            --build-arg GIT_COMMIT="${{ github.sha }}" \
-            --build-arg BUILD_DATE="$(date -u '+%Y-%m-%dT%H:%M:%SZ')" \
-            --cache-from supporttools/website:latest \
-            -t supporttools/website:v${{ github.run_number }} \
-            -t supporttools/website:latest \
-            --push \
-            -f Dockerfile .
+          rm -rf /tmp/.buildx-cache
+          mv /tmp/.buildx-cache-new /tmp/.buildx-cache
+
+      # Run Trivy vulnerability scanner on the built image
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: 'supporttools/website:v${{ github.run_number }}'
+          format: 'sarif'
+          output: 'trivy-results.sarif'
+          severity: 'CRITICAL,HIGH'
+          
+      - name: Upload Trivy scan results to GitHub Security tab
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: 'trivy-results.sarif'
 
   Publish:
     runs-on: self-hosted-linux
@@ -115,9 +153,21 @@ jobs:
     runs-on: self-hosted-linux
     needs: Publish
     strategy:
-      max-parallel: 1
+      max-parallel: 2  # Run two environments in parallel for faster deployment
       matrix:
-        environment: [mst, dev, qas, tst, stg, prd]
+        include:
+          - environment: mst
+            order: 1
+          - environment: dev
+            order: 1
+          - environment: qas
+            order: 2
+          - environment: tst
+            order: 2
+          - environment: stg
+            order: 3
+          - environment: prd
+            order: 4
 
     steps:
       - name: Checkout repository
@@ -142,21 +192,26 @@ jobs:
         run: kubectl --kubeconfig kubeconfig apply -f argocd/project.yaml
 
       - name: Deploy Environment - ${{ matrix.environment }}
-        run: |
-          ENVIRONMENT=${{ matrix.environment }}
-          CHART_VERSION="v${{ github.run_number }}"
+        uses: nick-invision/retry@v2
+        with:
+          timeout_minutes: 10
+          max_attempts: 3
+          retry_wait_seconds: 30
+          command: |
+            ENVIRONMENT=${{ matrix.environment }}
+            CHART_VERSION="v${{ github.run_number }}"
 
-          # Check if application exists
-          if kubectl --kubeconfig kubeconfig -n argocd get application supporttools-${ENVIRONMENT} &>/dev/null; then
-            echo "ArgoCD Application 'supporttools-${ENVIRONMENT}' exists. Patching targetRevision to ${CHART_VERSION}."
-            kubectl --kubeconfig kubeconfig -n argocd patch application "supporttools-${ENVIRONMENT}" \
-              --type merge \
-              -p "{\"spec\":{\"source\":{\"targetRevision\":\"${CHART_VERSION}\"}}}"
-          else
-            echo "ArgoCD Application 'supporttools-${ENVIRONMENT}' does not exist. Creating..."
-            sed "s/CHARTVERSION/${CHART_VERSION}/g" argocd/${ENVIRONMENT}.yaml \
-            | kubectl --kubeconfig kubeconfig -n argocd apply -f -
-          fi
+            # Check if application exists
+            if kubectl --kubeconfig kubeconfig -n argocd get application supporttools-${ENVIRONMENT} &>/dev/null; then
+              echo "ArgoCD Application 'supporttools-${ENVIRONMENT}' exists. Patching targetRevision to ${CHART_VERSION}."
+              kubectl --kubeconfig kubeconfig -n argocd patch application "supporttools-${ENVIRONMENT}" \
+                --type merge \
+                -p "{\"spec\":{\"source\":{\"targetRevision\":\"${CHART_VERSION}\"}}}"
+            else
+              echo "ArgoCD Application 'supporttools-${ENVIRONMENT}' does not exist. Creating..."
+              sed "s/CHARTVERSION/${CHART_VERSION}/g" argocd/${ENVIRONMENT}.yaml \
+              | kubectl --kubeconfig kubeconfig -n argocd apply -f -
+            fi
 
       - name: Wait for Deployment to Stabilize
         run: |
@@ -178,3 +233,48 @@ jobs:
             echo "Application did not become healthy in time."
             exit 1
           fi
+          
+      - name: Verify Application Health
+        run: |
+          # Define the health check endpoint
+          HEALTH_URL="https://${{ matrix.environment }}.support.tools/healthz"
+          
+          # Retry parameters
+          MAX_RETRIES=10
+          RETRY_DELAY=30
+          
+          # Perform health check with retries
+          for i in $(seq 1 $MAX_RETRIES); do
+            echo "Health check attempt $i of $MAX_RETRIES..."
+            
+            HTTP_STATUS=$(curl -s -o /dev/null -w "%{http_code}" $HEALTH_URL)
+            
+            if [ "$HTTP_STATUS" -eq 200 ]; then
+              echo "✅ Application is healthy (HTTP 200)"
+              exit 0
+            else
+              echo "❌ Health check failed with status: $HTTP_STATUS"
+              
+              if [ $i -lt $MAX_RETRIES ]; then
+                echo "Waiting ${RETRY_DELAY}s before next attempt..."
+                sleep $RETRY_DELAY
+              fi
+            fi
+          done
+          
+          echo "Health check failed after $MAX_RETRIES attempts"
+          exit 1
+
+  # Notification job that runs on workflow failure
+  Notify:
+    needs: [Test, Build, Publish, Deploy]
+    if: always() && (contains(needs.*.result, 'failure') || contains(needs.*.result, 'cancelled'))
+    runs-on: self-hosted-linux
+    steps:
+      - name: Send Slack notification
+        uses: slackapi/slack-github-action@v1.24.0
+        with:
+          channel-id: 'pipeline-alerts'
+          slack-message: "Pipeline run failed! See: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
