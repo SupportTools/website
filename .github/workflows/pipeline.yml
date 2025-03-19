@@ -126,17 +126,10 @@ jobs:
       - name: Setup kubectl
         uses: azure/setup-kubectl@v4
 
-      - name: Create Kubeconfig
+      - name: Setup Kubeconfig
         run: |
-          curl -fsSL -o rancher-projects.tar.gz https://github.com/SupportTools/rancher-projects/releases/download/v0.2.2/rancher-projects_0.2.2_linux_amd64.tar.gz
-          tar -xvf rancher-projects.tar.gz
-          chmod +x rancher-projects
-          sudo mv rancher-projects /usr/local/bin/
-          rancher-projects --rancher-server ${{ secrets.CATTLE_SERVER }} \
-          --rancher-access-key ${{ secrets.CATTLE_ACCESS_KEY }} \
-          --rancher-secret-key ${{ secrets.CATTLE_SECRET_KEY }} \
-          --cluster-name a1-ops-prd --project-name "SupportTools" \
-          --namespace supporttools --create-kubeconfig --kubeconfig "kubeconfig"
+          echo "${{ secrets.KUBECONFIG }}" > kubeconfig
+          chmod 600 kubeconfig
 
       - name: Deploy ArgoCD Project
         run: kubectl --kubeconfig kubeconfig apply -f argocd/project.yaml
