@@ -7,7 +7,12 @@
 - **GitHub CodeQL Fix**: Resolved code scanning configuration conflict
 
 ## Recent Changes
-1. Created comprehensive `cilium-troubleshooting-2025.md` blog post with expanded content:
+1. Updated makefile to include a local development server option:
+   - Added 'dev' command to run Hugo server locally
+   - Configured server with proper parameters for local testing
+   - Improved makefile command documentation
+   
+2. Created comprehensive `cilium-troubleshooting-2025.md` blog post with expanded content:
    - Advanced diagnostic techniques
    - In-depth cluster and pod connectivity troubleshooting
    - Performance diagnostics and optimization
@@ -35,8 +40,9 @@
 - **CodeQL Configuration**: Prioritized custom workflow over default setup for better control and integration with CI/CD pipeline
 
 ## Next Steps
-1. Consider setting up an image directory for blog post diagrams at `cdn.support.tools/posts/cilium-troubleshooting-2025/`
-2. Evaluate metrics to track engagement with the new blog post
-3. Explore additional social media platforms for content promotion
-4. Identify follow-up topics that could complement the Cilium troubleshooting guide
-5. Implement the recommended GitHub CodeQL fix to resolve the code scanning issue
+1. Test the new local development server using `make dev`
+2. Consider setting up an image directory for blog post diagrams at `cdn.support.tools/posts/cilium-troubleshooting-2025/`
+3. Evaluate metrics to track engagement with the new blog post
+4. Explore additional social media platforms for content promotion
+5. Identify follow-up topics that could complement the Cilium troubleshooting guide
+6. Implement the recommended GitHub CodeQL fix to resolve the code scanning issue

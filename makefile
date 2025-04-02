@@ -6,7 +6,7 @@ IMAGENAME=website
 REPO=docker.io/supporttools
 IMAGEFULLNAME=${REPO}/${IMAGENAME}:${TAG}
 
-.PHONY: help build push all
+.PHONY: help build push all dev
 
 help:
 	    @echo "Makefile arguments:"
@@ -14,10 +14,11 @@ help:
 	    @echo "tag - Docker Tag"
 	    @echo ""
 	    @echo "Makefile commands:"
-	    @echo "build"
-	    @echo "push"
-		@echo "bump"
-	    @echo "all"
+	    @echo "build - Build the Docker image"
+	    @echo "push  - Push the Docker image to repository"
+		@echo "bump  - Build and push the Docker image"
+	    @echo "all   - Build and push the Docker image"
+		@echo "dev   - Run local development server"
 
 .DEFAULT_GOAL := all
 
@@ -31,5 +32,9 @@ push:
 
 bump:
 		@make build push
+
+dev:
+	@echo "Starting local development server..."
+	@cd blog && hugo server -D --bind=0.0.0.0 --baseURL=http://localhost:1313
 
 all: build push

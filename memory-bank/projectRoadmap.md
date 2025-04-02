@@ -17,10 +17,11 @@
     *   [ ]  Create social media content to promote blog posts and training series.
 
 *   **Technical Improvements:**
+    *   [x]  Add local development server command to makefile for easier testing and development.
     *   [ ]  Implement website analytics (e.g., Google Analytics, Plausible).
     *   [ ]  Improve website performance and loading speed.
     *   [ ]  Enhance website security.
-    *   [ ]   নিয়মিতly update website dependencies and Hugo version.
+    *   [ ]   নিয়মিতly update website dependencies and Hugo version.
     *   [ ]  Implement automated link checking and fix broken links.
 
 *   **Community Engagement:**
@@ -55,4 +56,4 @@
 *   Gather user feedback and prioritize features based on community needs.
 
 ---
-**Last Updated:** 2025-04-01
+**Last Updated:** 2025-04-02

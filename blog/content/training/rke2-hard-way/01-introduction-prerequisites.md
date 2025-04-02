@@ -74,8 +74,65 @@ Ensure you have `sudo` privileges on all nodes.
 
 ---
 
+## Initial Node Setup
+
+Before we begin installing components, let's set up some basic configurations on our nodes to ensure they can communicate properly throughout the tutorial.
+
+### 1. Configure /etc/hosts
+
+On each node, let's configure the `/etc/hosts` file to ensure that all nodes can reach each other by hostname:
+
+```bash
+# Run on all nodes
+sudo cat >> /etc/hosts << EOF
+# Kubernetes Nodes
+192.168.1.101 node01
+192.168.1.102 node02
+192.168.1.103 node03
+EOF
+```
+
+> ⚠️ **Important:** Replace the IP addresses above with the actual IP addresses of your nodes. These are just examples.
+
+Verify connectivity by pinging the other nodes by hostname:
+
+```bash
+# Run these commands on each node to verify
+ping -c 3 node01
+ping -c 3 node02
+ping -c 3 node03
+```
+
+### 2. Set Up SSH Keys for Certificate Distribution
+
+Since we'll be generating certificates on `node01` and distributing them to the other nodes, let's set up SSH keys to enable password-less SSH:
+
+```bash
+# Run these commands on node01
+
+# Generate an SSH key if one doesn't already exist
+[ ! -f ~/.ssh/id_rsa ] && ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa
+
+# Copy the SSH key to node02 and node03
+# You'll be prompted for the password of the remote users
+ssh-copy-id node02
+ssh-copy-id node03
+```
+
+Verify SSH access works correctly:
+
+```bash
+# Test SSH access (should connect without password prompt)
+ssh node02 "hostname"
+ssh node03 "hostname"
+```
+
+This will ensure that we can easily copy certificates and other files between nodes when needed.
+
+---
+
 ## Next Steps
 
-Next, we will move to **Part 2** and set up the **Certificate Authority** and generate the **TLS certificates** for our Kubernetes cluster!
+Next, we will move to **Part 2** and set up a **Certificate Authority** and generate **TLS certificates** for our Kubernetes cluster. This is a critical step that must be completed before setting up any components!
 
-👉 Stay tuned for **Part 2: Setting up containerd and kubelet!**
+👉 Continue to **[Part 2: Certificate Authority and TLS Certificates](/training/rke2-hard-way/02-certificate-authority-tls-certificates/)**
