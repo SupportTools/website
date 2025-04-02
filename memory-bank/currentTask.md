@@ -14,10 +14,11 @@
 *   Created "Setting up the etcd Cluster" blog post: `blog/content/training/rke2-hard-way/03-setting-up-etcd-cluster.md`
 *   Created "Setting up the kube-apiserver" blog post: `blog/content/training/rke2-hard-way/04-setting-up-kube-apiserver.md`
 *   Created "Setting up kube-controller-manager and kube-scheduler" blog post: `blog/content/training/rke2-hard-way/05-setting-up-kube-controller-manager-and-kube-scheduler.md`
+*   Created "Setting up kubelet and kube-proxy on Worker Nodes" blog post: `blog/content/training/rke2-hard-way/06-setting-up-kubelet-and-kube-proxy.md`
 
 **Next Steps:**
 
-*   Create the next blog post in the series: "Part 6 - Setting up the kubelet and kube-proxy on Worker Nodes".
+*   Create the next blog post in the series: "Part 7 - Installing the Cilium CNI".
 *   Continue outlining and writing subsequent parts of the training series, focusing on detailed steps and commands for each component setup.
 *   Commit changes to Git.
 
