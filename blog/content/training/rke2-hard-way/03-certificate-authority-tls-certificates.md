@@ -266,4 +266,4 @@ Your `certs/` directory now contains all the necessary files for the next steps.
 
 ## Next Steps
 
-Stay tuned for Part 4.
+Stay tuned for Part 4: Setting up etcd Cluster!

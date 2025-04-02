@@ -1,7 +1,7 @@
 ---
 title: "RKE2 the Hard Way: Part 2 - Setting up containerd and kubelet"
 description: "Installing and configuring containerd and kubelet on nodes."
-date: 2025-04-01
+date: 2025-04-01T00:00:00-00:00
 series: "RKE2 the Hard Way"
 series_rank: 2
 ---
@@ -184,4 +184,4 @@ sudo journalctl -u kubelet -f
 
 **Next Steps:**
 
-In the next part, Part 3, we will move to Part 3, Certificate Authority and TLS Certificates for our cluster.
+In the next part, Part 3, we will move to Part 3, Certificate Authority and TLS Certificates.
