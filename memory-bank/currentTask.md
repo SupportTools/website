@@ -16,10 +16,11 @@
 *   Created "Setting up kube-controller-manager and kube-scheduler" blog post: `blog/content/training/rke2-hard-way/05-setting-up-kube-controller-manager-and-kube-scheduler.md`
 *   Created "Setting up kubelet and kube-proxy on Worker Nodes" blog post: `blog/content/training/rke2-hard-way/06-setting-up-kubelet-and-kube-proxy.md`
 *   Created "Installing the Cilium CNI" blog post: `blog/content/training/rke2-hard-way/07-installing-cilium-cni.md`
+*   Created "Installing CoreDNS" blog post: `blog/content/training/rke2-hard-way/08-installing-coredns.md`
 
 **Next Steps:**
 
-*   Create the next blog post in the series: "Part 8 - Installing CoreDNS".
+*   Create the next blog post in the series: "Part 9 - Installing Ingress-Nginx".
 *   Continue outlining and writing subsequent parts of the training series, focusing on detailed steps and commands for each component setup.
 *   Commit changes to Git.
 
