@@ -11,17 +11,20 @@
 *   **Content Creation and Expansion:**
     *   [x]  Create new blog posts on relevant topics (e.g., Cilium troubleshooting, Docker image analysis).
     *   [ ]  Develop new training series:
-        *   [ ]  RKE2 the Hard Way - Building a Kubernetes cluster from scratch to match RKE2 features.
+        *   [x]  CKA Exam Preparation Guide - Comprehensive 10-part series for Kubernetes certification.
+        *   [x]  RKE2 the Hard Way - Building a Kubernetes cluster from scratch to match RKE2 features.
         *   [ ]  Advanced Rancher Management - Deep dive into Rancher features and best practices.
+        *   [ ]  CKAD Exam Preparation Guide - Similar to CKA but focused on Developer certification.
+        *   [ ]  CKS Exam Preparation Guide - Kubernetes Security Specialist certification preparation.
     *   [ ]  Expand "Known Good Designs" section with more examples and architectures.
-    *   [ ]  Create social media content to promote blog posts and training series.
+    *   [x]  Create social media content to promote blog posts and training series.
 
 *   **Technical Improvements:**
     *   [x]  Add local development server command to makefile for easier testing and development.
     *   [ ]  Implement website analytics (e.g., Google Analytics, Plausible).
     *   [ ]  Improve website performance and loading speed.
     *   [ ]  Enhance website security.
-    *   [ ]   নিয়মিতly update website dependencies and Hugo version.
+    *   [ ]  Regularly update website dependencies and Hugo version.
     *   [ ]  Implement automated link checking and fix broken links.
 
 *   **Community Engagement:**
@@ -46,14 +49,26 @@
     *   [x] Create `_index.md` for training series
     *   [x] Create "Introduction and Prerequisites" blog post
     *   [x] Update `projectRoadmap.md`
-    *   [ ] Update `currentTask.md`
-    *   [ ] Commit changes
+    *   [x] Update `currentTask.md`
+    *   [x] Commit changes
+*   [x]  Create "CKA Exam Preparation Guide" training series (2025-04-04)
+    *   [x] Create training series directory
+    *   [x] Create `_index.md` for training series
+    *   [x] Create 10 comprehensive parts covering all CKA domains
+    *   [x] Include practical examples, commands, and YAML manifests
+    *   [x] Add mock exam questions with detailed solutions
+    *   [x] Update `projectRoadmap.md`
+    *   [x] Update `progress.md`
+    *   [x] Update `activeContext.md`
+    *   [x] Commit changes
 
 **Future Considerations:**
 
+*   Create accompanying diagrams for the CKA training series
+*   Develop similar training series for CKAD and CKS certifications
 *   Explore adding interactive elements to the website (e.g., demos, interactive tutorials).
 *   Investigate monetization strategies (e.g., affiliate marketing, sponsored content).
 *   Gather user feedback and prioritize features based on community needs.
 
 ---
-**Last Updated:** 2025-04-02
+**Last Updated:** 2025-04-04
