@@ -1,6 +1,6 @@
 ---
 title: "A Deep Dive into Kubernetes Networking with overlay networks and traffic flows"
-date: "2023-02-03T02:51:00-06:00"
+date: "2025-04-23T00:00:00-06:00"
 draft: false
 tags: ["Kubernetes networking", "overlay network", "traffic flow", "Pods", "network plugins", "canal", "flannel", "calico", "network segmentation", "isolation", "security", "performance"]
 categories:
@@ -18,15 +18,24 @@ Kubernetes is an open-source platform that automates containerized applications'
 An overlay network in Kubernetes is a virtual network that spans multiple nodes in a cluster and provides connectivity between Pods running on different nodes. The overlay network is built on top of the physical network infrastructure and enables the communication between Pods, regardless of their physical location in the cluster.
 
 # [Traffic Flow Between Pods on the Same Node](#traffic-flow-between-pods-on-the-same-node)
-When Pods run on the same node, they communicate using the loopback interface. Traffic between Pods on the same node is fast and efficient, as it does not traverse the network infrastructure.
+When Pods run on the same node, they communicate using `veth` pairs and the node's bridge network (typically `cni0`). Each pod has its own network namespace and its own loopback interface, which is primarily used for communication within the pod itself. When traffic needs to go from one pod to another on the same node, it traverses a virtual ethernet link (`veth` pair) connected to a bridge.
 
 For example, consider a scenario where Pod A wants to communicate with Pod B on the same node. The traffic flow would be as follows:
 
 ```
-Pod A -> loopback -> Pod B
+Pod A -> veth (Pod A) -> cni0 (node bridge) -> veth (Pod B) -> Pod B
 ```
 
-In this diagram, the traffic flows from Pod A to Pod B through the loopback interface, a virtual interface that enables the communication between Pods on the same node. This means the traffic never leaves the CPU and does not traverse the network.
+In this diagram:
+
+*   Traffic originates from Pod A.
+*   It goes through Pod A's end of a `veth` pair.
+*   The traffic then passes through the node's bridge interface (`cni0`).
+*   Finally, it reaches Pod B via Pod B's end of its `veth` pair.
+
+This method ensures proper network isolation between pods while still allowing efficient communication on the same node. While the loopback interface is crucial for intra-pod communication, inter-pod communication relies on `veth` pairs and the bridge network.
+
+An important performance benefit of this communication model is that Pod-to-Pod traffic on the same node never leaves the Linux kernel. Unlike traffic between nodes that must be serialized, transmitted across physical network interfaces, and then deserialized, same-node traffic simply moves through memory within the kernel's networking stack. This in-kernel routing means that Pod-to-Pod communication on the same node avoids the overheads of network interface cards, physical network transmission, and encapsulation/decapsulation required for overlay networks. Consequently, communication between Pods on the same node is significantly faster and more efficient, with lower latency and higher throughput compared to inter-node Pod communication. The Linux kernel efficiently handles all the routing through the virtual interfaces and bridge without requiring packets to be processed by the physical network stack. This is one reason why, when possible, placing Pods that communicate frequently with each other on the same node can provide substantial performance benefits for network-intensive applications.
 
 # [Traffic Flow Between Pods on Different Nodes](#traffic-flow-between-pods-on-different-nodes)
 When Pods run on different nodes, they communicate with each other using the overlay network. Traffic between Pods on different nodes is encapsulated and transmitted over the network infrastructure.
