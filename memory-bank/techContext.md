@@ -60,6 +60,7 @@
 ## Cloud Services
 - Wasabi S3-compatible storage:
   - Bucket name: cdn.support.tools
-  - Endpoint: s3.us-central-1.wasabisys.com
+  - Endpoint: s3.us-central-1.wasabisys.com 
+  - AWS region: us-east-1 (required for AWS credentials action compatibility)
   - Authentication: IAM credentials stored in GitHub Secrets
   - Sync strategy: Additive-only (no file deletion)
