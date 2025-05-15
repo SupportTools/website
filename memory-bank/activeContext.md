@@ -45,7 +45,8 @@
    - Integrated automatic CDN sync with main deployment pipeline for production environments
    - Configured sync to preserve existing files on the Wasabi bucket (no deletion)
    - Used AWS S3 sync command with Wasabi endpoint for optimal compatibility
-   - Configured appropriate IAM credentials securely in GitHub Secrets
+   - Fixed authentication method to use direct AWS CLI configuration instead of STS
+   - Configured appropriate credentials securely in GitHub Secrets
 
 ## Active Decisions and Considerations
 - **Training Series Structure**: Organized CKA content into logical sections following established blog training series pattern
