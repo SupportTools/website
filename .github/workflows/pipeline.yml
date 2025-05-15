@@ -118,6 +118,9 @@ jobs:
       max-parallel: 1
       matrix:
         environment: [mst, dev, qas, tst, stg, prd]
+    outputs:
+      synccdn_needed: ${{ steps.check-sync-cdn.outputs.synccdn }}
+      environment: ${{ matrix.environment }}
 
     steps:
       - name: Checkout repository
@@ -171,3 +174,39 @@ jobs:
             echo "Application did not become healthy in time."
             exit 1
           fi
+          
+      - name: Check if CDN Sync is needed
+        id: check-sync-cdn
+        run: |
+          if [[ "${{ matrix.environment }}" == "qas" || "${{ matrix.environment }}" == "tst" || "${{ matrix.environment }}" == "stg" || "${{ matrix.environment }}" == "prd" ]]; then
+            echo "synccdn=true" >> $GITHUB_OUTPUT
+          else
+            echo "synccdn=false" >> $GITHUB_OUTPUT
+          fi
+
+  Sync-CDN:
+    runs-on: ubuntu-latest
+    needs: Deploy
+    if: needs.Deploy.outputs.synccdn_needed == 'true'
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Fetch all history for proper change detection
+      
+      - name: Configure AWS credentials for Wasabi
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.WASABI_ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.WASABI_SECRET_KEY }}
+          aws-region: us-central-1
+      
+      - name: Sync to Wasabi S3 bucket
+        run: |
+          echo "Starting sync of cdn.support.tools to Wasabi for environment ${{ needs.Deploy.outputs.environment }}"
+          aws s3 sync ./cdn.support.tools/ s3://cdn.support.tools/ \
+            --endpoint-url=https://s3.us-central-1.wasabisys.com \
+            --exclude ".git/*" \
+            --acl public-read
+          echo "Sync completed successfully"

@@ -1,0 +1,44 @@
+name: Sync CDN to Wasabi
+
+on:
+  # Trigger on changes to cdn.support.tools directory
+  push:
+    paths:
+      - 'cdn.support.tools/**'
+  
+  # Add manual trigger option
+  workflow_dispatch:
+  
+  # Optional: Add ability to call from other workflows
+  workflow_call:
+    inputs:
+      environment:
+        required: false
+        type: string
+        default: 'production'
+
+jobs:
+  sync-to-wasabi:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Fetch all history for proper change detection
+      
+      - name: Configure AWS credentials for Wasabi
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.WASABI_ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.WASABI_SECRET_KEY }}
+          aws-region: us-central-1
+      
+      - name: Sync to Wasabi S3 bucket
+        run: |
+          echo "Starting sync of cdn.support.tools to Wasabi"
+          aws s3 sync ./cdn.support.tools/ s3://cdn.support.tools/ \
+            --endpoint-url=https://s3.us-central-1.wasabisys.com \
+            --exclude ".git/*" \
+            --acl public-read
+          echo "Sync completed successfully"

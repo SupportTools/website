@@ -13,6 +13,7 @@
 - **Kubernetes**: Container orchestration (indicated by ArgoCD configs)
 - **ArgoCD**: GitOps-based deployment to Kubernetes
 - **Nginx**: Web server configuration present
+- **Wasabi**: Cloud storage provider used for CDN asset hosting
 
 ## Development Setup
 - Source code stored in GitHub repository
@@ -25,25 +26,40 @@
 - Image optimization for CDN delivery
 - Kubernetes deployment considerations
 - Container size and performance optimization
+- CDN synchronization timing with deployments
 
 ## Dependencies
 - Go dependencies managed through go.mod
 - Hugo theme dependencies (using theme m10c)
 - Container base images
 - Kubernetes infrastructure dependencies
+- AWS CLI for Wasabi S3 compatibility
 
 ## Infrastructure Setup
 ### Hosting
 - Appears to be using Kubernetes (ArgoCD configurations present)
 - Multiple environments defined: dev, tst, qas, stg, prd
 - CDN setup for static assets at cdn.support.tools
+- Wasabi cloud storage (s3.us-central-1.wasabisys.com) hosts the CDN content
 
 ### CI/CD
-- Deployment appears to use ArgoCD for GitOps workflows
+- Deployment uses GitHub Actions workflow (`pipeline.yml`)
+- ArgoCD for GitOps deployments to Kubernetes clusters
 - `deploy.sh` script suggests automated deployment process
 - Build process includes Docker image creation
 - Multiple Kubernetes environments with dedicated configurations
+- CDN synchronization with Wasabi via GitHub Actions:
+  - Standalone workflow (`wasabi-sync.yml`) for manual syncs
+  - Integrated CDN sync job in main pipeline for production environments
+  - AWS S3 sync command used with Wasabi endpoint for compatibility
 
 ## Domain Structure
 - Main site: support.tools
 - CDN: cdn.support.tools
+
+## Cloud Services
+- Wasabi S3-compatible storage:
+  - Bucket name: cdn.support.tools
+  - Endpoint: s3.us-central-1.wasabisys.com
+  - Authentication: IAM credentials stored in GitHub Secrets
+  - Sync strategy: Additive-only (no file deletion)
