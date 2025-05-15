@@ -1,6 +1,6 @@
 ---
 title: "Redis Is Open Source Again. But Is It Too Late?"
-date: 2025-05-13T00:00:00-05:00
+date: 2025-05-19T00:00:00-05:00
 draft: false
 tags: ["Redis", "Open Source", "Valkey", "Database", "In-Memory Database", "NoSQL", "Vector Database", "License", "AGPLv3", "BSD"]
 categories:
@@ -20,6 +20,8 @@ But the timing raises an uncomfortable question: *Is it too late?*
 <!--more-->
 
 # [Redis Is Open Source Again. But Is It Too Late?](#redis-is-open-source-again-but-is-it-too-late)
+
+{{< figure src="https://cdn.support.tools/posts/redis-open-source-again/redis-open-source-again.png" alt="Redis vs Valkey comparison" caption="Redis returns to open source with version 8, competing with the community-backed Valkey fork" >}}
 
 ## How Did We Get Here?
 
