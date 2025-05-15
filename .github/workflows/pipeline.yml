@@ -195,18 +195,22 @@ jobs:
         with:
           fetch-depth: 0  # Fetch all history for proper change detection
       
-      - name: Configure AWS CLI for Wasabi
+      - name: Install AWS CLI
         run: |
-          aws configure set aws_access_key_id ${{ secrets.WASABI_ACCESS_KEY }}
-          aws configure set aws_secret_access_key ${{ secrets.WASABI_SECRET_KEY }}
-          aws configure set default.region us-east-1
-          aws configure set default.s3.endpoint_url https://s3.wasabisys.com
+          curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+          unzip awscliv2.zip
+          sudo ./aws/install
+          aws --version
       
       - name: Sync to Wasabi S3 bucket
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.WASABI_ACCESS_KEY }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.WASABI_SECRET_KEY }}
+          AWS_REGION: us-central-1
         run: |
           echo "Starting sync of cdn.support.tools to Wasabi for environment ${{ needs.Deploy.outputs.environment }}"
           aws s3 sync ./cdn.support.tools/ s3://cdn.support.tools/ \
-            --endpoint-url=https://s3.wasabisys.com \
+            --endpoint-url=https://s3.us-central-1.wasabisys.com \
             --exclude ".git/*" \
             --acl public-read
           echo "Sync completed successfully"

@@ -45,8 +45,9 @@
    - Integrated automatic CDN sync with main deployment pipeline for production environments
    - Configured sync to preserve existing files on the Wasabi bucket (no deletion)
    - Used AWS S3 sync command with Wasabi endpoint for optimal compatibility
-   - Fixed authentication method to use direct AWS CLI configuration instead of STS
-   - Updated endpoint from region-specific to global endpoint (s3.wasabisys.com) to resolve PermanentRedirect error
+   - Added explicit AWS CLI installation to ensure compatibility
+   - Switched to environment variables for AWS authentication (AWS best practice)
+   - Updated to use region-specific endpoint (s3.us-central-1.wasabisys.com) based on working example
    - Configured appropriate credentials securely in GitHub Secrets
 
 ## Active Decisions and Considerations
