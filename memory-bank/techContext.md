@@ -40,7 +40,7 @@
 - Appears to be using Kubernetes (ArgoCD configurations present)
 - Multiple environments defined: dev, tst, qas, stg, prd
 - CDN setup for static assets at cdn.support.tools
-- Wasabi cloud storage (s3.us-central-1.wasabisys.com) hosts the CDN content
+- Wasabi cloud storage (s3.wasabisys.com) hosts the CDN content
 
 ### CI/CD
 - Deployment uses GitHub Actions workflow (`pipeline.yml`)
@@ -60,7 +60,7 @@
 ## Cloud Services
 - Wasabi S3-compatible storage:
   - Bucket name: cdn.support.tools
-  - Endpoint: s3.us-central-1.wasabisys.com 
+  - Endpoint: s3.wasabisys.com (global endpoint)
   - AWS region: us-east-1 (for AWS CLI compatibility)
   - Authentication: Using direct AWS CLI configuration with access key and secret key
   - Credentials: Stored securely in GitHub Secrets (WASABI_ACCESS_KEY, WASABI_SECRET_KEY)

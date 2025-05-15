@@ -46,6 +46,7 @@
    - Configured sync to preserve existing files on the Wasabi bucket (no deletion)
    - Used AWS S3 sync command with Wasabi endpoint for optimal compatibility
    - Fixed authentication method to use direct AWS CLI configuration instead of STS
+   - Updated endpoint from region-specific to global endpoint (s3.wasabisys.com) to resolve PermanentRedirect error
    - Configured appropriate credentials securely in GitHub Secrets
 
 ## Active Decisions and Considerations
