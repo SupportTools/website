@@ -1,6 +1,6 @@
 ---
 title: "Kubernetes v1.33 Image Volumes: The Complete Guide to Container Image Mounting in Kubernetes"
-date: 2025-05-19T01:38:33-05:00
+date: 2025-06-24T09:00:00-05:00
 draft: false
 tags: ["Kubernetes", "v1.33", "Image Volumes", "Immutable Infrastructure", "Best Practices", "Container Images", "Pod Configuration", "DevOps", "Cloud Native"]
 categories:

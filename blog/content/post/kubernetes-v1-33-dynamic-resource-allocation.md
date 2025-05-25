@@ -1,6 +1,6 @@
 ---
 title: "Kubernetes v1.33 Dynamic Resource Allocation: Advanced Hardware Management for AI, ML, and HPC Workloads"
-date: 2025-05-15T09:05:00-05:00
+date: 2025-06-17T09:00:00-05:00
 draft: false
 tags: ["Kubernetes", "v1.33", "Dynamic Resource Allocation", "DRA", "GPU", "FPGA", "Hardware Management", "AI/ML", "Device Management"]
 categories:

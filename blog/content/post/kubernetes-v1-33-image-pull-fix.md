@@ -1,6 +1,6 @@
 ---
 title: "Kubernetes v1.33: Critical Security Fix for Private Image Pull Vulnerability"
-date: 2025-05-15T00:00:00-05:00
+date: 2025-06-19T09:00:00-05:00
 draft: false
 tags: ["Kubernetes", "Security", "Container", "Container Security", "Kubelet", "CVE", "Image Registry", "Private Registry"]
 categories:
