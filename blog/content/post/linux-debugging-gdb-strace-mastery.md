@@ -1,6 +1,6 @@
 ---
 title: "Linux Debugging Mastery: GDB, strace, and Advanced Troubleshooting Techniques"
-date: 2025-07-02T22:15:00-05:00
+date: 2025-02-05T10:00:00-05:00
 draft: false
 tags: ["Linux", "Debugging", "GDB", "strace", "Performance", "Troubleshooting", "Systems Programming"]
 categories:

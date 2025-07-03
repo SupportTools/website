@@ -1,6 +1,6 @@
 ---
 title: "Understanding Unix Signals: A Deep Dive into Process Communication"
-date: 2025-07-02T21:33:55-05:00
+date: 2025-01-05T10:00:00-05:00
 draft: false
 tags: ["Linux", "Unix", "Systems Programming", "Signals", "Process Management"]
 categories:
