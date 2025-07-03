@@ -131,7 +131,7 @@ jobs:
 
       - name: Setup Kubeconfig
         run: |
-          echo "${{ secrets.KUBECONFIG_DEV }}" > kubeconfig
+          echo "${{ secrets.KUBECONFIG_DEV }}" | base64 -d > kubeconfig
           chmod 600 kubeconfig
 
       - name: Deploy ArgoCD Project
@@ -205,7 +205,7 @@ jobs:
 
       - name: Setup Kubeconfig
         run: |
-          echo "${{ secrets.KUBECONFIG_PROD }}" > kubeconfig
+          echo "${{ secrets.KUBECONFIG_PROD }}" | base64 -d > kubeconfig
           chmod 600 kubeconfig
 
       - name: Deploy ArgoCD Project
