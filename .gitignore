@@ -6,3 +6,8 @@ blog/content/archive
 blog/scripts/
 logs/
 social-media-post/
+
+# Cloudflare Workers
+.wrangler/
+wrangler.log
+.dev.vars
