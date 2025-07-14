@@ -1,0 +1,26 @@
+{
+  "name": "support-tools-website",
+  "version": "1.0.0",
+  "description": "Support Tools website deployed on Cloudflare Workers",
+  "main": "src/worker.js",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "deploy:dev": "wrangler deploy --env development",
+    "deploy:staging": "wrangler deploy --env staging", 
+    "deploy:production": "wrangler deploy --env production",
+    "build": "cd blog && hugo --minify --gc --cleanDestinationDir --baseURL https://support.tools",
+    "serve": "cd blog && hugo server -D --bind=0.0.0.0 --baseURL=http://localhost:1313"
+  },
+  "devDependencies": {
+    "wrangler": "^3.0.0"
+  },
+  "keywords": [
+    "cloudflare-workers",
+    "static-site",
+    "hugo",
+    "blog"
+  ],
+  "author": "Support Tools",
+  "license": "MIT"
+}

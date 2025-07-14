@@ -1,0 +1,97 @@
+name: Deployment Notifications
+
+on:
+  workflow_run:
+    workflows: ["Deploy to Cloudflare Workers"]
+    types:
+      - completed
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' || github.event.workflow_run.conclusion == 'failure' }}
+    
+    steps:
+      - name: Get workflow details
+        id: workflow-details
+        run: |
+          echo "status=${{ github.event.workflow_run.conclusion }}" >> $GITHUB_OUTPUT
+          echo "run_id=${{ github.event.workflow_run.id }}" >> $GITHUB_OUTPUT
+          echo "actor=${{ github.event.workflow_run.actor.login }}" >> $GITHUB_OUTPUT
+          echo "branch=${{ github.event.workflow_run.head_branch }}" >> $GITHUB_OUTPUT
+          
+      # Uncomment and configure for Slack notifications
+      # - name: Slack Notification
+      #   if: ${{ vars.SLACK_WEBHOOK_URL != '' }}
+      #   uses: 8398a7/action-slack@v3
+      #   with:
+      #     status: ${{ github.event.workflow_run.conclusion }}
+      #     webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
+      #     text: |
+      #       Deployment ${{ github.event.workflow_run.conclusion == 'success' && '✅ succeeded' || '❌ failed' }}
+      #       Branch: ${{ steps.workflow-details.outputs.branch }}
+      #       Actor: ${{ steps.workflow-details.outputs.actor }}
+      #       Run: https://github.com/${{ github.repository }}/actions/runs/${{ steps.workflow-details.outputs.run_id }}
+      
+      # Uncomment and configure for Discord notifications  
+      # - name: Discord Notification
+      #   if: ${{ vars.DISCORD_WEBHOOK_URL != '' }}
+      #   uses: sarisia/actions-status-discord@v1
+      #   with:
+      #     webhook: ${{ secrets.DISCORD_WEBHOOK_URL }}
+      #     status: ${{ github.event.workflow_run.conclusion }}
+      #     title: "Support Tools Deployment"
+      #     description: |
+      #       **Status**: ${{ github.event.workflow_run.conclusion == 'success' && '✅ Success' || '❌ Failed' }}
+      #       **Branch**: ${{ steps.workflow-details.outputs.branch }}
+      #       **Triggered by**: ${{ steps.workflow-details.outputs.actor }}
+      #     url: "https://github.com/${{ github.repository }}/actions/runs/${{ steps.workflow-details.outputs.run_id }}"
+      
+      # Uncomment and configure for email notifications
+      # - name: Send email notification
+      #   if: ${{ github.event.workflow_run.conclusion == 'failure' }}
+      #   uses: dawidd6/action-send-mail@v3
+      #   with:
+      #     server_address: smtp.gmail.com
+      #     server_port: 587
+      #     username: ${{ secrets.MAIL_USERNAME }}
+      #     password: ${{ secrets.MAIL_PASSWORD }}
+      #     subject: "❌ Support Tools Deployment Failed"
+      #     to: team@support.tools
+      #     from: GitHub Actions
+      #     body: |
+      #       Deployment to Cloudflare Workers has failed.
+      #       
+      #       Branch: ${{ steps.workflow-details.outputs.branch }}
+      #       Actor: ${{ steps.workflow-details.outputs.actor }}
+      #       
+      #       View details: https://github.com/${{ github.repository }}/actions/runs/${{ steps.workflow-details.outputs.run_id }}
+      
+      - name: Create GitHub Issue on Failure
+        if: ${{ github.event.workflow_run.conclusion == 'failure' }}
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const issue = await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `🚨 Deployment Failed - ${new Date().toISOString().split('T')[0]}`,
+              body: `## Deployment Failure
+              
+              The Cloudflare Workers deployment has failed.
+              
+              **Details:**
+              - Branch: \`${{ steps.workflow-details.outputs.branch }}\`
+              - Triggered by: @${{ steps.workflow-details.outputs.actor }}
+              - Workflow Run: [View Details](https://github.com/${{ github.repository }}/actions/runs/${{ steps.workflow-details.outputs.run_id }})
+              
+              **Action Required:**
+              1. Check the workflow logs
+              2. Fix the issue
+              3. Re-run the deployment
+              
+              cc: @${{ steps.workflow-details.outputs.actor }}`,
+              labels: ['deployment-failure', 'urgent']
+            });
+            
+            console.log(`Created issue #${issue.data.number}`);
