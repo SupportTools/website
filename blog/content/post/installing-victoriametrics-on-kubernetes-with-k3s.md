@@ -6,7 +6,7 @@ tags: ["k3s", "Kubernetes", "VictoriaMetrics", "Monitoring"]
 categories:
 - DevOps
 - Kubernetes
-author: "Matthew Mattox - mmattox@support.tools."
+author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to install and configure VictoriaMetrics on Kubernetes using k3s, and integrate it with Grafana for enhanced monitoring capabilities."
 more_link: "yes"
 url: "/installing-victoriametrics-on-kubernetes-with-k3s/"

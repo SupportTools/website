@@ -6,7 +6,7 @@ tags: ["Kubernetes", "Webhooks", "DevOps"]
 categories:
 - Kubernetes
 - Automation
-author: "Matthew Mattox - mmattox@support.tools."
+author: "Matthew Mattox - mmattox@support.tools"
 description: "Explore the power of webhooks in Kubernetes to automate and secure your cluster operations. Learn how to implement admission and mutating webhooks for enhanced control and efficiency."
 ---
 

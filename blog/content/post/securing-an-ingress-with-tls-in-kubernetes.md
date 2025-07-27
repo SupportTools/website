@@ -6,7 +6,7 @@ tags: ["Ingress", "Kubernetes", "TLS"]
 categories:
 - DevOps
 - Kubernetes
-author: "Matthew Mattox - mmattox@support.tools."
+author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to secure an Ingress with TLS in Kubernetes, including generating certificates and configuring the Ingress resource."
 more_link: "yes"
 url: "/securing-an-ingress-with-tls-in-kubernetes/"

@@ -7,7 +7,7 @@ categories:
 - Rancher
 - Kubernetes
 - Storage
-author: "Matthew Mattox - mmattox@support.tools."
+author: "Matthew Mattox - mmattox@support.tools"
 description: "An in-depth look into Rancher Longhorn and how it revolutionizes Kubernetes storage solutions."
 more_link: "yes"
 ---

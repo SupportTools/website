@@ -6,7 +6,7 @@ tags: ["Kubernetes", "OOMKilled", "Memory", "Troubleshooting", "Containers"]
 categories:  
 - Kubernetes  
 - Troubleshooting  
-author: "Matthew Mattox - mmattox@support.tools."  
+author: "Matthew Mattox - mmattox@support.tools"  
 description: "Learn how to troubleshoot and fix OOMKilled errors in Kubernetes, ensuring your applications run smoothly without memory issues."  
 more_link: "yes"  
 url: "/how-to-fix-oomkilled-kubernetes/"  

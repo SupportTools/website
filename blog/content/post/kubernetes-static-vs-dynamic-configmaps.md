@@ -6,7 +6,7 @@ tags: ["Kubernetes", "ConfigMap", "Dynamic", "Static"]
 categories:  
 - Kubernetes  
 - Configuration Management  
-author: "Matthew Mattox - mmattox@support.tools."  
+author: "Matthew Mattox - mmattox@support.tools"  
 description: "Understanding the difference between static and dynamic ConfigMaps in Kubernetes and how to use them effectively for managing application configurations."  
 more_link: "yes"  
 url: "/kubernetes-static-vs-dynamic-configmaps/"  

@@ -6,7 +6,7 @@ tags: ["k3s", "Raspberry Pi", "Persistent Volumes", "Kubernetes"]
 categories:
 - DevOps
 - Kubernetes
-author: "Matthew Mattox - mmattox@support.tools."
+author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn about the namespace scoping of Persistent Volume Claims and Persistent Volumes in k3s on Raspberry Pi."
 more_link: "yes"
 url: "/understanding-persistent-volume-namespaces-in-k3s-on-raspberry-pi/"

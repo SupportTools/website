@@ -7,7 +7,7 @@ categories:
 - Kubernetes  
 - Dashboard  
 - Cluster Management  
-author: "Matthew Mattox - mmattox@support.tools."  
+author: "Matthew Mattox - mmattox@support.tools"  
 description: "Learn how to install the Kubernetes Dashboard to monitor and manage your cluster resources."  
 more_link: "yes"  
 url: "/install-kubernetes-dashboard/"  

@@ -6,7 +6,7 @@ tags: ["Kubernetes networking", "containers", "Pods", "network namespace", "Serv
 categories:
 - Kubernetes
 - Networking
-author: "Matthew Mattox - mmattox@support.tools."
+author: "Matthew Mattox - mmattox@support.tools"
 description: "This blog post covers the basics of Kubernetes networking, explaining how the platform provides a flexible and robust network infrastructure for containerized applications through Pods, Services, and NetworkPolicies to ensure communication between containers and with external resources."
 more_link: "yes"
 ---

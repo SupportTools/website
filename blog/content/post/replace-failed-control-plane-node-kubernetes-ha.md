@@ -6,7 +6,7 @@ tags: ["Kubernetes", "Control Plane", "HA Cluster", "ETCD", "Kubeadm"]
 categories:  
 - Kubernetes  
 - High Availability  
-author: "Matthew Mattox - mmattox@support.tools."  
+author: "Matthew Mattox - mmattox@support.tools"  
 description: "A step-by-step guide on replacing a failed control plane node in a highly available Kubernetes cluster."  
 more_link: "yes"  
 url: "/replace-failed-control-plane-node-kubernetes-ha-cluster/"  

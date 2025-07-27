@@ -7,7 +7,7 @@ categories:
 - Kubernetes
 - Security
 - Networking
-author: "Matthew Mattox - mmattox@support.tools."
+author: "Matthew Mattox - mmattox@support.tools"
 description: "Master Kubernetes Network Policies with advanced patterns, enterprise strategies, multi-cluster networking, and comprehensive CKS exam preparation. Learn zero-trust architecture implementation."
 more_link: "yes"
 url: "/kubernetes-network-policies-comprehensive-guide/"

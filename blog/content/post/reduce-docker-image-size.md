@@ -7,7 +7,7 @@ categories:
 - Docker  
 - Containers  
 - Optimization  
-author: "Matthew Mattox - mmattox@support.tools."  
+author: "Matthew Mattox - mmattox@support.tools"  
 description: "Learn effective techniques to reduce Docker image size and optimize container performance."  
 more_link: "yes"  
 url: "/reduce-docker-image-size/"  

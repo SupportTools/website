@@ -6,7 +6,7 @@ tags: ["Prometheus", "Kubernetes", "ConfigMap", "Reload", "DevOps"]
 categories:  
 - Prometheus  
 - Kubernetes  
-author: "Matthew Mattox - mmattox@support.tools."  
+author: "Matthew Mattox - mmattox@support.tools"  
 description: "A guide on reloading Prometheus ConfigMaps in Kubernetes without pod restarts."  
 more_link: "yes"  
 url: "/reload-prometheus-configmap-kubernetes/"  

@@ -6,7 +6,7 @@ tags: ["k3s", "Raspberry Pi", "Docker", "Elixir", "Phoenix"]
 categories:
 - DevOps
 - Scripting
-author: "Matthew Mattox - mmattox@support.tools."
+author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to deploy a Phoenix server on Raspberry Pi using k3s and Docker, from app creation to Kubernetes deployment."
 more_link: "yes"
 ---

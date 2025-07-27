@@ -6,7 +6,7 @@ tags: ["ArgoCD", "Kubernetes", "Upgrade", "Deployment"]
 categories:
 - DevOps
 - Kubernetes
-author: "Matthew Mattox - mmattox@support.tools."
+author: "Matthew Mattox - mmattox@support.tools"
 description: "Documenting the challenges and solutions encountered while attempting to upgrade ArgoCD on Kubernetes to address a security fix."
 more_link: "yes"
 url: "/not-upgrading-argocd-on-kubernetes/"

@@ -7,7 +7,7 @@ categories:
 - AWS
 - Linux
 - Cloud Storage
-author: "Matthew Mattox - mmattox@support.tools."
+author: "Matthew Mattox - mmattox@support.tools"
 description: "A guide on mounting an AWS S3 bucket as a local file system on Linux using Mountpoint."
 more_link: "yes"
 url: "/mount-aws-s3-bucket-linux-mountpoint/"

@@ -6,7 +6,7 @@ tags: ["docker", "SSH"]
 categories:
 - Docker
 - SSH
-author: "Matthew Mattox - mmattox@support.tools."
+author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to efficiently manage SSH identities in Docker builds to avoid conflicts and streamline your workflow."
 more_link: "yes"
 url: "/optimizing-ssh-identity-usage/"

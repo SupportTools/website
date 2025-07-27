@@ -7,7 +7,7 @@ categories:
 - Kubernetes
 - Microservices
 - Networking
-author: "Matthew Mattox - mmattox@support.tools."
+author: "Matthew Mattox - mmattox@support.tools"
 description: "In this blog post, we'll explore the benefits of using a Kubernetes service mesh, including improved communication between microservices, advanced traffic management, increased observability, and enhanced security. We'll also introduce some of the most popular service mesh implementations like Istio, Linkerd, and Envoy."
 more_link: "yes"
 ---

@@ -6,7 +6,7 @@ tags: ["Go", "Programming", "Control Flow"]
 categories:
 - GoLang
 - Programming
-author: "Matthew Mattox - mattox@support.tools."
+author: "Matthew Mattox - mmattox@support.tools"
 description: "Exploring a fun alternative for sequence breaking using 'for' in Go."
 more_link: "yes"
 ---

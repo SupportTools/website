@@ -6,7 +6,7 @@ tags: ["Kubernetes", "Longhorn"]
 categories:
 - Kubernetes
 - Longhorn
-author: "Matthew Mattox - mmattox@support.tools."
+author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to restrict Longhorn access to specific nodes in your K3s cluster to avoid replication issues."
 more_link: "yes"
 url: "/how-to-restrict-longhorn-in-k3s-cluster/"

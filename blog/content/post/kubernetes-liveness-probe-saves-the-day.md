@@ -6,7 +6,7 @@ tags: ["Kubernetes", "Liveness Probe", "Health Checks", "Containers"]
 categories:  
 - Kubernetes  
 - Container Management  
-author: "Matthew Mattox - mmattox@support.tools."  
+author: "Matthew Mattox - mmattox@support.tools"  
 description: "Learn how Kubernetes liveness probes help maintain application uptime by automatically restarting unhealthy containers."  
 more_link: "yes"  
 url: "/kubernetes-liveness-probe-saves-the-day/"  

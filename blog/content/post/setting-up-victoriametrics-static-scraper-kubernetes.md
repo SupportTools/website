@@ -6,7 +6,7 @@ tags: ["k3s", "Kubernetes", "VictoriaMetrics", "Electric Imp"]
 categories:
 - DevOps
 - Kubernetes
-author: "Matthew Mattox - mmattox@support.tools."
+author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to set up a VictoriaMetrics static scraper on Kubernetes to monitor metrics from an Electric Imp Environment Tail."
 more_link: "yes"
 url: "/setting-up-victoriametrics-static-scraper-kubernetes/"

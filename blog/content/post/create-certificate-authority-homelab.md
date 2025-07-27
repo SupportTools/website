@@ -7,7 +7,7 @@ categories:
 - Security  
 - Homelab  
 - TLS  
-author: "Matthew Mattox - mmattox@support.tools."  
+author: "Matthew Mattox - mmattox@support.tools"  
 description: "Learn how to create your own Certificate Authority (CA) for your homelab environment and issue TLS certificates for your internal systems."  
 more_link: "yes"  
 url: "/create-certificate-authority-homelab/"  

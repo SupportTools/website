@@ -6,7 +6,7 @@ tags: ["Kubernetes networking", "containers", "Pods", "network plugins", "calico
 categories:
 - Kubernetes
 - Networking
-author: "Matthew Mattox - mmattox@support.tools."
+author: "Matthew Mattox - mmattox@support.tools"
 description: "In this detailed blog post, we delve into the world of Kubernetes networking, focusing on the popular network plugin Calico. We explore its features, benefits and how it provides network segmentation, isolation and security for containerized applications and microservices."
 more_link: "yes"
 ---

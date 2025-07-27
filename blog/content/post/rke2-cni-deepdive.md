@@ -7,7 +7,7 @@ categories:
 - Rancher
 - Kubernetes
 - RKE2
-author: "Matthew Mattox - mmattox@support.tools."
+author: "Matthew Mattox - mmattox@support.tools"
 description: "An in-depth look at RKE2's CNI options."
 more_link: "yes"
 ---

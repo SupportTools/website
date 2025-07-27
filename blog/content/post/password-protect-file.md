@@ -5,7 +5,7 @@ draft: false
 tags: ["Linux"]
 categories:
 - Linux
-author: "Matthew Mattox - mmattox@support.tools."
+author: "Matthew Mattox - mmattox@support.tools"
 description: "How to password protect a file in Linux"
 more_link: "yes"
 ---

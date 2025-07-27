@@ -6,7 +6,7 @@ tags: ["Containers", "Best Practices", "Kubernetes"]
 categories:
 - Containers
 - Kubernetes
-author: "Matthew Mattox - mmattox@support.tools."
+author: "Matthew Mattox - mmattox@support.tools"
 description: "Exploring the pitfalls of using the 'latest' tag for container deployments and why it's essential to avoid it in production environments."
 more_link: "yes"
 url: "/deploying-containers-with-latest-tag/"

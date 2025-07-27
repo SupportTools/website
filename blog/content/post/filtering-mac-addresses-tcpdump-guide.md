@@ -6,7 +6,7 @@ tags: ["tcpdump", "Network Monitoring", "MAC Address"]
 categories:
 - Network Tools
 - Network Monitoring
-author: "Matthew Mattox - mmattox@support.tools."
+author: "Matthew Mattox - mmattox@support.tools"
 description: "A guide on filtering MAC addresses using tcpdump."
 more_link: "yes"
 ---

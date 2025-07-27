@@ -7,7 +7,7 @@ categories:
 - Kubernetes  
 - Certification  
 - CKA  
-author: "Matthew Mattox - mmattox@support.tools."  
+author: "Matthew Mattox - mmattox@support.tools"  
 description: "Prepare for the Certified Kubernetes Administrator (CKA) exam with these practice questions covering essential Kubernetes concepts."  
 more_link: "yes"  
 url: "/cka-practice-questions/"  

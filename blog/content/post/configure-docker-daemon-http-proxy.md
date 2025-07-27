@@ -6,7 +6,7 @@ tags: ["Docker", "Proxy", "HTTP Proxy", "Corporate Network"]
 categories:  
 - Docker  
 - Networking  
-author: "Matthew Mattox - mmattox@support.tools."  
+author: "Matthew Mattox - mmattox@support.tools"  
 description: "Learn how to configure Docker to use an HTTP proxy within a corporate network."  
 more_link: "yes"  
 url: "/configure-docker-daemon-http-proxy/"  

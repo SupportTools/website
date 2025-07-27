@@ -7,7 +7,7 @@ categories:
 - Kubernetes  
 - Networking  
 - Security  
-author: "Matthew Mattox - mmattox@support.tools."  
+author: "Matthew Mattox - mmattox@support.tools"  
 description: "Learn how to install and configure MetalLB and Istio Ingress Gateway with Mutual TLS on Kubernetes to secure and manage external traffic."  
 more_link: "yes"  
 url: "/install-metallb-istio-ingress-mtls-kubernetes/"  

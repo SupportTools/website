@@ -7,7 +7,7 @@ categories:
 - DevOps
 - Platform Engineering
 - GitOps
-author: "Matthew Mattox - mmattox@support.tools."
+author: "Matthew Mattox - mmattox@support.tools"
 description: "Master enterprise GitOps implementation with advanced patterns, multi-cluster governance, security integration, and comprehensive troubleshooting strategies for 2025."
 more_link: "yes"
 url: "/gitops-2025-comprehensive-enterprise-implementation-guide/"

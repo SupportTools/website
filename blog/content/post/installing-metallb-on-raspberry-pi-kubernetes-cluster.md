@@ -6,7 +6,7 @@ tags: ["Kubernetes", "Raspberry Pi", "MetalLB", "Helm"]
 categories:
 - DevOps
 - Kubernetes
-author: "Matthew Mattox - mmattox@support.tools."
+author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to install MetalLB on a Raspberry Pi Kubernetes cluster using Helm for load balancing services."
 more_link: "yes"
 url: "/installing-metallb-on-raspberry-pi-kubernetes-cluster/"

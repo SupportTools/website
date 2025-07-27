@@ -6,7 +6,7 @@ tags: ["Kubernetes", "Deployments", "Labels"]
 categories:
 - Kubernetes
 - Best Practices
-author: "Matthew Mattox - mmattox@support.tools."
+author: "Matthew Mattox - mmattox@support.tools"
 description: "Understanding how label selector mismatches can cause deployment failures in Kubernetes and how to avoid them."
 more_link: "yes"
 url: "/kubernetes-label-selector-mismatches/"

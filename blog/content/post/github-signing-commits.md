@@ -6,7 +6,7 @@ tags: ["GitHub", "Git"]
 categories:
 - GitHub
 - Git
-author: "Matthew Mattox - mmattox@support.tools."
+author: "Matthew Mattox - mmattox@support.tools"
 description: "Dive into the importance of verified commits on GitHub and learn how to sign them."
 more_link: "yes"
 ---

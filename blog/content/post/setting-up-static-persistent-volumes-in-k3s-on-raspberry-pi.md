@@ -6,7 +6,7 @@ tags: ["k3s", "Raspberry Pi", "Persistent Volumes", "Kubernetes"]
 categories:
 - DevOps
 - Kubernetes
-author: "Matthew Mattox - mmattox@support.tools."
+author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to set up static persistent volumes in k3s on Raspberry Pi for better control over storage provisioning."
 more_link: "yes"
 url: "/setting-up-static-persistent-volumes-in-k3s-on-raspberry-pi/"

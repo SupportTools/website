@@ -6,7 +6,7 @@ tags: ["Linux", "swap", "dd", "fstab", "swapfile"]
 categories:
 - Linux
 - System Administration
-author: "Matthew Mattox - mmattox@support.tools."
+author: "Matthew Mattox - mmattox@support.tools"
 description: "A guide to creating a Linux swap file using the dd command and configuring it in fstab."
 more_link: "yes"
 url: "/create-linux-swap-file-dd/"

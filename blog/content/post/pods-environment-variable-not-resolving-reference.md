@@ -6,7 +6,7 @@ tags: ["Kubernetes", "Environment Variables", "Pod", "Troubleshooting"]
 categories:  
 - Kubernetes  
 - Troubleshooting  
-author: "Matthew Mattox - mmattox@support.tools."  
+author: "Matthew Mattox - mmattox@support.tools"  
 description: "Troubleshooting when a Kubernetes Pod’s environment variable fails to resolve references to other environment variables."  
 more_link: "yes"  
 url: "/pods-environment-variable-not-resolving-reference/"  

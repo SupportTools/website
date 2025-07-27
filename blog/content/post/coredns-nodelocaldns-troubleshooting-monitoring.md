@@ -6,7 +6,7 @@ tags: ["CoreDNS", "NodeLocalDNS", "Kubernetes", "DNS", "RKE2"]
 categories:
 - Kubernetes
 - Networking
-author: "Matthew Mattox - [mmattox@support.tools](mailto:mmattox@support.tools)"
+author: "Matthew Mattox - mmattox@support.tools"
 description: "Dive into CoreDNS and NodeLocalDNS, learn troubleshooting techniques, and monitor DNS effectively in Kubernetes clusters."
 more_link: "yes"
 url: "/coredns-nodelocaldns-troubleshooting-monitoring/"

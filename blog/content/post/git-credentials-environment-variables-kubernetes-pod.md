@@ -7,7 +7,7 @@ categories:
 - Kubernetes  
 - Git  
 - Security  
-author: "Matthew Mattox - mmattox@support.tools."  
+author: "Matthew Mattox - mmattox@support.tools"  
 description: "Learn how to securely use Git credentials stored in environment variables when working with Git inside Kubernetes Pods."  
 more_link: "yes"  
 url: "/git-credentials-environment-variables-kubernetes-pod/"  

@@ -8,7 +8,7 @@ categories:
 - rke2
 - rancher
 - monitoring
-author: "Matthew Mattox - mmattox@support.tools."
+author: "Matthew Mattox - mmattox@support.tools"
 description: "Failed to call webhook rancher-monitoring-operator"
 more_link: "yes"
 ---

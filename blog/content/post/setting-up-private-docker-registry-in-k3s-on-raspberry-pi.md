@@ -6,7 +6,7 @@ tags: ["k3s", "Raspberry Pi", "Docker", "Private Registry"]
 categories:
 - DevOps
 - Kubernetes
-author: "Matthew Mattox - mmattox@support.tools."
+author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to set up a private Docker registry within a k3s cluster on Raspberry Pi, ensuring secure and efficient deployment of your own applications."
 more_link: "yes"
 ---

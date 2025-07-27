@@ -6,7 +6,7 @@ tags: ["Kubernetes", "cert-manager", "TLS", "Certificates"]
 categories:
 - DevOps
 - Kubernetes
-author: "Matthew Mattox - mmattox@support.tools."
+author: "Matthew Mattox - mmattox@support.tools"
 description: "Simplify certificate management on Kubernetes by installing cert-manager. This guide covers installation, configuration, and usage."
 more_link: "yes"
 url: "/installing-cert-manager-on-kubernetes/"

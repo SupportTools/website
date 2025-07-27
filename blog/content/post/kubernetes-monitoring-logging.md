@@ -6,7 +6,7 @@ tags: ["Kubernetes", "Observability", "Monitoring", "Logging"]
 categories:
 - Kubernetes
 - Observability
-author: "Matthew Mattox - mmattox@support.tools."
+author: "Matthew Mattox - mmattox@support.tools"
 description: "Why monitoring and logging are essential for Kubernetes, and how to implement a robust observability stack."
 more_link: "yes"
 url: "/kubernetes-monitoring-logging/"

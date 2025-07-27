@@ -6,7 +6,7 @@ tags: ["Kubernetes networking", "Cilium", "container networking", "network secur
 categories:
 - Kubernetes
 - Networking
-author: "Matthew Mattox - mmattox@support.tools."
+author: "Matthew Mattox - mmattox@support.tools"
 description: "This blog post covers the basics of using Cilium for Kubernetes networking, exploring how this tool provides a flexible and secure networking solution for containerized applications through its advanced networking features, such as BPF, network policy enforcement, and service mesh integration."
 more_link: "yes"
 ---

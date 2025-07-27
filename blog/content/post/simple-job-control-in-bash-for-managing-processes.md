@@ -6,7 +6,7 @@ tags: ["Bash", "Job Control", "Scripting", "Automation"]
 categories:
 - DevOps
 - Scripting
-author: "Matthew Mattox - mmattox@support.tools."
+author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to use simple job control in bash to manage multiple processes, restart them if they crash, and ensure they all stop together."
 more_link: "yes"
 ---

@@ -5,7 +5,7 @@ draft: false
 tags: ["Ubuntu", "Google Chrome"]
 categories:
 - Linux
-author: "Matthew Mattox - mmattox@support.tools."
+author: "Matthew Mattox - mmattox@support.tools"
 description: "This guide explains how to install Google Chrome on a Ubuntu desktop."
 more_link: "yes"
 ---

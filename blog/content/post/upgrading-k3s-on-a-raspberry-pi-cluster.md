@@ -6,7 +6,7 @@ tags: ["k3s", "Raspberry Pi", "Upgrade"]
 categories:
 - DevOps
 - Kubernetes
-author: "Matthew Mattox - mmattox@support.tools."
+author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to upgrade k3s on a Raspberry Pi cluster, including handling control plane and worker nodes."
 more_link: "yes"
 ---

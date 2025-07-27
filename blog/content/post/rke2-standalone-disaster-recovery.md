@@ -8,7 +8,7 @@ categories:
 - Kubernetes
 - RKE2
 - Disaster Recovery
-author: "Matthew Mattox - mmattox@support.tools."
+author: "Matthew Mattox - mmattox@support.tools"
 description: "This comprehensive guide covers essential steps for disaster recovery of RKE2 clusters not managed by Rancher."
 more_link: "yes"
 ---

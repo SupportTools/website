@@ -4,7 +4,7 @@ date: 2025-02-07T00:00:00-00:00
 draft: false
 tags: ["kubernetes", "debugging", "monitoring", "devops", "troubleshooting", "observability", "k8s", "cluster-management", "kubectl", "kubernetes-monitoring"]
 categories: ["Kubernetes", "DevOps", "Cloud Native"]
-author: "Matthew Mattox"
+author: "Matthew Mattox - mmattox@support.tools"
 description: "Master Kubernetes debugging with our comprehensive guide covering kubectl, k9s, Prometheus, and essential troubleshooting tools. Learn advanced techniques for debugging pods, nodes, networking issues, and monitoring cluster health."
 keywords: ["kubernetes debugging", "k8s troubleshooting", "kubectl commands", "kubernetes monitoring", "cluster debugging", "kubernetes observability", "k9s tool", "prometheus grafana kubernetes", "kubernetes network debugging", "pod troubleshooting"]
 url: "/kubernetes-debugging-tools/"

@@ -6,7 +6,7 @@ tags: ["Kubernetes", "Best Practices", "Probes"]
 categories:
 - Kubernetes
 - Best Practices
-author: "Matthew Mattox - mmattox@support.tools."
+author: "Matthew Mattox - mmattox@support.tools"
 description: "Understanding the importance of Liveness and Readiness Probes in Kubernetes and how they contribute to the resilience and reliability of your applications."
 more_link: "yes"
 url: "/not-using-liveness-readiness-probes/"

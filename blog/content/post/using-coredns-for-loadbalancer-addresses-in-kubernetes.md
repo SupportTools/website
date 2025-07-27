@@ -6,7 +6,7 @@ tags: ["CoreDNS", "Kubernetes", "LoadBalancer"]
 categories:
 - DevOps
 - Kubernetes
-author: "Matthew Mattox - mmattox@support.tools."
+author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to use CoreDNS for LoadBalancer addresses in Kubernetes, ensuring seamless access to your services."
 more_link: "yes"
 url: "/using-coredns-for-loadbalancer-addresses-in-kubernetes/"

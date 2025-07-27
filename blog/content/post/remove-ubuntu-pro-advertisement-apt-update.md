@@ -7,7 +7,7 @@ categories:
 - Linux  
 - Ubuntu  
 - Package Management  
-author: "Matthew Mattox - mmattox@support.tools."  
+author: "Matthew Mattox - mmattox@support.tools"  
 description: "Learn how to remove the Ubuntu Pro advertisement when updating your system using apt."  
 more_link: "yes"  
 url: "/remove-ubuntu-pro-advertisement-apt-update/"  

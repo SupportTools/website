@@ -7,7 +7,7 @@ categories:
 - Go  
 - Testing  
 - Programming  
-author: "Matthew Mattox - mmattox@support.tools."  
+author: "Matthew Mattox - mmattox@support.tools"  
 description: "Learn the basics of testing in Go with this crash course, covering essential concepts to help you get started quickly."  
 more_link: "yes"  
 url: "/testing-in-go-crash-course/"  

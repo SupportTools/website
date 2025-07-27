@@ -7,7 +7,7 @@ categories:
 - Kubernetes  
 - DNS  
 - Networking  
-author: "Matthew Mattox - mmattox@support.tools."  
+author: "Matthew Mattox - mmattox@support.tools"  
 description: "Discover strategies for optimizing DNS in Kubernetes clusters to improve performance and reliability."  
 more_link: "yes"  
 url: "/kubernetes-dns-optimization/"  

@@ -6,7 +6,7 @@ tags: ["Kubernetes networking", "containers", "Pods", "network plugins", "canal"
 categories:
 - Kubernetes
 - Networking
-author: "Matthew Mattox - mmattox@support.tools."
+author: "Matthew Mattox - mmattox@support.tools"
 description: "This blog post covers the basics of canal networking in Kubernetes, explaining how it provides network segmentation and isolation for containers, as well as security and performance benefits over other network plugins such as flannel and calico."
 more_link: "yes"
 ---

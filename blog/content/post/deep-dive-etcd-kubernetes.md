@@ -6,7 +6,7 @@ tags: ["etcd", "Kubernetes", "workshop", "tutorial"]
 categories:
 - etcd
 - Kubernetes
-author: "Matthew Mattox - mmattox@support.tools."
+author: "Matthew Mattox - mmattox@support.tools"
 description: "An in-depth workshop on etcd and its use in Kubernetes, covering installation, configuration, data manipulation, troubleshooting, performance tuning, and recovery."
 more_link: "yes"
 ---

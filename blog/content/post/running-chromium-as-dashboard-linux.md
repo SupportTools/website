@@ -8,7 +8,7 @@ categories:
 - Dashboard
 - Linux
 - Grafana
-author: "Matthew Mattox - mmattox@support.tools."
+author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to set up Chromium in kiosk mode to run a Grafana dashboard on a TV stand in your office, displaying important metrics automatically."
 more_link: "yes"
 ---

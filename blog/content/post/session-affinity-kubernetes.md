@@ -7,7 +7,7 @@ categories:
 - Kubernetes  
 - DevOps  
 - Networking  
-author: "Matthew Mattox - mmattox@support.tools."  
+author: "Matthew Mattox - mmattox@support.tools"  
 description: "Learn the nuances of using session affinity in Kubernetes, including its potential risks, benefits, and best practices for maintaining application reliability."  
 more_link: "yes"  
 url: "/session-affinity-kubernetes/"  

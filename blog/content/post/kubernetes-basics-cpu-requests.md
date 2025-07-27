@@ -5,7 +5,7 @@ draft: false
 tags: ["Kubernetes", "CPU requests", "compute capacity", "Service Level Agreement (SLA)", "pod", "runtime", "example"]
 categories:
 - Kubernetes
-author: "Matthew Mattox - mmattox@support.tools."
+author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn about CPU requests in Kubernetes and how they guarantee the minimum amount of compute capacity required by your application to run. CPU requests are always guaranteed at runtime and provide a Service Level Agreement (SLA) between the pod and Kubernetes. This blog post explains CPU requests and provides an example to demonstrate how they work."
 more_link: "yes"
 ---

@@ -8,7 +8,7 @@ categories:
 - Kubernetes  
 - Monitoring  
 - Alerting  
-author: "Matthew Mattox - <mmattox@support.tools>."  
+author: "Matthew Mattox - mmattox@support.tools"  
 description: "Learn how to install and configure Alertmanager on Kubernetes with Slack integration for real-time alert notifications."  
 more_link: "yes"  
 url: "/install-configure-alertmanager-slack-kubernetes/"  

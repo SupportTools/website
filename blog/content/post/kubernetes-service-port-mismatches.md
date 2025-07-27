@@ -6,7 +6,7 @@ tags: ["Kubernetes", "Services", "Networking"]
 categories:
 - Kubernetes
 - Best Practices
-author: "Matthew Mattox - mmattox@support.tools."
+author: "Matthew Mattox - mmattox@support.tools"
 description: "Understanding how service port mismatches can lead to failed traffic routing in Kubernetes and how to correctly configure ports."
 more_link: "yes"
 url: "/kubernetes-service-port-mismatches/"

@@ -7,7 +7,7 @@ categories:
 - Kubernetes  
 - Optimization  
 - Monitoring  
-author: "Matthew Mattox - mmattox@support.tools."  
+author: "Matthew Mattox - mmattox@support.tools"  
 description: "Learn how to install Kubecost on Kubernetes to monitor and optimize application costs and resource usage efficiently."  
 more_link: "yes"  
 url: "/install-kubecost-optimize-kubernetes-applications/"  

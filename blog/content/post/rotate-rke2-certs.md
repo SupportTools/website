@@ -6,7 +6,7 @@ tags: ["RKE2", "Kubernetes", "Certificate Management"]
 categories:
 - Kubernetes
 - Security
-author: "Matthew Mattox - mmattox@support.tools."
+author: "Matthew Mattox - mmattox@support.tools"
 description: "Understand the importance of rotating RKE2 certificates before their one-year expiration to ensure continuous cluster security."
 more_link: "no"
 ---

@@ -7,7 +7,7 @@ categories:
 - Cloud  
 - Security  
 - DevOps  
-author: "Matthew Mattox - mmattox@support.tools."  
+author: "Matthew Mattox - mmattox@support.tools"  
 description: "Learn about multi-cloud secrets rotation and how it enhances security across different cloud platforms."  
 more_link: "yes"  
 url: "/multi-cloud-secrets-rotation-explained/"  

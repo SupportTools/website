@@ -6,7 +6,7 @@ tags: ["Kubernetes", "DNS", "Troubleshooting"]
 categories:
 - Kubernetes
 - Networking
-author: "Matthew Mattox - mmattox@support.tools."
+author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive workshop on troubleshooting DNS issues within Kubernetes clusters."
 more_link: "yes"
 ---

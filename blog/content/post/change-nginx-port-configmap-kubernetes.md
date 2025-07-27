@@ -6,7 +6,7 @@ tags: ["Kubernetes", "NGINX", "Bitnami", "ConfigMap", "HTTP"]
 categories:  
 - Kubernetes  
 - NGINX  
-author: "Matthew Mattox - mmattox@support.tools."  
+author: "Matthew Mattox - mmattox@support.tools"  
 description: "Learn how to change the default HTTP port for a Bitnami/nginx web server by configuring it through a ConfigMap in Kubernetes."  
 more_link: "yes"  
 url: "/change-nginx-port-configmap-kubernetes/"  

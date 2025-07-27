@@ -6,7 +6,7 @@ tags: ["Kubernetes", "Security", "Network Policies"]
 categories:
 - Kubernetes
 - Security
-author: "Matthew Mattox - mmattox@support.tools."
+author: "Matthew Mattox - mmattox@support.tools"
 description: "Why Network Policies are essential for securing your Kubernetes cluster and how to implement them effectively."
 more_link: "yes"
 url: "/importance-of-network-policies/"

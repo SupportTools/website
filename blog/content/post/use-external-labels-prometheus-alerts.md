@@ -7,7 +7,7 @@ categories:
 - Prometheus  
 - Monitoring  
 - Alerting  
-author: "Matthew Mattox - mmattox@support.tools."  
+author: "Matthew Mattox - mmattox@support.tools"  
 description: "Learn how to use external labels in Prometheus alerts to provide context and avoid duplicate alerts in multi-cluster environments."  
 more_link: "yes"  
 url: "/use-external-labels-prometheus-alerts/"  

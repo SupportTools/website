@@ -5,7 +5,7 @@ draft: false
 tags: ["wsl", "ssh"]
 categories:
 - wsl
-author: "Matthew Mattox - mmattox@support.tools."
+author: "Matthew Mattox - mmattox@support.tools"
 description: "How to setup ssh server keys for WSL."
 more_link: "yes"
 ---

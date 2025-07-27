@@ -6,7 +6,7 @@ tags: ["Kubernetes", "Namespaces", "Best Practices"]
 categories:
 - Kubernetes
 - Best Practices
-author: "Matthew Mattox - mmattox@support.tools."
+author: "Matthew Mattox - mmattox@support.tools"
 description: "How to avoid the common pitfall of deploying to the wrong namespace in Kubernetes and ensure your resources are correctly isolated."
 more_link: "yes"
 url: "/kubernetes-namespace-confusion/"

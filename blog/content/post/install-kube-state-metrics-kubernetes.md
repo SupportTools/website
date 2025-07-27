@@ -6,7 +6,7 @@ tags: ["Kubernetes", "Monitoring", "Kube State Metrics", "Prometheus"]
 categories:  
 - Kubernetes  
 - Monitoring  
-author: "Matthew Mattox - mmattox@support.tools."  
+author: "Matthew Mattox - mmattox@support.tools"  
 description: "Learn how to install and configure Kube State Metrics on Kubernetes to monitor resource states and enhance cluster visibility."  
 more_link: "yes"  
 url: "/install-kube-state-metrics-kubernetes/"  

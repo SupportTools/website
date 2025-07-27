@@ -6,7 +6,7 @@ tags: ["Nvidia", "k3s"]
 categories:
 - Nvidia
 - k3s
-author: "Matthew Mattox - mmattox@support.tools."
+author: "Matthew Mattox - mmattox@support.tools"
 description: "Implementing CUDA workloads on NVIDIA GPUs with K3s."
 more_link: "yes"
 ---

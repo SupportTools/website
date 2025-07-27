@@ -6,7 +6,7 @@ tags: ["tcpdump", "Network Monitoring", "Traffic Capture"]
 categories:
 - Network Tools
 - Network Monitoring
-author: "Matthew Mattox - mmattox@support.tools."
+author: "Matthew Mattox - mmattox@support.tools"
 description: "A guide on using tcpdump to capture incoming network traffic."
 more_link: "yes"
 ---

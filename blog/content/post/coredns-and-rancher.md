@@ -6,7 +6,7 @@ tags: ["CoreDNS", "Kubernetes", "Rancher", "RKE1", "RKE2", "Troubleshooting"]
 categories:
 - Kubernetes
 - Rancher
-author: "Matthew Mattox - mmattox@support.tools."
+author: "Matthew Mattox - mmattox@support.tools"
 description: "Explore the ins and outs of CoreDNS in Kubernetes, focusing on Rancher environments. Learn best practices, common issues, and advanced troubleshooting techniques to ensure smooth DNS operations in your clusters."
 more_link: "yes"
 url: "/coredns-and-rancher/"

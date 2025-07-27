@@ -6,7 +6,7 @@ tags: ["Wireshark", "TCP", "Network Analysis"]
 categories:
 - Network Tools
 - Network Analysis
-author: "Matthew Mattox - mmattox@support.tools."
+author: "Matthew Mattox - mmattox@support.tools"
 description: "An explanation of why Wireshark marks TCP packets with 'TCP segment of a reassembled PDU.'"
 more_link: "yes"
 ---

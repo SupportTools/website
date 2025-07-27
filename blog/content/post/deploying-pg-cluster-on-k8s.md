@@ -6,7 +6,7 @@ tags: ["PostgreSQL", "Kubernetes"]
 categories:
 - PostgreSQL
 - Kubernetes
-author: "Matthew Mattox - mmattox@support.tools."
+author: "Matthew Mattox - mmattox@support.tools"
 description: "A step-by-step guide on how to deploy PostgreSQL on Kubernetes."
 more_link: "yes"
 ---

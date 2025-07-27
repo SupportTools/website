@@ -8,7 +8,7 @@ categories:
 - Ingress
 - Service Mesh
 - Networking
-author: "Matthew Mattox - mmattox@support.tools."
+author: "Matthew Mattox - mmattox@support.tools"
 description: "Kubernetes Ingress vs Service Mesh"
 more_link: "yes"
 ---

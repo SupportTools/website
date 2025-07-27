@@ -7,7 +7,7 @@ categories:
 - Rancher
 - Kubernetes
 - RKE2
-author: "Matthew Mattox - mmattox@support.tools."
+author: "Matthew Mattox - mmattox@support.tools"
 description: "An in-depth look at RKE2 and it's components and how they work together."
 more_link: "yes"
 ---

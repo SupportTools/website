@@ -6,7 +6,7 @@ tags: ["max_user_watches", "Ubuntu", "Visual Studio Code", "VS Code", "File Watc
 categories:
 - DevOps
 - Scripting
-author: "Matthew Mattox - mmattox@support.tools."
+author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to increase the max_user_watches value on Ubuntu to handle large workspaces in Visual Studio Code."
 more_link: "yes"
 ---

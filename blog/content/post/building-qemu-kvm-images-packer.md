@@ -7,7 +7,7 @@ categories:
 - Virtualization  
 - Infrastructure  
 - Automation  
-author: "Matthew Mattox - mmattox@support.tools."  
+author: "Matthew Mattox - mmattox@support.tools"  
 description: "Learn how to use Packer to automate the creation of Qemu KVM images, streamlining your infrastructure deployments with custom-built virtual machine images."  
 more_link: "yes"  
 url: "/building-qemu-kvm-images-packer/"  

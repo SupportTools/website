@@ -7,7 +7,7 @@ categories:
 - Kubernetes  
 - EKS  
 - Cloud  
-author: "Matthew Mattox - mmattox@support.tools."  
+author: "Matthew Mattox - mmattox@support.tools"  
 description: "Learn how to configure Kubelet out-of-resource handling for EKS worker nodes to prevent node failures and resource starvation issues."  
 more_link: "yes"  
 url: "/configure-kubelet-out-of-resource-handling-eks-nodes/"  

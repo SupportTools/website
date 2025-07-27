@@ -6,7 +6,7 @@ tags: ["k3s", "Raspberry Pi", "NodePort", "Kubernetes"]
 categories:
 - DevOps
 - Kubernetes
-author: "Matthew Mattox - mmattox@support.tools."
+author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to use NodePort with multiple replicas in k3s on Raspberry Pi, including deployment and scaling."
 more_link: "yes"
 url: "/using-nodeport-with-multiple-replicas-in-k3s-on-raspberry-pi/"

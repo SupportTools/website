@@ -7,7 +7,7 @@ categories:
 - k3s
 - Kubernetes
 - k3sup
-author: "Matthew Mattox - mmattox@support.tools."
+author: "Matthew Mattox - mmattox@support.tools"
 description: "Using k3sups to build a cluster"
 more_link: "yes"
 ---

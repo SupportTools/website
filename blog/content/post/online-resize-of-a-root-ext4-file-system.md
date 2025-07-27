@@ -6,7 +6,7 @@ tags: ["Ubuntu", "Linux", "ext4", "resize"]
 categories:
 - Ubuntu
 - Linux
-author: "Matthew Mattox - mmattox@support.tools."
+author: "Matthew Mattox - mmattox@support.tools"
 description: "Online resize of a root ext4 file system"
 more_link: "yes"
 ---

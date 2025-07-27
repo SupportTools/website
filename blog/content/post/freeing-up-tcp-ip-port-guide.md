@@ -6,7 +6,7 @@ tags: ["Networking", "TCP/IP", "Port Management"]
 categories:
 - Networking
 - Port Management
-author: "Matthew Mattox - mmattox@support.tools."
+author: "Matthew Mattox - mmattox@support.tools"
 description: "A guide on freeing up a TCP/IP port for reuse."
 more_link: "yes"
 ---

@@ -6,7 +6,7 @@ tags: ["Ubuntu", "Linux", "sudo error", "host resolution"]
 categories:
 - Ubuntu
 - Linux
-author: "Matthew Mattox - mmattox@support.tools."
+author: "Matthew Mattox - mmattox@support.tools"
 description: "Step-by-step guide to resolving the 'sudo: unable to resolve host' error in Ubuntu by editing the /etc/hosts file."
 more_link: "yes"
 ---

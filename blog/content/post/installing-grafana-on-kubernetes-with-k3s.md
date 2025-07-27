@@ -6,7 +6,7 @@ tags: ["k3s", "Kubernetes", "Grafana", "Monitoring"]
 categories:
 - DevOps
 - Kubernetes
-author: "Matthew Mattox - mmattox@support.tools."
+author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to install Grafana on Kubernetes using k3s, ArgoCD CLI, and configure it with an Ingress for secure access."
 more_link: "yes"
 url: "/installing-grafana-on-kubernetes-with-k3s/"

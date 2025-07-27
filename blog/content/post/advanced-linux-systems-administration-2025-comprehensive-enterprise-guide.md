@@ -17,7 +17,7 @@ categories:
 - Linux
 - Systems Administration
 - Enterprise Infrastructure
-author: mmattox
+author: "Matthew Mattox - mmattox@support.tools"
 description: "Master enterprise Linux systems administration with advanced filesystem management, namespace orchestration, automation patterns, security hardening, and production operations. Comprehensive guide for SRE and infrastructure teams."
 keywords: "linux systems administration, bind mounts, filesystem management, linux namespaces, enterprise linux, infrastructure automation, linux security, production operations, SRE practices, linux troubleshooting, enterprise storage"
 ---

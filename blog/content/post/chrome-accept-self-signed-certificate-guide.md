@@ -6,7 +6,7 @@ tags: ["Chrome", "SSL", "Certificate"]
 categories:
 - Web Browsers
 - SSL/TLS
-author: "Matthew Mattox - mmattox@support.tools."
+author: "Matthew Mattox - mmattox@support.tools"
 description: "A step-by-step guide on making Chrome accept a self-signed certificate."
 more_link: "yes"
 ---

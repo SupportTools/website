@@ -6,7 +6,7 @@ tags: ["Kubernetes", "Anti-Patterns", "DevOps", "Best Practices"]
 categories:  
 - Kubernetes  
 - DevOps  
-author: "Matthew Mattox - mmattox@support.tools."  
+author: "Matthew Mattox - mmattox@support.tools"  
 description: "Avoid common Kubernetes anti-patterns that can lead to inefficiency and instability in your cluster. Learn how to identify and correct these issues."  
 more_link: "yes"  
 url: "/top-4-kubernetes-anti-patterns/"  

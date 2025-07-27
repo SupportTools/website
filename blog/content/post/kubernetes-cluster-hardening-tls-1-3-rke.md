@@ -7,7 +7,7 @@ categories:
 - Kubernetes  
 - Security  
 - RKE  
-author: "Matthew Mattox - mmattox@support.tools."  
+author: "Matthew Mattox - mmattox@support.tools"  
 description: "Learn how to enhance Kubernetes security by setting the minimum TLS version to 1.3 in an RKE cluster."  
 more_link: "yes"  
 url: "/kubernetes-cluster-hardening-tls-1-3-rke/"  

@@ -6,7 +6,7 @@ tags: ["Kubernetes networking", "overlay network", "traffic flow", "Pods", "netw
 categories:
 - Kubernetes
 - Networking
-author: "Matthew Mattox - mmattox@support.tools."
+author: "Matthew Mattox - mmattox@support.tools"
 description: "This blog post covers the basics of overlay networks in Kubernetes and how traffic flows between Pods on the same node and different nodes, as well as how traffic flows to external services. We will explore network plugins such as canal, flannel, and calico and their role in providing network segmentation, isolation, security, and performance."
 more_link: "yes"
 ---

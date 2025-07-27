@@ -6,7 +6,7 @@ tags: ["Networking", "Ports"]
 categories:
 - Networking
 - Remote Host
-author: "Matthew Mattox - mmattox@support.tools."
+author: "Matthew Mattox - mmattox@support.tools"
 description: "A guide on how to check the status of ports on a remote host."
 more_link: "yes"
 ---

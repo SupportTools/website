@@ -7,7 +7,7 @@ categories:
 - Kubernetes  
 - Monitoring  
 - Logging  
-author: "Matthew Mattox - mmattox@support.tools."  
+author: "Matthew Mattox - mmattox@support.tools"  
 description: "Learn how to set up centralized logging for your Kubernetes clusters using Grafana Loki and Promtail for efficient log management and analysis."  
 more_link: "yes"  
 url: "/kubernetes-logging-grafana-loki-promtail/"  

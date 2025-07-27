@@ -6,7 +6,7 @@ tags: ["ROBOT Attack", "Security", "Python", "Linux"]
 categories:
 - Security
 - Scripting
-author: "Matthew Mattox - mmattox@support.tools."
+author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to install and run 'robot-detect' on Linux Mint to check for The ROBOT Attack."
 more_link: "yes"
 ---

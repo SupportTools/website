@@ -6,7 +6,7 @@ tags: ["Kubernetes", "CrashLoopBackOff", "Troubleshooting"]
 categories:  
 - Kubernetes  
 - Troubleshooting  
-author: "Matthew Mattox - mmattox@support.tools."  
+author: "Matthew Mattox - mmattox@support.tools"  
 description: "Learn what CrashLoopBackOff means in Kubernetes and how to troubleshoot it with a practical example."  
 more_link: "yes"  
 url: "/kubernetes-crashloopbackoff-example/"  

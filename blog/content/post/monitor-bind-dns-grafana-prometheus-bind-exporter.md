@@ -7,7 +7,7 @@ categories:
 - DNS  
 - Monitoring  
 - Prometheus  
-author: "Matthew Mattox - mmattox@support.tools."  
+author: "Matthew Mattox - mmattox@support.tools"  
 description: "Learn how to monitor your Bind DNS server using Grafana, Prometheus, and bind_exporter for real-time metrics and insights."  
 more_link: "yes"  
 url: "/monitor-bind-dns-grafana-prometheus-bind-exporter/"  

@@ -17,7 +17,7 @@ categories:
 - Kubernetes
 - Cloud Native
 - Enterprise Architecture
-author: mmattox
+author: "Matthew Mattox - mmattox@support.tools"
 description: "Master Kubernetes Operators development for enterprise environments. Learn advanced patterns, multi-cluster management, security hardening, comprehensive testing, and production operations with real-world examples and career development guidance."
 keywords: "kubernetes operators, kubebuilder, controller-runtime, CRD, custom resources, enterprise kubernetes, platform engineering, multi-cluster operators, operator security, kubernetes automation, go operators, operator lifecycle management, kubernetes controllers, operator testing, production kubernetes"
 ---

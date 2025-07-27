@@ -6,7 +6,7 @@ tags: ["Kubernetes", "Stern", "Logging"]
 categories:
 - Kubernetes
 - k3s
-author: "Matthew Mattox - mmattox@support.tools."
+author: "Matthew Mattox - mmattox@support.tools"
 description: "In this post, we explore Stern, a handy tool for tailing logs in a Kubernetes environment."
 more_link: "yes"
 ---

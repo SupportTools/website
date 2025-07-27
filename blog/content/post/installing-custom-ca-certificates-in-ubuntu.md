@@ -6,7 +6,7 @@ tags: ["Certificates", "Ubuntu"]
 categories:
 - Certificates
 - Ubuntu
-author: "Matthew Mattox - mmattox@support.tools."
+author: "Matthew Mattox - mmattox@support.tools"
 description: "A guide on installing custom CA certificates on Ubuntu 22.04."
 more_link: "yes"
 ---

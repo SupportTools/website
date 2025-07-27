@@ -6,7 +6,7 @@ tags: ["Harvester HCI", "Problem Solving"]
 categories:
 - Virtualization
 - Tech Solutions
-author: "Matthew Mattox - mmattox@support.tools."
+author: "Matthew Mattox - mmattox@support.tools"
 description: "Unlock solutions to common Harvester HCI challenges, including cluster deployment, proxy configurations, and secure connections. Elevate your troubleshooting skills with this guide."
 more_link: "yes"
 ---

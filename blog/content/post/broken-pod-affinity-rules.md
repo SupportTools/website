@@ -6,7 +6,7 @@ tags: ["Kubernetes", "Best Practices", "Affinity"]
 categories:
 - Kubernetes
 - Best Practices
-author: "Matthew Mattox - mmattox@support.tools."
+author: "Matthew Mattox - mmattox@support.tools"
 description: "Understanding Pod Affinity and Anti-Affinity rules in Kubernetes, common pitfalls, and how to avoid misconfigurations that could disrupt your deployments."
 more_link: "yes"
 url: "/broken-pod-affinity-rules/"

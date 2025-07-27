@@ -6,7 +6,7 @@ tags: ["k3s", "Raspberry Pi", "Kubernetes"]
 categories:
 - DevOps
 - Kubernetes
-author: "Matthew Mattox - mmattox@support.tools."
+author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to resolve SchedulingDisabled nodes in a k3s cluster on Raspberry Pi, ensuring smooth operation of your applications."
 more_link: "yes"
 url: "/resolving-schedulingdisabled-nodes-in-k3s-on-raspberry-pi/"

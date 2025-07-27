@@ -6,7 +6,7 @@ tags: ["ArgoCD", "Kubernetes", "k3s"]
 categories:
 - DevOps
 - Kubernetes
-author: "Matthew Mattox - mmattox@support.tools."
+author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to install ArgoCD on a k3s cluster, including setting up TLS ingress and handling common issues."
 more_link: "yes"
 url: "/installing-argocd-on-k3s/"

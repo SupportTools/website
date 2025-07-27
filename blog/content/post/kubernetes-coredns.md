@@ -6,7 +6,7 @@ tags: ["Kubernetes", "DNS", "CoreDNS", "NodeLocalDNS", "network plugins", "pods"
 categories:
 - Kubernetes
 - Networking
-author: "Matthew Mattox - mmattox@support.tools."
+author: "Matthew Mattox - mmattox@support.tools"
 description: "In this blog post, we take a deep dive into the workings of CoreDNS and NodeLocalDNS in a Kubernetes cluster. We explore how CoreDNS provides resolution for service records and external DNS records, as well as the role of NodeLocalDNS in optimizing the DNS resolution process."
 more_link: "yes"
 ---

@@ -7,7 +7,7 @@ categories:
 - Kubernetes  
 - Automation  
 - Orchestration  
-author: "Matthew Mattox - mmattox@support.tools."  
+author: "Matthew Mattox - mmattox@support.tools"  
 description: "Understand the importance of Kubernetes controllers and how they automate key tasks in your cluster."  
 more_link: "yes"  
 url: "/why-you-need-kubernetes-controller/"  

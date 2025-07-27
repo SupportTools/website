@@ -7,7 +7,7 @@ categories:
 - Kubernetes  
 - RKE2  
 - Monitoring  
-author: "Matthew Mattox - mmattox@support.tools."  
+author: "Matthew Mattox - mmattox@support.tools"  
 description: "Learn how to monitor an Etcd cluster in RKE2 using Grafana and Prometheus for real-time insights and alerting."  
 more_link: "yes"  
 url: "/monitor-etcd-cluster-grafana-prometheus-rke2/"  

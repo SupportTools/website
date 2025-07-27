@@ -5,7 +5,7 @@ draft: false
 tags: ["Networking"]
 categories:
 - Networking
-author: "Matthew Mattox - mmattox@support.tools."
+author: "Matthew Mattox - mmattox@support.tools"
 description: "Exploring whether multiple applications can listen on the same port."
 more_link: "yes"
 ---

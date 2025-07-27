@@ -6,7 +6,7 @@ tags: ["Raspberry Pi", "k3s", "Ubuntu"]
 categories:
 - DevOps
 - Kubernetes
-author: "Matthew Mattox - mmattox@support.tools."
+author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to install k3s on Ubuntu running on Raspberry Pi, including setup for control plane and agents."
 more_link: "yes"
 url: "/installing-k3s-on-ubuntu-on-raspberry-pi/"

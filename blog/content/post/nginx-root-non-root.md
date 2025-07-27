@@ -7,7 +7,7 @@ categories:
 - NGINX  
 - Linux  
 - DevOps  
-author: "Matthew Mattox - mmattox@support.tools."  
+author: "Matthew Mattox - mmattox@support.tools"  
 description: "Learn how to configure NGINX to run both as root and non-root users, ensuring security and flexibility for your web server deployment."  
 more_link: "yes"  
 url: "/nginx-root-non-root/"  

@@ -6,7 +6,7 @@ tags: ["Kubernetes", "Load Balancers", "Ingress"]
 categories:
 - Kubernetes
 - Best Practices
-author: "Matthew Mattox - mmattox@support.tools."
+author: "Matthew Mattox - mmattox@support.tools"
 description: "Understanding the cost implications of using multiple load balancers in Kubernetes and how Ingress controllers can optimize traffic management."
 more_link: "yes"
 url: "/kubernetes-multiple-load-balancers/"

@@ -7,7 +7,7 @@ categories:
 - Linux  
 - Backup  
 - Tools  
-author: "Matthew Mattox - mmattox@support.tools."  
+author: "Matthew Mattox - mmattox@support.tools"  
 description: "A guide to using Rsync for file backups and remote synchronization on Linux."  
 more_link: "yes"  
 url: "/rsync-backup-tool/"  

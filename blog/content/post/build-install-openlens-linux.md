@@ -7,7 +7,7 @@ categories:
 - Kubernetes  
 - Linux  
 - Open Source  
-author: "Matthew Mattox - mmattox@support.tools."  
+author: "Matthew Mattox - mmattox@support.tools"  
 description: "Learn how to build and install OpenLens on Linux, an open-source alternative to Lens."  
 more_link: "yes"  
 url: "/build-install-openlens-linux/"  

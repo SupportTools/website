@@ -7,7 +7,7 @@ categories:
 - Longhorn
 - Storage
 - Kubernetes
-author: "Matthew Mattox - mattox@support.tools."
+author: "Matthew Mattox - mmattox@support.tools"
 description: "Managing resized block volumes in Longhorn.IO with RKE2 on Dell R720xd servers."
 ---
 

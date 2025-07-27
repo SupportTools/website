@@ -7,7 +7,7 @@ categories:
 - Kubernetes  
 - Certification  
 - CKAD  
-author: "Matthew Mattox - mmattox@support.tools."  
+author: "Matthew Mattox - mmattox@support.tools"  
 description: "Prepare for the Certified Kubernetes Application Developer (CKAD) exam with these practice questions covering essential Kubernetes concepts."  
 more_link: "yes"  
 url: "/ckad-practice-questions/"  

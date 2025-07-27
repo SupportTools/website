@@ -7,7 +7,7 @@ categories:
 - Kubernetes  
 - Helm  
 - Cloud  
-author: "Matthew Mattox - mmattox@support.tools."  
+author: "Matthew Mattox - mmattox@support.tools"  
 description: "Learn how to use a single Helm chart to deploy applications on both EKS and GKE with cloud-specific configurations."  
 more_link: "yes"  
 url: "/use-one-helm-chart-eks-gke/"  

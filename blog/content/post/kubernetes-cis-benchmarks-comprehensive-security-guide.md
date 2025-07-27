@@ -7,7 +7,7 @@ categories:
 - Kubernetes
 - Security
 - Compliance
-author: "Matthew Mattox - mmattox@support.tools."
+author: "Matthew Mattox - mmattox@support.tools"
 description: "Master Kubernetes security with CIS Benchmarks through enterprise hardening patterns, automated compliance scanning, and comprehensive CKS exam preparation."
 more_link: "yes"
 url: "/kubernetes-cis-benchmarks-comprehensive-security-guide/"

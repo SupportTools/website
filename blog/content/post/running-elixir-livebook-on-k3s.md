@@ -6,7 +6,7 @@ tags: ["k3s", "Elixir", "Livebook", "Kubernetes"]
 categories:
 - DevOps
 - Kubernetes
-author: "Matthew Mattox - mmattox@support.tools."
+author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to run Elixir Livebook on your k3s cluster with step-by-step instructions for deployment, PVC, service, and ingress setup."
 more_link: "yes"
 url: "/running-elixir-livebook-on-k3s/"

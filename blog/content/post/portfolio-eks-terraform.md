@@ -8,7 +8,7 @@ categories:
 - AWS
 - EKS
 - Terraform
-author: "Matthew Mattox - mmattox@support.tools."
+author: "Matthew Mattox - mmattox@support.tools"
 description: "A detailed guide on deploying an EKS cluster using Terraform."
 more_link: "yes"
 ---

@@ -6,7 +6,7 @@ tags: ["Rancher", "Kubernetes management", "controllers", "agents", "WebSockets"
 categories:
 - Rancher
 - Kubernetes
-author: "Matthew Mattox - mmattox@support.tools."
+author: "Matthew Mattox - mmattox@support.tools"
 description: "This comprehensive blog post explores Rancher. We delve into Rancher's architecture, covering controllers, agents, WebSockets, the Rancher API, and the use of Custom Resource Definitions (CRDs)."
 more_link: "yes"
 ---

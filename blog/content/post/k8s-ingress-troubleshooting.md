@@ -6,7 +6,7 @@ tags: ["kubernetes", "rancher", "ingress-nginx", "traefik"]
 categories:
 - Kubernetes
 - Rancher
-author: "Matthew Mattox - mmattox@support.tools."
+author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive guide for troubleshooting Kubernetes Ingress using Ingress-Nginx and Traefik with Rancher."
 more_link: "yes"
 ---

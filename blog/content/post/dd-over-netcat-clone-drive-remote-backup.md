@@ -7,7 +7,7 @@ categories:
 - Backup  
 - Linux  
 - Disk Management  
-author: "Matthew Mattox - mmattox@support.tools."  
+author: "Matthew Mattox - mmattox@support.tools"  
 description: "Learn how to remotely clone or back up drives using dd and netcat to efficiently transfer disk data over a network."  
 more_link: "yes"  
 url: "/dd-over-netcat-clone-drive-remote-backup/"  

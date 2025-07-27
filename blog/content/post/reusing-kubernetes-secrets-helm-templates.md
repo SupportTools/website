@@ -7,7 +7,7 @@ categories:
 - Kubernetes  
 - Helm  
 - Security  
-author: "Matthew Mattox - mmattox@support.tools."  
+author: "Matthew Mattox - mmattox@support.tools"  
 description: "Learn how to efficiently reuse existing Kubernetes Secrets in your Helm templates, saving time and ensuring security across your cluster."  
 more_link: "yes"  
 url: "/reusing-kubernetes-secrets-helm-templates/"  

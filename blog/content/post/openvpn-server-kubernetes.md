@@ -7,7 +7,7 @@ categories:
 - Kubernetes  
 - Networking  
 - VPN  
-author: "Matthew Mattox - mmattox@support.tools."  
+author: "Matthew Mattox - mmattox@support.tools"  
 description: "Learn how to set up and configure an OpenVPN server on Kubernetes to secure your network traffic and access your cluster remotely."  
 more_link: "yes"  
 url: "/openvpn-server-kubernetes/"  

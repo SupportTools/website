@@ -7,7 +7,7 @@ categories:
 - Go
 - Performance
 - Systems Programming
-author: "Matthew Mattox - mmattox@support.tools."
+author: "Matthew Mattox - mmattox@support.tools"
 description: "Master Go runtime thread management with deep M:P:G scheduling analysis, enterprise performance optimization strategies, and production debugging techniques."
 more_link: "yes"
 url: "/go-runtime-thread-management-comprehensive-guide/"

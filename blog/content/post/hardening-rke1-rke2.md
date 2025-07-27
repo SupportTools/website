@@ -6,7 +6,7 @@ tags: ["Rancher", "Kubernetes", "Security"]
 categories:
 - Rancher
 - Kubernetes
-author: "Matthew Mattox - mmattox@support.tools."
+author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to enhance the security of your Rancher-managed Kubernetes clusters with our detailed guide on hardening RKE1 and RKE2."
 more_link: "yes"
 ---

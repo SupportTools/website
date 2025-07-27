@@ -7,7 +7,7 @@ categories:
 - Kubernetes  
 - DevOps  
 - Sustainability  
-author: "Matthew Mattox - mmattox@support.tools."  
+author: "Matthew Mattox - mmattox@support.tools"  
 description: "Learn how rekuberate-io/sleepcycles can optimize your Kubernetes workloads by automatically scheduling shutdowns and wake-ups, reducing resource costs, and lowering your carbon footprint."  
 more_link: "yes"  
 url: "/rekuberate-io-sleepcycles/"  

@@ -7,7 +7,7 @@ categories:
 - Linux
 - Networking
 - Packet Manipulation
-author: "Matthew Mattox - mmattox@support.tools."
+author: "Matthew Mattox - mmattox@support.tools"
 description: "A guide on simulating delayed and dropped packets in Linux."
 more_link: "yes"
 ---

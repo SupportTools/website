@@ -6,7 +6,7 @@ tags: ["Kubernetes", "CrashLoopBackOff", "Logs", "Troubleshooting"]
 categories:  
 - Kubernetes  
 - Troubleshooting  
-author: "Matthew Mattox - mmattox@support.tools."  
+author: "Matthew Mattox - mmattox@support.tools"  
 description: "Learn how to view logs from the previous container instance when troubleshooting a crashing container in Kubernetes."  
 more_link: "yes"  
 url: "/viewing-logs-previous-container-instance-crashing/"  

@@ -7,7 +7,7 @@ categories:
 - Kubernetes  
 - Networking  
 - Ingress  
-author: "Matthew Mattox - mmattox@support.tools."  
+author: "Matthew Mattox - mmattox@support.tools"  
 description: "Learn how to change the default Ingress port to HTTP in Bitnami/nginx when using Kubernetes, optimizing your configuration for easier management of services."  
 more_link: "yes"  
 url: "/change-default-ingress-port-http-bitnami-nginx-kubernetes/"  

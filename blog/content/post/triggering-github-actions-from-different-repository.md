@@ -6,7 +6,7 @@ tags: ["GitHub Actions", "CI/CD"]
 categories:
 - DevOps
 - GitHub Actions
-author: "Matthew Mattox - mmattox@support.tools."
+author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to trigger GitHub Actions workflows in one repository from another repository."
 more_link: "yes"
 url: "/triggering-github-actions-from-different-repository/"

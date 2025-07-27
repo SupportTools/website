@@ -7,7 +7,7 @@ categories:
 - Kubernetes  
 - Certification  
 - CKS  
-author: "Matthew Mattox - mmattox@support.tools."  
+author: "Matthew Mattox - mmattox@support.tools"  
 description: "Prepare for the Certified Kubernetes Security Specialist (CKS) exam with these practice questions covering essential Kubernetes security concepts."  
 more_link: "yes"  
 url: "/cks-practice-questions/"  

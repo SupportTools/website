@@ -6,7 +6,7 @@ tags: ["k3s", "CoreDNS", "DNS", "Kubernetes"]
 categories:
 - DevOps
 - Kubernetes
-author: "Matthew Mattox - mmattox@support.tools."
+author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to resolve Pod DNS problems in k3s with CoreDNS, ensuring proper DNS resolution inside the cluster."
 more_link: "yes"
 url: "/resolving-pod-dns-problems-in-k3s-with-coredns/"

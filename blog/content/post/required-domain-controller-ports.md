@@ -7,7 +7,7 @@ categories:
 - Networking  
 - Active Directory  
 - Security  
-author: "Matthew Mattox - mmattox@support.tools."  
+author: "Matthew Mattox - mmattox@support.tools"  
 description: "A comprehensive list of all required ports for Domain Controllers to function properly in Active Directory environments."  
 more_link: "yes"  
 url: "/required-domain-controller-ports/"  

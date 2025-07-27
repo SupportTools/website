@@ -6,7 +6,7 @@ tags: ["k3s", "Raspberry Pi", "iSCSI", "Synology NAS", "Persistent Volumes"]
 categories:
 - DevOps
 - Kubernetes
-author: "Matthew Mattox - mmattox@support.tools."
+author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to use iSCSI for persistent volumes in k3s on a Raspberry Pi, with a Synology NAS as the iSCSI target."
 more_link: "yes"
 ---

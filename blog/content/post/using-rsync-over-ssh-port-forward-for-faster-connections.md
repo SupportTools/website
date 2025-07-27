@@ -6,7 +6,7 @@ tags: ["Rsync", "SSH", "Port Forwarding", "Data Transfer"]
 categories:
 - DevOps
 - Networking
-author: "Matthew Mattox - mmattox@support.tools."
+author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to run rsync over an SSH port forward to optimize your connection speed, especially when using a bastion."
 more_link: "yes"
 ---

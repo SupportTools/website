@@ -7,7 +7,7 @@ categories:
 - Kubernetes  
 - Backup  
 - etcd  
-author: "Matthew Mattox - mmattox@support.tools."  
+author: "Matthew Mattox - mmattox@support.tools"  
 description: "Learn how to extract a specific Kubernetes Secret from an etcd snapshot without the need to restore the full cluster."  
 more_link: "yes"  
 url: "/pulling-data-etcd-backup-extract-secret/"  

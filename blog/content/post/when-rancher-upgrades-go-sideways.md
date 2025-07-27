@@ -7,7 +7,7 @@ categories:
 - Kubernetes
 - Rancher
 - DevOps
-author: "Matthew Mattox - mmattox@support.tools."
+author: "Matthew Mattox - mmattox@support.tools"
 description: "Common Rancher upgrade failures and solutions."
 ---
 

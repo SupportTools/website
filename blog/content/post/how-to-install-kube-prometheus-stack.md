@@ -7,7 +7,7 @@ categories:
 - Kubernetes
 - Prometheus
 - Monitoring
-author: "Matthew Mattox - mmattox@support.tools."
+author: "Matthew Mattox - mmattox@support.tools"
 description: "How to install kube-prometheus-stack"
 more_link: "yes"
 ---

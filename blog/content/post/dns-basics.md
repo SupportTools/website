@@ -5,7 +5,7 @@ draft: false
 tags: ["DNS"]
 categories:
 - DNS
-author: "Matthew Mattox - mmattox@support.tools."
+author: "Matthew Mattox - mmattox@support.tools"
 description: "DNS Basics"
 more_link: "yes"
 ---

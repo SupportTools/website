@@ -8,7 +8,7 @@ categories:
 - RKE2
 - Harbor
 - Redis
-author: "Matthew Mattox - mmattox@support.tools."
+author: "Matthew Mattox - mmattox@support.tools"
 description: "Harbor Redis Crashlooping"
 more_link: "yes"
 ---
