@@ -3,6 +3,7 @@
   <h1>{{ .Title }}</h1>
   <ul class="posts-list">
     {{ range .Paginator.Pages }}
+    {{ if . }}
     <li class="posts-list-item">
       <a class="posts-list-item-title" href="{{ .Permalink }}">{{ .Title }}</a>
       <span class="posts-list-item-description">
@@ -10,9 +11,10 @@
         {{ .PublishDate.Format "Jan 2, 2006" }}
         -
         {{ partial "icon.html" (dict "ctx" $ "name" "clock") }}
-        {{ .ReadingTime }} min read
+        {{ if .ReadingTime }}{{ .ReadingTime }} min read{{ else }}1 min read{{ end }}
       </span>
     </li>
+    {{ end }}
     {{ end }}
   </ul>
   {{ partial "pagination.html" $ }}

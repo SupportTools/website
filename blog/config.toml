@@ -73,6 +73,15 @@ pagination.pagerSize = 8 # Updated from paginate
 
   googleAnalytics = "UA-151436906-1"
 
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
+[security]
+  [security.funcs]
+    getenv = ["^HUGO_"]
+
 # Uncomment one of the following style sections to customize the theme colors.
 
 # Default theme

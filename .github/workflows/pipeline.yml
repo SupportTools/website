@@ -6,7 +6,7 @@ on:
     branches:
       - main
   schedule:
-    - cron: "0 0 * * *" # This will run every hour
+    - cron: "0 0 * * *" # This will run daily at midnight
 
 jobs:
   Test:
