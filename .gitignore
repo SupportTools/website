@@ -10,3 +10,4 @@ social-media-post/
 .wrangler/
 wrangler.log
 .dev.vars
+node_modules/
