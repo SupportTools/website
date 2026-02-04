@@ -1,6 +1,6 @@
 ---
 title: "RKE2 the Hard Way: Part 1 – Introduction and Prerequisites for Building a Kubernetes Cluster"
-description: "Introduction to the RKE2 the Hard Way training series and setting up the prerequisites."
+description: "Introduction to the RKE2 the Hard Way training series — review the required tools and node setup before building a highly available Kubernetes cluster from scratch."
 date: 2025-04-01T00:00:00-00:00
 series: "RKE2 the Hard Way"
 series_rank: 1
@@ -8,7 +8,6 @@ draft: false
 tags: ["kubernetes", "rke2", "bare-metal", "certificates", "linux"]
 categories: ["Training", "RKE2"]
 author: "Matthew Mattox"
-description: "Before we build a highly available Kubernetes cluster from scratch, let's review the required tools and node setup."
 more_link: ""
 ---
 

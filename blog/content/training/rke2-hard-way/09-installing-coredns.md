@@ -8,7 +8,6 @@ draft: false
 tags: ["kubernetes", "rke2", "coredns", "dns"]
 categories: ["Training", "RKE2"]
 author: "Matthew Mattox"
-description: "In Part 9 of RKE2 the Hard Way, we install and configure CoreDNS to provide DNS resolution within our Kubernetes cluster."
 more_link: ""
 ---
 

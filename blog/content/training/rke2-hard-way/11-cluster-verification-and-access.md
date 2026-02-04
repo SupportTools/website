@@ -8,7 +8,6 @@ draft: false
 tags: ["kubernetes", "rke2", "verification", "kubectl"]
 categories: ["Training", "RKE2"]
 author: "Matthew Mattox"
-description: "In the final part of RKE2 the Hard Way, we verify our Kubernetes cluster is fully operational and set up kubectl for remote access."
 more_link: ""
 ---
 

@@ -8,7 +8,6 @@ draft: false
 tags: ["kubernetes", "rke2", "ingress", "nginx", "load-balancing"]
 categories: ["Training", "RKE2"]
 author: "Matthew Mattox"
-description: "In Part 10 of RKE2 the Hard Way, we install and configure Ingress Nginx to enable external access to services in our Kubernetes cluster."
 more_link: ""
 ---
 

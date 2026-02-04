@@ -8,7 +8,6 @@ draft: false
 tags: ["kubernetes", "rke2", "kube-controller-manager", "kube-scheduler", "static-pods"]
 categories: ["Training", "RKE2"]
 author: "Matthew Mattox"
-description: "In Part 6 of RKE2 the Hard Way, we configure and deploy the Kubernetes Controller Manager and Scheduler as static pods managed by kubelet."
 more_link: ""
 ---
 

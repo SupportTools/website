@@ -8,7 +8,6 @@ draft: false
 tags: ["kubernetes", "rke2", "kubelet", "kube-proxy", "worker-nodes"]
 categories: ["Training", "RKE2"]
 author: "Matthew Mattox"
-description: "In Part 7 of RKE2 the Hard Way, we configure kubelet to register with the Kubernetes API server and set up kube-proxy for service networking."
 more_link: ""
 ---
 

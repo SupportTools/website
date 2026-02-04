@@ -8,7 +8,6 @@ draft: false
 tags: ["kubernetes", "rke2", "etcd", "static pods", "high availability"]
 categories: ["Training", "RKE2"]
 author: "Matthew Mattox"
-description: "In Part 4 of RKE2 the Hard Way, we set up an etcd cluster using static pods managed by kubelet."
 more_link: ""
 ---
 

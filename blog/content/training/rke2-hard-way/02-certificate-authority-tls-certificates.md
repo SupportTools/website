@@ -8,7 +8,6 @@ draft: false
 tags: ["kubernetes", "rke2", "tls", "certificates", "cfssl"]
 categories: ["Training", "RKE2"]
 author: "Matthew Mattox"
-description: "In Part 2 of RKE2 the Hard Way, we configure a Certificate Authority (CA) and generate the TLS certificates required for securing Kubernetes."
 more_link: ""
 ---
 

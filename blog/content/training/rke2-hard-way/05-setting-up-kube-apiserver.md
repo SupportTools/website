@@ -8,7 +8,6 @@ draft: false
 tags: ["kubernetes", "rke2", "kube-apiserver", "high-availability", "static-pods"]
 categories: ["Training", "RKE2"]
 author: "Matthew Mattox"
-description: "In Part 5 of RKE2 the Hard Way, we configure and deploy the Kubernetes API Server as static pods managed by kubelet."
 more_link: ""
 ---
 

@@ -8,7 +8,6 @@ draft: false
 tags: ["kubernetes", "rke2", "containerd", "kubelet"]
 categories: ["Training", "RKE2"]
 author: "Matthew Mattox"
-description: "In Part 3 of RKE2 the Hard Way, we set up containerd and kubelet, which will be the foundation for our Kubernetes cluster."
 more_link: ""
 ---
 

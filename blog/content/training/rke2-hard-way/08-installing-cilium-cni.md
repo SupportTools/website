@@ -8,7 +8,6 @@ draft: false
 tags: ["kubernetes", "rke2", "cilium", "cni", "networking"]
 categories: ["Training", "RKE2"]
 author: "Matthew Mattox"
-description: "In Part 8 of RKE2 the Hard Way, we install Cilium CNI to provide networking and network policy enforcement for our Kubernetes cluster."
 more_link: ""
 ---
 
