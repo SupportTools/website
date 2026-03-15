@@ -1,6 +1,6 @@
 ---
 title: "EFK Stack on Kubernetes: Production Deployment with ECK and Fluent Operator"
-date: 2026-03-15T12:00:00-05:00
+date: 2026-03-14T12:00:00-05:00
 draft: false
 tags: ["Kubernetes", "Elasticsearch", "Fluent Bit", "Kibana", "Logging", "Observability", "ECK Operator", "Fluent Operator", "Log Aggregation", "DevOps", "Production", "RKE2"]
 categories: ["Kubernetes", "Observability", "DevOps"]
