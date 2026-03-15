@@ -1,6 +1,6 @@
 ---
 title: "Claude Code Feels Dumber? The System Prompt Architecture Trap and How to Fix It"
-date: 2026-03-15T09:00:00-05:00
+date: 2026-03-14T12:00:00-05:00
 draft: false
 tags: ["claude-code", "ai-assisted-development", "devops", "developer-tools", "prompt-engineering", "llm", "claude", "anthropic"]
 categories:
