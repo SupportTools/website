@@ -1,789 +1,1141 @@
 ---
 title: "Kubernetes Secret Management: From Sealed Secrets to External Secrets Operator"
-date: 2027-04-15T00:00:00-05:00
+date: 2027-04-17T00:00:00-05:00
 draft: false
-tags: ["Kubernetes", "Secrets", "Security", "HashiCorp Vault", "External Secrets"]
-categories: ["Kubernetes", "Security", "Secret Management"]
+tags: ["Kubernetes", "Secrets", "Security", "Vault", "External Secrets", "Sealed Secrets"]
+categories: ["Kubernetes", "Security"]
 author: "Matthew Mattox - mmattox@support.tools"
-description: "Comprehensive guide comparing Kubernetes secret management approaches: native Secrets with etcd encryption, Sealed Secrets, External Secrets Operator with Vault/AWS SSM/GCP Secret Manager, CSI Secret Store driver, and best practices for secret rotation and audit logging."
+description: "Enterprise patterns for Kubernetes secret management covering Sealed Secrets, External Secrets Operator, Vault Agent Injector, CSI Secrets Store Driver, and GitOps-compatible workflows."
 more_link: "yes"
 url: "/kubernetes-secret-management-patterns-guide/"
 ---
 
-Kubernetes Secrets store sensitive data — database passwords, API tokens, TLS certificates — but the default behavior is frequently misunderstood: the base64 encoding applied to Secret values is encoding, not encryption. Anyone with `kubectl get secret` access can instantly retrieve the plaintext value. Worse, the raw data is stored unencrypted in etcd unless encryption-at-rest is explicitly configured. Production secret management requires a layered strategy covering storage encryption, access control, GitOps-safe distribution, rotation, and audit logging. This guide covers each layer from native Secrets through the full External Secrets Operator ecosystem.
+Kubernetes Secrets are base64-encoded, not encrypted, by default. Any user with read access to the cluster's etcd or a namespace's secrets can trivially decode them. Enterprise-grade secret management requires encrypting secrets at rest, storing source-of-truth credentials outside the cluster, rotating secrets without pod restarts, and enabling GitOps workflows without committing plaintext credentials to version control.
+
+This guide covers the full spectrum of Kubernetes secret management patterns: Sealed Secrets for GitOps-compatible encryption, External Secrets Operator (ESO) for synchronization from AWS Secrets Manager, HashiCorp Vault, and GCP Secret Manager, the Vault Agent Injector for sidecar-based secret delivery, the Secrets Store CSI Driver for filesystem-mounted secrets, automatic secret rotation, and IRSA/Workload Identity for cloud-native authentication.
 
 <!--more-->
 
-## Native Kubernetes Secrets: What They Are and Are Not
+## Section 1: The Secret Management Spectrum
 
-### The Base64 Misconception
+### Threat Model
 
-```bash
-# Create a secret with kubectl
-kubectl create secret generic db-credentials \
-  --from-literal=username=payments_app \
-  --from-literal=password=hunter2 \
-  --namespace payments-api
+```
+Threat                          │ Sealed  │ ESO   │ Vault │ CSI   │
+────────────────────────────────┼─────────┼───────┼───────┼───────┤
+Plaintext in Git                │ Blocked │ OK    │ OK    │ OK    │
+base64 in etcd (at rest)        │ OK*     │ OK    │ OK    │ OK    │
+Namespace read access leak      │ Partial │ Limit │ Limit │ Limit │
+Cluster admin access leak       │ No      │ No    │ No    │ No    │
+Secret rotation without restart │ No      │ Yes   │ Yes   │ Yes   │
+Centralized audit trail         │ No      │ Yes   │ Yes   │ Yes   │
+Cross-cluster sharing           │ No      │ Yes   │ Yes   │ Yes   │
 
-# Retrieve and decode — takes 5 seconds
-kubectl get secret db-credentials -n payments-api -o jsonpath='{.data.password}' | base64 -d
-# Output: hunter2
+* Requires separate etcd encryption-at-rest configuration
 ```
 
-Base64 is reversible with zero key material. Any person or process with `get secrets` RBAC permission can read all secrets in the namespace. The access control problem and the at-rest encryption problem are separate concerns.
+### Decision Framework
 
-### etcd Encryption at Rest
+| Requirement | Recommended Solution |
+|---|---|
+| GitOps with no external dependency | Sealed Secrets |
+| Secrets in AWS Secrets Manager | ESO with AWS provider |
+| Secrets in HashiCorp Vault | ESO or Vault Agent Injector |
+| Dynamic credentials (DB, cloud) | Vault Agent Injector |
+| Secrets mounted as files | CSI Secrets Store Driver |
+| Multi-cloud, single operator | ESO |
 
-Without encryption-at-rest configuration, secrets are stored as plaintext in etcd. Anyone with direct etcd access (backups, snapshots, etcd member access) can read all secrets:
+---
 
-```bash
-# Demonstrate unencrypted secret in etcd (DO NOT run in production without understanding the impact)
-# This requires direct etcd access, which only control-plane admins should have
-ETCDCTL_API=3 etcdctl \
-  --endpoints=https://127.0.0.1:2379 \
-  --cacert=/etc/kubernetes/pki/etcd/ca.crt \
-  --cert=/etc/kubernetes/pki/etcd/server.crt \
-  --key=/etc/kubernetes/pki/etcd/server.key \
-  get /registry/secrets/payments-api/db-credentials | strings | grep -A2 "password"
-# Without encryption: the value is visible in the output
-```
+## Section 2: Enabling etcd Encryption at Rest
 
-### Configuring etcd Encryption at Rest
+Before deploying any secret management solution, etcd encryption at rest must be enabled to protect secrets from direct etcd access.
+
+### EncryptionConfiguration
 
 ```yaml
-# /etc/kubernetes/encryption-config.yaml
-# Referenced by kube-apiserver --encryption-provider-config flag
+# /etc/kubernetes/pki/encryption-config.yaml
 apiVersion: apiserver.config.k8s.io/v1
 kind: EncryptionConfiguration
 resources:
   - resources:
       - secrets
-      - configmaps           # Consider encrypting ConfigMaps too
     providers:
-      # AES-GCM: recommended for new clusters (faster than CBC)
+      # Primary provider: AES-GCM with a 256-bit key
       - aescbc:
           keys:
-            # Primary key — used for encryption
-            - name: key-20250101
-              secret: BASE64_ENCODED_32_BYTE_KEY_REPLACE_ME
-            # Previous key — retained for decryption during rotation
-            # - name: key-20240601
-            #   secret: PREVIOUS_KEY_REPLACE_ME
-      # Identity provider must be last — handles unencrypted legacy resources
+            - name: key1
+              # Generate: head -c 32 /dev/urandom | base64
+              secret: REPLACE_WITH_BASE64_32_BYTE_KEY
+      # Identity: allows reading unencrypted secrets (for migration)
       - identity: {}
 ```
 
 ```bash
-# Generate a 32-byte AES key for the encryption config
-head -c 32 /dev/urandom | base64
+# Apply to kube-apiserver by adding the flag:
+# --encryption-provider-config=/etc/kubernetes/pki/encryption-config.yaml
 
-# Add to kube-apiserver static pod:
-# - --encryption-provider-config=/etc/kubernetes/encryption-config.yaml
-
-# After enabling encryption, existing secrets are NOT automatically re-encrypted.
-# Force re-encryption of all secrets:
+# After enabling, re-encrypt all existing secrets
 kubectl get secrets --all-namespaces -o json | \
   kubectl replace -f -
-# This touches every secret, causing the API server to re-write it with the new provider
+
+# Verify a secret is encrypted in etcd
+ETCDCTL_API=3 etcdctl \
+  --endpoints=https://127.0.0.1:2379 \
+  --cacert=/etc/kubernetes/pki/etcd/ca.crt \
+  --cert=/etc/kubernetes/pki/etcd/server.crt \
+  --key=/etc/kubernetes/pki/etcd/server.key \
+  get /registry/secrets/default/my-secret | hexdump -C | head
+# Output should show k8s:enc:aescbc:v1 prefix
 ```
 
-### RBAC for Secrets
-
-```yaml
-# restrict-secret-access.yaml — RBAC to limit secret access to specific service accounts
-apiVersion: rbac.authorization.k8s.io/v1
-kind: Role
-metadata:
-  name: payments-secret-reader
-  namespace: payments-api
-rules:
-  # Allow only reading named secrets, not listing all secrets
-  - apiGroups: [""]
-    resources: ["secrets"]
-    resourceNames:
-      - db-credentials       # Only this specific secret
-      - stripe-api-key       # Only this specific secret
-    verbs: ["get"]
-  # Explicitly do NOT grant 'list' — list returns all values in namespace
 ---
-apiVersion: rbac.authorization.k8s.io/v1
-kind: RoleBinding
-metadata:
-  name: payments-app-secret-access
-  namespace: payments-api
-subjects:
-  - kind: ServiceAccount
-    name: payments-api
-    namespace: payments-api
-roleRef:
-  kind: Role
-  name: payments-secret-reader
-  apiGroup: rbac.authorization.k8s.io
-```
 
-## Sealed Secrets
+## Section 3: Sealed Secrets
 
-### Architecture
+Sealed Secrets uses asymmetric cryptography to encrypt Kubernetes Secrets into `SealedSecret` objects that can be safely committed to Git. Only the Sealed Secrets controller in the cluster holds the private key needed to decrypt them.
 
-Bitnami Sealed Secrets solves the GitOps problem: how can encrypted secret manifests be stored safely in a Git repository? The SealedSecret CRD contains asymmetrically encrypted values that only the in-cluster controller can decrypt. The public key is freely distributable; only the controller has the private key.
+### Install Sealed Secrets Controller
 
 ```bash
-# Install Sealed Secrets controller
 helm repo add sealed-secrets https://bitnami-labs.github.io/sealed-secrets
 helm repo update
 
-helm install sealed-secrets sealed-secrets/sealed-secrets \
+helm upgrade --install sealed-secrets sealed-secrets/sealed-secrets \
   --namespace kube-system \
-  --version 2.15.4 \
-  --set-string fullnameOverride=sealed-secrets-controller
-
-# Install kubeseal CLI
-curl -LO https://github.com/bitnami-labs/sealed-secrets/releases/download/v0.26.3/kubeseal-0.26.3-linux-amd64.tar.gz
-tar xf kubeseal-0.26.3-linux-amd64.tar.gz
-install kubeseal /usr/local/bin/kubeseal
+  --version 2.15.3 \
+  --set fullnameOverride=sealed-secrets-controller \
+  --set resources.requests.cpu=50m \
+  --set resources.requests.memory=64Mi \
+  --set resources.limits.cpu=200m \
+  --set resources.limits.memory=128Mi \
+  --wait
 ```
 
-### Creating Sealed Secrets
+### Install kubeseal CLI
 
 ```bash
-# Method 1: Seal an existing Secret manifest
+KUBESEAL_VERSION="0.27.0"
+curl -Lo kubeseal.tar.gz \
+  "https://github.com/bitnami-labs/sealed-secrets/releases/download/v${KUBESEAL_VERSION}/kubeseal-${KUBESEAL_VERSION}-linux-amd64.tar.gz"
+tar xzf kubeseal.tar.gz
+sudo install -m 755 kubeseal /usr/local/bin/
+kubeseal --version
+```
+
+### Creating a SealedSecret
+
+```bash
+# Method 1: Seal from a raw Secret manifest
 kubectl create secret generic db-credentials \
-  --from-literal=username=payments_app \
-  --from-literal=password=SomeDatabasePassword123 \
-  --namespace payments-api \
-  --dry-run=client -o yaml | \
+  --namespace production \
+  --from-literal=username=appuser \
+  --from-literal=password=EXAMPLE_TOKEN_REPLACE_ME \
+  --dry-run=client \
+  -o yaml | \
   kubeseal \
-    --controller-name=sealed-secrets-controller \
-    --controller-namespace=kube-system \
+    --controller-namespace kube-system \
+    --controller-name sealed-secrets-controller \
     --format yaml > sealed-db-credentials.yaml
 
-# Method 2: Fetch the certificate and seal offline (useful in CI without cluster access)
-kubeseal --fetch-cert \
-  --controller-name=sealed-secrets-controller \
-  --controller-namespace=kube-system \
-  > sealed-secrets-public-cert.pem
-
-kubectl create secret generic db-credentials \
-  --from-literal=username=payments_app \
-  --from-literal=password=SomeDatabasePassword123 \
-  --namespace payments-api \
-  --dry-run=client -o yaml | \
-  kubeseal --cert sealed-secrets-public-cert.pem \
-    --format yaml > sealed-db-credentials.yaml
+cat sealed-db-credentials.yaml
 ```
 
 ```yaml
-# sealed-db-credentials.yaml — Safe to commit to Git
+# sealed-db-credentials.yaml — safe to commit to Git
 apiVersion: bitnami.com/v1alpha1
 kind: SealedSecret
 metadata:
   name: db-credentials
-  namespace: payments-api
+  namespace: production
 spec:
   encryptedData:
-    # These values are asymmetrically encrypted with the controller's public key
-    # They cannot be decrypted without the controller's private key
-    password: AgBy8hCHBZb...truncated...XzY=
-    username: AgAUxM3K...truncated...pQ==
+    # These are encrypted ciphertexts — safe to store in Git
+    username: AgBvJxKP8... (long base64-encoded ciphertext)
+    password: AgCdKjLm9... (long base64-encoded ciphertext)
   template:
     metadata:
       name: db-credentials
-      namespace: payments-api
+      namespace: production
     type: Opaque
 ```
 
-### Controller Key Rotation
-
 ```bash
-# Sealed Secrets key rotation — generate a new key pair
-kubectl rollout restart deployment sealed-secrets-controller -n kube-system
-# The controller generates a new key pair on every restart (configurable with --key-renew-period)
+# Apply the SealedSecret — controller decrypts and creates the Secret
+kubectl apply -f sealed-db-credentials.yaml
 
-# List all sealing keys
-kubectl get secret -n kube-system \
-  -l sealedsecrets.bitnami.com/sealed-secrets-key=active
-
-# After key rotation, existing SealedSecrets continue to work (old keys are retained)
-# New SealedSecrets will be encrypted with the new key
-# Re-seal existing secrets when the old key reaches its retirement date:
-kubeseal --re-encrypt < sealed-db-credentials.yaml > sealed-db-credentials-new.yaml
+# Verify the resulting Secret was created
+kubectl get secret db-credentials -n production
+kubectl get sealedsecret db-credentials -n production
 ```
 
-## External Secrets Operator
+### Namespace and Cluster Scopes
 
-### Architecture Overview
-
-External Secrets Operator (ESO) synchronizes secrets from external stores (Vault, AWS Secrets Manager, GCP Secret Manager, Azure Key Vault) into Kubernetes Secrets. The key architectural advantage over Sealed Secrets is that the secret value never lives in Git at all — only a reference to the external secret name.
-
-Core CRDs:
-- `SecretStore` — namespace-scoped store configuration (how to authenticate to the external provider)
-- `ClusterSecretStore` — cluster-scoped store (one store for all namespaces)
-- `ExternalSecret` — defines which external secrets to sync and how to map them to a Kubernetes Secret
+By default, SealedSecrets are scoped to a specific namespace, preventing cross-namespace decryption attacks.
 
 ```bash
-# Install External Secrets Operator
+# Strict scope (default): bound to both name and namespace
+kubeseal --scope strict ...
+
+# Namespace-wide scope: bound to namespace only, any name
+kubeseal --scope namespace-wide ...
+
+# Cluster-wide scope: can be decrypted in any namespace
+kubeseal --scope cluster-wide ...
+```
+
+### Key Rotation
+
+```bash
+# Generate a new sealing key manually (optional — controller auto-rotates every 30 days)
+kubectl annotate secret \
+  -n kube-system \
+  sealed-secrets-key \
+  sealedsecrets.bitnami.com/rotate-now=""
+
+# Backup the sealing key for disaster recovery
+kubectl get secret \
+  -n kube-system \
+  -l sealedsecrets.bitnami.com/sealed-secrets-key=active \
+  -o yaml > sealing-key-backup.yaml
+
+# IMPORTANT: Store this backup securely — it decrypts all SealedSecrets
+```
+
+### Automated CI/CD Workflow
+
+```yaml
+# .github/workflows/seal-secrets.yaml
+name: Seal and Apply Secrets
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Target environment"
+        required: true
+        type: choice
+        options: [development, staging, production]
+
+jobs:
+  seal-secrets:
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install kubeseal
+        run: |
+          curl -Lo kubeseal.tar.gz \
+            "https://github.com/bitnami-labs/sealed-secrets/releases/download/v0.27.0/kubeseal-0.27.0-linux-amd64.tar.gz"
+          tar xzf kubeseal.tar.gz
+          sudo install -m 755 kubeseal /usr/local/bin/
+
+      - name: Seal secrets from environment variables
+        env:
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          API_KEY: ${{ secrets.API_KEY }}
+        run: |
+          kubectl create secret generic app-secrets \
+            --namespace=${{ inputs.environment }} \
+            --from-literal=db_password="${DB_PASSWORD}" \
+            --from-literal=api_key="${API_KEY}" \
+            --dry-run=client \
+            -o yaml | \
+            kubeseal \
+              --cert ./sealing-certs/${{ inputs.environment }}-cert.pem \
+              --format yaml > sealed-app-secrets.yaml
+
+      - name: Apply SealedSecret
+        run: kubectl apply -f sealed-app-secrets.yaml
+```
+
+---
+
+## Section 4: External Secrets Operator (ESO)
+
+External Secrets Operator watches `ExternalSecret` and `ClusterExternalSecret` custom resources and synchronizes secrets from external providers (AWS Secrets Manager, Vault, GCP Secret Manager, Azure Key Vault, and others) into Kubernetes Secrets on a configurable interval.
+
+### Install ESO
+
+```bash
 helm repo add external-secrets https://charts.external-secrets.io
 helm repo update
 
-helm install external-secrets external-secrets/external-secrets \
+helm upgrade --install external-secrets external-secrets/external-secrets \
   --namespace external-secrets \
   --create-namespace \
-  --version 0.10.3 \
+  --version 0.10.5 \
   --set installCRDs=true \
-  --set replicaCount=2
+  --set resources.requests.cpu=50m \
+  --set resources.requests.memory=128Mi \
+  --set resources.limits.cpu=500m \
+  --set resources.limits.memory=256Mi \
+  --wait
 ```
 
-### HashiCorp Vault Provider
+### ESO with AWS Secrets Manager (IRSA)
 
-#### Kubernetes Auth Method (Recommended)
-
-```yaml
-# vault-cluster-secret-store.yaml — Cluster-wide store using Kubernetes auth
-apiVersion: external-secrets.io/v1beta1
-kind: ClusterSecretStore
-metadata:
-  name: vault-cluster-store
-spec:
-  provider:
-    vault:
-      server: https://vault.internal.support.tools:8200
-      path: secret          # KV v2 mount path
-      version: v2
-      auth:
-        kubernetes:
-          mountPath: kubernetes
-          role: external-secrets-operator  # Vault role bound to the ESO service account
-          serviceAccountRef:
-            name: external-secrets
-            namespace: external-secrets
-      caBundle: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0t...  # Vault CA cert (base64)
-```
+#### Create IAM Policy and Role
 
 ```bash
-# Configure Vault to accept Kubernetes auth
-vault auth enable kubernetes
-
-vault write auth/kubernetes/config \
-  kubernetes_host="https://kubernetes.default.svc.cluster.local:443" \
-  kubernetes_ca_cert=@/var/run/secrets/kubernetes.io/serviceaccount/ca.crt \
-  token_reviewer_jwt=@/var/run/secrets/kubernetes.io/serviceaccount/token
-
-# Create Vault policy allowing ESO to read secrets
-vault policy write external-secrets-reader - <<'EOF'
-path "secret/data/payments/*" {
-  capabilities = ["read"]
-}
-path "secret/metadata/payments/*" {
-  capabilities = ["list", "read"]
+# Create IAM policy for Secrets Manager access
+cat > secrets-manager-policy.json << 'EOF'
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "secretsmanager:GetSecretValue",
+        "secretsmanager:DescribeSecret",
+        "secretsmanager:ListSecrets"
+      ],
+      "Resource": "arn:aws:secretsmanager:us-east-1:123456789012:secret:production/*"
+    }
+  ]
 }
 EOF
 
-# Create Kubernetes auth role binding the ESO service account to the policy
-vault write auth/kubernetes/role/external-secrets-operator \
-  bound_service_account_names=external-secrets \
-  bound_service_account_namespaces=external-secrets \
-  policies=external-secrets-reader \
-  ttl=1h
+aws iam create-policy \
+  --policy-name ESOSecretsManagerPolicy \
+  --policy-document file://secrets-manager-policy.json
+
+# Create IAM role with OIDC trust for the ESO service account
+eksctl create iamserviceaccount \
+  --cluster my-cluster \
+  --namespace external-secrets \
+  --name external-secrets \
+  --attach-policy-arn arn:aws:iam::123456789012:policy/ESOSecretsManagerPolicy \
+  --approve \
+  --override-existing-serviceaccounts
 ```
 
-#### ExternalSecret Syncing from Vault
+#### ClusterSecretStore for AWS
 
 ```yaml
-# payments-external-secret.yaml
-apiVersion: external-secrets.io/v1beta1
-kind: ExternalSecret
-metadata:
-  name: db-credentials
-  namespace: payments-api
-spec:
-  refreshInterval: 1h    # Re-sync from Vault every hour
-  secretStoreRef:
-    name: vault-cluster-store
-    kind: ClusterSecretStore
-  target:
-    name: db-credentials  # Name of the Kubernetes Secret to create/update
-    creationPolicy: Owner # ESO owns the Secret lifecycle
-    deletionPolicy: Retain
-    template:
-      type: Opaque
-      metadata:
-        annotations:
-          managed-by: external-secrets-operator
-  data:
-    # Map Vault secret key to Kubernetes Secret key
-    - secretKey: username          # Key in resulting Kubernetes Secret
-      remoteRef:
-        key: payments/db-credentials  # Path in Vault KV v2
-        property: username             # Field within the Vault secret
-    - secretKey: password
-      remoteRef:
-        key: payments/db-credentials
-        property: password
-    - secretKey: host
-      remoteRef:
-        key: payments/db-credentials
-        property: host
-```
-
-```bash
-# Check ExternalSecret sync status
-kubectl get externalsecret db-credentials -n payments-api
-# NAME              STORE                REFRESH INTERVAL   STATUS   READY
-# db-credentials    vault-cluster-store  1h                 SecretSynced  True
-
-# Describe for detailed status
-kubectl describe externalsecret db-credentials -n payments-api
-```
-
-### AWS Secrets Manager and Parameter Store Provider
-
-```yaml
-# aws-cluster-secret-store.yaml — IRSA-based authentication to AWS
+# cluster-secret-store-aws.yaml
 apiVersion: external-secrets.io/v1beta1
 kind: ClusterSecretStore
 metadata:
-  name: aws-secrets-store
+  name: aws-secrets-manager
 spec:
   provider:
     aws:
-      service: SecretsManager    # or ParameterStore
+      service: SecretsManager
       region: us-east-1
+      # Use IRSA — no static credentials required
       auth:
         jwt:
           serviceAccountRef:
             name: external-secrets
             namespace: external-secrets
-            # Service account annotated with:
-            # eks.amazonaws.com/role-arn: arn:aws:iam::123456789012:role/ExternalSecretsRole
 ```
 
+#### ExternalSecret Syncing from AWS
+
 ```yaml
-# aws-external-secret.yaml — Sync from AWS Secrets Manager
+# external-secret-db.yaml
 apiVersion: external-secrets.io/v1beta1
 kind: ExternalSecret
 metadata:
-  name: payment-processor-credentials
-  namespace: payments-api
+  name: db-credentials
+  namespace: production
 spec:
-  refreshInterval: 30m
-  secretStoreRef:
-    name: aws-secrets-store
-    kind: ClusterSecretStore
-  target:
-    name: payment-processor-credentials
-    creationPolicy: Owner
-  # Sync all keys from an AWS Secrets Manager secret as individual K8s Secret keys
-  dataFrom:
-    - extract:
-        key: /payments/production/stripe-credentials  # AWS secret name/path
-```
+  # Sync every 1 hour
+  refreshInterval: 1h
 
-```yaml
-# aws-parameter-store-secret.yaml — Sync from AWS Systems Manager Parameter Store
-apiVersion: external-secrets.io/v1beta1
-kind: ExternalSecret
-metadata:
-  name: app-config-secrets
-  namespace: payments-api
-spec:
-  refreshInterval: 15m
   secretStoreRef:
-    name: aws-parameter-store
+    name: aws-secrets-manager
     kind: ClusterSecretStore
+
   target:
-    name: app-config-secrets
-    creationPolicy: Owner
+    name: db-credentials       # Name of the resulting Kubernetes Secret
+    creationPolicy: Owner      # ESO owns the secret — deletes it when ExternalSecret is deleted
+    template:
+      type: Opaque
+      metadata:
+        labels:
+          managed-by: external-secrets
+      data:
+        # Construct the secret fields from template
+        DATABASE_URL: "postgres://{{ .username }}:{{ .password }}@{{ .host }}:5432/{{ .database }}"
+        REDIS_URL: "redis://:{{ .redis_password }}@{{ .redis_host }}:6379"
+
   data:
-    - secretKey: database_url
+    - secretKey: username
       remoteRef:
-        key: /production/payments-api/database_url  # SSM parameter path
-    - secretKey: redis_url
+        key: "production/database"
+        property: username
+    - secretKey: password
       remoteRef:
-        key: /production/payments-api/redis_url
+        key: "production/database"
+        property: password
+    - secretKey: host
+      remoteRef:
+        key: "production/database"
+        property: host
+    - secretKey: database
+      remoteRef:
+        key: "production/database"
+        property: database_name
+    - secretKey: redis_password
+      remoteRef:
+        key: "production/redis"
+        property: password
+    - secretKey: redis_host
+      remoteRef:
+        key: "production/redis"
+        property: host
 ```
 
-### GCP Secret Manager Provider
+```bash
+# Apply and monitor sync status
+kubectl apply -f external-secret-db.yaml
+
+# Check sync status
+kubectl get externalsecret db-credentials -n production
+# READY=True means the Secret was created successfully
+
+# Describe for detailed status including last sync time
+kubectl describe externalsecret db-credentials -n production
+```
+
+### ESO with HashiCorp Vault
 
 ```yaml
-# gcp-cluster-secret-store.yaml — Workload Identity-based authentication
+# cluster-secret-store-vault.yaml
 apiVersion: external-secrets.io/v1beta1
 kind: ClusterSecretStore
 metadata:
-  name: gcp-secrets-store
+  name: vault-backend
 spec:
   provider:
-    gcpsm:
-      projectID: payments-production-123456
+    vault:
+      server: "https://vault.company.internal:8200"
+      path: "secret"
+      version: "v2"
+      # Kubernetes authentication method
       auth:
-        workloadIdentity:
-          clusterLocation: us-central1
-          clusterName: payments-prod-cluster
-          clusterProjectID: payments-infrastructure-789012
+        kubernetes:
+          mountPath: "kubernetes"
+          role: "external-secrets"
           serviceAccountRef:
             name: external-secrets
             namespace: external-secrets
-            # K8s SA must be bound to a GCP SA via Workload Identity:
-            # gcloud iam service-accounts add-iam-policy-binding \
-            #   eso-reader@payments-production-123456.iam.gserviceaccount.com \
-            #   --role roles/iam.workloadIdentityUser \
-            #   --member "serviceAccount:payments-infrastructure-789012.svc.id.goog[external-secrets/external-secrets]"
 ```
 
 ```yaml
-# gcp-external-secret.yaml
+# external-secret-vault.yaml
 apiVersion: external-secrets.io/v1beta1
 kind: ExternalSecret
 metadata:
-  name: gcp-db-password
-  namespace: payments-api
+  name: app-secrets
+  namespace: production
 spec:
-  refreshInterval: 1h
+  refreshInterval: 30m
   secretStoreRef:
-    name: gcp-secrets-store
+    name: vault-backend
     kind: ClusterSecretStore
   target:
-    name: gcp-db-password
+    name: app-secrets
+    creationPolicy: Owner
+  dataFrom:
+    # Pull all key-value pairs from a Vault path
+    - extract:
+        key: "production/app"
+        version: "WORKAROUND_LATEST"
+```
+
+### ESO with GCP Secret Manager (Workload Identity)
+
+```yaml
+# cluster-secret-store-gcp.yaml
+apiVersion: external-secrets.io/v1beta1
+kind: ClusterSecretStore
+metadata:
+  name: gcp-secret-manager
+spec:
+  provider:
+    gcpsm:
+      projectID: "my-gcp-project"
+      auth:
+        workloadIdentity:
+          clusterLocation: us-central1
+          clusterName: my-gke-cluster
+          serviceAccountRef:
+            name: external-secrets
+            namespace: external-secrets
+```
+
+### ClusterExternalSecret for Multi-Namespace Distribution
+
+```yaml
+# cluster-external-secret-tls.yaml
+apiVersion: external-secrets.io/v1beta1
+kind: ClusterExternalSecret
+metadata:
+  name: wildcard-tls-cert
+spec:
+  # Deploy ExternalSecrets to all namespaces with this label
+  namespaceSelector:
+    matchLabels:
+      inject-tls: "true"
+  refreshTime: 1h
+  externalSecretSpec:
+    refreshInterval: 1h
+    secretStoreRef:
+      name: aws-secrets-manager
+      kind: ClusterSecretStore
+    target:
+      name: wildcard-tls
+      creationPolicy: Owner
+      template:
+        type: kubernetes.io/tls
+    data:
+      - secretKey: tls.crt
+        remoteRef:
+          key: "production/wildcard-cert"
+          property: certificate
+      - secretKey: tls.key
+        remoteRef:
+          key: "production/wildcard-cert"
+          property: private_key
+```
+
+---
+
+## Section 5: HashiCorp Vault Agent Injector
+
+The Vault Agent Injector uses a mutating admission webhook to automatically inject Vault Agent sidecar containers into pods, which authenticate to Vault and render secrets to a shared memory filesystem. Applications read secrets as files without any code changes.
+
+### Install Vault (Production HA Mode)
+
+```yaml
+# vault-values.yaml
+injector:
+  enabled: true
+  replicas: 2
+  resources:
+    requests:
+      cpu: 50m
+      memory: 64Mi
+    limits:
+      cpu: 250m
+      memory: 128Mi
+
+server:
+  ha:
+    enabled: true
+    replicas: 3
+    raft:
+      enabled: true
+      setNodeId: true
+      config: |
+        ui = true
+        cluster_name = "vault-production"
+
+        storage "raft" {
+          path = "/vault/data"
+          retry_join {
+            leader_api_addr = "https://vault-0.vault-internal:8200"
+          }
+          retry_join {
+            leader_api_addr = "https://vault-1.vault-internal:8200"
+          }
+          retry_join {
+            leader_api_addr = "https://vault-2.vault-internal:8200"
+          }
+        }
+
+        listener "tcp" {
+          tls_disable = 0
+          address = "[::]:8200"
+          cluster_address = "[::]:8201"
+          tls_cert_file = "/vault/userconfig/vault-tls/tls.crt"
+          tls_key_file  = "/vault/userconfig/vault-tls/tls.key"
+        }
+
+        seal "awskms" {
+          region     = "us-east-1"
+          kms_key_id = "alias/vault-unseal"
+        }
+
+  resources:
+    requests:
+      cpu: 250m
+      memory: 256Mi
+    limits:
+      cpu: 1
+      memory: 512Mi
+
+  dataStorage:
+    enabled: true
+    size: 10Gi
+    storageClass: premium-rwo
+```
+
+```bash
+helm repo add hashicorp https://helm.releases.hashicorp.com
+helm repo update
+
+helm upgrade --install vault hashicorp/vault \
+  --namespace vault \
+  --create-namespace \
+  --version 0.28.1 \
+  --values vault-values.yaml \
+  --wait
+```
+
+### Configure Vault Kubernetes Auth
+
+```bash
+# Exec into a Vault pod
+kubectl exec -it vault-0 -n vault -- vault operator init \
+  -key-shares=5 \
+  -key-threshold=3 \
+  -format=json > vault-init.json
+
+# Unseal (with AWS KMS auto-unseal, this is not needed)
+# Store init output securely — contains root token and unseal keys
+
+# Enable Kubernetes auth method
+kubectl exec -it vault-0 -n vault -- vault auth enable kubernetes
+
+kubectl exec -it vault-0 -n vault -- vault write auth/kubernetes/config \
+  kubernetes_host="https://kubernetes.default.svc:443"
+
+# Create a policy for the application
+kubectl exec -it vault-0 -n vault -- vault policy write app-production - << 'EOF'
+path "secret/data/production/*" {
+  capabilities = ["read"]
+}
+path "database/creds/app-role" {
+  capabilities = ["read"]
+}
+EOF
+
+# Create a role binding the policy to a Kubernetes service account
+kubectl exec -it vault-0 -n vault -- vault write \
+  auth/kubernetes/role/app-production \
+  bound_service_account_names=app \
+  bound_service_account_namespaces=production \
+  policies=app-production \
+  ttl=1h
+```
+
+### Vault Agent Injector Annotations
+
+```yaml
+# deployment-with-vault-injection.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app
+  namespace: production
+spec:
+  template:
+    metadata:
+      annotations:
+        # Enable Vault Agent injection
+        vault.hashicorp.com/agent-inject: "true"
+        vault.hashicorp.com/role: "app-production"
+        vault.hashicorp.com/agent-inject-status: "update"
+
+        # Inject secret as a file at /vault/secrets/db-credentials
+        vault.hashicorp.com/agent-inject-secret-db-credentials: "secret/data/production/database"
+        vault.hashicorp.com/agent-inject-template-db-credentials: |
+          {{- with secret "secret/data/production/database" -}}
+          export DB_HOST="{{ .Data.data.host }}"
+          export DB_USER="{{ .Data.data.username }}"
+          export DB_PASS="{{ .Data.data.password }}"
+          export DB_NAME="{{ .Data.data.database }}"
+          {{- end -}}
+
+        # Dynamic database credentials
+        vault.hashicorp.com/agent-inject-secret-db-creds: "database/creds/app-role"
+        vault.hashicorp.com/agent-inject-template-db-creds: |
+          {{- with secret "database/creds/app-role" -}}
+          {{ .Data.username }}:{{ .Data.password }}
+          {{- end -}}
+
+        # Resource limits for injected Vault Agent
+        vault.hashicorp.com/agent-limits-cpu: "100m"
+        vault.hashicorp.com/agent-limits-mem: "128Mi"
+        vault.hashicorp.com/agent-requests-cpu: "50m"
+        vault.hashicorp.com/agent-requests-mem: "64Mi"
+
+        # Pre-populate secrets before the application starts
+        vault.hashicorp.com/agent-init-first: "true"
+
+    spec:
+      serviceAccountName: app
+      containers:
+        - name: app
+          image: registry.company.internal/app:1.5.0
+          command: ["/bin/sh", "-c"]
+          args:
+            - |
+              source /vault/secrets/db-credentials
+              exec /app/server
+          volumeMounts:
+            - name: vault-secrets
+              mountPath: /vault/secrets
+              readOnly: true
+```
+
+---
+
+## Section 6: Secrets Store CSI Driver
+
+The Secrets Store CSI Driver mounts secrets, keys, and certificates stored in external secret stores directly as Kubernetes volumes. The secrets are never stored in the Kubernetes Secret API object (unless configured with `syncAsKubernetesSecret`).
+
+### Install the CSI Driver
+
+```bash
+helm repo add secrets-store-csi-driver https://kubernetes-sigs.github.io/secrets-store-csi-driver/charts
+helm repo update
+
+helm upgrade --install csi-secrets-store \
+  secrets-store-csi-driver/secrets-store-csi-driver \
+  --namespace kube-system \
+  --version 1.4.5 \
+  --set syncSecret.enabled=true \
+  --set enableSecretRotation=true \
+  --set rotationPollInterval=2m \
+  --wait
+
+# Install the AWS provider
+kubectl apply -f https://raw.githubusercontent.com/aws/secrets-store-csi-driver-provider-aws/main/deployment/aws-provider-installer.yaml
+```
+
+### SecretProviderClass for AWS Secrets Manager
+
+```yaml
+# secret-provider-class-aws.yaml
+apiVersion: secrets-store.csi.x-k8s.io/v1
+kind: SecretProviderClass
+metadata:
+  name: app-secrets-aws
+  namespace: production
+spec:
+  provider: aws
+  parameters:
+    objects: |
+      - objectName: "production/database"
+        objectType: "secretsmanager"
+        objectAlias: "database"
+        jmesPath:
+          - path: "username"
+            objectAlias: "db_username"
+          - path: "password"
+            objectAlias: "db_password"
+          - path: "host"
+            objectAlias: "db_host"
+      - objectName: "production/api-key"
+        objectType: "secretsmanager"
+        objectAlias: "api_key"
+  # Optionally sync as a Kubernetes Secret as well
+  secretObjects:
+    - secretName: app-secrets-synced
+      type: Opaque
+      data:
+        - objectName: "db_username"
+          key: username
+        - objectName: "db_password"
+          key: password
+        - objectName: "api_key"
+          key: api_key
+```
+
+```yaml
+# Pod using CSI volume for secrets
+apiVersion: v1
+kind: Pod
+metadata:
+  name: app
+  namespace: production
+spec:
+  serviceAccountName: app-sa   # Must have IRSA annotations for AWS provider
+  containers:
+    - name: app
+      image: registry.company.internal/app:1.5.0
+      volumeMounts:
+        - name: secrets-store-vol
+          mountPath: "/mnt/secrets"
+          readOnly: true
+      # Env vars from synced Kubernetes Secret (optional)
+      envFrom:
+        - secretRef:
+            name: app-secrets-synced
+  volumes:
+    - name: secrets-store-vol
+      csi:
+        driver: secrets-store.csi.k8s.io
+        readOnly: true
+        volumeAttributes:
+          secretProviderClass: "app-secrets-aws"
+```
+
+### SecretProviderClass for Vault
+
+```yaml
+# secret-provider-class-vault.yaml
+apiVersion: secrets-store.csi.x-k8s.io/v1
+kind: SecretProviderClass
+metadata:
+  name: vault-secrets
+  namespace: production
+spec:
+  provider: vault
+  parameters:
+    vaultAddress: "https://vault.company.internal:8200"
+    roleName: "app-production"
+    objects: |
+      - objectName: "db-username"
+        secretPath: "secret/data/production/database"
+        secretKey: "username"
+      - objectName: "db-password"
+        secretPath: "secret/data/production/database"
+        secretKey: "password"
+      - objectName: "tls.crt"
+        secretPath: "pki/issue/app-role"
+        secretKey: "certificate"
+      - objectName: "tls.key"
+        secretPath: "pki/issue/app-role"
+        secretKey: "private_key"
+```
+
+---
+
+## Section 7: Secret Rotation
+
+### ESO Automatic Rotation
+
+ESO polls the external provider on the `refreshInterval` schedule. When the upstream secret changes, ESO updates the Kubernetes Secret automatically.
+
+```yaml
+# Configure short refresh interval for frequently-rotated secrets
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: rotating-db-credentials
+  namespace: production
+spec:
+  # Poll every 5 minutes for fast rotation detection
+  refreshInterval: 5m
+  secretStoreRef:
+    name: aws-secrets-manager
+    kind: ClusterSecretStore
+  target:
+    name: db-credentials
     creationPolicy: Owner
   data:
     - secretKey: password
       remoteRef:
-        key: payments-db-password       # GCP Secret Manager secret name
-        version: latest                  # or a specific version number
+        key: "production/database"
+        property: password
 ```
 
-## Secrets Store CSI Driver
+### Triggering Application Reload on Secret Rotation
 
-### CSI Driver vs External Secrets Operator
-
-| Feature | ESO | CSI Driver |
-|---|---|---|
-| Secret storage | Creates Kubernetes Secrets | Mounts volume directly into pod (optional K8s Secret sync) |
-| Access method | Environment variable or volume from K8s Secret | Volume mount (primary), K8s Secret (optional) |
-| Rotation triggering | Automatic refresh creates new K8s Secret version | Requires pod restart or `SecretProviderClass` rotation |
-| GitOps integration | ExternalSecret CRD in Git | SecretProviderClass CRD in Git |
-| Provider support | Broader (many community providers) | AWS, Azure, GCP, Vault |
-| etcd risk | Secret lands in etcd | Volume-only mode avoids etcd |
-
-The CSI Driver's primary advantage is the volume-only mode that bypasses etcd entirely. The pod reads secrets from a mounted volume backed by the external provider.
+The `stakater/Reloader` controller watches ConfigMaps and Secrets and triggers rolling restarts when they change.
 
 ```bash
-# Install Secrets Store CSI Driver
-helm repo add secrets-store-csi-driver https://kubernetes-sigs.github.io/secrets-store-csi-driver/charts
-helm repo update
-
-helm install csi-secrets-store secrets-store-csi-driver/secrets-store-csi-driver \
-  --namespace kube-system \
-  --version 1.4.4 \
-  --set syncSecret.enabled=true \   # Enable K8s Secret sync (optional)
-  --set enableSecretRotation=true \ # Enable rotation polling
-  --set rotationPollInterval=2m
-
-# Install Vault provider for CSI Driver
-helm install vault-csi-provider hashicorp/vault-csi-provider \
-  --namespace kube-system \
-  --version 0.5.0
-```
-
-```yaml
-# vault-secret-provider-class.yaml — CSI Driver SecretProviderClass for Vault
-apiVersion: secrets-store.csi.x-k8s.io/v1
-kind: SecretProviderClass
-metadata:
-  name: vault-db-credentials
-  namespace: payments-api
-spec:
-  provider: vault
-  parameters:
-    vaultAddress: https://vault.internal.support.tools:8200
-    roleName: payments-api                    # Vault Kubernetes auth role
-    objects: |
-      - objectName: db-username
-        secretPath: secret/data/payments/db-credentials
-        secretKey: username
-      - objectName: db-password
-        secretPath: secret/data/payments/db-credentials
-        secretKey: password
-  # Optional: sync to a Kubernetes Secret as well
-  secretObjects:
-    - secretName: vault-synced-db-credentials
-      type: Opaque
-      data:
-        - objectName: db-username
-          key: username
-        - objectName: db-password
-          key: password
-```
-
-```yaml
-# pod-with-csi-secret-mount.yaml — Pod using CSI Driver for secret access
-apiVersion: v1
-kind: Pod
-metadata:
-  name: payments-api-pod
-  namespace: payments-api
-spec:
-  serviceAccountName: payments-api
-  containers:
-  - name: payments-api
-    image: registry.support.tools/payments/api-server:2.4.1
-    volumeMounts:
-    - name: vault-secrets
-      mountPath: /mnt/secrets
-      readOnly: true
-    # Files available:
-    # /mnt/secrets/db-username
-    # /mnt/secrets/db-password
-  volumes:
-  - name: vault-secrets
-    csi:
-      driver: secrets-store.csi.k8s.io
-      readOnly: true
-      volumeAttributes:
-        secretProviderClass: vault-db-credentials
-```
-
-## Secret Rotation Handling
-
-### Automatic Pod Restart with Reloader
-
-When ESO updates a Kubernetes Secret (due to a refreshInterval trigger or a manual push), pods using that secret via environment variables do not automatically pick up the new value. The Reloader controller watches for Secret changes and triggers rolling restarts.
-
-```bash
-# Install Reloader
 helm repo add stakater https://stakater.github.io/stakater-charts
 helm repo update
 
-helm install reloader stakater/reloader \
-  --namespace reloader \
-  --create-namespace \
-  --version 1.0.100 \
-  --set reloader.watchGlobally=false  # Only watch annotated deployments
+helm upgrade --install reloader stakater/reloader \
+  --namespace kube-system \
+  --version 1.0.119 \
+  --set reloader.watchGlobally=false \
+  --wait
 ```
 
 ```yaml
-# deployment-with-reloader.yaml — Deployment that auto-restarts on secret change
+# Add annotation to trigger rolling restart on secret change
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: payments-api
-  namespace: payments-api
+  name: app
+  namespace: production
   annotations:
-    # Trigger rolling restart when any of these secrets change
-    secret.reloader.stakater.com/reload: "db-credentials,stripe-api-key"
-    # Or watch all secrets used by this deployment
-    # reloader.stakater.com/auto: "true"
-spec:
-  replicas: 3
-  selector:
-    matchLabels:
-      app: payments-api
-  template:
-    metadata:
-      labels:
-        app: payments-api
-    spec:
-      containers:
-      - name: payments-api
-        image: registry.support.tools/payments/api-server:2.4.1
-        envFrom:
-        - secretRef:
-            name: db-credentials
+    # Trigger rolling restart when this secret changes
+    reloader.stakater.com/auto: "true"
+    # Or target specific secrets
+    secret.reloader.stakater.com/reload: "db-credentials,api-keys"
 ```
 
-### Vault Secret Rotation Workflow
+### Vault Dynamic Secrets for Databases
+
+Vault's database secrets engine generates short-lived, unique credentials per request, eliminating long-lived database passwords entirely.
 
 ```bash
-#!/bin/bash
-# rotate-vault-secret.sh — Rotate a secret in Vault and trigger ESO re-sync
-# Usage: ./rotate-vault-secret.sh payments/db-credentials db-credentials payments-api
-set -euo pipefail
+# Enable the database secrets engine
+vault secrets enable database
 
-VAULT_PATH="${1:?Vault path required}"
-K8S_SECRET="${2:?Kubernetes Secret name required}"
-K8S_NAMESPACE="${3:?Namespace required}"
+# Configure connection to PostgreSQL
+vault write database/config/app-postgres \
+  plugin_name=postgresql-database-plugin \
+  allowed_roles="app-role" \
+  connection_url="postgresql://{{username}}:{{password}}@postgres.production.svc:5432/appdb?sslmode=require" \
+  username="vault-root" \
+  password="EXAMPLE_TOKEN_REPLACE_ME"
 
-# Step 1: Write new secret value to Vault
-echo "Updating secret in Vault at ${VAULT_PATH}..."
-vault kv put "${VAULT_PATH}" \
-  username=payments_app \
-  password="$(openssl rand -base64 32)" \
-  host=db-primary.payments-api.svc.cluster.local \
-  port=5432
+# Create a role that generates credentials
+vault write database/roles/app-role \
+  db_name=app-postgres \
+  creation_statements="CREATE ROLE \"{{name}}\" WITH LOGIN PASSWORD '{{password}}' VALID UNTIL '{{expiration}}';
+                       GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA public TO \"{{name}}\";" \
+  default_ttl="1h" \
+  max_ttl="24h"
 
-# Step 2: Force ESO to re-sync immediately (bypass refreshInterval)
-echo "Forcing ExternalSecret re-sync..."
-kubectl annotate externalsecret "${K8S_SECRET}" \
-  -n "${K8S_NAMESPACE}" \
-  force-sync="$(date +%s)" \
-  --overwrite
-
-# Step 3: Wait for sync to complete
-echo "Waiting for sync..."
-kubectl wait externalsecret "${K8S_SECRET}" \
-  -n "${K8S_NAMESPACE}" \
-  --for=condition=Ready \
-  --timeout=60s
-
-# Step 4: Verify the K8s Secret was updated
-NEW_HASH=$(kubectl get secret "${K8S_SECRET}" \
-  -n "${K8S_NAMESPACE}" \
-  -o jsonpath='{.data.password}' | md5sum)
-echo "Secret updated. New hash: ${NEW_HASH}"
-
-echo "Reloader will trigger rolling restart automatically."
+# Test dynamic credential generation
+vault read database/creds/app-role
+# Output:
+# Key                Value
+# ---                -----
+# lease_id           database/creds/app-role/abc123...
+# lease_duration     1h
+# password           A1B2-C3D4-...
+# username           v-kubernetes-app-role-abc123
 ```
 
-## Secret Scanning in CI
+---
 
-### gitleaks Configuration
+## Section 8: IRSA and Workload Identity
 
-```toml
-# .gitleaks.toml — Custom gitleaks configuration for the payments repository
-title = "Payments Platform Secret Scanner"
+### IRSA for AWS EKS
 
-[allowlist]
-  description = "Allowlist for known false positives"
-  regexes = [
-    # Allow example secrets that are clearly documentation values
-    "EXAMPLE_TOKEN_REPLACE_ME",
-    "YOUR_SECRET_HERE",
-    # Allow base64-encoded certificate data (not secrets)
-    "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0t"
+IRSA (IAM Roles for Service Accounts) allows Kubernetes pods to assume IAM roles without storing static AWS credentials.
+
+```bash
+# Get the OIDC provider ARN for the cluster
+aws eks describe-cluster --name my-cluster \
+  --query "cluster.identity.oidc.issuer" \
+  --output text
+
+# Create the OIDC provider if it doesn't exist
+eksctl utils associate-iam-oidc-provider \
+  --cluster my-cluster \
+  --approve
+
+# Create an IAM role with a trust policy scoped to a specific service account
+cat > trust-policy.json << 'TRUSTEOF'
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "Federated": "arn:aws:iam::123456789012:oidc-provider/oidc.eks.us-east-1.amazonaws.com/id/EXAMPLED539D4633E53DE1B71EXAMPLE"
+      },
+      "Action": "sts:AssumeRoleWithWebIdentity",
+      "Condition": {
+        "StringEquals": {
+          "oidc.eks.us-east-1.amazonaws.com/id/EXAMPLED539D4633E53DE1B71EXAMPLE:sub": "system:serviceaccount:production:app-sa",
+          "oidc.eks.us-east-1.amazonaws.com/id/EXAMPLED539D4633E53DE1B71EXAMPLE:aud": "sts.amazonaws.com"
+        }
+      }
+    }
   ]
-  paths = [
-    # Sealed Secret encrypted values are intentionally base64-encoded
-    '''.*sealed.*\.yaml''',
-    # Test fixtures may contain example values
-    '''test/fixtures/.*'''
-  ]
+}
+TRUSTEOF
 
-[[rules]]
-  description = "Vault AppRole Secret ID"
-  id = "vault-approle-secret-id"
-  regex = '''(?i)vault.*secret.*id.*[=:]\s*[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'''
-  tags = ["vault", "secret-id"]
-
-[[rules]]
-  description = "Kubernetes service account token (legacy format)"
-  id = "k8s-service-account-token"
-  regex = '''eyJhbGciOiJSUzI1NiIsImtpZCI6'''
-  tags = ["kubernetes", "service-account"]
+aws iam create-role \
+  --role-name app-production-role \
+  --assume-role-policy-document file://trust-policy.json
 ```
 
 ```yaml
-# .github/workflows/secret-scan.yaml — GitHub Actions workflow for secret scanning
-name: Secret Scanning
-on:
-  pull_request:
-  push:
-    branches: [main, release/*]
-
-jobs:
-  gitleaks:
-    name: Gitleaks Secret Scan
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0    # Full history for comprehensive scanning
-
-      - name: Run gitleaks
-        uses: gitleaks/gitleaks-action@v2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITLEAKS_CONFIG: .gitleaks.toml
-
-  trufflehog:
-    name: TruffleHog Deep Scan
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Run TruffleHog
-        uses: trufflesecurity/trufflehog@v3.67.4
-        with:
-          path: ./
-          base: ${{ github.event.repository.default_branch }}
-          head: HEAD
-          extra_args: --debug --only-verified
+# Service account with IRSA annotation
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: app-sa
+  namespace: production
+  annotations:
+    eks.amazonaws.com/role-arn: "arn:aws:iam::123456789012:role/app-production-role"
+    eks.amazonaws.com/token-expiration: "86400"
 ```
 
-## Comparison Table
-
-| Approach | GitOps safe | Rotation support | etcd exposure | Complexity | Best for |
-|---|---|---|---|---|---|
-| Native Secrets (unencrypted) | No (base64) | Manual | Full | Low | Dev/test only |
-| Native Secrets + etcd encryption | No (still base64 in repo) | Manual | Encrypted | Medium | Small clusters with strict repo access |
-| Sealed Secrets | Yes | Key rotation manual | Encrypted via K8s | Low-Medium | Teams wanting GitOps with minimal infrastructure |
-| External Secrets (Vault) | Yes (references only) | Automatic | Encrypted | Medium-High | Enterprises with existing Vault investment |
-| External Secrets (AWS SSM) | Yes | Automatic | Encrypted | Medium | AWS-native workloads using IRSA |
-| External Secrets (GCP SM) | Yes | Automatic | Encrypted | Medium | GCP-native workloads using Workload Identity |
-| CSI Secret Store (volume-only) | Yes | Requires pod restart | None | High | Highest security posture; etcd bypass required |
-
-## Operational Best Practices
-
-### RBAC Audit for Secret Access
+### GKE Workload Identity
 
 ```bash
-#!/bin/bash
-# audit-secret-rbac.sh — Find all principals with secret access in a namespace
-NAMESPACE="${1:?Namespace required}"
+# Enable Workload Identity on the GKE cluster
+gcloud container clusters update my-cluster \
+  --workload-pool=my-project.svc.id.goog
 
-echo "=== Principals with secret access in namespace: ${NAMESPACE} ==="
-
-echo ""
-echo "--- Roles granting secret access ---"
-kubectl get role -n "${NAMESPACE}" -o json | \
-  jq -r '.items[] | select(.rules[]? | .resources[]? == "secrets") |
-    .metadata.name'
-
-echo ""
-echo "--- RoleBindings binding secret-access roles ---"
-kubectl get rolebinding -n "${NAMESPACE}" -o json | \
-  jq -r '.items[] | .metadata.name + " -> " + (.subjects[]? | .kind + "/" + .name)'
-
-echo ""
-echo "--- ClusterRoles granting secret access (cluster-wide) ---"
-kubectl get clusterrole -o json | \
-  jq -r '.items[] | select(.rules[]? | .resources[]? == "secrets") |
-    .metadata.name' | grep -v "^system:"
-
-echo ""
-echo "--- Direct secret access test for service accounts ---"
-for sa in $(kubectl get serviceaccount -n "${NAMESPACE}" -o jsonpath='{.items[*].metadata.name}'); do
-  result=$(kubectl auth can-i get secrets -n "${NAMESPACE}" \
-    --as="system:serviceaccount:${NAMESPACE}:${sa}" 2>/dev/null)
-  if [[ "${result}" == "yes" ]]; then
-    echo "  WARNING: ${sa} can GET secrets in ${NAMESPACE}"
-  fi
-done
+# Create IAM binding between Kubernetes SA and GCP SA
+gcloud iam service-accounts add-iam-policy-binding \
+  app-sa@my-project.iam.gserviceaccount.com \
+  --role roles/iam.workloadIdentityUser \
+  --member "serviceAccount:my-project.svc.id.goog[production/app-sa]"
 ```
 
-### Secret Health Dashboard Query
-
-```bash
-# Check all ExternalSecrets across all namespaces for sync failures
-kubectl get externalsecrets --all-namespaces \
-  -o custom-columns=\
-'NAMESPACE:.metadata.namespace,NAME:.metadata.name,STORE:.spec.secretStoreRef.name,STATUS:.status.conditions[0].reason,READY:.status.conditions[0].status'
-
-# Find ExternalSecrets that are not Ready
-kubectl get externalsecrets --all-namespaces -o json | \
-  jq -r '.items[] | select(.status.conditions[]? | .type == "Ready" and .status != "True") |
-    [.metadata.namespace, .metadata.name,
-     (.status.conditions[] | select(.type == "Ready") | .message)] | @tsv'
+```yaml
+# GKE service account annotation
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: app-sa
+  namespace: production
+  annotations:
+    iam.gke.io/gcp-service-account: "app-sa@my-project.iam.gserviceaccount.com"
 ```
 
-## Summary
+---
 
-A mature Kubernetes secret management strategy should be layered:
+## Section 9: GitOps Integration Patterns
 
-1. Enable etcd encryption-at-rest immediately — this is a one-time configuration change that protects against etcd backup exposure.
-2. Use External Secrets Operator with HashiCorp Vault, AWS Secrets Manager, or GCP Secret Manager as the primary secret store. Secret values never enter Git repositories.
-3. Use Sealed Secrets for teams or clusters that cannot operate a dedicated secret store — it provides GitOps safety with minimal infrastructure requirements.
-4. Deploy Reloader alongside ESO to ensure pods automatically restart when secrets rotate.
-5. Configure RBAC to use `resourceNames` restrictions on secret access — applications should only be able to read the specific secrets they need, not `list` all secrets in a namespace.
-6. Integrate gitleaks and TruffleHog into CI pipelines to catch any credentials committed to source control before they reach production.
-7. Audit RBAC secret access quarterly to catch privilege creep from forgotten service accounts and accumulated role bindings.
+### Pattern 1: SealedSecrets + ArgoCD
+
+```yaml
+# argocd-app-with-sealed-secrets.yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: production-app
+  namespace: argocd
+spec:
+  project: production
+  source:
+    repoURL: "https://git.company.internal/platform/app"
+    targetRevision: main
+    path: manifests/production
+    # SealedSecrets live alongside regular manifests
+    # argocd does not need special handling
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: production
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+  # Ignore the decrypted Secret status to prevent false drift detection
+  ignoreDifferences:
+    - group: "bitnami.com"
+      kind: SealedSecret
+      jsonPointers:
+        - /status
+```
+
+### Pattern 2: ESO + ArgoCD (External Secret References)
+
+```yaml
+# Only ExternalSecret manifests live in Git
+# No actual credential values are ever committed
+
+# manifests/production/external-secrets.yaml
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: database-credentials
+  namespace: production
+spec:
+  refreshInterval: 1h
+  secretStoreRef:
+    name: aws-secrets-manager
+    kind: ClusterSecretStore
+  target:
+    name: database-credentials
+    creationPolicy: Owner
+  data:
+    - secretKey: password
+      remoteRef:
+        key: "production/database"
+        property: password
+```
+
+```yaml
+# ArgoCD ignores ESO-managed secret content to prevent drift alerts
+ignoreDifferences:
+  - group: "external-secrets.io"
+    kind: ExternalSecret
+    jsonPointers:
+      - /status
+  - group: ""
+    kind: Secret
+    # Ignore the managed-fields annotation added by ESO
+    jsonPointers:
+      - /metadata/resourceVersion
+```
+
+---
+
+## Section 10: Monitoring and Alerting
+
+### ESO Sync Status Metrics
+
+```yaml
+# PrometheusRule for ESO
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: external-secrets-alerts
+  namespace: external-secrets
+  labels:
+    release: kube-prometheus-stack
+spec:
+  groups:
+    - name: external-secrets
+      rules:
+        - alert: ExternalSecretSyncFailed
+          expr: |
+            externalsecret_sync_calls_error > 0
+          for: 5m
+          labels:
+            severity: critical
+          annotations:
+            summary: "ExternalSecret sync is failing"
+            description: >
+              ExternalSecret {{ $labels.name }} in namespace {{ $labels.namespace }}
+              has had {{ $value }} sync failures.
+
+        - alert: ExternalSecretNotReady
+          expr: |
+            externalsecret_status_condition{condition="Ready",status="False"} == 1
+          for: 10m
+          labels:
+            severity: warning
+          annotations:
+            summary: "ExternalSecret is not ready"
+
+        - alert: SealedSecretDecryptionFailed
+          expr: |
+            sealed_secrets_controller_condition{type="Synced",status="False"} == 1
+          for: 5m
+          labels:
+            severity: critical
+          annotations:
+            summary: "SealedSecret decryption failure"
+            description: "SealedSecret {{ $labels.name }} failed to decrypt."
+```
+
+### Auditing Secret Access with Kubernetes Audit Logs
+
+```yaml
+# audit-policy.yaml — capture all secret access
+apiVersion: audit.k8s.io/v1
+kind: Policy
+rules:
+  # Log all secret reads at the RequestResponse level
+  - level: RequestResponse
+    resources:
+      - group: ""
+        resources: ["secrets"]
+    verbs: ["get", "list", "watch"]
+    omitStages:
+      - RequestReceived
+
+  # Log secret creates and updates
+  - level: Metadata
+    resources:
+      - group: ""
+        resources: ["secrets"]
+    verbs: ["create", "update", "patch", "delete"]
+```
+
+---
+
+Robust secret management requires layering multiple controls: etcd encryption at rest as the baseline, GitOps-compatible encryption via Sealed Secrets or External Secrets references in version control, centralized secret storage in Vault or cloud-native secret managers as the source of truth, and platform-managed authentication via IRSA or Workload Identity to eliminate long-lived credentials entirely. Combining these layers produces a system where no plaintext credential ever touches version control, secrets rotate automatically, and every access generates an auditable event.
