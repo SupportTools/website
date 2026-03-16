@@ -765,3 +765,237 @@ Service meshes add real costs: memory, CPU, latency, and operational complexity.
 **Choose Istio sidecar mode** only when migrating from an existing Istio sidecar deployment that cannot move to ambient mode, or when Wasm extensibility is required and ambient mode is not yet supported by the required Wasm filters.
 
 **Avoid a mesh entirely** for small deployments, single-application clusters, or teams that do not yet have the operational maturity to maintain mesh infrastructure.
+
+## Production Troubleshooting Reference
+
+### Diagnosing mTLS Failures
+
+mTLS handshake failures are among the most disruptive service mesh incidents. They present as connection refused or TLS handshake errors in application logs that do not appear before mesh enrollment.
+
+**Istio mTLS diagnosis:**
+
+```bash
+# Check mTLS mode for a namespace
+kubectl get peerauthentication -n checkout
+
+# Inspect the proxy's TLS status for a pod
+istioctl proxy-config endpoint \
+  checkout-5b7f9d4c6-xkrp2.checkout \
+  --cluster "outbound|8080||checkout.checkout.svc.cluster.local"
+
+# Check if a destination is configured for mTLS
+istioctl proxy-config cluster \
+  checkout-5b7f9d4c6-xkrp2.checkout \
+  --fqdn checkout.checkout.svc.cluster.local
+
+# Verify certificate validity
+istioctl proxy-config secret \
+  checkout-5b7f9d4c6-xkrp2.checkout
+```
+
+**Linkerd mTLS diagnosis:**
+
+```bash
+# Verify mTLS edges between deployments
+linkerd viz edges deploy -n checkout
+
+# Check if a pod has a valid Linkerd identity
+linkerd identity -n checkout checkout-5b7f9d4c6-xkrp2
+
+# Tap traffic to see mTLS status per request
+linkerd viz tap deploy/payments -n payments \
+  --to deploy/checkout \
+  --to-namespace checkout
+```
+
+**Cilium mTLS diagnosis:**
+
+```bash
+# Check mutual auth status
+cilium status | grep -i auth
+
+# Observe authentication flows
+hubble observe --namespace checkout \
+  --type trace:to-endpoint \
+  --follow | grep -i auth
+
+# Verify certificate rotation
+cilium encrypt status
+```
+
+### Diagnosing Proxy Sidecar Injection Failures
+
+When pods fail to inject sidecars or unexpectedly run without mesh proxies:
+
+```bash
+# Check if injection is enabled for the namespace
+kubectl get namespace checkout -o jsonpath='{.metadata.labels}'
+
+# Check injection status for all pods in a namespace
+kubectl get pods -n checkout -o json | \
+  jq -r '.items[] | [.metadata.name,
+    (.metadata.annotations."sidecar.istio.io/status" // "NOT INJECTED")] |
+    @csv'
+
+# Check for injection webhook errors
+kubectl get events -n checkout \
+  --field-selector reason=FailedCreate | \
+  grep -i webhook
+
+# Verify the mutating webhook is healthy
+kubectl get mutatingwebhookconfiguration istio-sidecar-injector -o yaml | \
+  yq '.webhooks[].failurePolicy'
+```
+
+If `failurePolicy: Fail` is set and the injection webhook pod is unhealthy, all pod creation in injection-enabled namespaces will fail. Use `failurePolicy: Ignore` for production to prevent webhook unavailability from cascading into pod scheduling failures.
+
+### Diagnosing Circuit Breaker Triggering
+
+For Istio, circuit breaker trips appear as HTTP 503 responses with the header `x-envoy-overloaded`:
+
+```bash
+# Check outlier detection events in Envoy
+istioctl proxy-config log checkout-5b7f9d4c6-xkrp2.checkout \
+  --level upstream:debug 2>&1 | grep -i "outlier\|ejected"
+
+# Check DestinationRule circuit breaker configuration
+kubectl get destinationrule -n checkout -o yaml | \
+  yq '.items[].spec.trafficPolicy.outlierDetection'
+
+# Monitor circuit breaker state via Envoy stats
+kubectl exec checkout-5b7f9d4c6-xkrp2 -n checkout \
+  -c istio-proxy -- \
+  curl -s http://localhost:15000/stats | \
+  grep -i "outlier_detection\|ejections"
+```
+
+### Mesh Control Plane Health Checks
+
+Verify control plane health as part of regular operational practice:
+
+**Istio:**
+
+```bash
+# Full health check
+istioctl verify-install
+
+# Check istiod pod status and resource usage
+kubectl top pods -n istio-system
+
+# Check xDS sync status (are all proxies up to date?)
+istioctl proxy-status | grep -v SYNCED
+# Any row not showing SYNCED indicates a proxy out of sync with istiod
+```
+
+**Linkerd:**
+
+```bash
+# Comprehensive health check including data plane
+linkerd check --proxy
+
+# Check control plane component versions
+linkerd version
+
+# Verify data plane proxy versions are consistent
+linkerd check --proxy 2>&1 | grep -i "version mismatch"
+```
+
+**Cilium:**
+
+```bash
+# Full status and health check
+cilium status --verbose
+
+# Run built-in connectivity tests
+cilium connectivity test
+
+# Check for eBPF map exhaustion (common at scale)
+cilium bpf metrics list | grep dropped
+```
+
+### Prometheus Alerts for Mesh Health
+
+```yaml
+groups:
+  - name: service-mesh-health
+    rules:
+      - alert: IstioProxyOutOfSync
+        expr: |
+          count(pilot_proxy_convergence_time_bucket) by (le) > 0
+          and
+          histogram_quantile(0.99, rate(pilot_proxy_convergence_time_bucket[5m])) > 30
+        for: 10m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Istio proxies are slow to converge with istiod"
+          description: |
+            p99 proxy convergence time exceeds 30 seconds. This indicates
+            istiod may be overloaded or proxies are having difficulty
+            reaching the control plane.
+
+      - alert: IstiodUnavailable
+        expr: |
+          up{job="istiod"} == 0
+        for: 5m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Istiod is unavailable"
+          description: |
+            Istiod is not responding. Existing proxies will continue
+            to function with stale configuration, but new pod deployments
+            and configuration changes will not take effect.
+
+      - alert: LinkerdControlPlaneDown
+        expr: |
+          up{job="linkerd-controller"} == 0
+          or
+          up{job="linkerd-destination"} == 0
+        for: 5m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Linkerd control plane component is down"
+          description: |
+            A Linkerd control plane component is unavailable. Proxies
+            will continue to operate with cached configuration but will
+            not receive policy updates or service discovery changes.
+
+      - alert: CiliumAgentDown
+        expr: |
+          up{job="cilium-agent"} == 0
+        for: 5m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Cilium agent is down on a node"
+          description: |
+            A Cilium agent is not reporting metrics. Network policy
+            enforcement and eBPF programs may be stale on this node.
+            Pods scheduled to the affected node may have degraded
+            connectivity or policy enforcement.
+
+      - alert: MeshHighErrorRate
+        expr: |
+          (
+            sum(rate(istio_requests_total{
+              response_code=~"5..",
+              reporter="destination"
+            }[5m])) by (destination_service_namespace, destination_service_name)
+            /
+            sum(rate(istio_requests_total{
+              reporter="destination"
+            }[5m])) by (destination_service_namespace, destination_service_name)
+          ) > 0.05
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High error rate for {{ $labels.destination_service_name }}"
+          description: |
+            Service {{ $labels.destination_service_namespace }}/
+            {{ $labels.destination_service_name }} has a 5xx error rate
+            of {{ $value | humanizePercentage }} over the last 5 minutes
+            as observed by the mesh.
+```
