@@ -1,139 +1,379 @@
 ---
-title: "Kubernetes etcd: Backup, Restore, and Production Operations Guide"
-date: 2027-04-16T00:00:00-05:00
+title: "Kubernetes etcd: Backup, Restore, and Disaster Recovery for Production Clusters"
+date: 2027-04-18T00:00:00-05:00
 draft: false
-tags: ["Kubernetes", "etcd", "Backup", "Disaster Recovery", "Control Plane"]
-categories: ["Kubernetes", "Operations", "Disaster Recovery"]
+tags: ["Kubernetes", "etcd", "Backup", "Disaster Recovery", "High Availability"]
+categories: ["Kubernetes", "Operations"]
 author: "Matthew Mattox - mmattox@support.tools"
-description: "Production guide to Kubernetes etcd operations covering automated snapshot backups to S3, point-in-time restore procedures, etcd cluster health monitoring, defragmentation scheduling, member replacement for failed nodes, etcd encryption configuration, and disaster recovery runbooks."
+description: "Production guide for etcd backup strategies, snapshot procedures, cluster restoration, disaster recovery workflows, and maintaining etcd health in large-scale Kubernetes deployments."
 more_link: "yes"
 url: "/kubernetes-etcd-backup-restore-guide/"
 ---
 
-etcd is the single source of truth for every Kubernetes cluster. All cluster state — every Deployment, Service, ConfigMap, Secret, Pod spec, and RBAC policy — lives exclusively in etcd. When etcd fails, the Kubernetes control plane goes dark: the API server cannot serve reads, controllers cannot reconcile, and schedulers cannot place pods. Losing etcd data without a backup means losing the cluster entirely. Yet in practice, many teams treat etcd backup as an afterthought, discovering the gap only during a disaster recovery exercise or an actual incident. This guide covers automated backup, verification, restore procedures, health monitoring, defragmentation, member replacement, and encryption — the complete operational picture for etcd in production.
+etcd is the backbone of every Kubernetes cluster. It stores all cluster state: node registrations, pod assignments, service endpoints, RBAC policies, secrets, ConfigMaps, and custom resources. Losing etcd data without a backup means losing the cluster entirely — every workload specification, every configuration, every credential. A Kubernetes backup strategy that does not include etcd snapshot backups is incomplete by definition.
+
+This guide covers the complete etcd operations lifecycle for production clusters: architecture and data model, snapshot backup procedures, automated backup with CronJobs and S3 storage, full cluster restore, defragmentation and compaction, encryption at rest, and monitoring etcd health with meaningful alerts.
 
 <!--more-->
 
-## etcd Architecture in Kubernetes
+## Section 1: etcd Architecture and Data Model
 
-### Raft Consensus and Quorum
+### How Kubernetes Uses etcd
 
-etcd uses the Raft distributed consensus protocol. A cluster of `n` members can tolerate `(n-1)/2` failures while maintaining quorum. Common cluster sizes:
+```
+┌─────────────────────────────────────────────────────────────────┐
+│  kube-apiserver                                                  │
+│  - Only component that reads/writes etcd directly               │
+│  - All other control plane components use the API server        │
+│                                                                  │
+│  ┌──────────────────────────────────────────────────────────┐   │
+│  │  etcd Cluster (3 or 5 nodes for HA)                      │   │
+│  │                                                          │   │
+│  │  /registry/pods/default/nginx-abc123                     │   │
+│  │  /registry/services/default/my-service                   │   │
+│  │  /registry/secrets/production/db-password                │   │
+│  │  /registry/configmaps/kube-system/kube-proxy             │   │
+│  │  /registry/deployments.apps/default/my-app               │   │
+│  │                                                          │   │
+│  │  Raft consensus: writes go to leader, replicated to      │   │
+│  │  quorum (2 of 3, or 3 of 5) before acknowledging         │   │
+│  └──────────────────────────────────────────────────────────┘   │
+└─────────────────────────────────────────────────────────────────┘
+```
 
-| Members | Fault tolerance | Notes |
-|---|---|---|
-| 1 | 0 | Dev/test only — any failure = total loss |
-| 3 | 1 | Minimum production size |
-| 5 | 2 | Recommended for high availability |
-| 7 | 3 | Use only if 2-fault-tolerance is required; adds write latency |
+### Raft Quorum Requirements
+
+```
+Cluster Size │ Fault Tolerance │ Quorum Required
+─────────────┼─────────────────┼────────────────
+1            │ 0               │ 1
+3            │ 1               │ 2
+5            │ 2               │ 3
+7            │ 3               │ 4
+```
+
+For production clusters, 3-node etcd is the minimum. 5-node etcd is recommended for large clusters or when maintenance windows are rare.
+
+### etcd Data Directory Layout
 
 ```bash
-# Verify current etcd member count and health
-ETCDCTL_API=3 etcdctl \
-  --endpoints=https://127.0.0.1:2379 \
-  --cacert=/etc/kubernetes/pki/etcd/ca.crt \
-  --cert=/etc/kubernetes/pki/etcd/peer.crt \
-  --key=/etc/kubernetes/pki/etcd/peer.key \
-  member list --write-out=table
+# Default data directory
+ls /var/lib/etcd/
+
+# Contents:
+# member/
+#   snap/         — snapshot files and WAL snapshot index
+#   wal/          — Write-Ahead Log entries
+#     0000000000000000-0000000000000000.wal
+#     0000000000000001-000000000000abcd.wal
+#   db            — bbolt key-value database file (after snap)
+```
+
+---
+
+## Section 2: etcdctl Setup
+
+All backup and restore operations use `etcdctl`, the etcd command-line client. It must be configured with TLS credentials matching the etcd cluster.
+
+### Install etcdctl
+
+```bash
+# Install the same version as the cluster's etcd
+ETCD_VERSION="3.5.13"
+curl -Lo etcd.tar.gz \
+  "https://github.com/etcd-io/etcd/releases/download/v${ETCD_VERSION}/etcd-v${ETCD_VERSION}-linux-amd64.tar.gz"
+tar xzf etcd.tar.gz
+sudo mv etcd-v${ETCD_VERSION}-linux-amd64/etcdctl /usr/local/bin/
+etcdctl version
+```
+
+### Environment Variables for etcdctl
+
+```bash
+# Set environment variables to avoid repeating flags
+export ETCDCTL_API=3
+export ETCDCTL_ENDPOINTS="https://127.0.0.1:2379"
+export ETCDCTL_CACERT="/etc/kubernetes/pki/etcd/ca.crt"
+export ETCDCTL_CERT="/etc/kubernetes/pki/etcd/server.crt"
+export ETCDCTL_KEY="/etc/kubernetes/pki/etcd/server.key"
+
+# For multi-node clusters, list all endpoints
+export ETCDCTL_ENDPOINTS="https://10.0.1.10:2379,https://10.0.1.11:2379,https://10.0.1.12:2379"
+
+# Test connectivity
+etcdctl endpoint health
 # Output:
-# +------------------+---------+------------------+---------------------------+---------------------------+------------+
-# |        ID        | STATUS  |       NAME       |        PEER ADDRS         |       CLIENT ADDRS        | IS LEARNER |
-# +------------------+---------+------------------+---------------------------+---------------------------+------------+
-# | 5b52c39a8a82e46a | started | control-plane-01 | https://10.0.1.10:2380    | https://10.0.1.10:2379    |      false |
-# | 9c4cf8b1d3f7a201 | started | control-plane-02 | https://10.0.1.11:2380    | https://10.0.1.11:2379    |      false |
-# | b7d2e5f4c8a91304 | started | control-plane-03 | https://10.0.1.12:2380    | https://10.0.1.12:2379    |      false |
-# +------------------+---------+------------------+---------------------------+---------------------------+------------+
+# https://10.0.1.10:2379 is healthy: successfully committed proposal
+# https://10.0.1.11:2379 is healthy: successfully committed proposal
+# https://10.0.1.12:2379 is healthy: successfully committed proposal
+
+etcdctl endpoint status --write-out=table
+# Output shows: leader, raft term, raft index, DB size
 ```
 
-### etcdctl Wrapper Script
+---
 
-Create a wrapper script on each control plane node to avoid retyping connection flags:
+## Section 3: Manual Snapshot Backup
 
-```bash
-#!/bin/bash
-# /usr/local/bin/etcdctlw — etcdctl wrapper with standard flags pre-configured
-# Place on all control plane nodes and chmod +x
-ETCDCTL_API=3 etcdctl \
-  --endpoints=https://127.0.0.1:2379 \
-  --cacert=/etc/kubernetes/pki/etcd/ca.crt \
-  --cert=/etc/kubernetes/pki/etcd/healthcheck-client.crt \
-  --key=/etc/kubernetes/pki/etcd/healthcheck-client.key \
-  "$@"
-```
+### Taking a Snapshot
 
 ```bash
-# Common etcdctl operations using the wrapper
-etcdctlw endpoint health
-etcdctlw endpoint status --write-out=table
-etcdctlw member list --write-out=table
+# Create a snapshot — connects to the leader automatically
+BACKUP_DIR="/var/backups/etcd"
+TIMESTAMP=$(date +%Y%m%d_%H%M%S)
+SNAPSHOT_FILE="${BACKUP_DIR}/etcd-snapshot-${TIMESTAMP}.db"
 
-# Check which member is the current leader
-etcdctlw endpoint status --write-out=json | \
-  jq -r '.[] | select(.Status.leader == .Status.header.member_id) | .Endpoint'
-```
-
-## etcd Snapshot Backup
-
-### Manual Snapshot
-
-```bash
-#!/bin/bash
-# etcd-snapshot.sh — Create a single etcd snapshot
-# Run from a control plane node
-set -euo pipefail
-
-SNAPSHOT_DIR="/var/lib/etcd-backups"
-SNAPSHOT_FILE="${SNAPSHOT_DIR}/etcd-snapshot-$(date +%Y%m%d-%H%M%S).db"
-
-mkdir -p "${SNAPSHOT_DIR}"
+mkdir -p "${BACKUP_DIR}"
 
 ETCDCTL_API=3 etcdctl snapshot save "${SNAPSHOT_FILE}" \
-  --endpoints=https://127.0.0.1:2379 \
-  --cacert=/etc/kubernetes/pki/etcd/ca.crt \
-  --cert=/etc/kubernetes/pki/etcd/healthcheck-client.crt \
-  --key=/etc/kubernetes/pki/etcd/healthcheck-client.key
+  --endpoints="https://127.0.0.1:2379" \
+  --cacert="/etc/kubernetes/pki/etcd/ca.crt" \
+  --cert="/etc/kubernetes/pki/etcd/server.crt" \
+  --key="/etc/kubernetes/pki/etcd/server.key"
 
-echo "Snapshot saved to ${SNAPSHOT_FILE}"
+echo "Snapshot saved: ${SNAPSHOT_FILE}"
 
-# Verify the snapshot immediately after creation
-ETCDCTL_API=3 etcdctl snapshot status "${SNAPSHOT_FILE}" --write-out=table
-```
-
-### Snapshot Verification
-
-```bash
-# Verify an existing snapshot file
-ETCDCTL_API=3 etcdctl snapshot status /var/lib/etcd-backups/etcd-snapshot-20250310-020000.db \
+# Verify the snapshot
+ETCDCTL_API=3 etcdctl snapshot status "${SNAPSHOT_FILE}" \
   --write-out=table
 # Output:
 # +----------+----------+------------+------------+
-#     HASH | REVISION | TOTAL KEYS | TOTAL SIZE |
+# |   HASH   | REVISION | TOTAL KEYS | TOTAL SIZE |
 # +----------+----------+------------+------------+
-# | 3c6b82f1 |  4891023 |       9847 |     284 MB |
+# | 5b37a92c |  1234567 |       8423 |      45 MB |
 # +----------+----------+------------+------------+
-
-# A valid snapshot will show a non-zero revision and key count
-# Total size should be within expected range for the cluster
 ```
 
-### Automated Backup CronJob with S3 Upload
+### Compress and Secure the Snapshot
+
+```bash
+# Compress the snapshot
+gzip "${SNAPSHOT_FILE}"
+COMPRESSED="${SNAPSHOT_FILE}.gz"
+
+# Verify integrity
+echo "Snapshot: $(du -sh ${COMPRESSED})"
+md5sum "${COMPRESSED}" > "${COMPRESSED}.md5"
+
+# Encrypt the snapshot before uploading (optional but recommended)
+gpg --symmetric \
+  --cipher-algo AES256 \
+  --output "${COMPRESSED}.gpg" \
+  "${COMPRESSED}"
+
+# Remove unencrypted copy
+rm "${COMPRESSED}"
+```
+
+### Upload to S3
+
+```bash
+# Upload the snapshot to S3 with server-side encryption
+aws s3 cp "${COMPRESSED}.gpg" \
+  "s3://company-etcd-backups/production/$(basename ${COMPRESSED}.gpg)" \
+  --server-side-encryption aws:kms \
+  --sse-kms-key-id "alias/etcd-backup-key" \
+  --storage-class STANDARD_IA
+
+# Verify upload
+aws s3 ls "s3://company-etcd-backups/production/" --human-readable | tail -5
+```
+
+---
+
+## Section 4: Automated Backup CronJob
+
+### Backup Script
+
+```bash
+# etcd-backup.sh — deployed as a ConfigMap and executed by the CronJob
+#!/bin/bash
+set -euo pipefail
+
+ETCD_ENDPOINTS="${ETCD_ENDPOINTS:-https://127.0.0.1:2379}"
+ETCD_CACERT="${ETCD_CACERT:-/etc/kubernetes/pki/etcd/ca.crt}"
+ETCD_CERT="${ETCD_CERT:-/etc/kubernetes/pki/etcd/server.crt}"
+ETCD_KEY="${ETCD_KEY:-/etc/kubernetes/pki/etcd/server.key}"
+S3_BUCKET="${S3_BUCKET:-company-etcd-backups}"
+S3_PREFIX="${S3_PREFIX:-production}"
+BACKUP_RETENTION_DAYS="${BACKUP_RETENTION_DAYS:-30}"
+BACKUP_DIR="/tmp/etcd-backup"
+TIMESTAMP=$(date -u +%Y%m%dT%H%M%SZ)
+CLUSTER_NAME="${CLUSTER_NAME:-unknown}"
+
+log() {
+    echo "[$(date -u +%Y-%m-%dT%H:%M:%SZ)] $*"
+}
+
+cleanup() {
+    log "Cleaning up temporary files"
+    rm -rf "${BACKUP_DIR}"
+}
+trap cleanup EXIT
+
+log "Starting etcd backup for cluster: ${CLUSTER_NAME}"
+
+# Create working directory
+mkdir -p "${BACKUP_DIR}"
+SNAPSHOT_FILE="${BACKUP_DIR}/etcd-snapshot-${CLUSTER_NAME}-${TIMESTAMP}.db"
+
+# Take the snapshot
+log "Taking etcd snapshot..."
+ETCDCTL_API=3 etcdctl snapshot save "${SNAPSHOT_FILE}" \
+    --endpoints="${ETCD_ENDPOINTS}" \
+    --cacert="${ETCD_CACERT}" \
+    --cert="${ETCD_CERT}" \
+    --key="${ETCD_KEY}"
+
+# Verify snapshot integrity
+log "Verifying snapshot..."
+ETCDCTL_API=3 etcdctl snapshot status "${SNAPSHOT_FILE}" \
+    --write-out=json | tee "${BACKUP_DIR}/snapshot-status.json"
+
+SNAPSHOT_SIZE=$(stat -c%s "${SNAPSHOT_FILE}")
+log "Snapshot size: $(numfmt --to=iec ${SNAPSHOT_SIZE})"
+
+# Compress
+log "Compressing snapshot..."
+gzip "${SNAPSHOT_FILE}"
+COMPRESSED="${SNAPSHOT_FILE}.gz"
+
+# Upload to S3
+S3_KEY="${S3_PREFIX}/${CLUSTER_NAME}/etcd-snapshot-${TIMESTAMP}.db.gz"
+log "Uploading to s3://${S3_BUCKET}/${S3_KEY}..."
+aws s3 cp "${COMPRESSED}" "s3://${S3_BUCKET}/${S3_KEY}" \
+    --server-side-encryption aws:kms
+
+# Delete old backups beyond retention period
+log "Pruning backups older than ${BACKUP_RETENTION_DAYS} days..."
+CUTOFF_DATE=$(date -u -d "${BACKUP_RETENTION_DAYS} days ago" +%Y-%m-%d)
+aws s3api list-objects-v2 \
+    --bucket "${S3_BUCKET}" \
+    --prefix "${S3_PREFIX}/${CLUSTER_NAME}/" \
+    --query "Contents[?LastModified<='${CUTOFF_DATE}T00:00:00Z'].Key" \
+    --output text | \
+    tr '\t' '\n' | \
+    grep -v '^$' | \
+    while read -r key; do
+        log "Deleting old backup: ${key}"
+        aws s3api delete-object --bucket "${S3_BUCKET}" --key "${key}"
+    done
+
+log "Backup complete: s3://${S3_BUCKET}/${S3_KEY}"
+```
+
+### CronJob Manifest
 
 ```yaml
-# etcd-backup-cronjob.yaml — Runs on control plane nodes via hostPath access
-# This CronJob is deployed in kube-system and runs with host-level access to etcd certs
+# etcd-backup-cronjob.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: etcd-backup-script
+  namespace: kube-system
+data:
+  backup.sh: |
+    #!/bin/bash
+    # (full script content from above)
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: etcd-backup
+  namespace: kube-system
+spec:
+  # Run every 6 hours
+  schedule: "0 */6 * * *"
+  concurrencyPolicy: Forbid
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 3
+  jobTemplate:
+    spec:
+      backoffLimit: 2
+      activeDeadlineSeconds: 600     # Fail if not complete within 10 minutes
+      template:
+        spec:
+          restartPolicy: OnFailure
+          serviceAccountName: etcd-backup
+          nodeSelector:
+            node-role.kubernetes.io/control-plane: ""
+          tolerations:
+            - key: node-role.kubernetes.io/control-plane
+              operator: Exists
+              effect: NoSchedule
+          hostNetwork: true
+          containers:
+            - name: etcd-backup
+              image: registry.company.internal/etcd-backup:3.5.13
+              command: ["/bin/bash", "/scripts/backup.sh"]
+              env:
+                - name: ETCD_ENDPOINTS
+                  value: "https://127.0.0.1:2379"
+                - name: ETCD_CACERT
+                  value: "/etc/kubernetes/pki/etcd/ca.crt"
+                - name: ETCD_CERT
+                  value: "/etc/kubernetes/pki/etcd/server.crt"
+                - name: ETCD_KEY
+                  value: "/etc/kubernetes/pki/etcd/server.key"
+                - name: S3_BUCKET
+                  valueFrom:
+                    configMapKeyRef:
+                      name: etcd-backup-config
+                      key: s3_bucket
+                - name: CLUSTER_NAME
+                  valueFrom:
+                    fieldRef:
+                      fieldPath: spec.nodeName
+                - name: BACKUP_RETENTION_DAYS
+                  value: "30"
+              resources:
+                requests:
+                  cpu: "100m"
+                  memory: "128Mi"
+                limits:
+                  cpu: "500m"
+                  memory: "256Mi"
+              volumeMounts:
+                - name: etcd-pki
+                  mountPath: /etc/kubernetes/pki/etcd
+                  readOnly: true
+                - name: backup-scripts
+                  mountPath: /scripts
+                  readOnly: true
+                - name: tmp
+                  mountPath: /tmp
+          volumes:
+            - name: etcd-pki
+              hostPath:
+                path: /etc/kubernetes/pki/etcd
+                type: Directory
+            - name: backup-scripts
+              configMap:
+                name: etcd-backup-script
+                defaultMode: 0755
+            - name: tmp
+              emptyDir: {}
+```
+
+### RBAC for Backup ServiceAccount
+
+```yaml
+# etcd-backup-rbac.yaml
 apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: etcd-backup
   namespace: kube-system
+  annotations:
+    eks.amazonaws.com/role-arn: "arn:aws:iam::123456789012:role/etcd-backup-role"
 ---
+# S3 access is provided via IRSA — no additional ClusterRole needed for Kubernetes resources
+# Only needed if the backup pod needs to read cluster info
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
   name: etcd-backup
 rules:
-  # Needs no Kubernetes RBAC — accesses etcd directly via hostPath certs
-  # But needs to read cluster info for labeling
   - apiGroups: [""]
     resources: ["nodes"]
     verbs: ["get", "list"]
@@ -150,778 +390,650 @@ subjects:
   - kind: ServiceAccount
     name: etcd-backup
     namespace: kube-system
+```
+
 ---
-apiVersion: batch/v1
-kind: CronJob
-metadata:
-  name: etcd-backup
-  namespace: kube-system
-spec:
-  schedule: "0 */4 * * *"   # Every 4 hours
-  concurrencyPolicy: Forbid
-  successfulJobsHistoryLimit: 5
-  failedJobsHistoryLimit: 3
-  jobTemplate:
-    spec:
-      backoffLimit: 2
-      activeDeadlineSeconds: 600    # Fail job if it runs > 10 minutes
-      template:
-        spec:
-          serviceAccountName: etcd-backup
-          restartPolicy: OnFailure
-          # Must run on a control plane node to access etcd certs
-          nodeSelector:
-            node-role.kubernetes.io/control-plane: ""
-          tolerations:
-            - key: node-role.kubernetes.io/control-plane
-              operator: Exists
-              effect: NoSchedule
-          containers:
-          - name: etcd-backup
-            image: registry.support.tools/tools/etcd-backup:3.5.12
-            env:
-              - name: ETCD_ENDPOINTS
-                value: https://127.0.0.1:2379
-              - name: S3_BUCKET
-                value: payments-prod-etcd-backups
-              - name: S3_REGION
-                value: us-east-1
-              - name: S3_PREFIX
-                value: prod-us-east-1
-              - name: RETENTION_DAYS
-                value: "30"
-              - name: AWS_ROLE_ARN
-                value: arn:aws:iam::123456789012:role/EtcdBackupRole
-              - name: NODE_NAME
-                valueFrom:
-                  fieldRef:
-                    fieldPath: spec.nodeName
-            command:
-            - /bin/bash
-            - -c
-            - |
-              set -euo pipefail
 
-              TIMESTAMP=$(date +%Y%m%d-%H%M%S)
-              SNAPSHOT_FILE="/tmp/etcd-snapshot-${TIMESTAMP}.db"
-              CLUSTER_ID=$(kubectl get namespace kube-system \
-                -o jsonpath='{.metadata.uid}' | cut -c1-8)
-              S3_KEY="${S3_PREFIX}/${CLUSTER_ID}/etcd-snapshot-${TIMESTAMP}.db"
+## Section 5: Cluster Restore Procedures
 
-              echo "Creating etcd snapshot on node ${NODE_NAME}..."
-              ETCDCTL_API=3 etcdctl snapshot save "${SNAPSHOT_FILE}" \
-                --endpoints="${ETCD_ENDPOINTS}" \
-                --cacert=/etc/kubernetes/pki/etcd/ca.crt \
-                --cert=/etc/kubernetes/pki/etcd/healthcheck-client.crt \
-                --key=/etc/kubernetes/pki/etcd/healthcheck-client.key
-
-              echo "Verifying snapshot..."
-              ETCDCTL_API=3 etcdctl snapshot status "${SNAPSHOT_FILE}" \
-                --write-out=json > /tmp/snapshot-status.json
-
-              REVISION=$(jq -r '.revision' /tmp/snapshot-status.json)
-              TOTAL_KEYS=$(jq -r '.totalKey' /tmp/snapshot-status.json)
-              DB_SIZE=$(jq -r '.totalSize' /tmp/snapshot-status.json)
-
-              echo "Snapshot verified: revision=${REVISION} keys=${TOTAL_KEYS} size=${DB_SIZE}"
-
-              # Fail if snapshot looks empty (fewer than 100 keys is suspicious)
-              if [[ "${TOTAL_KEYS}" -lt 100 ]]; then
-                echo "ERROR: Snapshot has fewer than 100 keys — aborting upload"
-                exit 1
-              fi
-
-              echo "Uploading to s3://${S3_BUCKET}/${S3_KEY}..."
-              aws s3 cp "${SNAPSHOT_FILE}" "s3://${S3_BUCKET}/${S3_KEY}" \
-                --sse aws:kms \
-                --metadata "revision=${REVISION},total-keys=${TOTAL_KEYS},node=${NODE_NAME}"
-
-              echo "Upload complete. Cleaning up local file..."
-              rm -f "${SNAPSHOT_FILE}"
-
-              # Write backup metadata to a well-known S3 location for monitoring
-              cat > /tmp/latest-backup.json <<EOF
-              {
-                "timestamp": "${TIMESTAMP}",
-                "s3_key": "${S3_KEY}",
-                "revision": ${REVISION},
-                "total_keys": ${TOTAL_KEYS},
-                "db_size_bytes": ${DB_SIZE},
-                "node": "${NODE_NAME}"
-              }
-              EOF
-
-              aws s3 cp /tmp/latest-backup.json \
-                "s3://${S3_BUCKET}/${S3_PREFIX}/${CLUSTER_ID}/latest-backup.json" \
-                --sse aws:kms
-
-              echo "etcd backup completed successfully."
-
-            volumeMounts:
-            - name: etcd-certs
-              mountPath: /etc/kubernetes/pki/etcd
-              readOnly: true
-            resources:
-              requests:
-                cpu: 100m
-                memory: 128Mi
-              limits:
-                cpu: 500m
-                memory: 512Mi
-            securityContext:
-              runAsNonRoot: false    # Must run as root to read etcd certs
-              allowPrivilegeEscalation: false
-          volumes:
-          - name: etcd-certs
-            hostPath:
-              path: /etc/kubernetes/pki/etcd
-              type: Directory
-```
-
-### Backup Monitoring Prometheus Rule
-
-```yaml
-# etcd-backup-alert.yaml — Alert if backup has not run in 6 hours
-apiVersion: monitoring.coreos.com/v1
-kind: PrometheusRule
-metadata:
-  name: etcd-backup-alerts
-  namespace: monitoring
-  labels:
-    prometheus: kube-prometheus
-    role: alert-rules
-spec:
-  groups:
-  - name: etcd-backup
-    interval: 5m
-    rules:
-    - alert: EtcdBackupMissing
-      expr: |
-        (time() - etcd_backup_last_success_timestamp_seconds) > 21600
-      for: 15m
-      labels:
-        severity: critical
-        team: platform
-      annotations:
-        summary: "etcd backup has not succeeded in over 6 hours"
-        description: >
-          The last successful etcd backup was {{ humanizeDuration $value }} ago.
-          Check the etcd-backup CronJob in kube-system for failures.
-          A missed backup increases data loss risk in a disaster recovery scenario.
-    - alert: EtcdBackupJobFailed
-      expr: |
-        kube_job_status_failed{namespace="kube-system", job_name=~"etcd-backup-.*"} > 0
-      for: 5m
-      labels:
-        severity: warning
-        team: platform
-      annotations:
-        summary: "etcd backup job failed"
-        description: "etcd backup job {{ $labels.job_name }} has failed."
-```
-
-## Restore Procedures
-
-### Single-Node Cluster Restore
+### Prerequisites for Restore
 
 ```bash
-#!/bin/bash
-# etcd-restore-single-node.sh — Restore etcd from snapshot on a single-node cluster
-# Run ONLY on the control plane node as root
-# DANGER: This procedure will cause downtime — all workloads will be unavailable
-# during the restore. Have this runbook printed and available offline.
-set -euo pipefail
+# 1. Document the current cluster topology before restore
+etcdctl member list --write-out=table
+# Note: member IDs, peer URLs, and which node is the leader
 
-SNAPSHOT_FILE="${1:?Snapshot file path required}"
-ETCD_DATA_DIR="/var/lib/etcd"
-ETCD_BACKUP_DIR="/var/lib/etcd-backup-$(date +%Y%m%d-%H%M%S)"
+# 2. Download the backup snapshot from S3
+aws s3 cp \
+  "s3://company-etcd-backups/production/cluster-name/etcd-snapshot-20270418T020000Z.db.gz" \
+  /tmp/etcd-restore/snapshot.db.gz
 
-# Pre-flight check: verify snapshot before proceeding
-echo "Verifying snapshot integrity..."
-ETCDCTL_API=3 etcdctl snapshot status "${SNAPSHOT_FILE}" --write-out=table
+gunzip /tmp/etcd-restore/snapshot.db.gz
 
-read -p "Snapshot verified. Proceed with restore? This will cause downtime. [yes/no]: " CONFIRM
-[[ "${CONFIRM}" != "yes" ]] && { echo "Aborted."; exit 0; }
+# 3. Verify snapshot integrity
+etcdctl snapshot status /tmp/etcd-restore/snapshot.db --write-out=table
+```
 
-# Step 1: Stop the API server and etcd by moving static pod manifests
-echo "Stopping control plane components..."
-mkdir -p /tmp/manifests-backup
-mv /etc/kubernetes/manifests/kube-apiserver.yaml /tmp/manifests-backup/
-mv /etc/kubernetes/manifests/kube-controller-manager.yaml /tmp/manifests-backup/
-mv /etc/kubernetes/manifests/kube-scheduler.yaml /tmp/manifests-backup/
-mv /etc/kubernetes/manifests/etcd.yaml /tmp/manifests-backup/
+### Single-Node Restore (kubeadm Cluster)
 
-# Wait for API server and etcd to fully stop
-echo "Waiting for control plane containers to stop..."
-sleep 20
-while crictl ps 2>/dev/null | grep -q "kube-apiserver\|etcd"; do
-  echo "  Still stopping..."
-  sleep 5
-done
-echo "Control plane containers stopped."
+```bash
+# On the control plane node — this procedure assumes a single control plane node
+# or is the first step in a multi-node restore
 
-# Step 2: Back up the existing etcd data directory
-echo "Backing up existing etcd data to ${ETCD_BACKUP_DIR}..."
-cp -rp "${ETCD_DATA_DIR}" "${ETCD_BACKUP_DIR}"
+# Step 1: Stop the API server and etcd
+# On kubeadm clusters, move static pod manifests to disable them
+mkdir -p /tmp/kubernetes-manifests-backup
+mv /etc/kubernetes/manifests/kube-apiserver.yaml /tmp/kubernetes-manifests-backup/
+mv /etc/kubernetes/manifests/etcd.yaml /tmp/kubernetes-manifests-backup/
 
-# Step 3: Remove the existing data directory
-echo "Removing existing etcd data directory..."
-rm -rf "${ETCD_DATA_DIR}"
+# Wait for containers to stop
+sleep 15
 
-# Step 4: Restore from snapshot
-echo "Restoring etcd from snapshot ${SNAPSHOT_FILE}..."
-ETCDCTL_API=3 etcdctl snapshot restore "${SNAPSHOT_FILE}" \
-  --data-dir="${ETCD_DATA_DIR}" \
-  --name=control-plane-01 \
-  --initial-cluster="control-plane-01=https://10.0.1.10:2380" \
-  --initial-cluster-token="etcd-cluster-production" \
-  --initial-advertise-peer-urls="https://10.0.1.10:2380"
+# Verify the containers have stopped
+crictl ps | grep -E "etcd|kube-apiserver"
 
-# Step 5: Fix ownership (etcd runs as uid 1000 in many distributions)
-chown -R etcd:etcd "${ETCD_DATA_DIR}" 2>/dev/null || true
+# Step 2: Remove the existing etcd data
+mv /var/lib/etcd /var/lib/etcd.bak.$(date +%Y%m%d_%H%M%S)
 
-# Step 6: Restore control plane manifests to restart components
-echo "Restoring control plane manifests..."
-mv /tmp/manifests-backup/etcd.yaml /etc/kubernetes/manifests/
-sleep 15    # Wait for etcd to start before apiserver
+# Step 3: Restore the snapshot
+ETCDCTL_API=3 etcdctl snapshot restore /tmp/etcd-restore/snapshot.db \
+    --name=master-1 \
+    --initial-cluster="master-1=https://10.0.1.10:2380" \
+    --initial-cluster-token="etcd-cluster-production" \
+    --initial-advertise-peer-urls="https://10.0.1.10:2380" \
+    --data-dir="/var/lib/etcd"
 
-mv /tmp/manifests-backup/kube-apiserver.yaml /etc/kubernetes/manifests/
-mv /tmp/manifests-backup/kube-controller-manager.yaml /etc/kubernetes/manifests/
-mv /tmp/manifests-backup/kube-scheduler.yaml /etc/kubernetes/manifests/
+# Fix ownership
+chown -R etcd:etcd /var/lib/etcd 2>/dev/null || true
 
-# Step 7: Wait for API server to become healthy
-echo "Waiting for API server to become healthy..."
-until kubectl get nodes >/dev/null 2>&1; do
-  echo "  API server not ready yet..."
-  sleep 5
-done
+# Step 4: Restore the static pod manifests
+mv /tmp/kubernetes-manifests-backup/etcd.yaml /etc/kubernetes/manifests/
+mv /tmp/kubernetes-manifests-backup/kube-apiserver.yaml /etc/kubernetes/manifests/
 
-echo "Restore complete. API server is healthy."
-echo "Verify cluster state:"
+# Step 5: Wait for etcd and API server to come back
+sleep 30
 kubectl get nodes
-kubectl get pods --all-namespaces | grep -v Running | head -30
+kubectl get pods --all-namespaces | head -20
 ```
 
-### Multi-Node Cluster Restore
+### Multi-Node etcd Restore
 
-Restoring a multi-node etcd cluster requires the same procedure on all members simultaneously, each using the same snapshot but with different `--name` and `--initial-cluster` peer URLs:
+Restoring a multi-node etcd cluster requires running the restore procedure on all nodes simultaneously, each with node-specific parameters.
 
 ```bash
-#!/bin/bash
-# etcd-restore-member.sh — Run on each control plane node during multi-node restore
-# Pass the member-specific arguments for this node
-set -euo pipefail
+# ---- NODE 1 (master-1: 10.0.1.10) ----
+# Stop etcd on all control plane nodes first
+# (SSH to each node and stop etcd before proceeding)
+ssh master-1 "mv /etc/kubernetes/manifests/etcd.yaml /tmp/ && \
+              mv /etc/kubernetes/manifests/kube-apiserver.yaml /tmp/"
 
-SNAPSHOT_FILE="${1:?Snapshot file required}"
-MEMBER_NAME="${2:?Member name required (e.g. control-plane-01)}"
-MEMBER_PEER_URL="${3:?Member peer URL required (e.g. https://10.0.1.10:2380)}"
+ssh master-2 "mv /etc/kubernetes/manifests/etcd.yaml /tmp/ && \
+              mv /etc/kubernetes/manifests/kube-apiserver.yaml /tmp/"
 
-# All three nodes must use the SAME initial-cluster value
-INITIAL_CLUSTER="control-plane-01=https://10.0.1.10:2380,control-plane-02=https://10.0.1.11:2380,control-plane-03=https://10.0.1.12:2380"
-CLUSTER_TOKEN="etcd-cluster-production"
-ETCD_DATA_DIR="/var/lib/etcd"
+ssh master-3 "mv /etc/kubernetes/manifests/etcd.yaml /tmp/ && \
+              mv /etc/kubernetes/manifests/kube-apiserver.yaml /tmp/"
 
-echo "Restoring etcd member ${MEMBER_NAME}..."
+# Wait for etcd containers to stop
+sleep 30
 
-ETCDCTL_API=3 etcdctl snapshot restore "${SNAPSHOT_FILE}" \
-  --data-dir="${ETCD_DATA_DIR}" \
-  --name="${MEMBER_NAME}" \
-  --initial-cluster="${INITIAL_CLUSTER}" \
-  --initial-cluster-token="${CLUSTER_TOKEN}" \
-  --initial-advertise-peer-urls="${MEMBER_PEER_URL}"
-
-echo "Restore complete on ${MEMBER_NAME}. Start etcd when all members are restored."
-```
-
-```bash
-# Coordination script — run from a jump host with SSH access to all control planes
-#!/bin/bash
-# coordinate-multi-node-restore.sh
-set -euo pipefail
-
-SNAPSHOT_LOCAL="/tmp/etcd-snapshot-20250310.db"
-NODES=(control-plane-01 control-plane-02 control-plane-03)
-PEER_URLS=(https://10.0.1.10:2380 https://10.0.1.11:2380 https://10.0.1.12:2380)
-
-# Copy snapshot to all nodes
-for i in "${!NODES[@]}"; do
-  echo "Copying snapshot to ${NODES[$i]}..."
-  scp "${SNAPSHOT_LOCAL}" "root@${NODES[$i]}:/tmp/etcd-snapshot.db"
+# Copy snapshot to each node
+for node in master-1 master-2 master-3; do
+  scp /tmp/etcd-restore/snapshot.db "${node}:/tmp/etcd-restore/snapshot.db"
 done
 
-# Run restore on all nodes simultaneously
-for i in "${!NODES[@]}"; do
-  echo "Starting restore on ${NODES[$i]}..."
-  ssh "root@${NODES[$i]}" \
-    "/usr/local/bin/etcd-restore-member.sh /tmp/etcd-snapshot.db ${NODES[$i]} ${PEER_URLS[$i]}" &
+# ---- Restore on NODE 1 (master-1: 10.0.1.10) ----
+ssh master-1 << 'EOF'
+mv /var/lib/etcd /var/lib/etcd.bak
+ETCDCTL_API=3 etcdctl snapshot restore /tmp/etcd-restore/snapshot.db \
+    --name=master-1 \
+    --initial-cluster="master-1=https://10.0.1.10:2380,master-2=https://10.0.1.11:2380,master-3=https://10.0.1.12:2380" \
+    --initial-cluster-token="etcd-cluster-production" \
+    --initial-advertise-peer-urls="https://10.0.1.10:2380" \
+    --data-dir="/var/lib/etcd"
+mv /tmp/etcd.yaml /etc/kubernetes/manifests/
+EOF
+
+# ---- Restore on NODE 2 (master-2: 10.0.1.11) ----
+ssh master-2 << 'EOF'
+mv /var/lib/etcd /var/lib/etcd.bak
+ETCDCTL_API=3 etcdctl snapshot restore /tmp/etcd-restore/snapshot.db \
+    --name=master-2 \
+    --initial-cluster="master-1=https://10.0.1.10:2380,master-2=https://10.0.1.11:2380,master-3=https://10.0.1.12:2380" \
+    --initial-cluster-token="etcd-cluster-production" \
+    --initial-advertise-peer-urls="https://10.0.1.11:2380" \
+    --data-dir="/var/lib/etcd"
+mv /tmp/etcd.yaml /etc/kubernetes/manifests/
+EOF
+
+# ---- Restore on NODE 3 (master-3: 10.0.1.12) ----
+ssh master-3 << 'EOF'
+mv /var/lib/etcd /var/lib/etcd.bak
+ETCDCTL_API=3 etcdctl snapshot restore /tmp/etcd-restore/snapshot.db \
+    --name=master-3 \
+    --initial-cluster="master-1=https://10.0.1.10:2380,master-2=https://10.0.1.11:2380,master-3=https://10.0.1.12:2380" \
+    --initial-cluster-token="etcd-cluster-production" \
+    --initial-advertise-peer-urls="https://10.0.1.12:2380" \
+    --data-dir="/var/lib/etcd"
+mv /tmp/etcd.yaml /etc/kubernetes/manifests/
+EOF
+
+# Restore API servers on all nodes
+for node in master-1 master-2 master-3; do
+  ssh "${node}" "mv /tmp/kube-apiserver.yaml /etc/kubernetes/manifests/"
 done
 
-wait
-echo "Restore completed on all nodes. Restart etcd and control plane components."
+# Verify cluster health
+sleep 60
+etcdctl endpoint health --write-out=table
+kubectl get nodes
 ```
 
-## etcd Defragmentation
+---
+
+## Section 6: Defragmentation and Compaction
 
 ### Why Defragmentation Is Necessary
 
-etcd's bbolt storage engine marks deleted keys as free space but does not reclaim that space automatically. Over time, the on-disk database size grows even when the logical data size remains stable. Defragmentation rewrites the database file, reclaiming free pages and reducing actual disk usage. Without periodic defragmentation, etcd databases commonly grow to 4–8x the logical data size.
+etcd keeps old versions of all keys to support watch events and consistent list operations. Over time, the on-disk database grows even after keys are deleted (space is not reclaimed). Defragmentation reclaims this space but temporarily stalls the etcd member being defragmented.
 
 ```bash
-# Check current etcd database size vs logical size
-etcdctlw endpoint status --write-out=json | \
-  jq -r '.[] | {endpoint: .Endpoint, dbSize: .Status.dbSize, dbSizeInUse: .Status.dbSizeInUse}'
-# dbSize = physical file size
-# dbSizeInUse = logical data size
-# (dbSize - dbSizeInUse) = reclaimable space via defragmentation
+# Check current DB size vs. in-use size
+etcdctl endpoint status --write-out=json | \
+  jq '.[] | {endpoint: .Endpoint, db_size: .Status.dbSize, db_size_in_use: .Status.dbSizeInUse}'
 
-# Check the etcd quota alert threshold (default: 2GB)
-etcdctlw endpoint status --write-out=json | \
-  jq -r '.[] | .Status.dbSize / (1024*1024) | tostring + " MB"'
+# Fragmentation ratio (>50% fragmentation warrants defragmentation)
+# fragmentation = (db_size - db_size_in_use) / db_size
+etcdctl endpoint status --write-out=json | \
+  jq '.[] | {
+    endpoint: .Endpoint,
+    fragmentation_pct: ((.Status.dbSize - .Status.dbSizeInUse) / .Status.dbSize * 100 | floor)
+  }'
 ```
 
-### Defragmentation CronJob
+### Defragmenting etcd Members
+
+```bash
+# Defragment replicas first, then the leader last
+# Find the current leader
+etcdctl endpoint status --write-out=json | \
+  jq '.[] | select(.Status.leader == .Status.raftIndex) | .Endpoint'
+
+# Defragment a specific endpoint (non-leader first)
+ETCDCTL_API=3 etcdctl defrag \
+  --endpoints="https://10.0.1.11:2379" \
+  --cacert="${ETCD_CACERT}" \
+  --cert="${ETCD_CERT}" \
+  --key="${ETCD_KEY}"
+
+ETCDCTL_API=3 etcdctl defrag \
+  --endpoints="https://10.0.1.12:2379" \
+  --cacert="${ETCD_CACERT}" \
+  --cert="${ETCD_CERT}" \
+  --key="${ETCD_KEY}"
+
+# Defragment the leader last (causes brief leader election)
+ETCDCTL_API=3 etcdctl defrag \
+  --endpoints="https://10.0.1.10:2379" \
+  --cacert="${ETCD_CACERT}" \
+  --cert="${ETCD_CERT}" \
+  --key="${ETCD_KEY}"
+
+# Verify space reclaimed
+etcdctl endpoint status --write-out=table
+```
+
+### Configuring Auto-Compaction
 
 ```yaml
-# etcd-defrag-cronjob.yaml — Weekly defragmentation during maintenance window
-# Defragmentation causes a brief (~1-5 second) pause on the defragmented member.
-# Run members one at a time to avoid impacting quorum.
-apiVersion: batch/v1
-kind: CronJob
+# etcd configuration — add to etcd static pod manifest
+spec:
+  containers:
+    - name: etcd
+      command:
+        - etcd
+        # Compact revisions older than 5 hours automatically
+        - --auto-compaction-retention=5
+        - --auto-compaction-mode=periodic
+        # Trigger compaction when quota usage exceeds 80%
+        - --quota-backend-bytes=8589934592   # 8 GiB
+```
+
+### Manual Compaction
+
+```bash
+# Get the current revision
+CURRENT_REV=$(etcdctl endpoint status --write-out=json | \
+  jq -r '.[0].Status.header.revision')
+
+# Compact to keep only the last 1000 revisions
+COMPACT_REV=$((CURRENT_REV - 1000))
+etcdctl compact "${COMPACT_REV}"
+
+# After compaction, defragment to reclaim disk space
+etcdctl defrag --endpoints="https://10.0.1.10:2379,https://10.0.1.11:2379,https://10.0.1.12:2379"
+```
+
+---
+
+## Section 7: etcd Encryption at Rest
+
+Enabling encryption for secrets in etcd protects against unauthorized access to the raw etcd data files.
+
+### KMS-Based Encryption (AWS KMS)
+
+```yaml
+# /etc/kubernetes/pki/encryption-config.yaml
+apiVersion: apiserver.config.k8s.io/v1
+kind: EncryptionConfiguration
+resources:
+  - resources:
+      - secrets
+      - configmaps
+    providers:
+      # KMS v2 provider for AWS KMS
+      - kms:
+          apiVersion: v2
+          name: aws-kms
+          endpoint: unix:///var/run/kmsplugin/socket.sock
+          timeout: 3s
+      # Identity provider as fallback during rotation
+      - identity: {}
+```
+
+```yaml
+# AWS KMS plugin DaemonSet on control plane nodes
+apiVersion: apps/v1
+kind: DaemonSet
 metadata:
-  name: etcd-defrag
+  name: aws-encryption-provider
   namespace: kube-system
 spec:
-  schedule: "0 3 * * 0"   # Sundays at 03:00 UTC
-  concurrencyPolicy: Forbid
-  successfulJobsHistoryLimit: 3
-  failedJobsHistoryLimit: 3
-  jobTemplate:
-    spec:
-      backoffLimit: 0
-      activeDeadlineSeconds: 1800
-      template:
-        spec:
-          serviceAccountName: etcd-backup
-          restartPolicy: Never
-          nodeSelector:
-            node-role.kubernetes.io/control-plane: ""
-          tolerations:
-            - key: node-role.kubernetes.io/control-plane
-              operator: Exists
-              effect: NoSchedule
-          containers:
-          - name: etcd-defrag
-            image: registry.support.tools/tools/etcd-backup:3.5.12
-            command:
-            - /bin/bash
-            - -c
-            - |
-              set -euo pipefail
-
-              ETCD_ENDPOINTS="https://10.0.1.10:2379,https://10.0.1.11:2379,https://10.0.1.12:2379"
-
-              defrag_member() {
-                local endpoint="${1}"
-                echo "Defragmenting ${endpoint}..."
-
-                # Get size before defrag
-                SIZE_BEFORE=$(ETCDCTL_API=3 etcdctl endpoint status \
-                  --endpoints="${endpoint}" \
-                  --cacert=/etc/kubernetes/pki/etcd/ca.crt \
-                  --cert=/etc/kubernetes/pki/etcd/healthcheck-client.crt \
-                  --key=/etc/kubernetes/pki/etcd/healthcheck-client.key \
-                  --write-out=json | jq -r '.[0].Status.dbSize')
-
-                # Run defragmentation
-                ETCDCTL_API=3 etcdctl defrag \
-                  --endpoints="${endpoint}" \
-                  --cacert=/etc/kubernetes/pki/etcd/ca.crt \
-                  --cert=/etc/kubernetes/pki/etcd/healthcheck-client.crt \
-                  --key=/etc/kubernetes/pki/etcd/healthcheck-client.key
-
-                # Get size after defrag
-                SIZE_AFTER=$(ETCDCTL_API=3 etcdctl endpoint status \
-                  --endpoints="${endpoint}" \
-                  --cacert=/etc/kubernetes/pki/etcd/ca.crt \
-                  --cert=/etc/kubernetes/pki/etcd/healthcheck-client.crt \
-                  --key=/etc/kubernetes/pki/etcd/healthcheck-client.key \
-                  --write-out=json | jq -r '.[0].Status.dbSize')
-
-                SAVED=$(( (SIZE_BEFORE - SIZE_AFTER) / 1024 / 1024 ))
-                echo "  ${endpoint}: ${SIZE_BEFORE} -> ${SIZE_AFTER} bytes (saved ${SAVED} MB)"
-
-                # Wait for member to re-join the cluster before proceeding
-                sleep 10
-              }
-
-              # Defragment followers first, then leader last
-              # This minimizes leader election disruption
-              LEADER=$(ETCDCTL_API=3 etcdctl endpoint status \
-                --endpoints="${ETCD_ENDPOINTS}" \
-                --cacert=/etc/kubernetes/pki/etcd/ca.crt \
-                --cert=/etc/kubernetes/pki/etcd/healthcheck-client.crt \
-                --key=/etc/kubernetes/pki/etcd/healthcheck-client.key \
-                --write-out=json | \
-                jq -r '.[] | select(.Status.leader == .Status.header.member_id) | .Endpoint')
-
-              echo "Current leader: ${LEADER}"
-              echo "Defragmenting followers first..."
-
-              IFS=',' read -ra ENDPOINTS <<< "${ETCD_ENDPOINTS}"
-              for ep in "${ENDPOINTS[@]}"; do
-                if [[ "${ep}" != "${LEADER}" ]]; then
-                  defrag_member "${ep}"
-                fi
-              done
-
-              echo "Defragmenting leader: ${LEADER}"
-              defrag_member "${LEADER}"
-
-              echo "Defragmentation complete."
-
-            volumeMounts:
-            - name: etcd-certs
-              mountPath: /etc/kubernetes/pki/etcd
-              readOnly: true
-            resources:
-              requests:
-                cpu: 100m
-                memory: 64Mi
-              limits:
-                cpu: 200m
-                memory: 128Mi
-          volumes:
-          - name: etcd-certs
-            hostPath:
-              path: /etc/kubernetes/pki/etcd
-              type: Directory
-```
-
-## etcd Health Monitoring with Prometheus
-
-### Prometheus Scrape Configuration
-
-```yaml
-# etcd-service-monitor.yaml — ServiceMonitor for etcd metrics
-# etcd exposes Prometheus metrics on port 2381 by default
-apiVersion: monitoring.coreos.com/v1
-kind: ServiceMonitor
-metadata:
-  name: etcd
-  namespace: monitoring
-  labels:
-    app: kube-prometheus-stack
-spec:
-  endpoints:
-  - bearerTokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
-    interval: 30s
-    port: http-metrics
-    scheme: https
-    tlsConfig:
-      caFile: /etc/prometheus/secrets/etcd-client-cert/ca.crt
-      certFile: /etc/prometheus/secrets/etcd-client-cert/healthcheck-client.crt
-      keyFile: /etc/prometheus/secrets/etcd-client-cert/healthcheck-client.key
-      insecureSkipVerify: false
-  jobLabel: app
-  namespaceSelector:
-    matchNames:
-    - kube-system
   selector:
     matchLabels:
-      component: etcd
+      app: aws-encryption-provider
+  template:
+    metadata:
+      labels:
+        app: aws-encryption-provider
+    spec:
+      nodeSelector:
+        node-role.kubernetes.io/control-plane: ""
+      tolerations:
+        - key: node-role.kubernetes.io/control-plane
+          operator: Exists
+          effect: NoSchedule
+      containers:
+        - name: aws-encryption-provider
+          image: registry.company.internal/aws-encryption-provider:0.4.0
+          command:
+            - /aws-encryption-provider
+            - --key=arn:aws:kms:us-east-1:123456789012:key/mrk-REPLACE_WITH_KEY_ID
+            - --region=us-east-1
+            - --listen=/var/run/kmsplugin/socket.sock
+            - --health-port=:8083
+          volumeMounts:
+            - name: socket
+              mountPath: /var/run/kmsplugin
+          resources:
+            requests:
+              cpu: 50m
+              memory: 64Mi
+            limits:
+              cpu: 200m
+              memory: 128Mi
+      volumes:
+        - name: socket
+          hostPath:
+            path: /var/run/kmsplugin
+            type: DirectoryOrCreate
 ```
 
-### Key etcd Metrics
+### Verifying Encryption
 
-| Metric | Description | Alert threshold |
-|---|---|---|
-| `etcd_server_has_leader` | 1 if the member has a leader, 0 if no quorum | Alert if 0 for > 1 minute |
-| `etcd_server_leader_changes_seen_total` | Total leader election count | Alert if rate > 2/hour |
-| `etcd_disk_wal_fsync_duration_seconds` | WAL fsync latency (p99) | Alert if p99 > 100ms |
-| `etcd_disk_backend_commit_duration_seconds` | Backend commit latency (p99) | Alert if p99 > 250ms |
-| `etcd_mvcc_db_total_size_in_bytes` | Physical database size | Alert if > 80% of quota (1.6GB for 2GB quota) |
-| `etcd_mvcc_db_total_size_in_use_in_bytes` | Logical database size | Baseline for defrag benefit estimation |
-| `etcd_network_peer_round_trip_time_seconds` | Peer network latency (p99) | Alert if p99 > 150ms |
-| `etcd_server_slow_apply_total` | Count of slow apply operations | Alert if increasing steadily |
+```bash
+# After enabling encryption, re-encrypt all secrets
+kubectl get secrets --all-namespaces -o json | kubectl replace -f -
 
-### Alertmanager Rules
+# Verify a secret is encrypted in etcd
+# (requires direct etcd access)
+ETCDCTL_API=3 etcdctl get \
+  /registry/secrets/default/my-secret \
+  --print-value-only | hexdump -C | head -5
+# The output should start with: k8s:enc:kms:v2:aws-kms:
+```
+
+---
+
+## Section 8: Monitoring etcd Health
+
+### Key Metrics
+
+```bash
+# Check etcd cluster health
+etcdctl endpoint health --write-out=table
+
+# Check leader status
+etcdctl endpoint status --write-out=table
+# Columns: ENDPOINT, ID, VERSION, DB SIZE, IS LEADER, IS LEARNER, RAFT TERM, RAFT INDEX
+
+# Check for slow operations (watch latency)
+etcdctl check perf \
+  --endpoints="https://10.0.1.10:2379" \
+  --cacert="${ETCD_CACERT}" \
+  --cert="${ETCD_CERT}" \
+  --key="${ETCD_KEY}"
+```
+
+### Prometheus Alerting Rules
 
 ```yaml
-# etcd-prometheus-rules.yaml
+# etcd-alerts.yaml
 apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
 metadata:
-  name: etcd-critical-alerts
+  name: etcd-alerts
   namespace: monitoring
   labels:
-    prometheus: kube-prometheus
-    role: alert-rules
+    release: kube-prometheus-stack
 spec:
   groups:
-  - name: etcd.critical
-    interval: 30s
-    rules:
+    - name: etcd
+      interval: 30s
+      rules:
+        # etcd cluster does not have a quorum
+        - alert: EtcdInsufficientMembers
+          expr: |
+            count(up{job="etcd"} == 1) < (count(up{job="etcd"}) / 2 + 1)
+          for: 3m
+          labels:
+            severity: critical
+          annotations:
+            summary: "etcd cluster has insufficient healthy members"
+            description: >
+              etcd cluster has only {{ $value }} healthy members out of
+              {{ printf `count(up{job="etcd"})` | query | first | value }} total.
+              A quorum may not be achievable.
 
-    - alert: EtcdNoLeader
-      expr: etcd_server_has_leader == 0
-      for: 1m
-      labels:
-        severity: critical
-        team: platform
-      annotations:
-        summary: "etcd member has no leader — cluster may have lost quorum"
-        description: >
-          etcd member {{ $labels.instance }} has no leader for over 1 minute.
-          The cluster may have lost quorum. Kubernetes control plane operations
-          will fail. Check all etcd members immediately.
-          Runbook: https://runbooks.support.tools/etcd/no-leader
+        # etcd leader changes are happening too frequently
+        - alert: EtcdHighNumberOfLeaderChanges
+          expr: |
+            rate(etcd_server_leader_changes_seen_total[15m]) > 3
+          for: 15m
+          labels:
+            severity: warning
+          annotations:
+            summary: "etcd is experiencing frequent leader changes"
+            description: >
+              etcd member {{ $labels.instance }} has seen {{ $value | humanize }}
+              leader changes per minute in the last 15 minutes.
 
-    - alert: EtcdHighNumberOfLeaderChanges
-      expr: increase(etcd_server_leader_changes_seen_total[1h]) > 3
-      for: 5m
-      labels:
-        severity: warning
-        team: platform
-      annotations:
-        summary: "etcd has had more than 3 leader elections in the past hour"
-        description: >
-          etcd member {{ $labels.instance }} has had {{ $value }} leader changes
-          in the past hour. This indicates network instability or disk I/O issues.
-          Check etcd peer latency and disk fsync times.
+        # etcd database is approaching quota
+        - alert: EtcdDatabaseHighFragmentationRatio
+          expr: |
+            (etcd_mvcc_db_total_size_in_bytes - etcd_mvcc_db_total_size_in_use_in_bytes)
+            / etcd_mvcc_db_total_size_in_bytes > 0.5
+          for: 10m
+          labels:
+            severity: warning
+          annotations:
+            summary: "etcd database has high fragmentation"
+            description: >
+              etcd member {{ $labels.instance }} has {{ $value | humanizePercentage }}
+              database fragmentation. Defragmentation is recommended.
 
-    - alert: EtcdDatabaseSizeApproachingQuota
-      expr: |
-        (etcd_mvcc_db_total_size_in_bytes / 1073741824) > 1.6
-      for: 5m
-      labels:
-        severity: warning
-        team: platform
-      annotations:
-        summary: "etcd database size approaching quota limit"
-        description: >
-          etcd database size is {{ $value | humanize }}B, approaching the default
-          2GB quota. When the quota is exceeded, etcd will stop accepting write
-          requests. Run defragmentation or increase the quota.
-          Current member: {{ $labels.instance }}
+        # etcd database size is approaching quota
+        - alert: EtcdDatabaseSizeLimitApproaching
+          expr: |
+            etcd_mvcc_db_total_size_in_bytes / etcd_server_quota_backend_bytes > 0.8
+          for: 10m
+          labels:
+            severity: warning
+          annotations:
+            summary: "etcd database is approaching size limit"
+            description: >
+              etcd member {{ $labels.instance }} is using
+              {{ $value | humanizePercentage }} of its {{ printf `etcd_server_quota_backend_bytes{instance="%s"}` $labels.instance | query | first | value | humanize1024 }}B quota.
+              Compaction and defragmentation are needed.
 
-    - alert: EtcdDatabaseQuotaExceeded
-      expr: |
-        (etcd_mvcc_db_total_size_in_bytes / 1073741824) > 1.9
-      for: 1m
-      labels:
-        severity: critical
-        team: platform
-      annotations:
-        summary: "etcd database quota nearly exhausted — writes may fail"
-        description: >
-          etcd database is {{ $value | humanize }}B, within 100MB of the default
-          2GB quota. Write operations will start failing. Immediate defragmentation
-          or quota increase required.
+        # etcd database has exceeded quota (cluster will become read-only)
+        - alert: EtcdDatabaseSizeLimitExceeded
+          expr: |
+            etcd_mvcc_db_total_size_in_bytes / etcd_server_quota_backend_bytes >= 1
+          labels:
+            severity: critical
+          annotations:
+            summary: "etcd database quota exceeded — cluster is read-only"
+            description: >
+              etcd member {{ $labels.instance }} has exceeded its quota.
+              The cluster is now read-only. Immediate compaction and defragmentation required.
 
-    - alert: EtcdHighFsyncLatency
-      expr: |
-        histogram_quantile(0.99, rate(etcd_disk_wal_fsync_duration_seconds_bucket[5m])) > 0.1
-      for: 10m
-      labels:
-        severity: warning
-        team: platform
-      annotations:
-        summary: "etcd WAL fsync latency is elevated (p99 > 100ms)"
-        description: >
-          etcd WAL fsync p99 is {{ $value | humanizeDuration }} on {{ $labels.instance }}.
-          High fsync latency causes slow writes and may lead to leader elections.
-          Check for noisy neighbors, disk I/O saturation, or storage class issues.
+        # High write latency
+        - alert: EtcdHighCommitDurations
+          expr: |
+            histogram_quantile(0.99,
+              rate(etcd_disk_backend_commit_duration_seconds_bucket[5m])
+            ) > 0.25
+          for: 10m
+          labels:
+            severity: warning
+          annotations:
+            summary: "etcd is experiencing high commit latency"
+            description: >
+              etcd member {{ $labels.instance }} p99 commit latency is {{ $value }}s.
+              This may indicate disk I/O pressure.
 
-    - alert: EtcdHighCommitLatency
-      expr: |
-        histogram_quantile(0.99, rate(etcd_disk_backend_commit_duration_seconds_bucket[5m])) > 0.25
-      for: 10m
-      labels:
-        severity: warning
-        team: platform
-      annotations:
-        summary: "etcd backend commit latency is elevated (p99 > 250ms)"
-        description: >
-          etcd backend commit p99 is {{ $value | humanizeDuration }} on {{ $labels.instance }}.
-          This may cause slow API server responses. Check disk performance.
+        # etcd backup has not completed
+        - alert: EtcdBackupMissing
+          expr: |
+            time() - etcd_backup_last_success_timestamp_seconds > 43200
+          labels:
+            severity: critical
+          annotations:
+            summary: "etcd backup has not run in 12 hours"
+            description: >
+              No successful etcd backup has been recorded for cluster
+              {{ $labels.cluster }} in the last 12 hours.
 ```
 
-## Member Replacement for Failed Nodes
-
-### Replacing a Failed etcd Member
-
-When an etcd member fails (disk corruption, node failure, certificate expiry) and cannot be recovered, the procedure is to remove it from the cluster and add a new member:
+### Custom Backup Success Metric
 
 ```bash
+# Add to the backup script to push a metric to Pushgateway
+push_metric() {
+    local PUSHGATEWAY_URL="${PUSHGATEWAY_URL:-http://prometheus-pushgateway.monitoring.svc:9091}"
+    local TIMESTAMP=$(date +%s)
+
+    cat << METRIC | curl --silent --data-binary @- \
+        "${PUSHGATEWAY_URL}/metrics/job/etcd-backup/cluster/${CLUSTER_NAME}"
+# HELP etcd_backup_last_success_timestamp_seconds Unix timestamp of last successful etcd backup
+# TYPE etcd_backup_last_success_timestamp_seconds gauge
+etcd_backup_last_success_timestamp_seconds ${TIMESTAMP}
+# HELP etcd_backup_snapshot_size_bytes Size of the last etcd backup snapshot in bytes
+# TYPE etcd_backup_snapshot_size_bytes gauge
+etcd_backup_snapshot_size_bytes ${SNAPSHOT_SIZE}
+METRIC
+}
+
+# Call at end of successful backup
+push_metric
+log "Metrics pushed to Pushgateway"
+```
+
+---
+
+## Section 9: etcd Disaster Recovery Runbooks
+
+### Runbook: Single etcd Member Failure
+
+```bash
+# Step 1: Identify the failed member
+etcdctl member list --write-out=table
+# Look for the member with is_leader=false and that stopped responding
+
+# Step 2: Remove the failed member
+FAILED_MEMBER_ID="abc123def456"   # Replace with actual ID from member list
+etcdctl member remove "${FAILED_MEMBER_ID}"
+
+# Step 3: Re-provision the node and add it back as a new member
+# On the etcd leader:
+NEW_NODE_PEER_URL="https://10.0.1.13:2380"
+etcdctl member add master-new --peer-urls="${NEW_NODE_PEER_URL}"
+
+# Step 4: On the new node, start etcd with INITIAL_CLUSTER_STATE=existing
+# This is handled automatically by kubeadm on re-join:
+kubeadm join phase control-plane-join etcd --config=/etc/kubernetes/kubeadm-config.yaml
+
+# Step 5: Verify the cluster is healthy
+etcdctl endpoint health --write-out=table
+```
+
+### Runbook: Complete Cluster Loss
+
+```bash
+# This procedure applies when all etcd members are lost
+
+# Step 1: Find the most recent backup
+aws s3 ls "s3://company-etcd-backups/production/cluster-name/" \
+  --recursive \
+  --human-readable \
+  | sort | tail -5
+
+# Step 2: Download the latest snapshot
+aws s3 cp \
+  "s3://company-etcd-backups/production/cluster-name/etcd-snapshot-20270418T020000Z.db.gz" \
+  /tmp/snapshot.db.gz
+gunzip /tmp/snapshot.db.gz
+etcdctl snapshot status /tmp/snapshot.db --write-out=table
+
+# Step 3: Initialize the first control plane node with the snapshot
+# On master-1:
+kubeadm init phase etcd local \
+  --config=/etc/kubernetes/kubeadm-config.yaml
+
+# Stop etcd immediately after init
+mv /etc/kubernetes/manifests/etcd.yaml /tmp/
+
+# Restore the snapshot (single-member bootstrap)
+ETCDCTL_API=3 etcdctl snapshot restore /tmp/snapshot.db \
+    --name=master-1 \
+    --initial-cluster="master-1=https://10.0.1.10:2380" \
+    --initial-cluster-token="etcd-cluster-new-$(date +%s)" \
+    --initial-advertise-peer-urls="https://10.0.1.10:2380" \
+    --data-dir="/var/lib/etcd-restored"
+
+mv /var/lib/etcd /var/lib/etcd.old
+mv /var/lib/etcd-restored /var/lib/etcd
+
+# Update etcd manifest to use new cluster token if needed
+mv /tmp/etcd.yaml /etc/kubernetes/manifests/
+
+# Step 4: Restore API server and verify
+mv /tmp/kube-apiserver.yaml /etc/kubernetes/manifests/
+sleep 30
+kubectl get nodes
+
+# Step 5: Join remaining control plane nodes
+# (Follow multi-node restore procedure from Section 5)
+```
+
+### Runbook: etcd Quota Exceeded (Read-Only Mode)
+
+```bash
+# Symptom: etcd returns "etcdserver: mvcc: database space exceeded"
+# Immediate remediation:
+
+# Step 1: Verify quota exceeded
+etcdctl endpoint status --write-out=table
+# DB SIZE column will equal or exceed the quota
+
+# Step 2: Get current revision and compact aggressively
+CURRENT_REV=$(etcdctl endpoint status --write-out=json | \
+  jq -r '.[0].Status.header.revision')
+
+# Compact keeping only last 100 revisions
+COMPACT_REV=$((CURRENT_REV - 100))
+etcdctl compact "${COMPACT_REV}"
+
+# Step 3: Defragment all members
+etcdctl defrag \
+  --endpoints="https://10.0.1.10:2379,https://10.0.1.11:2379,https://10.0.1.12:2379"
+
+# Step 4: Verify space is reclaimed
+etcdctl endpoint status --write-out=table
+
+# Step 5: If quota is still exceeded, temporarily increase it
+# Edit /etc/kubernetes/manifests/etcd.yaml:
+# --quota-backend-bytes=10737418240   # 10 GiB (from default 8 GiB)
+
+# Step 6: Alert on root cause — usually too many CustomResources or stale watch resources
+kubectl get crds --all-namespaces | wc -l
+etcdctl get "" --prefix --keys-only | \
+  awk -F'/' '{print $3}' | \
+  sort | uniq -c | sort -rn | head -20
+```
+
+---
+
+## Section 10: Backup Verification and DR Testing
+
+### Automated Backup Verification
+
+```bash
+# verify-backup.sh — run after each backup as part of the CronJob
 #!/bin/bash
-# replace-etcd-member.sh — Remove a failed member and add a replacement
-# Run from a HEALTHY control plane node
 set -euo pipefail
 
-FAILED_MEMBER_NAME="${1:?Failed member name required (e.g. control-plane-02)}"
-NEW_MEMBER_IP="${2:?New member IP required (e.g. 10.0.1.14)}"
-NEW_MEMBER_NAME="${3:?New member name required (e.g. control-plane-02-replacement)}"
+SNAPSHOT_FILE="${1}"
+VERIFY_DATA_DIR="/tmp/etcd-verify-$(date +%s)"
 
-echo "=== Step 1: Verify cluster health before member replacement ==="
-etcdctlw endpoint health
-etcdctlw member list --write-out=table
+log() { echo "[$(date -u +%Y-%m-%dT%H:%M:%SZ)] $*"; }
 
-echo ""
-echo "=== Step 2: Find the member ID of the failed member ==="
-FAILED_MEMBER_ID=$(etcdctlw member list --write-out=json | \
-  jq -r --arg NAME "${FAILED_MEMBER_NAME}" \
-  '.members[] | select(.name == $NAME) | .ID | tostring')
+# Step 1: Restore the snapshot to a temporary directory
+log "Restoring snapshot for verification..."
+ETCDCTL_API=3 etcdctl snapshot restore "${SNAPSHOT_FILE}" \
+    --data-dir="${VERIFY_DATA_DIR}" \
+    --name=verify-node \
+    --initial-cluster="verify-node=http://127.0.0.1:2388" \
+    --initial-advertise-peer-urls="http://127.0.0.1:2388"
 
-if [[ -z "${FAILED_MEMBER_ID}" ]]; then
-  echo "ERROR: Could not find member named ${FAILED_MEMBER_NAME}"
-  etcdctlw member list
-  exit 1
+# Step 2: Start a temporary etcd instance from the restored data
+etcd \
+    --name=verify-node \
+    --data-dir="${VERIFY_DATA_DIR}" \
+    --listen-client-urls="http://127.0.0.1:2389" \
+    --advertise-client-urls="http://127.0.0.1:2389" \
+    --listen-peer-urls="http://127.0.0.1:2388" \
+    --initial-cluster="verify-node=http://127.0.0.1:2388" \
+    --initial-cluster-state=new &
+ETCD_PID=$!
+
+sleep 10
+
+# Step 3: Verify key counts match expectations
+NODE_COUNT=$(ETCDCTL_API=3 etcdctl \
+    --endpoints="http://127.0.0.1:2389" \
+    get /registry/nodes --prefix --keys-only | wc -l)
+
+NAMESPACE_COUNT=$(ETCDCTL_API=3 etcdctl \
+    --endpoints="http://127.0.0.1:2389" \
+    get /registry/namespaces --prefix --keys-only | wc -l)
+
+log "Verification results:"
+log "  Nodes in backup: ${NODE_COUNT}"
+log "  Namespaces in backup: ${NAMESPACE_COUNT}"
+
+# Step 4: Clean up
+kill "${ETCD_PID}"
+rm -rf "${VERIFY_DATA_DIR}"
+
+if [ "${NAMESPACE_COUNT}" -lt 3 ]; then
+    log "ERROR: Backup appears incomplete — fewer than 3 namespaces found"
+    exit 1
 fi
 
-echo "Failed member ID: ${FAILED_MEMBER_ID}"
-
-echo ""
-echo "=== Step 3: Remove the failed member ==="
-etcdctlw member remove "${FAILED_MEMBER_ID}"
-echo "Member removed."
-
-echo ""
-echo "=== Step 4: Add the new member (in learner state first) ==="
-etcdctlw member add "${NEW_MEMBER_NAME}" \
-  --peer-urls="https://${NEW_MEMBER_IP}:2380"
-# Note the member add output — it provides ETCD_INITIAL_CLUSTER for the new node
-
-echo ""
-echo "=== Step 5: Actions required on the NEW node ==="
-echo "On ${NEW_MEMBER_NAME} (${NEW_MEMBER_IP}), run the following before starting etcd:"
-echo ""
-
-CURRENT_CLUSTER=$(etcdctlw member list --write-out=json | \
-  jq -r '[.members[] | .name + "=" + .peerURLs[0]] | join(",")')
-
-cat <<EOF
-# Set these environment variables for the new etcd member
-export ETCD_NAME="${NEW_MEMBER_NAME}"
-export ETCD_INITIAL_CLUSTER="${CURRENT_CLUSTER}"
-export ETCD_INITIAL_CLUSTER_STATE="existing"
-export ETCD_INITIAL_ADVERTISE_PEER_URLS="https://${NEW_MEMBER_IP}:2380"
-export ETCD_ADVERTISE_CLIENT_URLS="https://${NEW_MEMBER_IP}:2379"
-export ETCD_LISTEN_PEER_URLS="https://${NEW_MEMBER_IP}:2380"
-export ETCD_LISTEN_CLIENT_URLS="https://${NEW_MEMBER_IP}:2379"
-
-# Remove any old data directory on the new node
-rm -rf /var/lib/etcd
-
-# Then start etcd with these environment variables
-# The new member will sync all data from the existing cluster peers
-EOF
-
-echo ""
-echo "After the new member starts and syncs, verify with:"
-echo "  etcdctlw member list --write-out=table"
-echo "  etcdctlw endpoint health"
+log "Backup verification passed"
 ```
 
-## etcd Encryption at Rest
+---
 
-etcd encryption at rest is covered in the Secret Management section, but the configuration impacts etcd operations:
-
-```bash
-# After enabling/changing encryption, verify keys are encrypted in etcd
-# Check a known secret — should show encrypted data, not plaintext
-ETCDCTL_API=3 etcdctl \
-  --endpoints=https://127.0.0.1:2379 \
-  --cacert=/etc/kubernetes/pki/etcd/ca.crt \
-  --cert=/etc/kubernetes/pki/etcd/server.crt \
-  --key=/etc/kubernetes/pki/etcd/server.key \
-  get /registry/secrets/default/test-secret | \
-  hexdump -C | head -5
-# Encrypted output will show: k8s:enc:aescbc:v1 prefix
-# Unencrypted output will show readable text
-
-# Force re-encryption of all secrets after enabling encryption-at-rest
-kubectl get secrets --all-namespaces -o json | kubectl replace -f -
-```
-
-## Backup Retention and DR Targets
-
-### Retention Policy
-
-| Backup type | Frequency | Retention | Storage |
-|---|---|---|---|
-| Hourly snapshot | Every 4 hours | 7 days (42 snapshots) | S3 standard |
-| Daily snapshot | Daily at 02:00 | 30 days | S3 standard |
-| Weekly snapshot | Sunday at 03:00 | 12 weeks | S3 infrequent access |
-| Monthly snapshot | 1st of month | 12 months | S3 Glacier |
-
-### RTO and RPO Targets
-
-| Scenario | RPO target | RTO target | Notes |
-|---|---|---|---|
-| Single etcd member failure | 0 (cluster continues) | 15 minutes (member replacement) | No data loss; quorum maintained |
-| Two member failure (3-member cluster) | 0 (read-only mode) | 30 minutes | Restore third member from snapshot + sync |
-| Total cluster loss | ≤ 4 hours | 60 minutes | Restore from latest S3 snapshot |
-| Ransomware / data corruption | ≤ 24 hours | 120 minutes | Point-in-time restore from daily snapshot |
-
-### DR Readiness Verification
-
-```bash
-#!/bin/bash
-# verify-dr-readiness.sh — Monthly DR readiness check
-# Tests that the latest backup is restorable without impacting production
-set -euo pipefail
-
-S3_BUCKET="payments-prod-etcd-backups"
-TEST_RESTORE_DIR="/tmp/etcd-dr-test-$(date +%Y%m%d)"
-
-echo "=== etcd DR Readiness Verification ==="
-echo "Date: $(date)"
-
-echo ""
-echo "--- Checking latest backup metadata ---"
-aws s3 cp "s3://${S3_BUCKET}/prod-us-east-1/latest-backup.json" - | jq .
-
-echo ""
-echo "--- Downloading latest backup for restore test ---"
-LATEST_KEY=$(aws s3 cp "s3://${S3_BUCKET}/prod-us-east-1/latest-backup.json" - | \
-  jq -r '.s3_key')
-aws s3 cp "s3://${S3_BUCKET}/${LATEST_KEY}" /tmp/etcd-dr-test.db
-
-echo ""
-echo "--- Verifying snapshot integrity ---"
-ETCDCTL_API=3 etcdctl snapshot status /tmp/etcd-dr-test.db --write-out=table
-
-echo ""
-echo "--- Test restore to temporary directory ---"
-mkdir -p "${TEST_RESTORE_DIR}"
-ETCDCTL_API=3 etcdctl snapshot restore /tmp/etcd-dr-test.db \
-  --data-dir="${TEST_RESTORE_DIR}" \
-  --name=dr-test-member \
-  --initial-cluster="dr-test-member=https://127.0.0.1:2380" \
-  --initial-cluster-token="etcd-dr-test-$(date +%Y%m%d)" \
-  --initial-advertise-peer-urls="https://127.0.0.1:2380"
-
-echo ""
-echo "--- Restore test successful ---"
-echo "Data directory size: $(du -sh ${TEST_RESTORE_DIR})"
-
-# Cleanup
-rm -rf "${TEST_RESTORE_DIR}" /tmp/etcd-dr-test.db
-
-echo ""
-echo "=== DR Verification PASSED ==="
-echo "Latest backup is valid and restorable."
-echo "Record this result in the DR runbook log."
-```
-
-## Summary
-
-Production etcd operations require attention across five areas:
-
-1. Automated backups run every 4 hours with integrity verification before S3 upload, plus Prometheus alerts for backup staleness.
-2. Monthly DR verification exercises using the `verify-dr-readiness.sh` script — backup validity is not meaningful unless the restore path is tested.
-3. Weekly defragmentation to prevent database growth from consuming the quota and triggering write failures — defragment followers before the leader to minimize disruption.
-4. Prometheus monitoring of the six key health metrics (has_leader, leader_changes, wal_fsync_duration, backend_commit_duration, db_total_size, peer_rtt) with alerting thresholds tuned to cluster-specific baselines.
-5. Documented and tested member replacement runbooks, because a graceful member replacement in under 30 minutes is the difference between a minor incident and a prolonged outage.
-
-etcd backup and recovery is not a one-time configuration task — it requires regular testing, monitoring, and operational discipline to ensure the cluster can be recovered when it matters most.
+A comprehensive etcd backup strategy combines frequent automated snapshots (every 4-6 hours), encrypted off-cluster storage in S3 with appropriate retention, automated verification of each backup, documented restore procedures tested quarterly, and continuous monitoring with meaningful alerts. The combination of etcd encryption at rest, compact/defrag maintenance, and proactive quota management ensures the control plane remains stable and recoverable under any failure scenario.
