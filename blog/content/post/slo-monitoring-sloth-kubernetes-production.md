@@ -1,0 +1,315 @@
+---
+title: "SLO Monitoring with Sloth: Automated SLI/SLO Management and Error Budget Tracking"
+date: 2026-11-22T00:00:00-05:00
+draft: false
+tags: ["SLO", "SLI", "Sloth", "Monitoring", "Error Budget", "SRE", "Kubernetes", "Prometheus"]
+categories: ["Observability", "SRE", "Monitoring"]
+author: "Matthew Mattox - mmattox@support.tools"
+description: "Complete guide to implementing SLO monitoring with Sloth for automated SLI/SLO generation, error budget tracking, and multi-window multi-burn-rate alerting in production Kubernetes."
+more_link: "yes"
+url: "/slo-monitoring-sloth-kubernetes-production/"
+---
+
+Service Level Objectives (SLOs) are critical for reliability engineering, but manually creating and maintaining SLI queries and alerting rules is error-prone and time-consuming. Sloth automates SLO management by generating Prometheus recording rules and multi-window multi-burn-rate alerts from simple SLO specifications. This guide covers production SLO implementation with Sloth.
+
+<!--more-->
+
+# SLO Monitoring with Sloth
+
+## Executive Summary
+
+Sloth is a tool for generating Prometheus SLO monitoring rules following Google's SRE practices. It automatically creates recording rules for SLIs and sophisticated multi-window multi-burn-rate alerts for error budget burn detection. This guide demonstrates implementing comprehensive SLO monitoring in production Kubernetes environments.
+
+## SLO Fundamentals
+
+**SLI (Service Level Indicator)**: Quantitative measure of service level
+**SLO (Service Level Objective)**: Target value for SLI
+**Error Budget**: Allowed failure rate (100% - SLO)
+
+## Installing Sloth
+
+```yaml
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: sloth-system
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sloth
+  namespace: sloth-system
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sloth
+  template:
+    metadata:
+      labels:
+        app: sloth
+    spec:
+      containers:
+      - name: sloth
+        image: ghcr.io/slok/sloth:v0.11.0
+        args:
+          - kubernetes-controller
+          - --sli-plugins-path=/etc/sloth/plugins
+        volumeMounts:
+        - name: plugins
+          mountPath: /etc/sloth/plugins
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "200m"
+      volumes:
+      - name: plugins
+        configMap:
+          name: sloth-plugins
+```
+
+## Defining SLOs
+
+```yaml
+apiVersion: sloth.slok.dev/v1
+kind: PrometheusServiceLevel
+metadata:
+  name: api-service-slo
+  namespace: monitoring
+spec:
+  service: "api-service"
+  labels:
+    team: "platform"
+    tier: "critical"
+  
+  slos:
+    # Availability SLO
+    - name: "requests-availability"
+      objective: 99.9
+      description: "API requests should be successful"
+      sli:
+        events:
+          errorQuery: |
+            sum(rate(http_requests_total{
+              service="api-service",
+              code=~"5.."
+            }[{{.window}}]))
+          totalQuery: |
+            sum(rate(http_requests_total{
+              service="api-service"
+            }[{{.window}}]))
+      alerting:
+        name: "APIHighErrorRate"
+        labels:
+          category: "availability"
+        annotations:
+          summary: "API service is burning error budget too fast"
+        pageAlert:
+          labels:
+            severity: "critical"
+        ticketAlert:
+          labels:
+            severity: "warning"
+
+    # Latency SLO
+    - name: "requests-latency"
+      objective: 99.0
+      description: "API requests should complete within 500ms"
+      sli:
+        events:
+          errorQuery: |
+            (
+              sum(rate(http_request_duration_seconds_count{
+                service="api-service"
+              }[{{.window}}]))
+              -
+              sum(rate(http_request_duration_seconds_bucket{
+                service="api-service",
+                le="0.5"
+              }[{{.window}}]))
+            )
+          totalQuery: |
+            sum(rate(http_request_duration_seconds_count{
+              service="api-service"
+            }[{{.window}}]))
+      alerting:
+        name: "APIHighLatency"
+        labels:
+          category: "latency"
+        annotations:
+          summary: "API service latency SLO is burning"
+
+    # Throughput SLO (minimum requests)
+    - name: "minimum-throughput"
+      objective: 95.0
+      description: "Service should handle minimum expected load"
+      sli:
+        raw:
+          errorRatioQuery: |
+            1 - (
+              clamp_max(
+                sum(rate(http_requests_total{
+                  service="api-service"
+                }[{{.window}}]))
+                / 1000,  # Expected minimum: 1000 req/s
+                1
+              )
+            )
+```
+
+## Generated Prometheus Rules
+
+```yaml
+# Automatically generated by Sloth
+groups:
+- name: sloth-slo-sli-recordings-api-service-requests-availability
+  interval: 30s
+  rules:
+  # SLI - Error ratio
+  - record: slo:sli_error:ratio_rate5m
+    expr: |
+      sum(rate(http_requests_total{
+        service="api-service",
+        code=~"5.."
+      }[5m]))
+      /
+      sum(rate(http_requests_total{
+        service="api-service"
+      }[5m]))
+    labels:
+      sloth_id: api-service-requests-availability
+      sloth_service: api-service
+      sloth_slo: requests-availability
+  
+  # Multi-window multi-burn-rate alerts
+  - alert: APIHighErrorRate
+    expr: |
+      (
+        max(slo:sli_error:ratio_rate5m{sloth_id="api-service-requests-availability"}) > (14.4 * 0.001)
+        and
+        max(slo:sli_error:ratio_rate1h{sloth_id="api-service-requests-availability"}) > (14.4 * 0.001)
+      )
+      or
+      (
+        max(slo:sli_error:ratio_rate30m{sloth_id="api-service-requests-availability"}) > (6 * 0.001)
+        and
+        max(slo:sli_error:ratio_rate6h{sloth_id="api-service-requests-availability"}) > (6 * 0.001)
+      )
+    labels:
+      severity: critical
+      category: availability
+    annotations:
+      summary: "API service is burning error budget too fast"
+```
+
+## Error Budget Dashboards
+
+```json
+{
+  "dashboard": {
+    "title": "Service SLO Dashboard",
+    "panels": [
+      {
+        "title": "Error Budget Burn Rate",
+        "targets": [
+          {
+            "expr": "slo:current_burn_rate:ratio{service='api-service'}"
+          }
+        ]
+      },
+      {
+        "title": "Error Budget Remaining",
+        "targets": [
+          {
+            "expr": "slo:error_budget:remaining{service='api-service'}"
+          }
+        ]
+      },
+      {
+        "title": "SLO Compliance (30d)",
+        "targets": [
+          {
+            "expr": "slo:objective:ratio{service='api-service'}"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+## Multi-Window Multi-Burn-Rate Alerting
+
+```yaml
+# Automatically generated alert rules
+- alert: ServiceBudgetBurn
+  # Fast burn: 14.4x burn rate over 1h
+  # Consuming 2% of monthly budget in 1 hour
+  expr: |
+    (
+      slo:sli_error:ratio_rate5m > (14.4 * (1 - 0.999))
+      and
+      slo:sli_error:ratio_rate1h > (14.4 * (1 - 0.999))
+    )
+  for: 2m
+  labels:
+    severity: critical
+  
+  # Medium burn: 6x burn rate over 6h
+  # Consuming 5% of monthly budget in 6 hours
+  or:
+  expr: |
+    (
+      slo:sli_error:ratio_rate30m > (6 * (1 - 0.999))
+      and
+      slo:sli_error:ratio_rate6h > (6 * (1 - 0.999))
+    )
+  for: 15m
+  labels:
+    severity: warning
+```
+
+## Custom SLI Plugins
+
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: sloth-plugins
+  namespace: sloth-system
+data:
+  grpc-availability.yaml: |
+    version: "prometheus/v1"
+    plugins:
+      - id: "grpc-availability"
+        meta:
+          name: "gRPC Availability"
+        sli:
+          events:
+            errorQuery: |
+              sum(rate(grpc_server_handled_total{
+                grpc_code!~"OK|NotFound|InvalidArgument|Unauthenticated"
+              }[{{.window}}]))
+            totalQuery: |
+              sum(rate(grpc_server_handled_total[{{.window}}]))
+```
+
+## Best Practices
+
+1. **Start with critical services** first
+2. **Define realistic objectives** based on history
+3. **Use multiple SLIs** (availability, latency, throughput)
+4. **Implement error budget policies**
+5. **Regular SLO reviews** with stakeholders
+6. **Document SLO decisions**
+7. **Alert on budget burn rate** not just current status
+8. **Track error budget over time**
+9. **Include SLOs in deployment decisions**
+10. **Use SLOs for capacity planning**
+
+## Conclusion
+
+Sloth automates SLO monitoring by generating consistent, mathematically sound Prometheus rules and alerts based on Google's SRE best practices, enabling teams to focus on reliability engineering rather than rule maintenance.
