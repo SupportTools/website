@@ -955,4 +955,203 @@ echo "Cluster ${CLUSTER_NAME} onboarded successfully"
 echo "Fleet should begin deploying platform addons within 60 seconds"
 ```
 
-Multi-cluster management transitions from ad-hoc scripts to a systematic engineering discipline when Cluster API handles lifecycle, Fleet or ArgoCD ApplicationSets handle GitOps configuration drift, Submariner or Cilium Cluster Mesh handles cross-cluster networking, and Thanos provides unified observability. The investment in this foundation pays dividends as cluster count grows — each additional cluster costs minutes of onboarding time rather than days of manual configuration.
+## Victoria Metrics for Multi-Cluster Monitoring
+
+As an alternative to Thanos, Victoria Metrics Cluster offers multi-tenant, horizontally scalable metrics storage with native clustering support. The vmagent component provides lightweight metrics collection at the cluster edge with built-in remote write capabilities.
+
+```yaml
+# vmagent-config.yaml — deployed to each managed cluster
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: vmagent
+  namespace: monitoring
+spec:
+  selector:
+    matchLabels:
+      app: vmagent
+  template:
+    spec:
+      containers:
+        - name: vmagent
+          image: victoriametrics/vmagent:v1.101.0
+          args:
+            - -promscrape.config=/etc/vmagent/scrape.yaml
+            # Remote write to central Victoria Metrics cluster
+            - -remoteWrite.url=https://vminsert.monitoring.platform.example.com:8480/insert/0/prometheus
+            # Add cluster identification labels
+            - -remoteWrite.label=cluster=${CLUSTER_NAME}
+            - -remoteWrite.label=environment=${ENVIRONMENT}
+            # Retry queue for network partitions
+            - -remoteWrite.queues=16
+            - -remoteWrite.maxBlockSize=32MB
+            # Compression for WAN efficiency
+            - -remoteWrite.sendTimeout=30s
+          env:
+            - name: CLUSTER_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.nodeName
+```
+
+## KubeFed v2 Limitations and Alternatives
+
+KubeFed v2 (Kubernetes Federation v2) was the original mechanism for synchronizing resources across clusters. It was deprecated and archived in 2023 due to complexity, maintenance burden, and the emergence of better alternatives. Key limitations included:
+
+- Resource templates were complex to write and maintain
+- Federated resources had different API shapes from native resources, breaking tooling
+- No built-in GitOps integration
+- Limited propagation policy expressiveness
+- No handling of cluster-specific CRDs
+
+Modern alternatives that address these limitations:
+
+| Tool | Approach | Best For |
+|---|---|---|
+| Rancher Fleet | GitOps push model | Rancher-managed clusters, Helm-heavy environments |
+| ArgoCD ApplicationSet | GitOps pull model | ArgoCD-based platforms, per-PR preview envs |
+| Cluster API + GitOps | Declarative lifecycle + config | Full lifecycle automation |
+| Karmada | KubeFed replacement API | Teams familiar with KubeFed concepts |
+| OCM (Open Cluster Management) | Hub-spoke model | Red Hat/OpenShift environments |
+
+## Multi-Cluster Security: Policy Propagation
+
+Security policies (OPA Gatekeeper constraints, NetworkPolicies, Pod Security Standards labels) must be consistently applied across all clusters. Fleet and ArgoCD handle this as standard GitOps content, but dedicated policy propagation tools provide additional audit capabilities.
+
+```yaml
+# Using ArgoCD to propagate OPA Gatekeeper policies to all clusters
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: security-policies
+  namespace: argocd
+spec:
+  generators:
+    - clusters:
+        selector:
+          matchLabels:
+            argocd.argoproj.io/secret-type: cluster
+  template:
+    metadata:
+      name: "security-policies-{{name}}"
+      finalizers:
+        - resources-finalizer.argocd.argoproj.io
+    spec:
+      project: platform
+      source:
+        repoURL: https://github.com/example-org/platform-policies
+        targetRevision: main
+        path: policies/gatekeeper
+      destination:
+        server: "{{server}}"
+        namespace: gatekeeper-system
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
+          # Replace instead of merge to ensure drift is corrected
+          - Replace=true
+```
+
+## Cluster Drift Detection
+
+Clusters in a fleet can drift from their intended configuration over manual changes, failed syncs, or out-of-band modifications. Automated drift detection is a critical operational capability.
+
+```bash
+#!/bin/bash
+# drift-report.sh
+# Compares actual cluster state against expected state in Git for each cluster
+
+CLUSTERS=(
+    "production-us-east-1:~/.kube/us-east-1.yaml"
+    "production-eu-west-1:~/.kube/eu-west-1.yaml"
+    "staging-us-east-1:~/.kube/staging.yaml"
+)
+
+echo "=== Cluster Drift Report $(date -u +%Y-%m-%dT%H:%MZ) ==="
+echo ""
+
+for CLUSTER_ENTRY in "${CLUSTERS[@]}"; do
+    CLUSTER_NAME="${CLUSTER_ENTRY%%:*}"
+    KUBECONFIG="${CLUSTER_ENTRY##*:}"
+
+    echo "--- Cluster: ${CLUSTER_NAME} ---"
+
+    # Check ArgoCD sync status for this cluster's applications
+    argocd app list --server argocd.platform.example.com \
+        --label "cluster=${CLUSTER_NAME}" \
+        --output json 2>/dev/null | \
+        jq -r '.[] | select(.status.sync.status != "Synced") |
+            "  OUT OF SYNC: \(.metadata.name) (\(.status.sync.status))"'
+
+    # Check for unauthorized changes to critical resources
+    kubectl diff -f platform/critical-configs/ \
+        --kubeconfig "${KUBECONFIG}" 2>/dev/null | \
+        grep "^[+-]" | grep -v "^---\|^+++" | head -20
+
+    echo ""
+done
+```
+
+## Multi-Cluster Backup Strategy
+
+Each cluster requires independent backup coverage, but the backup metadata should be centralized for visibility and compliance reporting.
+
+```yaml
+# Velero configuration with centralized S3 backend per cluster
+# Each cluster writes to its own S3 prefix but a common bucket
+
+# Cluster A backup location
+apiVersion: velero.io/v1
+kind: BackupStorageLocation
+metadata:
+  name: default
+  namespace: velero
+spec:
+  provider: aws
+  objectStorage:
+    bucket: platform-cluster-backups
+    prefix: production-us-east-1  # Cluster-specific prefix
+  config:
+    region: us-east-1
+    serverSideEncryption: aws:kms
+    kmsKeyId: arn:aws:kms:us-east-1:123456789:key/backup-key
+---
+# Daily cluster backup schedule
+apiVersion: velero.io/v1
+kind: Schedule
+metadata:
+  name: daily-cluster-backup
+  namespace: velero
+spec:
+  schedule: "0 2 * * *"  # 2 AM daily
+  template:
+    storageLocation: default
+    includedNamespaces:
+      - "*"
+    excludedNamespaces:
+      - kube-system
+      - velero
+    includedResources:
+      - "*"
+    labelSelector: {}
+    snapshotVolumes: true
+    ttl: 720h  # 30 days retention
+    defaultVolumesToFsBackup: false
+```
+
+## Platform Team Topology for Multi-Cluster Operations
+
+Effective multi-cluster operations require a clear platform team structure:
+
+**Cluster Operations team**: Responsible for cluster lifecycle (CAPI provisioning, upgrades, node pool management), security baseline enforcement, and infrastructure-level incident response.
+
+**Platform Engineering team**: Responsible for the GitOps toolchain (ArgoCD/Fleet), shared platform services (cert-manager, external-secrets, monitoring stack), operator catalog, and the developer experience layer.
+
+**Application teams**: Consume the platform through self-service namespaces, pre-configured service accounts, and GitOps pipelines. Application teams should not have direct cluster-admin access to any cluster.
+
+This topology enables scaling to dozens of clusters without linear growth in operations headcount, because each new cluster inherits all platform services automatically via the GitOps fleet.
+
+Multi-cluster management transitions from ad-hoc scripts to a systematic engineering discipline when Cluster API handles lifecycle, Fleet or ArgoCD ApplicationSets handle GitOps configuration drift, Submariner or Cilium Cluster Mesh handles cross-cluster networking, and Thanos or Victoria Metrics provides unified observability. The investment in this foundation pays dividends as cluster count grows — each additional cluster costs minutes of onboarding time rather than days of manual configuration.
