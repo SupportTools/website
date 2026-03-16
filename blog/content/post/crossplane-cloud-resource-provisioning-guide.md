@@ -1,419 +1,360 @@
 ---
-title: "Crossplane: Cloud Resource Provisioning with Kubernetes-Native APIs"
-date: 2027-04-06T00:00:00-05:00
+title: "Crossplane: Cloud Resource Provisioning and Infrastructure Composition on Kubernetes"
+date: 2027-04-19T00:00:00-05:00
 draft: false
-tags: ["Kubernetes", "Crossplane", "Infrastructure as Code", "Cloud Native", "Platform Engineering"]
-categories: ["Kubernetes", "Platform Engineering", "Cloud Native"]
+tags: ["Kubernetes", "Crossplane", "Infrastructure as Code", "AWS", "GitOps", "Platform Engineering"]
+categories: ["Kubernetes", "Platform Engineering"]
 author: "Matthew Mattox - mmattox@support.tools"
-description: "Enterprise guide to Crossplane for Kubernetes-native cloud resource provisioning, covering provider installation (AWS, GCP, Azure), Composite Resource Definitions, Compositions for team self-service, ProviderConfig credential management, and building an Internal Developer Platform with Backstage integration."
+description: "Enterprise guide to using Crossplane for declarative cloud infrastructure provisioning, building platform abstractions with Compositions and CompositeResources, and integrating with GitOps workflows."
 more_link: "yes"
 url: "/crossplane-cloud-resource-provisioning-guide/"
 ---
 
-Terraform popularized infrastructure as code, but it introduced a separate state management problem, a separate reconciliation loop, and a workflow that operates outside the Kubernetes control plane where most platform teams already live. Crossplane takes a different approach: it extends the Kubernetes API with new resource types that directly represent cloud infrastructure, and uses the same controller reconciliation loop that manages Pods and Deployments to manage RDS instances, GKE clusters, and S3 buckets.
+Crossplane extends Kubernetes with the ability to provision and manage cloud infrastructure resources — AWS RDS databases, GCP Cloud SQL instances, Azure Key Vaults, S3 buckets, VPCs, IAM roles, and hundreds of other resource types — using the same declarative YAML workflow used for application deployments. The result is a single control plane where developers request infrastructure through Custom Resources, platform teams define the allowed shapes of that infrastructure through Compositions, and GitOps pipelines synchronize desired state without any separate Terraform or CloudFormation tooling.
 
-The result is an infrastructure provisioning system where `kubectl get` shows the health of both application workloads and their backing cloud resources, where the same GitOps tooling (ArgoCD, Flux) that deploys applications also provisions databases, and where application teams request infrastructure through `CompositeResourceClaim` objects without ever writing a Terraform plan.
-
-This guide covers Crossplane's architecture, provider installation, credential management, Composition authoring, composite resource claims, Composition Functions for complex logic, and an Internal Developer Platform workflow with Backstage.
+This guide covers Crossplane from installation through enterprise production patterns: provider installation and configuration, managed resources, Composite Resource Definitions (XRDs), Compositions, CompositeResourceClaims for self-service developer workflows, GitOps integration, and troubleshooting.
 
 <!--more-->
 
 ## Section 1: Crossplane Architecture
 
-### Core Components
-
-- **crossplane-core**: The central controller that watches `CompositeResource`, `CompositeResourceClaim`, and `Composition` objects. Responsible for binding claims to composites and calling Composition functions.
-- **Providers**: Each cloud provider is an independent Crossplane package (an OCI image containing CRDs and a controller). `provider-aws`, `provider-gcp`, and `provider-azure` ship thousands of managed resource CRDs — one per cloud API resource.
-- **Composition engine**: The subsystem that takes a `CompositeResource` (the abstract API) and maps it to one or more `ManagedResource` objects (the concrete cloud API calls) using patch-and-transform rules or Composition Functions.
-
-### Resource Hierarchy
+### Control Plane Model
 
 ```
-Team Developer
-  └─ Creates: CompositeResourceClaim (XRC) — "I want a PostgreSQL database"
-        │
-        ▼  (Crossplane binds to a Composite Resource)
-     CompositeResource (XR) — abstract representation of the database
-        │
-        ▼  (Composition renders via patch-and-transform or Functions)
-     ManagedResource (e.g. RDSInstance) — actual AWS API call
-     ManagedResource (e.g. DBSubnetGroup) — VPC network configuration
-     ManagedResource (e.g. SecurityGroup) — firewall rules
+┌─────────────────────────────────────────────────────────────────┐
+│  Developer                                                       │
+│    kubectl apply -f database-claim.yaml                         │
+│                │                                                 │
+│                ▼                                                 │
+│  ┌─────────────────────────────────────────────────────────┐    │
+│  │  Kubernetes API Server (with Crossplane CRDs)           │    │
+│  │                                                         │    │
+│  │  CompositeResourceClaim (developer-facing)              │    │
+│  │    ↓ fulfills                                           │    │
+│  │  CompositeResource (XR) — platform-managed              │    │
+│  │    ↓ composed of                                        │    │
+│  │  Managed Resources (provider-specific)                  │    │
+│  │    ↓ reconciled by                                      │    │
+│  │  Provider Controller                                    │    │
+│  └─────────────────────────────────────────────────────────┘    │
+│                │                                                 │
+│                ▼                                                 │
+│  Cloud Provider APIs                                            │
+│  (AWS / GCP / Azure / etc.)                                     │
+└─────────────────────────────────────────────────────────────────┘
 ```
+
+### Key Concepts
+
+- **Provider**: A Crossplane package that contains controllers for a specific cloud. `provider-aws` manages AWS resources; `provider-gcp` manages GCP resources.
+- **Managed Resource (MR)**: A Kubernetes Custom Resource that directly represents a cloud resource (e.g., `RDSInstance`, `S3Bucket`, `VPC`).
+- **Composite Resource Definition (XRD)**: Defines the schema of a custom, platform-specific abstraction (e.g., `PostgreSQLInstance` that hides the complexity of an RDS instance, its subnet group, security group, and parameter group).
+- **Composition**: Defines how a CompositeResource maps to one or more Managed Resources. Multiple Compositions can implement the same XRD (e.g., a `prod` Composition creates a Multi-AZ RDS instance while a `dev` Composition creates a single-AZ instance).
+- **CompositeResourceClaim (XRC)**: A namespace-scoped resource that developers use to request a CompositeResource. The claim provides isolation and access control.
+
+---
 
 ## Section 2: Installing Crossplane
 
+### Install Crossplane via Helm
+
 ```bash
-# Add the Crossplane Helm chart repository
 helm repo add crossplane-stable https://charts.crossplane.io/stable
 helm repo update
 
-# Install Crossplane core into its own namespace
-helm install crossplane crossplane-stable/crossplane \
+helm upgrade --install crossplane crossplane-stable/crossplane \
   --namespace crossplane-system \
   --create-namespace \
-  --version 1.16.0 \
-  --set args='{--enable-composition-functions,--enable-composition-revisions}' \
+  --version 1.17.1 \
+  --set args='{--debug}' \
+  --set resourcesCrossplane.requests.cpu=100m \
+  --set resourcesCrossplane.requests.memory=256Mi \
+  --set resourcesCrossplane.limits.cpu=500m \
+  --set resourcesCrossplane.limits.memory=512Mi \
+  --set resourcesRBACManager.requests.cpu=100m \
+  --set resourcesRBACManager.requests.memory=128Mi \
   --wait
-
-# Verify Crossplane pods are running
-kubectl get pods -n crossplane-system
-# Expected:
-# crossplane-XXXXX                       Running
-# crossplane-rbac-manager-XXXXX          Running
-
-# List installed Crossplane CRDs
-kubectl get crd | grep crossplane.io | head -20
 ```
 
-## Section 3: Provider Installation
+### Verify Installation
 
-### AWS Provider
+```bash
+# Core pods should be Running
+kubectl get pods -n crossplane-system
+
+# Core CRDs
+kubectl get crd | grep crossplane.io
+# Expected:
+# compositeresourcedefinitions.apiextensions.crossplane.io
+# compositions.apiextensions.crossplane.io
+# compositeresourceclaims.apiextensions.crossplane.io (generated per XRD)
+# providers.pkg.crossplane.io
+# configurations.pkg.crossplane.io
+
+# Install the Crossplane CLI
+curl -fsSLo /usr/local/bin/crossplane \
+  "https://releases.crossplane.io/stable/v1.17.1/bin/linux_amd64/crossplane"
+chmod +x /usr/local/bin/crossplane
+crossplane --version
+```
+
+---
+
+## Section 3: Installing and Configuring Providers
+
+### Install the AWS Provider
 
 ```yaml
-# provider-aws.yaml — install the AWS provider using the Crossplane provider family pattern
-apiVersion: pkg.crossplane.io/v1
-kind: Provider
-metadata:
-  name: provider-aws-ec2
-spec:
-  package: xpkg.upbound.io/upbound/provider-aws-ec2:v1.7.0
-  packagePullPolicy: IfNotPresent
-  revisionActivationPolicy: Automatic
-  revisionHistoryLimit: 3
----
-apiVersion: pkg.crossplane.io/v1
-kind: Provider
-metadata:
-  name: provider-aws-rds
-spec:
-  package: xpkg.upbound.io/upbound/provider-aws-rds:v1.7.0
-  packagePullPolicy: IfNotPresent
-  revisionActivationPolicy: Automatic
-  revisionHistoryLimit: 3
----
+# provider-aws-s3.yaml
+# Install only the S3 family provider (monorepo pattern — install only what you need)
 apiVersion: pkg.crossplane.io/v1
 kind: Provider
 metadata:
   name: provider-aws-s3
 spec:
-  package: xpkg.upbound.io/upbound/provider-aws-s3:v1.7.0
-  packagePullPolicy: IfNotPresent
-  revisionActivationPolicy: Automatic
-  revisionHistoryLimit: 3
----
-# provider-aws-iam.yaml — IAM for role and policy management
-apiVersion: pkg.crossplane.io/v1
-kind: Provider
-metadata:
-  name: provider-aws-iam
-spec:
-  package: xpkg.upbound.io/upbound/provider-aws-iam:v1.7.0
-  packagePullPolicy: IfNotPresent
+  package: xpkg.upbound.io/upbound/provider-aws-s3:v1.14.0
+  installationPolicy: Automatic
   revisionActivationPolicy: Automatic
 ```
 
-### GCP Provider
-
 ```yaml
-# provider-gcp.yaml
+# provider-aws-rds.yaml
 apiVersion: pkg.crossplane.io/v1
 kind: Provider
 metadata:
-  name: provider-gcp-container
+  name: provider-aws-rds
 spec:
-  package: xpkg.upbound.io/upbound/provider-gcp-container:v1.4.0
-  packagePullPolicy: IfNotPresent
+  package: xpkg.upbound.io/upbound/provider-aws-rds:v1.14.0
+  installationPolicy: Automatic
   revisionActivationPolicy: Automatic
----
+```
+
+```bash
+kubectl apply -f provider-aws-s3.yaml
+kubectl apply -f provider-aws-rds.yaml
+
+# Wait for providers to be installed and healthy
+kubectl get providers
+# NAME                 INSTALLED   HEALTHY   PACKAGE                               AGE
+# provider-aws-s3      True        True      xpkg.upbound.io/upbound/...           5m
+# provider-aws-rds     True        True      xpkg.upbound.io/upbound/...           5m
+```
+
+### Configure AWS Authentication (IRSA)
+
+```yaml
+# providerconfig-aws.yaml
+apiVersion: aws.upbound.io/v1beta1
+kind: ProviderConfig
+metadata:
+  name: default
+spec:
+  credentials:
+    source: InjectedIdentity   # Use IRSA — no static credentials required
+```
+
+```bash
+# Create IAM role for Crossplane with appropriate permissions
+# The service account is: crossplane-system/provider-aws-*
+
+# Get the service account name for the provider
+kubectl get sa -n crossplane-system | grep provider-aws
+
+# Annotate the service account with the IAM role ARN
+kubectl annotate serviceaccount \
+  -n crossplane-system \
+  provider-aws-s3-PROVIDER_REVISION_HASH \
+  eks.amazonaws.com/role-arn=arn:aws:iam::123456789012:role/CrossplaneAWSRole
+
+kubectl apply -f providerconfig-aws.yaml
+```
+
+### Install the GCP Provider
+
+```yaml
+# provider-gcp-sql.yaml
 apiVersion: pkg.crossplane.io/v1
 kind: Provider
 metadata:
   name: provider-gcp-sql
 spec:
-  package: xpkg.upbound.io/upbound/provider-gcp-sql:v1.4.0
-  packagePullPolicy: IfNotPresent
-  revisionActivationPolicy: Automatic
-```
-
-### Azure Provider
-
-```yaml
-# provider-azure.yaml
-apiVersion: pkg.crossplane.io/v1
-kind: Provider
-metadata:
-  name: provider-azure-sql
-spec:
-  package: xpkg.upbound.io/upbound/provider-azure-sql:v1.3.0
-  packagePullPolicy: IfNotPresent
-  revisionActivationPolicy: Automatic
----
-apiVersion: pkg.crossplane.io/v1
-kind: Provider
-metadata:
-  name: provider-azure-network
-spec:
-  package: xpkg.upbound.io/upbound/provider-azure-network:v1.3.0
-  packagePullPolicy: IfNotPresent
-  revisionActivationPolicy: Automatic
-```
-
-```bash
-# Wait for providers to become healthy
-kubectl get providers
-# NAME                    INSTALLED   HEALTHY   PACKAGE                                        AGE
-# provider-aws-rds        True        True      xpkg.upbound.io/upbound/provider-aws-rds:...   2m
-# provider-aws-ec2        True        True      xpkg.upbound.io/upbound/provider-aws-ec2:...   2m
-
-# List all CRDs installed by the AWS RDS provider
-kubectl get crd | grep rds.aws.upbound.io
-```
-
-## Section 4: ProviderConfig Credential Management
-
-### AWS with IRSA
-
-The recommended credential approach for EKS is IRSA (IAM Roles for Service Accounts), which eliminates static credentials entirely.
-
-```yaml
-# providerconfig-aws-irsa.yaml — uses IRSA; no Secret required
-apiVersion: aws.upbound.io/v1beta1
-kind: ProviderConfig
-metadata:
-  name: default   # used automatically when ManagedResources don't specify providerConfigRef
-spec:
-  credentials:
-    source: IRSA   # read credentials from the pod's projected service account token
+  package: xpkg.upbound.io/upbound/provider-gcp-sql:v0.46.0
+  installationPolicy: Automatic
 ```
 
 ```yaml
-# patch for the provider ServiceAccount — annotate with IAM role ARN
-# Apply after the provider pod is running
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: provider-aws-rds
-  namespace: crossplane-system
-  annotations:
-    eks.amazonaws.com/role-arn: arn:aws:iam::123456789012:role/crossplane-rds-provisioner
-```
-
-### AWS with Static Credentials (Non-EKS)
-
-```yaml
-# secret-aws-credentials.yaml — managed by External Secrets Operator
-apiVersion: v1
-kind: Secret
-metadata:
-  name: aws-credentials
-  namespace: crossplane-system
-type: Opaque
-stringData:
-  credentials: |
-    [default]
-    aws_access_key_id = EXAMPLE_ACCESS_KEY_REPLACE_ME
-    aws_secret_access_key = EXAMPLE_SECRET_KEY_REPLACE_ME
----
-apiVersion: aws.upbound.io/v1beta1
-kind: ProviderConfig
-metadata:
-  name: default
-spec:
-  credentials:
-    source: Secret
-    secretRef:
-      namespace: crossplane-system
-      name: aws-credentials
-      key: credentials
-```
-
-### GCP with Workload Identity
-
-```yaml
-# providerconfig-gcp-wi.yaml
+# providerconfig-gcp.yaml
 apiVersion: gcp.upbound.io/v1beta1
 kind: ProviderConfig
 metadata:
   name: default
 spec:
-  projectID: my-platform-project
+  projectID: "my-gcp-project"
   credentials:
-    source: InjectedIdentity   # Workload Identity annotation on the provider SA
+    source: InjectedIdentity   # GKE Workload Identity
 ```
 
-### Multi-Account ProviderConfig
-
-For multi-account architectures, each ProviderConfig maps to a different AWS account.
-
-```yaml
-# providerconfig-aws-prod.yaml — production AWS account
-apiVersion: aws.upbound.io/v1beta1
-kind: ProviderConfig
-metadata:
-  name: aws-prod-account
-spec:
-  credentials:
-    source: Secret
-    secretRef:
-      namespace: crossplane-system
-      name: aws-prod-credentials
-      key: credentials
 ---
-# providerconfig-aws-staging.yaml — staging AWS account
-apiVersion: aws.upbound.io/v1beta1
-kind: ProviderConfig
-metadata:
-  name: aws-staging-account
-spec:
-  credentials:
-    source: Secret
-    secretRef:
-      namespace: crossplane-system
-      name: aws-staging-credentials
-      key: credentials
-```
 
-## Section 5: Managed Resource CRDs
+## Section 4: Managed Resources (Direct Cloud Resource Management)
 
-Managed resources are the lowest-level Crossplane objects — they map 1:1 to cloud API resources.
+Managed Resources provide a 1-to-1 mapping to cloud resources. They are used directly for simple cases or composed by Compositions for more complex abstractions.
 
-### RDS Instance Managed Resource
+### AWS S3 Bucket
 
 ```yaml
-# rdsinstance-payments-db.yaml — directly manage an RDS instance
-apiVersion: rds.aws.upbound.io/v1beta1
-kind: Instance
-metadata:
-  name: payments-db-prod
-  annotations:
-    crossplane.io/external-name: payments-db-prod   # the actual AWS resource name
-spec:
-  forProvider:
-    region: us-east-1
-    dbInstanceClass: db.r6g.xlarge
-    engine: postgres
-    engineVersion: "16.2"
-    allocatedStorage: 100
-    storageType: gp3
-    iops: 3000
-    storageEncrypted: true
-    kmsKeyId: arn:aws:kms:us-east-1:123456789012:key/example-kms-key-id-replace-me
-    dbName: payments
-    username: payments_admin
-    # Password from an External Secret
-    passwordSecretRef:
-      namespace: crossplane-system
-      name: rds-master-password
-      key: password
-    vpcSecurityGroupIds:
-      - sg-0a1b2c3d4e5f6a7b8
-    dbSubnetGroupName: payments-db-subnet-group
-    multiAz: true
-    backupRetentionPeriod: 14
-    preferredBackupWindow: "02:00-03:00"
-    preferredMaintenanceWindow: "sun:04:00-sun:05:00"
-    deletionProtection: true
-    finalSnapshotIdentifier: payments-db-prod-final-snapshot
-    enabledCloudwatchLogsExports:
-      - postgresql
-      - upgrade
-    performanceInsightsEnabled: true
-    performanceInsightsRetentionPeriod: 7
-    tags:
-      Environment: production
-      Team: payments
-      ManagedBy: crossplane
-  providerConfigRef:
-    name: aws-prod-account
-  # Publish connection details to a Secret for application consumption
-  writeConnectionSecretToRef:
-    namespace: payments
-    name: payments-db-connection
-```
-
-### S3 Bucket Managed Resource
-
-```yaml
-# s3bucket-artifacts.yaml
+# s3-bucket.yaml
 apiVersion: s3.aws.upbound.io/v1beta1
 kind: Bucket
 metadata:
-  name: team-payments-artifacts
+  name: company-app-assets
   annotations:
-    crossplane.io/external-name: team-payments-artifacts-20270401
+    crossplane.io/external-name: company-app-assets-prod-20270419
 spec:
   forProvider:
     region: us-east-1
     objectLockEnabled: false
     tags:
       Environment: production
-      Team: payments
+      Team: platform
       ManagedBy: crossplane
   providerConfigRef:
-    name: aws-prod-account
----
+    name: default
+  # Deletion policy: Delete or Orphan the cloud resource when the MR is deleted
+  deletionPolicy: Delete
+  # Write connection details to a Secret
+  writeConnectionSecretToRef:
+    name: s3-bucket-connection
+    namespace: platform
+```
+
+```yaml
+# s3-bucket-versioning.yaml
 apiVersion: s3.aws.upbound.io/v1beta1
 kind: BucketVersioning
 metadata:
-  name: team-payments-artifacts-versioning
+  name: company-app-assets-versioning
 spec:
   forProvider:
     region: us-east-1
     bucketRef:
-      name: team-payments-artifacts
+      name: company-app-assets
     versioningConfiguration:
       - status: Enabled
   providerConfigRef:
-    name: aws-prod-account
----
+    name: default
+```
+
+```yaml
+# s3-bucket-encryption.yaml
 apiVersion: s3.aws.upbound.io/v1beta1
 kind: BucketServerSideEncryptionConfiguration
 metadata:
-  name: team-payments-artifacts-sse
+  name: company-app-assets-sse
 spec:
   forProvider:
     region: us-east-1
     bucketRef:
-      name: team-payments-artifacts
+      name: company-app-assets
     rule:
       - applyServerSideEncryptionByDefault:
           - sseAlgorithm: aws:kms
-            kmsMasterKeyIdRef:
-              name: payments-kms-key
+            kmsMasterKeyId: arn:aws:kms:us-east-1:123456789012:alias/app-assets-key
+        bucketKeyEnabled: true
   providerConfigRef:
-    name: aws-prod-account
+    name: default
 ```
 
-## Section 6: CompositeResourceDefinition (XRD)
-
-The `CompositeResourceDefinition` defines a new Kubernetes API type that application teams interact with — abstracting away the cloud-specific details.
+### AWS RDS Instance
 
 ```yaml
-# xrd-postgresql.yaml — defines the XPostgreSQLInstance and PostgreSQLInstanceClaim APIs
+# rds-subnet-group.yaml
+apiVersion: rds.aws.upbound.io/v1beta1
+kind: SubnetGroup
+metadata:
+  name: app-db-subnet-group
+spec:
+  forProvider:
+    region: us-east-1
+    description: "Subnet group for application database"
+    subnetIds:
+      - subnet-0abc123456789def0
+      - subnet-0def123456789abc0
+      - subnet-0fed123456789cba0
+    tags:
+      ManagedBy: crossplane
+  providerConfigRef:
+    name: default
+---
+apiVersion: rds.aws.upbound.io/v1beta1
+kind: Instance
+metadata:
+  name: app-postgres-production
+spec:
+  forProvider:
+    region: us-east-1
+    dbSubnetGroupNameRef:
+      name: app-db-subnet-group
+    engine: postgres
+    engineVersion: "16.3"
+    instanceClass: db.t4g.large
+    allocatedStorage: 100
+    maxAllocatedStorage: 500
+    storageType: gp3
+    storageEncrypted: true
+    kmsKeyId: arn:aws:kms:us-east-1:123456789012:alias/rds-key
+    multiAz: true
+    autoMinorVersionUpgrade: true
+    deletionProtection: true
+    backupRetentionPeriod: 14
+    preferredBackupWindow: "03:00-04:00"
+    preferredMaintenanceWindow: "sun:04:00-sun:05:00"
+    publiclyAccessible: false
+    skipFinalSnapshot: false
+    finalSnapshotIdentifier: app-postgres-production-final
+    username: dbadmin
+    passwordSecretRef:
+      name: rds-master-password
+      namespace: platform
+      key: password
+    vpcSecurityGroupIds:
+      - sg-0abc123456789def0
+    tags:
+      Environment: production
+      ManagedBy: crossplane
+  writeConnectionSecretToRef:
+    name: rds-connection-details
+    namespace: platform
+  providerConfigRef:
+    name: default
+```
+
+---
+
+## Section 5: Composite Resource Definitions (XRDs)
+
+XRDs allow platform teams to create higher-level abstractions that hide provider-specific details from developers. A developer requests a `PostgreSQLInstance`; the platform team defines what AWS/GCP/Azure resources that entails.
+
+### Defining an XRD
+
+```yaml
+# xrd-postgresql.yaml
 apiVersion: apiextensions.crossplane.io/v1
 kind: CompositeResourceDefinition
 metadata:
-  name: xpostgresqlinstances.platform.example.com
+  name: xpostgresqlinstances.platform.company.io
 spec:
-  group: platform.example.com
+  group: platform.company.io
   names:
     kind: XPostgreSQLInstance
     plural: xpostgresqlinstances
-  # ClaimNames defines the namespace-scoped claim type
+
+  # Allow claims (namespace-scoped) with this schema
   claimNames:
-    kind: PostgreSQLInstanceClaim
-    plural: postgresqlinstanceclaims
+    kind: PostgreSQLInstance
+    plural: postgresqlinstances
 
-  # Connection secret keys that Compositions must publish
-  connectionSecretKeys:
-    - endpoint
-    - port
-    - username
-    - password
-    - dbname
-
-  # Versions define the API schema for each version
+  # Define the schema for the composite resource
   versions:
     - name: v1alpha1
       served: true
@@ -427,661 +368,826 @@ spec:
               properties:
                 parameters:
                   type: object
-                  description: Database provisioning parameters
+                  required:
+                    - storageGB
+                    - region
+                    - version
                   properties:
                     storageGB:
                       type: integer
-                      description: Storage size in gigabytes
                       minimum: 20
-                      maximum: 10000
-                      default: 50
-                    instanceClass:
-                      type: string
-                      description: AWS RDS instance class
-                      enum:
-                        - db.t3.medium
-                        - db.r6g.large
-                        - db.r6g.xlarge
-                        - db.r6g.2xlarge
-                      default: db.t3.medium
-                    engineVersion:
-                      type: string
-                      description: PostgreSQL engine version
-                      enum: ["14", "15", "16"]
-                      default: "16"
-                    multiAz:
-                      type: boolean
-                      description: Enable Multi-AZ deployment
-                      default: false
+                      maximum: 16384
+                      description: "Storage size in gigabytes"
                     region:
                       type: string
-                      description: AWS region
-                      enum: [us-east-1, eu-west-1, ap-southeast-1]
-                      default: us-east-1
-                    dbName:
+                      enum: ["us-east-1", "us-west-2", "eu-west-1"]
+                      description: "AWS region to deploy into"
+                    version:
                       type: string
-                      description: Initial database name
-                      pattern: '^[a-z][a-z0-9_]{0,62}$'
-                  required:
-                    - storageGB
-                    - instanceClass
-                    - dbName
+                      enum: ["14", "15", "16"]
+                      description: "PostgreSQL major version"
+                    instanceSize:
+                      type: string
+                      enum: ["small", "medium", "large", "xlarge"]
+                      default: "small"
+                      description: "Instance size tier"
+                    multiAZ:
+                      type: boolean
+                      default: false
+                      description: "Enable Multi-AZ deployment"
+                    databaseName:
+                      type: string
+                      default: "app"
+                      description: "Initial database name"
+            status:
+              type: object
+              properties:
+                endpoint:
+                  type: string
+                  description: "Database endpoint hostname"
+                port:
+                  type: integer
+                  description: "Database port"
+                subresourceRef:
+                  type: object
+                  x-kubernetes-preserve-unknown-fields: true
 ```
 
-## Section 7: Composition with Patch-and-Transform
+```bash
+kubectl apply -f xrd-postgresql.yaml
 
-A `Composition` maps a `CompositeResource` to one or more `ManagedResource` objects. Patches transfer values from the composite's spec to the managed resources' forProvider fields.
+# Verify the XRD and its generated CRDs
+kubectl get xrd xpostgresqlinstances.platform.company.io
+kubectl get crd postgresqlinstances.platform.company.io
+kubectl get crd xpostgresqlinstances.platform.company.io
+```
+
+---
+
+## Section 6: Compositions
+
+A Composition defines how to fulfill a CompositeResource by mapping its parameters to one or more Managed Resources. Multiple Compositions can implement the same XRD for different environments or providers.
+
+### AWS Production Composition
 
 ```yaml
-# composition-postgresql-aws.yaml — implements the XPostgreSQLInstance for AWS
+# composition-postgresql-aws-prod.yaml
 apiVersion: apiextensions.crossplane.io/v1
 kind: Composition
 metadata:
-  name: xpostgresqlinstances.aws.platform.example.com
+  name: postgresql-aws-production
   labels:
     provider: aws
     environment: production
 spec:
-  # This Composition satisfies XPostgreSQLInstance claims
+  # This Composition implements the XPostgreSQLInstance XRD
   compositeTypeRef:
-    apiVersion: platform.example.com/v1alpha1
+    apiVersion: platform.company.io/v1alpha1
     kind: XPostgreSQLInstance
 
-  # Publish the connection details from the RDS Instance back to the claim
-  writeConnectionSecretsToNamespace: crossplane-system
+  # Composition mode: Pipeline (newer, Crossplane 1.14+)
+  mode: Pipeline
 
-  resources:
-    # Resource 1: The RDS subnet group (prerequisite)
-    - name: rds-subnet-group
-      base:
-        apiVersion: rds.aws.upbound.io/v1beta1
-        kind: SubnetGroup
-        spec:
-          forProvider:
-            region: us-east-1
-            description: "Subnet group for CrossPlane-managed RDS instances"
-            subnetIds:
-              - subnet-0a1b2c3d4e5f6a7b1
-              - subnet-0a1b2c3d4e5f6a7b2
-              - subnet-0a1b2c3d4e5f6a7b3
-            tags:
-              ManagedBy: crossplane
-          providerConfigRef:
-            name: aws-prod-account
+  pipeline:
+    # Step 1: Render composed resources from templates
+    - step: patch-and-transform
+      functionRef:
+        name: function-patch-and-transform
+      input:
+        apiVersion: pt.fn.crossplane.io/v1beta1
+        kind: Resources
+        resources:
+          # Managed Resource 1: RDS Instance
+          - name: rds-instance
+            base:
+              apiVersion: rds.aws.upbound.io/v1beta1
+              kind: Instance
+              spec:
+                forProvider:
+                  engine: postgres
+                  multiAz: true           # Production always multi-AZ
+                  storageEncrypted: true
+                  autoMinorVersionUpgrade: true
+                  deletionProtection: true
+                  backupRetentionPeriod: 14
+                  skipFinalSnapshot: false
+                  publiclyAccessible: false
+                  username: dbadmin
+                  dbSubnetGroupNameRef:
+                    name: ""   # Patched below
+                providerConfigRef:
+                  name: default
+                writeConnectionSecretToRef:
+                  name: ""    # Patched to composite resource name
+                  namespace: crossplane-system
 
-    # Resource 2: The RDS security group
-    - name: rds-security-group
-      base:
-        apiVersion: ec2.aws.upbound.io/v1beta1
-        kind: SecurityGroup
-        spec:
-          forProvider:
-            region: us-east-1
-            vpcId: vpc-0a1b2c3d4e5f6a7b8
-            description: "Security group for CrossPlane-managed RDS instances"
-            tags:
-              ManagedBy: crossplane
-          providerConfigRef:
-            name: aws-prod-account
+            patches:
+              # Set region from XR parameter
+              - type: FromCompositeFieldPath
+                fromFieldPath: spec.parameters.region
+                toFieldPath: spec.forProvider.region
 
-    # Resource 3: The RDS Instance
-    - name: rds-instance
-      base:
-        apiVersion: rds.aws.upbound.io/v1beta1
-        kind: Instance
-        spec:
-          forProvider:
-            region: us-east-1              # overridden by patch below
-            dbInstanceClass: db.t3.medium  # overridden by patch below
-            engine: postgres
-            engineVersion: "16"            # overridden by patch below
-            allocatedStorage: 50           # overridden by patch below
-            storageType: gp3
-            storageEncrypted: true
-            username: admin
-            passwordSecretRef:
-              namespace: crossplane-system
-              name: rds-default-password
-              key: password
-            dbSubnetGroupNameSelector:
-              matchControllerRef: true     # pick the SubnetGroup from this same Composition
-            vpcSecurityGroupIdSelector:
-              matchControllerRef: true     # pick the SecurityGroup from this same Composition
-            skipFinalSnapshot: false
-            backupRetentionPeriod: 7
-            tags:
-              ManagedBy: crossplane
-          providerConfigRef:
-            name: aws-prod-account
-          writeConnectionSecretToRef:
-            namespace: crossplane-system
-            name: ""    # populated by patch below
-      # Patches copy values from the CompositeResource to this ManagedResource
-      patches:
-        # Patch: copy the region from XR spec to forProvider.region
-        - type: FromCompositeFieldPath
-          fromFieldPath: spec.parameters.region
-          toFieldPath: spec.forProvider.region
-        # Patch: copy the instanceClass
-        - type: FromCompositeFieldPath
-          fromFieldPath: spec.parameters.instanceClass
-          toFieldPath: spec.forProvider.dbInstanceClass
-        # Patch: copy the engineVersion
-        - type: FromCompositeFieldPath
-          fromFieldPath: spec.parameters.engineVersion
-          toFieldPath: spec.forProvider.engineVersion
-        # Patch: copy the storageGB and convert to integer
-        - type: FromCompositeFieldPath
-          fromFieldPath: spec.parameters.storageGB
-          toFieldPath: spec.forProvider.allocatedStorage
-        # Patch: copy the dbName
-        - type: FromCompositeFieldPath
-          fromFieldPath: spec.parameters.dbName
-          toFieldPath: spec.forProvider.dbName
-        # Patch: copy the multiAz flag
-        - type: FromCompositeFieldPath
-          fromFieldPath: spec.parameters.multiAz
-          toFieldPath: spec.forProvider.multiAz
-        # Patch: derive the connection secret name from the composite name
-        - type: FromCompositeFieldPath
-          fromFieldPath: metadata.name
-          toFieldPath: spec.writeConnectionSecretToRef.name
-          transforms:
-            - type: string
-              string:
-                fmt: "%s-connection"
-        # Patch: propagate connection details back to the composite status
-        - type: ToCompositeFieldPath
-          fromFieldPath: status.atProvider.address
-          toFieldPath: status.endpoint
-          policy:
-            fromFieldPath: Optional
-      # Specify which connection detail keys this resource publishes
-      connectionDetails:
-        - type: FromConnectionSecretKey
-          name: endpoint
-          fromConnectionSecretKey: endpoint
-        - type: FromConnectionSecretKey
-          name: port
-          fromConnectionSecretKey: port
-        - type: FromConnectionSecretKey
-          name: username
-          fromConnectionSecretKey: username
-        - type: FromConnectionSecretKey
-          name: password
-          fromConnectionSecretKey: password
-        - type: Value
-          name: dbname
-          value: ""    # populated by patch
-      readinessChecks:
-        - type: MatchString
-          fieldPath: status.atProvider.dbInstanceStatus
-          matchString: available
+              # Set storage from XR parameter
+              - type: FromCompositeFieldPath
+                fromFieldPath: spec.parameters.storageGB
+                toFieldPath: spec.forProvider.allocatedStorage
+
+              # Map instanceSize to actual RDS instance class
+              - type: FromCompositeFieldPath
+                fromFieldPath: spec.parameters.instanceSize
+                toFieldPath: spec.forProvider.instanceClass
+                transforms:
+                  - type: map
+                    map:
+                      small:  db.t4g.small
+                      medium: db.t4g.large
+                      large:  db.r6g.xlarge
+                      xlarge: db.r6g.2xlarge
+
+              # Map PostgreSQL version string to engine version
+              - type: FromCompositeFieldPath
+                fromFieldPath: spec.parameters.version
+                toFieldPath: spec.forProvider.engineVersion
+                transforms:
+                  - type: map
+                    map:
+                      "14": "14.12"
+                      "15": "15.7"
+                      "16": "16.3"
+
+              # Set multiAZ from XR parameter
+              - type: FromCompositeFieldPath
+                fromFieldPath: spec.parameters.multiAZ
+                toFieldPath: spec.forProvider.multiAz
+
+              # Name the connection secret after the composite resource
+              - type: FromCompositeFieldPath
+                fromFieldPath: metadata.uid
+                toFieldPath: spec.writeConnectionSecretToRef.name
+                transforms:
+                  - type: string
+                    string:
+                      fmt: "rds-%s"
+
+              # Patch the subnet group ref from composite name
+              - type: FromCompositeFieldPath
+                fromFieldPath: metadata.name
+                toFieldPath: spec.forProvider.dbSubnetGroupNameRef.name
+
+            # Connection details to propagate to the composite resource
+            connectionDetails:
+              - name: endpoint
+                fromConnectionSecretKey: endpoint
+              - name: port
+                fromConnectionSecretKey: port
+              - name: username
+                fromConnectionSecretKey: username
+              - name: password
+                fromConnectionSecretKey: password
+
+          # Managed Resource 2: RDS Subnet Group
+          - name: rds-subnet-group
+            base:
+              apiVersion: rds.aws.upbound.io/v1beta1
+              kind: SubnetGroup
+              spec:
+                forProvider:
+                  description: "Subnet group managed by Crossplane"
+                  subnetIds:
+                    - subnet-0abc123456789def0
+                    - subnet-0def123456789abc0
+                    - subnet-0fed123456789cba0
+                providerConfigRef:
+                  name: default
+            patches:
+              - type: FromCompositeFieldPath
+                fromFieldPath: spec.parameters.region
+                toFieldPath: spec.forProvider.region
+              # Name the subnet group to match the composite resource
+              - type: FromCompositeFieldPath
+                fromFieldPath: metadata.name
+                toFieldPath: metadata.name
+
+    # Step 2: Auto-ready — mark XR as ready when all composed resources are ready
+    - step: automatically-detect-readiness
+      functionRef:
+        name: function-auto-ready
 ```
 
-## Section 8: CompositeResourceClaim (Self-Service)
-
-Application teams interact with Crossplane through namespace-scoped `CompositeResourceClaim` objects. The claim references the XRD API and provides the parameters. Crossplane binds the claim to a `CompositeResource` and starts provisioning.
+### AWS Development Composition (Minimal Cost)
 
 ```yaml
-# claim-payments-db.yaml — applied by the payments team in their namespace
-apiVersion: platform.example.com/v1alpha1
-kind: PostgreSQLInstanceClaim
+# composition-postgresql-aws-dev.yaml
+apiVersion: apiextensions.crossplane.io/v1
+kind: Composition
 metadata:
-  name: payments-primary-db
-  namespace: payments     # claim lives in the team's namespace
+  name: postgresql-aws-development
+  labels:
+    provider: aws
+    environment: development
+spec:
+  compositeTypeRef:
+    apiVersion: platform.company.io/v1alpha1
+    kind: XPostgreSQLInstance
+  mode: Pipeline
+  pipeline:
+    - step: patch-and-transform
+      functionRef:
+        name: function-patch-and-transform
+      input:
+        apiVersion: pt.fn.crossplane.io/v1beta1
+        kind: Resources
+        resources:
+          - name: rds-instance
+            base:
+              apiVersion: rds.aws.upbound.io/v1beta1
+              kind: Instance
+              spec:
+                forProvider:
+                  engine: postgres
+                  multiAz: false          # Dev: single AZ
+                  storageEncrypted: true
+                  autoMinorVersionUpgrade: true
+                  deletionProtection: false
+                  backupRetentionPeriod: 1
+                  skipFinalSnapshot: true
+                  publiclyAccessible: false
+                  username: dbadmin
+                providerConfigRef:
+                  name: default
+            patches:
+              - type: FromCompositeFieldPath
+                fromFieldPath: spec.parameters.region
+                toFieldPath: spec.forProvider.region
+              - type: FromCompositeFieldPath
+                fromFieldPath: spec.parameters.storageGB
+                toFieldPath: spec.forProvider.allocatedStorage
+              - type: FromCompositeFieldPath
+                fromFieldPath: spec.parameters.instanceSize
+                toFieldPath: spec.forProvider.instanceClass
+                transforms:
+                  - type: map
+                    map:
+                      small:  db.t4g.micro
+                      medium: db.t4g.small
+                      large:  db.t4g.medium
+                      xlarge: db.t4g.large
+              - type: FromCompositeFieldPath
+                fromFieldPath: spec.parameters.version
+                toFieldPath: spec.forProvider.engineVersion
+                transforms:
+                  - type: map
+                    map:
+                      "14": "14.12"
+                      "15": "15.7"
+                      "16": "16.3"
+    - step: automatically-detect-readiness
+      functionRef:
+        name: function-auto-ready
+```
+
+### Installing Required Composition Functions
+
+```bash
+# function-patch-and-transform
+kubectl apply -f - << 'EOF'
+apiVersion: pkg.crossplane.io/v1beta1
+kind: Function
+metadata:
+  name: function-patch-and-transform
+spec:
+  package: xpkg.upbound.io/crossplane-contrib/function-patch-and-transform:v0.6.0
+EOF
+
+# function-auto-ready
+kubectl apply -f - << 'EOF'
+apiVersion: pkg.crossplane.io/v1beta1
+kind: Function
+metadata:
+  name: function-auto-ready
+spec:
+  package: xpkg.upbound.io/crossplane-contrib/function-auto-ready:v0.2.1
+EOF
+
+# Wait for functions to be installed
+kubectl get functions
+```
+
+---
+
+## Section 7: CompositeResourceClaims (Developer Self-Service)
+
+Claims are namespace-scoped resources that developers use to request infrastructure without needing cluster-level access. The platform team controls which Composition is used via a label selector or `compositionRef`.
+
+### Creating a PostgreSQL Database Claim
+
+```yaml
+# database-claim-production.yaml
+# This file is committed to the application's Git repository
+apiVersion: platform.company.io/v1alpha1
+kind: PostgreSQLInstance
+metadata:
+  name: user-service-db
+  namespace: production
 spec:
   parameters:
     storageGB: 100
-    instanceClass: db.r6g.xlarge
-    engineVersion: "16"
-    multiAz: true
     region: us-east-1
-    dbName: payments
-  # Connection details are written to this Secret in the payments namespace
-  writeConnectionSecretToRef:
-    name: payments-db-connection
-  # Optional: pin to a specific Composition if multiple exist (e.g. aws vs gcp)
+    version: "16"
+    instanceSize: medium
+    multiAZ: true
+    databaseName: userservice
+  # Select the production Composition
   compositionSelector:
     matchLabels:
       provider: aws
       environment: production
+  # Write connection details to a Secret in this namespace
+  writeConnectionSecretToRef:
+    name: user-service-db-connection
 ```
 
 ```bash
-# Check claim status
-kubectl get postgresqlinstanceclaim payments-primary-db -n payments
+kubectl apply -f database-claim-production.yaml
 
-# Check the composite resource it bound to
-kubectl get xpostgresqlinstances -l crossplane.io/claim-name=payments-primary-db
+# Watch the claim and its composite resource being provisioned
+kubectl get postgresqlinstance user-service-db -n production
 
-# Check the underlying RDS instance
-kubectl get instances.rds.aws.upbound.io \
-  -l crossplane.io/composite=payments-primary-db-XXXX
+# Composite resource (cluster-scoped) is created automatically
+kubectl get xpostgresqlinstances
 
-# Read the connection secret (base64 encoded)
-kubectl get secret payments-db-connection -n payments -o yaml
-kubectl get secret payments-db-connection -n payments \
-  -o jsonpath='{.data.endpoint}' | base64 -d
+# Watch underlying managed resources being provisioned
+kubectl get rds -A
+
+# Check claim status — READY=True when provisioning is complete
+kubectl describe postgresqlinstance user-service-db -n production
 ```
 
-## Section 9: Composition Revisions for Safe Rollouts
-
-Composition revisions enable rolling out Composition changes without immediately affecting all existing CompositeResources.
+### Consuming the Connection Secret in the Application
 
 ```yaml
-# Updated Composition — creates a new revision automatically
-apiVersion: apiextensions.crossplane.io/v1
-kind: Composition
+# deployment-user-service.yaml
+apiVersion: apps/v1
+kind: Deployment
 metadata:
-  name: xpostgresqlinstances.aws.platform.example.com
-  labels:
-    provider: aws
-    environment: production
+  name: user-service
+  namespace: production
 spec:
-  compositeTypeRef:
-    apiVersion: platform.example.com/v1alpha1
-    kind: XPostgreSQLInstance
-  # The revision policy for how existing composites get the update
-  # Manual: operator must explicitly update each composite's compositionRevisionRef
-  # Automatic: all composites automatically use the latest revision
-  revisionPolicy: Manual
-  resources: []   # ... same as before but with the updated changes
+  template:
+    spec:
+      containers:
+        - name: user-service
+          image: registry.company.internal/user-service:2.1.0
+          env:
+            - name: DB_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: user-service-db-connection
+                  key: endpoint
+            - name: DB_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: user-service-db-connection
+                  key: port
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: user-service-db-connection
+                  key: username
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: user-service-db-connection
+                  key: password
 ```
 
-```bash
-# List all composition revisions
-kubectl get compositionrevisions
-
-# Update a specific composite to use the new revision manually
-kubectl patch xpostgresqlinstance payments-primary-db-XXXX \
-  --type=merge \
-  -p '{"spec":{"compositionRevisionRef":{"name":"xpostgresqlinstances.aws.platform.example.com-REVISION-HASH"}}}'
-
-# After validation, update all composites to the new revision
-kubectl get xpostgresqlinstances -o name | xargs -I{} kubectl patch {} \
-  --type=merge \
-  -p '{"spec":{"compositionRevisionRef":{"name":"xpostgresqlinstances.aws.platform.example.com-REVISION-HASH"}}}'
-```
-
-## Section 10: Composition Functions for Complex Logic
-
-Composition Functions allow arbitrary logic to be applied during rendering, enabling conditional resource creation, loops, and external data lookups that patch-and-transform cannot express.
-
-### KCL Function
+### Developer Claim for Development Environment
 
 ```yaml
-# function-kcl.yaml — install the KCL Composition Function
-apiVersion: pkg.crossplane.io/v1beta1
-kind: Function
+# database-claim-development.yaml
+apiVersion: platform.company.io/v1alpha1
+kind: PostgreSQLInstance
 metadata:
-  name: function-kcl
+  name: user-service-db
+  namespace: development
 spec:
-  package: xpkg.upbound.io/crossplane-contrib/function-kcl:v0.10.1
-  packagePullPolicy: IfNotPresent
-  revisionActivationPolicy: Automatic
-```
-
-```yaml
-# composition-postgresql-kcl.yaml — Composition using KCL for conditional logic
-apiVersion: apiextensions.crossplane.io/v1
-kind: Composition
-metadata:
-  name: xpostgresqlinstances.kcl.aws.platform.example.com
-spec:
-  compositeTypeRef:
-    apiVersion: platform.example.com/v1alpha1
-    kind: XPostgreSQLInstance
-  mode: Pipeline    # required for Composition Functions
-  pipeline:
-    - step: create-rds-resources
-      functionRef:
-        name: function-kcl
-      input:
-        apiVersion: krm.kcl.dev/v1alpha1
-        kind: KCLInput
-        spec:
-          target: Resources
-          source: |
-            # KCL program to generate the RDS instance and associated resources
-            import regex
-
-            # Read parameters from the composite resource
-            params = option("params") or {}
-            oxr = params?.oxr or {}
-            spec_params = oxr?.spec?.parameters or {}
-
-            region = spec_params?.region or "us-east-1"
-            instance_class = spec_params?.instanceClass or "db.t3.medium"
-            storage_gb = spec_params?.storageGB or 50
-            multi_az = spec_params?.multiAz or False
-            db_name = spec_params?.dbName or "app"
-            composite_name = oxr?.metadata?.name or "unnamed"
-
-            # Conditional: use larger backup retention for multi-AZ prod instances
-            backup_days = 14 if multi_az else 7
-
-            # Generate the RDS instance resource
-            rds_instance = {
-              apiVersion = "rds.aws.upbound.io/v1beta1"
-              kind = "Instance"
-              metadata = {
-                name = "${composite_name}-rds"
-                annotations = {
-                  "crossplane.io/external-name" = "${composite_name}-rds"
-                }
-              }
-              spec = {
-                forProvider = {
-                  region = region
-                  dbInstanceClass = instance_class
-                  engine = "postgres"
-                  engineVersion = "16.2"
-                  allocatedStorage = storage_gb
-                  storageType = "gp3"
-                  storageEncrypted = True
-                  dbName = db_name
-                  multiAz = multi_az
-                  backupRetentionPeriod = backup_days
-                  username = "admin"
-                  passwordSecretRef = {
-                    namespace = "crossplane-system"
-                    name = "rds-default-password"
-                    key = "password"
-                  }
-                  tags = {
-                    Environment = "production" if multi_az else "non-production"
-                    ManagedBy = "crossplane"
-                    CompositeResource = composite_name
-                  }
-                }
-                providerConfigRef = {
-                  name = "aws-prod-account"
-                }
-                writeConnectionSecretToRef = {
-                  namespace = "crossplane-system"
-                  name = "${composite_name}-connection"
-                }
-              }
-            }
-
-            # Return the list of resources to create
-            items = [rds_instance]
-```
-
-## Section 11: External-Secrets Integration for Provider Credentials
-
-The External Secrets Operator populates the Kubernetes Secrets that ProviderConfigs reference, pulling values from Vault, AWS Secrets Manager, or GCP Secret Manager.
-
-```yaml
-# externalsecret-aws-credentials.yaml
-apiVersion: external-secrets.io/v1beta1
-kind: ExternalSecret
-metadata:
-  name: aws-credentials
-  namespace: crossplane-system
-spec:
-  refreshInterval: 1h
-  secretStoreRef:
-    name: vault-secret-store
-    kind: ClusterSecretStore
-  target:
-    name: aws-credentials      # the Secret ProviderConfig references
-    creationPolicy: Owner
-    template:
-      type: Opaque
-      data:
-        credentials: |
-          [default]
-          aws_access_key_id = {{ .access_key_id }}
-          aws_secret_access_key = {{ .secret_access_key }}
-  data:
-    - secretKey: access_key_id
-      remoteRef:
-        key: platform/crossplane/aws-credentials
-        property: access_key_id
-    - secretKey: secret_access_key
-      remoteRef:
-        key: platform/crossplane/aws-credentials
-        property: secret_access_key
-```
-
-## Section 12: Backstage Integration for Self-Service IDP
-
-Platform teams expose Crossplane claims as Backstage software templates, enabling developers to provision infrastructure through a web UI without needing to know about CRDs.
-
-### Backstage Template for PostgreSQL Claim
-
-```yaml
-# template-postgresql.yaml — Backstage scaffolder template
-apiVersion: scaffolder.backstage.io/v1beta3
-kind: Template
-metadata:
-  name: crossplane-postgresql-database
-  title: PostgreSQL Database (AWS RDS)
-  description: Provision a managed PostgreSQL database via Crossplane
-  tags:
-    - database
-    - postgresql
-    - aws
-spec:
-  owner: platform-team
-  type: infrastructure
-
   parameters:
-    - title: Database Configuration
-      required:
-        - dbName
-        - namespace
-        - instanceClass
-        - storageGB
-      properties:
-        dbName:
-          title: Database Name
-          type: string
-          description: Initial database name (lowercase, underscores allowed)
-          pattern: '^[a-z][a-z0-9_]{0,62}$'
-        namespace:
-          title: Target Namespace
-          type: string
-          description: Kubernetes namespace where the connection Secret will be created
-          ui:field: OwnedEntityPicker
-          ui:options:
-            catalogFilter:
-              kind: Component
-        instanceClass:
-          title: Instance Size
-          type: string
-          description: RDS instance class
-          enum:
-            - db.t3.medium
-            - db.r6g.large
-            - db.r6g.xlarge
-          enumNames:
-            - "Small (2 vCPU, 4 GB)"
-            - "Medium (2 vCPU, 16 GB)"
-            - "Large (4 vCPU, 32 GB)"
-          default: db.t3.medium
-        storageGB:
-          title: Storage (GB)
-          type: integer
-          minimum: 20
-          maximum: 1000
-          default: 50
-        multiAz:
-          title: Multi-AZ (Production)
-          type: boolean
-          default: false
-
-  steps:
-    - id: fetch-template
-      name: Fetch Crossplane claim template
-      action: fetch:template
-      input:
-        url: ./crossplane-claim-template
-        values:
-          dbName: ${{ parameters.dbName }}
-          namespace: ${{ parameters.namespace }}
-          instanceClass: ${{ parameters.instanceClass }}
-          storageGB: ${{ parameters.storageGB }}
-          multiAz: ${{ parameters.multiAz }}
-
-    - id: create-pr
-      name: Open pull request with Crossplane claim
-      action: publish:github:pull-request
-      input:
-        repoUrl: github.com?repo=fleet-infra&owner=example-org
-        title: "feat: provision PostgreSQL database ${{ parameters.dbName }} in ${{ parameters.namespace }}"
-        branchName: "db-provision/${{ parameters.namespace }}-${{ parameters.dbName }}"
-        description: |
-          This PR provisions a PostgreSQL RDS instance via Crossplane.
-
-          - Namespace: ${{ parameters.namespace }}
-          - Database: ${{ parameters.dbName }}
-          - Instance Class: ${{ parameters.instanceClass }}
-          - Storage: ${{ parameters.storageGB }} GB
-          - Multi-AZ: ${{ parameters.multiAz }}
-
-          Merging this PR will trigger ArgoCD to apply the claim and Crossplane
-          to begin provisioning (~5-10 minutes for RDS).
-        targetPath: clusters/us-east-1-prod/databases
+    storageGB: 20
+    region: us-east-1
+    version: "16"
+    instanceSize: small
+    multiAZ: false
+    databaseName: userservice
+  compositionSelector:
+    matchLabels:
+      provider: aws
+      environment: development
+  writeConnectionSecretToRef:
+    name: user-service-db-connection
 ```
 
-## Section 13: ArgoCD Sync for Drift Reconciliation
+---
 
-ArgoCD applies Crossplane claims from Git and detects if they drift from the declared state.
+## Section 8: Configurations (Packaging Compositions)
+
+Crossplane Configurations are OCI packages that bundle XRDs, Compositions, and their dependencies, enabling distribution and versioning of platform abstractions.
+
+### Configuration Package Structure
+
+```
+platform-config/
+├── crossplane.yaml           # Package metadata
+├── apis/
+│   ├── postgresql/
+│   │   ├── xrd.yaml
+│   │   ├── composition-aws-prod.yaml
+│   │   └── composition-aws-dev.yaml
+│   └── objectstorage/
+│       ├── xrd.yaml
+│       └── composition-aws.yaml
+└── providers/
+    ├── provider-aws-rds.yaml
+    └── provider-aws-s3.yaml
+```
 
 ```yaml
-# argocd-app-crossplane-claims.yaml — ArgoCD manages team infrastructure claims
+# crossplane.yaml
+apiVersion: meta.pkg.crossplane.io/v1
+kind: Configuration
+metadata:
+  name: platform-config
+  annotations:
+    meta.crossplane.io/maintainer: "Platform Team <platform@company.io>"
+    meta.crossplane.io/source: "https://git.company.internal/platform/crossplane-config"
+    meta.crossplane.io/description: "Company platform infrastructure compositions"
+spec:
+  crossplane:
+    version: ">=v1.14.0"
+  dependsOn:
+    - provider: xpkg.upbound.io/upbound/provider-aws-rds
+      version: ">=v1.14.0"
+    - provider: xpkg.upbound.io/upbound/provider-aws-s3
+      version: ">=v1.14.0"
+    - function: xpkg.upbound.io/crossplane-contrib/function-patch-and-transform
+      version: ">=v0.6.0"
+    - function: xpkg.upbound.io/crossplane-contrib/function-auto-ready
+      version: ">=v0.2.0"
+```
+
+```bash
+# Build and push the Configuration package
+crossplane xpkg build \
+  --package-root=platform-config/ \
+  --output=platform-config-v1.0.0.xpkg
+
+crossplane xpkg push \
+  platform-config-v1.0.0.xpkg \
+  --package=registry.company.internal/crossplane/platform-config:v1.0.0
+
+# Install the Configuration on a cluster
+kubectl apply -f - << 'EOF'
+apiVersion: pkg.crossplane.io/v1
+kind: Configuration
+metadata:
+  name: platform-config
+spec:
+  package: registry.company.internal/crossplane/platform-config:v1.0.0
+  installationPolicy: Automatic
+EOF
+```
+
+---
+
+## Section 9: GitOps Integration
+
+### ArgoCD Application for Infrastructure Claims
+
+```yaml
+# argocd-app-infrastructure.yaml
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: team-payments-infrastructure
+  name: production-infrastructure
   namespace: argocd
 spec:
-  project: team-payments
+  project: production
   source:
-    repoURL: https://github.com/example-org/fleet-infra.git
+    repoURL: "https://git.company.internal/teams/user-service"
     targetRevision: main
-    path: clusters/us-east-1-prod/databases
+    path: infrastructure/production
   destination:
-    server: https://kubernetes.default.svc
+    server: "https://kubernetes.default.svc"
+    namespace: production
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: false    # Infrastructure changes should be manual
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true
+  # Ignore status fields and connection secret references
+  ignoreDifferences:
+    - group: "platform.company.io"
+      kind: PostgreSQLInstance
+      jsonPointers:
+        - /status
+        - /spec/resourceRef
+```
+
+### ArgoCD Application for Platform Compositions
+
+```yaml
+# argocd-app-platform-compositions.yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: crossplane-compositions
+  namespace: argocd
+spec:
+  project: platform
+  source:
+    repoURL: "https://git.company.internal/platform/crossplane-config"
+    targetRevision: main
+    path: apis
+  destination:
+    server: "https://kubernetes.default.svc"
     namespace: crossplane-system
   syncPolicy:
     automated:
-      prune: false        # NEVER prune cloud resources automatically
+      prune: true
       selfHeal: true
-    syncOptions:
-      - ServerSideApply=true
-  # Ignore Crossplane status fields that change dynamically
   ignoreDifferences:
-    - group: platform.example.com
-      kind: XPostgreSQLInstance
+    - group: "apiextensions.crossplane.io"
+      kind: CompositeResourceDefinition
       jsonPointers:
         - /status
-        - /spec/compositionRevisionRef
-    - group: rds.aws.upbound.io
-      kind: Instance
+    - group: "apiextensions.crossplane.io"
+      kind: Composition
       jsonPointers:
         - /status
-        - /metadata/annotations/crossplane.io~1external-name
 ```
 
-### Observing Crossplane Resource Health
+---
+
+## Section 10: Debugging and Troubleshooting
+
+### Checking Resource Status
 
 ```bash
-# Overall health of all Crossplane managed resources
+# Check all managed resources and their sync state
 kubectl get managed
 
-# Drill into a failing resource
-kubectl describe rdsinstance.rds.aws.upbound.io payments-primary-db-XXXX-rds
+# Check composite resources
+kubectl get composite
 
-# Check the Crossplane provider controller logs for errors
-kubectl logs -n crossplane-system \
-  -l pkg.crossplane.io/revision=provider-aws-rds \
-  --since=1h | grep -E "(error|fail|warn)" | tail -50
+# Check claims in a namespace
+kubectl get claim -n production
 
-# Check a claim and trace the full resource tree
-kubectl get postgresqlinstanceclaim payments-primary-db -n payments -o yaml
-kubectl get xpostgresqlinstances -l crossplane.io/claim-name=payments-primary-db
-kubectl get instances.rds.aws.upbound.io -l crossplane.io/composite=payments-primary-db-XXXX
-
-# Force reconciliation of a managed resource
-kubectl annotate managed payments-primary-db-XXXX-rds \
-  crossplane.io/paused="false" \
-  --overwrite
-
-# Import an existing cloud resource into Crossplane management
-# 1. Create the ManagedResource manifest with the external-name annotation
-# 2. The controller will adopt the existing resource instead of creating a new one
-kubectl annotate rdsinstance.rds.aws.upbound.io existing-payments-db \
-  crossplane.io/external-name="existing-payments-db" \
-  --overwrite
+# Detailed status for a specific claim
+kubectl describe postgresqlinstance user-service-db -n production
+# Look for:
+# - Status.Conditions[0] (Ready)
+# - Status.Conditions[1] (Synced)
+# - Events section for recent reconciliation activity
 ```
 
-## Section 14: Operational Reference
-
-### Common Troubleshooting Commands
+### Crossplane Composite Resource Status
 
 ```bash
-# Check all Crossplane objects and their readiness
-kubectl get crossplane    # all Crossplane API objects
-kubectl get claim         # all CompositeResourceClaims
-kubectl get composite     # all CompositeResources
-kubectl get managed       # all ManagedResources (cloud API resources)
+# Get the XR linked to a claim
+kubectl get postgresqlinstance user-service-db -n production \
+  -o jsonpath='{.spec.resourceRef.name}'
 
-# Find why a claim is not binding (common: no matching Composition)
-kubectl describe postgresqlinstanceclaim payments-primary-db -n payments \
-  | grep -A 5 "Events:"
-
-# Check if the XRD is correctly installed
-kubectl get xrd
-kubectl describe xrd xpostgresqlinstances.platform.example.com
-
-# List all Compositions and which XRD they satisfy
-kubectl get composition \
-  -o custom-columns="NAME:.metadata.name,XRD:.spec.compositeTypeRef.kind"
-
-# Pause Crossplane reconciliation for a managed resource (maintenance)
-kubectl annotate rdsinstance.rds.aws.upbound.io payments-primary-db-XXXX-rds \
-  crossplane.io/paused="true"
-
-# Resume reconciliation
-kubectl annotate rdsinstance.rds.aws.upbound.io payments-primary-db-XXXX-rds \
-  crossplane.io/paused="false" --overwrite
-
-# Check provider controller logs
-kubectl logs -n crossplane-system \
-  -l pkg.crossplane.io/revision=provider-aws-rds \
-  --since=1h
-
-# Check Crossplane core controller logs
-kubectl logs -n crossplane-system \
-  -l app=crossplane \
-  --since=1h
+# Get the XR status and events
+XR_NAME=$(kubectl get postgresqlinstance user-service-db -n production \
+  -o jsonpath='{.spec.resourceRef.name}')
+kubectl describe xpostgresqlinstances "${XR_NAME}"
 ```
 
-### Deletion Protection
+### Finding and Fixing Stuck Resources
 
-Crossplane will delete the underlying cloud resource when the ManagedResource object is deleted, unless deletion policies are configured.
+```bash
+# Managed resources that are not synced
+kubectl get managed -o json | jq '
+  .items[] | select(
+    .status.conditions[]? |
+    (.type == "Synced" and .status == "False")
+  ) | {
+    kind: .kind,
+    name: .metadata.name,
+    message: (.status.conditions[] | select(.type == "Synced") | .message)
+  }'
+
+# Common failure reasons
+kubectl get rds -o json | jq '
+  .items[] | select(.status.conditions[]?.type == "Ready") |
+  {
+    name: .metadata.name,
+    ready: (.status.conditions[] | select(.type == "Ready") | .status),
+    reason: (.status.conditions[] | select(.type == "Ready") | .reason),
+    message: (.status.conditions[] | select(.type == "Ready") | .message)
+  }'
+
+# Trigger a manual reconciliation
+kubectl annotate managed app-postgres-production \
+  crossplane.io/paused=true
+sleep 5
+kubectl annotate managed app-postgres-production \
+  crossplane.io/paused-
+
+# Delete a managed resource without deleting the cloud resource (orphan)
+kubectl patch rds app-postgres-production \
+  --type merge \
+  --patch '{"spec":{"deletionPolicy":"Orphan"}}'
+kubectl delete rds app-postgres-production
+```
+
+### Checking Provider Health
+
+```bash
+# Provider health status
+kubectl describe provider provider-aws-rds | grep -A 20 Status:
+
+# Provider pod logs
+kubectl logs -n crossplane-system \
+  -l pkg.crossplane.io/revision=provider-aws-rds-HASH \
+  --tail=50 | grep -E "error|Error|reconcil"
+
+# List all active ProviderConfigs
+kubectl get providerconfigs.aws.upbound.io
+```
+
+### Composition Debugging
+
+```bash
+# Check if a Composition is valid and selectable
+kubectl get compositions -o json | jq '
+  .items[] | {
+    name: .metadata.name,
+    xrd: .spec.compositeTypeRef.kind,
+    ready: (.status.conditions[]? | select(.type == "Healthy") | .status)
+  }'
+
+# Validate the composition renders correctly for a given XR
+# Use the crossplane CLI render command
+crossplane render \
+  xr.yaml \
+  composition.yaml \
+  functions.yaml \
+  --include-full-xr | kubectl apply --dry-run=server -f -
+```
+
+---
+
+## Section 11: Multi-Cluster and Multi-Environment Patterns
+
+### Using Compositions for Environment Parity
+
+The recommended pattern is a single XRD with multiple Compositions selected by environment labels:
+
+```bash
+# List available compositions for the PostgreSQLInstance XRD
+kubectl get compositions -l crossplane.io/xrd=xpostgresqlinstances.platform.company.io
+
+# NAME                          XR-KIND                  AGE
+# postgresql-aws-production     XPostgreSQLInstance      10d
+# postgresql-aws-development    XPostgreSQLInstance      10d
+# postgresql-gcp-production     XPostgreSQLInstance      5d
+```
+
+### Claim Namespace Isolation
 
 ```yaml
-# Protect against accidental deletion via annotation on ManagedResource
+# RBAC: Allow developers to manage claims in their namespace
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
 metadata:
-  annotations:
-    crossplane.io/paused: "false"    # not paused, just normal reconciliation
-spec:
-  # deletionPolicy controls what happens when the K8s object is deleted:
-  # Orphan: remove the K8s object but leave the cloud resource
-  # Delete: delete both the K8s object and the cloud resource (default)
-  deletionPolicy: Orphan
-  managementPolicies:
-    - Observe   # read-only: Crossplane observes but does not manage the resource
-    # Full management options: Create, Delete, Observe, Update, LateInitialize
+  name: crossplane-claim-editor
+  namespace: production
+rules:
+  - apiGroups: ["platform.company.io"]
+    resources:
+      - postgresqlinstances
+      - objectstorageinstances
+    verbs: ["get", "list", "watch", "create", "update", "patch"]
+  # Explicitly deny deletion
+  # (deletion must go through platform team)
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: crossplane-claim-editor
+  namespace: production
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: crossplane-claim-editor
+subjects:
+  - kind: Group
+    name: "team-user-service"
+    apiGroup: rbac.authorization.k8s.io
 ```
 
-## Summary
+---
 
-Crossplane transforms Kubernetes into a universal control plane for cloud infrastructure. The separation between `CompositeResourceDefinition` (the team-facing API), `Composition` (the rendering logic), and `ManagedResource` (the cloud API call) allows platform teams to evolve the implementation independently of the developer-facing interface. Application teams request infrastructure through a simple namespace-scoped claim that looks no different from requesting a PersistentVolumeClaim — they specify what they need, not how to build it.
+## Section 12: Observability and Cost Management
 
-Composition Functions extend this model to cover complex cases: conditional resource creation, looping over lists of regions, or incorporating external data that patch-and-transform cannot handle. External Secrets integration removes static credentials from the management cluster. ArgoCD provides the Git-based audit trail and drift detection for both the Compositions (platform team changes) and the Claims (application team requests). Backstage templates wrap the Crossplane API in a user-friendly UI that lets developers provision infrastructure through a web form and a pull request, with the actual cloud resource created automatically when the PR is merged.
+### Prometheus Metrics from Crossplane
+
+```bash
+# Crossplane exposes Prometheus metrics at :8080/metrics
+# Key metrics to monitor:
+
+# Managed resource reconciliation errors
+crossplane_managed_resource_exists                    # 0 or 1 per resource
+crossplane_managed_resource_ready                     # 0 or 1 per resource
+crossplane_managed_resource_synced                    # 0 or 1 per resource
+
+# Composite resource readiness
+crossplane_composite_resource_exists
+crossplane_composite_resource_ready
+
+# Reconcile queue depth (backlog)
+crossplane_reconciler_queue_depth
+```
+
+```yaml
+# PrometheusRule for Crossplane
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: crossplane-alerts
+  namespace: crossplane-system
+  labels:
+    release: kube-prometheus-stack
+spec:
+  groups:
+    - name: crossplane
+      rules:
+        - alert: CrossplaneResourceNotSynced
+          expr: |
+            crossplane_managed_resource_synced == 0
+          for: 10m
+          labels:
+            severity: warning
+          annotations:
+            summary: "Crossplane managed resource is not synced"
+            description: >
+              Managed resource {{ $labels.name }} of kind {{ $labels.kind }}
+              has not been synced for 10 minutes. Check provider logs.
+
+        - alert: CrossplaneResourceNotReady
+          expr: |
+            crossplane_managed_resource_ready == 0
+          for: 30m
+          labels:
+            severity: warning
+          annotations:
+            summary: "Crossplane managed resource has not become ready"
+            description: >
+              Managed resource {{ $labels.name }} of kind {{ $labels.kind }}
+              has not become ready in 30 minutes.
+
+        - alert: CrossplaneHighReconcileQueueDepth
+          expr: |
+            crossplane_reconciler_queue_depth > 100
+          for: 5m
+          labels:
+            severity: warning
+          annotations:
+            summary: "Crossplane reconciler queue is backed up"
+            description: >
+              The Crossplane reconciler queue has {{ $value }} items.
+              Provider pods may be resource-constrained.
+```
+
+### Tagging All Resources for Cost Allocation
+
+Enforce consistent tagging by including tags in all Composition base templates:
+
+```yaml
+# In every Composition that creates AWS resources, include these patches
+patches:
+  # Propagate team label from the claim to cloud resource tags
+  - type: FromCompositeFieldPath
+    fromFieldPath: metadata.labels.team
+    toFieldPath: spec.forProvider.tags.Team
+
+  # Hard-code managed-by tag
+  - type: FromCompositeFieldPath
+    fromFieldPath: metadata.name
+    toFieldPath: spec.forProvider.tags.CrossplaneResource
+    transforms:
+      - type: string
+        string:
+          fmt: "xr-%s"
+
+  # Include environment from namespace label
+  - type: FromEnvironmentFieldPath
+    fromFieldPath: data.environment
+    toFieldPath: spec.forProvider.tags.Environment
+```
+
+---
+
+Crossplane represents the next evolution of Infrastructure as Code: instead of running a separate Terraform or Pulumi process, all infrastructure state flows through the Kubernetes control plane with the same reconciliation model, RBAC, audit logging, and GitOps tooling already in place. The separation between Compositions (platform team) and Claims (developer teams) creates a clean platform contract where developers request infrastructure in their own terms while platform engineers control the underlying implementation and enforce organizational standards through the composition layer.
