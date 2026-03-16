@@ -22,7 +22,7 @@ on:
     branches:
       - main
   schedule:
-    - cron: "0 0 * * *" # Daily builds for content updates
+    - cron: "0 6 * * *" # Daily at 06:00 UTC (01:00 EST) — picks up scheduled posts
 
 jobs:
   Test:
@@ -136,7 +136,7 @@ jobs:
   Deploy-Staging:
     runs-on: ubuntu-latest
     needs: Test
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    if: (github.event_name == 'push' && github.ref == 'refs/heads/main') || github.event_name == 'schedule'
     environment:
       name: staging
 
@@ -186,7 +186,7 @@ jobs:
   Deploy-Production:
     runs-on: ubuntu-latest
     needs: Deploy-Staging
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    if: (github.event_name == 'push' && github.ref == 'refs/heads/main') || github.event_name == 'schedule'
     environment:
       name: production
       url: https://support.tools
