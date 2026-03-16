@@ -767,4 +767,216 @@ spec:
     fsGroupChangePolicy: "OnRootMismatch"
 ```
 
-Security contexts are a layered defense — no single field provides complete protection, but a pod configured with `runAsNonRoot`, `allowPrivilegeEscalation: false`, `capabilities.drop: ALL`, `readOnlyRootFilesystem`, and a `RuntimeDefault` seccomp profile is substantially more resilient to container escape attempts than the default configuration. Combined with PSS enforcement at the namespace level and admission webhooks for policy-as-code, security contexts form the foundation of a zero-trust workload security posture.
+## SELinux Options
+
+For clusters running on RHEL/CentOS-based nodes with SELinux enforcing mode, the `seLinuxOptions` field customizes the SELinux context applied to the container process and any mounted volumes.
+
+```yaml
+spec:
+  securityContext:
+    seLinuxOptions:
+      level: "s0:c123,c456"   # MCS label for multi-category security
+      role: "container_r"
+      type: "container_t"
+      user: "system_u"
+  containers:
+    - name: app
+      securityContext:
+        seLinuxOptions:
+          type: "custom_app_t"  # Custom type defined in a SELinux policy module
+```
+
+### Volume Labeling
+
+SELinux enforcing mode blocks containers from reading volumes unless the volume's label matches the container's expected context. The `seLinuxOptions` on the pod-level securityContext causes the runtime to relabel volume mounts accordingly. This relabeling can be slow for large volumes; Kubernetes 1.27+ supports `seLinuxChangePolicy: MountOption` to use mount options instead of relabeling for supported volume types.
+
+```yaml
+spec:
+  securityContext:
+    seLinuxOptions:
+      type: "container_t"
+      level: "s0:c100,c200"
+    # Use mount option instead of recursive chcon (faster for large volumes)
+    # Requires Kubernetes 1.27+ and a supported volume type (hostPath, CSI)
+    seLinuxChangePolicy: MountOption
+```
+
+## Windows Container Security Context
+
+For Windows-based workloads in hybrid clusters, security context uses a different field set:
+
+```yaml
+spec:
+  securityContext:
+    windowsOptions:
+      runAsUserName: "ContainerUser"  # Built-in low-privilege user
+      gmsaCredentialSpecName: "webapp-gmsa"  # Group Managed Service Account
+  containers:
+    - name: iis
+      securityContext:
+        windowsOptions:
+          runAsUserName: "ContainerAdministrator"  # Use only when strictly required
+```
+
+## Namespace-Level Security Context Defaults with LimitRange
+
+A `LimitRange` can establish default security-related resource limits, but security context defaults are set through admission webhooks. A practical approach for teams is to deploy a mutating webhook that injects baseline security context fields when they are missing:
+
+```yaml
+# Kyverno policy: inject security context defaults if not set
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: inject-security-context-defaults
+spec:
+  rules:
+    - name: set-run-as-non-root
+      match:
+        any:
+          - resources:
+              kinds:
+                - Pod
+              namespaces:
+                - production
+                - staging
+      mutate:
+        patchStrategicMerge:
+          spec:
+            securityContext:
+              +(runAsNonRoot): true
+              +(seccompProfile):
+                type: RuntimeDefault
+            containers:
+              - (name): "*"
+                securityContext:
+                  +(allowPrivilegeEscalation): false
+                  +(capabilities):
+                    drop:
+                      - ALL
+```
+
+## Verifying Security Context Configuration in CI
+
+Adding security context validation to CI pipelines prevents insecure configurations from reaching production:
+
+```bash
+#!/bin/bash
+# validate-security-context.sh
+# Validates Kubernetes manifests against security requirements
+
+set -euo pipefail
+
+MANIFEST_DIR="${1:?Manifest directory required}"
+FAILED=0
+
+validate_file() {
+    local file="$1"
+
+    # Check for privileged containers
+    if grep -q "privileged: true" "${file}"; then
+        echo "FAIL: ${file} contains privileged: true"
+        FAILED=1
+    fi
+
+    # Check for missing runAsNonRoot
+    if grep -q "kind: Pod\|kind: Deployment\|kind: StatefulSet" "${file}"; then
+        if ! grep -q "runAsNonRoot" "${file}"; then
+            echo "WARN: ${file} does not set runAsNonRoot"
+        fi
+    fi
+
+    # Check for containers without capability drop
+    if grep -q "capabilities:" "${file}"; then
+        if ! grep -q "drop:" "${file}"; then
+            echo "WARN: ${file} has capabilities without drop"
+        fi
+    fi
+
+    # Check for allowPrivilegeEscalation not set to false
+    if grep -q "allowPrivilegeEscalation: true" "${file}"; then
+        echo "FAIL: ${file} sets allowPrivilegeEscalation: true"
+        FAILED=1
+    fi
+}
+
+# Use kubesec for structured scoring
+for manifest in "${MANIFEST_DIR}"/*.yaml "${MANIFEST_DIR}"/**/*.yaml; do
+    [ -f "${manifest}" ] || continue
+    validate_file "${manifest}"
+
+    # Run kubesec scan
+    SCORE=$(kubesec scan "${manifest}" 2>/dev/null | jq '.[0].score // 0')
+    if [ "${SCORE}" -lt 5 ]; then
+        echo "WARN: ${manifest} scored ${SCORE}/10 in kubesec (threshold: 5)"
+    fi
+done
+
+# Use Polaris for policy-based validation
+polaris audit --audit-path "${MANIFEST_DIR}" \
+    --config polaris-config.yaml \
+    --format pretty \
+    --set-exit-code-on-danger \
+    --set-exit-code-below-score 90
+
+if [ "${FAILED}" -ne 0 ]; then
+    echo "Security context validation FAILED"
+    exit 1
+fi
+
+echo "Security context validation PASSED"
+```
+
+## Runtime Security Monitoring with Falco
+
+Security contexts reduce the attack surface at admission time, but runtime monitoring with Falco detects violations of expected behavior after containers are running. Security context configuration and Falco rules are complementary:
+
+```yaml
+# falco-rules-security-context.yaml
+# Rules that detect security context violations at runtime
+
+- rule: Container Running as Root
+  desc: Detect containers running as root despite non-root policy
+  condition: >
+    container.id != host and
+    proc.vpid = 1 and
+    user.uid = 0 and
+    not container.image.repository in (trusted_root_images)
+  output: >
+    Container running as root (user=%user.name container=%container.name
+    image=%container.image.repository:%container.image.tag
+    pod=%k8s.pod.name ns=%k8s.ns.name)
+  priority: WARNING
+  tags: [container, security-context]
+
+- rule: Write to Root Filesystem
+  desc: Detect writes to container root filesystem (expected to be read-only)
+  condition: >
+    container.id != host and
+    evt.dir = < and
+    evt.type in (open, creat) and
+    (evt.arg.flags contains O_WRONLY or evt.arg.flags contains O_RDWR) and
+    not fd.name startswith /tmp and
+    not fd.name startswith /var/log and
+    not fd.name startswith /proc and
+    not fd.name startswith /sys and
+    container_entrypoint
+  output: >
+    Write to root filesystem (file=%fd.name user=%user.name
+    container=%container.name image=%container.image.repository
+    pod=%k8s.pod.name)
+  priority: WARNING
+  tags: [container, security-context, filesystem]
+
+- rule: Privilege Escalation via Sudo
+  desc: Detect sudo execution in containers
+  condition: >
+    container.id != host and
+    proc.name = sudo
+  output: >
+    Sudo called in container (user=%user.name command=%proc.cmdline
+    container=%container.name pod=%k8s.pod.name ns=%k8s.ns.name)
+  priority: CRITICAL
+  tags: [container, security-context, privilege-escalation]
+```
+
+Security contexts are a layered defense — no single field provides complete protection, but a pod configured with `runAsNonRoot`, `allowPrivilegeEscalation: false`, `capabilities.drop: ALL`, `readOnlyRootFilesystem`, and a `RuntimeDefault` seccomp profile is substantially more resilient to container escape attempts than the default configuration. Combined with PSS enforcement at the namespace level, admission webhooks for policy-as-code, and runtime monitoring with Falco, security contexts form the foundation of a zero-trust workload security posture.

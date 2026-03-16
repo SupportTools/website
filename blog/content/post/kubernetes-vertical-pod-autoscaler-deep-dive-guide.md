@@ -678,4 +678,302 @@ kubectl patch mutatingwebhookconfigurations vpa-webhook-config \
   -p='[{"op":"replace","path":"/webhooks/0/failurePolicy","value":"Ignore"}]'
 ```
 
+## VPA and KEDA Interaction
+
+KEDA (Kubernetes Event-Driven Autoscaling) scales workloads based on external event sources such as queue depth, database row counts, or HTTP request rate. KEDA creates and manages its own HPA objects under the hood. The same coexistence rules apply: VPA should only manage memory when KEDA/HPA is managing replica count.
+
+```yaml
+# KEDA ScaledObject targeting CPU-based scaling
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: my-app-keda
+  namespace: production
+spec:
+  scaleTargetRef:
+    name: my-app
+  minReplicaCount: 2
+  maxReplicaCount: 50
+  triggers:
+    - type: external
+      metadata:
+        scalerAddress: custom-scaler.example.com:9090
+        queueLength: "100"
+---
+# VPA managing memory only — KEDA manages replicas
+apiVersion: autoscaling.k8s.io/v1
+kind: VerticalPodAutoscaler
+metadata:
+  name: my-app-vpa
+  namespace: production
+spec:
+  targetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: my-app
+  updatePolicy:
+    updateMode: "Auto"
+    minReplicas: 2
+  resourcePolicy:
+    containerPolicies:
+      - containerName: app
+        mode: Auto
+        controlledResources: ["memory"]
+        minAllowed:
+          memory: 128Mi
+        maxAllowed:
+          memory: 4Gi
+```
+
+## VerticalPodAutoscalerCheckpoint
+
+VPA persists its histogram state across Recommender restarts using `VerticalPodAutoscalerCheckpoint` objects. These are automatically managed but understanding them helps with debugging.
+
+```bash
+# List all checkpoints in a namespace
+kubectl get verticalpodautoscalercheckpoints -n production
+
+# Inspect a checkpoint (shows histogram state per container)
+kubectl get vpa-checkpoint my-app-vpa-app -n production -o yaml
+
+# Example output shows:
+# spec:
+#   containerName: app
+#   vpaObjectName: my-app-vpa
+# status:
+#   cpuHistogram:
+#     bucketWeights:
+#       0: 100
+#       3: 50
+#       7: 200
+#   memHistogram:
+#     referenceTimestamp: "2027-05-15T00:00:00Z"
+#   lastUpdateTime: "2027-05-30T12:00:00Z"
+
+# Delete checkpoints to force fresh recommendation (useful after major workload changes)
+kubectl delete verticalpodautoscalercheckpoints -n production -l app=my-app
+```
+
+## VPA Recommendation Freshness and Stability
+
+VPA recommendations stabilize over time as the histogram accumulates usage data. During the first 24 hours after deploying VPA on a workload, recommendations may swing as the histogram fills in. Key factors affecting recommendation stability:
+
+**Histogram decay half-life**: Configured via `--cpu-histogram-decay-half-life` and `--memory-histogram-decay-half-life` (default 24 hours). A shorter half-life causes recommendations to react faster to recent usage changes but may over-fit to transient spikes. For workloads with strong daily/weekly patterns, a 48-168 hour half-life is more appropriate.
+
+**Lookback window**: VPA retains checkpoints for up to 8 days by default. New checkpoints expire old ones. For workloads with infrequent batch jobs (e.g., monthly reports), the lookback window may not capture peak usage unless the batch job ran within the lookback period.
+
+**Confidence threshold**: VPA requires a minimum number of observations before generating recommendations. Low-traffic workloads or short-lived CronJob pods may take longer to accumulate sufficient data.
+
+```bash
+# Check recommendation age and confidence
+kubectl get vpa my-app-vpa -n production -o jsonpath='{.status.recommendation}'
+
+# Force the Recommender to re-process a VPA object
+kubectl annotate vpa my-app-vpa -n production \
+  vpa.kubernetes.io/force-recommender-sync="$(date +%s)" --overwrite
+```
+
+## Namespace-Wide VPA Policy with MutatingAdmissionWebhook
+
+For organizations that want VPA recommendations applied automatically to all new deployments, a namespace annotation approach with a custom webhook can inject VPA objects at namespace creation time:
+
+```yaml
+# Namespace label that triggers automatic VPA creation
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: team-alpha
+  labels:
+    vpa.example.org/auto-create: "true"
+    vpa.example.org/update-mode: "Off"  # Start in observation mode
+```
+
+A namespace controller watches for this label and creates corresponding VPA objects for all Deployments found in the namespace:
+
+```python
+#!/usr/bin/env python3
+"""
+vpa-namespace-controller.py
+Creates VPA objects in Off mode for all Deployments in labeled namespaces.
+"""
+from kubernetes import client, config, watch
+import yaml
+import logging
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+VPA_TEMPLATE = {
+    "apiVersion": "autoscaling.k8s.io/v1",
+    "kind": "VerticalPodAutoscaler",
+    "metadata": {
+        "annotations": {
+            "vpa.example.org/auto-created": "true"
+        }
+    },
+    "spec": {
+        "updatePolicy": {
+            "updateMode": "Off"
+        },
+        "resourcePolicy": {
+            "containerPolicies": [
+                {
+                    "containerName": "*",
+                    "minAllowed": {
+                        "cpu": "10m",
+                        "memory": "32Mi"
+                    },
+                    "maxAllowed": {
+                        "cpu": "8",
+                        "memory": "16Gi"
+                    },
+                    "controlledResources": ["cpu", "memory"]
+                }
+            ]
+        }
+    }
+}
+
+
+def ensure_vpa_for_deployment(custom_api, apps_api, namespace, deploy_name, update_mode):
+    """Create VPA for a deployment if it does not already exist."""
+    vpa_name = f"{deploy_name}-vpa"
+
+    try:
+        custom_api.get_namespaced_custom_object(
+            group="autoscaling.k8s.io",
+            version="v1",
+            namespace=namespace,
+            plural="verticalpodautoscalers",
+            name=vpa_name
+        )
+        return  # Already exists
+    except client.ApiException as e:
+        if e.status != 404:
+            raise
+
+    vpa = VPA_TEMPLATE.copy()
+    vpa["metadata"]["name"] = vpa_name
+    vpa["metadata"]["namespace"] = namespace
+    vpa["spec"]["targetRef"] = {
+        "apiVersion": "apps/v1",
+        "kind": "Deployment",
+        "name": deploy_name
+    }
+    vpa["spec"]["updatePolicy"]["updateMode"] = update_mode
+
+    custom_api.create_namespaced_custom_object(
+        group="autoscaling.k8s.io",
+        version="v1",
+        namespace=namespace,
+        plural="verticalpodautoscalers",
+        body=vpa
+    )
+    logger.info("Created VPA %s in namespace %s", vpa_name, namespace)
+
+
+def main():
+    config.load_incluster_config()
+    v1 = client.CoreV1Api()
+    apps_v1 = client.AppsV1Api()
+    custom_api = client.CustomObjectsApi()
+    w = watch.Watch()
+
+    for event in w.stream(v1.list_namespace):
+        ns = event["object"]
+        labels = ns.metadata.labels or {}
+
+        if labels.get("vpa.example.org/auto-create") != "true":
+            continue
+
+        update_mode = labels.get("vpa.example.org/update-mode", "Off")
+        namespace = ns.metadata.name
+
+        deployments = apps_v1.list_namespaced_deployment(namespace)
+        for deploy in deployments.items:
+            ensure_vpa_for_deployment(
+                custom_api, apps_v1, namespace, deploy.metadata.name, update_mode
+            )
+
+
+if __name__ == "__main__":
+    main()
+```
+
+## Integrating VPA Recommendations into CI/CD
+
+Rather than relying solely on automatic in-cluster updates, recommendations can be integrated into the GitOps workflow to update resource definitions in source control:
+
+```bash
+#!/bin/bash
+# vpa-to-git.sh
+# Reads VPA recommendations and opens a PR to update resource definitions
+
+set -euo pipefail
+
+NAMESPACE="${1:?Namespace required}"
+OUTPUT_DIR="./resource-updates"
+mkdir -p "${OUTPUT_DIR}"
+
+# Collect all VPA recommendations in the namespace
+kubectl get vpa -n "${NAMESPACE}" -o json | jq -r '.items[] | .metadata.name' | while read -r VPA_NAME; do
+    # Get the target deployment name (assumes naming convention name-vpa)
+    DEPLOY_NAME="${VPA_NAME%-vpa}"
+
+    # Extract target recommendation
+    TARGET_CPU=$(kubectl get vpa "${VPA_NAME}" -n "${NAMESPACE}" \
+        -o jsonpath='{.status.recommendation.containerRecommendations[0].target.cpu}')
+    TARGET_MEM=$(kubectl get vpa "${VPA_NAME}" -n "${NAMESPACE}" \
+        -o jsonpath='{.status.recommendation.containerRecommendations[0].target.memory}')
+
+    if [[ -z "${TARGET_CPU}" || -z "${TARGET_MEM}" ]]; then
+        echo "No recommendation yet for ${VPA_NAME}, skipping"
+        continue
+    fi
+
+    echo "VPA: ${VPA_NAME} -> CPU: ${TARGET_CPU}, Memory: ${TARGET_MEM}"
+
+    # Generate a patch file
+    cat > "${OUTPUT_DIR}/${DEPLOY_NAME}-resources.yaml" <<EOF
+# Auto-generated from VPA recommendation on $(date -u +%Y-%m-%dT%H:%MZ)
+# VPA: ${VPA_NAME}
+resources:
+  requests:
+    cpu: "${TARGET_CPU}"
+    memory: "${TARGET_MEM}"
+EOF
+done
+
+echo "Resource update files written to ${OUTPUT_DIR}/"
+echo "Review and commit these changes to update manifests in source control"
+```
+
+## Cost Impact Analysis
+
+VPA's primary financial benefit comes from reducing waste in over-provisioned workloads. A typical enterprise Kubernetes cluster has 30-60% resource waste in memory and 20-40% in CPU due to conservative manual requests set at initial deployment and never revisited.
+
+```bash
+# Estimate potential savings by comparing current requests to VPA targets
+kubectl get vpa -n production -o json | jq -r '
+  .items[] |
+  {
+    name: .metadata.name,
+    current_cpu: .spec.resourcePolicy.containerPolicies[0].minAllowed.cpu,
+    recommended_cpu: .status.recommendation.containerRecommendations[0].target.cpu,
+    current_mem: .spec.resourcePolicy.containerPolicies[0].minAllowed.memory,
+    recommended_mem: .status.recommendation.containerRecommendations[0].target.memory
+  }
+'
+
+# A dashboard query to track cluster-wide resource efficiency:
+# Actual usage / Requested resources
+# CPU efficiency:
+#   sum(rate(container_cpu_usage_seconds_total[5m])) /
+#   sum(kube_pod_container_resource_requests{resource="cpu"})
+#
+# Memory efficiency:
+#   sum(container_memory_working_set_bytes) /
+#   sum(kube_pod_container_resource_requests{resource="memory"})
+```
+
 VPA is one of the highest-ROI investments available to mature Kubernetes platform teams. A phased rollout starting with `Off` mode observation, moving to `Initial` mode for injection, and finally enabling `Auto` mode for stateless workloads captures the majority of the efficiency gains while protecting production stability. The VPA + HPA coexistence pattern with separated CPU/memory responsibility enables full autoscaling coverage without the oscillation risks that arise from conflicting controllers targeting the same metrics.
