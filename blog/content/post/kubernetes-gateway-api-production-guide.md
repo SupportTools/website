@@ -1,8 +1,8 @@
 ---
-title: "Kubernetes Gateway API: Production Implementation with HTTPRoute, GRPCRoute, and Traffic Policies"
-date: 2027-05-06T00:00:00-05:00
+title: "Kubernetes Gateway API: Production Ingress and Traffic Management"
+date: 2027-10-23T00:00:00-05:00
 draft: false
-tags: ["Kubernetes", "Gateway API", "Ingress", "Networking", "HTTPRoute", "Envoy"]
+tags: ["Kubernetes", "Gateway API", "Ingress", "Traffic Management", "Networking"]
 categories: ["Kubernetes", "Networking"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive production guide to the Kubernetes Gateway API covering GatewayClass, Gateway, HTTPRoute, GRPCRoute, traffic splitting, TLS termination, cross-namespace reference grants, and migration from legacy Ingress resources."
