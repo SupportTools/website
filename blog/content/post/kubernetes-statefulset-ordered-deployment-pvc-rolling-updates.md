@@ -9,7 +9,7 @@ categories:
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Deep dive into Kubernetes StatefulSet advanced patterns covering podManagementPolicy, updateStrategy partitions, PVC retention policy, headless service DNS, and operational patterns for Cassandra, MongoDB, and Elasticsearch."
 more_link: "yes"
-url: "/kubernetes-statefulset-advanced-patterns-guide/"
+url: "/kubernetes-statefulset-ordered-deployment-pvc-rolling-updates/"
 ---
 
 StatefulSets provide the ordered identity and persistent storage guarantees required by distributed stateful applications, but their default configurations are rarely optimal for production deployments. The difference between a Cassandra cluster that safely tolerates rolling restarts and one that triggers ring splits often comes down to three fields: `podManagementPolicy`, `updateStrategy.rollingUpdate.partition`, and how PVC lifecycle is managed relative to pod lifecycle.

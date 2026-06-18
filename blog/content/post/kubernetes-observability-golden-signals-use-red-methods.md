@@ -10,7 +10,7 @@ categories:
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Complete guide to implementing the Four Golden Signals, USE method, and RED method for Kubernetes observability. Covers PromQL patterns, Grafana dashboard construction, exemplar integration, and production alerting strategies."
 more_link: "yes"
-url: "/kubernetes-observability-golden-signals-guide/"
+url: "/kubernetes-observability-golden-signals-use-red-methods/"
 ---
 
 Google's Site Reliability Engineering discipline introduced the Four Golden Signals—Latency, Traffic, Errors, and Saturation—as the minimum set of metrics needed to understand a service's health. The USE method (Utilization, Saturation, Errors) from Brendan Gregg provides a complementary framework for infrastructure resources, and the RED method (Rate, Errors, Duration) applies naturally to request-driven microservices.

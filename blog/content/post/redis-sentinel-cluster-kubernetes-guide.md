@@ -10,7 +10,7 @@ categories:
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A production guide to deploying Redis on Kubernetes using the OpsTree Redis Operator, covering Sentinel high availability, Redis Cluster sharding, AOF and RDB persistence, memory policy configuration, slow log analysis, keyspace notifications, and monitoring with redis-exporter."
 more_link: "yes"
-url: "/redis-operator-kubernetes-production-guide/"
+url: "/redis-sentinel-cluster-kubernetes-guide/"
 ---
 
 Redis running on Kubernetes without an operator is an operational liability. StatefulSet definitions, Sentinel coordination, shard management, and persistence configuration must be maintained manually — and failover behavior is unpredictable without the proper interlocks. The OpsTree Redis Operator (`ot-container-kit/redis-operator`) provides production-grade Redis deployments through declarative CRDs, automating Sentinel configuration, Redis Cluster topology, password rotation, and TLS. This guide covers the full deployment lifecycle from installation through production hardening.

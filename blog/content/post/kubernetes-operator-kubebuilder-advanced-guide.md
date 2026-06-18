@@ -7,7 +7,7 @@ categories: ["Kubernetes", "Development"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive guide to building production-grade Kubernetes operators using controller-runtime and kubebuilder: CRD API design, reconciliation patterns, event filtering, HA leader election, Prometheus metrics, envtest testing, and OLM packaging."
 more_link: "yes"
-url: "/kubernetes-operator-development-guide/"
+url: "/kubernetes-operator-kubebuilder-advanced-guide/"
 ---
 
 Kubernetes operators extend the platform's control plane with domain-specific automation, encoding operational knowledge that would otherwise live in runbooks or bespoke scripts. When an operator is well-designed it transforms complex, stateful workloads into first-class Kubernetes citizens that self-heal, scale, and upgrade with the same declarative model as any built-in resource. This guide covers every layer of the operator development lifecycle: deciding when an operator is the right tool, choosing a framework, designing durable CRD APIs, writing idempotent reconcilers, publishing stable releases, and packaging for the Operator Lifecycle Manager.
