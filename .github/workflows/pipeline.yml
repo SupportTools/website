@@ -114,6 +114,9 @@ jobs:
   Deploy-NonProd:
     runs-on: self-hosted-linux
     needs: Publish
+    permissions:
+      contents: read
+      id-token: write # required for GitHub OIDC -> Vault
     strategy:
       max-parallel: 1
       matrix:
@@ -129,13 +132,40 @@ jobs:
       - name: Setup kubectl
         uses: azure/setup-kubectl@v4
 
+      # Keyless: GitHub OIDC -> Vault jwt auth. exportToken makes VAULT_TOKEN available to the mint step.
+      - name: Vault login (GitHub OIDC)
+        uses: hashicorp/vault-action@v3
+        with:
+          url: https://vault.support.tools
+          method: jwt
+          path: github-actions # the jwt auth mount
+          role: gha-website
+          jwtGithubAudience: https://github.com/SupportTools # matches bound_audiences
+          exportToken: true # -> VAULT_TOKEN env for the next step
+
+      # Mint the short-lived (1h), namespace-scoped Kubernetes token and build a kubeconfig from it.
+      # The kubernetes secrets engine generates on WRITE (PUT + kubernetes_namespace), so it must be
+      # requested explicitly here. In-cluster runner => talk to a1-ops-prd's own apiserver + in-cluster CA.
       - name: Setup Kubeconfig
+        env:
+          VAULT_ADDR: https://vault.support.tools
         run: |
-          echo "${{ secrets.KUBECONFIG_DEV }}" | base64 -d > kubeconfig
+          KUBE_TOKEN=$(curl -sf -H "X-Vault-Token: ${VAULT_TOKEN}" \
+            -X PUT -d '{"kubernetes_namespace":"arc-runners-supporttools"}' \
+            "${VAULT_ADDR}/v1/kubernetes-onprem/creds/website" \
+            | jq -r '.data.service_account_token')
+          test -n "$KUBE_TOKEN" && test "$KUBE_TOKEN" != null || { echo "::error::failed to mint K8s token"; exit 1; }
+          echo "::add-mask::$KUBE_TOKEN"
+          kubectl config set-cluster onprem \
+            --server=https://kubernetes.default.svc:443 \
+            --certificate-authority=/var/run/secrets/kubernetes.io/serviceaccount/ca.crt \
+            --embed-certs=true --kubeconfig=kubeconfig
+          kubectl config set-credentials ci --token="${KUBE_TOKEN}" --kubeconfig=kubeconfig
+          kubectl config set-context ci --cluster=onprem --user=ci --namespace=argocd --kubeconfig=kubeconfig
+          kubectl config use-context ci --kubeconfig=kubeconfig
           chmod 600 kubeconfig
 
-      - name: Deploy ArgoCD Project
-        run: kubectl --kubeconfig kubeconfig apply -f argocd/project.yaml
+      # ArgoCD AppProject (argocd/project.yaml) is managed by cluster-services; the scoped CI token cannot apply AppProjects.
 
       - name: Deploy Environment - ${{ matrix.environment }}
         run: |
@@ -174,7 +204,7 @@ jobs:
             echo "Application did not become healthy in time."
             exit 1
           fi
-          
+
       - name: Check if CDN Sync is needed
         id: check-sync-cdn
         run: |
@@ -188,6 +218,9 @@ jobs:
   Deploy-Prod:
     runs-on: self-hosted-linux
     needs: Deploy-NonProd
+    permissions:
+      contents: read
+      id-token: write # required for GitHub OIDC -> Vault
     strategy:
       max-parallel: 1
       matrix:
@@ -203,13 +236,40 @@ jobs:
       - name: Setup kubectl
         uses: azure/setup-kubectl@v4
 
+      # Keyless: GitHub OIDC -> Vault jwt auth. exportToken makes VAULT_TOKEN available to the mint step.
+      - name: Vault login (GitHub OIDC)
+        uses: hashicorp/vault-action@v3
+        with:
+          url: https://vault.support.tools
+          method: jwt
+          path: github-actions # the jwt auth mount
+          role: gha-website
+          jwtGithubAudience: https://github.com/SupportTools # matches bound_audiences
+          exportToken: true # -> VAULT_TOKEN env for the next step
+
+      # Mint the short-lived (1h), namespace-scoped Kubernetes token and build a kubeconfig from it.
+      # The kubernetes secrets engine generates on WRITE (PUT + kubernetes_namespace), so it must be
+      # requested explicitly here. In-cluster runner => talk to a1-ops-prd's own apiserver + in-cluster CA.
       - name: Setup Kubeconfig
+        env:
+          VAULT_ADDR: https://vault.support.tools
         run: |
-          echo "${{ secrets.KUBECONFIG_PROD }}" | base64 -d > kubeconfig
+          KUBE_TOKEN=$(curl -sf -H "X-Vault-Token: ${VAULT_TOKEN}" \
+            -X PUT -d '{"kubernetes_namespace":"arc-runners-supporttools"}' \
+            "${VAULT_ADDR}/v1/kubernetes-onprem/creds/website" \
+            | jq -r '.data.service_account_token')
+          test -n "$KUBE_TOKEN" && test "$KUBE_TOKEN" != null || { echo "::error::failed to mint K8s token"; exit 1; }
+          echo "::add-mask::$KUBE_TOKEN"
+          kubectl config set-cluster onprem \
+            --server=https://kubernetes.default.svc:443 \
+            --certificate-authority=/var/run/secrets/kubernetes.io/serviceaccount/ca.crt \
+            --embed-certs=true --kubeconfig=kubeconfig
+          kubectl config set-credentials ci --token="${KUBE_TOKEN}" --kubeconfig=kubeconfig
+          kubectl config set-context ci --cluster=onprem --user=ci --namespace=argocd --kubeconfig=kubeconfig
+          kubectl config use-context ci --kubeconfig=kubeconfig
           chmod 600 kubeconfig
 
-      - name: Deploy ArgoCD Project
-        run: kubectl --kubeconfig kubeconfig apply -f argocd/project.yaml
+      # ArgoCD AppProject (argocd/project.yaml) is managed by cluster-services; the scoped CI token cannot apply AppProjects.
 
       - name: Deploy Environment - ${{ matrix.environment }}
         run: |
@@ -248,7 +308,7 @@ jobs:
             echo "Application did not become healthy in time."
             exit 1
           fi
-          
+
       - name: Check if CDN Sync is needed
         id: check-sync-cdn
         run: |
@@ -256,26 +316,26 @@ jobs:
             echo "synccdn=true" >> $GITHUB_OUTPUT
           else
             echo "synccdn=false" >> $GITHUB_OUTPUT
-          fi          
+          fi
 
   # Sync-CDN:
   #   runs-on: ubuntu-latest
   #   needs: Deploy
   #   if: needs.Deploy.outputs.synccdn_needed == 'true'
-    
+
   #   steps:
   #     - name: Checkout repository
   #       uses: actions/checkout@v3
   #       with:
   #         fetch-depth: 0  # Fetch all history for proper change detection
-      
+
   #     - name: Install AWS CLI
   #       run: |
   #         curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
   #         unzip awscliv2.zip
   #         sudo ./aws/install
   #         aws --version
-      
+
   #     - name: Sync to Wasabi S3 bucket
   #       env:
   #         AWS_ACCESS_KEY_ID: ${{ secrets.WASABI_ACCESS_KEY }}
