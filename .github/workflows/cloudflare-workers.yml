@@ -35,7 +35,12 @@ jobs:
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
         with:
-          hugo-version: 'latest'
+          # Pinned deliberately. 'latest' makes peaceiris/actions-hugo resolve the
+          # version at build time via https://formulae.brew.sh/api/formula/hugo.json,
+          # so a Homebrew API outage fails every job before Hugo is even installed
+          # (run 29658115531). A pinned version downloads straight from GitHub
+          # releases. Bump intentionally after verifying the site builds clean.
+          hugo-version: '0.164.0'
           extended: true
 
       - name: Test Hugo build
@@ -71,7 +76,12 @@ jobs:
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
         with:
-          hugo-version: 'latest'
+          # Pinned deliberately. 'latest' makes peaceiris/actions-hugo resolve the
+          # version at build time via https://formulae.brew.sh/api/formula/hugo.json,
+          # so a Homebrew API outage fails every job before Hugo is even installed
+          # (run 29658115531). A pinned version downloads straight from GitHub
+          # releases. Bump intentionally after verifying the site builds clean.
+          hugo-version: '0.164.0'
           extended: true
 
       - name: Build Hugo site
@@ -152,7 +162,12 @@ jobs:
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
         with:
-          hugo-version: 'latest'
+          # Pinned deliberately. 'latest' makes peaceiris/actions-hugo resolve the
+          # version at build time via https://formulae.brew.sh/api/formula/hugo.json,
+          # so a Homebrew API outage fails every job before Hugo is even installed
+          # (run 29658115531). A pinned version downloads straight from GitHub
+          # releases. Bump intentionally after verifying the site builds clean.
+          hugo-version: '0.164.0'
           extended: true
 
       - name: Build Hugo site
@@ -203,7 +218,12 @@ jobs:
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
         with:
-          hugo-version: 'latest'
+          # Pinned deliberately. 'latest' makes peaceiris/actions-hugo resolve the
+          # version at build time via https://formulae.brew.sh/api/formula/hugo.json,
+          # so a Homebrew API outage fails every job before Hugo is even installed
+          # (run 29658115531). A pinned version downloads straight from GitHub
+          # releases. Bump intentionally after verifying the site builds clean.
+          hugo-version: '0.164.0'
           extended: true
 
       - name: Build Hugo site
