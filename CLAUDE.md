@@ -121,3 +121,4 @@ When creating blog content:
 7. Ensure URLs match the content topic and are SEO-friendly
 8. Include code examples, command snippets, and technical details where relevant
 9. Structure content with clear sections and hierarchical headings
+10. Do not use em dashes (—) or en dashes (–) in prose. Rewrite with commas, colons, periods, or parentheses instead. This applies to post body and frontmatter (titles, descriptions); command-line flags such as `--limit` are unaffected.
