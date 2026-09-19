@@ -38,6 +38,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      # The on-prem ARC runner image does not ship wget; codacy-analysis-cli-action
+      # downloads its CLI script with it (GitHub-hosted runners preinstall it).
+      - name: Install wget
+        run: command -v wget >/dev/null || { sudo apt-get update -qq && sudo apt-get install -y -qq wget; }
+
       # Execute Codacy Analysis CLI and generate a SARIF output with the security issues identified during the analysis
       - name: Run Codacy Analysis CLI
         uses: codacy/codacy-analysis-cli-action@d840f886c4bd4edc059706d09c6a1586111c540b
