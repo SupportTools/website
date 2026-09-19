@@ -32,11 +32,16 @@ jobs:
       security-events: write # for github/codeql-action/upload-sarif to upload SARIF results
       actions: read # only required for a private repository by github/codeql-action/upload-sarif to get the Action run status
     name: Codacy Security Scan
-    runs-on: ubuntu-latest
+    runs-on: self-hosted-linux
     steps:
       # Checkout the repository to the GitHub Actions runner
       - name: Checkout code
         uses: actions/checkout@v4
+
+      # The on-prem ARC runner image does not ship wget; codacy-analysis-cli-action
+      # downloads its CLI script with it (GitHub-hosted runners preinstall it).
+      - name: Install wget
+        run: command -v wget >/dev/null || { sudo apt-get update -qq && sudo apt-get install -y -qq wget; }
 
       # Execute Codacy Analysis CLI and generate a SARIF output with the security issues identified during the analysis
       - name: Run Codacy Analysis CLI

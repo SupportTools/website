@@ -26,7 +26,7 @@ on:
 
 jobs:
   Test:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted-linux
 
     steps:
       - name: Checkout repository
@@ -54,7 +54,7 @@ jobs:
           hugo list expired
 
   Deploy-NonProd:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted-linux
     needs: Test
     if: github.event_name == 'pull_request' || (github.event_name == 'push' && github.ref != 'refs/heads/main') || (github.event_name == 'workflow_dispatch' && github.event.inputs.environment != 'production')
     strategy:
@@ -144,7 +144,7 @@ jobs:
           fi
 
   Deploy-Staging:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted-linux
     needs: Test
     if: (github.event_name == 'push' && github.ref == 'refs/heads/main') || github.event_name == 'schedule'
     environment:
@@ -199,7 +199,7 @@ jobs:
           fi
 
   Deploy-Production:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted-linux
     needs: Deploy-Staging
     if: (github.event_name == 'push' && github.ref == 'refs/heads/main') || github.event_name == 'schedule'
     environment:
