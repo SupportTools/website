@@ -68,12 +68,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install gettext
+      # envsubst and helm are baked into the runner image (ci-runners Dockerfile.arc2,
+      # runner:v13.1-arc2); no apt install or installer action (taskforge-2679).
+      - name: Verify baked tools (envsubst, helm)
         run: |
-          sudo apt-get update && sudo apt-get install -y gettext
-
-      - name: Set up Helm
-        uses: azure/setup-helm@v4.2.0
+          command -v envsubst
+          helm version --short
 
       - name: Helm Lint
         run: helm lint charts/website/
@@ -138,8 +138,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup kubectl
-        uses: azure/setup-kubectl@v4
+      # kubectl is baked into the runner image (ci-runners Dockerfile.arc2); no
+      # installer action (taskforge-2679).
+      - name: Verify baked kubectl
+        run: kubectl version --client
 
       # Keyless: GitHub OIDC -> Vault jwt auth. exportToken makes VAULT_TOKEN available to the mint step.
       - name: Vault login (GitHub OIDC)
@@ -242,8 +244,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup kubectl
-        uses: azure/setup-kubectl@v4
+      # kubectl is baked into the runner image (ci-runners Dockerfile.arc2); no
+      # installer action (taskforge-2679).
+      - name: Verify baked kubectl
+        run: kubectl version --client
 
       # Keyless: GitHub OIDC -> Vault jwt auth. exportToken makes VAULT_TOKEN available to the mint step.
       - name: Vault login (GitHub OIDC)
