@@ -1,46 +1,32 @@
-# Fixing CodeQL Analysis Configuration Error
+# CodeQL Code Scanning Configuration
 
-## Problem
+## Current setup
 
-GitHub is reporting the following error when attempting to process CodeQL analysis:
+This repository uses **GitHub's CodeQL default setup** (repository Settings >
+Code security and analysis > Code scanning > Default setup). Default setup
+scans `actions`, `go` and `javascript-typescript` and needs no workflow file.
+
+There is intentionally **no** advanced CodeQL workflow in
+`.github/workflows/`. Do not add one back.
+
+## Why
+
+GitHub does not process an advanced-configuration CodeQL upload while default
+setup is enabled for the same repository. The advanced workflow that used to
+live at `.github/workflows/codeql.yml` failed on every push, pull request and
+weekly scheduled run with:
 
 ```
 Code Scanning could not process the submitted SARIF file: CodeQL analyses from advanced configurations cannot be processed when the default setup is enabled
 ```
 
-This error occurs because there is a conflict between:
+The PM decision (TaskForge taskforge-2825) was to delete the advanced workflow
+and keep default setup, which already covers more languages than the workflow
+did (it scanned only `go`).
 
-1. **GitHub's Default CodeQL Setup** (enabled in repository settings)
-2. **Custom CodeQL Workflow** (defined in `.github/workflows/codeql.yml`)
+## If you need a custom configuration
 
-GitHub does not support running both configurations simultaneously for the same language.
-
-## Solution
-
-Disable the default CodeQL setup in GitHub repository settings to allow your custom workflow to run properly:
-
-1. Navigate to your GitHub repository
-2. Go to **Settings** > **Code security and analysis**
-3. Find the **Code scanning** section
-4. Click the **Configure** or **Disable** button next to "Default setup"
-5. Select **Disable default setup**
-6. Save your changes
-
-Your custom CodeQL workflow (`.github/workflows/codeql.yml`) will now run without conflicts with the default setup.
-
-## Why This Approach?
-
-The custom workflow is preferred because:
-
-1. It provides more control over the scanning configuration
-2. It can be version controlled along with your codebase
-3. It integrates better with your existing CI/CD pipeline
-4. It can be customized for your specific Go codebase needs
-
-## Custom Workflow Details
-
-Your current custom CodeQL workflow:
-- Runs on pushes to main, pull requests to main, and weekly (Sunday at midnight)
-- Analyzes Go language code
-- Uses the latest CodeQL action (v3)
-- Has appropriate permissions for security event writing
+Switching to an advanced workflow means disabling default setup in the
+repository settings first, in the same change window as adding the workflow.
+That is a repository-settings decision, so file a task for it rather than
+re-adding a workflow file.
