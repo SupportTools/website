@@ -24,6 +24,16 @@ on:
   schedule:
     - cron: "0 6 * * *" # Daily at 06:00 UTC (01:00 EST) — picks up scheduled posts
 
+# Wrangler comes from the in-cluster Verdaccio npm pull-through proxy (a cache we run,
+# cluster-services npm-proxy/; cluster-services-1030), not live from registry.npmjs.org. The
+# self-hosted-linux runners are in a1-ops-prd, where this name resolves. No silent upstream
+# fallback: a mirror outage fails the install visibly. Pinned to the version the deploys already
+# used (4.86.0, run 39008946036); the old unpinned `npm install -g wrangler` took whatever was
+# latest. Bump deliberately.
+env:
+  NPM_REGISTRY: http://verdaccio.npm-proxy.svc.a1-ops-prd.local/
+  WRANGLER_VERSION: 4.86.0
+
 jobs:
   Test:
     runs-on: self-hosted-linux
@@ -90,7 +100,15 @@ jobs:
           hugo --minify --gc --cleanDestinationDir --baseURL https://support.tools
 
       - name: Install Wrangler
-        run: npm install -g wrangler
+        run: |
+          set -eu
+          if npm install -g --no-fund --loglevel=http --registry="${NPM_REGISTRY}" "wrangler@${WRANGLER_VERSION}" > /tmp/npm-wrangler.log 2>&1 \
+             && grep -q "fetch GET 200 ${NPM_REGISTRY}" /tmp/npm-wrangler.log; then
+            echo "npm source: mirror ${NPM_REGISTRY} ($(grep -c "fetch GET 200 ${NPM_REGISTRY}" /tmp/npm-wrangler.log) fetches)"
+          else
+            echo "npm source: MIRROR FAILED (${NPM_REGISTRY})"; tail -20 /tmp/npm-wrangler.log; exit 1
+          fi
+          wrangler --version
 
       - name: Deploy to Cloudflare Workers
         env:
@@ -176,7 +194,15 @@ jobs:
           hugo --minify --gc --cleanDestinationDir --baseURL https://support.tools
 
       - name: Install Wrangler
-        run: npm install -g wrangler
+        run: |
+          set -eu
+          if npm install -g --no-fund --loglevel=http --registry="${NPM_REGISTRY}" "wrangler@${WRANGLER_VERSION}" > /tmp/npm-wrangler.log 2>&1 \
+             && grep -q "fetch GET 200 ${NPM_REGISTRY}" /tmp/npm-wrangler.log; then
+            echo "npm source: mirror ${NPM_REGISTRY} ($(grep -c "fetch GET 200 ${NPM_REGISTRY}" /tmp/npm-wrangler.log) fetches)"
+          else
+            echo "npm source: MIRROR FAILED (${NPM_REGISTRY})"; tail -20 /tmp/npm-wrangler.log; exit 1
+          fi
+          wrangler --version
 
       - name: Deploy to Cloudflare Workers
         env:
@@ -232,7 +258,15 @@ jobs:
           hugo --minify --gc --cleanDestinationDir --baseURL https://support.tools
 
       - name: Install Wrangler
-        run: npm install -g wrangler
+        run: |
+          set -eu
+          if npm install -g --no-fund --loglevel=http --registry="${NPM_REGISTRY}" "wrangler@${WRANGLER_VERSION}" > /tmp/npm-wrangler.log 2>&1 \
+             && grep -q "fetch GET 200 ${NPM_REGISTRY}" /tmp/npm-wrangler.log; then
+            echo "npm source: mirror ${NPM_REGISTRY} ($(grep -c "fetch GET 200 ${NPM_REGISTRY}" /tmp/npm-wrangler.log) fetches)"
+          else
+            echo "npm source: MIRROR FAILED (${NPM_REGISTRY})"; tail -20 /tmp/npm-wrangler.log; exit 1
+          fi
+          wrangler --version
 
       - name: Deploy to Cloudflare Workers
         env:
