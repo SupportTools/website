@@ -1,27 +1,39 @@
-@use "hugo:vars" as *;
-
 .post-title {
-  color: $lightest-color;
+  color: var(--color-ink);
 }
 
 .post-content {
-  & > pre,
-  .highlight {
-    margin: 1em 0;
-  }
+  max-width: 70ch;
+}
 
-  & > pre,
-  .highlight > pre,
-  .highlight > div {
-    border-left: 0.4em solid rgba($primary-color, .8);
-    padding: .5em 1em;
-  }
+.post-content > pre,
+.post-content .highlight {
+  margin: 1.5rem 0;
+}
 
-  img {
-    max-width: 100%;
-  }
+.post-content > pre,
+.post-content .highlight > pre,
+.post-content .highlight > div {
+  padding: var(--space-4) var(--space-5);
+  background: #edf1ed;
+  border-left: 0.3rem solid var(--color-accent);
+}
+
+.post-content img {
+  max-width: 100%;
 }
 
 .post-meta {
-  font-size: 0.8em;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-5);
+  margin: var(--space-4) 0 var(--space-7);
+  color: var(--color-muted);
+  font-size: 0.95rem;
+}
+
+.post-meta > div {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
 }

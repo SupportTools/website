@@ -7,11 +7,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="author" content="{{ .Site.Params.author }}" />
   <meta name="description"
-    content="{{ if .IsHome }}{{ .Site.Params.description }}{{ else }}{{ .Description }}{{ end }}" />
+    content="{{ if .IsHome }}{{ .Site.Params.description }}{{ else }}{{ .Description | default .Summary | plainify | truncate 160 }}{{ end }}" />
   <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} // {{ .Site.Title }}{{ end }}</title>
 
   <!-- Favicon -->
   <link rel="shortcut icon" href="{{ .Site.Params.favicon }}" />
+
+  <!-- Publication typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&amp;family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;display=swap" rel="stylesheet" />
 
   <!-- Styles -->
   {{ $styleVars := dict
@@ -80,40 +85,31 @@
 </head>
 
 <body>
-  <!-- Header Section -->
-  <header class="app-header">
-    <a href="{{ .Site.BaseURL }}">
-      <img class="app-header-avatar" src="{{ .Site.Params.avatar }}" alt="{{ .Site.Params.author }}" />
-    </a>
-    <h1>{{ .Site.Title }}</h1>
-
-    <!-- Navigation Menu -->
-    {{ with .Site.Menus.main }}
-    <nav class="app-header-menu">
-      <ul>
-        {{ range . }}
-        <li><a class="app-header-menu-item" href="{{ .URL }}">{{ .Name }}</a></li>
-        {{ end }}
-      </ul>
-    </nav>
-    {{ end }}
-
-    <p>{{ .Site.Params.description }}</p>
-
-    <!-- Social Links -->
-    {{ with .Site.Params.social }}
-    <div class="app-header-social">
-      {{ range . }}
-      <a href="{{ .url }}" target="_blank" rel="noreferrer noopener">
-        {{ partial "icon.html" (dict "ctx" $ "name" .icon "title" .name) }}
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a class="site-brand" href="{{ .Site.Home.RelPermalink }}" aria-label="{{ .Site.Title }} home">
+        <img class="site-brand-avatar" src="{{ .Site.Params.avatar }}" alt="" width="52" height="52" />
+        <span class="site-brand-copy">
+          <span class="site-brand-title">{{ .Site.Title }}</span>
+          <span class="site-brand-description">Practical infrastructure engineering notes</span>
+        </span>
       </a>
+
+      {{ with .Site.Menus.main }}
+      <nav class="site-nav" aria-label="Primary navigation">
+        <ul>
+          {{ range . }}
+          {{ $active := or ($.IsMenuCurrent "main" .) ($.HasMenuCurrent "main" .) }}
+          <li><a class="site-nav-link" href="{{ .URL | relURL }}"{{ if $active }} aria-current="page"{{ end }}>{{ .Name }}</a></li>
+          {{ end }}
+        </ul>
+      </nav>
       {{ end }}
     </div>
-    {{ end }}
   </header>
 
-  <!-- Main Content Section -->
-  <main class="app-container">
+  <main class="app-container" id="main-content" data-pagefind-body>
     {{ block "main" . }}
     {{ .Content }}
     {{ if .Page.Store.Get "hasMermaid" }}
@@ -124,6 +120,20 @@
     {{ end }}
     {{ end }}
   </main>
+  <footer class="site-footer">
+    <div class="site-footer-inner">
+      <p>&copy; {{ now.Year }} {{ .Site.Params.author }}. Built with Hugo.</p>
+      {{ with .Site.Params.social }}
+      <nav class="site-social" aria-label="Social links">
+        {{ range . }}
+        <a href="{{ .url }}" target="_blank" rel="noreferrer noopener" aria-label="{{ .name }}">
+          {{ partial "icon.html" (dict "ctx" $ "name" .icon) }}
+        </a>
+        {{ end }}
+      </nav>
+      {{ end }}
+    </div>
+  </footer>
 </body>
 
 </html>
