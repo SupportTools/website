@@ -8,6 +8,7 @@
   <meta name="author" content="{{ .Site.Params.author }}" />
   <meta name="description"
     content="{{ if .IsHome }}{{ .Site.Params.description }}{{ else }}{{ .Description | default .Summary | plainify | truncate 160 }}{{ end }}" />
+  {{ range .Params.categories }}<meta data-pagefind-filter="category[content]" content="{{ . }}" />{{ end }}
   <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} // {{ .Site.Title }}{{ end }}</title>
   <link rel="canonical" href="{{ .Permalink }}" />
   {{ with .OutputFormats.Get "rss" }}<link rel="alternate" type="{{ .MediaType.Type }}" href="{{ .Permalink }}" title="{{ $.Site.Title }}" />{{ end }}
@@ -31,7 +32,7 @@
     "primary-color" (.Site.Params.style.primaryColor | default "#57cc8a") }}
   {{ $style := resources.Get "css/main.scss" | css.Sass (dict "transpiler" "dartsass" "vars" $styleVars) |
   resources.Minify | resources.Fingerprint }}
-  <link rel="stylesheet" href="{{ $style.Permalink }}" />
+  <link rel="stylesheet" href="{{ $style.RelPermalink }}" />
   {{ if eq .Layout "search" }}
   <link rel="stylesheet" href="{{ "pagefind/pagefind-component-ui.css" | relURL }}" />
   {{ end }}
