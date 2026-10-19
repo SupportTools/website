@@ -1,7 +1,9 @@
-baseURL = "/"
+baseURL = "https://support.tools/"
 title = "Support Tools"
 theme = "m10c"
 pagination.pagerSize = 8 # Updated from paginate
+locale = "en-US"
+enableRobotsTXT = true
 
 [menu]
   [[menu.main]]
@@ -54,8 +56,10 @@ pagination.pagerSize = 8 # Updated from paginate
 
 [params]
   author = "Matthew Mattox"
-  description = "Matthew Mattox Personal Tech Blog"
+  description = "Practical guides for Kubernetes, Linux, networking, observability, automation, and production infrastructure."
   avatar = "https://cdn.support.tools/profiles/avatar-centered.png"
+  favicon = "/favicon.ico"
+  images = ["/images/logo.png"]
   menu_item_separator = " - "
 
   [[params.social]]

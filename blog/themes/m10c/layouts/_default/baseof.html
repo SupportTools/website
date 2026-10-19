@@ -9,6 +9,9 @@
   <meta name="description"
     content="{{ if .IsHome }}{{ .Site.Params.description }}{{ else }}{{ .Description | default .Summary | plainify | truncate 160 }}{{ end }}" />
   <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} // {{ .Site.Title }}{{ end }}</title>
+  <link rel="canonical" href="{{ .Permalink }}" />
+  {{ with .OutputFormats.Get "rss" }}<link rel="alternate" type="{{ .MediaType.Type }}" href="{{ .Permalink }}" title="{{ $.Site.Title }}" />{{ end }}
+  {{ if .Params.noindex }}<meta name="robots" content="noindex, nofollow" />{{ else }}<meta name="robots" content="index, follow, max-image-preview:large" />{{ end }}
 
   <!-- Favicon -->
   <link rel="shortcut icon" href="{{ .Site.Params.favicon }}" />
@@ -37,6 +40,7 @@
   {{ template "_internal/google_analytics.html" . }}
   {{ template "_internal/twitter_cards.html" . }}
   {{ template "_internal/opengraph.html" . }}
+  {{ partial "structured-data.html" . }}
 
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-151436906-1"></script>

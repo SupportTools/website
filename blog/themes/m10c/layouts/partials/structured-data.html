@@ -1,0 +1,33 @@
+{{- $siteSchema := dict
+  "@context" "https://schema.org"
+  "@type" "WebSite"
+  "name" .Site.Title
+  "url" .Site.BaseURL
+  "description" .Site.Params.description
+  "inLanguage" .Site.Language.Locale
+-}}
+{{- if .IsHome -}}
+<script type="application/ld+json">{{ $siteSchema | jsonify | safeJS }}</script>
+{{- else if and .IsPage (eq .Section "post") -}}
+{{- $description := .Description | default (.Summary | plainify | truncate 160) -}}
+{{- $image := index .Site.Params.images 0 | absURL -}}
+{{- with .Params.images }}{{ $image = index . 0 | absURL }}{{ end -}}
+{{- $articleSchema := dict
+  "@context" "https://schema.org"
+  "@type" "BlogPosting"
+  "headline" .Title
+  "description" $description
+  "url" .Permalink
+  "mainEntityOfPage" (dict "@type" "WebPage" "@id" .Permalink)
+  "datePublished" (.PublishDate.Format "2006-01-02T15:04:05Z07:00")
+  "dateModified" (.Lastmod.Format "2006-01-02T15:04:05Z07:00")
+  "author" (dict "@type" "Person" "name" .Site.Params.author "url" .Site.BaseURL)
+  "publisher" (dict "@type" "Organization" "name" .Site.Title "logo" (dict "@type" "ImageObject" "url" $image))
+  "image" (slice $image)
+  "inLanguage" .Site.Language.Locale
+  "wordCount" .WordCount
+  "keywords" (.Params.tags | default (slice))
+  "isPartOf" $siteSchema
+-}}
+<script type="application/ld+json">{{ $articleSchema | jsonify | safeJS }}</script>
+{{- end -}}
