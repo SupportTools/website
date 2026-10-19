@@ -44,6 +44,15 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+
+      - name: Install Node dependencies
+        run: npm ci
+
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
         with:
@@ -66,8 +75,8 @@ jobs:
 
       - name: Test Hugo build
         run: |
-          cd blog
-          hugo --panicOnWarning --minify --gc --cleanDestinationDir --destination public --baseURL https://support.tools
+          npm run build:hugo -- --panicOnWarning
+          npm run build:search
 
       - name: Check for expired content
         run: |
@@ -93,6 +102,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+          cache: npm
+
+      - name: Install Node dependencies
+        run: npm ci
 
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
@@ -115,19 +128,14 @@ jobs:
           "$RUNNER_TEMP/dart-sass/sass" --version
 
       - name: Build Hugo site
-        run: |
-          cd blog
-          hugo --minify --gc --cleanDestinationDir --baseURL https://support.tools
-
-      - name: Install Wrangler
-        run: npm install -g wrangler
+        run: npm run build
 
       - name: Deploy to Cloudflare Workers
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         run: |
           echo "Deploying to ${{ matrix.environment }} environment"
-          wrangler deploy --env ${{ matrix.environment }}
+          npx wrangler deploy --env ${{ matrix.environment }}
 
       - name: Verify deployment
         run: |
@@ -188,6 +196,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+          cache: npm
+
+      - name: Install Node dependencies
+        run: npm ci
 
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
@@ -210,19 +222,14 @@ jobs:
           "$RUNNER_TEMP/dart-sass/sass" --version
 
       - name: Build Hugo site
-        run: |
-          cd blog
-          hugo --minify --gc --cleanDestinationDir --baseURL https://support.tools
-
-      - name: Install Wrangler
-        run: npm install -g wrangler
+        run: npm run build
 
       - name: Deploy to Cloudflare Workers
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         run: |
           echo "Deploying to staging environment"
-          wrangler deploy --env staging
+          npx wrangler deploy --env staging
 
       - name: Verify staging deployment
         run: |
@@ -253,6 +260,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+          cache: npm
+
+      - name: Install Node dependencies
+        run: npm ci
 
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
@@ -275,19 +286,14 @@ jobs:
           "$RUNNER_TEMP/dart-sass/sass" --version
 
       - name: Build Hugo site
-        run: |
-          cd blog
-          hugo --minify --gc --cleanDestinationDir --baseURL https://support.tools
-
-      - name: Install Wrangler
-        run: npm install -g wrangler
+        run: npm run build
 
       - name: Deploy to Cloudflare Workers
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         run: |
           echo "Deploying to production environment"
-          wrangler deploy --env production
+          npx wrangler deploy --env production
 
       - name: Verify production deployment
         run: |

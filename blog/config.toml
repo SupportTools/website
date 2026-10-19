@@ -11,34 +11,46 @@ pagination.pagerSize = 8 # Updated from paginate
     weight = 1
     
   [[menu.main]]
+    identifier = "search"
+    name = "Search"
+    url = "/search/"
+    weight = 2
+
+  [[menu.main]]
+    identifier = "categories"
+    name = "Categories"
+    url = "/categories/"
+    weight = 3
+
+  [[menu.main]]
     identifier = "about"
     name = "About"
     url = "/about/"
-    weight = 3
+    weight = 4
 
   [[menu.main]]
     identifier = "certificates"
     name = "Certificates"
     url = "/certificates/"
-    weight = 4
+    weight = 5
 
   [[menu.main]]
     identifier = "publications"
     name = "Publications"
     url = "/publications/"
-    weight = 5
+    weight = 6
 
   [[menu.main]]
     identifier = "training"
     name = "Training"
     url = "/training/"
-    weight = 6
+    weight = 7
 
   [[menu.main]]
     identifier = "known-good-designs"
     name = "Known Good Designs"
     url = "/known-good-designs/"
-    weight = 7
+    weight = 8
 
 [params]
   author = "Matthew Mattox"

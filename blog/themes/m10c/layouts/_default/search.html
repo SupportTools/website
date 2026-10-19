@@ -1,0 +1,17 @@
+{{ define "main" }}
+<section class="search-page">
+  <header class="page-intro">
+    <p class="eyebrow">Search the library</p>
+    <h1>{{ .Title }}</h1>
+    <p class="page-intro-summary">Search articles, guides, training notes, and known-good designs. Results stay on this site and are generated from the published content.</p>
+  </header>
+  <div class="search-interface" role="search">
+    <pagefind-config excerpt-length="24"></pagefind-config>
+    <pagefind-input autofocus placeholder="Search articles and guides"></pagefind-input>
+    <pagefind-summary></pagefind-summary>
+    <pagefind-results max-sub-results="3"></pagefind-results>
+  </div>
+  <noscript><p>Search requires JavaScript. You can still <a href="{{ "/categories/" | relURL }}">browse by category</a>.</p></noscript>
+</section>
+<script src="{{ "pagefind/pagefind-component-ui.js" | relURL }}" type="module"></script>
+{{ end }}

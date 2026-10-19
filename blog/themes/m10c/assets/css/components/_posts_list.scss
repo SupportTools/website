@@ -1,17 +1,111 @@
+.page-intro {
+  margin-bottom: var(--space-7);
+}
+
+.eyebrow {
+  margin-bottom: var(--space-2);
+  color: var(--color-accent);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.page-intro-summary {
+  max-width: 62ch;
+  color: var(--color-muted);
+  font-size: clamp(1.1rem, 2vw, 1.25rem);
+}
+
+.page-intro-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-4) var(--space-5);
+  margin-top: var(--space-5);
+}
+
+.button-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  padding: var(--space-2) var(--space-4);
+  color: #ffffff;
+  background: var(--color-accent);
+  border: 2px solid var(--color-accent);
+  border-radius: var(--radius);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.button-link:hover,
+.button-link:visited {
+  color: #ffffff;
+  background: var(--color-accent-strong);
+  border-color: var(--color-accent-strong);
+}
+
+.archive-heading {
+  margin-bottom: var(--space-5);
+  font-size: 1.35rem;
+}
+
 .posts-list {
   padding: 0;
+  margin: 0;
 }
 
 .posts-list-item {
+  padding: var(--space-6) 0;
   list-style: none;
-  padding: 0.4em 0;
+  border-top: 1px solid var(--color-border);
+}
 
-  &:not(:last-child) {
-    border-bottom: 1px dashed rgba(255, 255, 255, 0.3);
-  }
+.posts-list-item:last-child {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.posts-list-item-title {
+  margin: 0 0 var(--space-2);
+  font-size: clamp(1.25rem, 2.4vw, 1.6rem);
+}
+
+.posts-list-item-title a {
+  color: var(--color-ink);
+  text-decoration-color: #8db9a1;
 }
 
 .posts-list-item-description {
-  display: block;
-  font-size: 0.8em;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  color: var(--color-muted);
+  font-size: 0.9rem;
+}
+
+.posts-list-item-summary {
+  margin: var(--space-3) 0;
+  color: #34483c;
+}
+
+.term-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.term-list a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2rem;
+  padding: 0.15rem var(--space-3);
+  color: var(--color-accent-strong);
+  background: #e3eee7;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
 }

@@ -28,6 +28,9 @@
   {{ $style := resources.Get "css/main.scss" | css.Sass (dict "transpiler" "dartsass" "vars" $styleVars) |
   resources.Minify | resources.Fingerprint }}
   <link rel="stylesheet" href="{{ $style.Permalink }}" />
+  {{ if eq .Layout "search" }}
+  <link rel="stylesheet" href="{{ "pagefind/pagefind-component-ui.css" | relURL }}" />
+  {{ end }}
 
   <!-- Hugo Built-in Templates -->
   {{ hugo.Generator }}
@@ -109,7 +112,7 @@
     </div>
   </header>
 
-  <main class="app-container" id="main-content" data-pagefind-body>
+  <main class="app-container" id="main-content"{{ if and .IsPage (ne .Layout "search") }} data-pagefind-body{{ end }}>
     {{ block "main" . }}
     {{ .Content }}
     {{ if .Page.Store.Get "hasMermaid" }}

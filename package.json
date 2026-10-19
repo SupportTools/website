@@ -7,12 +7,15 @@
     "dev": "wrangler dev",
     "deploy": "wrangler deploy",
     "deploy:dev": "wrangler deploy --env development",
-    "deploy:staging": "wrangler deploy --env staging", 
+    "deploy:staging": "wrangler deploy --env staging",
     "deploy:production": "wrangler deploy --env production",
-    "build": "cd blog && hugo --minify --gc --cleanDestinationDir --baseURL https://support.tools",
+    "build:hugo": "cd blog && hugo --minify --gc --cleanDestinationDir --baseURL https://support.tools",
+    "build:search": "pagefind --site blog/public",
+    "build": "npm run build:hugo && npm run build:search",
     "serve": "cd blog && hugo server -D --bind=0.0.0.0 --baseURL=http://localhost:1313"
   },
   "devDependencies": {
+    "pagefind": "1.5.2",
     "wrangler": "^3.0.0"
   },
   "engines": {

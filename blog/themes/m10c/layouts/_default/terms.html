@@ -1,16 +1,40 @@
 {{ define "main" }}
-  <article>
+  <article class="taxonomy-index">
+    <header class="page-intro">
+      <p class="eyebrow">Explore by topic</p>
     <h1>{{ .Title }}</h1>
+      <p class="page-intro-summary">Find articles by subject. Categories with the most material appear first.</p>
+    </header>
+    <label class="taxonomy-filter-label" for="taxonomy-filter">Filter categories</label>
+    <input class="taxonomy-filter" id="taxonomy-filter" type="search" placeholder="Try Kubernetes, Linux, or networking" autocomplete="off" />
     <ul class="tags-list">
       {{ range .Data.Terms.ByCount }}
-        <li class="tags-list-item">
-            {{ partial "icon.html" (dict "ctx" $ "name" "tag") }}
+        <li class="tags-list-item" data-taxonomy-name="{{ .Page.Title | lower }}">
             <a class="tags-list-item-title" href="{{ .Page.Permalink }}">
-              ({{ .Count }})
-              {{ .Page.Title }}
+              <span>{{ .Page.Title }}</span>
+              <span class="taxonomy-count">{{ .Count }} {{ cond (eq .Count 1) "article" "articles" }}</span>
             </a>
         </li>
       {{ end }}
     </ul>
+    <p class="taxonomy-empty" id="taxonomy-empty" hidden>No categories match that filter.</p>
   </article>
+  <script>
+    (() => {
+      const input = document.getElementById('taxonomy-filter');
+      const items = [...document.querySelectorAll('[data-taxonomy-name]')];
+      const empty = document.getElementById('taxonomy-empty');
+      if (!input) return;
+      input.addEventListener('input', () => {
+        const query = input.value.trim().toLowerCase();
+        let visible = 0;
+        items.forEach((item) => {
+          const match = item.dataset.taxonomyName.includes(query);
+          item.hidden = !match;
+          if (match) visible += 1;
+        });
+        empty.hidden = visible !== 0;
+      });
+    })();
+  </script>
 {{ end }}
