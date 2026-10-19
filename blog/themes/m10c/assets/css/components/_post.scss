@@ -63,7 +63,7 @@
   margin: 0 0 var(--space-7);
   padding: var(--space-4) var(--space-5);
   background: #edf1ed;
-  border-left: 3px solid var(--color-accent);
+  border: 1px solid var(--color-border);
 }
 
 .post-toc summary {
@@ -104,7 +104,6 @@
   color: var(--color-ink);
   background: var(--color-surface);
   border: 1px solid var(--color-border);
-  border-left: 3px solid var(--color-accent);
   text-decoration: none;
 }
 

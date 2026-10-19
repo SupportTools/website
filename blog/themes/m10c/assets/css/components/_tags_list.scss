@@ -37,7 +37,6 @@
   color: var(--color-ink);
   background: var(--color-surface);
   border: 1px solid var(--color-border);
-  border-left: 3px solid var(--color-accent);
   border-radius: var(--radius);
   font-weight: 600;
   text-decoration: none;
@@ -47,7 +46,6 @@
 .tags-list-item-title:visited {
   color: var(--color-ink);
   border-color: #9bada1;
-  border-left-color: var(--color-accent-strong);
 }
 
 .taxonomy-count {

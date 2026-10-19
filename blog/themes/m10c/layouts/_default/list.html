@@ -2,7 +2,6 @@
 <article class="archive">
   {{ if .IsHome }}
   <header class="page-intro">
-    <p class="eyebrow">Infrastructure engineering, explained</p>
     <h1>Systems knowledge you can put to work.</h1>
     <p class="page-intro-summary">{{ .Site.Params.description }} Written for engineers operating real systems.</p>
     <div class="page-intro-actions">
@@ -13,7 +12,6 @@
   <h2 class="archive-heading">Latest writing</h2>
   {{ else }}
   <header class="page-intro">
-    <p class="eyebrow">Browse the library</p>
     <h1>{{ .Title }}</h1>
     {{ with .Description }}<p class="page-intro-summary">{{ . }}</p>{{ end }}
   </header>
