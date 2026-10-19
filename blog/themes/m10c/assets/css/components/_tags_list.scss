@@ -10,7 +10,7 @@
   padding: var(--space-3) var(--space-4);
   color: var(--color-ink);
   background: var(--color-surface);
-  border: 1px solid #9bada1;
+  border: 1px solid var(--color-border-strong);
   border-radius: var(--radius);
   font: inherit;
 }
@@ -45,7 +45,7 @@
 .tags-list-item-title:hover,
 .tags-list-item-title:visited {
   color: var(--color-ink);
-  border-color: #9bada1;
+  border-color: var(--color-border-strong);
 }
 
 .taxonomy-count {

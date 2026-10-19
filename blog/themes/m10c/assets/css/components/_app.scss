@@ -5,7 +5,7 @@
   left: var(--space-3);
   padding: var(--space-3) var(--space-4);
   color: var(--color-ink);
-  background: #ffffff;
+  background: var(--color-surface);
   font-weight: 700;
   transform: translateY(-160%);
 }
@@ -110,6 +110,76 @@
   border-bottom-color: #8bd6aa;
 }
 
+.site-header-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+.site-header-actions .site-nav {
+  flex: 1;
+}
+
+.theme-toggle {
+  display: none;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-width: 5.25rem;
+  min-height: 2.75rem;
+  padding: var(--space-2) var(--space-3);
+  color: #e7f0ea;
+  background: transparent;
+  border: 1px solid #52705f;
+  border-radius: var(--radius);
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+:root.js .theme-toggle {
+  display: inline-flex;
+}
+
+.theme-toggle:hover {
+  color: #ffffff;
+  background: #193426;
+  border-color: #8bd6aa;
+}
+
+.theme-toggle-icon {
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2;
+}
+
+.theme-toggle-icon-sun {
+  display: none;
+}
+
+:root[data-theme="dark"] .theme-toggle-icon-moon {
+  display: none;
+}
+
+:root[data-theme="dark"] .theme-toggle-icon-sun {
+  display: block;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) .theme-toggle-icon-moon {
+    display: none;
+  }
+
+  :root:not([data-theme]) .theme-toggle-icon-sun {
+    display: block;
+  }
+}
+
 .app-container {
   width: min(100% - 2rem, 76rem);
   min-height: 65vh;
@@ -167,5 +237,9 @@
 
   .site-nav {
     overflow: visible;
+  }
+
+  .site-header-actions {
+    justify-content: flex-end;
   }
 }

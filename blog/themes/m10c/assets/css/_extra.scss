@@ -3,11 +3,11 @@
   --pf-text: var(--color-ink);
   --pf-text-secondary: var(--color-muted);
   --pf-text-muted: var(--color-muted);
-  --pf-border: #9bada1;
+  --pf-border: var(--color-border-strong);
   --pf-border-focus: var(--color-accent);
-  --pf-outline-focus: #e4a11b;
-  --pf-hover: #e3eee7;
-  --pf-mark: #ffe29a;
+  --pf-outline-focus: var(--color-focus);
+  --pf-hover: var(--color-soft);
+  --pf-mark: var(--color-mark);
   --pf-font: var(--font-body);
   --pf-border-radius: var(--radius);
   --pf-input-height: 3.25rem;

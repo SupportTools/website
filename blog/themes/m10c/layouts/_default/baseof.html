@@ -8,6 +8,20 @@
   <meta name="author" content="{{ .Site.Params.author }}" />
   <meta name="description"
     content="{{ if .IsHome }}{{ .Site.Params.description }}{{ else }}{{ .Description | default .Summary | plainify | truncate 160 }}{{ end }}" />
+  <meta name="theme-color" content="#f6f7f3" />
+  <script>
+    (function () {
+      document.documentElement.classList.add('js');
+      try {
+        var theme = localStorage.getItem('support-tools-theme');
+        if (theme === 'light' || theme === 'dark') {
+          document.documentElement.dataset.theme = theme;
+        }
+      } catch (error) {
+        // The system preference remains the fallback when storage is unavailable.
+      }
+    }());
+  </script>
   {{ range .Params.categories }}<meta data-pagefind-filter="category[content]" content="{{ . }}" />{{ end }}
   <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} // {{ .Site.Title }}{{ end }}</title>
   <link rel="canonical" href="{{ .Permalink }}" />
@@ -105,16 +119,28 @@
         </span>
       </a>
 
-      {{ with .Site.Menus.main }}
-      <nav class="site-nav" aria-label="Primary navigation">
-        <ul>
-          {{ range . }}
-          {{ $active := or ($.IsMenuCurrent "main" .) ($.HasMenuCurrent "main" .) }}
-          <li><a class="site-nav-link" href="{{ .URL | relURL }}"{{ if $active }} aria-current="page"{{ end }}>{{ .Name }}</a></li>
-          {{ end }}
-        </ul>
-      </nav>
-      {{ end }}
+      <div class="site-header-actions">
+        {{ with .Site.Menus.main }}
+        <nav class="site-nav" aria-label="Primary navigation">
+          <ul>
+            {{ range . }}
+            {{ $active := or ($.IsMenuCurrent "main" .) ($.HasMenuCurrent "main" .) }}
+            <li><a class="site-nav-link" href="{{ .URL | relURL }}"{{ if $active }} aria-current="page"{{ end }}>{{ .Name }}</a></li>
+            {{ end }}
+          </ul>
+        </nav>
+        {{ end }}
+        <button class="theme-toggle" type="button" aria-label="Use dark theme" aria-pressed="false" title="Use dark theme">
+          <svg class="theme-toggle-icon theme-toggle-icon-sun" aria-hidden="true" viewBox="0 0 24 24" width="20" height="20">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41"></path>
+          </svg>
+          <svg class="theme-toggle-icon theme-toggle-icon-moon" aria-hidden="true" viewBox="0 0 24 24" width="20" height="20">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+          <span class="theme-toggle-label">Dark</span>
+        </button>
+      </div>
     </div>
   </header>
 
@@ -143,6 +169,48 @@
       {{ end }}
     </div>
   </footer>
+  <script>
+    (function () {
+      var root = document.documentElement;
+      var button = document.querySelector('.theme-toggle');
+      var themeColor = document.querySelector('meta[name="theme-color"]');
+      var media = window.matchMedia('(prefers-color-scheme: dark)');
+
+      if (!button) return;
+
+      function currentTheme() {
+        return root.dataset.theme || (media.matches ? 'dark' : 'light');
+      }
+
+      function updateControl() {
+        var dark = currentTheme() === 'dark';
+        var nextTheme = dark ? 'light' : 'dark';
+        var label = nextTheme.charAt(0).toUpperCase() + nextTheme.slice(1);
+        button.setAttribute('aria-pressed', String(dark));
+        button.setAttribute('aria-label', 'Use ' + nextTheme + ' theme');
+        button.setAttribute('title', 'Use ' + nextTheme + ' theme');
+        button.querySelector('.theme-toggle-label').textContent = label;
+        if (themeColor) themeColor.setAttribute('content', dark ? '#0f1712' : '#f6f7f3');
+      }
+
+      button.addEventListener('click', function () {
+        var nextTheme = currentTheme() === 'dark' ? 'light' : 'dark';
+        root.dataset.theme = nextTheme;
+        try {
+          localStorage.setItem('support-tools-theme', nextTheme);
+        } catch (error) {
+          // The selected theme still applies for the current page view.
+        }
+        updateControl();
+      });
+
+      media.addEventListener('change', function () {
+        if (!root.dataset.theme) updateControl();
+      });
+
+      updateControl();
+    }());
+  </script>
 </body>
 
 </html>

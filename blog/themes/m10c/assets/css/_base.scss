@@ -6,8 +6,18 @@
   --color-ink: #15251c;
   --color-muted: #53645a;
   --color-border: #d7ded8;
+  --color-border-strong: #9bada1;
   --color-accent: #176b45;
   --color-accent-strong: #0f5132;
+  --color-on-accent: #ffffff;
+  --color-visited: #514682;
+  --color-focus: #e4a11b;
+  --color-code: #243d2f;
+  --color-code-surface: #edf1ed;
+  --color-selection: #ccebd9;
+  --color-soft: #e3eee7;
+  --color-summary: #34483c;
+  --color-mark: #ffe29a;
   --color-header: #10261b;
   --color-header-muted: #bed0c4;
   --font-body: "Source Sans 3", sans-serif;
@@ -21,6 +31,54 @@
   --space-7: 3rem;
   --radius: 0.35rem;
   color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  --color-canvas: #0f1712;
+  --color-surface: #17231b;
+  --color-ink: #e6eee8;
+  --color-muted: #a8b9ad;
+  --color-border: #34463a;
+  --color-border-strong: #607366;
+  --color-accent: #62d394;
+  --color-accent-strong: #8ce9b2;
+  --color-on-accent: #0b2114;
+  --color-visited: #c9b8ff;
+  --color-focus: #f4c152;
+  --color-code: #d5e8da;
+  --color-code-surface: #1d2d23;
+  --color-selection: #27583d;
+  --color-soft: #203a2a;
+  --color-summary: #c6d4c9;
+  --color-mark: #745a20;
+  --color-header: #09110d;
+  --color-header-muted: #a7beaf;
+  color-scheme: dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --color-canvas: #0f1712;
+    --color-surface: #17231b;
+    --color-ink: #e6eee8;
+    --color-muted: #a8b9ad;
+    --color-border: #34463a;
+    --color-border-strong: #607366;
+    --color-accent: #62d394;
+    --color-accent-strong: #8ce9b2;
+    --color-on-accent: #0b2114;
+    --color-visited: #c9b8ff;
+    --color-focus: #f4c152;
+    --color-code: #d5e8da;
+    --color-code-surface: #1d2d23;
+    --color-selection: #27583d;
+    --color-soft: #203a2a;
+    --color-summary: #c6d4c9;
+    --color-mark: #745a20;
+    --color-header: #09110d;
+    --color-header-muted: #a7beaf;
+    color-scheme: dark;
+  }
 }
 
 * {
@@ -89,7 +147,7 @@ a:hover {
 }
 
 a:visited {
-  color: #514682;
+  color: var(--color-visited);
 }
 
 a:focus-visible,
@@ -97,12 +155,12 @@ button:focus-visible,
 input:focus-visible,
 select:focus-visible,
 textarea:focus-visible {
-  outline: 3px solid #e4a11b;
+  outline: 3px solid var(--color-focus);
   outline-offset: 3px;
 }
 
 code {
-  color: #243d2f;
+  color: var(--color-code);
   font-family: var(--font-code);
   font-size: 0.9em;
 }
@@ -120,7 +178,7 @@ pre code {
 
 ::selection,
 ::-moz-selection {
-  background: #ccebd9;
+  background: var(--color-selection);
 }
 
 img {
