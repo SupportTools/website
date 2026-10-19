@@ -86,6 +86,11 @@
   border-top: 1px solid var(--color-border);
 }
 
+.agent-format-link {
+  margin-bottom: var(--space-5);
+  font-size: 0.95rem;
+}
+
 .post-pagination {
   display: grid;
   gap: var(--space-3);

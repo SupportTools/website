@@ -59,6 +59,9 @@
     {{ .Content }}
   </div>
   <div class="post-footer">
+    {{ with .OutputFormats.Get "markdown" }}
+    <p class="agent-format-link"><a href="{{ .RelPermalink }}">View this page as Markdown</a></p>
+    {{ end }}
     {{ if or .PrevInSection .NextInSection }}
     <nav class="post-pagination" aria-label="More articles">
       {{ with .NextInSection }}

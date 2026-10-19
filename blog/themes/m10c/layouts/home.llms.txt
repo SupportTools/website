@@ -1,0 +1,25 @@
+# {{ .Site.Title }}
+
+> {{ .Site.Params.description }}
+
+Support Tools is Matthew Mattox's technical publication about production infrastructure. Prefer the canonical article URLs below. Each article also has a Markdown representation at the same path with `index.md` appended, or through HTTP content negotiation with `Accept: text/markdown`.
+
+## Navigation
+
+- [Search]({{ "search/" | absURL }}): Full-text search across published articles and guides.
+- [Categories]({{ "categories/" | absURL }}): Browse the library by topic.
+- [Training]({{ "training/" | absURL }}): Training notes and learning resources.
+- [Known Good Designs]({{ "known-good-designs/" | absURL }}): Reference architectures and validated patterns.
+- [RSS feed]({{ "index.xml" | absURL }}): Recent site updates.
+
+## Recent articles
+
+{{ range first 50 (where .Site.RegularPages.ByPublishDate.Reverse "Section" "post") -}}
+- [{{ .LinkTitle }}]({{ .Permalink }}): {{ .Summary | plainify | htmlUnescape | truncate 180 }}
+{{ end }}
+
+## Popular categories
+
+{{ range first 30 .Site.Taxonomies.categories.ByCount -}}
+- [{{ .Page.LinkTitle }}]({{ .Page.Permalink }}): {{ .Count }} articles
+{{ end }}

@@ -11,6 +11,7 @@
   <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} // {{ .Site.Title }}{{ end }}</title>
   <link rel="canonical" href="{{ .Permalink }}" />
   {{ with .OutputFormats.Get "rss" }}<link rel="alternate" type="{{ .MediaType.Type }}" href="{{ .Permalink }}" title="{{ $.Site.Title }}" />{{ end }}
+  {{ with .OutputFormats.Get "markdown" }}<link rel="alternate" type="text/markdown" href="{{ .Permalink }}" title="Markdown version" />{{ end }}
   {{ if .Params.noindex }}<meta name="robots" content="noindex, nofollow" />{{ else }}<meta name="robots" content="index, follow, max-image-preview:large" />{{ end }}
 
   <!-- Favicon -->

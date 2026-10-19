@@ -5,6 +5,17 @@ pagination.pagerSize = 8 # Updated from paginate
 locale = "en-US"
 enableRobotsTXT = true
 
+[outputs]
+  home = ["HTML", "RSS", "LLMS"]
+  page = ["HTML", "Markdown"]
+
+[outputFormats.LLMS]
+  mediaType = "text/plain"
+  baseName = "llms"
+  isPlainText = true
+  notAlternative = true
+  root = true
+
 [menu]
   [[menu.main]]
     identifier = "home"

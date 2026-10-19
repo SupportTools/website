@@ -1,3 +1,24 @@
+const AGENT_POLICY = 'ai-train=no, search=yes, ai-input=yes';
+
+function addDiscoveryHeaders(response) {
+  const headers = new Headers(response.headers);
+  const vary = headers.get('vary');
+  headers.set('vary', vary ? `${vary}, Accept` : 'Accept');
+  headers.set('content-signal', AGENT_POLICY);
+  return new Response(response.body, {
+    status: response.status,
+    statusText: response.statusText,
+    headers,
+  });
+}
+
+function markdownAssetPath(pathname) {
+  if (pathname.endsWith('/')) return `${pathname}index.md`;
+  if (pathname.endsWith('.html')) return pathname.replace(/\.html$/, '.md');
+  if (!pathname.split('/').pop().includes('.')) return `${pathname}/index.md`;
+  return null;
+}
+
 export default {
   async fetch(request, env, ctx) {
     const startTime = Date.now();
@@ -30,8 +51,29 @@ export default {
         return response;
       }
       
-      // Serve static assets
-      const response = await env.ASSETS.fetch(request);
+      // Serve the Hugo-generated Markdown representation to clients that ask
+      // for it, while preserving the canonical HTML URL.
+      const acceptsMarkdown = request.headers.get('accept')?.includes('text/markdown');
+      if ((request.method === 'GET' || request.method === 'HEAD') && acceptsMarkdown) {
+        const markdownPath = markdownAssetPath(url.pathname);
+        if (markdownPath) {
+          const markdownUrl = new URL(request.url);
+          markdownUrl.pathname = markdownPath;
+          const markdownResponse = await env.ASSETS.fetch(new Request(markdownUrl, request));
+          if (markdownResponse.ok) {
+            const headers = new Headers(markdownResponse.headers);
+            headers.set('content-type', 'text/markdown; charset=utf-8');
+            return addDiscoveryHeaders(new Response(markdownResponse.body, {
+              status: markdownResponse.status,
+              statusText: markdownResponse.statusText,
+              headers,
+            }));
+          }
+        }
+      }
+
+      // Serve static assets.
+      const response = addDiscoveryHeaders(await env.ASSETS.fetch(request));
       
       // Log response details
       const duration = Date.now() - startTime;

@@ -1,6 +1,7 @@
 {
   "name": "support-tools-website",
   "version": "1.0.0",
+  "type": "module",
   "description": "Support Tools website deployed on Cloudflare Workers",
   "main": "src/worker.js",
   "scripts": {
@@ -16,7 +17,7 @@
   },
   "devDependencies": {
     "pagefind": "1.5.2",
-    "wrangler": "^3.0.0"
+    "wrangler": "4.151.1"
   },
   "engines": {
     "node": ">=20.0.0"
