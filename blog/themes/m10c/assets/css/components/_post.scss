@@ -1,3 +1,5 @@
+@use "hugo:vars" as *;
+
 .post-title {
   color: $lightest-color;
 }

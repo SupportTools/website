@@ -24,6 +24,18 @@ on:
   schedule:
     - cron: "0 6 * * *" # Daily at 06:00 UTC (01:00 EST) — picks up scheduled posts
 
+env:
+  # Dart Sass for the m10c theme's css.Sass (transpiler: dartsass). Hugo dropped
+  # libsass support (deprecated in v0.153.0), so every job that builds the site
+  # needs this on PATH. Build-path tier: pinned upstream fetch from GitHub
+  # releases, sha256-verified, bounded retries. These are GitHub-hosted runners
+  # with no runner image or mirror of ours yet; moving this onto a mirror is
+  # tracked separately. To bump: take the sha256 "digest" of
+  # dart-sass-<ver>-linux-x64.tar.gz from
+  # `gh api repos/sass/dart-sass/releases/tags/<ver>`.
+  DART_SASS_VERSION: '1.105.1'
+  DART_SASS_SHA256: '9046fdd4a31a524a0020298c55d9e155d4c22363ef268e8992574335a72c6a6f'
+
 jobs:
   Test:
     runs-on: ubuntu-latest
@@ -40,8 +52,17 @@ jobs:
           # so a Homebrew API outage fails every job before Hugo is even installed
           # (run 29658115531). A pinned version downloads straight from GitHub
           # releases. Bump intentionally after verifying the site builds clean.
-          hugo-version: '0.164.0'
+          hugo-version: '0.168.0'
           extended: true
+
+      - name: Install Dart Sass
+        run: |
+          curl -fsSL --retry 3 --retry-all-errors -o "$RUNNER_TEMP/dart-sass.tar.gz" \
+            "https://github.com/sass/dart-sass/releases/download/${DART_SASS_VERSION}/dart-sass-${DART_SASS_VERSION}-linux-x64.tar.gz"
+          echo "${DART_SASS_SHA256}  $RUNNER_TEMP/dart-sass.tar.gz" | sha256sum -c -
+          tar -xzf "$RUNNER_TEMP/dart-sass.tar.gz" -C "$RUNNER_TEMP"
+          echo "$RUNNER_TEMP/dart-sass" >> "$GITHUB_PATH"
+          "$RUNNER_TEMP/dart-sass/sass" --version
 
       - name: Test Hugo build
         run: |
@@ -81,8 +102,17 @@ jobs:
           # so a Homebrew API outage fails every job before Hugo is even installed
           # (run 29658115531). A pinned version downloads straight from GitHub
           # releases. Bump intentionally after verifying the site builds clean.
-          hugo-version: '0.164.0'
+          hugo-version: '0.168.0'
           extended: true
+
+      - name: Install Dart Sass
+        run: |
+          curl -fsSL --retry 3 --retry-all-errors -o "$RUNNER_TEMP/dart-sass.tar.gz" \
+            "https://github.com/sass/dart-sass/releases/download/${DART_SASS_VERSION}/dart-sass-${DART_SASS_VERSION}-linux-x64.tar.gz"
+          echo "${DART_SASS_SHA256}  $RUNNER_TEMP/dart-sass.tar.gz" | sha256sum -c -
+          tar -xzf "$RUNNER_TEMP/dart-sass.tar.gz" -C "$RUNNER_TEMP"
+          echo "$RUNNER_TEMP/dart-sass" >> "$GITHUB_PATH"
+          "$RUNNER_TEMP/dart-sass/sass" --version
 
       - name: Build Hugo site
         run: |
@@ -167,8 +197,17 @@ jobs:
           # so a Homebrew API outage fails every job before Hugo is even installed
           # (run 29658115531). A pinned version downloads straight from GitHub
           # releases. Bump intentionally after verifying the site builds clean.
-          hugo-version: '0.164.0'
+          hugo-version: '0.168.0'
           extended: true
+
+      - name: Install Dart Sass
+        run: |
+          curl -fsSL --retry 3 --retry-all-errors -o "$RUNNER_TEMP/dart-sass.tar.gz" \
+            "https://github.com/sass/dart-sass/releases/download/${DART_SASS_VERSION}/dart-sass-${DART_SASS_VERSION}-linux-x64.tar.gz"
+          echo "${DART_SASS_SHA256}  $RUNNER_TEMP/dart-sass.tar.gz" | sha256sum -c -
+          tar -xzf "$RUNNER_TEMP/dart-sass.tar.gz" -C "$RUNNER_TEMP"
+          echo "$RUNNER_TEMP/dart-sass" >> "$GITHUB_PATH"
+          "$RUNNER_TEMP/dart-sass/sass" --version
 
       - name: Build Hugo site
         run: |
@@ -223,8 +262,17 @@ jobs:
           # so a Homebrew API outage fails every job before Hugo is even installed
           # (run 29658115531). A pinned version downloads straight from GitHub
           # releases. Bump intentionally after verifying the site builds clean.
-          hugo-version: '0.164.0'
+          hugo-version: '0.168.0'
           extended: true
+
+      - name: Install Dart Sass
+        run: |
+          curl -fsSL --retry 3 --retry-all-errors -o "$RUNNER_TEMP/dart-sass.tar.gz" \
+            "https://github.com/sass/dart-sass/releases/download/${DART_SASS_VERSION}/dart-sass-${DART_SASS_VERSION}-linux-x64.tar.gz"
+          echo "${DART_SASS_SHA256}  $RUNNER_TEMP/dart-sass.tar.gz" | sha256sum -c -
+          tar -xzf "$RUNNER_TEMP/dart-sass.tar.gz" -C "$RUNNER_TEMP"
+          echo "$RUNNER_TEMP/dart-sass" >> "$GITHUB_PATH"
+          "$RUNNER_TEMP/dart-sass/sass" --version
 
       - name: Build Hugo site
         run: |

@@ -1,3 +1,5 @@
+@use "hugo:vars" as *;
+
 .app-header {
   padding: 2.5em;
   background: $darkest-color;

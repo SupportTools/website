@@ -47,3 +47,5 @@ make deploy-all-workers             # Deploy all CF envs except production
 - Runs on **GitHub-hosted** runners (`ubuntu-latest`), not self-hosted
 - Daily scheduled builds catch Hugo `expiryDate` content rotation
 - Test step uses `--panicOnWarning` — deprecation warnings fail the build
+- The m10c theme compiles SCSS with **Dart Sass** (`css.Sass` `transpiler: dartsass`), not libsass. Local builds need the `sass` binary on PATH (Hugo errors with "You need to install Dart Sass" otherwise); CI installs a pinned, sha256-checked release via `DART_SASS_VERSION`/`DART_SASS_SHA256` in `cloudflare-workers.yml`
+- Theme colors reach SCSS through `css.Sass` `vars` (`@use "hugo:vars"`), set in `blog/themes/m10c/layouts/_default/baseof.html`; do not reintroduce `@import` (Dart Sass deprecation = `--panicOnWarning` failure)
