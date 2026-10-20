@@ -25,14 +25,14 @@ For environments where VMs are provisioned independently (e.g., via manual setup
 
 ## [Prerequisites](#prerequisites)
 
-#### VM Requirements
+### VM Requirements
 - **Operating System:** Ubuntu 22.04, CentOS 8, or similar Linux distributions.
 - **Hardware:** Minimum 4 CPUs and 8 GB RAM per node.
 - **Networking:**
   - Nodes must be able to communicate with each other on required ports.
   - Nodes must be accessible from your local machine or Rancher server.
 
-#### RKE2 Requirements
+### RKE2 Requirements
 - RKE2 binaries must be installed on all nodes.
 - A shared token for cluster authentication.
 
@@ -40,7 +40,7 @@ For environments where VMs are provisioned independently (e.g., via manual setup
 
 ## [Setting Up RKE2](#setting-up-rke2)
 
-#### Step 1: Install RKE2 on Control Plane Nodes
+### Step 1: Install RKE2 on Control Plane Nodes
 1. SSH into each control-plane VM.
 2. Install RKE2 using the installation script:
    ```bash
@@ -56,7 +56,7 @@ For environments where VMs are provisioned independently (e.g., via manual setup
    ```
    Update the server address in the kubeconfig file to the control-plane node's IP.
 
-#### Step 2: Install RKE2 on Worker Nodes
+### Step 2: Install RKE2 on Worker Nodes
 1. SSH into each worker VM.
 2. Install RKE2 in agent mode:
    ```bash
@@ -78,16 +78,16 @@ For environments where VMs are provisioned independently (e.g., via manual setup
 
 ## [Importing the Cluster into Rancher](#importing-the-cluster-into-rancher)
 
-#### Step 1: Add Cluster in Rancher
+### Step 1: Add Cluster in Rancher
 1. Log in to Rancher.
 2. Navigate to **Cluster Management** and click **Add Cluster**.
 3. Select **Import an Existing Cluster**.
 
-#### Step 2: Generate Import Command
+### Step 2: Generate Import Command
 1. Provide a name for your cluster (e.g., `custom-vm-cluster`).
 2. Copy the generated kubectl command for importing the cluster.
 
-#### Step 3: Run the Import Command
+### Step 3: Run the Import Command
 1. SSH into one of the control-plane nodes or a machine with access to the cluster.
 2. Run the kubectl command to deploy the Rancher agents.
 3. Verify the cluster's status in Rancher. Once the agents are deployed, the cluster should appear as **Active**.
@@ -96,7 +96,7 @@ For environments where VMs are provisioned independently (e.g., via manual setup
 
 ## [Testing and Validation](#testing-and-validation)
 
-#### Accessing the Cluster
+### Accessing the Cluster
 1. Use kubectl with the provided kubeconfig file:
    ```bash
    kubectl --kubeconfig=./kubeconfig.yaml get nodes
@@ -104,7 +104,7 @@ For environments where VMs are provisioned independently (e.g., via manual setup
 
 2. Ensure all control-plane and worker nodes are listed as **Ready**.
 
-#### Testing Workloads
+### Testing Workloads
 Deploy a test workload to validate cluster functionality:
 ```yaml
 apiVersion: v1

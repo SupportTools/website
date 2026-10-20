@@ -42,7 +42,7 @@ For more details, refer to the [RKE2 Networking Documentation](https://docs.rke2
 #### HelmChart Custom Resource
 RKE2 uses a `HelmChart` custom resource in the `kube-system` namespace to manage the Ingress NGINX Controller. This ensures the controller is automatically deployed and kept up-to-date.
 
-#### Example HelmChart Resource
+##### Example HelmChart Resource
 ```yaml
 apiVersion: helm.cattle.io/v1
 kind: HelmChart

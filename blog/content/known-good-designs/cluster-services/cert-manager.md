@@ -39,7 +39,7 @@ Cert Manager is a Kubernetes-native tool that automates the management and issua
 
 #### [Option A: Helm Installation](#option-a-helm-installation)
 
-#### [Step 1: Install Cert Manager](#step-1-install-cert-manager)
+##### [Step 1: Install Cert Manager](#step-1-install-cert-manager)
 Install Cert Manager using Helm to manage the CRDs and its deployment:
 ```bash
 helm repo add jetstack https://charts.jetstack.io
@@ -55,7 +55,7 @@ For more detailed steps on using ArgoCD to install applications like Cert Manage
 
 You can also refer to the [Rancher Documentation](https://ranchermanager.docs.rancher.com/getting-started/installation-and-upgrade/install-upgrade-on-a-kubernetes-cluster#4-install-cert-manager) for specific guidance on installing Cert Manager for Rancher.
 
-#### [Step 2: Verify Installation](#step-2-verify-installation)
+##### [Step 2: Verify Installation](#step-2-verify-installation)
 Check if the Cert Manager pods are running:
 ```bash
 kubectl get pods -n cert-manager
@@ -69,7 +69,7 @@ cert-manager-cainjector-xxxxxxx-xxxxx      1/1     Running   0          1m
 cert-manager-webhook-xxxxxxx-xxxxx         1/1     Running   0          1m
 ```
 
-#### [Step 3: Create a ClusterIssuer](#step-3-create-a-clusterissuer)
+##### [Step 3: Create a ClusterIssuer](#step-3-create-a-clusterissuer)
 The `ClusterIssuer` defines the certificate authority used for issuing certificates. For Let's Encrypt, use the following configuration:
 ```yaml
 apiVersion: cert-manager.io/v1
@@ -96,7 +96,7 @@ kubectl apply -f cluster-issuer.yaml
 
 #### [Option B: ArgoCD Installation](#option-b-argocd-installation)
 
-#### [Step 1: Install Cert Manager](#step-1-install-cert-manager)
+##### [Step 1: Install Cert Manager](#step-1-install-cert-manager)
 
 To automate Cert Manager deployment using ArgoCD, create the following `Application` resource:
 

@@ -25,12 +25,12 @@ This configuration deploys a lightweight RKE2 cluster consisting of two control-
 
 ## [RKE2 Cluster Installation](#rke2-cluster-installation)
 
-#### Prerequisites
+### Prerequisites
 - Three servers with at least 4 CPUs and 8 GB of RAM.
 - Ubuntu 22.04 or CentOS 8 installed on each server.
 - Networking configured to allow communication between nodes.
 
-#### Step 1: Install RKE2 on Control Plane Nodes
+### Step 1: Install RKE2 on Control Plane Nodes
 1. SSH into each of the two control-plane nodes.
 2. Install RKE2:
    ```bash
@@ -40,7 +40,7 @@ This configuration deploys a lightweight RKE2 cluster consisting of two control-
    ```
 3. Copy the `/etc/rancher/rke2/rke2.yaml` file from the first control-plane node to your local machine for kubectl access.
 
-#### Step 2: Install RKE2 on the Worker Node
+### Step 2: Install RKE2 on the Worker Node
 1. SSH into the worker node.
 2. Install RKE2 in agent mode:
    ```bash
@@ -64,12 +64,12 @@ This configuration deploys a lightweight RKE2 cluster consisting of two control-
 
 Deploy the NGINX ingress controller using Helm:
 
-#### Create the Namespace
+### Create the Namespace
 ```bash
 kubectl create namespace ingress-nginx
 ```
 
-#### Helm Chart Deployment
+### Helm Chart Deployment
 ```bash
 helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
 helm repo update
@@ -83,12 +83,12 @@ helm install ingress-nginx ingress-nginx/ingress-nginx \
 
 ## [Rancher Deployment](#rancher-deployment)
 
-#### Create the Namespace
+### Create the Namespace
 ```bash
 kubectl create namespace cattle-system
 ```
 
-#### Helm Chart Deployment
+### Helm Chart Deployment
 ```bash
 helm repo add rancher-stable https://releases.rancher.com/server-charts/stable
 helm repo update
@@ -105,7 +105,7 @@ helm install rancher rancher-stable/rancher \
 
 ## [Testing and Validation](#testing-and-validation)
 
-#### Accessing Rancher
+### Accessing Rancher
 1. Verify the Rancher pods:
    ```bash
    kubectl get pods -n cattle-system
@@ -116,7 +116,7 @@ helm install rancher rancher-stable/rancher \
    https://rancher.your-domain.com
    ```
 
-#### Testing NGINX Ingress
+### Testing NGINX Ingress
 Deploy a sample application and verify ingress access using the LoadBalancer endpoint.
 
 ---

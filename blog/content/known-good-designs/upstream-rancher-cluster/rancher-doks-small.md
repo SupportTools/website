@@ -25,7 +25,7 @@ This configuration deploys a lightweight DigitalOcean Kubernetes cluster consist
 
 ## [Terraform Script](#terraform-script)
 
-#### Infrastructure Provisioning
+### Infrastructure Provisioning
 The following Terraform script provisions the DOKS cluster:
 
 ```terraform
@@ -49,7 +49,7 @@ module "kubernetes" {
 
 Deploy the NGINX ingress controller using Helm:
 
-#### Create the Namespace
+### Create the Namespace
 ```yaml
 resource "kubernetes_namespace" "ingress_nginx" {
   metadata {
@@ -58,7 +58,7 @@ resource "kubernetes_namespace" "ingress_nginx" {
 }
 ```
 
-#### Helm Chart Deployment
+### Helm Chart Deployment
 ```yaml
 resource "helm_release" "nginx_ingress" {
   name       = "ingress-nginx"
@@ -93,7 +93,7 @@ resource "helm_release" "nginx_ingress" {
 
 ## [Rancher Deployment](#rancher-deployment)
 
-#### Create the Namespace
+### Create the Namespace
 ```yaml
 resource "kubernetes_namespace" "cattle_system" {
   metadata {
@@ -102,7 +102,7 @@ resource "kubernetes_namespace" "cattle_system" {
 }
 ```
 
-#### Helm Chart Deployment
+### Helm Chart Deployment
 ```yaml
 resource "helm_release" "rancher" {
   name       = "rancher"
@@ -137,7 +137,7 @@ resource "helm_release" "rancher" {
 
 ## [Testing and Validation](#testing-and-validation)
 
-#### Accessing Rancher
+### Accessing Rancher
 1. Once the Helm installation is complete, verify the Rancher pods:
    ```bash
    kubectl get pods -n cattle-system
@@ -148,7 +148,7 @@ resource "helm_release" "rancher" {
    https://rancher.your-domain.com
    ```
 
-#### Testing NGINX Ingress
+### Testing NGINX Ingress
 Deploy a sample application and verify ingress access using the LoadBalancer endpoint.
 
 ---

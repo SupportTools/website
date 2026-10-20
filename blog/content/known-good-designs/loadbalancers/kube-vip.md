@@ -130,7 +130,7 @@ For more details, visit the [Kube-VIP Documentation](https://kube-vip.io/).
 
 For environments leveraging ArgoCD for GitOps, you can deploy Kube-VIP with the following manifest:
 
-#### ArgoCD Application Manifest
+### ArgoCD Application Manifest
 ```yaml
 apiVersion: argoproj.io/v1alpha1
 kind: Application
@@ -160,7 +160,7 @@ spec:
 
 Kube-VIP supports custom TCP/UDP load balancer configurations. For example, to add an HTTP(S) load balancer for ingress traffic:
 
-#### Example ConfigMap Entry for Ingress Traffic
+### Example ConfigMap Entry for Ingress Traffic
 ```yaml
 loadBalancers:
   - name: ingress-http
