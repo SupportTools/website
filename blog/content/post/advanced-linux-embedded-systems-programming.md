@@ -5,7 +5,7 @@ draft: false
 tags: ["Linux", "Embedded Systems", "IoT", "Real-Time", "Industrial Control", "ARM", "Device Drivers", "Microcontrollers"]
 categories:
 - Linux
-- Embedded Programming
+- Embedded Systems
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Master advanced Linux embedded systems programming including real-time kernel development, device driver creation, industrial IoT protocols, and building robust embedded control systems"
 more_link: "yes"

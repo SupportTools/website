@@ -6,7 +6,7 @@ tags: ["Linux", "cgroups", "cgroups v2", "Kubernetes", "eBPF", "Resource Managem
 categories:
 - Linux
 - Kubernetes
-- Systems
+- Systems Programming
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Deep dive into cgroups v2 architecture, cpu/memory/io controllers, Kubernetes QoS class mapping to cgroup hierarchies, and eBPF cgroup programs for advanced resource control."
 more_link: "yes"

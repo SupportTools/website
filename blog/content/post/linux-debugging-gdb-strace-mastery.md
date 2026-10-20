@@ -5,7 +5,7 @@ draft: false
 tags: ["Linux", "Debugging", "GDB", "strace", "Performance", "Troubleshooting", "Systems Programming"]
 categories:
 - Linux
-- Development Tools
+- Developer Tools
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Master Linux debugging with comprehensive coverage of GDB, strace, performance analysis tools, and advanced troubleshooting techniques for complex production issues"
 more_link: "yes"

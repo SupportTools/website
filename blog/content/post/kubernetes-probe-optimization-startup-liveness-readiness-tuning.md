@@ -3,7 +3,7 @@ title: "Kubernetes Probe Optimization: Startup, Liveness, and Readiness Tuning"
 date: 2029-09-05T00:00:00-05:00
 draft: false
 tags: ["Kubernetes", "Reliability", "SLO", "Health Checks", "gRPC", "Production", "Observability"]
-categories: ["Kubernetes", "Reliability"]
+categories: ["Kubernetes", "SRE"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive guide to Kubernetes probe optimization covering probe type selection, initialDelaySeconds vs startupProbe patterns, exec/httpGet/gRPC probe mechanisms, probe failure impact on SLOs, and systematic approaches to debugging probe failures in production."
 more_link: "yes"

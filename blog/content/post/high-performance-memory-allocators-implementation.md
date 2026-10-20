@@ -5,9 +5,8 @@ draft: false
 tags: ["Memory Management", "Allocators", "Performance", "Systems Programming", "jemalloc", "tcmalloc", "Custom Allocators"]
 categories:
 - Systems Programming
-- Memory Management
-- Performance Optimization
-- Enterprise Systems
+- Performance
+- Infrastructure
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Master advanced memory allocation techniques and implement custom high-performance allocators. Learn pool allocation, slab allocation, lock-free techniques, and memory-mapped allocators for enterprise workloads."
 more_link: "yes"

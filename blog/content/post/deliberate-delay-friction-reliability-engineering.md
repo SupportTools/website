@@ -6,7 +6,6 @@ tags: ["SRE", "Reliability", "Operations", "DevOps", "Incident Management", "Cha
 categories:
 - SRE
 - Operations
-- Reliability
 author: "Matthew Mattox - mmattox@support.tools"
 description: "An ops perspective on deliberate friction: why intentional delays, cool-down periods, undo windows, and 'are you sure?' guards make production systems safer and outages smaller."
 more_link: "yes"

@@ -6,7 +6,7 @@ tags: ["rke2", "etcd", "backup", "nfs", "kubernetes"]
 categories:
 - Kubernetes
 - RKE2
-- Backup
+- "Backup & Recovery"
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Use inotify-based detection to automatically sync RKE2 etcd snapshots to an NFS share using a Kubernetes DaemonSet."
 more_link: "yes"

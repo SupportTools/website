@@ -3,7 +3,7 @@ title: "Go Code Generation: protoc plugins, go generate, and AST Manipulation fo
 date: 2030-01-30T00:00:00-05:00
 draft: false
 tags: ["Go", "Code Generation", "protobuf", "AST", "protoc", "go generate", "Tooling"]
-categories: ["Go", "Developer Tooling", "Architecture"]
+categories: ["Go", "Developer Tools", "Architecture"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Build Go code generators: write protoc plugins, use go/ast for source analysis, the jen code generation library, maintaining generated code in CI, and eliminating boilerplate with go generate."
 more_link: "yes"

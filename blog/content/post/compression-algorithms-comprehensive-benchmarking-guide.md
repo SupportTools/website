@@ -4,8 +4,8 @@ date: 2025-08-15T10:00:00-05:00
 draft: false
 tags: ["Compression Algorithms", "Performance Benchmarking", "ZSTD", "LZ4", "GZIP", "XZ", "Brotli", "Linux", "Storage Optimization", "Backup Solutions", "Enterprise Storage", "Data Compression", "Algorithm Performance", "System Optimization"]
 categories:
-- Performance Optimization
-- Storage Management
+- Performance
+- Storage
 - Linux
 - Data Management
 author: "Matthew Mattox - mmattox@support.tools"

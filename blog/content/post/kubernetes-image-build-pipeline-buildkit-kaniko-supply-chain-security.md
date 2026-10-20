@@ -6,7 +6,7 @@ tags: ["Kubernetes", "BuildKit", "Kaniko", "Supply Chain Security", "Cosign", "S
 categories:
 - Kubernetes
 - Security
-- CI/CD
+- "CI & CD"
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Enterprise image build guide covering BuildKit parallelism and cache mounts, rootless Kaniko in Kubernetes, SBOM generation with Syft, image signing with Cosign, SLSA provenance, and integrating build security into GitOps pipelines."
 more_link: "yes"

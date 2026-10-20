@@ -2,7 +2,7 @@
 title: "CKAD Mastery: The Complete Guide to Kubernetes Application Development and Certification Success"
 date: 2025-11-27T09:00:00-05:00
 draft: false
-categories: ["Kubernetes", "Certification", "DevOps"]
+categories: ["Kubernetes", "Kubernetes Certification", "DevOps"]
 tags: ["CKAD", "Kubernetes", "Certification", "kubectl", "Container Orchestration", "DevOps", "Cloud Native", "Application Development", "Linux Foundation", "Career Development", "Exam Preparation"]
 ---
 

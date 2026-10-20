@@ -3,7 +3,7 @@ title: "Multi-Region Kubernetes Federation Patterns: Enterprise Architecture Gui
 date: 2026-09-29T00:00:00-05:00
 draft: false
 tags: ["Kubernetes", "Multi-Region", "Federation", "High Availability", "Disaster Recovery", "Global Infrastructure"]
-categories: ["Cloud Architecture", "Kubernetes", "Infrastructure"]
+categories: ["Cloud", "Kubernetes", "Infrastructure"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to implementing multi-region Kubernetes federation patterns for enterprise deployments, covering global load balancing, cross-cluster service discovery, data replication, and disaster recovery strategies."
 more_link: "yes"

@@ -2,8 +2,8 @@
 title: "Enterprise DevOps Lab Infrastructure 2025: Comprehensive Guide to Production-Ready Development Environments"
 date: 2026-02-12T09:00:00-05:00
 draft: false
-tags: ["DevOps", "Enterprise", "Infrastructure", "Kubernetes", "Docker", "Terraform", "Ansible", "CI/CD", "Automation"]
-categories: ["DevOps", "Enterprise Infrastructure", "Development Environments"]
+tags: ["DevOps", "Enterprise", "Infrastructure", "Kubernetes", "Docker", "Terraform", "Ansible", "CI/CD", "Automation", "Development Environments"]
+categories: ["DevOps", "Infrastructure"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Complete enterprise guide to building production-grade DevOps lab environments with advanced tooling, security frameworks, scalability patterns, and multi-cloud integration for enterprise development teams."
 more_link: "yes"

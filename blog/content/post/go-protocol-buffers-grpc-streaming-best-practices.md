@@ -3,7 +3,7 @@ title: "Go Protocol Buffers: proto3, gRPC Server Streaming, and Protobuf Best Pr
 date: 2030-04-25T00:00:00-05:00
 draft: false
 tags: ["Go", "gRPC", "Protocol Buffers", "Protobuf", "Streaming", "API Design"]
-categories: ["Go", "APIs"]
+categories: ["Go", "API Design"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive guide to Protocol Buffers and gRPC in Go covering proto3 schema design for API evolution, optional fields, well-known types, server and bidirectional streaming patterns, and buf CLI for schema linting and breaking change detection."
 more_link: "yes"

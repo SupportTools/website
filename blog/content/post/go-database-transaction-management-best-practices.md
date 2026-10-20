@@ -5,7 +5,7 @@ draft: false
 tags: ["Go", "Golang", "Database", "SQL", "Transactions", "Best Practices", "Performance"]
 categories:
 - Go
-- Database
+- Databases
 - Performance
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to avoid common pitfalls in Go database transaction management that can lead to data corruption, deadlocks, and performance issues in your applications"

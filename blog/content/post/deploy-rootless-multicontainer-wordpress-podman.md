@@ -4,9 +4,7 @@ date: 2024-09-04T19:26:00-05:00
 draft: false  
 tags: ["Podman", "WordPress", "Containers", "Rootless", "Kubernetes"]  
 categories:  
-- Podman  
-- WordPress  
-- Containers  
+- Containers
 author: "Matthew Mattox - mmattox@support.tools"  
 description: "Learn how to deploy a rootless multi-container WordPress application using Podman, including persistent storage and SELinux configuration."  
 more_link: "yes"  

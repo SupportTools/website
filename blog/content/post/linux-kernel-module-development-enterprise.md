@@ -5,8 +5,8 @@ draft: false
 tags: ["Linux Kernel", "Kernel Modules", "Device Drivers", "Systems Programming", "Enterprise", "LKM", "DKMS"]
 categories:
 - Systems Programming
-- Linux Kernel
-- Enterprise Systems
+- Kernel Development
+- Infrastructure
 - Device Drivers
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Master advanced Linux kernel module development techniques for enterprise environments. Learn kernel APIs, memory management, synchronization, debugging, and production deployment strategies."

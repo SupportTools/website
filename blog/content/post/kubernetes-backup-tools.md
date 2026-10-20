@@ -5,7 +5,7 @@ draft: false
 tags: ["Kubernetes", "Backups", "Velero", "Longhorn"]
 categories:
 - Kubernetes
-- Backups
+- "Backup & Recovery"
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A guide to Kubernetes backup tools like Velero, Longhorn, and others to ensure your cluster is always safe."
 more_link: "yes"

@@ -3,7 +3,7 @@ title: "Go gRPC Gateway: Transcoding REST to gRPC"
 date: 2029-11-18T00:00:00-05:00
 draft: false
 tags: ["Go", "gRPC", "REST", "API Gateway", "Protobuf", "OpenAPI"]
-categories: ["Go", "API Development"]
+categories: ["Go", "API Design"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Complete guide to grpc-gateway for Go: protoc plugin setup, HTTP/JSON to gRPC transcoding, custom marshaling, OpenAPI generation, streaming REST endpoints, and production deployment patterns."
 more_link: "yes"

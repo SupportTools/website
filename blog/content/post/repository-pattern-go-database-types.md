@@ -3,7 +3,7 @@ title: "Implementing the Repository Pattern in Go Across Database Types"
 date: 2027-04-08T09:00:00-05:00
 draft: false
 tags: ["Go", "Repository Pattern", "Database", "PostgreSQL", "MongoDB", "Neo4j", "Redis", "Design Patterns"]
-categories: ["Software Architecture", "Go Programming"]
+categories: ["Architecture", "Go"]
 ---
 
 The repository pattern remains one of the most powerful architectural patterns for separating business logic from data access concerns. In Go applications, a well-implemented repository layer can dramatically improve maintainability, testability, and flexibility when working with various database technologies. This comprehensive guide explores implementing the repository pattern in Go across different database paradigms, with practical examples, advanced techniques, and real-world considerations.

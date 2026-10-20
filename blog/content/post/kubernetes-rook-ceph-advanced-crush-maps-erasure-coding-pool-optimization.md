@@ -6,7 +6,6 @@ tags: ["Kubernetes", "Rook", "Ceph", "Storage", "CRUSH", "Erasure Coding", "Blue
 categories:
 - Kubernetes
 - Storage
-- Ceph
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Deep dive into Rook-Ceph advanced configuration: custom CRUSH maps for rack and zone awareness, erasure coding profiles, RBD and CephFS performance tuning, OSD placement, BlueStore tuning, and disaster recovery from OSD failures in production Kubernetes environments."
 more_link: "yes"

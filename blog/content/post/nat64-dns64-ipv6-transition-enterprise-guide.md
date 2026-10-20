@@ -2,11 +2,10 @@
 title: "Enterprise NAT64/DNS64 Deployment Guide: Complete IPv6 Transition and Dual-Stack Architecture for Production Networks"
 date: 2025-04-15T10:00:00-05:00
 draft: false
-tags: ["NAT64", "DNS64", "IPv6", "IPv4", "Network Transition", "Enterprise Networking", "Tayga", "BIND9", "Linux", "Network Architecture"]
+tags: ["NAT64", "DNS64", "IPv6", "IPv4", "Network Transition", "Enterprise Networking", "Tayga", "BIND9", "Linux", "Network Architecture", "IPv6 Transition"]
 categories:
-- Network Engineering
-- IPv6 Transition
-- Enterprise Infrastructure
+- Networking
+- Infrastructure
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to enterprise NAT64/DNS64 deployment covering advanced configuration, high availability architectures, monitoring solutions, and production-grade IPv6 transition strategies"
 more_link: "yes"

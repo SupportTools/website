@@ -3,7 +3,7 @@ title: "Kubernetes Cluster Autoscaler Optimization: Node Scaling Best Practices"
 date: 2026-08-21T00:00:00-05:00
 draft: false
 tags: ["Kubernetes", "Cluster Autoscaler", "Node Scaling", "Cloud", "Cost Optimization", "Infrastructure"]
-categories: ["Kubernetes", "DevOps", "Cloud Infrastructure"]
+categories: ["Kubernetes", "DevOps", "Cloud"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to optimizing Kubernetes Cluster Autoscaler for efficient node scaling, including cloud provider integration, scaling policies, and cost optimization strategies."
 more_link: "yes"

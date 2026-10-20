@@ -5,7 +5,7 @@ draft: false
 tags: ["Kubernetes", "Resource Management", "Vertical Scaling", "Containers", "v1.33", "Performance Tuning", "DevOps"]
 categories:
 - Kubernetes
-- Performance Optimization
+- Performance
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A hands-on guide to using Kubernetes InPlacePodVerticalScaling to adjust CPU and memory resources without pod restarts, with real-world examples and performance implications"
 more_link: "yes"

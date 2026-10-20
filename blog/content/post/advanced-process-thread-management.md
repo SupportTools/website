@@ -3,7 +3,7 @@ title: "Advanced Process and Thread Management Techniques in Linux"
 date: 2026-04-14T00:00:00-05:00
 author: "Systems Engineering Team"
 description: "Master advanced process and thread management in Linux systems. Learn sophisticated scheduling strategies, resource control, IPC mechanisms, thread pools, and enterprise-grade process orchestration techniques."
-categories: ["Systems Programming", "Process Management", "Threading"]
+categories: ["Systems Programming", "Process Management", "Concurrency"]
 tags: ["process management", "thread management", "Linux scheduling", "cgroups", "namespaces", "IPC", "thread pools", "resource control", "process orchestration", "enterprise systems"]
 keywords: ["Linux process management", "thread management", "process scheduling", "cgroups", "namespaces", "IPC mechanisms", "thread pools", "resource control", "process orchestration", "enterprise process management"]
 draft: false

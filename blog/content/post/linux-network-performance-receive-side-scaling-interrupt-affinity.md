@@ -3,7 +3,7 @@ title: "Linux Network Performance: Receive Side Scaling and Interrupt Affinity"
 date: 2029-05-20T00:00:00-05:00
 draft: false
 tags: ["Linux", "Networking", "Performance", "RSS", "RPS", "IRQ", "NUMA", "ethtool"]
-categories: ["Linux", "Networking", "Performance Engineering"]
+categories: ["Linux", "Networking", "Performance"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A deep dive into Linux network performance tuning covering RSS, RPS, RFS, XPS, IRQ balancing, NUMA-aware network configuration, ethtool ring buffer tuning, and multi-queue NIC optimization."
 more_link: "yes"

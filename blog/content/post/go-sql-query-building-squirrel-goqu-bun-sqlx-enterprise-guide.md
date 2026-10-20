@@ -5,7 +5,7 @@ draft: false
 tags: ["Go", "SQL", "Database", "ORM", "sqlx", "Bun", "squirrel", "goqu", "PostgreSQL"]
 categories:
 - Go
-- Database
+- Databases
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to Go SQL query building using squirrel, goqu, and Bun ORM alongside raw SQL with sqlx and named parameters. Covers query logging, connection pooling, transaction management, and production patterns for enterprise database access layers."
 more_link: "yes"

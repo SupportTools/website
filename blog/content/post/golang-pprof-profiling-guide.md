@@ -4,8 +4,8 @@ date: 2025-04-18T00:00:00-05:00
 draft: false
 tags: ["Golang", "Performance", "pprof", "Profiling", "Optimization"]
 categories:
-- Go Development
-- Performance Optimization
+- Go
+- Performance
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to effectively profile and optimize Go applications using pprof with practical examples and visualization techniques."
 more_link: "yes"

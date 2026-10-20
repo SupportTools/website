@@ -4,7 +4,6 @@ date: 2028-09-16T00:00:00-05:00
 draft: false
 tags: ["Cilium", "BGP", "eBPF", "Kubernetes", "Networking"]
 categories:
-- Cilium
 - Kubernetes
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Cilium BGP Control Plane configuration for bare-metal Kubernetes — CiliumBGPPeeringPolicy, BGP advertisement of pod CIDRs and LoadBalancer IPs, Hubble observability, L7 network policies, WireGuard encryption, and comparing Cilium vs Calico BGP."

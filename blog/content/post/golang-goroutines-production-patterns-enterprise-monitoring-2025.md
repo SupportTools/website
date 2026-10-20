@@ -3,7 +3,7 @@ title: "You're Probably Using Goroutines Wrong: Enterprise Production Patterns a
 date: 2026-07-21T00:00:00-05:00
 draft: false
 tags: ["Go", "Golang", "Goroutines", "Concurrency", "Enterprise", "Production", "Monitoring", "Performance"]
-categories: ["Programming", "Enterprise", "Production"]
+categories: ["Programming"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Master proper goroutine usage patterns for enterprise production systems including advanced monitoring, leak detection, resource management, and proven concurrency strategies for 2025."
 more_link: "yes"

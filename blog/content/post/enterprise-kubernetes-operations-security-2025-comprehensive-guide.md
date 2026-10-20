@@ -16,7 +16,7 @@ tags:
 categories:
 - Kubernetes
 - DevOps
-- Enterprise Security
+- Security
 author: mmattox
 description: "Master enterprise Kubernetes operations and security with advanced kubectl patterns, comprehensive authentication frameworks, RBAC management, compliance automation, and production-scale cluster management strategies."
 keywords: "kubernetes operations, kubectl security, enterprise kubernetes, RBAC, admission controllers, kubeconfig management, kubernetes automation, GitOps, compliance frameworks, cluster security, platform engineering"

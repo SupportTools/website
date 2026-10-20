@@ -4,9 +4,9 @@ date: 2025-04-08T10:00:00-05:00
 draft: false
 tags: ["Linux Performance", "System Monitoring", "Performance Tuning", "Enterprise", "Optimization", "CPU", "Memory", "I/O", "Network", "Benchmarking"]
 categories:
-- Performance Optimization
-- System Monitoring
-- Linux Administration
+- Performance
+- Monitoring
+- System Administration
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to Linux performance monitoring, analysis, and optimization techniques covering CPU, memory, I/O, and network performance with enterprise automation tools and best practices"
 more_link: "yes"

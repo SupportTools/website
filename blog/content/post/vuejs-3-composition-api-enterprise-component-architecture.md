@@ -4,8 +4,7 @@ date: 2026-12-12T00:00:00-05:00
 draft: false
 tags: ["Vue.js", "Composition API", "TypeScript", "Pinia", "Frontend", "Testing", "Performance", "Architecture"]
 categories:
-- Frontend Development
-- Vue.js
+- Web Development
 - Architecture
 - Best Practices
 author: "Matthew Mattox - mmattox@support.tools"

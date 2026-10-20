@@ -3,7 +3,7 @@ title: "Cluster API: Declarative Kubernetes Cluster Lifecycle Management"
 date: 2027-04-05T00:00:00-05:00
 draft: false
 tags: ["Kubernetes", "Cluster API", "CAPI", "Cluster Lifecycle", "Infrastructure as Code"]
-categories: ["Kubernetes", "Cluster Lifecycle", "Platform Engineering"]
+categories: ["Kubernetes", "Platform Engineering"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Production guide to Cluster API (CAPI) for declarative Kubernetes cluster management, covering management cluster setup, AWS/vSphere provider configuration, Machine and MachineDeployment CRDs, rolling upgrades, MachineHealthCheck for auto-remediation, and ClusterClass for standardized cluster templates."
 more_link: "yes"

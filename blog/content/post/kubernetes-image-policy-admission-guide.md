@@ -2,11 +2,10 @@
 title: "Kubernetes Image Policy: Enforcing Registry and Signature Verification"
 date: 2027-12-21T00:00:00-05:00
 draft: false
-tags: ["Kubernetes", "Kyverno", "Cosign", "Sigstore", "Supply Chain Security", "OPA", "Notary", "Admission Control"]
+tags: ["Kubernetes", "Kyverno", "Cosign", "Sigstore", "Supply Chain Security", "OPA", "Notary", "Admission Control", "Supply Chain"]
 categories:
 - Kubernetes
 - Security
-- Supply Chain
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A production guide to Kubernetes image policy enforcement covering Kyverno image verification with Cosign, Sigstore TUF, OPA Gatekeeper image constraints, private registry enforcement, Notary v2, and image digest pinning."
 more_link: "yes"

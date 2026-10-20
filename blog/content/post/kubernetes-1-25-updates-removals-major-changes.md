@@ -2,9 +2,8 @@
 title: "Kubernetes v1.25: Updates, Removals, and Major Changes"
 date: 2024-05-18
 draft: false
-tags: ["Kubernetes Updates", "Pod Security", "CSI Migration"]
+tags: ["Kubernetes Updates", "Pod Security", "CSI Migration", "Technology"]
 categories:
-- Technology
 - Kubernetes
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Stay updated on the latest changes in Kubernetes v1.25, including removals, major updates, and what it means for users."

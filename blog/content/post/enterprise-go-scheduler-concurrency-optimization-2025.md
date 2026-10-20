@@ -14,9 +14,9 @@ tags:
 - runtime
 - parallelism
 categories:
-- Go Systems Programming
-- Concurrency Engineering
-- Performance Optimization
+- Go
+- Concurrency
+- Performance
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Master enterprise Go scheduler optimization with advanced concurrency patterns, runtime tuning, performance monitoring, and production-scale systems engineering for high-performance concurrent applications."
 keywords: "Go scheduler, goroutines, concurrency optimization, Go runtime, performance tuning, concurrent programming, systems engineering, enterprise Go, scheduler optimization"

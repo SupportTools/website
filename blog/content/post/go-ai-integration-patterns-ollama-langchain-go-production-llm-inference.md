@@ -5,8 +5,7 @@ draft: false
 tags: ["Go", "AI", "LLM", "Ollama", "LangChain-Go", "RAG", "Inference", "OpenAI", "Production", "Machine Learning"]
 categories:
 - Go
-- AI
-- Machine Learning
+- "AI & ML"
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to Ollama API client, LangChain-Go chains, RAG implementation, streaming responses, token counting, and LLM observability for production Go services."
 more_link: "yes"

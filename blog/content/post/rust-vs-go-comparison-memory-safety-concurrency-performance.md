@@ -4,7 +4,7 @@ date: 2027-04-20T09:00:00-05:00
 draft: false
 tags: ["Rust", "Go", "Golang", "Performance", "Memory Safety", "Concurrency", "Programming Languages", "Systems Programming"]
 categories:
-- Programming Languages
+- Programming
 - Performance
 - Architecture
 author: "Matthew Mattox - mmattox@support.tools"

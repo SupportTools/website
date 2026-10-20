@@ -3,7 +3,7 @@ title: "Linux perf for Kubernetes Workloads: CPU Profiling, Flamegraphs, and Har
 date: 2028-06-21T00:00:00-05:00
 draft: false
 tags: ["Linux", "perf", "Profiling", "Kubernetes", "Performance", "Flamegraph", "Hardware Counters"]
-categories: ["Linux", "Performance Engineering"]
+categories: ["Linux", "Performance"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Production guide to Linux perf for Kubernetes workloads: perf stat and record/report workflows, flamegraph generation, hardware performance counter analysis, profiling inside containers, and interpreting CPU stall and branch prediction data."
 more_link: "yes"

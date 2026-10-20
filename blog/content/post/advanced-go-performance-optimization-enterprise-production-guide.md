@@ -3,7 +3,7 @@ title: "Advanced Go Performance Optimization: Enterprise Production Guide to Hig
 date: 2025-07-29T09:00:00-05:00
 draft: false
 tags: ["Go", "Performance", "Optimization", "Enterprise", "Production", "Microservices", "Profiling"]
-categories: ["Go Programming", "Performance Engineering", "Enterprise Development"]
+categories: ["Go", "Performance", "Development"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive enterprise guide to Go performance optimization techniques, profiling strategies, memory management, concurrency patterns, and production deployment optimizations for high-performance applications."
 more_link: "yes"

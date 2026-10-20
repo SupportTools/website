@@ -2,8 +2,8 @@
 title: "Kyverno Advanced Policies: Generate, Mutate, and VerifyImages at Scale"
 date: 2027-04-09T00:00:00-05:00
 draft: false
-tags: ["Kubernetes", "Kyverno", "Policy", "Security", "Admission Control"]
-categories: ["Kubernetes", "Security", "Policy Enforcement"]
+tags: ["Kubernetes", "Kyverno", "Policy", "Security", "Admission Control", "Policy Enforcement"]
+categories: ["Kubernetes", "Security"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Advanced Kyverno policy guide covering generate rules for automatic ConfigMap/NetworkPolicy creation, mutate rules for default annotations and resource injection, image signature verification with Cosign keyless and key-based, custom CEL expressions, PolicyException management, and policy testing with the Kyverno CLI."
 more_link: "yes"

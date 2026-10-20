@@ -3,7 +3,7 @@ title: "Securing AI-Generated Code: Enterprise Validation Patterns and CI/CD Int
 date: 2026-04-24T00:00:00-05:00
 draft: false
 tags: ["AI Security", "Code Security", "CI/CD", "DevSecOps", "Enterprise", "Static Analysis", "Automation"]
-categories: ["Security", "Development", "Enterprise"]
+categories: ["Security", "Development"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to implementing enterprise-grade security validation patterns for AI-generated code, including automated scanning, CI/CD integration, and production-ready security frameworks."
 more_link: "yes"

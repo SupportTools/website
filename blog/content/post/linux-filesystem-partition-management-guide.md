@@ -4,9 +4,9 @@ date: 2025-03-25T10:00:00-05:00
 draft: false
 tags: ["Linux", "Filesystem", "Partitions", "Storage", "LVM", "ZFS", "Btrfs", "Enterprise", "Data Management", "ext4", "XFS"]
 categories:
-- Storage Management
-- Linux Administration
-- Enterprise Infrastructure
+- Storage
+- System Administration
+- Infrastructure
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to Linux filesystem and partition management covering advanced resizing techniques, modern storage technologies, enterprise best practices, and automated management solutions"
 more_link: "yes"

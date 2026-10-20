@@ -6,7 +6,7 @@ tags: ["Go", "Golang", "Background Jobs", "River", "Asynq", "Queue", "Async Proc
 categories:
 - Go
 - Architecture
-- Developer Productivity
+- Developer Experience
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive guide to asynchronous job processing in Go: comparing River and Asynq architectures, building production-grade background workers with priority queues, implementing dead letter queues, retry policies, and monitoring job pipelines with Prometheus."
 more_link: "yes"

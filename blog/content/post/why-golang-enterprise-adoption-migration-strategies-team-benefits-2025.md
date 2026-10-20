@@ -2,8 +2,8 @@
 title: "Why Go is Transforming Enterprise Development: Migration Strategies and Team Benefits for 2025"
 date: 2026-12-15T00:00:00-05:00
 draft: false
-tags: ["Go", "Golang", "Enterprise", "Migration", "Team Management", "Performance", "Scalability"]
-categories: ["Enterprise", "Programming", "Strategy"]
+tags: ["Go", "Golang", "Enterprise", "Migration", "Team Management", "Performance", "Scalability", "Strategy"]
+categories: ["Programming"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive analysis of Go's enterprise advantages, proven migration strategies, and the measurable benefits driving adoption at companies like Uber, Dropbox, and Salesforce in 2025."
 more_link: "yes"

@@ -5,7 +5,7 @@ draft: false
 tags: ["Linux", "Database", "Storage Engine", "Transactions", "ACID", "B-Tree", "WAL", "Concurrency"]
 categories:
 - Linux
-- Database Programming
+- Databases
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Master advanced Linux database programming including custom storage engines, transaction processing, MVCC, query optimization, and building high-performance database systems from scratch"
 more_link: "yes"

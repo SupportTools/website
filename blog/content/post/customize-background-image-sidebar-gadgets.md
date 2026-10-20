@@ -5,7 +5,6 @@ draft: false
 tags: ["CSS", "Web Design"]
 categories:
 - Web Development
-- CSS
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to enhance your sidebar gadgets with custom background images using CSS."
 more_link: "yes"

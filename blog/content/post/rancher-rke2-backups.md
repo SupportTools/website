@@ -5,7 +5,7 @@ draft: false
 tags: ["Kubernetes", "RKE2", "Rancher", "Backups"]
 categories:
 - Kubernetes
-- Backups
+- "Backup & Recovery"
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive guide to Kubernetes backups in Rancher and RKE2, with practical advice and links to essential tools."
 more_link: "yes"

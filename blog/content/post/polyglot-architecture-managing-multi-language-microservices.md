@@ -3,7 +3,7 @@ title: "Polyglot Architecture: Managing Multi-Language Microservices"
 date: 2026-10-22T00:00:00-05:00
 draft: false
 tags: ["polyglot", "microservices", "architecture", "golang", "python", "java", "rust", "kubernetes", "enterprise"]
-categories: ["Architecture", "Microservices", "Enterprise"]
+categories: ["Architecture", "Microservices"]
 author: "Matthew Mattox"
 description: "Comprehensive guide to building and managing polyglot microservices architectures, covering language selection, inter-service communication, shared tooling, and operational excellence"
 toc: true

@@ -3,7 +3,7 @@ title: "Incident Communication Strategies: Enterprise Guide to Crisis Management
 date: 2026-08-06T00:00:00-05:00
 draft: false
 tags: ["Incident Response", "Communication", "Crisis Management", "SRE", "DevOps", "Automation", "Enterprise", "PagerDuty", "StatusPage", "Slack"]
-categories: ["Incident Management", "Site Reliability Engineering", "DevOps"]
+categories: ["Incident Response", "SRE", "DevOps"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to implementing effective incident communication strategies for enterprise environments, including automated notifications, stakeholder management, status pages, and crisis communication templates."
 more_link: "yes"

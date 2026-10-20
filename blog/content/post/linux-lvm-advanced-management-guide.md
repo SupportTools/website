@@ -5,8 +5,8 @@ draft: false
 tags: ["LVM", "Linux", "Storage", "Logical Volume Manager", "Thin Pools", "Snapshots", "Enterprise Storage", "Disk Management", "Systems Administration"]
 categories:
 - Linux
-- Storage Management
-- Systems Administration
+- Storage
+- System Administration
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to Linux LVM (Logical Volume Manager) covering advanced storage management, thin provisioning, snapshots, enterprise deployment strategies, and automation techniques"
 more_link: "yes"

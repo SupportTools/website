@@ -4,7 +4,6 @@ date: 2028-09-18T00:00:00-05:00
 draft: false
 tags: ["Falco", "Security", "Kubernetes", "Runtime Security", "eBPF"]
 categories:
-- Falco
 - Security
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Falco deployment with eBPF probe, writing custom rules with condition syntax, macros, lists, falcosidekick alerting to Slack/PagerDuty, Falco Talon automated response, and detecting privilege escalation and container escapes."

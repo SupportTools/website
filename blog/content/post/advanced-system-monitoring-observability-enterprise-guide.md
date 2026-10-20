@@ -5,7 +5,7 @@ draft: false
 tags: ["System Monitoring", "Observability", "Prometheus", "Grafana", "OpenTelemetry", "APM", "Enterprise Infrastructure", "Performance Monitoring", "DevOps", "SRE", "Kubernetes Monitoring", "Production Analytics", "Infrastructure Monitoring", "Application Performance", "Site Reliability"]
 categories:
 - System Administration
-- Enterprise Infrastructure
+- Infrastructure
 - DevOps
 - Monitoring
 author: "Matthew Mattox - mmattox@support.tools"

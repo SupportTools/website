@@ -3,7 +3,7 @@ title: "Cassandra Ring Topology Optimization on Kubernetes: Enterprise Productio
 date: 2026-05-08T00:00:00-05:00
 draft: false
 tags: ["Cassandra", "Kubernetes", "NoSQL", "Database", "Distributed Systems", "Performance"]
-categories: ["Database", "Kubernetes", "DevOps"]
+categories: ["Databases", "Kubernetes", "DevOps"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to optimizing Apache Cassandra ring topology on Kubernetes, covering rack awareness, token allocation, replication strategies, and performance tuning for enterprise workloads."
 more_link: "yes"

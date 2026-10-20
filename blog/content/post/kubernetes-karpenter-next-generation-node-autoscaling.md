@@ -3,7 +3,7 @@ title: "Kubernetes Karpenter: Next-Generation Node Autoscaling"
 date: 2029-05-29T00:00:00-05:00
 draft: false
 tags: ["Kubernetes", "Karpenter", "Autoscaling", "AWS", "EKS", "Node Management", "Spot Instances"]
-categories: ["Kubernetes", "Cloud Infrastructure"]
+categories: ["Kubernetes", "Cloud"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive guide to Karpenter next-generation node autoscaling: NodePool and EC2NodeClass configuration, provisioning policies, spot instance handling, bin packing, and consolidation strategies for production EKS clusters."
 more_link: "yes"

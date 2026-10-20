@@ -6,7 +6,7 @@ tags: ["Linux", "eBPF", "BTF", "CO-RE", "libbpf", "BPF", "Kernel", "Observabilit
 categories:
 - Linux
 - eBPF
-- Kernel
+- Kernel Development
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Deep dive into BTF encoding, libbpf CO-RE relocations, vmlinux.h generation, portable eBPF across kernel versions, and bpftool BTF inspection for enterprise observability and security programs."
 more_link: "yes"

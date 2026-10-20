@@ -5,7 +5,7 @@ draft: false
 tags: ["Linux", "Security", "Cryptography", "OpenSSL", "SELinux", "AppArmor", "Secure Coding", "Encryption"]
 categories:
 - Linux
-- Security Programming
+- Security
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Master advanced Linux security programming including cryptographic implementations, secure system design, SELinux/AppArmor development, and building hardened applications"
 more_link: "yes"

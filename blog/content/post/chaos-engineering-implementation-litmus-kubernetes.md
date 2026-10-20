@@ -6,7 +6,7 @@ tags: ["Chaos Engineering", "Litmus", "Kubernetes", "Reliability", "Site Reliabi
 categories:
 - Chaos Engineering
 - Kubernetes
-- Site Reliability Engineering
+- SRE
 - Testing
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to implementing chaos engineering with Litmus on Kubernetes, including experiment design, failure scenario testing, automated chaos testing in CI/CD, and incident response automation."

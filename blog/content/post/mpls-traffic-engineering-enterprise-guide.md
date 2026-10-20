@@ -6,8 +6,6 @@ tags: ["MPLS", "Traffic Engineering", "LSP", "RSVP-TE", "Networking", "Infrastru
 categories:
 - Networking
 - Infrastructure
-- MPLS
-- Traffic Engineering
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Master MPLS and advanced traffic engineering for enterprise networks. Learn LSP management, RSVP-TE implementation, constraint-based routing, and production-ready MPLS architectures."
 more_link: "yes"

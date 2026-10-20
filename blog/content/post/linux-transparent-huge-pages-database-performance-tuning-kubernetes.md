@@ -6,7 +6,7 @@ tags: ["Linux", "Performance", "THP", "PostgreSQL", "Redis", "Kubernetes", "Huge
 categories:
 - Linux
 - Performance
-- Database
+- Databases
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Deep dive into Linux Transparent Huge Pages covering THP kernel settings (always/madvise/never), hugepage defragmentation impact, per-process madvise(MADV_HUGEPAGE) control, PostgreSQL and Redis THP recommendations, and measuring THP impact with perf and /proc/vmstat."
 more_link: "yes"

@@ -2,8 +2,8 @@
 title: "Database Migration Patterns: Zero-Downtime Schema Changes in Production"
 date: 2026-06-04T00:00:00-05:00
 draft: false
-tags: ["Database", "Migration", "Schema", "Zero-Downtime", "DevOps", "PostgreSQL", "MySQL", "MongoDB", "Flyway", "Liquibase"]
-categories: ["Database Administration", "DevOps", "Migration Patterns", "Production Operations"]
+tags: ["Database", "Migration", "Schema", "Zero-Downtime", "DevOps", "PostgreSQL", "MySQL", "MongoDB", "Flyway", "Liquibase", "Migration Patterns"]
+categories: ["Databases", "DevOps", "Operations"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to implementing zero-downtime database migrations using blue-green deployments, expand-contract patterns, version compatibility strategies, rollback procedures, and comparing migration tools like Flyway, Liquibase, and custom solutions."
 more_link: "yes"

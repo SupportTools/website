@@ -4,9 +4,9 @@ date: 2025-10-15T09:00:00-06:00
 draft: false
 tags: ["Linux", "RAID", "mdadm", "Storage", "System Administration", "Data Recovery"]
 categories:
-- Linux Administration
+- System Administration
 - Storage
-- Data Recovery
+- "Backup & Recovery"
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to safely re-add failed drives to your mdadm RAID array. A comprehensive guide to recovery procedures, testing, and best practices for Linux software RAID management."
 more_link: "yes"

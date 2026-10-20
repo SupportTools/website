@@ -5,7 +5,7 @@ draft: false
 tags: ["Go", "Kafka", "Event-Driven", "Microservices"]
 categories:
 - Go
-- Backend
+- Backend Engineering
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Go Kafka integration with confluent-kafka-go and segmentio/kafka-go: consumer group management, exactly-once semantics, Avro schema evolution, dead letter queues, and consumer lag monitoring."
 more_link: "yes"

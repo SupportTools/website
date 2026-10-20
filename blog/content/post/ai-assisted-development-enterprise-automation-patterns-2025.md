@@ -2,8 +2,8 @@
 title: "AI-Assisted Development Revolution: Enterprise Automation Patterns and Code Generation Strategies for 2025"
 date: 2026-04-23T00:00:00-05:00
 draft: false
-tags: ["AI Development", "Enterprise Automation", "Code Generation", "DevOps", "Machine Learning", "Productivity", "SDLC"]
-categories: ["Development", "Automation", "Enterprise"]
+tags: ["AI Development", "Enterprise Automation", "Code Generation", "DevOps", "Machine Learning", "Productivity", "SDLC", "Enterprise"]
+categories: ["Development", "Automation"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to implementing AI-assisted development in enterprise environments, covering automation patterns, code generation strategies, and production-ready frameworks that transform the software development lifecycle."
 more_link: "yes"

@@ -3,7 +3,7 @@ title: "The Go vs Rust Debate: A Balanced Perspective for Production Systems"
 date: 2025-09-16T09:00:00-05:00
 draft: false
 tags: ["golang", "rust", "programming languages", "production systems", "microservices"]
-categories: ["Development", "Programming Languages"]
+categories: ["Development", "Programming"]
 ---
 
 ## Introduction

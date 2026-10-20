@@ -3,7 +3,7 @@ title: "OPA Gatekeeper: Production-Grade Policy Enforcement for Kubernetes Clust
 date: 2026-10-15T00:00:00-05:00
 draft: false
 tags: ["OPA", "Gatekeeper", "Kubernetes", "Policy", "Security", "Compliance", "Admission Control"]
-categories: ["Security", "Kubernetes", "Policy Management"]
+categories: ["Security", "Kubernetes", "Policy"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to implementing Open Policy Agent Gatekeeper for enterprise Kubernetes policy enforcement, including constraint templates, mutation policies, and compliance automation."
 more_link: "yes"

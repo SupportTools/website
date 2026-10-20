@@ -5,7 +5,7 @@ draft: false
 tags: ["Kubernetes", "Multi-Cloud", "Federation", "KubeFed", "Admiralty", "Liqo", "AWS", "GCP", "Azure"]
 categories:
 - Kubernetes
-- Multi-Cloud
+- Cloud
 - Infrastructure
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive guide to Kubernetes multi-cloud federation covering KubeFed, Admiralty, and Liqo for workload distribution across AWS, GCP, and Azure with global load balancing and disaster recovery."

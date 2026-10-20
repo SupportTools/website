@@ -3,7 +3,7 @@ title: "Spinnaker Multi-Cloud Deployment Strategies: Enterprise Production Guide
 date: 2026-11-26T00:00:00-05:00
 draft: false
 tags: ["Spinnaker", "Multi-Cloud", "Kubernetes", "CI/CD", "DevOps", "AWS", "GCP"]
-categories: ["DevOps", "CI/CD", "Cloud"]
+categories: ["DevOps", "CI & CD", "Cloud"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Master Spinnaker multi-cloud deployments with advanced pipeline strategies, canary analysis, automated rollback, and production-ready configurations for enterprise environments."
 more_link: "yes"

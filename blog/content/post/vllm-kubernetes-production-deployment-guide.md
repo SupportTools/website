@@ -4,7 +4,7 @@ date: 2027-09-29T00:00:00-05:00
 draft: false
 tags: ["vLLM", "LLM", "Kubernetes", "GPU", "AI/ML", "Inference"]
 categories:
-- AI/ML
+- "AI & ML"
 - Kubernetes
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Complete guide to deploying vLLM on Kubernetes for production LLM inference — NVIDIA GPU Operator, multi-GPU tensor parallelism, HuggingFace model serving, KEDA autoscaling, rolling updates, and inference monitoring."

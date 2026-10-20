@@ -5,9 +5,9 @@ draft: false
 tags: ["eBPF", "Linux", "Performance Monitoring", "Security", "Systems Programming", "Kernel", "BCC", "libbpf"]
 categories:
 - Systems Programming
-- Performance Monitoring
+- Monitoring
 - Security
-- Linux Kernel
+- Kernel Development
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Master advanced eBPF programming techniques for building high-performance monitoring and security tools. Learn kernel programming, BPF maps, verifier internals, and production deployment strategies."
 more_link: "yes"

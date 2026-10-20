@@ -2,8 +2,8 @@
 title: "AWS S3 with CloudFront and CORS: Complete Guide to Secure, High-Performance Content Delivery"
 date: 2025-09-09T09:00:00-05:00
 draft: false
-categories: ["AWS", "CloudFront", "S3", "Web Development"]
-tags: ["AWS S3", "CloudFront", "CORS", "CDN", "Content Delivery", "Static Website Hosting", "Origin Access Control", "Response Headers", "Terraform", "Web Performance"]
+categories: ["AWS", "Web Development"]
+tags: ["AWS S3", "CloudFront", "CORS", "CDN", "Content Delivery", "Static Website Hosting", "Origin Access Control", "Response Headers", "Terraform", "Web Performance", "S3"]
 ---
 
 # AWS S3 with CloudFront and CORS: Complete Guide to Secure, High-Performance Content Delivery

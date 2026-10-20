@@ -4,8 +4,7 @@ date: 2024-11-25T23:00:00-05:00
 draft: false
 tags: ["curl", "HTTP", "Host Header", "Bash", "TCSH"]
 categories:
-- HTTP
-- cURL
+- Networking
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to set the HTTP Host header with cURL using a simple command or a convenient Bash function or TCSH alias."  
 more_link: "yes"

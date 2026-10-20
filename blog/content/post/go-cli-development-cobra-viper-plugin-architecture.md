@@ -2,8 +2,8 @@
 title: "Go CLI Development: cobra, viper, and Plugin Architecture"
 date: 2029-08-26T00:00:00-05:00
 draft: false
-tags: ["Go", "CLI", "cobra", "viper", "Plugins", "DevOps Tools", "Command Line"]
-categories: ["Go", "CLI Development", "DevOps"]
+tags: ["Go", "CLI", "cobra", "viper", "Plugins", "DevOps Tools", "Command Line", "CLI Development"]
+categories: ["Go", "DevOps"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Complete guide to Go CLI development with cobra command hierarchy, viper configuration binding with environment variable precedence, shell completions, and plugin discovery via PATH for extensible developer tools."
 more_link: "yes"

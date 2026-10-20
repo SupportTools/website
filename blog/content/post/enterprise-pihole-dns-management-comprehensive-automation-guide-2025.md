@@ -2,8 +2,8 @@
 title: "Enterprise Pi-Hole DNS Management Guide 2025: Advanced Automation, Security & Multi-Site Orchestration"
 date: 2025-09-15T10:00:00-08:00
 draft: false
-tags: ["pi-hole", "dns", "conditional-forwarding", "automation", "security", "monitoring", "enterprise", "dnsmasq", "network-security", "infrastructure", "compliance", "devops", "datacenter", "vpn", "split-dns"]
-categories: ["Tech", "Misc"]
+tags: ["pi-hole", "dns", "conditional-forwarding", "automation", "security", "monitoring", "enterprise", "dnsmasq", "network-security", "infrastructure", "compliance", "devops", "datacenter", "vpn", "split-dns", "Tech", "Misc"]
+categories: ["Infrastructure"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Master enterprise Pi-Hole DNS management in 2025. Comprehensive guide covering advanced conditional forwarding, automated deployment, security hardening, compliance monitoring, and multi-site orchestration for large-scale network infrastructure."
 ---

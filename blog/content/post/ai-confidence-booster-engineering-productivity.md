@@ -6,7 +6,7 @@ tags: ["AI", "DevOps", "SRE", "Productivity", "Kubernetes", "Helm", "Terraform",
 categories:
 - DevOps
 - Engineering Culture
-- AI
+- "AI & ML"
 author: "Matthew Mattox - mmattox@support.tools"
 description: "AI coding and ops assistants act as a confidence booster for DevOps and SRE engineers, lowering the activation energy to attempt unfamiliar work while still demanding rigorous verification of everything they produce."
 more_link: "yes"

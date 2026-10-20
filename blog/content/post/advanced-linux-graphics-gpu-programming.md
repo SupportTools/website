@@ -5,7 +5,7 @@ draft: false
 tags: ["Linux", "GPU", "Graphics", "OpenGL", "Vulkan", "CUDA", "OpenCL", "Compute Shaders", "Rendering"]
 categories:
 - Linux
-- GPU Programming
+- GPU Computing
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Master advanced Linux graphics and GPU programming including Vulkan, CUDA, OpenCL, compute shaders, and building high-performance graphics applications and parallel computing systems"
 more_link: "yes"

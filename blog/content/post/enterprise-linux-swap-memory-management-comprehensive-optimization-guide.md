@@ -4,8 +4,8 @@ date: 2025-07-29T10:00:00-05:00
 draft: false
 tags: ["Linux", "Swap", "Memory Management", "Performance", "Ubuntu", "Enterprise Infrastructure", "Automation", "Monitoring", "Optimization", "DevOps"]
 categories:
-- Performance Optimization
-- Enterprise Infrastructure
+- Performance
+- Infrastructure
 - System Administration
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Complete enterprise guide to Linux swap configuration, advanced memory management, performance optimization frameworks, and production infrastructure automation for mission-critical systems"

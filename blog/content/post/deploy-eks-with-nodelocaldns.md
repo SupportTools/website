@@ -6,7 +6,6 @@ tags: ["Amazon EKS", "Kubernetes", "NodeLocal DNSCache", "Terraform"]
 categories:
 - Amazon EKS
 - Kubernetes
-- NodeLocal DNSCache
 - Terraform
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A step-by-step guide on deploying an Amazon EKS cluster with NodeLocal DNSCache enabled using Terraform."

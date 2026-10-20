@@ -6,7 +6,7 @@ tags: ["AI", "DevOps", "SRE", "Platform Engineering", "Kubernetes", "Terraform",
 categories:
 - DevOps
 - Engineering Culture
-- AI
+- "AI & ML"
 author: "Matthew Mattox - mmattox@support.tools"
 description: "AI-assisted workflows have quietly become table stakes for infrastructure, DevOps, and SRE teams. Here is where they genuinely help, where they do not, and how to adopt them responsibly without surrendering judgment."
 more_link: "yes"

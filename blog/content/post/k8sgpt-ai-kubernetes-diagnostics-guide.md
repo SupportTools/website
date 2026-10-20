@@ -3,7 +3,7 @@ title: "K8sGPT: AI-Powered Kubernetes Diagnostics and Cluster Analysis"
 date: 2027-03-08T00:00:00-05:00
 draft: false
 tags: ["Kubernetes", "K8sGPT", "AI", "Diagnostics", "Observability"]
-categories: ["Kubernetes", "AI/ML", "Observability"]
+categories: ["Kubernetes", "AI & ML", "Observability"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Production guide to deploying K8sGPT for AI-assisted Kubernetes troubleshooting, covering analyzers, backends (OpenAI, Ollama, local models), Operator mode, custom analyzers, and integration with Slack and PagerDuty."
 more_link: "yes"

@@ -4,7 +4,6 @@ date: 2024-02-14T10:00:00-05:00
 draft: false
 tags: ["Harvester", "RKE2", "Kubernetes"]
 categories:
-- Harvester
 - RKE2
 - Kubernetes
 author: "Matthew Mattox - mmattox@support.tools"

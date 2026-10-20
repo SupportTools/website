@@ -5,7 +5,6 @@ draft: false
 tags: ["Kubernetes", "Cluster Management", "Event Logging"]
 categories:
 - Kubernetes
-- Cluster Management
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to retain historical Kubernetes events for effective cluster troubleshooting and monitoring."
 more_link: "yes"

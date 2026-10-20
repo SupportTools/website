@@ -6,7 +6,6 @@ tags: ["HashiCorp Vault", "Kubernetes", "Dynamic Secrets", "PostgreSQL", "MySQL"
 categories:
 - Kubernetes
 - Security
-- HashiCorp Vault
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Enterprise guide to Vault dynamic secrets for PostgreSQL, MySQL, and MongoDB in Kubernetes: Vault Agent injection, CSI secrets store driver, lease renewal, credential rotation, and audit logging."
 more_link: "yes"

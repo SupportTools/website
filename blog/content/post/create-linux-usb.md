@@ -2,10 +2,9 @@
 title: "How to Create a Bootable Linux USB with dd"
 date: 2024-11-20T15:00:00-05:00
 draft: false
-tags: ["Linux", "USB", "dd", "Tutorial"]
+tags: ["Linux", "USB", "dd", "Tutorial", "Tutorials"]
 categories:
 - Linux
-- Tutorials
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to create a bootable Linux USB drive using the dd command. This guide provides step-by-step instructions to make the process simple and effective."
 more_link: "yes"

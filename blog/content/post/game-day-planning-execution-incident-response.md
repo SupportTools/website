@@ -3,7 +3,7 @@ title: "Game Day Planning and Execution: Building Resilient Teams Through Practi
 date: 2026-07-11T00:00:00-05:00
 draft: false
 tags: ["Game Day", "Incident Response", "SRE", "Chaos Engineering", "Team Training", "Resilience"]
-categories: ["DevOps", "Site Reliability", "Operations"]
+categories: ["DevOps", "SRE", "Operations"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to planning and executing game day exercises for incident response training, including scenario design, team coordination, and post-game analysis."
 more_link: "yes"

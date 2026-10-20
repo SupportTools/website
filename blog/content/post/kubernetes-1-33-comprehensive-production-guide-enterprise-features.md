@@ -2,8 +2,8 @@
 title: "Kubernetes 1.33 Comprehensive Production Guide: Enterprise Features, Performance Optimizations, and Migration Strategies"
 date: 2025-06-12T09:00:00-05:00
 draft: false
-tags: ["Kubernetes", "Enterprise", "Production", "Migration", "Performance", "DevOps", "Container Orchestration"]
-categories: ["Kubernetes", "Enterprise Operations", "Production Deployment"]
+tags: ["Kubernetes", "Enterprise", "Production", "Migration", "Performance", "DevOps", "Container Orchestration", "Production Deployment"]
+categories: ["Kubernetes", "Operations"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Complete production guide to Kubernetes 1.33 enterprise features, performance optimizations, migration strategies, and advanced deployment patterns for large-scale production environments."
 more_link: "yes"

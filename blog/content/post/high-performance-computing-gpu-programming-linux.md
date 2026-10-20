@@ -2,10 +2,9 @@
 title: "High-Performance Computing and GPU Programming on Linux: CUDA, OpenCL, and Parallel Computing Mastery"
 date: 2025-04-13T10:00:00-05:00
 draft: false
-tags: ["Linux", "HPC", "GPU", "CUDA", "OpenCL", "Parallel Computing", "NVIDIA", "AMD", "Performance"]
+tags: ["Linux", "HPC", "GPU", "CUDA", "OpenCL", "Parallel Computing", "NVIDIA", "AMD", "Performance", "High Performance Computing"]
 categories:
 - Linux
-- High Performance Computing
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Master high-performance computing on Linux including CUDA programming, OpenCL development, GPU cluster management, and building scalable parallel computing solutions"
 more_link: "yes"

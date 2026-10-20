@@ -6,7 +6,7 @@ tags: ["MLOps", "Kubeflow", "Kubernetes", "Machine Learning", "AI Infrastructure
 categories:
 - MLOps
 - Kubernetes
-- Machine Learning
+- "AI & ML"
 - AI Infrastructure
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Complete guide to implementing production-ready MLOps pipelines using Kubeflow on Kubernetes with automated training, hyperparameter tuning, model serving, and monitoring strategies."

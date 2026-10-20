@@ -5,9 +5,7 @@ draft: false
 tags: ["SOC 2", "Compliance", "Infrastructure as Code", "Governance", "Automation", "Security Controls", "Audit", "Terraform", "Policy as Code"]
 categories:
 - Compliance
-- SOC 2
 - Infrastructure as Code
-- Governance
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to implementing SOC 2 compliance automation using Infrastructure as Code principles, including automated control implementation, continuous monitoring, and audit-ready documentation."
 more_link: "yes"

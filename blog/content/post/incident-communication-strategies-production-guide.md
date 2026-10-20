@@ -3,7 +3,7 @@ title: "Incident Communication Strategies: Effective Stakeholder Management Duri
 date: 2026-08-07T00:00:00-05:00
 draft: false
 tags: ["Incident Response", "Communication", "SRE", "Crisis Management", "DevOps", "Stakeholder Management"]
-categories: ["DevOps", "Site Reliability", "Operations"]
+categories: ["DevOps", "SRE", "Operations"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to incident communication strategies for enterprise teams, including multi-channel coordination, stakeholder management, and automated notification systems."
 more_link: "yes"

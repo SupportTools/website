@@ -6,7 +6,7 @@ tags: ["Markdown", "PDF", "Documentation", "Mermaid", "Node.js", "DevOps", "Tech
 categories:
 - Documentation
 - DevOps
-- Tools
+- Developer Tools
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive guide to building a robust Markdown to PDF conversion toolkit that supports Mermaid diagrams, emojis, table of contents, and advanced styling"
 more_link: "yes"

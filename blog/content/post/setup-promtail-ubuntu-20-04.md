@@ -4,7 +4,7 @@ date: 2024-12-11T12:00:00-05:00
 draft: false
 tags: ["Promtail", "Loki", "Grafana", "Ubuntu", "Log Monitoring", "DevOps"]
 categories:
-- Log Monitoring
+- Monitoring
 - DevOps
 author: "Matthew Mattox"
 description: "A step-by-step guide to setting up Promtail on Ubuntu 20.04 for log aggregation with Grafana and Loki."

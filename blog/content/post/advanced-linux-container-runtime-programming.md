@@ -5,7 +5,7 @@ draft: false
 tags: ["Linux", "Containers", "Docker", "Kubernetes", "Namespaces", "Cgroups", "Runtime", "Orchestration"]
 categories:
 - Linux
-- Container Technology
+- Containers
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Master advanced Linux container runtime programming including building custom container engines, implementing orchestration systems, and working with namespaces, cgroups, and container networking"
 more_link: "yes"

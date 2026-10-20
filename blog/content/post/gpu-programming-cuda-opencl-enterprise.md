@@ -3,7 +3,7 @@ title: "GPU Programming with CUDA and OpenCL for Enterprise Workloads"
 date: 2026-07-24T00:00:00-05:00
 author: "Systems Engineering Team"
 description: "Master GPU programming for enterprise applications using CUDA and OpenCL. Learn parallel computing patterns, memory optimization, multi-GPU orchestration, and production deployment strategies."
-categories: ["Systems Programming", "GPU Computing", "Parallel Processing"]
+categories: ["Systems Programming", "GPU Computing", "Concurrency"]
 tags: ["CUDA", "OpenCL", "GPU programming", "parallel computing", "GPGPU", "enterprise computing", "HPC", "memory optimization", "multi-GPU", "performance optimization"]
 keywords: ["GPU programming", "CUDA development", "OpenCL programming", "parallel computing", "enterprise GPU", "GPGPU computing", "high performance computing", "GPU optimization", "multi-GPU programming"]
 draft: false

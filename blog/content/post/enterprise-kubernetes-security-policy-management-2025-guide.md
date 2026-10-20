@@ -13,10 +13,10 @@ tags:
 - enterprise
 - webhooks
 - falco
-categories:
 - Kubernetes Security
-- Enterprise Compliance
-- Policy Engineering
+categories:
+- Compliance
+- Policy
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Master enterprise Kubernetes security and policy management with advanced admission controllers, OPA Gatekeeper, automated compliance frameworks, threat detection systems, and production-scale security automation."
 keywords: "kubernetes security, admission controllers, OPA Gatekeeper, policy as code, kubernetes compliance, security automation, threat detection, webhook controllers, Falco, enterprise security, policy engineering"

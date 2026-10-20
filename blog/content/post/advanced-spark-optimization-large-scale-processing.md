@@ -5,7 +5,7 @@ draft: false
 tags: ["Apache Spark", "Big Data", "Performance Optimization", "Data Engineering", "Scala", "PySpark", "Distributed Computing", "Memory Management"]
 categories:
 - Data Engineering
-- Performance Optimization
+- Performance
 - Big Data
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Master advanced Apache Spark optimization techniques for large-scale data processing. Learn memory management, performance tuning, advanced configurations, and production-ready optimization strategies for enterprise Spark deployments."

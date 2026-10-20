@@ -2,7 +2,7 @@
 title: "Complete Guide to AWS Database Architecture: RDS, RDS Proxy, and Redis Integration"
 date: 2025-09-04T09:00:00-05:00
 draft: false
-categories: ["AWS", "Databases", "Cloud Architecture"]
+categories: ["AWS", "Databases", "Cloud"]
 tags: ["AWS", "RDS", "RDS Proxy", "Redis", "ElastiCache", "Performance Optimization", "Database Architecture", "Scalability", "High Availability", "Connection Pooling"]
 ---
 

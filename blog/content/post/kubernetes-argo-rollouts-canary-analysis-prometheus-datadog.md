@@ -5,7 +5,7 @@ draft: false
 tags: ["Kubernetes", "Argo Rollouts", "Canary", "Prometheus", "Datadog", "Progressive Delivery", "Istio"]
 categories:
 - Kubernetes
-- CI/CD
+- "CI & CD"
 - Progressive Delivery
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Complete guide to Argo Rollouts canary deployments with automated metric-based analysis using Prometheus, Datadog, and New Relic providers, including blue-green with AnalysisRun, automated rollback, and Istio traffic shifting integration."

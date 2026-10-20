@@ -3,7 +3,7 @@ title: "Go OpenAPI: Code Generation with oapi-codegen and kin-openapi"
 date: 2029-10-26T00:00:00-05:00
 draft: false
 tags: ["Go", "OpenAPI", "oapi-codegen", "kin-openapi", "API", "Code Generation", "REST"]
-categories: ["Go", "API Development"]
+categories: ["Go", "API Design"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to OpenAPI 3.0 spec-first development in Go using oapi-codegen for server/client stub generation, strict mode, middleware integration, request validation, and API versioning strategies."
 more_link: "yes"

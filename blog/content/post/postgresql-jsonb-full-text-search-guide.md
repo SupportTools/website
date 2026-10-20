@@ -5,7 +5,7 @@ draft: false
 tags: ["PostgreSQL", "JSONB", "Full-Text Search", "Database", "SQL"]
 categories:
 - PostgreSQL
-- Database
+- Databases
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Advanced PostgreSQL query patterns covering JSONB operators, GIN indexes, jsonb_path_query, tsvector full-text search, pg_trgm fuzzy matching, generated columns for search indexes, and a performance comparison with Elasticsearch for common use cases."
 more_link: "yes"

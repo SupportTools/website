@@ -2,12 +2,10 @@
 title: "ISO Creation, Burning & Bootable USB Guide 2025: Complete Linux Media Management"
 date: 2025-07-14T10:00:00-05:00
 draft: false
-tags: ["ISO Creation", "DVD Burning", "Bootable USB", "Linux", "Debian", "Ubuntu", "dd Command", "growisofs", "wodim", "USB Installation", "Media Creation", "System Administration", "Disk Imaging", "Bootable Media"]
+tags: ["ISO Creation", "DVD Burning", "Bootable USB", "Linux", "Debian", "Ubuntu", "dd Command", "growisofs", "wodim", "USB Installation", "Media Creation", "System Administration", "Disk Imaging", "Bootable Media", "Media Management", "Installation"]
 categories:
 - Linux
 - System Administration
-- Media Management
-- Installation
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Master ISO creation, DVD burning, and bootable USB creation on Linux. Complete guide to dd command, growisofs, wodim, USB installation media, disk imaging, and enterprise deployment strategies."
 more_link: "yes"

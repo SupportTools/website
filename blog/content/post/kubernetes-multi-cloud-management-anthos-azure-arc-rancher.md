@@ -2,8 +2,8 @@
 title: "Kubernetes Multi-Cloud Management: Anthos, Azure Arc, and Rancher"
 date: 2029-08-22T00:00:00-05:00
 draft: false
-tags: ["Kubernetes", "Multi-Cloud", "Anthos", "Azure Arc", "Rancher", "Hybrid Cloud", "Fleet Management"]
-categories: ["Kubernetes", "Cloud", "Enterprise"]
+tags: ["Kubernetes", "Multi-Cloud", "Anthos", "Azure Arc", "Rancher", "Hybrid Cloud", "Fleet Management", "Enterprise"]
+categories: ["Kubernetes", "Cloud"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive comparison of Kubernetes multi-cloud management platforms: Google Anthos, Azure Arc, and Rancher. Covers hybrid control plane patterns, fleet management, policy propagation, unified observability, and total cost of ownership analysis."
 more_link: "yes"

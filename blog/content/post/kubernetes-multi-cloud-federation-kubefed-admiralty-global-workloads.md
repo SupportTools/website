@@ -5,7 +5,7 @@ draft: false
 tags: ["Kubernetes", "Federation", "KubeFed", "Admiralty", "Multi-Cloud", "GitOps", "High Availability"]
 categories:
 - Kubernetes
-- Multi-Cloud
+- Cloud
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Enterprise federation guide: KubeFed v2 architecture, federated resource templates, Admiralty virtual nodes, cross-cluster scheduling policies, geo-aware routing, failover automation, and cloud cost optimization."
 more_link: "yes"

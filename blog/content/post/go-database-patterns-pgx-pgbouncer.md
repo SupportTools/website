@@ -3,7 +3,7 @@ title: "Go Database Patterns: pgx v5, Connection Pooling with pgBouncer, and Que
 date: 2030-02-04T00:00:00-05:00
 draft: false
 tags: ["Go", "PostgreSQL", "pgx", "pgBouncer", "Connection Pooling", "Database", "Performance"]
-categories: ["Go", "Database"]
+categories: ["Go", "Databases"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Production PostgreSQL access patterns in Go using pgx v5, pgBouncer transaction pooling, prepared statement caching, batch operations, and COPY protocol for high-throughput bulk inserts."
 more_link: "yes"

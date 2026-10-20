@@ -2,11 +2,10 @@
 title: "Kubernetes Portworx: Enterprise Storage for Stateful Applications at Scale"
 date: 2030-11-17T00:00:00-05:00
 draft: false
-tags: ["Kubernetes", "Portworx", "Storage", "StatefulSets", "Snapshots", "Autopilot", "Backup", "Enterprise Storage"]
+tags: ["Kubernetes", "Portworx", "Storage", "StatefulSets", "Snapshots", "Autopilot", "Backup", "Enterprise Storage", "Enterprise"]
 categories:
 - Kubernetes
 - Storage
-- Enterprise
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Enterprise Portworx guide covering storage pool configuration, replication and HA policies, application-consistent snapshots, CloudSnap backup to object storage, Autopilot for automatic storage expansion, and Portworx PX-Backup for Kubernetes workload protection."
 more_link: "yes"

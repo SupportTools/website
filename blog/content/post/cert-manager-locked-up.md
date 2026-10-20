@@ -4,8 +4,7 @@ date: 2023-10-13T23:15:00-05:00
 draft: false
 tags: ["cert-manager", "kubernetes", "bug"]
 categories:
-- kubernetes
-- cert-manager
+- Kubernetes
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn How to Resolve Cert-manager Bug #4685: Fixing Unexpected EOF Lockup Issue in Kubernetes."
 more_link: "yes"

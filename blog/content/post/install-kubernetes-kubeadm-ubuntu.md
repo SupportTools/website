@@ -2,10 +2,9 @@
 title: "Complete Guide: Install Kubernetes Cluster on Ubuntu with Kubeadm and Swap Support"
 date: 2025-02-14T02:00:00-05:00
 draft: false
-tags: ["Kubernetes", "kubeadm", "Containerd", "CgroupV2", "Swap", "Ubuntu", "Container Runtime", "Cluster Installation", "DevOps", "Container Orchestration", "K8s Installation", "System Administration"]
+tags: ["Kubernetes", "kubeadm", "Containerd", "CgroupV2", "Swap", "Ubuntu", "Container Runtime", "Cluster Installation", "DevOps", "Container Orchestration", "K8s Installation", "System Administration", "Installation Guide"]
 categories:
 - Kubernetes
-- Installation Guide
 - System Administration
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to install a production-ready Kubernetes cluster on Ubuntu using kubeadm. This comprehensive guide covers enabling swap support, configuring CgroupV2, setting up containerd, and troubleshooting common issues for a successful deployment."

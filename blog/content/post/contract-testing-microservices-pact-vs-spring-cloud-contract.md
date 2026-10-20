@@ -6,7 +6,7 @@ tags: ["Microservices", "Testing", "Pact", "Spring Cloud Contract", "API Testing
 categories:
 - Microservices
 - Testing
-- API Development
+- API Design
 - DevOps
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to contract testing in microservices architectures, comparing Pact and Spring Cloud Contract frameworks with practical implementation examples, CI/CD integration, and production-ready strategies."

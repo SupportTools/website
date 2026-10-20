@@ -6,7 +6,7 @@ tags: ["Kubernetes", "Networking", "CNI", "Performance", "Benchmarking", "iperf3
 categories:
 - Kubernetes
 - Networking
-- Performance Engineering
+- Performance
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Rigorous methodology for Kubernetes network performance benchmarking: iperf3 and netperf test design, pod-to-pod and pod-to-service latency measurement, and a systematic CNI plugin comparison framework for production workload selection."
 more_link: "yes"

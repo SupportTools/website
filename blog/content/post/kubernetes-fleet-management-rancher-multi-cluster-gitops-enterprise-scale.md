@@ -6,7 +6,6 @@ tags: ["Kubernetes", "Rancher", "Fleet", "GitOps", "Multi-Cluster", "Enterprise"
 categories:
 - Kubernetes
 - GitOps
-- Enterprise
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive enterprise guide to Rancher Fleet for multi-cluster GitOps: Fleet architecture, Bundle and BundleDeployment resources, cluster selectors and targets, Helm chart deployment, rollout strategies, and troubleshooting Fleet sync failures."
 more_link: "yes"

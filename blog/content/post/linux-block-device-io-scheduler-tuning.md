@@ -3,7 +3,7 @@ title: "Linux Block Device I/O Scheduler Tuning: none, mq-deadline, bfq"
 date: 2029-06-03T00:00:00-05:00
 draft: false
 tags: ["Linux", "I/O Scheduler", "Performance", "NVMe", "SSD", "Block Device", "Kernel"]
-categories: ["Linux", "Performance Engineering"]
+categories: ["Linux", "Performance"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A deep dive into Linux block device I/O scheduler selection and tuning: comparing none, mq-deadline, and bfq schedulers, queue depth tuning for rotational vs SSD/NVMe devices, blktrace analysis, and fio benchmarking for production workloads."
 more_link: "yes"

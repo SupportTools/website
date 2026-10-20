@@ -2,7 +2,7 @@
 title: "JavaScript Signals and Reactive Programming: Mastering Dependency Management and Performance Optimization in 2026"
 date: 2026-09-29T09:00:00-05:00
 draft: false
-categories: ["JavaScript", "Frontend Development", "Performance"]
+categories: ["JavaScript", "Web Development", "Performance"]
 tags: ["JavaScript", "Signals", "Reactive Programming", "State Management", "Performance Optimization", "Web Development", "Frontend Architecture", "React", "Vue", "Solid.js"]
 ---
 

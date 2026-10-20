@@ -5,7 +5,7 @@ draft: false
 tags: ["Kubeflow", "MLOps", "Kubernetes", "AI/ML", "Pipeline"]
 categories:
 - Kubernetes
-- AI/ML
+- "AI & ML"
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive guide to Kubeflow MLOps on Kubernetes covering Pipelines DSL, distributed training with PyTorchJob, hyperparameter tuning with Katib, model registry with KServe, canary rollouts for models, MLflow experiment tracking, and multi-tenant RBAC for production ML platforms."
 more_link: "yes"

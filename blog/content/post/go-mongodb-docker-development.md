@@ -4,7 +4,7 @@ date: 2026-06-23T09:00:00-05:00
 draft: false
 tags: ["Golang", "Go", "MongoDB", "Docker", "Microservices", "Docker Compose"]
 categories:
-- Golang
+- Go
 - MongoDB
 - Docker
 author: "Matthew Mattox - mmattox@support.tools"

@@ -4,7 +4,7 @@ date: 2026-06-30T09:00:00-05:00
 draft: false
 tags: ["Golang", "Go", "Kubernetes", "Observability", "OpenTelemetry", "Prometheus", "Grafana", "Jaeger", "Loki"]
 categories:
-- Golang
+- Go
 - Kubernetes
 - Observability
 author: "Matthew Mattox - mmattox@support.tools"

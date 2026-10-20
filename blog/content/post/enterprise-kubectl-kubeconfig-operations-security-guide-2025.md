@@ -4,7 +4,7 @@ date: 2026-03-12T09:00:00-05:00
 draft: false
 description: "Comprehensive enterprise guide to kubectl operations, kubeconfig management, security best practices, RBAC integration, and advanced Kubernetes administration for production environments."
 tags: ["kubectl", "kubeconfig", "kubernetes", "security", "rbac", "enterprise", "operations", "cli", "k8s", "administration"]
-categories: ["Kubernetes Operations", "Enterprise Security", "DevOps"]
+categories: ["Kubernetes", "Security", "DevOps"]
 author: "Support Tools"
 showToc: true
 TocOpen: false

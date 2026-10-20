@@ -3,7 +3,7 @@ title: "Linux Performance Debugging: Brendan Gregg's USE Method in Practice"
 date: 2029-05-31T00:00:00-05:00
 draft: false
 tags: ["Linux", "Performance", "Debugging", "Observability", "SRE", "Systems Programming", "Brendan Gregg"]
-categories: ["Linux", "Performance Engineering"]
+categories: ["Linux", "Performance"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A practical guide to applying Brendan Gregg's USE Method (Utilization, Saturation, Errors) for systematic Linux performance debugging, covering CPU, memory, disk, and network resource analysis with specific tools and commands."
 more_link: "yes"

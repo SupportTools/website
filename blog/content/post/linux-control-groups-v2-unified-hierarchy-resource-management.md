@@ -3,7 +3,7 @@ title: "Linux Control Groups v2: Unified Hierarchy and Resource Management"
 date: 2029-04-04T00:00:00-05:00
 draft: false
 tags: ["Linux", "cgroups", "cgroup v2", "Kubernetes", "Containers", "Resource Management", "systemd"]
-categories: ["Linux", "Containers", "Systems"]
+categories: ["Linux", "Containers", "Systems Programming"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to Linux cgroup v2: unified hierarchy architecture, cpu/memory/io controllers, pressure stall information (PSI), systemd integration, and container resource accounting for Kubernetes nodes."
 more_link: "yes"

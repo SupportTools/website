@@ -4,7 +4,7 @@ date: 2025-04-15T09:00:00-06:00
 draft: false
 tags: ["MySQL", "Database", "Backup", "XtraBackup", "Percona", "DevOps", "Database Administration"]
 categories:
-- Database Administration
+- Databases
 - MySQL
 - DevOps
 author: "Matthew Mattox - mmattox@support.tools"

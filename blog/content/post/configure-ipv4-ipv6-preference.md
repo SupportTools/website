@@ -5,8 +5,8 @@ draft: false
 tags: ["Networking", "Linux", "IPv4", "IPv6", "System Administration", "Performance"]
 categories:
 - Networking
-- Linux Administration
-- System Configuration
+- System Administration
+- Configuration Management
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to configure IPv4 and IPv6 preferences in Linux systems to optimize network performance and resolve connectivity issues. Includes practical examples and troubleshooting tips."
 more_link: "yes"

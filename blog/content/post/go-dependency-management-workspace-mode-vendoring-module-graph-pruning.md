@@ -3,7 +3,7 @@ title: "Go Dependency Management: Workspace Mode, Vendoring Strategies, and Modu
 date: 2030-03-26T00:00:00-05:00
 draft: false
 tags: ["Go", "Golang", "Modules", "Dependency Management", "Go Workspace", "Vendoring", "govulncheck"]
-categories: ["Go", "DevOps", "Software Development"]
+categories: ["Go", "DevOps", "Development"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A complete enterprise guide to Go dependency management covering workspace mode for multi-module repositories, effective vendoring strategies, module graph pruning, replace directives, and security auditing with govulncheck."
 more_link: "yes"

@@ -3,7 +3,7 @@ title: "Platform Team Topology Patterns: Organizing Teams for Effective Platform
 date: 2026-10-20T00:00:00-05:00
 draft: false
 tags: ["Platform Engineering", "Team Topology", "DevOps", "Organization", "Team Structure", "Conway's Law"]
-categories: ["Platform Engineering", "Organization"]
+categories: ["Platform Engineering"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to platform team organization patterns, interaction modes, and cognitive load management for building effective platform engineering organizations."
 more_link: "yes"

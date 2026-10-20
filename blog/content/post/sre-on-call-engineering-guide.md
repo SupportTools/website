@@ -3,7 +3,7 @@ title: "SRE On-Call Engineering: Runbook Design, Escalation Paths, and Toil Redu
 date: 2027-09-26T00:00:00-05:00
 draft: false
 tags: ["SRE", "On-Call", "Incident Response", "Runbooks", "Reliability", "DevOps"]
-categories: ["SRE", "Reliability"]
+categories: ["SRE"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Production SRE on-call engineering guide covering runbook design patterns, escalation path architecture, toil measurement and reduction strategies, SLO-based alerting, post-incident review workflows, and automation tooling for sustainable on-call operations."
 more_link: "yes"

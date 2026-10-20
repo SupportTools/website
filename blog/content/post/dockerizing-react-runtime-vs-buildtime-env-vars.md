@@ -5,7 +5,7 @@ draft: false
 tags: ["Docker", "React", "Environment Variables", "DevOps", "CI/CD", "Frontend", "Containerization"]
 categories:
 - DevOps
-- Frontend Development
+- Web Development
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A practical comparison of build-time vs. runtime environment variable injection for containerized React applications, with implementation examples and production deployment considerations"
 more_link: "yes"

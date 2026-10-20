@@ -5,7 +5,7 @@ draft: false
 tags: ["Tekton", "CI/CD", "Kubernetes", "DevOps", "GitOps", "Pipelines", "Go"]
 categories:
 - Kubernetes
-- CI/CD
+- "CI & CD"
 - DevOps
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Enterprise Tekton implementation: Tasks and Pipelines, Workspaces, Triggers, PipelineRuns, secrets management with external secrets, caching strategies, and production pipeline patterns for Go services."

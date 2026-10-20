@@ -3,7 +3,7 @@ title: "Kong API Gateway on Kubernetes: Enterprise Deployment and Management Gui
 date: 2026-08-20T00:00:00-05:00
 draft: false
 tags: ["Kong", "API Gateway", "Kubernetes", "Microservices", "API Management", "Enterprise"]
-categories: ["Kubernetes", "API Management", "Microservices"]
+categories: ["Kubernetes", "API Design", "Microservices"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to deploying and managing Kong API Gateway on Kubernetes with advanced plugins, authentication, rate limiting, and enterprise-grade API management strategies."
 more_link: "yes"

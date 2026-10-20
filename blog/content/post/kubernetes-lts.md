@@ -2,10 +2,9 @@
 title: "Why Kubernetes Needs an LTS"
 date: 2024-12-04T12:00:00-05:00
 draft: false
-tags: ["Kubernetes", "LTS", "Infrastructure", "DevOps"]
+tags: ["Kubernetes", "LTS", "Infrastructure", "DevOps", "Technology"]
 categories:
-- kubernetes
-- Technology
+- Kubernetes
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Exploring the challenges of Kubernetes' rapid release cycle and the case for introducing a long-term support (LTS) version to aid operational stability."
 more_link: "yes"

@@ -3,7 +3,7 @@ title: "Enterprise Erlang Clustering in Kubernetes: Implementing Mutual TLS for 
 date: 2026-06-27T00:00:00-05:00
 draft: false
 tags: ["Erlang", "Kubernetes", "Clustering", "mTLS", "Distributed-Systems", "Security", "cert-manager"]
-categories: ["DevOps", "Security", "Container-Orchestration"]
+categories: ["DevOps", "Security", "Container Orchestration"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to deploying production-ready Erlang clusters in Kubernetes with mutual TLS authentication, automated certificate management, and enterprise security patterns."
 more_link: "yes"

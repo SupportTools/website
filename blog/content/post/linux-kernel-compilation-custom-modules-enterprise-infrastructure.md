@@ -5,7 +5,7 @@ draft: false
 tags: ["Linux", "Kernel", "Kernel Modules", "DKMS", "Secure Boot", "Performance Tuning"]
 categories:
 - Linux
-- Systems Engineering
+- Systems Programming
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive guide to Linux kernel compilation for cloud and container workloads, custom module development, module signing for Secure Boot, DKMS for out-of-tree modules, and kernel version management in enterprise environments."
 more_link: "yes"

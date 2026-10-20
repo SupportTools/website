@@ -4,7 +4,6 @@ date: 2028-10-13T00:00:00-05:00
 draft: false
 tags: ["Thanos", "Prometheus", "Monitoring", "Kubernetes", "Observability"]
 categories:
-- Thanos
 - Prometheus
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Complete production guide to Thanos for long-term Prometheus metrics storage, covering all components, object storage configuration, global query federation, downsampling, and multi-tenant isolation."

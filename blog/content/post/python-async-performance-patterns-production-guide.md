@@ -3,7 +3,7 @@ title: "Python Async Performance Patterns: Production Optimization Guide"
 date: 2026-10-30T00:00:00-05:00
 draft: false
 tags: ["Python", "AsyncIO", "Performance", "Concurrency", "Event Loop", "FastAPI", "Production"]
-categories: ["Performance Optimization", "Python", "Asynchronous Programming"]
+categories: ["Performance", "Python", "Concurrency"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to Python async performance optimization, including event loop tuning, concurrency patterns, FastAPI optimization, and production-ready async patterns for high-performance applications."
 more_link: "yes"

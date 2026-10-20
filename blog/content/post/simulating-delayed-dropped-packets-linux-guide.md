@@ -2,11 +2,10 @@
 title: "Simulating Delayed and Dropped Packets in Linux"
 date: 2023-10-12T23:59:00-05:00
 draft: false
-tags: ["Linux", "Networking", "Packet Simulation"]
+tags: ["Linux", "Networking", "Packet Simulation", "Packet Manipulation"]
 categories:
 - Linux
 - Networking
-- Packet Manipulation
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A guide on simulating delayed and dropped packets in Linux."
 more_link: "yes"

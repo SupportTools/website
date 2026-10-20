@@ -4,9 +4,8 @@ date: 2024-09-20T19:26:00-05:00
 draft: false  
 tags: ["Kubernetes", "RBAC", "Security", "Access Control"]  
 categories:  
-- Kubernetes  
-- Security  
-- RBAC  
+- Kubernetes
+- Security
 author: "Matthew Mattox - mmattox@support.tools"  
 description: "Understand Kubernetes Role-Based Access Control (RBAC) and how it simplifies managing permissions for cluster resources."  
 more_link: "yes"  

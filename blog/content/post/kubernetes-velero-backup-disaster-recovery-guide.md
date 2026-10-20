@@ -4,7 +4,6 @@ date: 2028-09-27T00:00:00-05:00
 draft: false
 tags: ["Velero", "Kubernetes", "Backup", "Disaster Recovery", "Storage"]
 categories:
-- Velero
 - Kubernetes
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Complete Velero Kubernetes backup guide covering BackupStorageLocation with S3/GCS/Azure, VolumeSnapshotLocation, scheduled backups, namespace and cluster-scoped backups, backup hooks, restore ordering, cross-cluster migration, backup encryption, and testing restore procedures."

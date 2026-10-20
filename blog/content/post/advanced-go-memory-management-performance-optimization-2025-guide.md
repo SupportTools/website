@@ -14,9 +14,9 @@ tags:
 - enterprise
 - scalability
 categories:
-- Go Programming
-- Performance Engineering
-- Enterprise Development
+- Go
+- Performance
+- Development
 author: mmattox
 description: "Master enterprise Go memory management and performance optimization with weak pointers, advanced garbage collection techniques, memory profiling, leak detection, and production-scale optimization strategies for high-performance applications."
 keywords: "go memory management, golang performance optimization, weak pointers, garbage collection, memory profiling, performance engineering, memory leaks, go optimization, enterprise golang, memory pools, performance monitoring"

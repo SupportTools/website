@@ -4,7 +4,7 @@ date: 2025-12-18T09:00:00-05:00
 draft: false
 tags: ["Database", "Performance", "Benchmark", "Go", "Rust", "Java", "Python", "PostgreSQL"]
 categories:
-- Database
+- Databases
 - Performance
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A detailed performance analysis of database query operations across multiple languages with real-world benchmarks and optimization techniques"

@@ -5,7 +5,7 @@ draft: false
 tags: ["Linux", "Systemd", "Service Management", "Socket Activation", "Journald", "Security Hardening", "Init System"]
 categories:
 - Linux
-- Systems Administration
+- System Administration
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to systemd unit file authoring, socket activation patterns, service dependency ordering, security hardening options, journald log management, and target-based system states."
 more_link: "yes"

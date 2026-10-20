@@ -3,7 +3,7 @@ title: "Go Garbage Collection Tuning: Production Performance Optimization Guide"
 date: 2026-07-19T00:00:00-05:00
 draft: false
 tags: ["Golang", "Garbage Collection", "Performance", "Memory Management", "Kubernetes", "Optimization"]
-categories: ["Performance Optimization", "Go", "Production Operations"]
+categories: ["Performance", "Go", "Operations"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to Go garbage collection tuning for production environments, including GC algorithms, memory management, GOGC optimization, and performance profiling for enterprise Go applications."
 more_link: "yes"

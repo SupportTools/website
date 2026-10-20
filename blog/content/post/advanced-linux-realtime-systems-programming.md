@@ -5,7 +5,7 @@ draft: false
 tags: ["Linux", "Real-Time", "RT", "PREEMPT_RT", "Low-Latency", "Deterministic", "RTOS", "Control Systems"]
 categories:
 - Linux
-- Real-Time Programming
+- Real-Time Systems
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Master advanced Linux real-time programming including PREEMPT_RT, deterministic scheduling, low-latency design patterns, and building hard real-time applications for industrial control systems"
 more_link: "yes"

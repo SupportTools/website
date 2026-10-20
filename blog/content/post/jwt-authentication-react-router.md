@@ -6,7 +6,7 @@ tags: ["React", "JWT", "Authentication", "React Router", "JavaScript", "Frontend
 categories:
 - React
 - Security
-- Frontend
+- Web Development
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive guide to implementing secure JWT authentication in React applications with react-router, including protected routes and axios integration"
 more_link: "yes"

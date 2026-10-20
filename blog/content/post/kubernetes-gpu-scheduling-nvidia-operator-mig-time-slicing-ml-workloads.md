@@ -5,7 +5,7 @@ draft: false
 tags: ["Kubernetes", "GPU", "NVIDIA", "Machine Learning", "DCGM", "MIG", "CUDA"]
 categories:
 - Kubernetes
-- Machine Learning
+- "AI & ML"
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Enterprise GPU scheduling guide covering NVIDIA GPU Operator components, GPU device plugin, MIG configuration, time-slicing for multiple pods, GPU resource limits, CUDA version management, and monitoring with DCGM Exporter."
 more_link: "yes"

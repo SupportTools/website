@@ -3,7 +3,7 @@ title: "Kubernetes Chaos Engineering with LitmusChaos 3.0: Experiment Authoring 
 date: 2030-01-14T00:00:00-05:00
 draft: false
 tags: ["Kubernetes", "Chaos Engineering", "LitmusChaos", "SLO", "Reliability", "GameDay"]
-categories: ["Kubernetes", "Site Reliability Engineering"]
+categories: ["Kubernetes", "SRE"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Advanced LitmusChaos 3.0 usage covering ChaosEngine v2 API, custom fault development in Go, integrating chaos results with SLO tooling, and automating GameDay exercises at enterprise scale."
 more_link: "yes"

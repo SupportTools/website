@@ -3,7 +3,7 @@ title: "Lock-Free Data Structures for High-Concurrency Applications"
 date: 2026-09-17T00:00:00-05:00
 author: "Systems Engineering Team"
 description: "Master lock-free programming techniques for building high-performance concurrent data structures. Learn atomic operations, memory ordering, ABA problem solutions, and practical implementations of queues, stacks, and hash tables."
-categories: ["Systems Programming", "Concurrency", "Performance Optimization"]
+categories: ["Systems Programming", "Concurrency", "Performance"]
 tags: ["lock-free programming", "atomic operations", "memory ordering", "concurrent data structures", "lockless algorithms", "high performance", "scalability", "parallel programming", "memory barriers", "ABA problem"]
 keywords: ["lock-free programming", "atomic operations", "concurrent data structures", "lockless algorithms", "memory ordering", "high concurrency", "scalable data structures", "parallel programming", "lock-free queues", "lock-free stacks"]
 draft: false

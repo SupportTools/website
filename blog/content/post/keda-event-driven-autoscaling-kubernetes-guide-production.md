@@ -4,7 +4,6 @@ date: 2028-09-22T00:00:00-05:00
 draft: false
 tags: ["KEDA", "Kubernetes", "Autoscaling", "Event-Driven", "Kafka"]
 categories:
-- KEDA
 - Kubernetes
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Complete guide to KEDA event-driven autoscaling for Kubernetes including ScaledObject and ScaledJob configuration, Kafka/RabbitMQ/Redis/Prometheus scalers, TriggerAuthentication, scaling from zero, and production operational patterns for batch workloads."

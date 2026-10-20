@@ -3,7 +3,7 @@ title: "Rust for High-Performance Kubernetes Operators: Production Development G
 date: 2026-11-09T00:00:00-05:00
 draft: false
 tags: ["Rust", "Kubernetes", "Operators", "Performance", "kube-rs", "Safety", "Concurrency"]
-categories: ["Performance Optimization", "Rust", "Kubernetes"]
+categories: ["Performance", "Rust", "Kubernetes"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to building high-performance Kubernetes operators with Rust, including kube-rs, memory safety, zero-cost abstractions, async runtime optimization, and production deployment patterns."
 more_link: "yes"

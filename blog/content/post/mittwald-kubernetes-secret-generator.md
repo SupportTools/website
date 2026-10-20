@@ -5,7 +5,6 @@ draft: false
 tags: ["Kubernetes", "Mittwald", "Secret Management", "Kubernetes Secrets"]
 categories:
 - Kubernetes
-- Mittwald
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Discover how to use the Mittwald Kubernetes Secret Generator to automate and manage secrets in your Kubernetes cluster effortlessly."
 more_link: "yes"

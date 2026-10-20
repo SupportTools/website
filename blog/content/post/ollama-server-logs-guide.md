@@ -2,9 +2,8 @@
 title: "Comprehensive Guide to Locating and Analyzing Ollama Server Logs Across Platforms"
 date: 2025-04-17T00:00:00-05:00
 draft: false
-tags: ["Ollama", "Logs", "Troubleshooting", "AI Models", "Server Management"]
+tags: ["Ollama", "Logs", "Troubleshooting", "AI Models", "Server Management", "AI Tools"]
 categories:
-- AI Tools
 - Troubleshooting
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to effectively access, read, and analyze Ollama server logs on Mac, Linux, Windows, and containers for efficient troubleshooting and performance optimization."

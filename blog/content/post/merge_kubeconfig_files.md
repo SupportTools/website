@@ -5,7 +5,6 @@ draft: false
 tags: ["Kubernetes", "kubeconfig"]
 categories:
 - Kubernetes
-- kubeconfig
 author: "Matthew Mattox - mmattox@support.tools"
 description: "How to merge Kubernetes kubectl config files"
 more_link: "yes"

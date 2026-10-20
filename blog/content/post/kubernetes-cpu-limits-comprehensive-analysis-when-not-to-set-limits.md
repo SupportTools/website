@@ -2,7 +2,7 @@
 title: "The Complete Guide to Kubernetes CPU Limits: When Not Setting Them Makes Sense"
 date: 2026-10-22T09:00:00-05:00
 draft: false
-categories: ["Kubernetes", "Performance Optimization", "Resource Management"]
+categories: ["Kubernetes", "Performance", "Resource Management"]
 tags: ["Kubernetes", "CPU Limits", "Performance Tuning", "QoS Classes", "Linux Scheduler", "Resource Management", "Cluster Optimization", "Burstable Workloads", "CPU Throttling", "Container Performance"]
 ---
 

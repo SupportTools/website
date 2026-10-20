@@ -3,7 +3,7 @@ title: "Deep Dive: Kubernetes API Server"
 date: 2025-01-01T00:00:00-05:00
 draft: false
 tags: ["kubernetes", "api-server", "control plane", "architecture"]
-categories: ["Kubernetes Deep Dive"]
+categories: ["Kubernetes"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive deep dive into the Kubernetes API Server architecture, configuration, and internals"
 url: "/training/kubernetes-deep-dive/kube-apiserver/"

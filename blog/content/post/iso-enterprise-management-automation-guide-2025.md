@@ -2,8 +2,8 @@
 title: "Enterprise ISO Management & Automation Guide 2025: Mass Deployment, Virtual Media & Network Boot"
 date: 2025-09-12T10:00:00-08:00
 draft: false
-tags: ["iso", "mounting", "virtualization", "automation", "pxe", "network-boot", "virtual-media", "enterprise", "deployment", "devops", "infrastructure", "kickstart", "preseed", "unattended-install"]
-categories: ["Tech", "Misc"]
+tags: ["iso", "mounting", "virtualization", "automation", "pxe", "network-boot", "virtual-media", "enterprise", "deployment", "devops", "infrastructure", "kickstart", "preseed", "unattended-install", "Tech", "Misc"]
+categories: ["Infrastructure"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Master enterprise ISO management in 2025. Comprehensive guide covering automated ISO deployment, virtual media management, network boot infrastructure, mass installation automation, and advanced troubleshooting for large-scale server deployments."
 ---

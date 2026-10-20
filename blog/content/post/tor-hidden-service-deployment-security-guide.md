@@ -2,10 +2,9 @@
 title: "Enterprise Tor Hidden Service Deployment: Complete Security and Operations Guide"
 date: 2025-02-25T10:00:00-05:00
 draft: false
-tags: ["Tor", "Hidden Services", "Onion Services", "Privacy", "Security", "Network Security", "Linux", "Nginx", "Apache", "Anonymity"]
+tags: ["Tor", "Hidden Services", "Onion Services", "Privacy", "Security", "Network Security", "Linux", "Nginx", "Apache", "Anonymity", "Network Privacy"]
 categories:
 - Security
-- Network Privacy
 - Linux
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide for deploying and securing Tor Hidden Services with enterprise-grade security practices, monitoring, and operational considerations"

@@ -2,10 +2,9 @@
 title: "Upgrading Kubernetes: A Practical Guide"
 date: 2024-12-01T17:30:00-05:00
 draft: false
-tags: ["Kubernetes", "Upgrades", "Best Practices", "Cluster Maintenance"]
+tags: ["Kubernetes", "Upgrades", "Best Practices", "Cluster Maintenance", "Maintenance"]
 categories:
 - Kubernetes
-- Maintenance
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to upgrade Kubernetes clusters safely and efficiently with practical tips and best practices for both legacy and modern environments."
 more_link: "yes"

@@ -2,10 +2,9 @@
 title: "How to Get Chrome to Accept a Self-Signed Certificate"
 date: 2023-10-13T09:30:00-05:00
 draft: false
-tags: ["Chrome", "SSL", "Certificate"]
+tags: ["Chrome", "SSL", "Certificate", "Web Browsers"]
 categories:
-- Web Browsers
-- SSL/TLS
+- "TLS & Certificates"
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A step-by-step guide on making Chrome accept a self-signed certificate."
 more_link: "yes"

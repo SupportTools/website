@@ -5,7 +5,6 @@ draft: false
 tags: ["Linux Command Line", "Terminal", "User Management", "pkill", "Session Management"]
 categories:
 - Linux
-- User Management
 - Terminal
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to manage user sessions in Linux by logging out other users using the pkill command."

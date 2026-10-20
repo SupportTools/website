@@ -6,7 +6,7 @@ tags: ["Disaster Recovery", "Backup Automation", "rclone", "Backblaze B2", "Amaz
 categories:
 - Disaster Recovery
 - Data Protection
-- Enterprise Infrastructure
+- Infrastructure
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Complete enterprise guide to disaster recovery automation, multi-cloud backup strategies, comprehensive data protection frameworks, and production-grade backup infrastructure for mission-critical systems"
 more_link: "yes"

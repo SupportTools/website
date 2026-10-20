@@ -6,7 +6,7 @@ tags: ["Linux", "Memory", "NUMA", "Huge Pages", "Performance", "Kernel Tuning", 
 categories:
 - Linux
 - Performance
-- Systems
+- Systems Programming
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Deep dive into Linux memory: transparent huge pages configuration, explicit huge pages for databases, NUMA auto-balancing, memory compaction, page reclaim tuning, and production memory optimization patterns."
 more_link: "yes"

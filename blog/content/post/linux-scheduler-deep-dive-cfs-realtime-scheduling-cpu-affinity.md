@@ -5,7 +5,7 @@ draft: false
 tags: ["Linux", "Kernel", "Scheduler", "CFS", "Real-Time", "CPU Affinity", "NUMA", "cgroups", "Performance", "Latency"]
 categories:
 - Linux
-- Kernel
+- Kernel Development
 - Performance
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Complete guide to the Completely Fair Scheduler, RT scheduling classes, CPU affinity, NUMA scheduling, cgroups CPU bandwidth, and latency tuning for enterprise Linux systems."

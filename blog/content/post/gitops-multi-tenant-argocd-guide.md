@@ -5,7 +5,7 @@ draft: false
 tags: ["ArgoCD", "GitOps", "Multi-Tenant", "Kubernetes", "Automation"]
 categories:
 - Kubernetes
-- CI/CD
+- "CI & CD"
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive guide to implementing multi-tenant GitOps with ArgoCD, covering Projects for tenant isolation, ApplicationSet generators, RBAC, SSO integration, app-of-apps patterns, sync waves, and automated drift detection."
 more_link: "yes"

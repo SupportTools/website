@@ -4,7 +4,7 @@ date: 2026-03-21T00:00:00-05:00
 draft: false
 tags: ["API Gateway", "Service Mesh", "Istio", "Kong", "Ambassador", "Microservices", "Traffic Management", "Security", "Observability", "Load Balancing", "Circuit Breaker", "Rate Limiting", "mTLS", "Enterprise Architecture", "Cloud Native"]
 categories:
-- API Management
+- API Design
 - Service Mesh
 - Microservices
 - Cloud Native

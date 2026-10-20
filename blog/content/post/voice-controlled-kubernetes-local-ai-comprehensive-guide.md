@@ -2,7 +2,7 @@
 title: "Building Voice-Controlled Kubernetes Infrastructure: A Complete Guide to Local AI-Powered DevOps Automation"
 date: 2027-06-01T09:00:00-05:00
 draft: false
-categories: ["Kubernetes", "AI/ML", "DevOps Automation"]
+categories: ["Kubernetes", "AI & ML", "DevOps"]
 tags: ["Kubernetes", "Voice Control", "Local AI", "LLM", "DevOps", "Automation", "Privacy", "Infrastructure Management", "Function Calling", "Speech Recognition", "Natural Language Processing", "Edge AI"]
 ---
 

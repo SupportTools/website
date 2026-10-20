@@ -6,7 +6,7 @@ tags: ["Kubernetes", "RKE1", "RKE2", "Migration", "SUSE Rancher", "Cattle-Drive"
 categories:
 - Kubernetes
 - Migration
-- SUSE Rancher
+- Rancher
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive guide to migrating from RKE1 to RKE2 using SUSE Rancher Prime, covering migration strategies, data migration methods, and troubleshooting common issues."
 more_link: "yes"

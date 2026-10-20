@@ -5,8 +5,8 @@ draft: false
 tags: ["Unix Signals", "Process Management", "Linux", "System Administration", "Process Control", "Signal Handling", "Automation", "Enterprise", "Kill", "Jobs"]
 categories:
 - Process Management
-- Linux Administration
-- System Programming
+- System Administration
+- Systems Programming
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to Unix signals, advanced process management techniques, signal handling strategies, enterprise automation frameworks, and production-grade process control for Linux systems"
 more_link: "yes"

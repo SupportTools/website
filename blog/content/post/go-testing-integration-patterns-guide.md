@@ -3,7 +3,7 @@ title: "Go Integration Testing Patterns: Testcontainers, Real Databases, and HTT
 date: 2028-02-03T00:00:00-05:00
 draft: false
 tags: ["Go", "Testing", "Testcontainers", "PostgreSQL", "Integration Testing", "Benchmarks", "Fuzz Testing"]
-categories: ["Go", "Testing", "Quality Engineering"]
+categories: ["Go", "Testing"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to Go integration testing patterns including testcontainers-go for PostgreSQL/Redis/Kafka, table-driven sub-tests, httptest.Server mocking, test parallelism, test fixtures, benchmarks, and fuzz testing with build tags."
 more_link: "yes"

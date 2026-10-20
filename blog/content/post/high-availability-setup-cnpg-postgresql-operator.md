@@ -4,7 +4,7 @@ date: 2025-01-15T22:45:00-05:00
 draft: false
 tags: ["Postgres", "High Availability", "Kubernetes", "CNPG"]
 categories:
-- Postgres
+- PostgreSQL
 - Kubernetes
 - High Availability
 author: "Matthew Mattox - mmattox@support.tools"

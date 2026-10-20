@@ -3,7 +3,7 @@ title: "Multi-Cluster Kubernetes Federation with Admiralty: Enterprise Implement
 date: 2026-09-01T00:00:00-05:00
 draft: false
 tags: ["Kubernetes", "Multi-Cluster", "Admiralty", "Federation", "Scheduling", "Cloud Native"]
-categories: ["Kubernetes", "DevOps", "Cloud Infrastructure"]
+categories: ["Kubernetes", "DevOps", "Cloud"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to implementing multi-cluster Kubernetes federation using Admiralty, including cluster mesh configuration, workload scheduling, service discovery, and disaster recovery strategies."
 more_link: "yes"

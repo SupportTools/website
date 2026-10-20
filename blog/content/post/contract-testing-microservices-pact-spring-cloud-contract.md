@@ -6,7 +6,6 @@ tags: ["Contract Testing", "Microservices", "Pact", "Spring Cloud Contract", "Te
 categories:
 - Testing
 - Microservices
-- Quality Assurance
 - DevOps
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to implementing contract testing for microservices using Pact and Spring Cloud Contract, including CI/CD integration, performance analysis, and contract evolution strategies."

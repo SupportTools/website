@@ -5,7 +5,6 @@ draft: false
 tags: ["Networking", "Subnetting", "IP"]
 categories:
 - Networking
-- Subnetting
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A detailed cheat sheet for subnet masks, IP ranges, and their broadcast addresses."
 more_link: "yes"

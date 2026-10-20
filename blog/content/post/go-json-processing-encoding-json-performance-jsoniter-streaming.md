@@ -3,7 +3,7 @@ title: "Go JSON Processing: encoding/json Performance, jsoniter, and Streaming J
 date: 2030-04-13T00:00:00-05:00
 draft: false
 tags: ["Go", "JSON", "Performance", "jsoniter", "Streaming", "gjson", "Optimization"]
-categories: ["Go", "Performance", "API Development"]
+categories: ["Go", "Performance", "API Design"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Complete guide to Go JSON performance optimization: switching to jsoniter for speed, streaming large JSON with json.Decoder, gjson for path-based extraction, JSON schema validation, and production patterns for high-throughput JSON processing pipelines."
 more_link: "yes"

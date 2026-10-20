@@ -5,7 +5,7 @@ draft: false
 tags: ["ESXi", "VMware", "Custom ISO", "Network Drivers", "Automation", "vSphere", "Enterprise Deployment", "Infrastructure", "PowerShell", "DevOps"]
 categories:
 - Virtualization
-- Enterprise Infrastructure
+- Infrastructure
 - VMware
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Complete enterprise guide to creating custom ESXi installers with advanced driver integration, automated deployment frameworks, production imaging pipelines, and comprehensive infrastructure automation"

@@ -6,7 +6,7 @@ tags: ["Kubernetes", "cert-manager", "PKI", "TLS", "HashiCorp Vault", "Certifica
 categories:
 - Kubernetes
 - Security
-- PKI
+- "TLS & Certificates"
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Enterprise cert-manager guide covering wildcard certificate management, ACME DNS-01 challenges, internal CA chains with cert-manager CA issuer, certificate rotation automation, monitoring certificate expiry, and integrating with HashiCorp Vault PKI."
 more_link: "yes"

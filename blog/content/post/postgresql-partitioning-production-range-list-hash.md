@@ -4,7 +4,7 @@ date: 2029-03-16T00:00:00-05:00
 draft: false
 tags: ["PostgreSQL", "Database", "Partitioning", "Performance", "Production", "SQL"]
 categories:
-- Database
+- Databases
 - PostgreSQL
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A production guide to PostgreSQL declarative table partitioning covering range, list, and hash strategies, partition pruning, constraint exclusion, index management, maintenance automation, and partition-related query optimization."

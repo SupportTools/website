@@ -4,9 +4,9 @@ date: 2025-02-13T09:37:00-05:00
 draft: false  
 tags: ["Kubernetes", "Backup", "Velero", "AWS S3", "Cloud"]  
 categories:  
-- Kubernetes  
-- Backup  
-- Cloud  
+- Kubernetes
+- "Backup & Recovery"
+- Cloud
 author: "Matthew Mattox - mmattox@support.tools"  
 description: "Learn how to use Velero to back up Kubernetes cluster resources to AWS S3, ensuring data resilience and disaster recovery."  
 more_link: "yes"  

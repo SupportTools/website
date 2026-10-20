@@ -5,7 +5,7 @@ draft: false
 tags: ["Go", "Golang", "Rate Limiting", "Redis", "gRPC", "HTTP", "Distributed Systems"]
 categories:
 - Go
-- Backend
+- Backend Engineering
 - Architecture
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Enterprise rate limiting in Go covering golang.org/x/time/rate token bucket, sliding window algorithms, Redis-backed distributed rate limiters, per-user quotas, admission control, and gRPC/HTTP middleware integration."

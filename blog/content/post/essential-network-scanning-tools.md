@@ -4,9 +4,9 @@ date: 2025-02-12T09:00:00-05:00
 draft: false
 tags: ["Scanning", "Pentesting", "Cybersecurity", "Kali Linux", "Hacking"]
 categories:
-- Cybersecurity
+- Security
 - Networking
-- IT Tools
+- Developer Tools
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Discover the top network scanning tools that help IT professionals identify devices, open ports, and potential vulnerabilities on their networks."
 more_link: "yes"

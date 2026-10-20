@@ -6,7 +6,7 @@ tags: ["Go", "Build Optimization", "Modules", "Build Constraints", "Reproducible
 categories:
 - Go
 - Build Systems
-- CI/CD
+- "CI & CD"
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to Go module proxy, GOMODCACHE, build constraints, ldflags version injection, reproducible builds, and Bazel/Buck2 integration for enterprise Go build pipelines."
 more_link: "yes"

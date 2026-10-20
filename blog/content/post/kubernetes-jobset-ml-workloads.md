@@ -5,7 +5,7 @@ draft: false
 tags: ["Kubernetes", "Machine Learning", "JobSet", "Distributed Computing", "GPUs", "TPUs", "HPC"]
 categories:
 - Kubernetes
-- Machine Learning
+- "AI & ML"
 author: "Matthew Mattox - mmattox@support.tools"
 description: "How Kubernetes JobSet solves the challenges of distributed ML workloads by providing a unified API for managing complex multi-node training across GPUs and TPUs"
 more_link: "yes"

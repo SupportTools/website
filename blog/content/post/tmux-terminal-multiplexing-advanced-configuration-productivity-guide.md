@@ -6,7 +6,7 @@ tags: ["tmux", "terminal", "productivity", "linux", "devops", "ssh", "configurat
 categories:
 - Terminal
 - DevOps
-- Productivity
+- Developer Experience
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Master tmux terminal multiplexing with advanced configuration patterns, custom keybindings, and productivity workflows for enterprise DevOps operations. Complete guide to session management, pane navigation, and vim-style shortcuts."
 more_link: "yes"

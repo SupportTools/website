@@ -5,8 +5,8 @@ draft: false
 tags: ["Linux Security", "Server Hardening", "Enterprise Security", "SSH Security", "Fail2ban", "Firewall", "Security Automation", "Compliance", "SIEM", "Zero Trust"]
 categories:
 - Security
-- Linux Administration
-- Enterprise Infrastructure
+- System Administration
+- Infrastructure
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Complete enterprise guide to Linux server security hardening, advanced threat protection, automated security frameworks, compliance management, and production-grade security operations for critical infrastructure"
 more_link: "yes"

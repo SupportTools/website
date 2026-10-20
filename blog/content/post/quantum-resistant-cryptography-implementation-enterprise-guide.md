@@ -2,12 +2,10 @@
 title: "Quantum-Resistant Cryptography Implementation: Enterprise Post-Quantum Security Framework"
 date: 2026-10-31T00:00:00-05:00
 draft: false
-tags: ["Quantum Cryptography", "Post-Quantum Security", "NIST Standards", "Cryptographic Algorithms", "Enterprise Security", "Quantum Computing", "Cybersecurity", "Encryption"]
+tags: ["Quantum Cryptography", "Post-Quantum Security", "NIST Standards", "Cryptographic Algorithms", "Enterprise Security", "Quantum Computing", "Cybersecurity", "Encryption", "Post-Quantum"]
 categories:
 - Security
 - Cryptography
-- Quantum Computing
-- Post-Quantum
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to implementing quantum-resistant cryptography for enterprise environments, including NIST-approved post-quantum algorithms, migration strategies, and production-ready implementations for quantum-safe security."
 more_link: "yes"

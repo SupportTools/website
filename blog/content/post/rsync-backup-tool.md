@@ -4,9 +4,9 @@ date: 2024-09-04T19:26:00-05:00
 draft: false  
 tags: ["Rsync", "Backup", "Linux", "SSH", "Cron"]  
 categories:  
-- Linux  
-- Backup  
-- Tools  
+- Linux
+- "Backup & Recovery"
+- Developer Tools
 author: "Matthew Mattox - mmattox@support.tools"  
 description: "A guide to using Rsync for file backups and remote synchronization on Linux."  
 more_link: "yes"  

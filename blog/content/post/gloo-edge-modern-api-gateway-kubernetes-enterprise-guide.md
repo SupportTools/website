@@ -3,7 +3,7 @@ title: "Gloo Edge: Modern Envoy-Based API Gateway for Kubernetes Enterprise Envi
 date: 2026-07-15T00:00:00-05:00
 draft: false
 tags: ["Gloo Edge", "Envoy", "API Gateway", "Kubernetes", "Service Mesh", "Enterprise"]
-categories: ["Kubernetes", "API Management", "Microservices"]
+categories: ["Kubernetes", "API Design", "Microservices"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to deploying and managing Gloo Edge API Gateway on Kubernetes with advanced Envoy features, function-level routing, GraphQL, and enterprise-grade traffic management."
 more_link: "yes"

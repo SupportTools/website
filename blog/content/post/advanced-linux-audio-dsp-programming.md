@@ -5,7 +5,6 @@ draft: false
 tags: ["Linux", "Audio", "DSP", "ALSA", "JACK", "Real-Time", "Signal Processing", "Audio Programming"]
 categories:
 - Linux
-- Audio Programming
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Master advanced Linux audio and DSP programming including ALSA, JACK, real-time audio processing, digital signal processing algorithms, and building professional audio applications"
 more_link: "yes"

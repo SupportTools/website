@@ -5,7 +5,7 @@ draft: false
 tags: ["Kubernetes", "Spinnaker", "CI/CD", "Canary", "Deployment", "Pipeline"]
 categories:
 - Kubernetes
-- CI/CD
+- "CI & CD"
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Enterprise guide to running Spinnaker on Kubernetes: migrating from Halyard to the Spinnaker Operator, building reusable pipeline templates, configuring automated canary analysis with Kayenta, and implementing manual judgment gates for compliance."
 more_link: "yes"

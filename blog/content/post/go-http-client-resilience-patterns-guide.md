@@ -5,7 +5,7 @@ draft: false
 tags: ["Go", "HTTP", "Resilience", "Microservices"]
 categories:
 - Go
-- Backend
+- Backend Engineering
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Building resilient Go HTTP clients: custom Transport configuration, connection pool tuning, retry with exponential backoff, circuit breaker with sony/gobreaker, timeout hierarchy, and OpenTelemetry tracing."
 more_link: "yes"

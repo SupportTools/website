@@ -6,7 +6,7 @@ tags: ["Redis", "Kubernetes", "Database", "High Availability", "Caching"]
 categories:
 - Redis
 - Kubernetes
-- Database
+- Databases
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A production guide to deploying Redis on Kubernetes using the OpsTree Redis Operator, covering Sentinel high availability, Redis Cluster sharding, AOF and RDB persistence, memory policy configuration, slow log analysis, keyspace notifications, and monitoring with redis-exporter."
 more_link: "yes"

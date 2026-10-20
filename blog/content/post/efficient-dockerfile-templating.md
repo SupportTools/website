@@ -3,7 +3,7 @@ title: "The Ultimate Guide to Dockerfile Templating for Scalable Builds"
 date: 2025-02-15T12:00:00Z
 draft: false
 tags: ["Docker", "Dockerfile Templating", "DevOps", "CI/CD Automation"]
-categories: ["Containerization", "Automation"]
+categories: ["Containers", "Automation"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to optimize Dockerfile templating for scalability, efficiency, and automation in modern DevOps workflows, with practical examples and best practices."
 more_link: "https://support.tools/post/efficient-dockerfile-templating"

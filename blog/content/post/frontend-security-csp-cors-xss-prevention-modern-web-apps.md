@@ -5,7 +5,7 @@ draft: false
 tags: ["Security", "Frontend", "CSP", "CORS", "XSS", "Web Security", "JavaScript", "OWASP"]
 categories:
 - Security
-- Frontend Development
+- Web Development
 - Best Practices
 - Architecture
 author: "Matthew Mattox - mmattox@support.tools"

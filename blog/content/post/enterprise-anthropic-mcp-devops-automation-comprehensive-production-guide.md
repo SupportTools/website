@@ -2,8 +2,8 @@
 title: "Enterprise Anthropic MCP DevOps Automation 2025: Comprehensive Production Guide to AI-Powered Infrastructure Management"
 date: 2026-02-05T09:00:00-05:00
 draft: false
-tags: ["Anthropic MCP", "DevOps", "AI Automation", "Python", "Production Infrastructure", "Enterprise Architecture", "Intelligent Operations", "Model Context Protocol"]
-categories: ["DevOps", "AI", "Enterprise", "Automation"]
+tags: ["Anthropic MCP", "DevOps", "AI Automation", "Python", "Production Infrastructure", "Enterprise Architecture", "Intelligent Operations", "Model Context Protocol", "Enterprise"]
+categories: ["DevOps", "AI & ML", "Automation"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Complete enterprise guide to implementing Anthropic's Model Context Protocol (MCP) for AI-powered DevOps automation. From production infrastructure to intelligent troubleshooting systems."
 more_link: "yes"

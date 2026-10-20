@@ -3,7 +3,7 @@ title: "PostgreSQL High Availability with Patroni and Kubernetes: Enterprise Pro
 date: 2026-10-23T00:00:00-05:00
 draft: false
 tags: ["PostgreSQL", "Patroni", "Kubernetes", "High Availability", "StatefulSets", "Database", "HA", "Enterprise", "Production"]
-categories: ["Database Administration", "Kubernetes", "High Availability", "PostgreSQL"]
+categories: ["Databases", "Kubernetes", "High Availability", "PostgreSQL"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive enterprise guide to implementing PostgreSQL high availability using Patroni on Kubernetes, including StatefulSets configuration, failover scenarios, persistent volumes, monitoring strategies, and performance tuning for production environments."
 more_link: "yes"

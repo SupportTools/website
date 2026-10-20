@@ -2,12 +2,11 @@
 title: "Advanced IPC Mechanisms: Shared Memory and Message Queues for High-Performance Enterprise Systems"
 date: 2026-04-07T00:00:00-05:00
 draft: false
-tags: ["IPC", "Shared Memory", "Message Queues", "Systems Programming", "Performance", "Enterprise", "POSIX"]
+tags: ["IPC", "Shared Memory", "Message Queues", "Systems Programming", "Performance", "Enterprise", "POSIX", "Inter-Process Communication"]
 categories:
 - Systems Programming
-- Inter-Process Communication
-- Performance Optimization
-- Enterprise Systems
+- Performance
+- Infrastructure
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Master advanced inter-process communication techniques using shared memory, message queues, and lock-free algorithms. Learn POSIX IPC, System V IPC, and custom high-performance communication protocols for enterprise applications."
 more_link: "yes"

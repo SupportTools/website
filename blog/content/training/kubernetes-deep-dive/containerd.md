@@ -3,7 +3,7 @@ title: "Deep Dive: Kubernetes Container Runtime (containerd)"
 date: 2025-01-01T00:00:00-05:00
 draft: false
 tags: ["kubernetes", "containerd", "containers", "runtime"]
-categories: ["Kubernetes Deep Dive"]
+categories: ["Kubernetes"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive deep dive into containerd architecture, configuration, and container management"
 url: "/training/kubernetes-deep-dive/containerd/"

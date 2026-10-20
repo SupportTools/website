@@ -3,7 +3,7 @@ title: "Hybrid Cloud Connectivity with AWS Transit Gateway: Enterprise Architect
 date: 2026-08-05T00:00:00-05:00
 draft: false
 tags: ["AWS", "Transit Gateway", "Hybrid Cloud", "Networking", "VPC", "VPN", "Direct Connect", "Cloud Architecture"]
-categories: ["Cloud Infrastructure", "Networking", "AWS"]
+categories: ["Cloud", "Networking", "AWS"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to building enterprise hybrid cloud connectivity using AWS Transit Gateway, including VPC peering, VPN connections, Direct Connect integration, and advanced routing patterns."
 more_link: "yes"

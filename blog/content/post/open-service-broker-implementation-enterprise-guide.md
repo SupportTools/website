@@ -2,8 +2,8 @@
 title: "Open Service Broker API Implementation: Building Service Marketplaces for Kubernetes Platforms"
 date: 2026-10-16T00:00:00-05:00
 draft: false
-tags: ["Open Service Broker", "OSBAPI", "Kubernetes", "Service Catalog", "Platform Engineering", "Microservices"]
-categories: ["Platform Engineering", "Service Management"]
+tags: ["Open Service Broker", "OSBAPI", "Kubernetes", "Service Catalog", "Platform Engineering", "Microservices", "Service Management"]
+categories: ["Platform Engineering"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to implementing Open Service Broker API for creating service marketplaces that provision and manage backing services in Kubernetes platforms."
 more_link: "yes"

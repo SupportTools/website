@@ -5,7 +5,7 @@ draft: false
 tags: ["Tekton", "Kubernetes", "CI/CD", "GitHub", "Webhooks", "GitOps"]
 categories:
 - Kubernetes
-- CI/CD
+- "CI & CD"
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A production guide to Tekton Triggers for GitHub webhook-driven CI pipelines, covering EventListeners, TriggerBindings, TriggerTemplates, interceptors, and multi-repository pipeline routing in enterprise Kubernetes environments."
 more_link: "yes"

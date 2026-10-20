@@ -3,7 +3,7 @@ title: "Advanced Go Programming Tricks: Enterprise Performance Optimization Tech
 date: 2026-04-05T00:00:00-05:00
 draft: false
 tags: ["Go", "Golang", "Performance", "Enterprise", "Optimization", "Memory Management", "Concurrency"]
-categories: ["Programming", "Performance", "Enterprise Development"]
+categories: ["Programming", "Performance", "Development"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Master advanced Go programming tricks and enterprise performance optimization techniques including memory management, PGO, compiler optimizations, and production patterns for 2025."
 more_link: "yes"

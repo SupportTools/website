@@ -3,7 +3,7 @@ title: "Rust for Systems Programming: Memory Safety in Enterprise Infrastructure
 date: 2026-11-10T00:00:00-05:00
 draft: false
 tags: ["rust", "systems-programming", "memory-safety", "enterprise", "infrastructure", "performance", "linux", "security"]
-categories: ["Programming", "Systems", "Rust"]
+categories: ["Programming", "Systems Programming", "Rust"]
 author: "Matthew Mattox"
 description: "Comprehensive guide to building memory-safe systems infrastructure with Rust, covering kernel modules, network services, and high-performance system utilities for enterprise environments"
 toc: true

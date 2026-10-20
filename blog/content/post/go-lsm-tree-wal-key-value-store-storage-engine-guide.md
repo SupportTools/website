@@ -3,7 +3,7 @@ title: "Go: Building a High-Performance Key-Value Store with LSM Trees and WAL f
 date: 2031-08-21T00:00:00-05:00
 draft: false
 tags: ["Go", "LSM Tree", "WAL", "Storage Engine", "Key-Value Store", "Database Internals", "Performance"]
-categories: ["Go", "Database"]
+categories: ["Go", "Databases"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Build a functional LSM-tree-based key-value store in Go from first principles: write-ahead log, memtable, SSTable compaction, bloom filters, and benchmark-driven optimization to understand how RocksDB and LevelDB work internally."
 more_link: "yes"

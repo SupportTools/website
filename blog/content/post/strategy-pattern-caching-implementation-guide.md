@@ -5,7 +5,7 @@ draft: false
 tags: ["Go", "Golang", "Design Patterns", "Caching", "Strategy Pattern", "Performance", "Scalability", "Redis", "In-Memory Cache"]
 categories:
 - Go
-- Design Patterns
+- Architecture
 - Performance
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to implement the Strategy Pattern to create flexible, interchangeable caching mechanisms that adapt to different performance and scalability requirements in Go applications"

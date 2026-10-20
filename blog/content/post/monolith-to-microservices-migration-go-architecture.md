@@ -3,7 +3,7 @@ title: "Monolith to Microservices Migration: Real-World Go Architecture"
 date: 2026-09-26T00:00:00-05:00
 draft: false
 tags: ["Microservices", "Go", "Architecture", "Migration", "gRPC", "Domain-Driven Design"]
-categories: ["Software Architecture", "Go", "Microservices"]
+categories: ["Architecture", "Go", "Microservices"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive guide to migrating from monolithic to microservices architecture using Go, including domain-driven design principles, service communication patterns, data separation strategies, and production deployment patterns based on a real-world migration project."
 more_link: "yes"

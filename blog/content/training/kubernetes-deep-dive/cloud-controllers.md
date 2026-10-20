@@ -3,7 +3,7 @@ title: "Deep Dive: Kubernetes Cloud Controllers"
 date: 2025-01-01T00:00:00-05:00
 draft: false
 tags: ["kubernetes", "cloud-controller", "cloud-provider", "infrastructure"]
-categories: ["Kubernetes Deep Dive"]
+categories: ["Kubernetes"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive deep dive into Kubernetes Cloud Controller Manager architecture and implementation"
 url: "/training/kubernetes-deep-dive/cloud-controllers/"

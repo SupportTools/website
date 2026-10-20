@@ -5,7 +5,7 @@ draft: false
 tags: ["Go", "Asynq", "River", "Task Queue", "Background Jobs", "Redis", "PostgreSQL", "Worker", "Concurrency"]
 categories:
 - Go
-- Backend
+- Backend Engineering
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Complete guide to Asynq with Redis and River with PostgreSQL for production background job processing in Go: job priorities, retry policies, unique jobs, periodic tasks, cron scheduling, and observability."
 more_link: "yes"

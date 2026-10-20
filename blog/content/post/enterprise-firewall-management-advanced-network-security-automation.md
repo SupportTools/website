@@ -5,8 +5,8 @@ draft: false
 tags: ["Firewall", "Network Security", "UFW", "iptables", "nftables", "Security Automation", "Zero Trust", "Enterprise", "Network Segmentation", "Compliance"]
 categories:
 - Network Security
-- Enterprise Infrastructure
-- Security Automation
+- Infrastructure
+- Security
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Complete enterprise guide to advanced firewall management, network security automation, zero trust implementation, and production-grade network segmentation for critical infrastructure"
 more_link: "yes"

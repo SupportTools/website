@@ -5,7 +5,7 @@ draft: false
 tags: ["Go", "Plugin Architecture", "HashiCorp", "gRPC", "Software Design"]
 categories:
 - Go
-- Software Design
+- Architecture
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Complete guide to Go plugin architecture including native Go plugins caveats, HashiCorp go-plugin framework with gRPC transport, versioned interfaces, plugin discovery, subprocess isolation, health checking, and building a production-grade plugin system with dynamic loading."
 more_link: "yes"

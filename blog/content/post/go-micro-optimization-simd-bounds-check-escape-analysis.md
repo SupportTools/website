@@ -3,7 +3,7 @@ title: "Go Micro-Optimization: SIMD, Bounds Check Elimination, and Escape Analys
 date: 2029-08-07T00:00:00-05:00
 draft: false
 tags: ["Go", "Performance", "SIMD", "Compiler", "Optimization", "Assembly"]
-categories: ["Go", "Performance Engineering"]
+categories: ["Go", "Performance"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Deep dive into Go micro-optimization techniques: goasm SIMD intrinsics, bounds check elimination patterns, escape analysis with -gcflags, inline budget management, and compiler directives like //go:noescape."
 more_link: "yes"

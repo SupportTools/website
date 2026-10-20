@@ -3,7 +3,7 @@ title: "Go JSON Performance Optimization: sonic vs jsoniter vs encoding/json Ben
 date: 2028-06-22T00:00:00-05:00
 draft: false
 tags: ["Go", "JSON", "Performance", "Optimization", "sonic", "jsoniter", "Benchmarks"]
-categories: ["Go", "Performance Engineering"]
+categories: ["Go", "Performance"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to Go JSON performance optimization: encoding/json vs sonic/jsoniter/simdjson-go benchmarks, streaming JSON with Decoder, custom MarshalJSON for hot paths, avoiding allocations in JSON handling, and JSON schema validation performance."
 more_link: "yes"

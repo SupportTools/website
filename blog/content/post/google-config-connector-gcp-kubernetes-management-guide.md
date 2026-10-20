@@ -3,7 +3,7 @@ title: "Google Config Connector: Managing GCP Resources from Kubernetes"
 date: 2027-02-08T00:00:00-05:00
 draft: false
 tags: ["Kubernetes", "GCP", "Config Connector", "Infrastructure as Code", "GitOps"]
-categories: ["Cloud Architecture", "Kubernetes", "Infrastructure as Code"]
+categories: ["Cloud", "Kubernetes", "Infrastructure as Code"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Complete guide to Google Config Connector (KCC) for managing GCP resources from Kubernetes, including Workload Identity setup, namespace-mode configuration, supported resources, GitOps integration, drift detection, and troubleshooting stuck reconciliation."
 more_link: "yes"

@@ -2,11 +2,10 @@
 title: "Deploying an EKS Cluster Using Terraform"
 date: 2023-06-10T19:26:00-05:00
 draft: false
-tags: ["AWS", "EKS", "Terraform"]
+tags: ["AWS", "EKS", "Terraform", "Portfolio"]
 categories:
-- Portfolio
 - AWS
-- EKS
+- Amazon EKS
 - Terraform
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A detailed guide on deploying an EKS cluster using Terraform."

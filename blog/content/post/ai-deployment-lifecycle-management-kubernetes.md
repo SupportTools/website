@@ -5,7 +5,7 @@ draft: false
 tags: ["AI", "Machine Learning", "Kubernetes", "DevOps", "MLOps", "Cloud Migration", "Observability"]
 categories:
 - Kubernetes
-- AI/ML
+- "AI & ML"
 - DevOps
 - Architecture
 author: "Matthew Mattox - mmattox@support.tools"

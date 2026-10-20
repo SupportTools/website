@@ -3,7 +3,7 @@ title: "Clean Code in Go: Enterprise Patterns for Maintainable Large-Scale Appli
 date: 2026-07-17T00:00:00-05:00
 draft: false
 tags: ["Go", "Clean Code", "Maintainability", "Enterprise", "Architecture", "Code Quality", "Refactoring"]
-categories: ["Clean Code", "Development", "Enterprise"]
+categories: ["Best Practices", "Development"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to writing clean, maintainable Go code for enterprise applications, featuring proven patterns for organizing 50,000+ line codebases, domain-driven design, and long-term code quality strategies."
 more_link: "yes"

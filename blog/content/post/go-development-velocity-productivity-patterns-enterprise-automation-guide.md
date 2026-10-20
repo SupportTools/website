@@ -3,7 +3,7 @@ title: "Maximizing Go Development Velocity: Enterprise Productivity Patterns and
 date: 2026-07-18T00:00:00-05:00
 draft: false
 tags: ["Go", "Development Velocity", "Productivity", "Automation", "Enterprise", "DevOps", "Tooling"]
-categories: ["Productivity", "Development", "Enterprise"]
+categories: ["Developer Experience", "Development"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to maximizing Go development velocity through enterprise productivity patterns, automation strategies, and tooling frameworks that enable 10x development speed improvements and reduced time-to-market."
 more_link: "yes"

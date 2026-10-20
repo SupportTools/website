@@ -6,7 +6,7 @@ tags: ["Go", "GraphQL", "gqlgen", "DataLoader", "WebSocket", "Subscriptions", "F
 categories:
 - Go
 - GraphQL
-- API
+- API Design
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Complete guide to building production-grade GraphQL servers in Go with gqlgen, covering schema-first vs code-first approaches, N+1 problem resolution with dataloaders, WebSocket subscriptions, authentication middleware, and Apollo Federation integration."
 more_link: "yes"

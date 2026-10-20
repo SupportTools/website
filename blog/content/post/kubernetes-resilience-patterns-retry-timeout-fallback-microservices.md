@@ -3,7 +3,7 @@ title: "Kubernetes Resilience Patterns: Retry, Timeout, and Fallback in Microser
 date: 2029-10-25T00:00:00-05:00
 draft: false
 tags: ["Kubernetes", "Resilience", "Microservices", "Retry", "Circuit Breaker", "Service Mesh", "Go"]
-categories: ["Kubernetes", "Architecture", "Reliability"]
+categories: ["Kubernetes", "Architecture", "SRE"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A practical guide to resilience patterns in Kubernetes microservices: retry with exponential backoff and jitter, deadline propagation, fallback responses, bulkhead isolation, and when to use service mesh versus application-level resilience."
 more_link: "yes"

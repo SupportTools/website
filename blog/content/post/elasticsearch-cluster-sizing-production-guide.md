@@ -3,7 +3,7 @@ title: "Elasticsearch Cluster Sizing and Optimization: Enterprise Production Gui
 date: 2026-06-22T00:00:00-05:00
 draft: false
 tags: ["Elasticsearch", "Cluster Sizing", "Performance Optimization", "Search Engine", "Data Indexing", "Capacity Planning", "Production", "Enterprise"]
-categories: ["Database", "Storage", "DevOps"]
+categories: ["Databases", "Storage", "DevOps"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Master Elasticsearch cluster sizing with comprehensive guidance on capacity planning, hardware selection, shard optimization, and performance tuning for enterprise search workloads."
 more_link: "yes"

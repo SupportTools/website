@@ -3,7 +3,7 @@ title: "Elastic Cloud on Kubernetes (ECK): Production Elasticsearch and Kibana D
 date: 2027-03-26T00:00:00-05:00
 draft: false
 tags: ["Kubernetes", "Elasticsearch", "ECK", "Kibana", "Logging", "Search"]
-categories: ["Kubernetes", "Logging", "Search"]
+categories: ["Kubernetes", "Logging"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Enterprise deployment guide for Elastic Cloud on Kubernetes (ECK), covering Elasticsearch Cluster CRD with dedicated node roles, TLS/security configuration, index lifecycle management, Kibana deployment, Logstash/Beats collectors, Prometheus monitoring, and production scaling patterns."
 more_link: "yes"

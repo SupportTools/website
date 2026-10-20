@@ -3,7 +3,7 @@ title: "Deep Dive: Kubernetes CSI Drivers"
 date: 2025-01-01T00:00:00-05:00
 draft: false
 tags: ["kubernetes", "csi", "storage", "volumes"]
-categories: ["Kubernetes Deep Dive"]
+categories: ["Kubernetes"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive deep dive into Container Storage Interface (CSI) drivers, architecture, and implementation"
 url: "/training/kubernetes-deep-dive/csi-driver/"

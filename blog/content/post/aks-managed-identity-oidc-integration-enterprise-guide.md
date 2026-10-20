@@ -3,7 +3,7 @@ title: "AKS Managed Identity and OIDC Integration: Enterprise Security Guide"
 date: 2026-04-28T00:00:00-05:00
 draft: false
 tags: ["AKS", "Azure", "Kubernetes", "Managed Identity", "OIDC", "Security", "Azure Active Directory", "Workload Identity"]
-categories: ["Cloud Architecture", "Kubernetes", "Azure", "Security"]
+categories: ["Cloud", "Kubernetes", "Azure", "Security"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to implementing Azure Kubernetes Service (AKS) with Managed Identity and OIDC workload identity federation for secure, scalable enterprise authentication and authorization patterns."
 more_link: "yes"

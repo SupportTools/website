@@ -7,7 +7,6 @@ categories:
 - Networking
 - Infrastructure
 - Cloud
-- Multi-Cloud
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Master multi-cloud networking and hybrid cloud connectivity for enterprise infrastructure. Learn advanced cloud interconnection strategies, network optimization, and production-ready multi-cloud architectures."
 more_link: "yes"

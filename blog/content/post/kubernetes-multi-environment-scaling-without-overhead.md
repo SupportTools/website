@@ -5,7 +5,7 @@ draft: false
 tags: ["Kubernetes", "Autoscaling", "HPA", "VPA", "Kata Containers", "KEDA", "Cloud Bursting", "Multi-Environment", "RuntimeClass"]
 categories:
 - Kubernetes
-- Advanced Architecture
+- Architecture
 - Autoscaling
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Implement advanced Kubernetes scaling across environments without worker node or multi-cluster overhead using KEDA, Kata Containers, and RuntimeClass for efficient resource utilization and cost optimization."

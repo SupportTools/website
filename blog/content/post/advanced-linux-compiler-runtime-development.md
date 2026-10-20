@@ -2,10 +2,9 @@
 title: "Advanced Linux Compiler and Language Runtime Development: Building Custom Programming Languages and Execution Engines"
 date: 2025-05-22T10:00:00-05:00
 draft: false
-tags: ["Linux", "Compiler", "Runtime", "JIT", "LLVM", "Virtual Machine", "Language Design", "Code Generation"]
+tags: ["Linux", "Compiler", "Runtime", "JIT", "LLVM", "Virtual Machine", "Language Design", "Code Generation", "Compiler Development"]
 categories:
 - Linux
-- Compiler Development
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Master advanced Linux compiler and runtime development including custom language design, virtual machines, JIT compilation, garbage collection, and building production-grade language implementations"
 more_link: "yes"

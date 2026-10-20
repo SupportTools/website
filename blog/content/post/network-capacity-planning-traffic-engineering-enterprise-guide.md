@@ -2,11 +2,10 @@
 title: "Network Capacity Planning and Traffic Engineering: Enterprise Infrastructure Guide"
 date: 2026-10-04T00:00:00-05:00
 draft: false
-tags: ["Network Capacity", "Traffic Engineering", "Planning", "Infrastructure", "Performance", "Enterprise", "Optimization"]
+tags: ["Network Capacity", "Traffic Engineering", "Planning", "Infrastructure", "Performance", "Enterprise", "Optimization", "Capacity Planning"]
 categories:
 - Networking
 - Infrastructure
-- Capacity Planning
 - Performance
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Master network capacity planning and traffic engineering for enterprise infrastructure. Learn advanced forecasting techniques, capacity optimization strategies, and production-ready planning frameworks."

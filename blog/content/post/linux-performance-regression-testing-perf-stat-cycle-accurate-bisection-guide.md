@@ -3,7 +3,7 @@ title: "Linux Performance Regression Testing: Benchmark Before/After with perf s
 date: 2031-12-10T00:00:00-05:00
 draft: false
 tags: ["Linux", "Performance", "perf", "Profiling", "Benchmarking", "Regression Testing", "Systems Engineering"]
-categories: ["Linux", "Performance Engineering"]
+categories: ["Linux", "Performance"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A systematic guide to Linux performance regression testing using perf stat for cycle-accurate measurement, statistical analysis of benchmark results, automated before/after comparison workflows, and git bisect integration for locating performance regressions to specific commits."
 more_link: "yes"

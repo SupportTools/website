@@ -15,8 +15,8 @@ tags:
 - distributed-tracing
 categories:
 - DevOps
-- Site Reliability Engineering
-- Enterprise Infrastructure
+- SRE
+- Infrastructure
 author: mmattox
 description: "Master enterprise cloud monitoring and observability with advanced SRE practices, distributed tracing, AIOps, intelligent alerting, and comprehensive observability frameworks. Complete guide for monitoring engineers and SRE teams."
 keywords: "enterprise monitoring, cloud observability, SRE practices, prometheus monitoring, grafana dashboards, distributed tracing, AIOps, incident management, SLI SLO, error budgets, monitoring automation, observability engineering"

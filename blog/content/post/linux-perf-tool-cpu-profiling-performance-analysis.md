@@ -3,7 +3,7 @@ title: "Linux perf Tool: CPU Profiling and Performance Analysis"
 date: 2029-04-01T00:00:00-05:00
 draft: false
 tags: ["Linux", "Performance", "perf", "Profiling", "Flame Graphs", "Observability"]
-categories: ["Linux", "Performance Engineering"]
+categories: ["Linux", "Performance"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to Linux perf for CPU profiling and performance analysis: perf stat, perf record, perf report, flame graphs with Brendan Gregg's tools, hardware PMU counters, and cache miss analysis."
 more_link: "yes"

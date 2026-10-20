@@ -5,8 +5,6 @@ draft: false
 tags: ["Apache Airflow", "Prefect", "ETL", "ELT", "Data Pipeline", "Workflow Orchestration", "Data Engineering", "Python", "Data Integration"]
 categories:
 - Data Engineering
-- Workflow Orchestration
-- Data Pipeline
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Build advanced ETL/ELT pipelines using Apache Airflow and Prefect for robust data orchestration. Learn workflow design patterns, error handling, monitoring, and production deployment strategies for enterprise data platforms."
 more_link: "yes"

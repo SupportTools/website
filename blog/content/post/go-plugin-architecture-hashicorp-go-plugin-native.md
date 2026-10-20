@@ -3,7 +3,7 @@ title: "Go Plugin Architecture: Hashicorp go-plugin and Native Plugins"
 date: 2029-05-25T00:00:00-05:00
 draft: false
 tags: ["Go", "Plugins", "Hashicorp", "go-plugin", "Architecture", "gRPC", "golang"]
-categories: ["Go", "Software Architecture"]
+categories: ["Go", "Architecture"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive guide to Go plugin architecture covering net/rpc plugin interfaces, hashicorp/go-plugin gRPC mode, plugin versioning, hot reload patterns, and security isolation for production plugin systems."
 more_link: "yes"

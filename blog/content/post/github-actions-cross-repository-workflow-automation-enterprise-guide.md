@@ -3,7 +3,7 @@ title: "GitHub Actions Cross-Repository Workflow Automation: Enterprise CI/CD Or
 date: 2026-07-12T00:00:00-05:00
 draft: false
 tags: ["GitHub Actions", "CI/CD", "DevOps", "Automation", "Enterprise", "Workflow Orchestration", "Repository Management"]
-categories: ["DevOps", "Automation", "CI/CD"]
+categories: ["DevOps", "Automation", "CI & CD"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Master cross-repository GitHub Actions workflows with repository dispatch triggers, advanced automation patterns, and enterprise-grade CI/CD orchestration strategies for complex microservices architectures."
 more_link: "yes"

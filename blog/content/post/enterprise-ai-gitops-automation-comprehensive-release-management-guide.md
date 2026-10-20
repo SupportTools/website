@@ -2,8 +2,8 @@
 title: "Enterprise AI GitOps Automation 2025: Comprehensive Production Guide to AI-Powered Release Management and Documentation Systems"
 date: 2026-01-27T09:00:00-05:00
 draft: false
-tags: ["AI GitOps", "Release Management", "Enterprise Automation", "LangChain", "Production CI/CD", "Enterprise Architecture", "Documentation Automation", "Git Workflow"]
-categories: ["GitOps", "AI", "Enterprise", "Release Management"]
+tags: ["AI GitOps", "Release Management", "Enterprise Automation", "LangChain", "Production CI/CD", "Enterprise Architecture", "Documentation Automation", "Git Workflow", "Enterprise"]
+categories: ["GitOps", "AI & ML"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Complete enterprise guide to implementing AI-powered GitOps automation for release management. From production CI/CD pipelines to intelligent documentation generation at scale."
 more_link: "yes"

@@ -3,7 +3,7 @@ title: "HAProxy Ingress Advanced Features and Enterprise Deployment: Complete Ku
 date: 2026-07-28T00:00:00-05:00
 draft: false
 tags: ["HAProxy", "Ingress", "Kubernetes", "Load Balancing", "High Availability", "Enterprise"]
-categories: ["Kubernetes", "Networking", "Load Balancing"]
+categories: ["Kubernetes", "Networking", "Load Balancers"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to deploying and optimizing HAProxy Ingress Controller in enterprise Kubernetes environments with advanced load balancing, SSL offloading, and high-availability configurations."
 more_link: "yes"

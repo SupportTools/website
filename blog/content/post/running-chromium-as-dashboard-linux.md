@@ -4,8 +4,6 @@ date: 2024-05-14T19:26:00-05:00
 draft: false
 tags: ["Chromium", "Dashboard", "Linux", "Grafana"]
 categories:
-- Chromium
-- Dashboard
 - Linux
 - Grafana
 author: "Matthew Mattox - mmattox@support.tools"

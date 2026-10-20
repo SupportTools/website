@@ -3,7 +3,7 @@ title: "Deep Dive: Kubernetes Controller Manager"
 date: 2025-01-01T00:00:00-05:00
 draft: false
 tags: ["kubernetes", "controller-manager", "control plane", "controllers"]
-categories: ["Kubernetes Deep Dive"]
+categories: ["Kubernetes"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive deep dive into the Kubernetes Controller Manager architecture, controllers, and reconciliation loops"
 url: "/training/kubernetes-deep-dive/kube-controller-manager/"

@@ -3,7 +3,7 @@ title: "Building Private Cloud Infrastructure with OpenStack and Kubernetes: Ent
 date: 2026-10-27T00:00:00-05:00
 draft: false
 tags: ["OpenStack", "Kubernetes", "Private Cloud", "Cloud Infrastructure", "Virtualization", "Container Orchestration", "OpenStack-Helm"]
-categories: ["Cloud Infrastructure", "Kubernetes", "Virtualization"]
+categories: ["Cloud", "Kubernetes", "Virtualization"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to building enterprise-grade private cloud infrastructure combining OpenStack for infrastructure as a service with Kubernetes for container orchestration, including deployment, integration, and management strategies."
 more_link: "yes"

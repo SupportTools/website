@@ -5,7 +5,7 @@ draft: false
 tags: ["Tekton", "CI/CD", "Kubernetes", "Supply Chain Security", "Pipeline"]
 categories:
 - Tekton
-- CI/CD
+- "CI & CD"
 - Kubernetes
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A complete production guide to Tekton CI/CD on Kubernetes covering pipeline primitives, Tekton Hub reusable tasks, webhook-driven EventListeners, Tekton Chains supply chain attestation, SLSA provenance generation, and operational patterns for enterprise pipelines."

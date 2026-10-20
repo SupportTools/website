@@ -4,8 +4,8 @@ date: 2025-06-03T10:00:00-05:00
 draft: false
 tags: ["SMB", "CIFS", "Windows Shares", "Network Storage", "Enterprise Integration", "File Sharing", "Active Directory", "Samba", "Automation", "Linux"]
 categories:
-- Network Storage
-- Enterprise Infrastructure
+- Storage
+- Infrastructure
 - File Systems
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Complete enterprise guide to SMB/CIFS Windows share automation, advanced network storage integration, production file sharing systems, and comprehensive enterprise storage solutions"

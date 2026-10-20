@@ -3,7 +3,7 @@ title: "Linux Huge Pages: Transparent Huge Pages, HugeTLBFS, and NUMA Optimizati
 date: 2030-03-11T00:00:00-05:00
 draft: false
 tags: ["Linux", "Huge Pages", "THP", "NUMA", "Performance", "Memory", "Databases"]
-categories: ["Linux", "Performance Engineering"]
+categories: ["Linux", "Performance"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive enterprise guide to THP vs explicit hugepages for databases and JVMs, HugeTLBFS configuration, NUMA-aware huge page allocation, performance impact measurement, and disabling THP for latency-sensitive workloads."
 more_link: "yes"

@@ -3,7 +3,7 @@ title: "Setting Up the Amazon Cloud Provider for RKE2"
 date: 2025-01-29T00:00:00-00:00
 draft: false
 tags: ["kubernetes", "rke2", "aws", "cloud controller manager", "deep dive"]
-categories: ["Kubernetes Deep Dive"]
+categories: ["Kubernetes"]
 author: "Matthew Mattox"
 description: "A step-by-step guide to setting up the Amazon cloud provider in RKE2, including IAM role configuration, ClusterID tagging, and deploying the AWS Cloud Controller Manager."
 url: "/training/rke2/aws-cloud-provider-rke2/"

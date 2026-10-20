@@ -5,7 +5,7 @@ draft: false
 tags: ["Rancher", "Longhorn", "Kubernetes", "MinIO", "Backups"]
 categories:
 - Kubernetes
-- Backups
+- "Backup & Recovery"
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to configure MinIO as a backup target for Rancher Longhorn using the S3 protocol."
 more_link: "yes"

@@ -4,9 +4,8 @@ date: 2026-06-11T09:00:00-05:00
 draft: false
 tags: ["Golang", "Go", "Kubernetes", "Operators", "Custom Resources", "CRDs", "ETCD", "Scalability"]
 categories:
-- Golang
+- Go
 - Kubernetes
-- Scalability
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive guide to designing and implementing Go-based Kubernetes operators that can handle large datasets by overcoming ETCD limitations."
 more_link: "yes"

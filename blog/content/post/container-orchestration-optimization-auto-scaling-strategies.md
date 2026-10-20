@@ -6,7 +6,7 @@ tags: ["Kubernetes", "Container Orchestration", "Auto-Scaling", "Performance Opt
 categories:
 - Kubernetes
 - Container Orchestration
-- Performance Optimization
+- Performance
 - DevOps
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Master container orchestration optimization and auto-scaling strategies for enterprise Kubernetes environments. Comprehensive guide to HPA, VPA, cluster autoscaling, resource optimization, and production-ready scaling frameworks."

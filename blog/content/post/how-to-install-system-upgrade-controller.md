@@ -4,7 +4,6 @@ date: 2022-06-24T01:20:00-05:00
 draft: false
 tags: ["system-upgrade-controller", "rke2"]
 categories:
-- system-upgrade-controller
 - RKE2
 author: "Matthew Mattox - mmattox@support.tools"
 description: "How to install and configure system-upgrade-controller for RKE2 so the cluster can upgrade itself"

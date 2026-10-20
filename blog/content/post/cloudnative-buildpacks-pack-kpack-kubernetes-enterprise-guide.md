@@ -4,7 +4,7 @@ date: 2027-01-26T00:00:00-05:00
 draft: false
 tags: ["Kubernetes", "Buildpacks", "kpack", "CI/CD", "Container Images"]
 categories:
-- CI/CD
+- "CI & CD"
 - Kubernetes
 - DevOps
 author: "Matthew Mattox - mmattox@support.tools"

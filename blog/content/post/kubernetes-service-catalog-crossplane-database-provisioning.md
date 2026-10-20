@@ -3,7 +3,7 @@ title: "Kubernetes Service Catalog and Crossplane: Database Provisioning and Clo
 date: 2030-03-06T00:00:00-05:00
 draft: false
 tags: ["Kubernetes", "Crossplane", "GitOps", "AWS", "RDS", "Infrastructure as Code", "Platform Engineering"]
-categories: ["Kubernetes", "Cloud Infrastructure"]
+categories: ["Kubernetes", "Cloud"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive enterprise guide to Crossplane compositions for on-demand cloud resources, composite resource definitions, managed resources for RDS and Cloud SQL, and GitOps-driven infrastructure provisioning."
 more_link: "yes"

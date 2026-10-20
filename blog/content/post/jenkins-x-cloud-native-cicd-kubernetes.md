@@ -3,7 +3,7 @@ title: "Jenkins X Cloud Native CI/CD: Kubernetes-Native Pipeline Automation at S
 date: 2026-08-15T00:00:00-05:00
 draft: false
 tags: ["Jenkins X", "CI/CD", "Kubernetes", "Tekton", "GitOps", "Cloud Native", "DevOps"]
-categories: ["CI/CD", "Kubernetes", "DevOps"]
+categories: ["CI & CD", "Kubernetes", "DevOps"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Master Jenkins X for cloud-native CI/CD on Kubernetes. Learn automated environment promotion, preview environments, GitOps workflows, and enterprise-scale pipeline orchestration with Tekton integration."
 more_link: "yes"

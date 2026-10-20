@@ -3,7 +3,7 @@ title: "Mastering Go Goroutines: Advanced Concurrency Patterns and Enterprise De
 date: 2026-04-04T00:00:00-05:00
 draft: false
 tags: ["Go", "Goroutines", "Concurrency", "Enterprise", "Debugging", "Performance", "Production"]
-categories: ["Development", "Performance", "Enterprise"]
+categories: ["Development", "Performance"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to advanced Go goroutine patterns, enterprise concurrency management, and production debugging strategies that prevent the 40% of critical bugs caused by improper concurrency implementation."
 more_link: "yes"

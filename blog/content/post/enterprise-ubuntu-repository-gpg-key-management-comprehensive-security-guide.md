@@ -4,9 +4,9 @@ date: 2025-07-08T10:00:00-05:00
 draft: false
 tags: ["Ubuntu", "GPG", "APT", "Repository Security", "Package Management", "Key Infrastructure", "Enterprise Security", "Automation", "DevSecOps", "Supply Chain"]
 categories:
-- Security Infrastructure
+- Security
 - Package Management
-- Enterprise Automation
+- Automation
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Complete enterprise guide to Ubuntu repository GPG key management, advanced package security frameworks, automated trust infrastructure, and comprehensive supply chain security implementations"
 more_link: "yes"

@@ -5,7 +5,7 @@ draft: false
 tags: ["Go", "gRPC", "REST", "API Gateway", "Protobuf", "OpenAPI", "Kubernetes"]
 categories:
 - Go
-- API
+- API Design
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Enterprise gRPC-gateway guide: proto service annotations for HTTP mapping, JSON transcoding, OpenAPI spec generation, streaming endpoint handling, authentication passthrough, and deploying gRPC-gateway alongside existing REST APIs."
 more_link: "yes"

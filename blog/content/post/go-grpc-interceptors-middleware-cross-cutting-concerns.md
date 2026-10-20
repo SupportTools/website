@@ -6,7 +6,7 @@ tags: ["Go", "Golang", "gRPC", "Microservices", "Observability", "Authentication
 categories:
 - Go
 - Microservices
-- Engineering
+- Software Engineering
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Production gRPC interceptors in Go covering unary and streaming interceptor patterns, interceptor chaining, authentication and authorization, rate limiting, circuit breakers, distributed tracing injection, and comprehensive testing strategies for interceptor chains."
 more_link: "yes"

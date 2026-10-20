@@ -5,7 +5,7 @@ draft: false
 tags: ["Argo Workflows", "Kubernetes", "DAG", "CI/CD", "ML Pipelines", "Workflow Automation", "Parallelism"]
 categories:
 - Kubernetes
-- CI/CD
+- "CI & CD"
 - MLOps
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Enterprise guide to Argo Workflows covering DAG task orchestration, artifact passing between steps, template libraries for reusable workflow components, parallelism patterns, and production deployment strategies."

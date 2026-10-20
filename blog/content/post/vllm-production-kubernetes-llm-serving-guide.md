@@ -4,7 +4,6 @@ date: 2028-09-13T00:00:00-05:00
 draft: false
 tags: ["vLLM", "LLM", "Kubernetes", "GPU", "AI/ML", "Inference"]
 categories:
-- vLLM
 - Kubernetes
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Enterprise vLLM deployment with GPU operators, model serving configurations, PagedAttention optimization, multi-model serving, autoscaling with KEDA, Prometheus metrics, and benchmark results."

@@ -4,8 +4,7 @@ date: 2024-10-09T00:00:00-05:00
 draft: false  
 tags: ["KubeVirt", "Harvester", "Kubernetes", "KVM"]  
 categories:  
-- KubeVirt  
-- Harvester  
+- Virtualization
 author: "Matthew Mattox - mmattox@support.tools"  
 description: "An introduction to KubeVirt, integrating VMs with Kubernetes, leveraging KVM for virtualization, and advanced configurations with Harvester, podAntiAffinity, and Descheduler."  
 more_link: "yes"  

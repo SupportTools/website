@@ -3,7 +3,7 @@ title: "Erlang Cookies and Kubernetes: Enterprise Distributed System Security an
 date: 2026-07-05T00:00:00-05:00
 draft: false
 tags: ["Erlang", "Elixir", "Kubernetes", "Distributed-Systems", "Security", "Clustering", "Secret-Management"]
-categories: ["Security", "Distributed-Systems", "Kubernetes"]
+categories: ["Security", "Distributed Systems", "Kubernetes"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to implementing secure Erlang/Elixir clustering in Kubernetes environments using cookies, advanced secret management, distributed system security patterns, and enterprise-grade cluster coordination strategies."
 more_link: "yes"

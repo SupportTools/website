@@ -13,10 +13,10 @@ tags:
 - ast
 - optimization
 - devops
-categories:
-- Go Programming
 - Compiler Engineering
-- Enterprise Development
+categories:
+- Go
+- Development
 author: mmattox
 description: "Master enterprise Go compiler development with advanced AST manipulation, optimization techniques, custom toolchain engineering, and production compiler modifications. Comprehensive guide for compiler engineers and language developers."
 keywords: "go compiler development, golang toolchain, AST manipulation, compiler optimization, language design, go compiler internals, enterprise golang, compiler engineering, language extensions, go performance optimization"

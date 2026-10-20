@@ -4,9 +4,8 @@ date: 2024-09-10T19:26:00-05:00
 draft: false  
 tags: ["Kubernetes", "Controller", "Automation", "Orchestration"]  
 categories:  
-- Kubernetes  
-- Automation  
-- Orchestration  
+- Kubernetes
+- Automation
 author: "Matthew Mattox - mmattox@support.tools"  
 description: "Understand the importance of Kubernetes controllers and how they automate key tasks in your cluster."  
 more_link: "yes"  

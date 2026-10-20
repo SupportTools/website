@@ -5,7 +5,7 @@ draft: false
 tags: ["Ollama", "LLM", "Kubernetes", "GPU", "AI/ML"]
 categories:
 - Kubernetes
-- AI/ML
+- "AI & ML"
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A complete guide to deploying Ollama on Kubernetes with GPU scheduling, NVIDIA device plugin configuration, persistent model storage, KEDA autoscaling, Open WebUI integration, and GPU utilization monitoring for self-hosted LLM inference."
 more_link: "yes"

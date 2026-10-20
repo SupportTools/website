@@ -2,11 +2,10 @@
 title: "Go Task Queues with River and NATS JetStream: Durable Job Processing"
 date: 2030-09-26T00:00:00-05:00
 draft: false
-tags: ["Go", "NATS", "JetStream", "River", "PostgreSQL", "Task Queue", "Background Jobs"]
+tags: ["Go", "NATS", "JetStream", "River", "PostgreSQL", "Task Queue", "Background Jobs", "Background Processing"]
 categories:
 - Go
 - Messaging
-- Background Processing
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Enterprise job queue patterns in Go covering River queue with PostgreSQL backend, NATS JetStream push/pull consumers, job deduplication with unique keys, priority queues, delayed jobs, and building fault-tolerant background processing pipelines."
 more_link: "yes"

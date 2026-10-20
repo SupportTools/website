@@ -4,10 +4,9 @@ date: 2025-08-22T10:00:00-05:00
 draft: false
 tags: ["SOL", "Serial Over LAN", "Dell iDRAC", "BMC", "IPMI", "Remote Console", "Server Management", "Out-of-Band Management", "Dell PowerEdge", "Enterprise Hardware", "Server Troubleshooting", "Remote Access", "System Administration", "Infrastructure Management"]
 categories:
-- Server Management
+- System Administration
 - Hardware
 - Remote Access
-- System Administration
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Master SOL (Serial Over LAN) with Dell iDRAC and BMC for enterprise remote console management. Complete guide to IPMI configuration, troubleshooting, automation, security, and advanced out-of-band management strategies."
 more_link: "yes"

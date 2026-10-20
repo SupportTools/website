@@ -2,11 +2,10 @@
 title: "DFS Replication Storage Optimization: ConflictAndDeleted Quota Management and Disk Space Recovery"
 date: 2026-06-11T00:00:00-05:00
 draft: false
-tags: ["dfs", "dfsr", "windows-server", "storage", "file-server", "sysvol", "replication", "wmi", "powershell"]
+tags: ["dfs", "dfsr", "windows-server", "storage", "file-server", "sysvol", "replication", "wmi", "powershell", "File Services"]
 categories:
 - Windows Server
 - Storage
-- File Services
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Master DFS Replication storage optimization with comprehensive ConflictAndDeleted quota management procedures. Complete guide to reclaiming disk space and tuning DFSR for enterprise file servers."
 more_link: "yes"

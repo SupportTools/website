@@ -2,8 +2,8 @@
 title: "Enterprise Knowledge Management Guide 2025: AI-Powered Automation, Security & Global Orchestration"
 date: 2025-09-20T10:00:00-08:00
 draft: false
-tags: ["knowledge-management", "ai", "automation", "enterprise", "kcs", "machine-learning", "nlp", "security", "compliance", "analytics", "search", "governance", "devops", "infrastructure"]
-categories: ["Tech", "Misc"]
+tags: ["knowledge-management", "ai", "automation", "enterprise", "kcs", "machine-learning", "nlp", "security", "compliance", "analytics", "search", "governance", "devops", "infrastructure", "Tech", "Misc"]
+categories: ["Infrastructure"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Master enterprise knowledge management in 2025. Comprehensive guide covering AI-powered knowledge discovery, automated content curation, security governance, global orchestration, and advanced analytics for large-scale organizational learning systems."
 ---

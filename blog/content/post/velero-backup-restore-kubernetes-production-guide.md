@@ -3,7 +3,7 @@ title: "Velero: Kubernetes Cluster Backup, Restore, and Migration in Production"
 date: 2027-04-04T00:00:00-05:00
 draft: false
 tags: ["Kubernetes", "Velero", "Backup", "Disaster Recovery", "Migration"]
-categories: ["Kubernetes", "Backup", "Disaster Recovery"]
+categories: ["Kubernetes", "Backup & Recovery", "Disaster Recovery"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Enterprise guide to Velero for Kubernetes backup and disaster recovery, covering scheduled backups to S3/GCS/Azure, CSI snapshot integration, namespace-level restore, cross-cluster migration, backup hooks for database consistency, and Prometheus monitoring for backup health."
 more_link: "yes"

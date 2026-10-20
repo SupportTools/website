@@ -4,8 +4,8 @@ date: 2025-01-15T00:00:00-05:00
 draft: false
 tags: ["Nvidia", "k3s"]
 categories:
-- Nvidia
-- k3s
+- NVIDIA
+- K3s
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to set up and manage Nvidia GPU workloads in a k3s cluster."
 more_link: "yes"

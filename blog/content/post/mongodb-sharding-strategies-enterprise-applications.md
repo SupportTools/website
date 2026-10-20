@@ -3,7 +3,7 @@ title: "MongoDB Sharding Strategies for Enterprise Applications: Comprehensive P
 date: 2026-09-25T00:00:00-05:00
 draft: false
 tags: ["MongoDB", "Sharding", "Database", "NoSQL", "Distributed Systems", "Enterprise", "Performance", "Scalability"]
-categories: ["Database Administration", "MongoDB", "Distributed Systems", "NoSQL"]
+categories: ["Databases", "MongoDB", "Distributed Systems"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive enterprise guide to MongoDB sharding architecture, shard key selection strategies, zone sharding implementation, performance optimization, and migration patterns from replica sets to sharded clusters for production environments."
 more_link: "yes"

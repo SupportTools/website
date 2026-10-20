@@ -5,8 +5,7 @@ draft: false
 tags: ["SaaS", "Analytics", "Attribution", "PostHog", "Plausible", "Matomo", "GDPR", "PostgreSQL", "JavaScript", "Observability", "DevOps", "Privacy"]
 categories:
 - Analytics
-- SaaS
-- Engineering
+- Software Engineering
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A practical engineering guide to instrumenting and measuring SaaS user acquisition: capturing referrers and UTM parameters, first-touch vs last-touch attribution, server-side capture, privacy-respecting analytics, and SQL for signup-source funnels."
 more_link: "yes"

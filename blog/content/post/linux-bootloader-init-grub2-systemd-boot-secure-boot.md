@@ -3,7 +3,7 @@ title: "Linux Bootloader and Init: GRUB2, systemd-boot, systemd-nspawn, and Secu
 date: 2030-04-17T00:00:00-05:00
 draft: false
 tags: ["Linux", "GRUB2", "systemd-boot", "Secure Boot", "systemd-nspawn", "TPM", "Boot"]
-categories: ["Linux", "Systems Administration"]
+categories: ["Linux", "System Administration"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Complete guide to Linux boot infrastructure: GRUB2 configuration and rescue, Unified Kernel Image with systemd-boot, Secure Boot signing with sbsign, systemd-nspawn containers, and TPM-based measured boot with PCR policies."
 more_link: "yes"

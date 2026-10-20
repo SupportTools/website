@@ -2,10 +2,9 @@
 title: "Understanding 'TCP Segment of a Reassembled PDU' in Wireshark"
 date: 2023-10-13T12:15:00-05:00
 draft: false
-tags: ["Wireshark", "TCP", "Network Analysis"]
+tags: ["Wireshark", "TCP", "Network Analysis", "Network Tools"]
 categories:
-- Network Tools
-- Network Analysis
+- Networking
 author: "Matthew Mattox - mmattox@support.tools"
 description: "An explanation of why Wireshark marks TCP packets with 'TCP segment of a reassembled PDU.'"
 more_link: "yes"

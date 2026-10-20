@@ -7,7 +7,6 @@ categories:
 - Networking
 - Infrastructure
 - Performance
-- Optimization
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Master network performance optimization and troubleshooting for enterprise infrastructure. Learn advanced performance analysis, bottleneck identification, and production-ready optimization frameworks."
 more_link: "yes"

@@ -5,7 +5,7 @@ draft: false
 description: "Complete enterprise guide for building, deploying, and managing production-ready Kubernetes Operators with advanced patterns, security frameworks, and automation"
 keywords: ["kubernetes operators", "enterprise kubernetes", "operator framework", "custom resource definitions", "kubernetes automation", "cloud native", "devops", "container orchestration"]
 tags: ["kubernetes", "operators", "enterprise", "automation", "cloud-native", "devops"]
-categories: ["Kubernetes", "Enterprise", "Automation"]
+categories: ["Kubernetes", "Automation"]
 author: "Matthew Mattox"
 showToc: true
 TocOpen: true

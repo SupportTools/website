@@ -3,7 +3,7 @@ title: "Go Testing Best Practices: Mocks, Test Doubles, and Integration Test Str
 date: 2028-04-18T00:00:00-05:00
 draft: false
 tags: ["Go", "Testing", "Mocks", "Integration Testing", "testify"]
-categories: ["Go", "Quality Engineering"]
+categories: ["Go", "Testing"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive guide to Go testing patterns including table-driven tests, hand-written mocks, testify, gomock, test containers for integration testing, and structuring test suites for large services."
 more_link: "yes"

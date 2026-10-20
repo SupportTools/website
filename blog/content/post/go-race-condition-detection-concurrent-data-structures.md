@@ -6,7 +6,7 @@ tags: ["Go", "Golang", "Concurrency", "Race Conditions", "sync.Mutex", "Performa
 categories:
 - Go
 - Performance
-- Engineering
+- Software Engineering
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Production concurrency safety in Go: race detector usage, sync.Mutex vs sync.RWMutex trade-offs, atomic operations, lock-free ring buffers, sync.Pool usage patterns, and systematic approaches to debugging data races in live services."
 more_link: "yes"

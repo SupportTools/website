@@ -2,10 +2,9 @@
 title: "IPv6 Is A Disaster (but we can fix it)"
 date: 2024-12-04T12:00:00-05:00
 draft: false
-tags: ["IPv6", "Networking", "DevOps", "Infrastructure"]
+tags: ["IPv6", "Networking", "DevOps", "Infrastructure", "Technology"]
 categories:
-- networking
-- Technology
+- Networking
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Exploring the challenges of migrating to IPv6 and the necessary steps to fix the broken state of IPv6 adoption in the modern internet."
 more_link: "yes"

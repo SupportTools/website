@@ -2,10 +2,9 @@
 title: "Setting up an AP7930 PDU with Home Assistant"
 date: 2024-10-30T10:00:00-05:00
 draft: false
-tags: ["Home Assistant", "PDU", "Automation", "SNMP"]
+tags: ["Home Assistant", "PDU", "Automation", "SNMP", "Home Automation", "Network Devices"]
 categories:
-- Home Automation
-- Network Devices
+- Automation
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to integrate an AP7930 Power Distribution Unit (PDU) with Home Assistant for remote control and automation of power outlets."
 more_link: "yes"

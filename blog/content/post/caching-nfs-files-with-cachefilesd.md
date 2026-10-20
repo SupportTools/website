@@ -5,7 +5,6 @@ draft: false
 tags: ["Linux", "NFS"]
 categories:
 - Linux
-- NFS
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Caching NFS files with cachefilesd"
 more_link: "yes"

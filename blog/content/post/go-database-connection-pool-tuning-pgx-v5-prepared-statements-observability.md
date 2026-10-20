@@ -5,7 +5,7 @@ draft: false
 tags: ["Go", "PostgreSQL", "pgx", "Connection Pool", "Database", "Observability", "Performance"]
 categories:
 - Go
-- Database
+- Databases
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Production guide to tuning PostgreSQL connection pools in Go using pgx v5, covering pool configuration, connection lifecycle management, prepared statement caching, transaction handling, and full observability with Prometheus metrics."
 more_link: "yes"

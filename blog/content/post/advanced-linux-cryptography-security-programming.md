@@ -5,7 +5,7 @@ draft: false
 tags: ["Linux", "Cryptography", "Security", "OpenSSL", "Encryption", "PKI", "TLS", "Secure Programming"]
 categories:
 - Linux
-- Security Programming
+- Security
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Master advanced Linux cryptography and security programming including OpenSSL, PKI, secure communication protocols, and building enterprise-grade security applications"
 more_link: "yes"

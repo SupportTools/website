@@ -5,7 +5,7 @@ draft: false
 tags: ["Configuration Management", "Ansible", "SaltStack", "Infrastructure Automation", "DevOps", "IT Automation", "Server Configuration", "Enterprise Automation", "Infrastructure as Code", "Compliance", "Security Automation", "Orchestration", "System Administration", "Cloud Automation", "Hybrid Infrastructure"]
 categories:
 - Configuration Management
-- Infrastructure Automation
+- Automation
 - DevOps
 - System Administration
 author: "Matthew Mattox - mmattox@support.tools"

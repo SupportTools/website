@@ -5,7 +5,7 @@ draft: false
 tags: ["Docker", "React", "Environment Variables", "Frontend", "DevOps", "CI/CD", "Nginx"]
 categories:
 - DevOps
-- Frontend Development
+- Web Development
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A battle-tested solution for injecting environment-specific configuration into React applications at container runtime, with performance optimizations for production deployments"
 more_link: "yes"

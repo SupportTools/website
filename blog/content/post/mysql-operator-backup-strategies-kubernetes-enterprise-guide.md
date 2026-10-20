@@ -3,7 +3,7 @@ title: "MySQL Operator Backup Strategies on Kubernetes: Enterprise Production Gu
 date: 2026-10-02T00:00:00-05:00
 draft: false
 tags: ["MySQL", "Kubernetes", "Backup", "Database", "Operators", "Disaster Recovery", "Percona"]
-categories: ["Database", "Kubernetes", "DevOps"]
+categories: ["Databases", "Kubernetes", "DevOps"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to implementing robust backup and recovery strategies for MySQL on Kubernetes using operators, with automated backup scheduling, point-in-time recovery, and disaster recovery procedures."
 more_link: "yes"

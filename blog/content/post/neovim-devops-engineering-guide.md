@@ -5,7 +5,7 @@ draft: false
 tags: ["Neovim", "DevOps", "Developer Tools", "Terminal", "Productivity"]
 categories:
 - Developer Tools
-- Productivity
+- Developer Experience
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Complete Neovim configuration guide for DevOps engineers — lazy.nvim, LSP for Go/Python/YAML, Telescope, nvim-tree, which-key, gitsigns, fugitive, kubernetes.nvim, toggleterm, and YAML/HCL editing workflows."
 more_link: "yes"

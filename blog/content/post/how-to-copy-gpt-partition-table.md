@@ -6,7 +6,6 @@ tags: ["GPT", "Partitioning", "Linux", "RAID"]
 categories:
 - Storage
 - Linux
-- Disk Management
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A quick guide on copying a GPT partition table between disks when setting up RAID or disk cloning."
 more_link: "yes"

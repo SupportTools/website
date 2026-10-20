@@ -6,7 +6,7 @@ tags: ["PostgreSQL", "CloudNativePG", "Kubernetes", "Database", "High Availabili
 categories:
 - PostgreSQL
 - Kubernetes
-- Database
+- Databases
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive guide to running production-grade PostgreSQL on Kubernetes using CloudNativePG, covering cluster topology, automated failover, WAL archiving, backup to S3/GCS, point-in-time recovery, PgBouncer connection pooling, and monitoring."
 more_link: "yes"

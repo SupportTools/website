@@ -4,7 +4,6 @@ date: 2028-10-18T00:00:00-05:00
 draft: false
 tags: ["Kyverno", "Kubernetes", "Policy", "Security", "Compliance"]
 categories:
-- Kyverno
 - Kubernetes
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Complete guide to Kyverno ClusterPolicy and Policy, covering validation, mutation, generation rules, image verification with Cosign, policy reports, background scanning, and comparison with OPA Gatekeeper."

@@ -5,7 +5,6 @@ draft: false
 tags: ["SSH", "Cisco Nk5k"]
 categories:
 - SSH
-- Cisco Nk5k
 author: "Matthew Mattox - mmattox@support.tools"
 description: "SSH returns: no matching host key type found. Their offer: ssh-dss"
 more_link: "yes"

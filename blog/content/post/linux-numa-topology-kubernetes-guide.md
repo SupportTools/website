@@ -3,7 +3,7 @@ title: "NUMA Topology in Kubernetes: CPU Manager, Memory Manager, and Topology M
 date: 2028-06-11T00:00:00-05:00
 draft: false
 tags: ["Kubernetes", "NUMA", "CPU Manager", "Performance", "Linux", "GPU", "HPC"]
-categories: ["Kubernetes", "Performance Engineering", "Infrastructure"]
+categories: ["Kubernetes", "Performance", "Infrastructure"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A deep-dive guide to NUMA topology management in Kubernetes: CPU Manager static policy for exclusive CPU allocation, NUMA-aware scheduling, Memory Manager for NUMA-local memory, Topology Manager policies, and GPU NUMA alignment for AI/ML workloads."
 more_link: "yes"

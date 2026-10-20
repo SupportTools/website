@@ -5,7 +5,7 @@ draft: false
 tags: ["Go", "Database", "Migrations", "Atlas", "golang-migrate", "PostgreSQL", "Schema Management", "DevOps"]
 categories:
 - Go
-- Database
+- Databases
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Complete guide to Atlas schema management and golang-migrate library in Go: schema versioning, migration testing, rollback strategies, blue-green schema changes, and CI/CD integration."
 more_link: "yes"

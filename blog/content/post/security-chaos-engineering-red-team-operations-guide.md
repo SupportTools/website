@@ -6,7 +6,6 @@ tags: ["Security Chaos Engineering", "Red Team", "Adversarial Testing", "Penetra
 categories:
 - Security
 - Chaos Engineering
-- Red Team
 - Penetration Testing
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to implementing security chaos engineering and red team operations for enterprise environments, including adversarial testing frameworks, attack simulation, and security resilience validation methodologies."

@@ -5,8 +5,7 @@ draft: false
 tags: ["Backup", "Disaster Recovery", "Business Continuity", "Enterprise Infrastructure", "Automation", "Data Protection", "RPO", "RTO", "High Availability", "Compliance"]
 categories:
 - Data Protection
-- Enterprise Infrastructure
-- Business Continuity
+- Infrastructure
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Complete enterprise guide to backup and disaster recovery automation, business continuity planning, data protection strategies, and production-grade recovery systems for critical infrastructure"
 more_link: "yes"

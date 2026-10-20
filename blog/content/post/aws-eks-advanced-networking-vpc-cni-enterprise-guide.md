@@ -3,7 +3,7 @@ title: "AWS EKS Advanced Networking with VPC CNI: Enterprise Production Guide"
 date: 2026-05-04T00:00:00-05:00
 draft: false
 tags: ["AWS", "EKS", "Kubernetes", "VPC CNI", "Networking", "Cloud Native", "Container Networking"]
-categories: ["Cloud Architecture", "Kubernetes", "AWS"]
+categories: ["Cloud", "Kubernetes", "AWS"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Complete guide to advanced AWS EKS networking with VPC CNI, including custom networking, security groups for pods, IP prefix delegation, and production optimization strategies for enterprise Kubernetes clusters."
 more_link: "yes"

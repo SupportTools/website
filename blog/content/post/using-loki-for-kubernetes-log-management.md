@@ -5,7 +5,7 @@ draft: false
 tags: ["Kubernetes", "Log Management", "Loki", "Grafana"]
 categories:
 - Kubernetes
-- Log Management
+- Logging
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to leverage Loki for efficient Kubernetes log management and analysis."
 more_link: "yes"

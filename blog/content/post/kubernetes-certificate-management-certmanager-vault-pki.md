@@ -3,7 +3,7 @@ title: "Kubernetes Certificate Management at Scale: cert-manager Cluster Issuers
 date: 2030-01-29T00:00:00-05:00
 draft: false
 tags: ["Kubernetes", "cert-manager", "TLS", "PKI", "Vault", "Let's Encrypt", "Security"]
-categories: ["Kubernetes", "Security", "PKI"]
+categories: ["Kubernetes", "Security", "TLS & Certificates"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Enterprise cert-manager deployment with ClusterIssuers for Let's Encrypt and Vault PKI, certificate rotation automation, expiry monitoring, multi-cluster certificate distribution, and production operations."
 more_link: "yes"

@@ -3,7 +3,7 @@ title: "Advanced CoreDNS Forwarding and Split-Horizon DNS: Enterprise Network Ar
 date: 2026-03-25T00:00:00-05:00
 draft: false
 tags: ["CoreDNS", "DNS-Forwarding", "Split-Horizon", "Enterprise-Networking", "Kubernetes", "DNS-Architecture", "Network-Security"]
-categories: ["Networking", "DNS", "Enterprise-Architecture"]
+categories: ["Networking", "DNS", "Architecture"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to implementing advanced DNS forwarding patterns with CoreDNS, featuring split-horizon DNS architectures, conditional forwarding strategies, and enterprise-grade network segmentation for complex organizational requirements."
 more_link: "yes"

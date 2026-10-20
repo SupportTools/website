@@ -5,7 +5,7 @@ draft: false
 tags: ["DevSecOps", "CI/CD Security", "Supply Chain Security", "Container Security", "SBOM", "Code Signing", "Vulnerability Scanning", "Security Automation", "Pipeline Security", "Software Supply Chain", "Security Policies", "Compliance", "SLSA", "Enterprise Security", "DevOps Security"]
 categories:
 - DevSecOps
-- CI/CD
+- "CI & CD"
 - Security
 - DevOps
 author: "Matthew Mattox - mmattox@support.tools"

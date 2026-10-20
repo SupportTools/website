@@ -3,7 +3,7 @@ title: "Advanced Assembly Language Optimization Techniques for Modern Processors
 date: 2026-03-22T00:00:00-05:00
 author: "Systems Engineering Team"
 description: "Master advanced assembly language optimization for modern x86-64 and ARM processors. Learn SIMD programming, micro-architectural optimization, branch prediction, cache optimization, and performance profiling techniques."
-categories: ["Systems Programming", "Performance Optimization", "Assembly Language"]
+categories: ["Systems Programming", "Performance"]
 tags: ["assembly language", "x86-64", "ARM", "SIMD", "SSE", "AVX", "NEON", "optimization", "microarchitecture", "performance tuning", "vectorization", "cache optimization"]
 keywords: ["assembly language optimization", "x86-64 assembly", "ARM assembly", "SIMD programming", "vectorization", "microarchitecture optimization", "cache optimization", "branch prediction", "performance tuning"]
 draft: false

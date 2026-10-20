@@ -3,7 +3,7 @@ title: "Linux Container Security: gVisor, Kata Containers, and Sandbox Runtime C
 date: 2030-04-05T00:00:00-05:00
 draft: false
 tags: ["Kubernetes", "Security", "gVisor", "Kata Containers", "Container Runtime", "Sandbox", "OCI"]
-categories: ["Kubernetes", "Security", "Container Technologies"]
+categories: ["Kubernetes", "Security", "Containers"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive evaluation of container security sandbox runtimes: gVisor's user-space kernel approach, Kata Containers with lightweight VMs, performance trade-offs, and when to use each for sensitive workloads in production Kubernetes clusters."
 more_link: "yes"

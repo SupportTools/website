@@ -4,9 +4,8 @@ date: 2022-07-14T22:57:00-05:00
 draft: false
 tags: ["k3s", "kubernetes", "k3sup"]
 categories:
-- k3s
+- K3s
 - Kubernetes
-- k3sup
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Using k3sups to build a cluster"
 more_link: "yes"

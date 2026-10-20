@@ -6,7 +6,6 @@ tags: ["GitLab", "Upgrade", "Omnibus", "Linux", "System Administration"]
 categories:
 - DevOps
 - System Administration
-- GitLab
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to safely upgrade your Omnibus GitLab installation with this comprehensive, step-by-step guide."
 more_link: "yes"

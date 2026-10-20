@@ -3,7 +3,7 @@ title: "Linux File Descriptor Limits in Production: ulimit, systemd, Container L
 date: 2028-06-16T00:00:00-05:00
 draft: false
 tags: ["Linux", "File Descriptors", "ulimit", "systemd", "Kubernetes", "Production", "Troubleshooting"]
-categories: ["Linux", "Systems Administration"]
+categories: ["Linux", "System Administration"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to Linux file descriptor limits in production environments: ulimit configuration, /proc/sys/fs/file-max, systemd LimitNOFILE, container FD limits, diagnosing 'too many open files' errors in Kubernetes pods and nodes."
 more_link: "yes"

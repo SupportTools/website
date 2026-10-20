@@ -5,7 +5,7 @@ draft: false
 tags: ["Linux", "Tracing", "eBPF", "SystemTap", "Performance", "Instrumentation", "Observability", "Debugging"]
 categories:
 - Linux
-- Performance Analysis
+- Performance
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Master advanced Linux tracing and instrumentation using eBPF, SystemTap, ftrace, and custom observability frameworks for deep system analysis and performance optimization"
 more_link: "yes"

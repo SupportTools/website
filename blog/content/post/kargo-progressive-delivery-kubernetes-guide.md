@@ -3,7 +3,7 @@ title: "Kargo Progressive Delivery: GitOps-Driven Promotion Workflows Across Env
 date: 2027-07-12T00:00:00-05:00
 draft: false
 tags: ["Kargo", "Progressive Delivery", "GitOps", "Kubernetes", "CI/CD"]
-categories: ["DevOps", "Kubernetes", "CI/CD"]
+categories: ["DevOps", "Kubernetes", "CI & CD"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Complete guide to Kargo progressive delivery covering promotion pipelines, Stage and Freight concepts, warehouse subscriptions, multi-environment promotion chains, ArgoCD integration, automated verification, and rollback automation."
 more_link: "yes"

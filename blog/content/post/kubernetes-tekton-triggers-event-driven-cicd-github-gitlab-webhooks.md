@@ -5,7 +5,7 @@ draft: false
 tags: ["Kubernetes", "Tekton", "CI/CD", "GitHub", "GitLab", "Webhooks", "GitOps", "DevOps"]
 categories:
 - Kubernetes
-- CI/CD
+- "CI & CD"
 - DevOps
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive enterprise guide to Tekton Triggers: designing TriggerTemplates and TriggerBindings, deploying EventListeners, writing CEL filter expressions, configuring GitHub and GitLab webhooks, chaining interceptors, and building a complete PR-triggered pipeline."

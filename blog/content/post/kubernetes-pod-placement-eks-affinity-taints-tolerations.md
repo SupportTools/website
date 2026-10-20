@@ -2,7 +2,7 @@
 title: "Advanced Pod Placement in Amazon EKS: Mastering Affinity, Taints, and Tolerations"
 date: 2026-12-22T09:00:00-05:00
 draft: false
-categories: ["Kubernetes", "Amazon EKS", "Cloud Infrastructure"]
+categories: ["Kubernetes", "Amazon EKS", "Cloud"]
 tags: ["Kubernetes", "Amazon EKS", "Pod Scheduling", "Node Affinity", "Taints", "Tolerations", "Pod Placement", "Workload Isolation", "Resource Optimization", "Multi-tenant Clusters"]
 ---
 

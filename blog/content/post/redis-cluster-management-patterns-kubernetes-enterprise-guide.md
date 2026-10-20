@@ -3,7 +3,7 @@ title: "Redis Cluster Management Patterns on Kubernetes: Enterprise Production G
 date: 2026-11-06T00:00:00-05:00
 draft: false
 tags: ["Redis", "Kubernetes", "Clustering", "In-Memory", "Caching", "High Availability"]
-categories: ["Database", "Kubernetes", "DevOps"]
+categories: ["Databases", "Kubernetes", "DevOps"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to deploying and managing Redis clusters on Kubernetes with high availability, automatic failover, data persistence, and performance optimization strategies."
 more_link: "yes"

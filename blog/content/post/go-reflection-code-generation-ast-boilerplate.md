@@ -3,7 +3,7 @@ title: "Go Reflection and Code Generation: reflect package, go/types, and Automa
 date: 2030-03-07T00:00:00-05:00
 draft: false
 tags: ["Go", "Golang", "Reflection", "Code Generation", "AST", "go/types", "Tooling"]
-categories: ["Go", "Developer Tooling"]
+categories: ["Go", "Developer Tools"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive enterprise guide to safe use of Go reflection, static analysis with go/types, writing AST-manipulating code generators, wire generation patterns, and compile-time interface compliance checking."
 more_link: "yes"

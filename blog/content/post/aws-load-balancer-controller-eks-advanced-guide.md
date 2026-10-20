@@ -3,7 +3,7 @@ title: "AWS Load Balancer Controller: ALB and NLB for EKS"
 date: 2027-02-07T00:00:00-05:00
 draft: false
 tags: ["Kubernetes", "AWS", "EKS", "Load Balancer", "ALB", "NLB"]
-categories: ["Cloud Architecture", "Kubernetes", "AWS"]
+categories: ["Cloud", "Kubernetes", "AWS"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to the AWS Load Balancer Controller for EKS, covering ALB Ingress, NLB Services, IRSA setup, IngressGroup shared ALBs, WAF integration, TargetGroupBinding for blue-green deployments, and cost optimization strategies."
 more_link: "yes"

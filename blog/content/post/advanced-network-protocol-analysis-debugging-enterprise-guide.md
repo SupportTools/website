@@ -6,7 +6,6 @@ tags: ["Protocol Analysis", "Network Debugging", "Packet Capture", "Infrastructu
 categories:
 - Networking
 - Infrastructure
-- Protocol Analysis
 - Debugging
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Master advanced network protocol analysis and debugging for enterprise infrastructure. Learn sophisticated packet analysis techniques, protocol debugging strategies, and production-ready troubleshooting frameworks."

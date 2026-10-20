@@ -3,7 +3,7 @@ title: "Migrating from SQL to MongoDB in Go: A Comprehensive Guide"
 date: 2027-02-23T09:00:00-05:00
 draft: false
 tags: ["Go", "MongoDB", "SQL", "Database", "Migration", "NoSQL"]
-categories: ["Database Migration", "Go Programming"]
+categories: ["Databases", "Go"]
 ---
 
 Database migration is one of the most challenging technical transitions a growing application can face. When your Go application outgrows its relational database structure, MongoDB offers a scalable, flexible alternative that can better accommodate evolving data requirements. This comprehensive guide explores the entire migration process from SQL to MongoDB in Go applications, including data modeling strategies, code refactoring techniques, performance optimization approaches, and real-world migration patterns.

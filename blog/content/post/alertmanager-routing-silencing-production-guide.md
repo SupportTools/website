@@ -3,7 +3,7 @@ title: "Alertmanager: Advanced Routing, Silencing, and Inhibition for Production
 date: 2027-03-21T00:00:00-05:00
 draft: false
 tags: ["Kubernetes", "Alertmanager", "Prometheus", "Alerting", "Incident Management"]
-categories: ["Kubernetes", "Observability", "Incident Management"]
+categories: ["Kubernetes", "Observability", "Incident Response"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Production Alertmanager configuration guide covering nested routing trees, receiver configuration (Slack, PagerDuty, OpsGenie, email), inhibition rules to suppress symptom alerts, time-based routing for on-call schedules, HA clustering, and alert deduplication strategies."
 more_link: "yes"

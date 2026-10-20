@@ -6,7 +6,7 @@ tags: ["Flux", "GitOps", "Kubernetes", "Image Automation", "CI/CD", "Continuous 
 categories:
 - Kubernetes
 - GitOps
-- CI/CD
+- "CI & CD"
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Enterprise guide to Flux v2 Image Automation Controller covering ImageRepository, ImagePolicy, ImageUpdateAutomation resources, and automated pull request workflows for production Kubernetes environments."
 more_link: "yes"

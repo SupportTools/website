@@ -5,7 +5,7 @@ draft: false
 tags: ["Kubernetes", "Resource Management", "Optimization"]
 categories:
 - Kubernetes
-- Resource Optimization
+- Performance
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to optimize resource requests and limits in Kubernetes to balance cost and performance effectively while avoiding common pitfalls."
 more_link: "yes"

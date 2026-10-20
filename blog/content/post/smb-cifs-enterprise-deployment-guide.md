@@ -4,8 +4,8 @@ date: 2025-03-04T10:00:00-05:00
 draft: false
 tags: ["SMB", "CIFS", "Samba", "File Sharing", "Network Storage", "Enterprise", "Linux", "Active Directory", "Security", "Performance"]
 categories:
-- Network Storage
-- Enterprise Infrastructure
+- Storage
+- Infrastructure
 - Linux
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide for enterprise SMB/CIFS deployment covering advanced Samba configuration, Active Directory integration, security hardening, performance optimization, and high availability strategies"

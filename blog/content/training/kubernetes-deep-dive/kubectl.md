@@ -3,7 +3,7 @@ title: "Understanding kubectl in Kubernetes"
 date: 2025-01-29T00:00:00-00:00
 draft: false
 tags: ["kubernetes", "kubectl", "cli", "command-line"]
-categories: ["Kubernetes Deep Dive"]
+categories: ["Kubernetes"]
 author: "Matthew Mattox"
 description: "A deep dive into kubectl, the command-line tool for interacting with Kubernetes clusters."
 url: "/training/kubernetes-deep-dive/kubectl/"

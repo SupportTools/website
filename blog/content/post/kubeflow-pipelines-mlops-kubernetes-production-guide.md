@@ -6,7 +6,7 @@ tags: ["Kubernetes", "Kubeflow", "MLOps", "Machine Learning", "Pipelines"]
 categories:
 - Kubernetes
 - MLOps
-- Machine Learning
+- "AI & ML"
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Production guide to Kubeflow Pipelines v2 on Kubernetes, covering architecture, KFP SDK v2 pipeline authoring, artifact passing, Helm deployment, MinIO and S3 backends, RBAC, experiment tracking, and GPU component scheduling."
 more_link: "yes"

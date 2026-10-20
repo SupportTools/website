@@ -6,7 +6,6 @@ tags: ["Go", "Slack", "Serverless", "Google Cloud", "Cloud Functions", "Integrat
 categories:
 - Go
 - Serverless
-- Integration
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive guide to building, deploying, and securing Slack Slash Commands using Go and Google Cloud Functions"
 more_link: "yes"

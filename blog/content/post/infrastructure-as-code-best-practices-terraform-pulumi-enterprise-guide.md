@@ -6,7 +6,7 @@ tags: ["Infrastructure as Code", "Terraform", "Pulumi", "Cloud Infrastructure", 
 categories:
 - Infrastructure as Code
 - DevOps
-- Cloud Infrastructure
+- Cloud
 - Automation
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Master Infrastructure as Code best practices with Terraform and Pulumi for enterprise production environments. Complete guide to scalable infrastructure automation, multi-cloud deployment patterns, state management, and enterprise-grade IaC architectures."

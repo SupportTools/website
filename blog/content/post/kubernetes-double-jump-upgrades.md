@@ -2,10 +2,9 @@
 title: "Kubernetes Double Jump Upgrades: Skipping Versions Safely"
 date: 2024-11-29T12:30:00-05:00
 draft: false
-tags: ["Kubernetes", "Upgrades", "Double Jump", "K8s Maintenance"]
+tags: ["Kubernetes", "Upgrades", "Double Jump", "K8s Maintenance", "Maintenance"]
 categories:
 - Kubernetes
-- Maintenance
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to perform double jump Kubernetes upgrades by skipping intermediate versions while adhering to Kubernetes' version skew and API deprecation policies."
 more_link: "yes"

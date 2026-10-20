@@ -2,12 +2,9 @@
 title: "Advanced Web Application Firewall (WAF) Configuration: Enterprise Security Implementation Guide"
 date: 2026-04-21T00:00:00-05:00
 draft: false
-tags: ["WAF", "Web Application Firewall", "Application Security", "ModSecurity", "CloudFlare", "AWS WAF", "Security Rules", "DDoS Protection"]
+tags: ["WAF", "Web Application Firewall", "Application Security", "ModSecurity", "CloudFlare", "AWS WAF", "Security Rules", "DDoS Protection", "Web Security"]
 categories:
 - Security
-- WAF
-- Application Security
-- Web Security
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to implementing advanced Web Application Firewall configurations for enterprise environments, including custom rule development, threat intelligence integration, and automated security response mechanisms."
 more_link: "yes"

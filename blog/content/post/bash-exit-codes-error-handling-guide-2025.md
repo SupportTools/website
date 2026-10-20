@@ -5,7 +5,7 @@ draft: false
 tags: ["Bash", "Exit Codes", "Error Handling", "Shell Scripting", "Linux", "Command Line", "Script Debugging", "Automation", "DevOps", "System Administration", "Shell Programming", "Error Management", "Script Reliability", "Bash Programming"]
 categories:
 - Linux
-- Shell Scripting
+- Scripting
 - System Administration
 - Programming
 author: "Matthew Mattox - mmattox@support.tools"

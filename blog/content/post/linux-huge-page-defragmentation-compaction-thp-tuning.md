@@ -6,7 +6,7 @@ tags: ["Linux", "Memory", "Performance", "THP", "Huge Pages", "Kernel", "NUMA"]
 categories:
 - Linux
 - Performance
-- Systems
+- Systems Programming
 author: "Matthew Mattox - mmattox@support.tools"
 description: "An in-depth guide to Linux huge page defragmentation covering memory compaction triggers, kcompactd, page migration, defrag=madvise tuning, NUMA and THP interaction, and production performance impact."
 more_link: "yes"

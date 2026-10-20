@@ -6,7 +6,6 @@ tags: ["Go", "Golang", "Modules", "Monorepo", "Dependency Management", "Enterpri
 categories:
 - Go
 - DevOps
-- Enterprise
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Enterprise Go module management: go.work workspace files, replace directives, vendoring strategies, module proxies, dependency pinning for reproducible builds, security scanning with govulncheck, and managing shared libraries across teams."
 more_link: "yes"

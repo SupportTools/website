@@ -4,9 +4,8 @@ date: 2026-04-07T09:00:00-05:00
 draft: false
 tags: ["System Design", "Architecture", "Distributed Systems", "Scalability", "Microservices", "Backend", "Infrastructure"]
 categories:
-- System Architecture
-- Software Design
-- Engineering
+- Architecture
+- Software Engineering
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive collection of high-quality resources for learning system architecture and design principles, from fundamentals to advanced distributed systems concepts, organized by learning stages and topics"
 more_link: "yes"

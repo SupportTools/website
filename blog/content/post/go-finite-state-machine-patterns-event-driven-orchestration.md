@@ -6,7 +6,7 @@ tags: ["Go", "Golang", "FSM", "State Machine", "Event-Driven", "Architecture", "
 categories:
 - Go
 - Architecture
-- Backend
+- Backend Engineering
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Production FSM implementation in Go covering state transition tables, event-driven transitions, concurrent FSM instances, persistence patterns with DB-backed state, testing FSMs, and real-world examples in order processing and workflow engines."
 more_link: "yes"

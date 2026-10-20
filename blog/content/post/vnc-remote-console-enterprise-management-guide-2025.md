@@ -2,8 +2,8 @@
 title: "Enterprise VNC Remote Console Management Guide 2025: Secure iDRAC & KVM Access at Scale"
 date: 2025-09-11T10:00:00-08:00
 draft: false
-tags: ["vnc", "remote-console", "idrac", "kvm", "security", "automation", "dell", "enterprise", "monitoring", "compliance", "infrastructure", "remote-access", "devops", "datacenter"]
-categories: ["Tech", "Misc"]
+tags: ["vnc", "remote-console", "idrac", "kvm", "security", "automation", "dell", "enterprise", "monitoring", "compliance", "infrastructure", "remote-access", "devops", "datacenter", "Tech", "Misc"]
+categories: ["Infrastructure"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Master enterprise VNC remote console management in 2025. Comprehensive guide covering secure multi-server access, automated connection management, encryption, compliance, session recording, and advanced troubleshooting for data center operations."
 ---

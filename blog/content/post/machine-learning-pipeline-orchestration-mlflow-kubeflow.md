@@ -5,7 +5,7 @@ draft: false
 description: "Comprehensive guide to implementing enterprise-grade machine learning pipeline orchestration using MLflow and Kubeflow, covering experiment tracking, model management, workflow automation, and production deployment strategies."
 keywords: ["MLflow", "Kubeflow", "machine learning", "ML pipeline", "MLOps", "model management", "experiment tracking", "workflow orchestration", "kubernetes", "ML automation"]
 tags: ["mlflow", "kubeflow", "machine-learning", "mlops", "pipeline", "orchestration", "kubernetes", "automation", "model-management"]
-categories: ["Machine Learning", "MLOps", "Data Engineering"]
+categories: ["AI & ML", "MLOps", "Data Engineering"]
 author: "Support Tools Team"
 canonical: "https://support.tools/blog/machine-learning-pipeline-orchestration-mlflow-kubeflow/"
 ---

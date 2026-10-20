@@ -6,7 +6,7 @@ tags: ["Linux", "Memory Management", "Page Cache", "Huge Pages", "NUMA", "OOM Ki
 categories:
 - Linux
 - Performance
-- Systems
+- Systems Programming
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to Linux page cache tuning, transparent huge pages, NUMA topology awareness, memory pressure analysis, and OOM killer configuration for production servers."
 more_link: "yes"

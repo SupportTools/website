@@ -5,7 +5,6 @@ draft: false
 tags: ["Platform Engineering", "Backstage", "DevOps", "Developer Experience", "Kubernetes"]
 categories:
 - Platform Engineering
-- Backstage
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Complete guide to deploying and customizing Backstage IDP — plugins, software catalog, TechDocs, scaffolder templates, RBAC, Kubernetes integration, and measuring developer experience metrics."
 more_link: "yes"

@@ -3,7 +3,7 @@ title: "Enterprise Go Performance Optimization: Achieving 300% Speed Improvement
 date: 2026-07-22T00:00:00-05:00
 draft: false
 tags: ["Go", "Performance", "Memory Management", "Profiling", "Enterprise", "Optimization", "Benchmarking"]
-categories: ["Performance", "Development", "Enterprise"]
+categories: ["Performance", "Development"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to enterprise Go performance optimization techniques that can deliver 300% speed improvements through advanced memory management, profiling, and production-ready patterns."
 more_link: "yes"

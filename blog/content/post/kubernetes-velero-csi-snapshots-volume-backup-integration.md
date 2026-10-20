@@ -6,7 +6,7 @@ tags: ["Kubernetes", "Velero", "CSI", "Backup", "Storage", "AWS EBS", "GCP", "Az
 categories:
 - Kubernetes
 - Storage
-- Backup
+- "Backup & Recovery"
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Complete guide to integrating Velero with CSI VolumeSnapshot APIs for consistent application backup across AWS EBS, GCP Persistent Disk, and Azure Disk providers, including pre/post hooks and cross-zone restore."
 more_link: "yes"

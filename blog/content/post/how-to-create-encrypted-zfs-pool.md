@@ -4,7 +4,6 @@ date: 2025-02-16T01:00:00-05:00
 draft: false
 tags: ["ZFS", "Encryption", "Linux", "Ubuntu", "RAIDZ", "Data Security"]
 categories:
-- ZFS
 - Linux
 - Security
 - Data Protection

@@ -5,7 +5,7 @@ draft: false
 tags: ["Linux", "System Programming", "Performance", "Optimization", "Profiling", "Memory Management", "CPU", "I/O"]
 categories:
 - Linux
-- Performance Optimization
+- Performance
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Master advanced Linux system programming and performance optimization including memory management, CPU optimization, I/O performance, profiling techniques, and building high-performance applications"
 more_link: "yes"

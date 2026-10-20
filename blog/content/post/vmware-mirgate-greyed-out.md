@@ -4,7 +4,7 @@ date: "2020-12-22T10:56:00+00:00"
 draft: false
 tags: ["VMWare", "esxi", "vm", "vcenter"]
 categories:
-- VMWare
+- VMware
 more_link: "yes"
 ---
 

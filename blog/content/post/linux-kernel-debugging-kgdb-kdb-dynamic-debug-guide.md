@@ -5,7 +5,7 @@ draft: false
 tags: ["Linux", "Kernel", "Debugging", "KGDB", "KDB", "lockdep", "RCU"]
 categories:
 - Linux
-- Systems
+- Systems Programming
 - Debugging
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A production-grade guide to Linux kernel debugging covering KGDB remote debugging, KDB built-in debugger commands, dynamic debug for targeted logging, kernel oops analysis, lockdep for deadlock detection, and RCU debugging techniques."

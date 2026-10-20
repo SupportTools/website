@@ -3,7 +3,7 @@ title: "Networking 101"
 date: 2024-10-24
 draft: false
 tags: ["networking", "training", "core concepts"]
-categories: ["training"]
+categories: ["Training"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "An introduction to networking basics."
 more_link: "/training//networking/networking-101/"

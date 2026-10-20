@@ -2,11 +2,10 @@
 title: "Enterprise Kubernetes Game Server Hosting: Comprehensive Infrastructure Guide for Production Gaming Platforms and Containerized Multiplayer Services"
 date: 2025-06-10T10:00:00-05:00
 draft: false
-tags: ["Kubernetes", "Game Servers", "EKS", "Agones", "Container Orchestration", "Multiplayer Gaming", "DevOps", "Infrastructure", "Cloud Gaming", "Nutanix"]
+tags: ["Kubernetes", "Game Servers", "EKS", "Agones", "Container Orchestration", "Multiplayer Gaming", "DevOps", "Infrastructure", "Cloud Gaming", "Nutanix", "Gaming Infrastructure"]
 categories:
-- Gaming Infrastructure
 - Kubernetes
-- Enterprise Architecture
+- Architecture
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Complete enterprise guide to containerized game server hosting on Kubernetes, advanced orchestration with Agones, production-grade gaming infrastructure, and comprehensive multiplayer platform management"
 more_link: "yes"

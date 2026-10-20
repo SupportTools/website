@@ -6,7 +6,7 @@ tags: ["CloudFlare", "Performance", "Security", "CDN", "Web Development", "Optim
 categories:
 - Performance
 - Security
-- CloudFlare
+- Cloudflare
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to optimize your website's performance and security using CloudFlare's advanced features. Comprehensive guide to caching, security rules, and performance tuning."
 more_link: "yes"

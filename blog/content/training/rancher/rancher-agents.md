@@ -4,7 +4,7 @@ date: 2022-05-13T04:04:00-00:00
 draft: false
 tags: ["rancher", "agents", "training"]
 categories:
-- rancher
+- Rancher
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Rancher Agents"
 ---

@@ -3,7 +3,7 @@ title: "Go HTTP Client Best Practices: Timeouts, Retries, and Connection Managem
 date: 2028-01-29T00:00:00-05:00
 draft: false
 tags: ["Go", "HTTP", "Performance", "Networking", "Reliability", "Circuit Breaker", "mTLS"]
-categories: ["Go", "Backend Engineering", "Reliability"]
+categories: ["Go", "Backend Engineering", "SRE"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Production guide to Go HTTP client configuration including http.Transport tuning, context-based timeouts, exponential backoff retry logic, circuit breaker integration, mTLS client certificates, and per-host connection pool management."
 more_link: "yes"

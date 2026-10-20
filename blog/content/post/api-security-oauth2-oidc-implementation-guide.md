@@ -2,12 +2,9 @@
 title: "Advanced API Security and OAuth 2.0/OIDC Implementation: Enterprise Identity Protection Framework"
 date: 2026-05-01T00:00:00-05:00
 draft: false
-tags: ["API Security", "OAuth 2.0", "OpenID Connect", "OIDC", "JWT", "API Gateway", "Authentication", "Authorization", "Identity Management", "Zero Trust"]
+tags: ["API Security", "OAuth 2.0", "OpenID Connect", "OIDC", "JWT", "API Gateway", "Authentication", "Authorization", "Identity Management", "Zero Trust", "OAuth"]
 categories:
 - Security
-- API Security
-- OAuth
-- Identity Management
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to implementing advanced API security with OAuth 2.0 and OpenID Connect for enterprise environments, including secure authentication flows, token management, and production-ready API protection strategies."
 more_link: "yes"

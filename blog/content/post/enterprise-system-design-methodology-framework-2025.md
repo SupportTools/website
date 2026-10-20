@@ -12,8 +12,8 @@ tags:
 - system-engineering
 - architectural-patterns
 categories:
-- System Design
-- Enterprise Engineering
+- Architecture
+- Software Engineering
 - Distributed Systems
 author: mmattox
 description: "Master enterprise system design with comprehensive methodologies, advanced architectural patterns, scalability frameworks, and production-scale system engineering for building resilient distributed systems at massive scale."

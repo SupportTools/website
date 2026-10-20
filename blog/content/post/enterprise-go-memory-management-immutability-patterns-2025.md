@@ -13,9 +13,9 @@ tags:
 - garbage-collection
 - data-structures
 categories:
-- Go Programming
-- Performance Engineering
-- Enterprise Development
+- Go
+- Performance
+- Development
 author: mmattox
 description: "Master enterprise Go memory management with advanced immutability patterns, performance optimization techniques, garbage collection tuning, and production-scale memory management for high-performance applications."
 keywords: "Go memory management, immutability patterns, performance optimization, garbage collection, memory optimization, concurrent programming, enterprise Go, memory safety, performance tuning"

@@ -5,7 +5,7 @@ draft: false
 tags: ["GitHub Actions", "CI/CD", "Kubernetes", "OIDC", "Security", "Self-Hosted Runners"]
 categories:
 - GitHub Actions
-- CI/CD
+- "CI & CD"
 - Kubernetes
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A production-grade guide to GitHub Actions for Kubernetes deployments covering OIDC token-based authentication to AWS/GCP/Azure, self-hosted runners with Actions Runner Controller, workflow security hardening, reusable workflows, matrix deployments, and deployment freeze patterns."

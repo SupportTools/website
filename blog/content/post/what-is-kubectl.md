@@ -5,7 +5,7 @@ draft: false
 tags: ["kubernetes", "tools"]
 categories:
 - Kubernetes
-- Tools
+- Developer Tools
 author: "Matthew Mattox - mmattox@support.tools"
 description: "What is kubectl? Why is it useful? How do you use it?"
 more_link: "yes"

@@ -5,7 +5,7 @@ draft: false
 tags: ["AWS", "Kubernetes", "EKS", "DevOps", "Cloud Infrastructure"]
 categories:
 - DevOps
-- Cloud Computing
+- Cloud
 author: "Matthew Mattox - mmattox@support.tools"
 description: "AWS EKS has evolved over the years, but is it the right choice for your Kubernetes needs? This review covers its history, strengths, and pain points."
 more_link: "yes"

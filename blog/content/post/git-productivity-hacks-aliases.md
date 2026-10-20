@@ -6,7 +6,7 @@ tags: ["Git", "DevOps", "Productivity", "Version Control", "Command Line", "Auto
 categories:
 - Git
 - DevOps
-- Productivity
+- Developer Experience
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Boost your Git workflow efficiency with powerful aliases and productivity hacks. Learn time-saving techniques that will streamline your version control process."
 more_link: "yes"

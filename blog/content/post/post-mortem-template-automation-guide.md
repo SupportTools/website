@@ -3,7 +3,7 @@ title: "Post-Mortem Template Automation: Enterprise Guide to Automated Incident 
 date: 2026-10-25T00:00:00-05:00
 draft: false
 tags: ["Post-Mortem", "Incident Response", "Automation", "SRE", "DevOps", "Learning", "Root Cause Analysis", "Enterprise"]
-categories: ["Incident Management", "Site Reliability Engineering", "DevOps"]
+categories: ["Incident Response", "SRE", "DevOps"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to automating post-mortem creation and analysis for enterprise environments, including template generation, data collection, root cause analysis automation, and action item tracking."
 more_link: "yes"

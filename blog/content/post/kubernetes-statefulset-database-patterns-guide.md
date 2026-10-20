@@ -3,7 +3,7 @@ title: "Kubernetes StatefulSet Patterns for Database Workloads: Production Best 
 date: 2027-05-12T00:00:00-05:00
 draft: false
 tags: ["Kubernetes", "StatefulSet", "Database", "PostgreSQL", "MySQL", "Redis"]
-categories: ["Kubernetes", "Database"]
+categories: ["Kubernetes", "Databases"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Production guide for running databases on Kubernetes StatefulSets, covering ordered deployment, headless services, pod identity, init containers, sidecar patterns, PodDisruptionBudgets, zero-downtime upgrades, and anti-affinity rules."
 more_link: "yes"

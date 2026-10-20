@@ -3,7 +3,7 @@ title: "Understanding etcd in Kubernetes"
 date: 2025-01-29T00:00:00-00:00
 draft: false
 tags: ["kubernetes", "etcd", "control plane", "distributed storage"]
-categories: ["Kubernetes Deep Dive"]
+categories: ["Kubernetes"]
 author: "Matthew Mattox"
 description: "A deep dive into etcd, its role in Kubernetes, and best practices for maintaining a highly available and performant cluster."
 url: "/training/kubernetes-deep-dive/etcd/"

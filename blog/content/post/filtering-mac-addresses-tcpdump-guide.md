@@ -2,10 +2,9 @@
 title: "How to Filter MAC Addresses Using tcpdump"
 date: 2023-10-13T10:45:00-05:00
 draft: false
-tags: ["tcpdump", "Network Monitoring", "MAC Address"]
+tags: ["tcpdump", "Network Monitoring", "MAC Address", "Network Tools"]
 categories:
-- Network Tools
-- Network Monitoring
+- Monitoring
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A guide on filtering MAC addresses using tcpdump."
 more_link: "yes"

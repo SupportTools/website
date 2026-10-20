@@ -5,7 +5,7 @@ draft: false
 tags: ["GitHub Actions", "CI/CD", "DevOps", "Automation", "Kubernetes"]
 categories:
 - GitHub Actions
-- CI/CD
+- "CI & CD"
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Master GitHub Actions advanced features including reusable workflows with workflow_call, dynamic matrix strategies, composite actions, self-hosted runners on Kubernetes with ARC, OIDC authentication, and workflow optimization techniques for enterprise CI/CD pipelines."
 more_link: "yes"

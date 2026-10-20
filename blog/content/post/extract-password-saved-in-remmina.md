@@ -2,10 +2,9 @@
 title: "How to Extract Passwords Saved in Remmina"
 date: 2025-02-16T01:58:00-06:00
 draft: false
-tags: ["Remmina", "Security", "Linux", "Password Recovery"]
+tags: ["Remmina", "Security", "Linux", "Password Recovery", "Linux Tools"]
 categories:
 - Security
-- Linux Tools
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A guide on how to recover passwords saved in the Remmina Remote Desktop Client"
 more_link: "yes"

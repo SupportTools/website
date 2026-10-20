@@ -5,7 +5,7 @@ draft: false
 tags: ["Linux", "Web Server", "HTTP", "Epoll", "Async", "High Performance", "Web Programming", "Server Architecture"]
 categories:
 - Linux
-- Web Programming
+- Web Development
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Master advanced Linux web server programming including high-performance HTTP servers, async I/O with epoll, WebSocket support, and building scalable web applications"
 more_link: "yes"

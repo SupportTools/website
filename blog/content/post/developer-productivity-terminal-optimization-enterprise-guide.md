@@ -4,8 +4,8 @@ date: 2026-06-08T00:00:00-05:00
 draft: false
 tags: ["Developer Productivity", "Terminal", "Shell Configuration", "Zsh", "Bash", "Git", "IDE", "DevOps", "Automation", "Linux", "macOS", "Command Line", "Development Tools", "Productivity", "Enterprise Development"]
 categories:
-- Development Tools
-- Productivity
+- Developer Tools
+- Developer Experience
 - DevOps
 - Linux
 author: "Matthew Mattox - mmattox@support.tools"

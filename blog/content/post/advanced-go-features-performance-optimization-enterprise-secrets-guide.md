@@ -3,7 +3,7 @@ title: "The Secret Golang Features That Will Change How You Code Forever: Advanc
 date: 2026-04-03T00:00:00-05:00
 draft: false
 tags: ["Go", "Golang", "Performance", "Enterprise", "Advanced Features", "Optimization", "Memory Management"]
-categories: ["Programming", "Performance", "Enterprise Development"]
+categories: ["Programming", "Performance", "Development"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Discover hidden Go features and advanced performance optimization techniques that can revolutionize your enterprise applications with 10x performance gains."
 more_link: "yes"

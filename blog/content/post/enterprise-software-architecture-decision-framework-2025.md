@@ -11,10 +11,9 @@ tags:
 - architecture-patterns
 - scalability
 - system-design
-categories:
-- Enterprise Architecture
-- System Design
 - Strategic Technology
+categories:
+- Architecture
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Master enterprise software architecture decisions with comprehensive frameworks, advanced patterns, strategic evaluation methods, and production-scale architecture governance for building resilient distributed systems."
 keywords: "software architecture, microservices architecture, enterprise architecture, distributed systems, cloud-native architecture, architecture patterns, system design, scalability, architecture governance"

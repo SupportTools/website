@@ -5,7 +5,7 @@ draft: false
 tags: ["Go", "Golang", "Development Tools", "Programming", "Libraries", "IDE", "Testing", "DevOps"]
 categories:
 - Go
-- Tools
+- Developer Tools
 - Development
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive guide to the essential tools, libraries, and development environments that every Go developer should know to maximize productivity and code quality"

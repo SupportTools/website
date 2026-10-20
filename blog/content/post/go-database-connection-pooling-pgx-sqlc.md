@@ -3,7 +3,7 @@ title: "Go Database Connection Pooling: pgx, database/sql, and sqlc"
 date: 2029-06-22T00:00:00-05:00
 draft: false
 tags: ["Go", "PostgreSQL", "pgx", "sqlc", "Database", "Performance", "Connection Pooling"]
-categories: ["Go", "Database"]
+categories: ["Go", "Databases"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive guide to Go database connection pooling covering pgx v5 pool configuration, database/sql maxOpenConns tuning, sqlc type-safe query generation, connection lifetime management, and health checking strategies for production systems."
 more_link: "yes"

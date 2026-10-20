@@ -2,10 +2,9 @@
 title: "Rancher Backups and Disaster Recovery for RKE1"
 date: 2024-06-30T23:18:00-05:00
 draft: false
-tags: ["rancher", "rancher-2.x", "backups", "disaster-recovery"]
+tags: ["rancher", "rancher-2.x", "backups", "disaster-recovery", "RKE1"]
 categories:
 - Rancher
-- RKE1
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Rancher backups and disaster recovery"
 more_link: "yes"

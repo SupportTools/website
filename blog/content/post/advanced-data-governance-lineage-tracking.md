@@ -5,7 +5,7 @@ draft: false
 description: "Comprehensive guide to implementing advanced data governance frameworks and lineage tracking systems, covering compliance automation, data classification, access controls, audit trails, and enterprise data management strategies."
 keywords: ["data governance", "data lineage", "compliance", "data classification", "access controls", "audit trails", "data catalog", "GDPR", "data privacy", "data management"]
 tags: ["data-governance", "data-lineage", "compliance", "data-classification", "access-controls", "audit", "catalog", "privacy", "gdpr"]
-categories: ["Data Governance", "Compliance", "Data Management"]
+categories: ["Compliance", "Data Management"]
 author: "Support Tools Team"
 canonical: "https://support.tools/blog/advanced-data-governance-lineage-tracking/"
 ---

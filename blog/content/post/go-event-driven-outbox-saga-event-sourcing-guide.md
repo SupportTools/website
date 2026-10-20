@@ -5,7 +5,7 @@ draft: false
 tags: ["Go", "Event-Driven", "Outbox Pattern", "Saga", "Event Sourcing", "PostgreSQL"]
 categories:
 - Go
-- Database
+- Databases
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A production-grade guide to event-driven architecture in Go. Covers the Transactional Outbox Pattern, Saga Pattern for distributed transactions, and Event Sourcing with PostgreSQL — with complete code examples."
 more_link: "yes"

@@ -2,11 +2,10 @@
 title: "AI Model Serving: TensorFlow Serving vs Seldon vs KServe - Complete Production Comparison"
 date: 2026-04-26T00:00:00-05:00
 draft: false
-tags: ["AI Model Serving", "TensorFlow Serving", "Seldon", "KServe", "Machine Learning", "MLOps", "Kubernetes", "AI Infrastructure"]
+tags: ["AI Model Serving", "TensorFlow Serving", "Seldon", "KServe", "Machine Learning", "MLOps", "Kubernetes", "AI Infrastructure", "Model Serving"]
 categories:
 - AI Infrastructure
 - MLOps
-- Model Serving
 - Kubernetes
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive comparison of TensorFlow Serving, Seldon Core, and KServe for AI model serving with performance benchmarks, A/B testing, auto-scaling, multi-model serving, and production deployment strategies."

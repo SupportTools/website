@@ -5,7 +5,7 @@ draft: false
 description: "Complete guide to implementing enterprise-grade data quality management and observability systems, covering automated validation, real-time monitoring, incident response, and data reliability engineering practices."
 keywords: ["data quality", "data observability", "data monitoring", "data validation", "data reliability", "data engineering", "data governance", "data testing", "SLA monitoring", "incident response"]
 tags: ["data-quality", "observability", "monitoring", "validation", "reliability", "governance", "testing", "production"]
-categories: ["Data Engineering", "Data Quality", "Observability"]
+categories: ["Data Engineering", "Observability"]
 author: "Support Tools Team"
 canonical: "https://support.tools/blog/data-quality-management-observability-production/"
 ---

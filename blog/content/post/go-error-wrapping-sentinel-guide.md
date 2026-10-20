@@ -3,7 +3,7 @@ title: "Go Error Design: Sentinel Errors, Custom Types, and Wrapping Patterns"
 date: 2028-03-21T00:00:00-05:00
 draft: false
 tags: ["Go", "Error Handling", "Best Practices", "Software Design", "Production Engineering"]
-categories: ["Go", "Software Design"]
+categories: ["Go", "Architecture"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to Go error design covering errors.Is and errors.As unwrapping chains, sentinel errors vs typed errors, fmt.Errorf %w wrapping, stack traces, domain error modeling, HTTP status mapping, and concurrent error handling."
 more_link: "yes"

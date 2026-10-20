@@ -5,8 +5,8 @@ draft: false
 tags: ["ai-development", "claude-code", "productivity", "software-engineering", "automation", "devops", "best-practices", "llm"]
 categories:
 - Software Engineering
-- AI Development
-- Productivity
+- "AI & ML"
+- Developer Experience
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Master AI-assisted development with comprehensive Claude Code patterns and workflows. Complete guide to shipping production features faster with LLM-powered development tools, context management, and enterprise-grade practices."
 more_link: "yes"

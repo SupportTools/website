@@ -2,11 +2,10 @@
 title: "Time Series Database Optimization: InfluxDB vs TimescaleDB vs ClickHouse"
 date: 2026-12-04T00:00:00-05:00
 draft: false
-tags: ["InfluxDB", "TimescaleDB", "ClickHouse", "Time Series", "Database Optimization", "Performance Tuning", "Monitoring", "IoT", "Analytics"]
+tags: ["InfluxDB", "TimescaleDB", "ClickHouse", "Time Series", "Database Optimization", "Performance Tuning", "Monitoring", "IoT", "Analytics", "Time Series Databases"]
 categories:
-- Time Series Databases
-- Database Optimization
-- Performance Tuning
+- Databases
+- Performance
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive comparison and optimization guide for InfluxDB, TimescaleDB, and ClickHouse. Learn architecture differences, performance tuning, query optimization, and production deployment strategies for time series workloads."
 more_link: "yes"

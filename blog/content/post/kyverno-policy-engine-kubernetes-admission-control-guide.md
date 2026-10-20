@@ -3,7 +3,7 @@ title: "Kyverno: Kubernetes-Native Policy Engine for Admission Control"
 date: 2027-02-21T00:00:00-05:00
 draft: false
 tags: ["Kubernetes", "Kyverno", "Policy", "Security", "Admission Control"]
-categories: ["Security", "Kubernetes", "Policy Management"]
+categories: ["Security", "Kubernetes", "Policy"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to deploying and operating Kyverno as a Kubernetes-native policy engine, covering validate, mutate, generate, and verify-image rules with JMESPath, CEL, background scanning, policy exceptions, and CI/CD integration."
 more_link: "yes"

@@ -5,7 +5,6 @@ draft: false
 tags: ["Raspberry Pi", "RaspiOS", "arm64", "Upgrade"]
 categories:
 - DevOps
-- Raspberry Pi
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn about the challenges and considerations when upgrading RaspiOS to arm64 on a Raspberry Pi 4-powered k3s cluster."
 more_link: "yes"

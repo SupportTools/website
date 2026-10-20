@@ -5,7 +5,7 @@ draft: false
 tags: ["Go", "gRPC", "REST", "API Gateway", "grpc-gateway", "Protobuf"]
 categories:
 - Go
-- APIs
+- API Design
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A complete guide to building a production-grade gRPC gateway in Go using grpc-gateway, covering protobuf annotations, OpenAPI generation, authentication, streaming, and deployment patterns."
 more_link: "yes"

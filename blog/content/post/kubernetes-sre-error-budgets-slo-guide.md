@@ -6,7 +6,6 @@ tags: ["SRE", "Kubernetes", "SLO", "Error Budget", "Reliability"]
 categories:
 - SRE
 - Kubernetes
-- Reliability
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive guide to implementing Site Reliability Engineering practices in Kubernetes environments, covering SLO definition, error budget calculation, SLI instrumentation, burn rate alerting, toil reduction, and SLO management with Sloth and Pyrra."
 more_link: "yes"

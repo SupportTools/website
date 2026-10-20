@@ -3,7 +3,7 @@ title: "Gateway API Inference Extension: LLM Traffic Management on Kubernetes"
 date: 2027-02-20T00:00:00-05:00
 draft: false
 tags: ["Kubernetes", "Gateway API", "LLM", "AI/ML", "Inference"]
-categories: ["Kubernetes", "AI/ML", "Networking"]
+categories: ["Kubernetes", "AI & ML", "Networking"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to the Gateway API Inference Extension for Kubernetes, covering InferenceModel and InferencePool CRDs, model-aware routing, prefix cache affinity, LoRA adapter routing, queue-depth-aware load balancing, vLLM integration, and production observability for LLM inference workloads."
 more_link: "yes"

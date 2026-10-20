@@ -3,7 +3,7 @@ title: "Argo Rollouts: Progressive Delivery with Canary and Blue/Green Strategie
 date: 2028-01-01T00:00:00-05:00
 draft: false
 tags: ["Argo Rollouts", "Progressive Delivery", "Canary", "Blue/Green", "Kubernetes", "GitOps"]
-categories: ["Kubernetes", "CI/CD"]
+categories: ["Kubernetes", "CI & CD"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A production guide to Argo Rollouts covering the Rollout CRD, canary deployment steps, blue/green promotion, AnalysisTemplate with Prometheus, traffic splitting with Nginx/Istio/ALB, automated rollbacks, and kubectl argo plugin operations."
 more_link: "yes"

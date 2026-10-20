@@ -3,7 +3,7 @@ title: "Go Caching Patterns: In-Memory, Distributed, and Write-Through"
 date: 2029-05-30T00:00:00-05:00
 draft: false
 tags: ["Go", "Caching", "Redis", "Performance", "Distributed Systems", "Golang", "Ristretto"]
-categories: ["Go", "Performance Engineering"]
+categories: ["Go", "Performance"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A deep-dive into Go caching patterns covering groupcache, bigcache, ristretto, Redis as L2 cache, cache invalidation strategies, LRU/LFU/ARC eviction, and cache stampede prevention for production services."
 more_link: "yes"

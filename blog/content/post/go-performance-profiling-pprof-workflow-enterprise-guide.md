@@ -5,7 +5,7 @@ draft: false
 tags: ["Go", "Golang", "Performance", "Profiling", "pprof", "Observability", "Memory Management"]
 categories:
 - Go
-- Performance Engineering
+- Performance
 - Observability
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Complete Go profiling workflow for production services: exposing pprof endpoints safely, interpreting CPU and memory profiles, distinguishing inuse_space from alloc_space, and surfacing mutex contention hotspots."

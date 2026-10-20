@@ -2,12 +2,10 @@
 title: "Linux Display Management & Multi-Monitor Setup Guide 2025: Complete xrandr Configuration & Automation"
 date: 2025-08-05T10:00:00-05:00
 draft: false
-tags: ["xrandr", "Linux Display", "Multi-Monitor", "X11", "Wayland", "Display Configuration", "Monitor Setup", "Linux Graphics", "Display Manager", "Screen Resolution", "HDMI Configuration", "Desktop Environment", "Graphics Setup", "Monitor Management"]
+tags: ["xrandr", "Linux Display", "Multi-Monitor", "X11", "Wayland", "Display Configuration", "Monitor Setup", "Linux Graphics", "Display Manager", "Screen Resolution", "HDMI Configuration", "Desktop Environment", "Graphics Setup", "Monitor Management", "Desktop Configuration", "Graphics"]
 categories:
 - Linux
-- Desktop Configuration
 - System Administration
-- Graphics
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Master Linux display management with xrandr and modern tools. Complete guide to multi-monitor setup, resolution configuration, automated display switching, graphics troubleshooting, and enterprise desktop deployment."
 more_link: "yes"

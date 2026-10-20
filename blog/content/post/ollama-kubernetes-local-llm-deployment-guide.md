@@ -5,8 +5,8 @@ draft: false
 tags: ["Ollama", "Kubernetes", "LLM", "GPU", "StatefulSet", "Open-WebUI", "AI", "Self-Hosted"]
 categories:
 - Kubernetes
-- AI/ML
-- GPU
+- "AI & ML"
+- GPU Computing
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A complete guide to deploying Ollama on Kubernetes with GPU node selection, model persistence via PVCs, Open WebUI integration, REST API serving patterns, and multi-node inference for enterprise self-hosted LLM workloads."
 more_link: "yes"

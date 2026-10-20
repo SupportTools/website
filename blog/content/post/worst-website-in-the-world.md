@@ -2,10 +2,9 @@
 title: "The Worst Website In The Entire World"
 date: 2024-05-15T12:00:00-05:00
 draft: false
-tags: ["Broadcom", "Web Design", "User Experience", "Tech Rants"]
+tags: ["Broadcom", "Web Design", "User Experience", "Tech Rants", "Technology"]
 categories:
-- broadcom
-- Technology
+- Virtualization
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A deep dive into why the Broadcom Support website might just be the worst user experience on the Internet."
 more_link: "yes"

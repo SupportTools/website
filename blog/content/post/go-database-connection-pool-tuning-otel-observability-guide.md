@@ -5,8 +5,8 @@ draft: false
 tags: ["Go", "Golang", "Database", "PostgreSQL", "Connection Pooling", "Performance", "OpenTelemetry", "Observability"]
 categories:
 - Go
-- Database
-- Performance Engineering
+- Databases
+- Performance
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Complete guide to tuning Go database/sql connection pools for production: MaxOpenConns, MaxIdleConns, ConnMaxLifetime sizing, connection health validation, and full observability with OpenTelemetry metrics."
 more_link: "yes"

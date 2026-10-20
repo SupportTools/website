@@ -6,7 +6,7 @@ tags: ["Docker", "DevOps", "Containerization", "Performance", "Best Practices", 
 categories:
 - Docker
 - DevOps
-- Performance Optimization
+- Performance
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to effectively use .dockerignore files to reduce build context size, improve build performance, and maintain clean Docker images. Includes practical patterns and real-world examples."
 more_link: "yes"

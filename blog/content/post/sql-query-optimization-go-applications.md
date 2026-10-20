@@ -3,7 +3,7 @@ title: "SQL Query Optimization in Go Applications: A Comprehensive Guide"
 date: 2027-05-06T09:00:00-05:00
 draft: false
 tags: ["Go", "SQL", "PostgreSQL", "Database", "Performance", "Optimization"]
-categories: ["Database Performance", "Go Programming"]
+categories: ["Databases", "Go"]
 ---
 
 Database performance issues can quickly become a bottleneck in any application, but they're especially problematic in high-concurrency Go applications that are expected to handle significant throughput. A single inefficient query can cascade into system-wide slowdowns, increased costs, and poor user experience. This comprehensive guide explores how to identify, analyze, and optimize SQL queries in Go applications, with a focus on PostgreSQL but with techniques applicable to most relational databases.

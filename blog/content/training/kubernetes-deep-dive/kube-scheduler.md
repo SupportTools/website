@@ -3,7 +3,7 @@ title: "Deep Dive: Kubernetes Scheduler"
 date: 2025-01-01T00:00:00-05:00
 draft: false
 tags: ["kubernetes", "scheduler", "control plane", "pod scheduling"]
-categories: ["Kubernetes Deep Dive"]
+categories: ["Kubernetes"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive deep dive into the Kubernetes Scheduler architecture, algorithms, and configuration"
 url: "/training/kubernetes-deep-dive/kube-scheduler/"

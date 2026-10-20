@@ -2,10 +2,9 @@
 title: "Kubernetes Explained: The Ultimate Amusement Park Analogy for Beginners"
 date: 2026-11-05T09:00:00-05:00
 draft: false
-tags: ["Kubernetes", "K8s", "Container Orchestration", "Beginner Guide", "Pods", "Services", "Deployments", "Ingress", "ConfigMaps", "Secrets"]
+tags: ["Kubernetes", "K8s", "Container Orchestration", "Beginner Guide", "Pods", "Services", "Deployments", "Ingress", "ConfigMaps", "Secrets", "Beginner Guides"]
 categories:
 - Kubernetes
-- Beginner Guides
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn Kubernetes fundamentals through an intuitive amusement park analogy. Master key concepts like pods, services, deployments, and more with this beginner-friendly guide to container orchestration."
 more_link: "yes"

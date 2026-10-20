@@ -2,9 +2,8 @@
 title: "Mastering Configuration Management with Kubernetes"
 date: 2024-05-18
 draft: false
-tags: ["Kubernetes", "Configuration Management"]
+tags: ["Kubernetes", "Configuration Management", "Technology"]
 categories:
-  - Technology
   - DevOps
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how ConfigMaps in Kubernetes simplify configuration management for applications."

@@ -3,7 +3,7 @@ title: "Continuous Profiling in Go: Always-On pprof with Pyroscope, Flamegraphs,
 date: 2028-06-14T00:00:00-05:00
 draft: false
 tags: ["Go", "pprof", "Pyroscope", "Profiling", "Performance", "Memory Leaks", "Observability"]
-categories: ["Go", "Performance Engineering"]
+categories: ["Go", "Performance"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Production-grade continuous profiling for Go services: always-on pprof integration with Pyroscope, flamegraph interpretation, heap profiling for memory leaks, goroutine leak detection, and mutex/block profiling analysis."
 more_link: "yes"

@@ -3,7 +3,7 @@ title: "GPU Workload Management on Kubernetes: NVIDIA GPU Operator Deep Dive"
 date: 2028-01-02T00:00:00-05:00
 draft: false
 tags: ["Kubernetes", "GPU", "NVIDIA", "Machine Learning", "DCGM", "MIG", "GPU Operator"]
-categories: ["Kubernetes", "AI/ML"]
+categories: ["Kubernetes", "AI & ML"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive guide to GPU workload management on Kubernetes covering NVIDIA GPU Operator components, time-slicing vs MIG partitioning, GPU resource quotas, Volta/Ampere MIG profiles, node feature discovery, DCGM monitoring, and multi-instance GPU scheduling."
 more_link: "yes"

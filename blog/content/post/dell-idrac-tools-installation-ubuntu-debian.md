@@ -4,10 +4,9 @@ date: 2025-09-02T10:00:00-05:00
 draft: false
 tags: ["Dell iDRAC", "RACADM", "Ubuntu", "Debian", "PowerEdge", "Server Management", "Remote Management", "Linux Server", "Dell Tools", "iDRAC Configuration", "RPM to DEB", "Server Administration", "Enterprise Hardware", "Out-of-Band Management"]
 categories:
-- Systems Administration
+- System Administration
 - Linux
-- Hardware Management
-- Server Management
+- Hardware
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Complete guide to installing Dell iDRAC tools and RACADM on Ubuntu/Debian systems. Learn RPM-to-DEB conversion, advanced RACADM commands, PowerEdge server management, firmware updates, and enterprise server administration techniques."
 more_link: "yes"

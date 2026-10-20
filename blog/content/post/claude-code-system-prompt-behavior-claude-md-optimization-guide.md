@@ -4,7 +4,7 @@ date: 2026-03-14T12:00:00-05:00
 draft: false
 tags: ["claude-code", "ai-assisted-development", "devops", "developer-tools", "prompt-engineering", "llm", "claude", "anthropic"]
 categories:
-- AI/ML
+- "AI & ML"
 - Developer Tools
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Claude Code answers feel terse and shallow? The cause is architectural, not model degradation. Claude Code's built-in system prompt enforces brevity and minimal changes at a higher priority than your CLAUDE.md. Learn the instruction hierarchy, why CLAUDE.md loses on tone conflicts, and the exact workarounds—output style modes, the --system-prompt flag, and targeted CLAUDE.md patterns—that actually work."

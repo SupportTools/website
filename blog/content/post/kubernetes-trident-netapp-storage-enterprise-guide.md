@@ -2,11 +2,10 @@
 title: "Kubernetes Trident: NetApp Storage Integration for Enterprise Kubernetes Deployments"
 date: 2030-11-14T00:00:00-05:00
 draft: false
-tags: ["Kubernetes", "Trident", "NetApp", "ONTAP", "Storage", "CSI", "Persistent Volumes", "Enterprise Storage"]
+tags: ["Kubernetes", "Trident", "NetApp", "ONTAP", "Storage", "CSI", "Persistent Volumes", "Enterprise Storage", "Enterprise"]
 categories:
 - Kubernetes
 - Storage
-- Enterprise
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Enterprise Trident guide covering ONTAP NAS/SAN backend configuration, StorageClass design for different performance tiers, volume import and clone operations, snapshot-based backup integration, QoS policies, and migrating legacy storage to Kubernetes with Trident."
 more_link: "yes"

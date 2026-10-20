@@ -7,7 +7,7 @@ categories:
 - Streaming
 - Architecture
 - Microservices
-- Real-time
+- Real-Time Systems
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Deep dive into building robust event-driven architectures using NATS JetStream, covering stream processing patterns, guaranteed delivery mechanisms, clustering for high availability, microservices integration, and performance optimization techniques"
 more_link: "yes"

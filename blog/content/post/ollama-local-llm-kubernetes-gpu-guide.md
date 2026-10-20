@@ -4,7 +4,6 @@ date: 2028-10-01T00:00:00-05:00
 draft: false
 tags: ["Ollama", "LLM", "Kubernetes", "GPU", "AI/ML"]
 categories:
-- Ollama
 - Kubernetes
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Complete guide to deploying Ollama on Kubernetes with GPU node selectors, persistent model storage, OpenAI-compatible API integration, Go and Python clients, and monitoring inference latency."

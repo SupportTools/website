@@ -5,7 +5,7 @@ draft: false
 tags: ["vLLM", "LLM", "Kubernetes", "GPU", "AI/ML", "Inference"]
 categories:
 - Kubernetes
-- AI/ML
+- "AI & ML"
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A production guide to deploying vLLM on Kubernetes covering PagedAttention architecture, OpenAI-compatible API serving, tensor parallelism across multiple GPUs, quantization strategies (AWQ, GPTQ, FP8), KEDA autoscaling, and Prometheus monitoring for high-throughput LLM inference."
 more_link: "yes"

@@ -3,7 +3,7 @@ title: "Building Message-Driven Microservices in Go with RabbitMQ"
 date: 2026-07-16T09:00:00-05:00
 draft: false
 tags: ["golang", "rabbitmq", "microservices", "message-queue", "event-driven", "amqp", "mqtt"]
-categories: ["Development", "Go", "Microservices", "Message Queues"]
+categories: ["Development", "Go", "Microservices", "Messaging"]
 ---
 
 ## Introduction

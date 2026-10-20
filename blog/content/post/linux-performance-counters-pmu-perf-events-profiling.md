@@ -3,7 +3,7 @@ title: "Linux Performance Counters: PMU, perf Events, and Hardware-Level Profili
 date: 2030-03-08T00:00:00-05:00
 draft: false
 tags: ["Linux", "Performance", "perf", "PMU", "Profiling", "Intel PT", "Hardware"]
-categories: ["Linux", "Performance Engineering"]
+categories: ["Linux", "Performance"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive enterprise guide to CPU performance monitoring units, perf hardware event analysis, cache miss profiling, branch misprediction analysis, Intel PT execution tracing, and AMD IBS for production workload optimization."
 more_link: "yes"

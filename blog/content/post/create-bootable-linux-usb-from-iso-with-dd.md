@@ -6,7 +6,6 @@ draft: false
 tags: ["Linux", "USB", "dd", "ISO", "bootable"]
 categories:
 - Linux
-- USB
 author: "Matthew Mattox - <mmattox@support.tools>."
 description: "Learn how to create a bootable USB using the dd command on Linux."
 more_link: "yes"

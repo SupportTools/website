@@ -3,7 +3,7 @@ title: "Deep Dive: Kubernetes DNS (CoreDNS)"
 date: 2025-01-01T00:00:00-05:00
 draft: false
 tags: ["kubernetes", "coredns", "dns", "service-discovery"]
-categories: ["Kubernetes Deep Dive"]
+categories: ["Kubernetes"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive deep dive into Kubernetes DNS architecture, CoreDNS configuration, and service discovery"
 url: "/training/kubernetes-deep-dive/cluster-dns-coredns/"

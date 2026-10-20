@@ -2,10 +2,9 @@
 title: "Kubernetes Workload Resources: Understanding the Pod → ReplicaSet → Deployment Hierarchy"
 date: 2027-01-21T09:00:00-05:00
 draft: false
-tags: ["Kubernetes", "Pods", "ReplicaSets", "Deployments", "Services", "Workloads", "Container Orchestration", "Resource Hierarchy"]
+tags: ["Kubernetes", "Pods", "ReplicaSets", "Deployments", "Services", "Workloads", "Container Orchestration", "Resource Hierarchy", "Workload Management"]
 categories:
 - Kubernetes
-- Workload Management
 - Architecture
 author: "Matthew Mattox - mmattox@support.tools"
 description: "In-depth technical exploration of Kubernetes workload resources hierarchy from Pods to ReplicaSets to Deployments, with comprehensive YAML examples, architectural diagrams, operational workflows, and advanced patterns for production environments."

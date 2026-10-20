@@ -5,7 +5,6 @@ draft: false
 tags: ["Hugo", "SEO", "Sitemap", "Static Sites", "Web Development", "Optimization"]
 categories:
 - Hugo
-- SEO
 - Web Development
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to optimize Hugo sitemaps to improve search engine crawling efficiency by prioritizing content pages over taxonomy listings. Includes configuration examples and best practices."

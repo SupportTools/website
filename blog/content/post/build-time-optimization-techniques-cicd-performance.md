@@ -3,7 +3,7 @@ title: "Build Time Optimization Techniques: CI/CD Performance Tuning Guide"
 date: 2026-05-06T00:00:00-05:00
 draft: false
 tags: ["CI/CD", "Performance", "DevOps", "Build Optimization", "GitLab", "GitHub Actions", "Jenkins"]
-categories: ["DevOps", "Performance", "CI/CD"]
+categories: ["DevOps", "Performance", "CI & CD"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to build time optimization in CI/CD pipelines, covering parallelization strategies, dependency caching, artifact management, and platform-specific optimizations for faster software delivery."
 more_link: "yes"

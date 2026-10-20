@@ -3,7 +3,7 @@ title: "Go Dependency Injection: Wire, Fx, and Manual DI Patterns"
 date: 2029-05-19T00:00:00-05:00
 draft: false
 tags: ["Go", "Dependency Injection", "Wire", "Fx", "Architecture", "Testing", "golang"]
-categories: ["Go", "Software Architecture"]
+categories: ["Go", "Architecture"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive guide to dependency injection in Go covering uber-go/fx, google/wire, manual DI patterns, testability, circular dependency prevention, and module initialization order."
 more_link: "yes"

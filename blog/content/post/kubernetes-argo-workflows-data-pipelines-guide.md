@@ -4,7 +4,6 @@ date: 2028-12-06T00:00:00-05:00
 draft: false
 tags: ["Argo Workflows", "Kubernetes", "Data Pipelines", "AI/ML", "CI/CD"]
 categories:
-- Argo Workflows
 - Kubernetes
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Production guide for Argo Workflows: DAG templates, S3 artifact management, CronWorkflows, Argo Events integration, Python SDK submission, retry strategies, and monitoring for data pipelines and ML training on Kubernetes."

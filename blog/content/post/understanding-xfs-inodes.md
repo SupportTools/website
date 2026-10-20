@@ -4,7 +4,7 @@ date: 2025-10-30T09:00:00-06:00
 draft: false
 tags: ["Linux", "XFS", "Filesystem", "Storage", "System Administration", "Performance"]
 categories:
-- Linux Administration
+- System Administration
 - Storage
 - Performance
 author: "Matthew Mattox - mmattox@support.tools"

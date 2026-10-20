@@ -3,7 +3,7 @@ title: "Kubernetes Tekton Pipelines: Cloud-Native CI/CD Patterns"
 date: 2029-08-27T00:00:00-05:00
 draft: false
 tags: ["Tekton", "Kubernetes", "CI/CD", "Supply Chain Security", "DevOps", "Tekton Triggers", "Tekton Chains"]
-categories: ["Kubernetes", "CI/CD", "DevOps"]
+categories: ["Kubernetes", "CI & CD", "DevOps"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive guide to building cloud-native CI/CD pipelines with Tekton, covering Task/Pipeline/PipelineRun CRDs, workspace sharing, Tekton Triggers, Tekton Chains for supply chain security, and a detailed comparison with GitHub Actions."
 more_link: "yes"

@@ -4,9 +4,8 @@ date: 2024-10-04T19:26:00-05:00
 draft: false  
 tags: ["CKS", "Kubernetes", "Certification", "Security", "Practice Questions"]  
 categories:  
-- Kubernetes  
-- Certification  
-- CKS  
+- Kubernetes
+- Kubernetes Certification
 author: "Matthew Mattox - mmattox@support.tools"  
 description: "Prepare for the Certified Kubernetes Security Specialist (CKS) exam with these practice questions covering essential Kubernetes security concepts."  
 more_link: "yes"  

@@ -3,7 +3,7 @@ title: "Tekton Pipelines: Cloud-Native CI/CD Built on Kubernetes"
 date: 2027-12-28T00:00:00-05:00
 draft: false
 tags: ["Tekton", "CI/CD", "Kubernetes", "Supply Chain Security", "GitOps", "Pipelines"]
-categories: ["CI/CD", "Kubernetes"]
+categories: ["CI & CD", "Kubernetes"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive enterprise guide to Tekton Pipelines covering Tasks, Pipelines, PipelineRuns, Tekton Chains for supply chain security, Triggers for GitHub webhooks, parallel execution, workspace patterns, and production deployment strategies."
 more_link: "yes"

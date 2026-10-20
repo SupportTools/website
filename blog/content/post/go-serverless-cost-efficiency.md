@@ -4,8 +4,8 @@ date: 2026-07-28T09:00:00-05:00
 draft: false
 tags: ["Golang", "Go", "Serverless", "Cloud-Native", "AWS", "FinOps", "Cost Optimization", "Lambda"]
 categories:
-- Golang
-- Cloud-Native
+- Go
+- Cloud Native
 - FinOps
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A practical guide to transitioning from always-on to on-demand Go applications for true cloud-native cost efficiency."

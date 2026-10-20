@@ -3,7 +3,7 @@ title: "Linux Tracing with BPFtrace: One-Liners, Scripts, and Production Debuggi
 date: 2030-02-24T00:00:00-05:00
 draft: false
 tags: ["Linux", "BPFtrace", "eBPF", "Performance", "Tracing", "Observability"]
-categories: ["Linux", "Performance Engineering"]
+categories: ["Linux", "Performance"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Master BPFtrace for production debugging: one-liners for immediate insight, scripts for deep analysis, latency heatmaps, off-CPU analysis, and safe kernel tracing techniques."
 more_link: "yes"

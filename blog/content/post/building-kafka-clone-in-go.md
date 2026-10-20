@@ -3,7 +3,7 @@ title: "Building a Lightweight Kafka Clone in Go: Architecture, Implementation, 
 date: 2025-10-16T09:00:00-05:00
 draft: false
 tags: ["Go", "Kafka", "Message Broker", "Distributed Systems", "Event Streaming"]
-categories: ["Distributed Systems", "Go Programming"]
+categories: ["Distributed Systems", "Go"]
 ---
 
 Message brokers form the backbone of modern distributed systems, enabling loose coupling, asynchronous communication, and data streaming between services. Apache Kafka has emerged as the industry standard for high-throughput, fault-tolerant event streaming — but its deployment complexity can be overkill for many use cases. As an exercise in both learning and practical engineering, I built a lightweight Kafka-inspired message broker in Go, focusing on the core concepts while simplifying the operational model.

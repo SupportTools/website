@@ -3,7 +3,7 @@ title: "How Golang Transforms Developer Productivity: Enterprise Workflow Optimi
 date: 2026-07-20T00:00:00-05:00
 draft: false
 tags: ["Go", "Golang", "Developer Productivity", "Enterprise", "Workflow", "DevOps", "Tooling"]
-categories: ["Development", "Enterprise", "Productivity"]
+categories: ["Development", "Developer Experience"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Discover how Go revolutionizes developer productivity with enterprise workflow optimization, advanced tooling, and proven strategies that deliver 10x faster development cycles."
 more_link: "yes"

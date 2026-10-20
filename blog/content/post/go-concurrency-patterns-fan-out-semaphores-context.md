@@ -3,7 +3,7 @@ title: "Go Concurrency Patterns: Fan-Out/Fan-In, Semaphores, and Context Cancell
 date: 2030-03-01T00:00:00-05:00
 draft: false
 tags: ["Go", "Concurrency", "Goroutines", "Context", "Channels", "Performance"]
-categories: ["Go", "Performance Engineering"]
+categories: ["Go", "Performance"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Production Go concurrency patterns: bounded goroutine pools, semaphore implementation, fan-out/fan-in pipelines, context propagation for graceful shutdown, and goroutine leak detection with goleak."
 more_link: "yes"

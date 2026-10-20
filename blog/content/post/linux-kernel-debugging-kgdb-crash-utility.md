@@ -3,7 +3,7 @@ title: "Linux Kernel Debugging: KGDB, crash-utility, and Kernel Crash Dump Analy
 date: 2030-02-05T00:00:00-05:00
 draft: false
 tags: ["Linux", "Kernel", "Debugging", "KGDB", "crash-utility", "kdump", "ftrace", "vmcore"]
-categories: ["Linux", "Systems Administration"]
+categories: ["Linux", "System Administration"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Production kernel debugging techniques covering kdump crash dump collection, crash-utility vmcore analysis, kgdb remote debugging setup, and ftrace for kernel function tracing on enterprise Linux systems."
 more_link: "yes"

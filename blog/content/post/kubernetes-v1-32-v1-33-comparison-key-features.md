@@ -2,10 +2,9 @@
 title: "Kubernetes v1.32 (Penelope) vs v1.33 (Octarine): Complete Feature Comparison and Upgrade Guide"
 date: 2025-07-01T09:00:00-05:00
 draft: false
-tags: ["Kubernetes", "v1.32", "v1.33", "Release Features", "Stable Features", "Beta Features", "Alpha Features", "Deprecations", "Upgrade Guide"]
+tags: ["Kubernetes", "v1.32", "v1.33", "Release Features", "Stable Features", "Beta Features", "Alpha Features", "Deprecations", "Upgrade Guide", "Release Notes"]
 categories:
 - Kubernetes
-- Release Notes
 - Best Practices
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive comparison of Kubernetes v1.32 'Penelope' and v1.33 'Octarine' releases with detailed analysis of stable, beta, and alpha features. Essential guide for planning your cluster upgrades with practical implementation examples."

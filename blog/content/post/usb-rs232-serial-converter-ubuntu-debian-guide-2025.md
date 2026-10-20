@@ -7,7 +7,6 @@ categories:
 - Linux
 - Hardware
 - System Administration
-- Serial Communication
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Complete guide to using USB to RS232 serial converters on Ubuntu/Debian Linux. Learn device detection, driver installation, serial console access, troubleshooting, and advanced serial communication techniques for embedded systems and network equipment."
 more_link: "yes"

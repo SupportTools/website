@@ -2,8 +2,8 @@
 title: "Developer Experience Metrics: Measuring and Improving Platform Effectiveness"
 date: 2026-06-07T00:00:00-05:00
 draft: false
-tags: ["Developer Experience", "DX Metrics", "Platform Engineering", "DORA Metrics", "SPACE Framework", "Developer Productivity"]
-categories: ["Platform Engineering", "Metrics"]
+tags: ["Developer Experience", "DX Metrics", "Platform Engineering", "DORA Metrics", "SPACE Framework", "Developer Productivity", "Metrics"]
+categories: ["Platform Engineering"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to measuring developer experience with actionable metrics, implementing DORA and SPACE frameworks, and using data to improve platform effectiveness."
 more_link: "yes"

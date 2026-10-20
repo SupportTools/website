@@ -4,7 +4,7 @@ date: 2024-06-30T23:18:00-05:00
 draft: false
 tags: ["wsl", "ssh"]
 categories:
-- wsl
+- Windows
 author: "Matthew Mattox - mmattox@support.tools"
 description: "How to setup ssh server keys for WSL."
 more_link: "yes"

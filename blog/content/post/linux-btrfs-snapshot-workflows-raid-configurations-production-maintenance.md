@@ -6,7 +6,7 @@ tags: ["Linux", "Btrfs", "Filesystem", "Storage", "RAID", "Snapshots", "Backup"]
 categories:
 - Linux
 - Storage
-- Systems Administration
+- System Administration
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Enterprise Btrfs guide covering subvolume and snapshot management, Btrfs RAID modes including RAID1 and RAID10, scrub and balance operations, send/receive for incremental backups, Btrfs quotas, and production maintenance workflows."
 more_link: "yes"

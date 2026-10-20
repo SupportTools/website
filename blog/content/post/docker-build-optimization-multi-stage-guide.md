@@ -5,7 +5,7 @@ draft: false
 tags: ["Docker", "BuildKit", "Multi-Stage", "CI/CD", "Container"]
 categories:
 - Docker
-- CI/CD
+- "CI & CD"
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive guide to Docker build optimization using multi-stage builds, BuildKit cache mounts, secret mounts, SBOM generation, provenance attestation, and layer caching strategies for Go, Python, and Node.js applications."
 more_link: "yes"

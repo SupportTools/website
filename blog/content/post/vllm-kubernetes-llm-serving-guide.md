@@ -5,8 +5,8 @@ draft: false
 tags: ["vLLM", "Kubernetes", "LLM", "GPU", "Inference", "KEDA", "Quantization", "AI"]
 categories:
 - Kubernetes
-- AI/ML
-- GPU
+- "AI & ML"
+- GPU Computing
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A production engineering guide to deploying vLLM on Kubernetes with GPU operator integration, PagedAttention, continuous batching, tensor parallelism, multi-model serving, quantization, and KEDA-based autoscaling."
 more_link: "yes"

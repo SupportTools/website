@@ -6,8 +6,6 @@ tags: ["SDN", "OpenFlow", "P4", "Networking", "Infrastructure", "DevOps", "Enter
 categories:
 - Networking
 - Infrastructure
-- SDN
-- P4
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Master Software-Defined Networking with OpenFlow and P4 programming for enterprise-scale network infrastructure. Learn advanced implementation patterns, performance optimization, and production deployment strategies."
 more_link: "yes"

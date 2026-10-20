@@ -3,7 +3,7 @@ title: "On-Call Rotation Best Practices: Building Sustainable Incident Response 
 date: 2026-10-14T00:00:00-05:00
 draft: false
 tags: ["On-Call", "Incident Response", "SRE", "Team Management", "DevOps", "Burnout Prevention"]
-categories: ["DevOps", "Site Reliability", "Team Management"]
+categories: ["DevOps", "SRE"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to on-call rotation management for enterprise teams, including scheduling strategies, burnout prevention, escalation policies, and production-ready tooling."
 more_link: "yes"

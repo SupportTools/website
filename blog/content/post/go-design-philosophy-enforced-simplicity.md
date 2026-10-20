@@ -3,7 +3,7 @@ title: "The Power of Enforced Simplicity: Go's Design Philosophy"
 date: 2026-05-19T09:00:00-05:00
 draft: false
 tags: ["go", "golang", "programming", "software-design", "simplicity"]
-categories: ["Programming", "Go", "Software Architecture"]
+categories: ["Programming", "Go", "Architecture"]
 ---
 
 Since its introduction by Google in 2009, Go has gained widespread adoption for cloud infrastructure, microservices, and DevOps tooling. While its performance and concurrency features often receive the most attention, there's a more fundamental aspect of Go that has gradually transformed how many developers approach software design: **enforced simplicity**.

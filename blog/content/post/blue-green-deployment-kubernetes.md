@@ -4,9 +4,9 @@ date: 2024-09-30T19:26:00-05:00
 draft: false  
 tags: ["Kubernetes", "Blue/Green Deployment", "CI/CD", "DevOps", "Deployment Strategy"]  
 categories:  
-- Kubernetes  
-- CI/CD  
-- Deployment  
+- Kubernetes
+- "CI & CD"
+- Deployment
 author: "Matthew Mattox - mmattox@support.tools"  
 description: "Learn how to implement Blue/Green deployment in Kubernetes to ensure zero-downtime updates and seamless rollbacks for your applications."  
 more_link: "yes"  

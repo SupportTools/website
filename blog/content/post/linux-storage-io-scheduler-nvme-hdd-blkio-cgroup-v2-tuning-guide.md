@@ -5,7 +5,7 @@ draft: false
 tags: ["Linux", "Storage", "I/O Scheduler", "NVMe", "Performance Tuning", "cgroup v2", "Kernel"]
 categories:
 - Linux
-- Performance Engineering
+- Performance
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A production-focused guide to Linux block I/O schedulers: understanding mq-deadline, Kyber, and BFQ characteristics, tuning for NVMe vs spinning disk workloads, and implementing blkio cgroup v2 for storage QoS in containerized environments."
 more_link: "yes"

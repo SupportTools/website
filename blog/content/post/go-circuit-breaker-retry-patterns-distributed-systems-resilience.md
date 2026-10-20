@@ -6,7 +6,7 @@ tags: ["Go", "Golang", "Circuit Breaker", "Retry", "Resilience", "Distributed Sy
 categories:
 - Go
 - Architecture
-- Backend
+- Backend Engineering
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Enterprise resilience patterns in Go covering gobreaker circuit breaker, exponential backoff with jitter, retry budgets, bulkhead pattern, timeout propagation with context, and integrating resilience patterns with service meshes."
 more_link: "yes"

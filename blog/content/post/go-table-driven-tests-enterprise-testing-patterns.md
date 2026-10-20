@@ -6,7 +6,6 @@ tags: ["Go", "Testing", "Table-Driven Tests", "Test Helpers", "Golden Files", "B
 categories:
 - Go
 - Testing
-- Quality
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Production testing patterns in Go: table-driven test design, subtests, test helpers, golden file testing, parallel tests, and maintaining large test suites in enterprise codebases."
 more_link: "yes"

@@ -5,7 +5,7 @@ draft: false
 tags: ["Go", "Golang", "Interfaces", "Design Patterns", "Testing", "Architecture", "Software Design"]
 categories:
 - Go
-- Software Architecture
+- Architecture
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive guide to Go interface design principles, covering interface segregation, io.Reader/Writer composition, testing with fakes vs mocks, avoiding interface pollution, and designing for testability in large services."
 more_link: "yes"

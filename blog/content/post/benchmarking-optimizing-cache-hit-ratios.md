@@ -2,11 +2,10 @@
 title: "Cache Misses Are Killing Your Application: How to Benchmark and Optimize Cache Hit Ratios"
 date: 2025-09-30T09:00:00-05:00
 draft: false
-tags: ["Go", "Performance", "Caching", "Benchmarking", "Redis", "LRU", "Backend", "Optimization"]
+tags: ["Go", "Performance", "Caching", "Benchmarking", "Redis", "LRU", "Backend", "Optimization", "Cache"]
 categories:
 - Performance
 - Go
-- Cache
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to identify, measure, and fix poor cache hit ratios in your Go applications to dramatically improve performance without adding hardware resources"
 more_link: "yes"

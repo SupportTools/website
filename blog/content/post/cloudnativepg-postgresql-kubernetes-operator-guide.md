@@ -4,7 +4,6 @@ date: 2028-09-15T00:00:00-05:00
 draft: false
 tags: ["CloudNativePG", "PostgreSQL", "Kubernetes", "Database", "High Availability"]
 categories:
-- CloudNativePG
 - PostgreSQL
 author: "Matthew Mattox - mmattox@support.tools"
 description: "CloudNativePG operator deployment, Cluster CRD configuration, streaming replication, WAL archiving to S3 with Barman, automated failover, PgBouncer connection pooling, PITR restore, and monitoring with Prometheus."

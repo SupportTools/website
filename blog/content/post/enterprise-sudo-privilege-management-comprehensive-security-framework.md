@@ -2,11 +2,10 @@
 title: "Enterprise Sudo and Privilege Management: Comprehensive Security Framework and Zero-Trust Access Control"
 date: 2025-08-05T10:00:00-05:00
 draft: false
-tags: ["Sudo", "Privilege Management", "Security", "Access Control", "PAM", "Zero Trust", "Enterprise Security", "Linux", "Automation", "Compliance"]
+tags: ["Sudo", "Privilege Management", "Security", "Access Control", "PAM", "Zero Trust", "Enterprise Security", "Linux", "Automation", "Compliance", "Access Management"]
 categories:
-- Security Infrastructure
-- Access Management
-- Enterprise Architecture
+- Security
+- Architecture
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Complete enterprise guide to sudo configuration, advanced privilege management, zero-trust access control, comprehensive security frameworks, and automated compliance systems for production environments"
 more_link: "yes"

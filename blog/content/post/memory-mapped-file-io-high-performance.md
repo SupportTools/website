@@ -3,7 +3,7 @@ title: "Memory-Mapped File I/O for High-Performance Applications"
 date: 2026-09-21T00:00:00-05:00
 author: "Systems Engineering Team"
 description: "Master memory-mapped file I/O techniques for building high-performance applications. Learn advanced mmap strategies, NUMA optimization, huge pages, async I/O integration, and enterprise-grade file management patterns."
-categories: ["Systems Programming", "Performance Optimization", "File Systems"]
+categories: ["Systems Programming", "Performance", "File Systems"]
 tags: ["memory mapping", "mmap", "file I/O", "performance optimization", "huge pages", "NUMA", "async I/O", "zero-copy", "file systems", "enterprise applications"]
 keywords: ["memory mapped files", "mmap programming", "high performance I/O", "zero-copy I/O", "huge pages", "NUMA optimization", "async file I/O", "memory mapping techniques", "file system optimization"]
 draft: false

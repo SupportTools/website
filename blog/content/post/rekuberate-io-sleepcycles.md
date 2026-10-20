@@ -2,11 +2,10 @@
 title: "Reclaim Your Unused Kubernetes Resources with rekuberate-io/sleepcycles"  
 date: 2024-10-06T19:26:00-05:00  
 draft: false  
-tags: ["Kubernetes", "Rekuberate", "Cost Optimization", "Resource Management", "DevOps"]  
+tags: ["Kubernetes", "Rekuberate", "Cost Optimization", "Resource Management", "DevOps", "Sustainability"]  
 categories:  
-- Kubernetes  
-- DevOps  
-- Sustainability  
+- Kubernetes
+- DevOps
 author: "Matthew Mattox - mmattox@support.tools"  
 description: "Learn how rekuberate-io/sleepcycles can optimize your Kubernetes workloads by automatically scheduling shutdowns and wake-ups, reducing resource costs, and lowering your carbon footprint."  
 more_link: "yes"  

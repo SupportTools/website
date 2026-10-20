@@ -4,10 +4,10 @@ date: 2022-09-29T00:51:00-05:00
 draft: false
 tags: ["Kubernetes", "RKE2", "Rancher", "Monitoring"]
 categories:
-- kubernetes
-- rke2
-- rancher
-- monitoring
+- Kubernetes
+- RKE2
+- Rancher
+- Monitoring
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Failed to call webhook rancher-monitoring-operator"
 more_link: "yes"

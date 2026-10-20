@@ -5,7 +5,7 @@ draft: false
 tags: ["PostgreSQL", "Database", "Performance", "SQL", "Kubernetes"]
 categories:
 - PostgreSQL
-- Database
+- Databases
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive PostgreSQL performance tuning guide covering EXPLAIN ANALYZE interpretation, index types, query planner statistics, PgBouncer connection pooling, memory configuration, autovacuum tuning, pg_stat_statements, slow query logging, and partitioning strategies for production databases."
 more_link: "yes"

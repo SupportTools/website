@@ -6,7 +6,7 @@ tags: ["Git", "Pre-commit", "CI/CD", "DevOps", "Hooks", "Version Control", "GitH
 categories:
 - Git
 - DevOps
-- CI/CD
+- "CI & CD"
 author: "Matthew Mattox - mmattox@support.tools"
 description: "How to bypass Git pre-commit, commit-msg, and pre-push hooks with --no-verify, -n, and the pre-commit SKIP variable, and the engineering judgment around when that is acceptable versus harmful."
 more_link: "yes"

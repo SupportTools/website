@@ -3,7 +3,7 @@ title: "Enterprise Infrastructure as Code Implementation Strategies 2025: Advanc
 date: 2026-03-10T09:00:00-05:00
 draft: false
 tags: ["Infrastructure as Code", "IaC", "Enterprise", "Terraform", "Kubernetes", "DevOps", "Automation", "Cloud", "Implementation"]
-categories: ["Infrastructure as Code", "Enterprise DevOps", "Cloud Architecture"]
+categories: ["Infrastructure as Code", "DevOps", "Cloud"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive enterprise guide to Infrastructure as Code implementation strategies, advanced IaC vs imperative tool integration patterns, enterprise orchestration frameworks, and production-grade automation architectures for large-scale cloud operations."
 more_link: "yes"

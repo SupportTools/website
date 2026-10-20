@@ -3,7 +3,7 @@ title: "Brigade: Event-Driven Scripting for Kubernetes CI/CD"
 date: 2027-03-01T00:00:00-05:00
 draft: false
 tags: ["Kubernetes", "Brigade", "CI/CD", "Event-Driven", "Scripting"]
-categories: ["Kubernetes", "DevOps", "CI/CD"]
+categories: ["Kubernetes", "DevOps", "CI & CD"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Complete guide to Brigade v2 for event-driven Kubernetes CI/CD, covering architecture, project CRDs, TypeScript scripting, gateways, secret management, RBAC, and production deployment patterns."
 more_link: "yes"

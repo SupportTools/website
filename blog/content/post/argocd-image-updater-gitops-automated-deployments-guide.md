@@ -6,7 +6,7 @@ tags: ["Kubernetes", "ArgoCD", "GitOps", "CI/CD", "Automation"]
 categories:
 - Kubernetes
 - GitOps
-- CI/CD
+- "CI & CD"
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Complete guide to ArgoCD Image Updater for automated container image updates in GitOps workflows, covering update strategies, registry authentication, Git write-back modes, and production monitoring."
 more_link: "yes"

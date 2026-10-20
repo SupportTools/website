@@ -5,7 +5,7 @@ draft: false
 tags: ["Go", "Software Design", "Configuration", "Architecture", "Patterns"]
 categories:
 - Go
-- Software Design
+- Architecture
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Deep dive into Go configuration patterns including functional options, builder pattern, config structs with validation, environment variable binding, multi-source merging, and testing considerations for library vs application design."
 more_link: "yes"

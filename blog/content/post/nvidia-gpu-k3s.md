@@ -4,8 +4,8 @@ date: 2024-10-15T10:00:00-05:00
 draft: false
 tags: ["Nvidia", "K3s", "GPU"]
 categories:
-- Nvidia
-- k3s
+- NVIDIA
+- K3s
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A detailed guide on installing Nvidia GPU drivers on K3s for machine learning workloads."
 more_link: "yes"

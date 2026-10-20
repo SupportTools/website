@@ -3,7 +3,7 @@ title: "Deep Dive: Kubernetes Proxy (kube-proxy)"
 date: 2025-01-01T00:00:00-05:00
 draft: false
 tags: ["kubernetes", "kube-proxy", "networking", "services"]
-categories: ["Kubernetes Deep Dive"]
+categories: ["Kubernetes"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive deep dive into kube-proxy architecture, proxy modes, and service implementation"
 url: "/training/kubernetes-deep-dive/kube-proxy/"

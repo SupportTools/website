@@ -5,7 +5,7 @@ draft: false
 tags: ["Linux", "Concurrency", "Parallel Programming", "Threading", "Synchronization", "OpenMP", "CUDA"]
 categories:
 - Linux
-- Parallel Programming
+- Concurrency
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Master advanced concurrency techniques including thread pools, lock-free algorithms, work-stealing schedulers, GPU programming, and building high-performance parallel applications"
 more_link: "yes"

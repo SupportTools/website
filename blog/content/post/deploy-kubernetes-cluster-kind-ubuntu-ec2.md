@@ -6,7 +6,7 @@ tags: ["Kubernetes", "KinD", "Docker", "AWS", "EC2"]
 categories:
 - Kubernetes
 - DevOps
-- Cloud Computing
+- Cloud
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to quickly deploy a Kubernetes cluster using KinD on an Ubuntu EC2 instance in just 60 seconds."
 more_link: "yes"

@@ -3,7 +3,7 @@ title: "Deep Dive: Kubernetes Kubelet"
 date: 2025-01-01T00:00:00-05:00
 draft: false
 tags: ["kubernetes", "kubelet", "node", "containers"]
-categories: ["Kubernetes Deep Dive"]
+categories: ["Kubernetes"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive deep dive into the Kubelet architecture, configuration, and container lifecycle management"
 url: "/training/kubernetes-deep-dive/kubelet/"

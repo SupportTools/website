@@ -5,7 +5,7 @@ draft: false
 tags: ["Go", "Database", "bbolt", "SQLite", "Embedded"]
 categories:
 - Go
-- Database
+- Databases
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Practical guide to embedded databases in Go: bbolt for ACID key-value storage, SQLite with CGO-free modernc.org/sqlite, WAL mode for concurrent reads, DuckDB for analytical queries, and choosing the right embedded database for CLI tools, agents, and caching."
 more_link: "yes"

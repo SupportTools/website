@@ -6,7 +6,7 @@ tags: ["Kubernetes", "MLflow", "MLOps", "Machine Learning", "Model Registry"]
 categories:
 - Kubernetes
 - MLOps
-- Machine Learning
+- "AI & ML"
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Enterprise guide to deploying MLflow on Kubernetes with PostgreSQL backend and S3 artifact store, covering OIDC authentication, experiment tracking, model registry lifecycle management, multi-environment promotion, monitoring, and backup procedures."
 more_link: "yes"

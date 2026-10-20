@@ -6,7 +6,6 @@ tags: ["NFV", "Virtualization", "MANO", "VNF", "Networking", "Infrastructure", "
 categories:
 - Networking
 - Infrastructure
-- NFV
 - Virtualization
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Master Network Function Virtualization (NFV) implementation for enterprise infrastructure transformation. Learn MANO orchestration, VNF development, service chaining, and production-ready NFV architectures."

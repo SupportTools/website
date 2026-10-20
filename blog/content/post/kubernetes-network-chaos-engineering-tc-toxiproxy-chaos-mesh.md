@@ -5,7 +5,7 @@ draft: false
 tags: ["Kubernetes", "Chaos Engineering", "Network", "tc", "Toxiproxy", "Chaos Mesh", "Resilience"]
 categories:
 - Kubernetes
-- Site Reliability Engineering
+- SRE
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A production guide to Kubernetes network chaos engineering covering Linux tc netem for latency and packet loss injection, Toxiproxy for proxy-level failures, Chaos Mesh network chaos types, circuit breaker validation, and building network chaos runbooks."
 more_link: "yes"

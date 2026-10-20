@@ -5,7 +5,7 @@ draft: false
 tags: ["Go", "Golang", "Code Generation", "go generate", "wire", "sqlc", "protobuf", "stringer"]
 categories:
 - Go
-- Developer Productivity
+- Developer Experience
 - DevOps
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A deep-dive into Go code generation patterns for enterprise codebases: orchestrating stringer, enumer, wire dependency injection, sqlc type-safe SQL, and protoc buf generation through go generate and Makefiles."

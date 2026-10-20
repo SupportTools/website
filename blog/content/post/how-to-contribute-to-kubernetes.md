@@ -2,9 +2,8 @@
 title: "How to Contribute to Kubernetes: A Guide for Beginners"
 date: 2024-05-18
 draft: false
-tags: ["Kubernetes", "Contributor Workshops"]
+tags: ["Kubernetes", "Contributor Workshops", "Technology"]
 categories:
-- Technology
 - Open Source
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to get started in contributing to Kubernetes with our new contributor workshops."

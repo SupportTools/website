@@ -5,7 +5,6 @@ draft: false
 tags: ["OpenShift", "Kubernetes", "Enterprise", "Red Hat", "Platform"]
 categories:
 - Kubernetes
-- Enterprise
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive decision framework for choosing between OpenShift and vanilla Kubernetes. Covers OpenShift-specific features, OLM, Tekton pipelines, compliance operator, RBAC differences, security context constraints, cost comparison, and migration paths."
 more_link: "yes"

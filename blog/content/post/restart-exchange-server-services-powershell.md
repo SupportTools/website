@@ -4,9 +4,8 @@ date: 2024-09-09T19:26:00-05:00
 draft: false  
 tags: ["Exchange Server", "PowerShell", "Windows Server", "Email"]  
 categories:  
-- Exchange Server  
-- PowerShell  
-- Windows Server  
+- PowerShell
+- Windows Server
 author: "Matthew Mattox - mmattox@support.tools"  
 description: "Learn how to restart Exchange Server services quickly using PowerShell to maintain or troubleshoot your mail server environment."  
 more_link: "yes"  

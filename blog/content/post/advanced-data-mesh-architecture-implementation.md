@@ -5,7 +5,7 @@ draft: false
 description: "Comprehensive guide to implementing advanced data mesh architecture, covering domain-driven data ownership, federated governance, self-serve data infrastructure, and data product management for enterprise-scale organizations."
 keywords: ["data mesh", "data architecture", "domain-driven design", "data product", "federated governance", "self-serve infrastructure", "data platform", "microservices", "decentralized data"]
 tags: ["data-mesh", "data-architecture", "domain-driven", "data-product", "governance", "microservices", "platform", "decentralized"]
-categories: ["Data Architecture", "Data Engineering", "Enterprise Architecture"]
+categories: ["Data Engineering", "Architecture"]
 author: "Support Tools Team"
 canonical: "https://support.tools/blog/advanced-data-mesh-architecture-implementation/"
 ---

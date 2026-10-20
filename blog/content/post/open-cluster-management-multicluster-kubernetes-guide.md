@@ -3,7 +3,7 @@ title: "Open Cluster Management: Multi-Cluster Governance and Policy Enforcement
 date: 2027-02-18T00:00:00-05:00
 draft: false
 tags: ["Kubernetes", "Open Cluster Management", "Multi-Cluster", "Policy", "Governance"]
-categories: ["Kubernetes", "Multi-Cluster", "Governance"]
+categories: ["Kubernetes", "Multi-Cluster", "Compliance"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to Open Cluster Management for multi-cluster Kubernetes governance, covering hub/managed cluster architecture, ManifestWork, Placement API, policy enforcement, add-ons, and integration with ArgoCD and Flux."
 more_link: "yes"

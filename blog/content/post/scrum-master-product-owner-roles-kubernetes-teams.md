@@ -5,7 +5,6 @@ draft: false
 tags: ["Kubernetes", "DevOps", "Scrum", "Agile", "Team Structure", "Cloud Native"]
 categories:
 - DevOps
-- Agile
 - Kubernetes
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive guide to understanding and optimizing Scrum Master and Product Owner roles within Kubernetes and cloud-native development teams"

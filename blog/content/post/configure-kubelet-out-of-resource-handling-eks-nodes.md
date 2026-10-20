@@ -4,9 +4,9 @@ date: 2024-09-15T19:26:00-05:00
 draft: false  
 tags: ["Kubernetes", "EKS", "Kubelet", "Resource Management", "Terraform"]  
 categories:  
-- Kubernetes  
-- EKS  
-- Cloud  
+- Kubernetes
+- Amazon EKS
+- Cloud
 author: "Matthew Mattox - mmattox@support.tools"  
 description: "Learn how to configure Kubelet out-of-resource handling for EKS worker nodes to prevent node failures and resource starvation issues."  
 more_link: "yes"  

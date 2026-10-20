@@ -2,10 +2,9 @@
 title: "Adventures in IPv6 Part 2"
 date: 2024-12-08T12:00:00-05:00
 draft: false
-tags: ["IPv6", "Networking", "Docker", "GhostCMS", "DevOps"]
+tags: ["IPv6", "Networking", "Docker", "GhostCMS", "DevOps", "Technology"]
 categories:
-- networking
-- Technology
+- Networking
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A continuation of my journey into IPv6-only infrastructure, diving into mail configurations, Docker challenges, and resolving compatibility issues with popular tools."
 more_link: "yes"

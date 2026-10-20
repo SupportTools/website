@@ -3,7 +3,7 @@ title: "Linux io_uring: Asynchronous I/O for High-Performance Applications"
 date: 2029-04-28T00:00:00-05:00
 draft: false
 tags: ["Linux", "io_uring", "Async I/O", "Performance", "Systems Programming", "Networking"]
-categories: ["Linux", "Performance", "Systems"]
+categories: ["Linux", "Performance", "Systems Programming"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to Linux io_uring for high-performance applications: submission/completion queue architecture, probing capabilities, fixed buffers, registered files, io_uring in Go via syscall, and a rigorous comparison with epoll showing throughput and latency characteristics."
 more_link: "yes"

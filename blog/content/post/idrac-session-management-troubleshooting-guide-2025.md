@@ -2,12 +2,10 @@
 title: "Dell iDRAC Session Management & Troubleshooting Guide 2025: Complete Connection Control & Monitoring"
 date: 2025-09-08T10:00:00-05:00
 draft: false
-tags: ["Dell iDRAC", "Session Management", "RACADM", "Remote Management", "SSH", "iDRAC Sessions", "Troubleshooting", "Dell PowerEdge", "Server Administration", "Connection Management", "Out-of-Band Management", "Enterprise Hardware", "System Monitoring", "Infrastructure Management"]
+tags: ["Dell iDRAC", "Session Management", "RACADM", "Remote Management", "SSH", "iDRAC Sessions", "Troubleshooting", "Dell PowerEdge", "Server Administration", "Connection Management", "Out-of-Band Management", "Enterprise Hardware", "System Monitoring", "Infrastructure Management", "Dell Hardware"]
 categories:
-- Server Management
-- Dell Hardware
-- Troubleshooting
 - System Administration
+- Troubleshooting
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Master Dell iDRAC session management, troubleshooting stuck sessions, and monitoring connections. Complete guide to RACADM session control, automated cleanup, enterprise monitoring, and preventing session exhaustion."
 more_link: "yes"

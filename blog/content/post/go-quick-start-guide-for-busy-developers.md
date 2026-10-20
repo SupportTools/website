@@ -2,8 +2,8 @@
 title: "Go Quick Start Guide for Busy Developers: What You Can Learn in a Weekend"
 date: 2026-07-14T09:00:00-05:00
 draft: false
-tags: ["go", "golang", "learning", "programming", "tutorial", "beginner"]
-categories: ["Programming", "Go", "Tutorials"]
+tags: ["go", "golang", "learning", "programming", "tutorial", "beginner", "Tutorials"]
+categories: ["Programming", "Go"]
 ---
 
 Go (or Golang) has gained tremendous popularity for its simplicity, performance, and excellent support for concurrent programming. Whether you're a seasoned developer looking to add another language to your toolkit or a beginner exploring programming options, Go offers a remarkably flat learning curve with powerful capabilities. This guide outlines a practical path for busy developers to become productive with Go in a weekend.

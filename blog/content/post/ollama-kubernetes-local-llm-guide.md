@@ -4,7 +4,7 @@ date: 2027-09-30T00:00:00-05:00
 draft: false
 tags: ["Ollama", "LLM", "Kubernetes", "GPU", "AI/ML", "Self-Hosted"]
 categories:
-- AI/ML
+- "AI & ML"
 - Kubernetes
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Complete guide to running Ollama on Kubernetes — StatefulSet with GPU node selectors, persistent model storage, init containers for model pulls, Open WebUI integration, Prometheus monitoring, and cost comparison vs managed LLM APIs."

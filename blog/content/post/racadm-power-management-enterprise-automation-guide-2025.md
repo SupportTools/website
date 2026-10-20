@@ -2,8 +2,8 @@
 title: "Dell RACADM Power Management & Automation Guide 2025: Enterprise Energy Optimization & Cost Control"
 date: 2025-09-09T10:00:00-08:00
 draft: false
-tags: ["racadm", "power-management", "dell-servers", "energy-efficiency", "automation", "idrac", "enterprise", "monitoring", "cost-optimization", "data-center", "server-management", "power-capping", "infrastructure", "devops"]
-categories: ["Tech", "Misc", "racadm"]
+tags: ["racadm", "power-management", "dell-servers", "energy-efficiency", "automation", "idrac", "enterprise", "monitoring", "cost-optimization", "data-center", "server-management", "power-capping", "infrastructure", "devops", "Tech", "Misc"]
+categories: ["Infrastructure"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Master Dell server power management with RACADM in 2025. Comprehensive guide covering enterprise automation, power capping strategies, energy monitoring dashboards, cost optimization, and large-scale deployment best practices for data center efficiency."
 ---

@@ -5,7 +5,7 @@ draft: false
 tags: ["Kubernetes", "Home Lab", "MetalLB", "LoadBalancer", "Flannel", "Vagrant", "Enterprise Infrastructure", "Container Orchestration", "DevOps", "Production Deployment"]
 categories:
 - Kubernetes
-- Enterprise Infrastructure
+- Infrastructure
 - DevOps
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Complete enterprise guide to building production-grade Kubernetes environments from home lab to data center, advanced networking with MetalLB, comprehensive automation frameworks, and enterprise deployment strategies"

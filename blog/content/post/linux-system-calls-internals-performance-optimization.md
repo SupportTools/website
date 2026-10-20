@@ -3,7 +3,7 @@ title: "Linux System Calls: Internals and Performance Optimization"
 date: 2029-05-26T00:00:00-05:00
 draft: false
 tags: ["Linux", "System Calls", "Performance", "strace", "io_uring", "vDSO", "seccomp", "Kernel"]
-categories: ["Linux", "Performance Engineering", "Systems Programming"]
+categories: ["Linux", "Performance", "Systems Programming"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A deep dive into Linux system call internals covering syscall tracing with strace and ltrace, vDSO optimization, syscall overhead measurement, io_uring vs traditional syscalls, and seccomp filtering performance impact."
 more_link: "yes"

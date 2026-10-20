@@ -6,7 +6,7 @@ tags: ["MongoDB", "Kubernetes", "Database", "Atlas", "Operator"]
 categories:
 - MongoDB
 - Kubernetes
-- Database
+- Databases
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive guide to the MongoDB Atlas Kubernetes Operator, covering AtlasProject and AtlasDeployment CRDs, network peering, IP access lists, database user RBAC, backup policies, connection string secret injection, multi-region clusters, Atlas Search index management, monitoring integration, and migration from self-hosted MongoDB."
 more_link: "yes"

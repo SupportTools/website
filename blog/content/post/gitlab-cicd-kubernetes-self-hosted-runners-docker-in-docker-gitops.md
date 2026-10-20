@@ -4,7 +4,7 @@ date: 2030-08-25T00:00:00-05:00
 draft: false
 tags: ["GitLab", "CI/CD", "Kubernetes", "GitOps", "ArgoCD", "Docker", "DevOps"]
 categories:
-- CI/CD
+- "CI & CD"
 - Kubernetes
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Enterprise GitLab CI guide covering Kubernetes executor configuration, autoscaling runners, Docker-in-Docker security, pipeline caching strategies, GitLab Container Registry integration, and ArgoCD deployment triggers."

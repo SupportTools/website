@@ -6,7 +6,6 @@ tags: ["Longhorn", "Kubernetes", "Installation"]
 categories:
 - Longhorn
 - Kubernetes
-- Installation
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn the various ways to install Longhorn, including Rancher Apps & Marketplace, Helm, and kubectl, with step-by-step instructions."
 more_link: "yes"

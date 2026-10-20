@@ -6,7 +6,7 @@ tags: ["VMware", "vCenter", "vSphere", "Security", "Default Passwords", "Authent
 categories:
 - VMware
 - Security
-- Systems Administration
+- System Administration
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to VMware default passwords, credentials, and secure configuration practices for vCenter, ESXi, vSphere, and related components"
 more_link: "yes"

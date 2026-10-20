@@ -3,7 +3,7 @@ title: "Kubernetes Velero + Restic: Application-Consistent Backups for Stateful 
 date: 2031-08-26T00:00:00-05:00
 draft: false
 tags: ["Kubernetes", "Velero", "Restic", "Backup", "Disaster Recovery", "StatefulSet", "Storage"]
-categories: ["Kubernetes", "Backup", "Storage"]
+categories: ["Kubernetes", "Backup & Recovery", "Storage"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A production guide to Kubernetes backup with Velero and Restic: architecture, S3 configuration, application-consistent backups using pre/post hooks for PostgreSQL and MySQL, backup schedules, restore procedures, and disaster recovery testing."
 more_link: "yes"

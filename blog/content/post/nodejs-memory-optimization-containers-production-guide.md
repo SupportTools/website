@@ -3,7 +3,7 @@ title: "Node.js Memory Optimization in Containers: Production Performance Guide"
 date: 2026-10-12T00:00:00-05:00
 draft: false
 tags: ["Node.js", "JavaScript", "Kubernetes", "Memory Management", "Performance", "V8", "Containers"]
-categories: ["Performance Optimization", "Node.js", "Kubernetes"]
+categories: ["Performance", "Kubernetes"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to Node.js memory optimization in containerized environments, including V8 heap tuning, memory leak detection, garbage collection strategies, and production monitoring for enterprise workloads."
 more_link: "yes"

@@ -5,7 +5,7 @@ draft: false
 tags: ["Go", "JSON Schema", "Validation", "API", "jsonschema", "OpenAPI"]
 categories:
 - Go
-- API Development
+- API Design
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A production guide to JSON Schema validation in Go using the jsonschema library, covering schema generation from Go structs, custom validators, multi-error formatting, and integration with HTTP middleware."
 more_link: "yes"

@@ -3,7 +3,7 @@ title: "Go Profiling with pprof: CPU, Memory, and Goroutine Analysis"
 date: 2029-04-03T00:00:00-05:00
 draft: false
 tags: ["Go", "Golang", "pprof", "Profiling", "Performance", "Memory", "Goroutines"]
-categories: ["Go", "Performance Engineering"]
+categories: ["Go", "Performance"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to Go profiling with pprof: HTTP endpoints, go tool pprof, heap profiling, CPU profiling, goroutine dumps, blocking profiles, and mutex contention analysis for production Go services."
 more_link: "yes"

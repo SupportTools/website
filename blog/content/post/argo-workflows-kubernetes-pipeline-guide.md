@@ -3,7 +3,7 @@ title: "Argo Workflows: Kubernetes-Native Pipeline Orchestration at Scale"
 date: 2027-03-13T00:00:00-05:00
 draft: false
 tags: ["Kubernetes", "Argo Workflows", "CI/CD", "Pipelines", "Workflow Orchestration"]
-categories: ["Kubernetes", "CI/CD", "Automation"]
+categories: ["Kubernetes", "CI & CD", "Automation"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Enterprise guide to Argo Workflows on Kubernetes covering DAG and Steps templates, artifact passing, template references, WorkflowTemplates, workflow archiving with PostgreSQL, RBAC, Prometheus monitoring, and production-grade workflow patterns for ML pipelines and CI/CD."
 more_link: "yes"

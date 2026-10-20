@@ -4,9 +4,9 @@ date: 2025-03-18T10:00:00-05:00
 draft: false
 tags: ["Serial Console", "IPMI", "BMC", "Remote Management", "GRUB", "Linux", "Enterprise", "Server Administration", "SOL"]
 categories:
-- Server Administration
-- Remote Management
-- Enterprise Infrastructure
+- System Administration
+- Remote Access
+- Infrastructure
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to enterprise serial console configuration, IPMI/BMC management, automation tools, and advanced remote server administration techniques for production environments"
 more_link: "yes"

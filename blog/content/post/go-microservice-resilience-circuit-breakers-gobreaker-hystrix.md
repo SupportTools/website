@@ -6,7 +6,6 @@ tags: ["Go", "Circuit Breaker", "Resilience", "gobreaker", "Hystrix", "Bulkhead"
 categories:
 - Go
 - Microservices
-- Resilience
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Complete guide to microservice resilience patterns in Go using gobreaker and hystrix-go, covering circuit breaker state machines, failure threshold tuning, bulkhead isolation with goroutine pools, fallback implementations, and Prometheus metrics export."
 more_link: "yes"

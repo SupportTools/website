@@ -4,7 +4,7 @@ date: 2026-07-25T00:00:00-05:00
 draft: false
 tags: ["ai-assisted-development", "coding-agents", "kubernetes", "vllm", "litellm", "self-hosted", "llm", "gpu", "pi-agent", "claude-code", "open-weight-models", "devops"]
 categories:
-- AI/ML
+- "AI & ML"
 - Kubernetes
 - Developer Tools
 author: "Matthew Mattox - mmattox@support.tools"

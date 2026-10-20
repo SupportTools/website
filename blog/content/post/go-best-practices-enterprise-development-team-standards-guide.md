@@ -3,7 +3,7 @@ title: "Go Best Practices for Enterprise Teams: Production-Ready Standards and D
 date: 2026-07-16T00:00:00-05:00
 draft: false
 tags: ["Go", "Best Practices", "Enterprise", "Team Development", "Code Standards", "Production", "Quality"]
-categories: ["Development", "Best Practices", "Enterprise"]
+categories: ["Development", "Best Practices"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to Go best practices for enterprise teams, covering code organization, error handling, security standards, and production-ready development patterns that scale across large engineering organizations."
 more_link: "yes"

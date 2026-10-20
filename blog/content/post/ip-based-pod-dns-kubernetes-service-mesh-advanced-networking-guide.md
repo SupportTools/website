@@ -3,7 +3,7 @@ title: "IP-Based Pod DNS Resolution in Kubernetes: Advanced Service Mesh Integra
 date: 2026-08-11T00:00:00-05:00
 draft: false
 tags: ["Kubernetes", "Pod-DNS", "Service-Mesh", "Networking", "CoreDNS", "Enterprise", "IP-Resolution"]
-categories: ["Kubernetes", "Networking", "Service-Mesh"]
+categories: ["Kubernetes", "Networking", "Service Mesh"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to implementing IP-based Pod DNS resolution in Kubernetes environments, featuring advanced service mesh integration, security patterns, and enterprise-grade networking architectures for direct pod communication."
 more_link: "yes"

@@ -5,7 +5,6 @@ draft: false
 tags: ["Rancher", "Support", "GitHub", "Codebase", "Go", "Sourcegraph", "VS Code"]
 categories:
 - Rancher
-- Support
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A guide for support engineers on how to read, navigate, and understand the Rancher codebase on GitHub, including key concepts of Go, essential packages, and using Sourcegraph and VS Code for navigation."
 more_link: "yes"

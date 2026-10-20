@@ -3,7 +3,7 @@ title: "How Kubernetes Uses VXLAN for Overlay Networking"
 date: 2024-10-24
 draft: false
 tags: ["kubernetes", "vxlan", "overlay network", "networking"]
-categories: ["training", "kubernetes", "networking"]
+categories: ["Training", "Kubernetes", "Networking"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A deep dive into how Kubernetes leverages VXLAN for pod networking across nodes."
 more_link: "/training/networking/kubernetes-vxlan/"

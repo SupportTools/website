@@ -3,7 +3,7 @@ title: "Understanding VXLAN"
 date: 2024-10-24
 draft: false
 tags: ["vxlan", "networking", "training", "virtualization"]
-categories: ["training", "networking"]
+categories: ["Training", "Networking"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A deep dive into VXLAN and its role in modern network virtualization."
 more_link: "/training/networking/vxlan/"

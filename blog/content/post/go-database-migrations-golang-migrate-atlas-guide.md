@@ -5,7 +5,7 @@ draft: false
 tags: ["Go", "Database", "Migrations", "golang-migrate", "Atlas", "PostgreSQL"]
 categories:
 - Go
-- Database
+- Databases
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A production-grade guide to Go database migrations using golang-migrate, Atlas, and goose. Covers schema versioning, zero-downtime migrations, rollback strategies, and CI/CD integration with PostgreSQL."
 more_link: "yes"

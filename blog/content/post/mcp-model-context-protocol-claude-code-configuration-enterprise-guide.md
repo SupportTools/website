@@ -4,9 +4,9 @@ date: 2026-09-20T00:00:00-05:00
 draft: false
 tags: ["mcp", "claude-code", "ai-development", "tooling", "automation", "configuration", "integration", "llm"]
 categories:
-- AI Development
-- Tooling
-- Configuration
+- "AI & ML"
+- Developer Tools
+- Configuration Management
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Master Model Context Protocol (MCP) server configuration for Claude Code with comprehensive integration patterns. Complete guide to MCP tool setup, environment management, and enterprise-grade tool orchestration."
 more_link: "yes"

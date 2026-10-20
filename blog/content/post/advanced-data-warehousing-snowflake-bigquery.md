@@ -5,7 +5,7 @@ draft: false
 description: "Comprehensive guide to implementing advanced data warehousing solutions with Snowflake and BigQuery, covering architecture patterns, performance optimization, cost management, and enterprise deployment strategies."
 keywords: ["data warehousing", "Snowflake", "BigQuery", "cloud data warehouse", "ETL", "data architecture", "performance optimization", "cost optimization", "data lake", "analytics"]
 tags: ["data-engineering", "snowflake", "bigquery", "data-warehouse", "cloud", "analytics", "performance", "optimization"]
-categories: ["Data Engineering", "Analytics", "Cloud Computing"]
+categories: ["Data Engineering", "Analytics", "Cloud"]
 author: "Support Tools Team"
 canonical: "https://support.tools/blog/advanced-data-warehousing-snowflake-bigquery/"
 ---

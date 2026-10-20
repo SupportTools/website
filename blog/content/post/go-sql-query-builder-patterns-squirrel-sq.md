@@ -5,7 +5,7 @@ draft: false
 tags: ["Go", "SQL", "Database", "Security", "squirrel", "PostgreSQL", "Query Builder"]
 categories:
 - Go
-- Database
+- Databases
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A practical guide to building safe, composable SQL queries in Go using squirrel and sq, covering injection prevention, dynamic query composition, pagination, and transaction management patterns."
 more_link: "yes"

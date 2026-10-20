@@ -6,7 +6,7 @@ tags: ["cert-manager", "Kubernetes", "PKI", "TLS", "Certificate Management", "Va
 categories:
 - Kubernetes
 - Security
-- PKI
+- "TLS & Certificates"
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A complete enterprise guide to cert-manager: architecture, ACME with HTTP01 and DNS01 challenges, HashiCorp Vault PKI integration, private CA with cfssl, wildcard certificates, rotation automation, expiry monitoring, and troubleshooting issuance failures."
 more_link: "yes"

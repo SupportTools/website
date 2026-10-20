@@ -6,8 +6,8 @@ tags: ["Real-Time Linux", "RT-PREEMPT", "Latency Optimization", "Deterministic S
 categories:
 - Systems Programming
 - Real-Time Systems
-- Performance Optimization
-- Enterprise Systems
+- Performance
+- Infrastructure
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Master real-time Linux programming for building deterministic enterprise applications. Learn RT-PREEMPT configuration, latency optimization techniques, priority inheritance, and lock-free programming for time-critical systems."
 more_link: "yes"

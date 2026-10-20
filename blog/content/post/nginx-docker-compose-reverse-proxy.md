@@ -5,7 +5,7 @@ draft: false
 tags: ["nginx", "docker-compose", "reverse-proxy", "devops"]
 categories:
 - DevOps
-- Nginx
+- NGINX
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to set up a reverse proxy with Nginx and Docker-Compose. This step-by-step guide includes configuration for SSL, caching, and multiple services."
 more_link: "yes"

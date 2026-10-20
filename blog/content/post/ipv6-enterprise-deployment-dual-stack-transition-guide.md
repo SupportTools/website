@@ -2,11 +2,10 @@
 title: "Enterprise IPv6 Deployment and Dual-Stack Transition: Complete Guide to Production IPv6 Implementation and Network Migration"
 date: 2025-04-22T10:00:00-05:00
 draft: false
-tags: ["IPv6", "Dual-Stack", "Network Migration", "Enterprise Networking", "IPv4 Transition", "Network Architecture", "Tunneling", "Enterprise Infrastructure"]
+tags: ["IPv6", "Dual-Stack", "Network Migration", "Enterprise Networking", "IPv4 Transition", "Network Architecture", "Tunneling", "Enterprise Infrastructure", "IPv6 Implementation"]
 categories:
-- Network Engineering
-- IPv6 Implementation
-- Enterprise Infrastructure
+- Networking
+- Infrastructure
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive enterprise guide to IPv6 deployment, dual-stack implementation, network migration strategies, tunneling solutions, and production-grade IPv6 infrastructure for modern data centers"
 more_link: "yes"

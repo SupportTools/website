@@ -3,7 +3,7 @@ title: "Go Functional Options Pattern: API Design for Complex Configuration"
 date: 2029-05-28T00:00:00-05:00
 draft: false
 tags: ["Go", "Functional Options", "API Design", "golang", "Patterns", "Architecture"]
-categories: ["Go", "Software Architecture"]
+categories: ["Go", "Architecture"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive guide to the functional options pattern in Go covering the evolution from config structs to options functions, grpc.DialOption style APIs, variadic functions, defaults and overrides, testing with options, and proto-style options."
 more_link: "yes"

@@ -5,7 +5,7 @@ draft: false
 tags: ["Linux", "Filesystem", "Storage", "Block Devices", "FUSE", "VFS", "Kernel", "Performance"]
 categories:
 - Linux
-- Storage Systems
+- Storage
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Master advanced Linux storage systems including custom filesystem development, FUSE programming, block device drivers, and building high-performance storage solutions"
 more_link: "yes"

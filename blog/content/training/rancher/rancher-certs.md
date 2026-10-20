@@ -4,7 +4,7 @@ date: 2022-04-29T02:03:30-05:00
 draft: false
 tags: ["rancher", "certs", "training"]
 categories:
-- rancher
+- Rancher
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Rancher Certificates"
 ---

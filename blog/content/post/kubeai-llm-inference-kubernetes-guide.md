@@ -3,7 +3,7 @@ title: "KubeAI: Open-Source LLM Inference Platform on Kubernetes"
 date: 2027-03-12T00:00:00-05:00
 draft: false
 tags: ["Kubernetes", "KubeAI", "LLM", "AI/ML", "GPU", "Inference"]
-categories: ["Kubernetes", "AI/ML", "GPU"]
+categories: ["Kubernetes", "AI & ML", "GPU Computing"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Production guide to deploying KubeAI for LLM inference on Kubernetes, covering Model CRD configuration, GPU scheduling, vLLM and Ollama engine backends, autoscaling from zero, OpenAI-compatible API gateway, and multi-model serving with resource isolation."
 more_link: "yes"

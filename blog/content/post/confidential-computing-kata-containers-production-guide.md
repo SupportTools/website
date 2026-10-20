@@ -3,7 +3,7 @@ title: "Confidential Computing with Kata Containers: Enterprise Security Guide f
 date: 2026-05-16T00:00:00-05:00
 draft: false
 tags: ["Kata Containers", "Confidential Computing", "Security", "Kubernetes", "TEE", "SGX", "SEV", "Container Security"]
-categories: ["Kubernetes", "Security", "Confidential Computing"]
+categories: ["Kubernetes", "Security"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to implementing confidential computing with Kata Containers in Kubernetes, including hardware-based isolation, encrypted memory, and secure enclave deployment patterns."
 more_link: "yes"

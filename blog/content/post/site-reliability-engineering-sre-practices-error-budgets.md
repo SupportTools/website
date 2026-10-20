@@ -5,7 +5,6 @@ draft: false
 tags: ["SRE", "Site Reliability Engineering", "Error Budgets", "SLI", "SLO", "Monitoring", "Incident Response", "Reliability", "DevOps", "Production Systems", "Service Level", "Performance", "Availability", "Enterprise SRE", "Operations"]
 categories:
 - SRE
-- Reliability
 - DevOps
 - Operations
 author: "Matthew Mattox - mmattox@support.tools"

@@ -5,9 +5,9 @@ draft: false
 tags: ["FUSE", "Filesystem", "Storage", "Systems Programming", "Enterprise", "VFS", "Custom FS"]
 categories:
 - Systems Programming
-- Filesystem Development
-- Storage Systems
-- Enterprise Systems
+- File Systems
+- Storage
+- Infrastructure
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Master custom filesystem development using FUSE for enterprise storage solutions. Learn advanced file operations, metadata management, caching strategies, and production deployment techniques for high-performance storage systems."
 more_link: "yes"

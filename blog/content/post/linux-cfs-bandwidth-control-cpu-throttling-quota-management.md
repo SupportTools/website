@@ -3,7 +3,7 @@ title: "Linux CFS Bandwidth Control: CPU Throttling and Quota Management"
 date: 2029-05-14T00:00:00-05:00
 draft: false
 tags: ["Linux", "CFS", "CPU", "cgroups", "Kubernetes", "Performance", "eBPF"]
-categories: ["Linux", "Performance Engineering"]
+categories: ["Linux", "Performance"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Deep dive into Linux Completely Fair Scheduler bandwidth control: cpu.cfs_quota_us mechanics, throttled_time analysis, burst mode configuration, identifying CPU throttling with perf and eBPF, and practical Kubernetes CPU limits tuning to eliminate unnecessary throttling."
 more_link: "yes"

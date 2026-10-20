@@ -2,7 +2,7 @@
 title: "Mastering GitHub Actions: Advanced Conditional Workflows with Dynamic Inputs and Job Orchestration"
 date: 2026-04-21T09:00:00-05:00
 draft: false
-categories: ["CI/CD", "DevOps", "GitHub Actions"]
+categories: ["CI & CD", "DevOps", "GitHub Actions"]
 tags: ["GitHub Actions", "Workflow Automation", "CI/CD Pipelines", "Conditional Execution", "Dynamic Workflows", "Input Validation", "Job Orchestration", "DevOps Best Practices", "Manual Deployments", "Infrastructure Automation"]
 ---
 

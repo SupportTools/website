@@ -3,7 +3,7 @@ title: "DaemonSet Resource Optimization Strategies: Production-Ready Patterns fo
 date: 2026-08-23T00:00:00-05:00
 draft: false
 tags: ["Kubernetes", "DaemonSet", "Resource Management", "Performance", "Monitoring", "Node Management"]
-categories: ["Kubernetes", "DevOps", "Performance Optimization"]
+categories: ["Kubernetes", "DevOps", "Performance"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to optimizing Kubernetes DaemonSets for production environments with resource management, scheduling strategies, and performance tuning techniques."
 more_link: "yes"

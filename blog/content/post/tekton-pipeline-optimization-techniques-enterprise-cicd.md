@@ -3,7 +3,7 @@ title: "Tekton Pipeline Optimization Techniques: Advanced Strategies for Enterpr
 date: 2026-11-29T00:00:00-05:00
 draft: false
 tags: ["Tekton", "CI/CD", "Kubernetes", "Pipeline Optimization", "DevOps", "Cloud Native", "Performance"]
-categories: ["CI/CD", "DevOps", "Kubernetes"]
+categories: ["CI & CD", "DevOps", "Kubernetes"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Master advanced Tekton pipeline optimization techniques for enterprise CI/CD workloads. Learn parallel execution, caching strategies, resource management, and performance tuning for production Kubernetes environments."
 more_link: "yes"

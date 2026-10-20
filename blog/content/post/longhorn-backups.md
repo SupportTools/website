@@ -5,7 +5,7 @@ draft: false
 tags: ["Kubernetes", "Longhorn", "Backups", "PVC"]
 categories:
 - Kubernetes
-- Backups
+- "Backup & Recovery"
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to use Longhorn to back up and restore persistent data in your Kubernetes clusters with ease."
 more_link: "yes"

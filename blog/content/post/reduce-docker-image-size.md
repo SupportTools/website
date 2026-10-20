@@ -4,9 +4,9 @@ date: 2024-09-12T19:26:00-05:00
 draft: false  
 tags: ["Docker", "Image Optimization", "Containers", "DevOps"]  
 categories:  
-- Docker  
-- Containers  
-- Optimization  
+- Docker
+- Containers
+- Performance
 author: "Matthew Mattox - mmattox@support.tools"  
 description: "Learn effective techniques to reduce Docker image size and optimize container performance."  
 more_link: "yes"  

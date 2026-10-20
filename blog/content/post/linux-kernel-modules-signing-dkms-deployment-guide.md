@@ -3,7 +3,7 @@ title: "Linux Kernel Modules: Writing, Signing, and Deploying Custom Kernel Modu
 date: 2030-04-29T00:00:00-05:00
 draft: false
 tags: ["Linux", "Kernel", "Kernel Modules", "DKMS", "Secure Boot", "Systems Programming"]
-categories: ["Linux", "Systems"]
+categories: ["Linux", "Systems Programming"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive guide to Linux kernel module development covering the full workflow from writing and compiling modules, module signing for Secure Boot environments, DKMS for distribution-independent deployment, debugging with dynamic debug and ftrace, and module parameters via sysfs."
 more_link: "yes"

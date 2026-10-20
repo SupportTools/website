@@ -5,7 +5,7 @@ draft: false
 tags: ["Docker", "Container Security", "Rootless Containers", "Zero Trust", "Enterprise Security", "DevSecOps", "Access Control", "Kubernetes", "Podman", "Container Runtime"]
 categories:
 - Container Security
-- Enterprise Infrastructure
+- Infrastructure
 - DevSecOps
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Complete enterprise guide to Docker security frameworks, rootless container implementations, zero-privilege operations, comprehensive access management, and production-grade container security architectures"

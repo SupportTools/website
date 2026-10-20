@@ -4,7 +4,7 @@ date: 2027-03-02T09:00:00-05:00
 draft: false
 tags: ["Go", "Golang", "Database", "PostgreSQL", "MySQL", "Multi-tenancy", "Performance", "SaaS"]
 categories:
-- Database
+- Databases
 - Go
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Practical strategies for scaling multi-tenant databases in Go applications, with code examples and performance benchmarks"

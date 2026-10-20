@@ -3,7 +3,7 @@ title: "Go Blockchain Integration: Ethereum, Solana RPC Clients, and Web3 Backen
 date: 2030-03-29T00:00:00-05:00
 draft: false
 tags: ["Go", "Golang", "Blockchain", "Ethereum", "Solana", "Web3", "go-ethereum", "Smart Contracts"]
-categories: ["Go", "Blockchain", "Backend Development"]
+categories: ["Go", "Backend Engineering"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A production guide to building Go backend services that interact with blockchain networks, covering go-ethereum client integration, Solana JSON-RPC, event subscriptions, transaction building, and secure key management without exposing private keys."
 more_link: "yes"

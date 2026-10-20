@@ -3,7 +3,7 @@ title: "Volcano: Batch Scheduling for AI/ML Workloads on Kubernetes"
 date: 2027-01-11T00:00:00-05:00
 draft: false
 tags: ["Kubernetes", "Volcano", "Batch Scheduling", "AI/ML", "GPU"]
-categories: ["Kubernetes", "AI/ML", "Platform Engineering"]
+categories: ["Kubernetes", "AI & ML", "Platform Engineering"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Production guide to Volcano batch scheduler covering gang scheduling, Queue and PodGroup CRDs, fair-share algorithms, GPU sharing, PyTorch/MPI integration, and monitoring for AI/ML platform teams."
 more_link: "yes"

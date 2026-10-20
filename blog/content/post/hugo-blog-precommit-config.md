@@ -6,7 +6,7 @@ tags: ["Hugo", "Git", "Pre-commit", "Blogging", "DevOps", "Quality Assurance"]
 categories:
 - Hugo
 - DevOps
-- Quality Assurance
+- Testing
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to implement robust pre-commit hooks for your Hugo blog to ensure content quality, formatting consistency, and prevent common errors before they reach your repository."
 more_link: "yes"

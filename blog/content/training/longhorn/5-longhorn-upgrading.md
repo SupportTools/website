@@ -6,7 +6,6 @@ tags: ["Longhorn", "Kubernetes", "Upgrade"]
 categories:
 - Longhorn
 - Kubernetes
-- Upgrade
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive guide to upgrading Longhorn, covering planning, the upgrade process, and rollback options."
 more_link: "yes"

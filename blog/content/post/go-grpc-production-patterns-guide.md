@@ -5,7 +5,7 @@ draft: false
 tags: ["Go", "gRPC", "Microservices", "Protobuf"]
 categories:
 - Go
-- Backend
+- Backend Engineering
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Production gRPC in Go: interceptor chains, metadata propagation, client-side load balancing, gRPC health checking, grpcurl reflection, and bidirectional streaming with proper error handling."
 more_link: "yes"

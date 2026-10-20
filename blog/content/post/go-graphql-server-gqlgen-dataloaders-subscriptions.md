@@ -5,7 +5,7 @@ draft: false
 tags: ["Go", "GraphQL", "gqlgen", "API", "Backend", "Performance"]
 categories:
 - Go
-- API Development
+- API Design
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A production-grade guide to building GraphQL servers in Go with gqlgen, covering schema-first design, N+1 elimination with dataloaders, real-time subscriptions over WebSocket, and query complexity enforcement."
 more_link: "yes"

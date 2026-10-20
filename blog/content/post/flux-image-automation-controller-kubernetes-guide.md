@@ -6,7 +6,7 @@ tags: ["Kubernetes", "Flux", "GitOps", "Image Automation", "CI/CD"]
 categories:
 - Kubernetes
 - GitOps
-- CI/CD
+- "CI & CD"
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to Flux Image Automation Controller for automated container image updates, covering ImageRepository, ImagePolicy, ImageUpdateAutomation resources, ECR/GCR authentication, and production monitoring."
 more_link: "yes"

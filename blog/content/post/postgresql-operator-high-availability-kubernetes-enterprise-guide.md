@@ -3,7 +3,7 @@ title: "PostgreSQL Operator High Availability on Kubernetes: Enterprise Producti
 date: 2026-10-24T00:00:00-05:00
 draft: false
 tags: ["PostgreSQL", "Kubernetes", "High Availability", "Database", "Operators", "Patroni", "Zalando"]
-categories: ["Database", "Kubernetes", "DevOps"]
+categories: ["Databases", "Kubernetes", "DevOps"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to implementing high availability PostgreSQL clusters on Kubernetes using operators, with production-ready configurations, failover strategies, and performance optimization."
 more_link: "yes"

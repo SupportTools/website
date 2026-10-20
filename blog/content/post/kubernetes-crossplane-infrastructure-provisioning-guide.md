@@ -4,7 +4,6 @@ date: 2028-10-12T00:00:00-05:00
 draft: false
 tags: ["Crossplane", "Kubernetes", "Infrastructure as Code", "AWS", "Platform Engineering"]
 categories:
-- Crossplane
 - Kubernetes
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A complete guide to Crossplane for Kubernetes-native infrastructure provisioning, covering Provider setup, Managed Resources, Composite Resources, Compositions, and self-service platform patterns."

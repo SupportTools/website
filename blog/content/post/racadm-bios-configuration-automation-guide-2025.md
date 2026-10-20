@@ -4,10 +4,9 @@ date: 2025-12-26T10:00:00-05:00
 draft: false
 tags: ["RACADM", "Dell iDRAC", "BIOS Configuration", "Server Management", "PowerEdge", "Dell Servers", "Remote Management", "Automation", "Server BIOS", "Configuration Jobs", "Enterprise Hardware", "Data Center", "System Administration", "Out-of-Band Management"]
 categories:
-- Server Management
-- Hardware Configuration
 - System Administration
-- Enterprise IT
+- Hardware
+- Infrastructure
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Master RACADM BIOS configuration and automation for Dell PowerEdge servers. Complete guide to remote BIOS management, job queue automation, boot order configuration, and enterprise-scale server deployment strategies."
 more_link: "yes"

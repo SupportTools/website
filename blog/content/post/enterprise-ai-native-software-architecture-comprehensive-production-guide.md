@@ -3,7 +3,7 @@ title: "Enterprise AI-Native Software Architecture 2025: Comprehensive Productio
 date: 2026-01-29T09:00:00-05:00
 draft: false
 tags: ["AI", "Software Architecture", "Enterprise", "Production", "DevOps", "Machine Learning", "System Design"]
-categories: ["Software Architecture", "AI Development", "Enterprise Engineering"]
+categories: ["Architecture", "AI & ML", "Software Engineering"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Complete enterprise guide to AI-native software architecture patterns, production implementation strategies, advanced AI integration frameworks, and scalable system design for AI-symbiotic enterprise applications."
 more_link: "yes"

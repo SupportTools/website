@@ -3,7 +3,7 @@ title: "The Ultimate Golang Toolkit: Enterprise Frameworks, IDEs, and Essential 
 date: 2026-12-08T00:00:00-05:00
 draft: false
 tags: ["Go", "Golang", "Enterprise", "Frameworks", "IDEs", "Tools", "Development", "Ecosystem"]
-categories: ["Development", "Enterprise", "Tooling"]
+categories: ["Development", "Developer Tools"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to the essential Go ecosystem tools, enterprise frameworks, IDE configurations, and development environments that power modern Go development in 2025."
 more_link: "yes"

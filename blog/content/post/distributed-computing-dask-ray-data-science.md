@@ -5,7 +5,7 @@ draft: false
 description: "Comprehensive guide to implementing distributed computing solutions with Dask and Ray for data science workflows, covering scalable analytics, parallel machine learning, cluster management, and production deployment strategies."
 keywords: ["Dask", "Ray", "distributed computing", "data science", "machine learning", "parallel processing", "scalable analytics", "cluster computing", "Python", "distributed ML"]
 tags: ["dask", "ray", "distributed-computing", "data-science", "machine-learning", "parallel-processing", "analytics", "cluster-computing"]
-categories: ["Data Science", "Distributed Computing", "Machine Learning"]
+categories: ["Distributed Systems", "AI & ML"]
 author: "Support Tools Team"
 canonical: "https://support.tools/blog/distributed-computing-dask-ray-data-science/"
 ---

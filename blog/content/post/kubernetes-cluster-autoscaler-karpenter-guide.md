@@ -3,7 +3,7 @@ title: "Kubernetes Cluster Autoscaler vs Karpenter: Node Provisioning for Cost E
 date: 2028-04-21T00:00:00-05:00
 draft: false
 tags: ["Kubernetes", "Karpenter", "Cluster Autoscaler", "Cost Optimization", "AWS"]
-categories: ["Kubernetes", "Cloud Infrastructure"]
+categories: ["Kubernetes", "Cloud"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive comparison of Kubernetes Cluster Autoscaler and Karpenter covering architecture differences, node provisioning speed, bin-packing efficiency, spot instance handling, and production migration strategies."
 more_link: "yes"

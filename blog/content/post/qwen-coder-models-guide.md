@@ -4,7 +4,6 @@ date: 2025-04-22T00:00:00-05:00
 draft: false
 tags: ["Qwen", "LLM", "AI Models", "Self-Hosting", "Open Source", "Code Generation"]
 categories:
-- AI Models
 - Self-Hosting
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive guide to Qwen 2.5 Coder models - high-performance, open-weight LLMs that can be self-hosted on consumer hardware with impressive code generation capabilities."

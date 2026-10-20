@@ -3,7 +3,7 @@ title: "Chaos Engineering with Litmus: Production-Ready Kubernetes Resilience Te
 date: 2026-05-11T00:00:00-05:00
 draft: false
 tags: ["Chaos Engineering", "Litmus", "Kubernetes", "Resilience", "SRE", "Testing", "Production"]
-categories: ["DevOps", "Kubernetes", "Site Reliability"]
+categories: ["DevOps", "Kubernetes", "SRE"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to implementing chaos engineering with Litmus in Kubernetes production environments, including experiment design, automation, and incident response integration."
 more_link: "yes"

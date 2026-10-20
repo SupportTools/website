@@ -2,10 +2,9 @@
 title: "Data Lake Architecture with Delta Lake and Apache Iceberg"
 date: 2026-06-05T00:00:00-05:00
 draft: false
-tags: ["Delta Lake", "Apache Iceberg", "Data Lake", "Data Engineering", "ACID Transactions", "Apache Spark", "Data Versioning", "Schema Evolution"]
+tags: ["Delta Lake", "Apache Iceberg", "Data Lake", "Data Engineering", "ACID Transactions", "Apache Spark", "Data Versioning", "Schema Evolution", "Data Lake Architecture"]
 categories:
 - Data Engineering
-- Data Lake Architecture
 - Big Data
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Build modern data lake architectures using Delta Lake and Apache Iceberg for ACID transactions, schema evolution, and time travel capabilities. Learn implementation patterns, performance optimization, and production deployment strategies."

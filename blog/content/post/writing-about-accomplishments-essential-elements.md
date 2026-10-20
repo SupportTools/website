@@ -4,8 +4,7 @@ date: 2024-11-22T00:00:00-05:00
 draft: false
 tags: ["Professional Development", "Career Growth", "Accomplishments", "Writing Tips", "Support.Tools"]
 categories:
-- Professional Development
-- Career Advice
+- Career Development
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to effectively frame your accomplishments to make a lasting impact. Discover the five key elements that will make your achievements stand out."
 more_link: "yes"

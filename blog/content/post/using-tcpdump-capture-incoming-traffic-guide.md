@@ -2,10 +2,9 @@
 title: "How to Use tcpdump to Capture Incoming Traffic"
 date: 2023-10-13T11:30:00-05:00
 draft: false
-tags: ["tcpdump", "Network Monitoring", "Traffic Capture"]
+tags: ["tcpdump", "Network Monitoring", "Traffic Capture", "Network Tools"]
 categories:
-- Network Tools
-- Network Monitoring
+- Monitoring
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A guide on using tcpdump to capture incoming network traffic."
 more_link: "yes"

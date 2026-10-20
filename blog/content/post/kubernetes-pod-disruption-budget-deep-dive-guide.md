@@ -3,7 +3,7 @@ title: "Kubernetes PodDisruptionBudget Deep Dive: Ensuring Availability During D
 date: 2028-04-09T00:00:00-05:00
 draft: false
 tags: ["Kubernetes", "PDB", "Availability", "Upgrades", "StatefulSet"]
-categories: ["Kubernetes", "Reliability"]
+categories: ["Kubernetes", "SRE"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive guide to Kubernetes PodDisruptionBudgets covering minAvailable, maxUnavailable, unhealthy pod eviction policies, StatefulSet patterns, and integration with cluster autoscaler and node upgrade workflows."
 more_link: "yes"

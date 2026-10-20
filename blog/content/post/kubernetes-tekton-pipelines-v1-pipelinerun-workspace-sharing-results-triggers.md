@@ -5,7 +5,7 @@ draft: false
 tags: ["Kubernetes", "Tekton", "CI/CD", "Pipelines", "GitOps", "DevOps"]
 categories:
 - Kubernetes
-- CI/CD
+- "CI & CD"
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A production-grade guide to Tekton Pipelines v1 API covering PipelineRun orchestration patterns, workspace sharing strategies, result passing between tasks, Tekton Triggers for event-driven pipelines, and enterprise best practices."
 more_link: "yes"

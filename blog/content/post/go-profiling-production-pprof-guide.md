@@ -3,7 +3,7 @@ title: "Go Profiling in Production: pprof, trace, and Continuous Profiling with 
 date: 2028-04-23T00:00:00-05:00
 draft: false
 tags: ["Go", "pprof", "Profiling", "Performance", "Pyroscope", "Continuous Profiling"]
-categories: ["Go", "Performance Engineering"]
+categories: ["Go", "Performance"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A production guide to profiling Go services using pprof CPU and memory profiles, execution traces, on-demand profiling via HTTP endpoints, and continuous profiling with Pyroscope for always-on performance visibility."
 more_link: "yes"

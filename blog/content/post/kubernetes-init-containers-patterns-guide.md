@@ -2,8 +2,8 @@
 title: "Kubernetes Init Containers: Database Migration, Config Bootstrap, and Sidecar Patterns"
 date: 2028-01-17T00:00:00-05:00
 draft: false
-tags: ["Kubernetes", "Init Containers", "Database Migrations", "Sidecar", "Istio", "Patterns"]
-categories: ["Kubernetes", "Application Patterns"]
+tags: ["Kubernetes", "Init Containers", "Database Migrations", "Sidecar", "Istio", "Patterns", "Application Patterns"]
+categories: ["Kubernetes"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to Kubernetes init container patterns covering database migration initialization, config template rendering, wait-for-dependency patterns, sidecar injection, Istio interaction, and the native sidecar containers feature from KEP-753."
 more_link: "yes"

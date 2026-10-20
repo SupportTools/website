@@ -2,8 +2,8 @@
 title: "Go Circuit Breaker Patterns: State Machines, Metrics Integration, and Resilience Composition"
 date: 2028-05-28T00:00:00-05:00
 draft: false
-tags: ["Go", "Circuit Breaker", "Resilience", "Distributed Systems", "sony/gobreaker", "Production"]
-categories: ["Go", "Backend Engineering", "Resilience Patterns"]
+tags: ["Go", "Circuit Breaker", "Resilience", "Distributed Systems", "sony/gobreaker", "Production", "Resilience Patterns"]
+categories: ["Go", "Backend Engineering"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Production Go circuit breaker patterns covering sony/gobreaker, Netflix Hystrix patterns in Go, state machines, Prometheus metrics integration, and composing circuit breakers with retry and timeout strategies."
 more_link: "yes"

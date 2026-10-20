@@ -5,8 +5,6 @@ draft: false
 tags: ["PCI DSS", "Payment Security", "Cloud Native", "Compliance", "Card Data", "Security Controls", "Kubernetes", "Microservices"]
 categories:
 - Compliance
-- PCI DSS
-- Payment Security
 - Cloud Native
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to implementing PCI DSS compliance for cloud-native applications, including cardholder data protection, network segmentation, and automated compliance validation in Kubernetes environments."

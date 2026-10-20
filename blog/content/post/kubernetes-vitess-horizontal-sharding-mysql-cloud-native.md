@@ -5,7 +5,7 @@ draft: false
 tags: ["Kubernetes", "Vitess", "MySQL", "Sharding", "Database", "Cloud-Native", "Operator"]
 categories:
 - Kubernetes
-- Database
+- Databases
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Deep dive into Vitess architecture on Kubernetes: VTGate, VTTablet, etcd topology, VSchema design, MoveTables online migration, and production deployment with the Vitess Operator."
 more_link: "yes"

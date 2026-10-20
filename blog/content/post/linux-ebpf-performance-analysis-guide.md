@@ -3,7 +3,7 @@ title: "Linux eBPF for Performance Analysis: Tracing System Calls, CPU Profiling
 date: 2028-04-17T00:00:00-05:00
 draft: false
 tags: ["Linux", "eBPF", "BCC", "bpftrace", "Performance", "Profiling"]
-categories: ["Linux", "Performance Engineering"]
+categories: ["Linux", "Performance"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A practical guide to using eBPF tools — BCC, bpftrace, and libbpf — to trace system calls, profile CPU usage, analyze network I/O latency, and build custom performance instrumentation for production Linux systems."
 more_link: "yes"

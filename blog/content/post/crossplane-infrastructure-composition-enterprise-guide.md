@@ -3,7 +3,7 @@ title: "Crossplane Infrastructure Composition: Building Cloud-Agnostic Control P
 date: 2026-05-30T00:00:00-05:00
 draft: false
 tags: ["Crossplane", "Kubernetes", "Infrastructure as Code", "Platform Engineering", "Multi-Cloud", "GitOps"]
-categories: ["Platform Engineering", "Cloud Infrastructure"]
+categories: ["Platform Engineering", "Cloud"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to implementing Crossplane for infrastructure composition, creating reusable abstractions, and building cloud-agnostic control planes for enterprise platforms."
 more_link: "yes"

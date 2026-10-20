@@ -4,7 +4,6 @@ date: 2024-05-18
 draft: false
 tags: ["SMTP", "STARTTLS", "Base64 Decoding Error"]
 categories:
-- SMTP
 - Email
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to resolve a common issue with SMTP STARTTLS connections encountering 'Base64 Decoding Error'."

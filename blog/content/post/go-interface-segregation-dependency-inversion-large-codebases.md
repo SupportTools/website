@@ -3,7 +3,7 @@ title: "Go Interface Segregation and Dependency Inversion in Large Codebases"
 date: 2029-07-11T00:00:00-05:00
 draft: false
 tags: ["Go", "Golang", "Interface Design", "SOLID", "Testing", "Architecture", "Dependency Injection"]
-categories: ["Go", "Software Architecture", "Best Practices"]
+categories: ["Go", "Architecture", "Best Practices"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Practical guide to interface design principles in Go for large codebases: interface segregation, consumer-defined interfaces, avoiding interface pollution, and effective mocking strategies with testify/mock vs gomock."
 more_link: "yes"

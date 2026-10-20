@@ -2,10 +2,9 @@
 title: "Solving Harvester Operational Challenges: Expert Troubleshooting Techniques"
 date: 2024-02-21T00:00:00-05:00
 draft: false
-tags: ["Harvester HCI", "Problem Solving"]
+tags: ["Harvester HCI", "Problem Solving", "Tech Solutions"]
 categories:
 - Virtualization
-- Tech Solutions
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Unlock solutions to common Harvester HCI challenges, including cluster deployment, proxy configurations, and secure connections. Elevate your troubleshooting skills with this guide."
 more_link: "yes"

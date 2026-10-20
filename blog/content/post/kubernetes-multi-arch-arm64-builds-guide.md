@@ -5,7 +5,7 @@ draft: false
 tags: ["Kubernetes", "ARM64", "Docker Buildx", "Multi-Architecture", "CI/CD"]
 categories:
 - Kubernetes
-- CI/CD
+- "CI & CD"
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive production guide to multi-architecture container builds covering Docker Buildx, QEMU emulation, native cross-compilation, multi-arch manifests, GitHub Actions workflows, and Kubernetes mixed ARM64/AMD64 node pool deployment patterns."
 more_link: "yes"

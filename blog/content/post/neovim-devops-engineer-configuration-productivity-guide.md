@@ -4,8 +4,8 @@ date: 2026-12-25T00:00:00-05:00
 draft: false
 tags: ["Neovim", "DevOps", "Developer Productivity", "Terminal", "Vim", "LSP", "Configuration"]
 categories:
-- Developer Tooling
-- Productivity
+- Developer Tools
+- Developer Experience
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Practical Neovim configuration guide for DevOps engineers: LSP for Go/Python/YAML/Terraform, Telescope fuzzy finding, Kubernetes manifest editing, tmux integration, and custom automation workflows."
 more_link: "yes"

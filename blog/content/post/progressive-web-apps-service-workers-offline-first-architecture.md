@@ -2,11 +2,10 @@
 title: "Progressive Web Apps: Service Workers and Offline-First Architecture"
 date: 2026-10-28T00:00:00-05:00
 draft: false
-tags: ["PWA", "Service Workers", "JavaScript", "Web Development", "Offline First", "Performance", "Security", "Mobile"]
+tags: ["PWA", "Service Workers", "JavaScript", "Web Development", "Offline First", "Performance", "Security", "Mobile", "Mobile Development"]
 categories:
-- Frontend Development
-- Web Performance
-- Mobile Development
+- Web Development
+- Performance
 - Architecture
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive guide to building Progressive Web Apps with service workers, implementing offline-first data synchronization, push notifications, and enterprise-grade security for production deployments"

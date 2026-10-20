@@ -5,7 +5,6 @@ draft: false
 tags: ["Known Good Designs", "Cluster Services", "Cert Manager"]
 categories:
 - Known Good Designs
-- Cluster Services
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Known good design for deploying Cert Manager in a Kubernetes cluster."
 more_link: "yes"

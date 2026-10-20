@@ -2,10 +2,9 @@
 title: "Advanced Linux Audio and Multimedia Programming: Real-Time Audio Processing and Media Framework Development"
 date: 2025-04-20T10:00:00-05:00
 draft: false
-tags: ["Linux", "Audio", "Multimedia", "ALSA", "PulseAudio", "JACK", "FFmpeg", "Real-Time", "DSP"]
+tags: ["Linux", "Audio", "Multimedia", "ALSA", "PulseAudio", "JACK", "FFmpeg", "Real-Time", "DSP", "Multimedia Programming"]
 categories:
 - Linux
-- Multimedia Programming
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Master advanced Linux audio and multimedia programming including real-time audio processing, custom media frameworks, DSP algorithms, and building professional audio applications"
 more_link: "yes"

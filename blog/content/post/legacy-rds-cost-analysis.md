@@ -5,7 +5,7 @@ draft: false
 tags: ["AWS", "RDS", "Database", "Cost Optimization", "Cloud Computing", "Legacy Systems"]
 categories:
 - AWS
-- Database
+- Databases
 - Cost Optimization
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to analyze and optimize costs for legacy Amazon RDS systems. Discover strategies for modernization, cost reduction, and efficient database management in AWS."

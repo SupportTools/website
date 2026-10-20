@@ -3,7 +3,7 @@ title: "How AI is Revolutionizing Technical Documentation: Enterprise Content Ge
 date: 2026-04-27T00:00:00-05:00
 draft: false
 tags: ["AI", "Technical Documentation", "Enterprise", "Automation", "Content Generation", "DevOps", "Documentation"]
-categories: ["AI", "Documentation", "Enterprise"]
+categories: ["AI & ML", "Documentation"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to AI-powered technical documentation automation, enterprise content generation strategies, and the tools transforming documentation workflows in 2025."
 more_link: "yes"

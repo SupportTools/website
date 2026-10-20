@@ -4,9 +4,9 @@ date: 2024-10-18T19:26:00-05:00
 draft: false  
 tags: ["etcd", "Kubernetes", "Backup", "Secrets", "Troubleshooting"]  
 categories:  
-- Kubernetes  
-- Backup  
-- etcd  
+- Kubernetes
+- "Backup & Recovery"
+- etcd
 author: "Matthew Mattox - mmattox@support.tools"  
 description: "Learn how to extract a specific Kubernetes Secret from an etcd snapshot without the need to restore the full cluster."  
 more_link: "yes"  

@@ -5,7 +5,7 @@ draft: false
 tags: ["Go", "Golang", "PostgreSQL", "pgx", "sqlx", "GORM", "Database", "Connection Pooling", "Performance"]
 categories:
 - Go
-- Database
+- Databases
 - Performance
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive guide to Go database connection pooling with pgx, sqlx, and GORM, covering pool configuration, connection lifecycle management, prepared statements, query timeouts, read replica routing, and eliminating N+1 query patterns in production PostgreSQL deployments."

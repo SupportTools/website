@@ -3,7 +3,7 @@ title: "Implementing SOLID Principles in Go: A Practical Guide with Real-World E
 date: 2026-09-10T09:00:00-05:00
 draft: false
 tags: ["golang", "solid principles", "software architecture", "clean code", "best practices"]
-categories: ["Development", "Go", "Software Design"]
+categories: ["Development", "Go", "Architecture"]
 ---
 
 ## Introduction

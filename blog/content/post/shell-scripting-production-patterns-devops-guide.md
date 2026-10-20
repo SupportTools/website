@@ -4,7 +4,7 @@ date: 2028-09-20T00:00:00-05:00
 draft: false
 tags: ["Shell Scripting", "Bash", "DevOps", "Automation", "Linux"]
 categories:
-- Shell Scripting
+- Scripting
 - DevOps
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Production bash scripting — strict mode, trap cleanup, lockfiles, signal handling, idempotent scripts, argument parsing, logging functions, retry loops, parallel execution, secret handling, heredocs, and testing with bats."

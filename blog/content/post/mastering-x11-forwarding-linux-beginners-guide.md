@@ -6,7 +6,7 @@ tags: ["X11 Forwarding", "Linux", "SSH", "Remote Server", "GUI"]
 categories:
 - Linux
 - SSH
-- Remote Server
+- Remote Access
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to set up and use X11 forwarding in Linux to run graphical applications on remote servers."
 more_link: "yes"

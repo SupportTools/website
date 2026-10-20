@@ -6,7 +6,7 @@ tags: ["FinOps", "Kubernetes", "Cost Optimization", "Cloud Cost", "Chargeback", 
 categories:
 - FinOps
 - Kubernetes
-- Cloud Infrastructure
+- Cloud
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Practical FinOps guide for Kubernetes: rightsizing with VPA, namespace cost allocation, Kubecost deployment, chargeback reports, spot instance optimization, and waste elimination."
 more_link: "yes"

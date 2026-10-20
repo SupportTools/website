@@ -5,7 +5,7 @@ draft: false
 tags: ["Networking", "Ports"]
 categories:
 - Networking
-- Remote Host
+- Remote Access
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A guide on how to check the status of ports on a remote host."
 more_link: "yes"

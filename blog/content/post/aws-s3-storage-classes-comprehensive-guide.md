@@ -2,7 +2,7 @@
 title: "AWS S3 Storage Classes: Comprehensive Guide to Optimizing Storage Costs and Performance"
 date: 2025-09-11T09:00:00-05:00
 draft: false
-categories: ["AWS", "Cloud Storage", "Cost Optimization"]
+categories: ["AWS", "Storage", "Cost Optimization"]
 tags: ["AWS", "S3", "S3 Storage Classes", "Data Lifecycle Management", "Cloud Architecture", "Cost Optimization", "Glacier", "S3 Intelligent-Tiering", "S3 Standard-IA", "AWS Outposts"]
 ---
 

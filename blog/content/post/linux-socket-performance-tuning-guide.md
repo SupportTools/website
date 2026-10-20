@@ -3,7 +3,7 @@ title: "Linux Socket Performance Tuning: TCP Buffers, SO_REUSEPORT, and Kernel N
 date: 2028-06-06T00:00:00-05:00
 draft: false
 tags: ["Linux", "Networking", "Performance", "TCP", "Kernel", "Tuning"]
-categories: ["Linux", "Networking", "Performance Engineering"]
+categories: ["Linux", "Networking", "Performance"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive guide to Linux socket performance tuning for high-throughput services: TCP buffer sizing, SO_REUSEPORT, TCP_NODELAY, socket backlog, kernel net parameters, and benchmarking with netperf and ss."
 more_link: "yes"

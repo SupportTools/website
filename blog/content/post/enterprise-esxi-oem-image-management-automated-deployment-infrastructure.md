@@ -5,7 +5,7 @@ draft: false
 tags: ["ESXi", "VMware", "OEM Images", "Driver Management", "vSphere", "Automation", "Infrastructure as Code", "Enterprise Deployment", "Broadcom", "DevOps"]
 categories:
 - Virtualization
-- Enterprise Infrastructure
+- Infrastructure
 - Automation
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Complete enterprise guide to ESXi OEM image management, automated ISO discovery and deployment, comprehensive driver integration frameworks, and production-scale virtualization infrastructure"

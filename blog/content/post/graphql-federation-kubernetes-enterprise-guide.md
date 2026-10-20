@@ -3,7 +3,7 @@ title: "GraphQL Federation on Kubernetes: Enterprise API Gateway Architecture"
 date: 2026-07-27T00:00:00-05:00
 draft: false
 tags: ["GraphQL", "Federation", "API Gateway", "Kubernetes", "Microservices", "Apollo", "Schema Stitching"]
-categories: ["Kubernetes", "API Architecture", "Microservices"]
+categories: ["Kubernetes", "API Design", "Microservices"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to implementing GraphQL federation on Kubernetes, including federated schema design, Apollo Gateway deployment, performance optimization, and production-ready patterns for enterprise microservices."
 more_link: "yes"

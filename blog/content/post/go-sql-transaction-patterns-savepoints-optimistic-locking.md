@@ -5,7 +5,7 @@ draft: false
 tags: ["Go", "SQL", "PostgreSQL", "Transactions", "Database", "Golang"]
 categories:
 - Go
-- Database
+- Databases
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to Go database transaction patterns for production systems: database/sql transaction lifecycle, savepoints for nested operations, optimistic locking with version columns, SELECT FOR UPDATE pessimistic locking, serialization failure retries, and pgx advanced transaction options."
 more_link: "yes"

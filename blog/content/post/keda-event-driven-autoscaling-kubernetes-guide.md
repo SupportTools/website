@@ -3,7 +3,7 @@ title: "KEDA: Event-Driven Autoscaling for Kubernetes Workloads"
 date: 2027-04-01T00:00:00-05:00
 draft: false
 tags: ["Kubernetes", "KEDA", "Autoscaling", "Event-Driven", "HPA"]
-categories: ["Kubernetes", "Autoscaling", "Event-Driven"]
+categories: ["Kubernetes", "Autoscaling", "Event-Driven Architecture"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Production guide to KEDA event-driven autoscaling on Kubernetes covering ScaledObject and ScaledJob CRDs, scaler integrations (Kafka, Prometheus, RabbitMQ, Redis, AWS SQS, Cron), scale-to-zero patterns, HPA coexistence, pausing autoscaling for deployments, and Prometheus metrics."
 more_link: "yes"

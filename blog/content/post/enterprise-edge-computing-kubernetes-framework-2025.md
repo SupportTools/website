@@ -14,7 +14,7 @@ tags:
 categories:
 - Edge Computing
 - Distributed Systems
-- Enterprise Infrastructure
+- Infrastructure
 author: mmattox
 description: "Master enterprise edge computing with comprehensive Kubernetes frameworks, advanced distributed architectures, real-time processing systems, and production-scale edge deployment strategies for global distributed applications."
 keywords: "edge computing, Kubernetes edge, distributed systems, 5G networks, IoT architecture, real-time processing, edge orchestration, enterprise edge computing"

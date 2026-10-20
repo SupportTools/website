@@ -3,7 +3,7 @@ title: "Linux Container Storage with OverlayFS: Layer Management, Metacopy Optim
 date: 2031-11-13T00:00:00-05:00
 draft: false
 tags: ["Linux", "OverlayFS", "Container Storage", "containerd", "Docker", "Storage Driver", "Kernel"]
-categories: ["Linux", "Container Technologies"]
+categories: ["Linux", "Containers"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "An in-depth guide to Linux OverlayFS as used in container runtimes, covering layer stack mechanics, metacopy optimization, native diff algorithms, project quota enforcement, and performance tuning for production container workloads."
 more_link: "yes"

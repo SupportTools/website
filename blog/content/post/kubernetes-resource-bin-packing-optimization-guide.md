@@ -5,7 +5,7 @@ draft: false
 tags: ["Kubernetes", "Scheduler", "Resource Optimization", "Bin Packing", "MostAllocated", "RequestedToCapacityRatio", "Cluster Efficiency", "Cost Optimization"]
 categories:
 - Kubernetes
-- Performance Optimization
+- Performance
 - Resource Management
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to implementing Kubernetes resource bin packing using MostAllocated and RequestedToCapacityRatio strategies. Learn how to optimize cluster resource utilization, reduce infrastructure costs, and balance workloads efficiently."

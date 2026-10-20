@@ -5,7 +5,6 @@ draft: false
 tags: ["CAPI", "Cluster API", "Kubernetes", "Automation"]
 categories:
 - Kubernetes
-- Cluster API
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Dive into how Cluster API (CAPI) leverages the machines.cluster.x-k8s.io resource for Kubernetes cluster management and automation."
 more_link: "yes"

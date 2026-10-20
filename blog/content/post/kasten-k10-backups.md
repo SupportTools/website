@@ -5,7 +5,7 @@ draft: false
 tags: ["Kubernetes", "Kasten K10", "Backups", "Disaster Recovery"]
 categories:
 - Kubernetes
-- Backups
+- "Backup & Recovery"
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how Kasten K10 offers enterprise-grade backups, disaster recovery, and mobility for Kubernetes applications."
 more_link: "yes"

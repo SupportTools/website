@@ -5,7 +5,7 @@ draft: false
 tags: ["Linux", "Machine Learning", "AI", "Neural Networks", "Deep Learning", "GPU", "Inference", "TensorFlow"]
 categories:
 - Linux
-- Machine Learning
+- "AI & ML"
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Master advanced Linux machine learning systems including custom neural network implementations, GPU acceleration, distributed training, and building production ML infrastructure"
 more_link: "yes"

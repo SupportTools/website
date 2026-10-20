@@ -6,8 +6,7 @@ tags: ["Linux", "InfiniBand", "RDMA", "HPC", "AI", "Kubernetes", "High-Performan
 categories:
 - Linux
 - Networking
-- HPC
-- AI/ML
+- "AI & ML"
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Enterprise RDMA guide covering InfiniBand architecture and HCA configuration, RDMA verbs programming model, RoCE over Ethernet, SR-IOV for RDMA in containers, Kubernetes RDMA device plugin, and benchmarking RDMA performance with perftest."
 more_link: "yes"

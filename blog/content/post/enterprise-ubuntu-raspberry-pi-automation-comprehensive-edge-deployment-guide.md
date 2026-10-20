@@ -2,11 +2,10 @@
 title: "Enterprise Ubuntu on Raspberry Pi: Comprehensive Edge Computing Deployment and Automation Framework for Production IoT Infrastructure"
 date: 2025-06-24T10:00:00-05:00
 draft: false
-tags: ["Ubuntu", "Raspberry Pi", "Edge Computing", "IoT", "Automation", "Cloud-Init", "ARM", "Enterprise Deployment", "Infrastructure", "DevOps"]
+tags: ["Ubuntu", "Raspberry Pi", "Edge Computing", "IoT", "Automation", "Cloud-Init", "ARM", "Enterprise Deployment", "Infrastructure", "DevOps", "IoT Infrastructure"]
 categories:
 - Edge Computing
-- IoT Infrastructure
-- Enterprise Deployment
+- Deployment
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Complete enterprise guide to Ubuntu deployment on Raspberry Pi for edge computing, advanced automation frameworks, production IoT infrastructure, and comprehensive fleet management systems"
 more_link: "yes"

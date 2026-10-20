@@ -6,7 +6,6 @@ tags: ["Kubernetes", "Jaeger", "OpenTelemetry", "Distributed Tracing", "Observab
 categories:
 - Kubernetes
 - Observability
-- Distributed Tracing
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Production deployment guide for Jaeger v2 on Kubernetes with the OpenTelemetry Collector as the ingestion pipeline, adaptive tail-based sampling, and durable storage backends using Elasticsearch or Kafka."
 more_link: "yes"

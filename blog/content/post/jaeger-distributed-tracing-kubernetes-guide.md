@@ -4,7 +4,6 @@ date: 2027-07-08T00:00:00-05:00
 draft: false
 tags: ["Jaeger", "Distributed Tracing", "Kubernetes", "Observability"]
 categories:
-- Jaeger
 - Kubernetes
 - Observability
 author: "Matthew Mattox - mmattox@support.tools"

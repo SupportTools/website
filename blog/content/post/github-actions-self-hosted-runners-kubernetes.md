@@ -4,7 +4,7 @@ date: 2027-11-14T00:00:00-05:00
 draft: false
 tags: ["GitHub Actions", "ARC", "Kubernetes", "CI/CD", "Self-Hosted Runners"]
 categories:
-- CI/CD
+- "CI & CD"
 - Kubernetes
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Complete guide to deploying GitHub Actions Runner Controller on Kubernetes, covering RunnerSet auto-scaling, ephemeral runners, Docker-in-Docker builds, private registries, runner groups, and cost optimization."

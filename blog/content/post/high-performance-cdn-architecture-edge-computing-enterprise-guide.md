@@ -6,7 +6,6 @@ tags: ["CDN", "Edge Computing", "Performance", "Caching", "Networking", "Infrast
 categories:
 - Networking
 - Infrastructure
-- CDN
 - Edge Computing
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Master high-performance CDN architecture and edge computing for enterprise content delivery. Learn advanced caching strategies, edge node optimization, and production-ready CDN implementations."

@@ -1,5 +1,5 @@
 ---
-categories: ["VMware", "ESXi"]
+categories: ["VMware"]
 tags: ["vmware", "esxi"]
 date: "2021-09-08T04:53:00+00:00"
 more_link: "yes"

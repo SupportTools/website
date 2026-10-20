@@ -5,7 +5,7 @@ draft: false
 tags: ["Docker", "BuildKit", "CI/CD", "Multi-Platform", "Performance"]
 categories:
 - Docker
-- CI/CD
+- "CI & CD"
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Master Docker BuildKit with cache mounts for package managers, build secrets, SSH agent forwarding, multi-platform AMD64/ARM64 builds with docker buildx, SBOM generation, and monorepo layer caching optimization."
 more_link: "yes"

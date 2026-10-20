@@ -5,7 +5,7 @@ draft: false
 tags: ["Go", "Dependency Injection", "Wire", "Fx", "Software Architecture"]
 categories:
 - Go
-- Software Architecture
+- Architecture
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Complete guide to dependency injection patterns in Go covering manual constructor injection and functional options, Google Wire compile-time DI with providers and injectors, Uber Fx runtime DI with lifecycle hooks and modules, testing strategies with DI, and choosing the right approach for different project scales."
 more_link: "yes"

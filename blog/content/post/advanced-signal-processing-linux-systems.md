@@ -3,7 +3,7 @@ title: "Advanced Signal Processing in Linux Systems: Real-Time Analysis and Impl
 date: 2026-04-16T00:00:00-05:00
 author: "Systems Engineering Team"
 description: "Master advanced signal processing techniques in Linux environments. Learn real-time DSP implementation, SIMD optimization, kernel bypass techniques, and high-performance signal analysis for enterprise applications."
-categories: ["Systems Programming", "Signal Processing", "Real-Time Systems"]
+categories: ["Systems Programming", "Real-Time Systems"]
 tags: ["signal processing", "DSP", "real-time", "Linux", "SIMD", "FFT", "digital filters", "audio processing", "kernel bypass", "ALSA", "performance optimization"]
 keywords: ["signal processing", "digital signal processing", "real-time DSP", "Linux signal processing", "SIMD optimization", "FFT implementation", "digital filters", "audio processing", "kernel bypass", "high performance DSP"]
 draft: false

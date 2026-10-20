@@ -5,7 +5,7 @@ draft: false
 description: "Comprehensive guide to advanced analytics database performance tuning, covering query optimization, indexing strategies, partitioning, materialized views, and enterprise-scale optimization techniques for PostgreSQL, MySQL, and analytical databases."
 keywords: ["database performance", "query optimization", "indexing", "partitioning", "materialized views", "PostgreSQL", "MySQL", "analytics database", "performance tuning", "SQL optimization"]
 tags: ["database-performance", "query-optimization", "indexing", "partitioning", "materialized-views", "postgresql", "mysql", "analytics", "tuning"]
-categories: ["Database Administration", "Performance Optimization", "Analytics"]
+categories: ["Databases", "Performance", "Analytics"]
 author: "Support Tools Team"
 canonical: "https://support.tools/blog/advanced-analytics-database-performance-tuning/"
 ---

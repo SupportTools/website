@@ -2,12 +2,11 @@
 title: "Deep Dive into Rancher Harvester: The Future of Hyperconverged Infrastructure"
 date: 2024-02-01T10:00:00-05:00
 draft: false
-tags: ["Rancher", "Harvester", "Kubernetes", "Virtualization", "HCI"]
+tags: ["Rancher", "Harvester", "Kubernetes", "Virtualization", "HCI", "Hyperconverged Infrastructure"]
 categories:
 - Rancher
 - Kubernetes
 - Virtualization
-- Hyperconverged Infrastructure
 author: "Matthew Mattox - mmattox@support.tools"
 description: "An in-depth exploration of Rancher Harvester and its role in revolutionizing virtualization in Kubernetes environments."
 more_link: "yes"

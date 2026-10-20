@@ -5,7 +5,7 @@ draft: false
 tags: ["Samba", "CIFS", "Windows Shares", "Ubuntu", "Debian", "Network Storage", "SMB", "File Sharing", "Linux", "Mount", "fstab", "Network Drives", "Active Directory", "Enterprise Storage", "NAS"]
 categories:
 - Linux
-- Network Storage
+- Storage
 - System Administration
 - File Systems
 author: "Matthew Mattox - mmattox@support.tools"

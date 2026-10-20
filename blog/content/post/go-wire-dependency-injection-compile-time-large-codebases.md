@@ -5,7 +5,7 @@ draft: false
 tags: ["Go", "Dependency Injection", "Wire", "Architecture", "Enterprise", "Code Generation"]
 categories:
 - Go
-- Software Architecture
+- Architecture
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A deep dive into Google Wire for compile-time dependency injection in Go, covering provider sets, injectors, interfaces, testing patterns, and structuring large enterprise codebases without runtime reflection."
 more_link: "yes"

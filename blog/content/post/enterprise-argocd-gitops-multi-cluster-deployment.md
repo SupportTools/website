@@ -3,7 +3,7 @@ title: "Enterprise ArgoCD Implementation: Advanced GitOps Patterns for Multi-Clu
 date: 2026-06-23T00:00:00-05:00
 draft: false
 tags: ["ArgoCD", "GitOps", "Kubernetes", "CI-CD", "Multi-Cluster", "Deployment", "Enterprise"]
-categories: ["DevOps", "Kubernetes", "CI-CD"]
+categories: ["DevOps", "Kubernetes", "CI & CD"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to implementing enterprise-grade ArgoCD for GitOps workflows, covering multi-cluster management, security hardening, advanced deployment strategies, and production operational patterns."
 more_link: "yes"

@@ -4,7 +4,7 @@ date: 2025-07-02T22:05:00-05:00
 draft: false
 tags: ["Make", "Build Systems", "Automation", "Linux", "DevOps", "C", "C++"]
 categories:
-- Development Tools
+- Developer Tools
 - Build Systems
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Master advanced Makefile techniques including pattern rules, automatic dependencies, parallel builds, and cross-platform portability for efficient build automation"

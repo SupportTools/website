@@ -6,7 +6,7 @@ tags: ["Go", "Performance", "Profiling", "Benchmarking", "Optimization", "pprof"
 categories:
 - Go
 - Performance
-- Engineering
+- Software Engineering
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive guide to identifying and resolving performance bottlenecks in Go applications using profiling, benchmarking, and effective optimization techniques with practical examples"
 more_link: "yes"

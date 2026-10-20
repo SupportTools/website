@@ -7,7 +7,7 @@ categories:
 - Networking
 - Infrastructure
 - High Availability
-- Design Patterns
+- Architecture
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Master high-availability network design patterns for enterprise infrastructure. Learn advanced redundancy strategies, failover mechanisms, and production-ready resilient architectures."
 more_link: "yes"

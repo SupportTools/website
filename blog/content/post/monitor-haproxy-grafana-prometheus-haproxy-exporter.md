@@ -4,9 +4,8 @@ date: 2024-09-22T19:26:00-05:00
 draft: false  
 tags: ["HAProxy", "Grafana", "Prometheus", "haproxy_exporter", "Monitoring"]  
 categories:  
-- HAProxy  
-- Monitoring  
-- Prometheus  
+- Monitoring
+- Prometheus
 author: "Matthew Mattox - mmattox@support.tools"  
 description: "Learn how to monitor HAProxy with Grafana and Prometheus using haproxy_exporter for real-time metrics and insights."  
 more_link: "yes"  

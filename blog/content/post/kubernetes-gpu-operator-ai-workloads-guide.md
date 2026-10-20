@@ -3,7 +3,7 @@ title: "Kubernetes GPU Operator for AI/ML: NVIDIA Driver Management and Workload
 date: 2028-03-22T00:00:00-05:00
 draft: false
 tags: ["Kubernetes", "GPU", "NVIDIA", "AI/ML", "GPU Operator", "MLOps", "DCGM"]
-categories: ["Kubernetes", "AI/ML"]
+categories: ["Kubernetes", "AI & ML"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Production guide to NVIDIA GPU Operator on Kubernetes, covering component stack installation, NodeFeatureDiscovery, resource limits, time-slicing, MIG configuration, DCGM monitoring, and scheduling AI/ML workloads including Jupyter notebooks."
 more_link: "yes"

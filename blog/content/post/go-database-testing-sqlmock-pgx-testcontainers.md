@@ -3,7 +3,7 @@ title: "Go Database Testing: sqlmock, pgx Testing, and Database Integration Test
 date: 2030-04-04T00:00:00-05:00
 draft: false
 tags: ["Go", "Testing", "Database", "PostgreSQL", "sqlmock", "pgx", "testcontainers", "Integration Testing"]
-categories: ["Go", "Testing", "Database Engineering"]
+categories: ["Go", "Testing", "Databases"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to Go database testing: sqlmock for unit tests, pgx integration tests with testcontainers, gomock for repository interfaces, and transaction rollback patterns for fast, reliable test suites."
 more_link: "yes"

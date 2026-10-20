@@ -6,8 +6,8 @@ tags: ["DPDK", "Network Programming", "Packet Processing", "Performance", "Syste
 categories:
 - Systems Programming
 - Network Programming
-- Performance Optimization
-- Enterprise Systems
+- Performance
+- Infrastructure
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Master DPDK programming for building high-performance network applications. Learn packet processing, memory management, multi-core scaling, and enterprise deployment strategies for ultra-low latency systems."
 more_link: "yes"

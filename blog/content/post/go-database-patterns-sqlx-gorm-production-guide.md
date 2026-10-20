@@ -5,7 +5,7 @@ draft: false
 tags: ["Go", "Database", "PostgreSQL", "GORM", "Performance"]
 categories:
 - Go
-- Database
+- Databases
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A production guide to Go database access patterns covering sqlx vs GORM trade-offs, connection pool tuning, pgx direct usage, transaction patterns, bulk upserts, migration strategies, and read replica routing."
 more_link: "yes"

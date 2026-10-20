@@ -5,7 +5,7 @@ draft: false
 tags: ["Linux", "Filesystem", "ext4", "btrfs", "ZFS", "fsync", "Database", "Durability"]
 categories:
 - Linux
-- Systems
+- Systems Programming
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Deep dive into ext4 journaling modes, data=ordered guarantees, Copy-on-Write semantics in btrfs and ZFS, fsync vs fdatasync vs msync, O_DIRECT and O_SYNC usage, and database write barrier behavior."
 more_link: "yes"

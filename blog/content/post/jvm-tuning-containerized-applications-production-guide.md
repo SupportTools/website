@@ -3,7 +3,7 @@ title: "JVM Tuning for Containerized Applications: Production Performance Guide"
 date: 2026-08-16T00:00:00-05:00
 draft: false
 tags: ["JVM", "Java", "Kubernetes", "Performance", "Containers", "GC Tuning", "Memory Management"]
-categories: ["Performance Optimization", "Java", "Kubernetes"]
+categories: ["Performance", "Java", "Kubernetes"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to JVM tuning for containerized Java applications, including garbage collection optimization, memory management, and Kubernetes-specific configurations for production environments."
 more_link: "yes"

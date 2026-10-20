@@ -3,7 +3,7 @@ title: "GKE Autopilot vs Standard Mode: Deep Dive Enterprise Comparison Guide"
 date: 2026-07-14T00:00:00-05:00
 draft: false
 tags: ["GKE", "Google Cloud", "Kubernetes", "Autopilot", "Cloud Native", "Container Orchestration", "GCP"]
-categories: ["Cloud Architecture", "Kubernetes", "Google Cloud"]
+categories: ["Cloud", "Kubernetes", "Google Cloud"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive comparison of GKE Autopilot and Standard modes for enterprise deployments, including architecture differences, cost analysis, feature limitations, migration strategies, and production decision frameworks."
 more_link: "yes"

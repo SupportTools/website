@@ -7,7 +7,6 @@ categories:
 - Incident Response
 - SRE
 - Operations
-- Reliability
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Master advanced incident response and post-mortem automation for enterprise production environments. Comprehensive guide to automated incident management, root cause analysis, and enterprise-grade reliability improvement frameworks."
 more_link: "yes"

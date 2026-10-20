@@ -2,10 +2,9 @@
 title: "K8s Service Meshes: The Bill Comes Due"
 date: 2024-03-01T12:00:00-05:00
 draft: false
-tags: ["Kubernetes", "Service Mesh", "Cloud Computing", "Infrastructure"]
+tags: ["Kubernetes", "Service Mesh", "Cloud Computing", "Infrastructure", "Technology"]
 categories:
-- kubernetes
-- Technology
+- Kubernetes
 author: "Matthew Mattox - mmattox@support.tools"
 description: "An exploration of service mesh costs and challenges in 2024, including updates on Linkerd, Istio, Cilium, and more."
 more_link: "yes"

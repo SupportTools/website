@@ -5,7 +5,7 @@ draft: false
 tags: ["Kubernetes", "Docker", "Containerd", "Container Runtime", "CRI", "Migration", "DevOps", "Orchestration"]
 categories:
 - Kubernetes
-- Container Runtime
+- Containers
 - Migration
 - DevOps
 author: "Matthew Mattox - mmattox@support.tools"

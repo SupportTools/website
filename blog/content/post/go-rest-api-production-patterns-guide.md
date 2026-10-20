@@ -5,7 +5,7 @@ draft: false
 tags: ["Go", "REST API", "Chi", "Backend"]
 categories:
 - Go
-- Backend
+- Backend Engineering
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Production patterns for Go REST APIs using Chi: middleware chains, request validation, structured error responses, API versioning, OpenAPI generation with swaggo, and graceful shutdown."
 more_link: "yes"

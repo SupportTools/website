@@ -3,7 +3,7 @@ title: "Go Embedded Systems: TinyGo and Microcontroller Programming"
 date: 2029-08-04T00:00:00-05:00
 draft: false
 tags: ["Go", "TinyGo", "Embedded", "Microcontrollers", "IoT", "Hardware", "ARM"]
-categories: ["Go", "Embedded Systems", "IoT"]
+categories: ["Go", "Embedded Systems"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Complete guide to TinyGo for microcontroller programming: compilation targets, machine package hardware abstraction, I2C/SPI/UART peripherals, memory constraints, and scheduler differences from standard Go."
 more_link: "yes"

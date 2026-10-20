@@ -6,7 +6,6 @@ tags: ["Kubernetes", "Gateway API", "HTTPRoute", "GRPCRoute", "Ingress", "Networ
 categories:
 - Kubernetes
 - Networking
-- Gateway API
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Enterprise guide covering Gateway API architecture, GatewayClass/Gateway/HTTPRoute, traffic splitting, header-based routing, TLS passthrough, and GRPCRoute implementation for modern Kubernetes networking."
 more_link: "yes"

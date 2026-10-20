@@ -3,7 +3,7 @@ title: "Go Static Analysis: golangci-lint Rules and Custom Linters"
 date: 2029-09-03T00:00:00-05:00
 draft: false
 tags: ["Go", "Static Analysis", "golangci-lint", "Code Quality", "Security", "DevOps", "CI/CD"]
-categories: ["Go", "DevOps", "Code Quality"]
+categories: ["Go", "DevOps", "Best Practices"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive guide to Go static analysis covering golangci-lint configuration, essential linters including staticcheck, errcheck, and gosec, writing custom analyzers with the go/analysis framework, and integrating static analysis into CI/CD pipelines."
 more_link: "yes"

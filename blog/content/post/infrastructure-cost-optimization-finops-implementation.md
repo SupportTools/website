@@ -6,8 +6,8 @@ tags: ["FinOps", "Cost Optimization", "Cloud Economics", "Resource Management", 
 categories:
 - FinOps
 - Cost Optimization
-- Cloud Management
-- Enterprise Operations
+- Cloud
+- Operations
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Master infrastructure cost optimization and FinOps implementation for enterprise cloud environments. Comprehensive guide to cloud financial management, resource optimization, and enterprise-grade cost governance frameworks."
 more_link: "yes"

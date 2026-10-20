@@ -4,7 +4,7 @@ date: 2027-10-14T00:00:00-05:00
 draft: false
 tags: ["Pulumi", "Kubernetes", "IaC", "Go", "DevOps"]
 categories:
-- IaC
+- Infrastructure as Code
 - Kubernetes
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to Pulumi for Kubernetes infrastructure in Go. Covers ComponentResource patterns, stack references, Pulumi ESC secrets, automation API for CI/CD, infrastructure testing, migration from Terraform, and the Pulumi Kubernetes Operator."

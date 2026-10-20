@@ -6,7 +6,6 @@ tags: ["Hugo", "PaperMod", "Web Development", "Static Sites", "Frontend", "Desig
 categories:
 - Hugo
 - Web Development
-- Frontend
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to create an elegant virtual bookshelf using Hugo and PaperMod theme. Complete guide with custom layouts, styling, and organization features."
 more_link: "yes"

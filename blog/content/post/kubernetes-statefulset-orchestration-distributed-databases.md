@@ -3,7 +3,7 @@ title: "StatefulSet Orchestration for Distributed Databases: Enterprise Producti
 date: 2026-09-10T00:00:00-05:00
 draft: false
 tags: ["Kubernetes", "StatefulSet", "Database", "Distributed Systems", "PostgreSQL", "MongoDB", "Cassandra"]
-categories: ["Kubernetes", "Database Management", "DevOps"]
+categories: ["Kubernetes", "Databases", "DevOps"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to deploying and managing distributed databases using Kubernetes StatefulSets with production-ready patterns, failure recovery, and scaling strategies."
 more_link: "yes"

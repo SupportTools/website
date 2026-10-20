@@ -3,7 +3,7 @@ title: "MacOS Keychain Docker Credential Issues: Solving 'User Interaction Not A
 date: 2026-09-19T00:00:00-05:00
 draft: false
 tags: ["Docker", "MacOS", "Keychain", "CI/CD", "Security", "Credentials", "DevOps"]
-categories: ["Docker", "Security", "CI/CD"]
+categories: ["Docker", "Security", "CI & CD"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Complete guide to resolving MacOS Keychain access issues with Docker credential storage, including automated fixes, alternative credential stores, and enterprise CI/CD patterns for secure credential management."
 more_link: "yes"

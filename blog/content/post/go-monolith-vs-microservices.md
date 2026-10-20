@@ -4,9 +4,8 @@ date: 2026-06-25T09:00:00-05:00
 draft: false
 tags: ["Golang", "Go", "Architecture", "Microservices", "Monolith", "System Design"]
 categories:
-- Golang
+- Go
 - Architecture
-- System Design
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A practical guide to choosing between monolithic and microservices architectures for your Go applications, with real-world examples and migration strategies."
 more_link: "yes"

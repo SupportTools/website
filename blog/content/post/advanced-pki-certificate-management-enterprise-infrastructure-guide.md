@@ -5,8 +5,7 @@ draft: false
 tags: ["PKI", "Certificate Management", "Security", "Cryptography", "X.509", "Certificate Authority", "mTLS", "TLS", "OpenSSL", "ACME", "Kubernetes", "HashiCorp Vault"]
 categories:
 - Security
-- PKI
-- Certificate Management
+- "TLS & Certificates"
 - Cryptography
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to implementing advanced PKI certificate management for enterprise infrastructure, including automated certificate lifecycle management, multi-tier CA hierarchies, and production-ready certificate operations."

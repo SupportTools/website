@@ -6,8 +6,6 @@ tags: ["BGP", "Routing", "Multi-Homing", "Networking", "Infrastructure", "DevOps
 categories:
 - Networking
 - Infrastructure
-- BGP
-- Routing
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Master advanced BGP routing protocols and multi-homing strategies for enterprise network resilience. Learn sophisticated traffic engineering, path selection optimization, and production-ready BGP configurations."
 more_link: "yes"

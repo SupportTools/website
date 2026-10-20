@@ -2,8 +2,8 @@
 title: "Kubernetes Kubelet Configuration Tuning: Eviction Thresholds, Image GC, CPU Manager, and cgroup v2 Migration"
 date: 2028-06-20T00:00:00-05:00
 draft: false
-tags: ["Kubernetes", "Kubelet", "Node Configuration", "Eviction", "CPU Manager", "cgroup", "Production"]
-categories: ["Kubernetes", "Node Operations"]
+tags: ["Kubernetes", "Kubelet", "Node Configuration", "Eviction", "CPU Manager", "cgroup", "Production", "Node Operations"]
+categories: ["Kubernetes"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Production guide to kubelet configuration tuning: eviction threshold calibration, image garbage collection policies, CPU and memory manager configuration, container log rotation, systemd cgroup driver migration, and pod max per node tuning."
 more_link: "yes"

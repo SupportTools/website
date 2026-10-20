@@ -4,7 +4,7 @@ date: 2023-10-12T23:18:00-05:00
 draft: false
 tags: ["Certificates", "Ubuntu"]
 categories:
-- Certificates
+- "TLS & Certificates"
 - Ubuntu
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A guide on installing custom CA certificates on Ubuntu 22.04."

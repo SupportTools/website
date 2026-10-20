@@ -2,10 +2,9 @@
 title: "Detecting Malicious RDP Activity: Key Indicators of Compromise (IOCs)"
 date: 2024-12-07T10:00:00-05:00
 draft: false
-tags: ["RDP Security", "Indicators of Compromise", "Cybersecurity", "Vulnerability Management", "Remote Desktop Protocol"]
+tags: ["RDP Security", "Indicators of Compromise", "Cybersecurity", "Vulnerability Management", "Remote Desktop Protocol", "Threat Detection"]
 categories:
-- Cybersecurity
-- Threat Detection
+- Security
 author: "Matthew Mattox"
 description: "Learn how to identify malicious RDP activity with key indicators of compromise (IOCs). Proactively secure your systems by recognizing unusual behavior and taking action."
 more_link: "yes"

@@ -5,7 +5,6 @@ draft: false
 tags: ["Kubernetes", "Upgrades", "Best Practices"]
 categories:
 - Kubernetes
-- Upgrades
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn why sequential Kubernetes upgrades (1.28 → 1.29 → 1.30) are essential and how to plan your upgrades effectively."
 more_link: "yes"

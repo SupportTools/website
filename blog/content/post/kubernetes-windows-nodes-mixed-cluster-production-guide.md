@@ -3,7 +3,7 @@ title: "Kubernetes Windows Nodes: Running Windows Workloads in Mixed Clusters"
 date: 2027-02-11T00:00:00-05:00
 draft: false
 tags: ["Kubernetes", "Windows", "Mixed Cluster", "Containers", "Enterprise"]
-categories: ["Kubernetes", "Windows", "Enterprise"]
+categories: ["Kubernetes", "Windows"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Complete production guide to running Windows workloads in Kubernetes mixed clusters: containerd setup, node taints, OS selectors, SMB CSI storage, Windows networking, and managed service integration."
 more_link: "yes"

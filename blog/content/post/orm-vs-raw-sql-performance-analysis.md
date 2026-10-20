@@ -4,7 +4,7 @@ date: 2027-03-25T09:00:00-05:00
 draft: false
 tags: ["Database", "SQL", "ORM", "Performance", "Optimization", "PostgreSQL", "MySQL"]
 categories:
-- Database
+- Databases
 - Performance
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A data-driven analysis of when to use ORMs versus raw SQL, with real-world performance benchmarks and migration strategies"

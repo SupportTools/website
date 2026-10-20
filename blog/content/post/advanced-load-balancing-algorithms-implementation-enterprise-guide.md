@@ -6,7 +6,7 @@ tags: ["Load Balancing", "Algorithms", "High Performance", "Networking", "Infras
 categories:
 - Networking
 - Infrastructure
-- Load Balancing
+- Load Balancers
 - Performance
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Master advanced load balancing algorithms and implementation strategies for enterprise high-performance networks. Learn sophisticated distribution methods, health checking, and production-ready load balancer architectures."

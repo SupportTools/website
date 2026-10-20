@@ -14,9 +14,9 @@ tags:
 - rego
 - admission-controllers
 categories:
-- Kubernetes Policy
-- Enterprise Governance
-- Security Automation
+- Policy
+- Compliance
+- Security
 author: mmattox
 description: "Master enterprise OPA Gatekeeper implementation with advanced policy management, automated compliance frameworks, multi-cluster governance, and production-scale policy automation for Kubernetes environments."
 keywords: "OPA Gatekeeper, Kubernetes policy management, Rego policies, admission controllers, compliance automation, policy as code, enterprise governance, security policies, multi-cluster policy, policy automation"

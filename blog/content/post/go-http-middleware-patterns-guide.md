@@ -3,7 +3,7 @@ title: "Go HTTP Middleware Patterns: Authentication, Rate Limiting, and Observab
 date: 2028-04-15T00:00:00-05:00
 draft: false
 tags: ["Go", "HTTP", "Middleware", "Authentication", "Rate Limiting"]
-categories: ["Go", "Backend Development"]
+categories: ["Go", "Backend Engineering"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A deep-dive into building composable, production-grade HTTP middleware chains in Go covering authentication, JWT validation, rate limiting, distributed tracing, and structured logging."
 more_link: "yes"

@@ -6,8 +6,7 @@ tags: ["DevSecOps", "CI/CD Security", "Security Gates", "Pipeline Security", "SA
 categories:
 - Security
 - DevSecOps
-- CI/CD
-- Pipeline Security
+- "CI & CD"
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to implementing DevSecOps pipelines with automated security gates, including security testing integration, compliance validation, and production-ready CI/CD security frameworks for enterprise environments."
 more_link: "yes"

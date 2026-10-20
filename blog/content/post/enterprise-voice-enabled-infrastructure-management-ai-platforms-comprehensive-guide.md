@@ -2,8 +2,8 @@
 title: "Enterprise Voice-Enabled Infrastructure Management AI Platforms 2025: Comprehensive Guide to Production-Grade Conversational Operations"
 date: 2026-04-02T09:00:00-05:00
 draft: false
-tags: ["AI", "Voice Recognition", "Enterprise", "Kubernetes", "DevOps", "Automation", "Machine Learning", "Infrastructure Management"]
-categories: ["AI Operations", "Enterprise Infrastructure", "Voice Computing"]
+tags: ["AI", "Voice Recognition", "Enterprise", "Kubernetes", "DevOps", "Automation", "Machine Learning", "Infrastructure Management", "AI Operations", "Voice Computing"]
+categories: ["Infrastructure"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Complete enterprise guide to building production-grade voice-enabled infrastructure management platforms with advanced AI integration, multi-modal interfaces, enterprise security frameworks, and scalable conversational operations for large-scale environments."
 more_link: "yes"

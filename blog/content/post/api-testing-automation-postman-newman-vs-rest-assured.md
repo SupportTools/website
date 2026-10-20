@@ -4,10 +4,9 @@ date: 2026-05-02T00:00:00-05:00
 draft: false
 tags: ["API Testing", "Automation", "Postman", "Newman", "Rest-Assured", "CI/CD", "Testing Framework", "Java", "JavaScript", "Performance Testing"]
 categories:
-- API Testing
+- Testing
 - Automation
 - DevOps
-- Testing
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive comparison of API testing automation strategies using Postman Newman vs Rest-Assured framework, including implementation guides, performance analysis, CI/CD integration patterns, and production-ready testing architectures."
 more_link: "yes"

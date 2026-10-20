@@ -3,7 +3,7 @@ title: "Linux Real-Time Scheduling: PREEMPT_RT Patch, Latency Tuning, and RT Wor
 date: 2030-01-25T00:00:00-05:00
 draft: false
 tags: ["Linux", "Real-Time", "PREEMPT_RT", "Kernel", "Latency", "CPU Isolation", "Performance"]
-categories: ["Linux", "Performance", "Systems"]
+categories: ["Linux", "Performance", "Systems Programming"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Configure Linux real-time scheduling with PREEMPT_RT, tune SCHED_FIFO and SCHED_RR policies, isolate CPUs with isolcpus, manage interrupt affinity, and measure latency with cyclictest for production RT workloads."
 more_link: "yes"

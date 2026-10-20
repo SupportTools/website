@@ -3,7 +3,7 @@ title: "Descheduler: Automatic Pod Rebalancing for Kubernetes Clusters"
 date: 2027-03-04T00:00:00-05:00
 draft: false
 tags: ["Kubernetes", "Descheduler", "Pod Scheduling", "Optimization", "Cluster Management"]
-categories: ["Kubernetes", "Operations", "Optimization"]
+categories: ["Kubernetes", "Operations", "Performance"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Complete guide to deploying and tuning the Kubernetes Descheduler for automatic pod rebalancing, including all eviction strategies, PodDisruptionBudget respect, Prometheus monitoring, and production anti-flapping configuration."
 more_link: "yes"

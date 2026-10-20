@@ -5,9 +5,7 @@ draft: false
 tags: ["SIEM", "ELK Stack", "Elasticsearch", "Logstash", "Kibana", "Splunk", "Log Analysis", "Security Operations", "SOC", "Threat Detection", "Security Monitoring"]
 categories:
 - Security
-- SIEM
-- Log Analysis
-- SOC
+- Logging
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to implementing Security Information and Event Management (SIEM) systems using ELK Stack and Splunk, including advanced log analysis, threat detection, and enterprise security operations center setup."
 more_link: "yes"

@@ -4,7 +4,6 @@ date: 2028-09-14T00:00:00-05:00
 draft: false
 tags: ["Neovim", "Developer Tools", "LSP", "Productivity", "Linux"]
 categories:
-- Neovim
 - Developer Tools
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Complete Neovim setup guide — lazy.nvim plugin manager, LSP configuration for Go/Python/TypeScript, nvim-dap debugger, Telescope fuzzy finding, git integration, treesitter, and terminal integration for daily engineering work."

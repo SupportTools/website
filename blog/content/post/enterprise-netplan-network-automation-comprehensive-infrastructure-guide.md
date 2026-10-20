@@ -4,9 +4,8 @@ date: 2025-07-22T10:00:00-05:00
 draft: false
 tags: ["Netplan", "Network Automation", "Infrastructure as Code", "Ubuntu", "YAML", "Network Configuration", "DevOps", "Enterprise Networking", "SDN", "GitOps"]
 categories:
-- Network Automation
 - Infrastructure as Code
-- Enterprise Infrastructure
+- Infrastructure
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Complete enterprise guide to Netplan network automation, advanced configuration management, production network orchestration, and comprehensive infrastructure as code implementations"
 more_link: "yes"

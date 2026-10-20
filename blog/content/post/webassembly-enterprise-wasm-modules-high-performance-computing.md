@@ -6,7 +6,6 @@ tags: ["WebAssembly", "WASM", "High-Performance Computing", "Enterprise", "Perfo
 categories:
 - WebAssembly
 - Performance
-- Enterprise
 - Cloud Native
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to implementing WebAssembly modules in enterprise environments for high-performance computing, including architecture, security, deployment strategies, and production best practices."

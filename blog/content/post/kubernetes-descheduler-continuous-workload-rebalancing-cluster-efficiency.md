@@ -3,7 +3,7 @@ title: "Kubernetes Descheduler: Continuous Workload Rebalancing for Cluster Effi
 date: 2030-11-30T00:00:00-05:00
 draft: false
 tags: ["Kubernetes", "Descheduler", "Cluster Management", "Resource Optimization", "FinOps", "Scheduling", "Production"]
-categories: ["Kubernetes", "Cluster Management"]
+categories: ["Kubernetes"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to the Kubernetes Descheduler: built-in and custom eviction policies, CronJob vs Deployment operating modes, PodDisruptionBudget interaction, production tuning, and monitoring for continuous workload rebalancing."
 more_link: "yes"

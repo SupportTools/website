@@ -6,7 +6,7 @@ tags: ["Go", "Golang", "Build Tags", "CI/CD", "Conditional Compilation", "Testin
 categories:
 - Go
 - DevOps
-- CI/CD
+- "CI & CD"
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Go build constraints: file-level build tags, constraint expressions, OS/arch targeting, integration test separation, feature flags with build tags, and managing build matrices in CI/CD."
 more_link: "yes"

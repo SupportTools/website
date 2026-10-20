@@ -3,7 +3,7 @@ title: "Cloud-Native Disaster Recovery Architectures: Enterprise Implementation 
 date: 2026-05-13T00:00:00-05:00
 draft: false
 tags: ["Disaster Recovery", "Cloud Native", "Kubernetes", "Business Continuity", "High Availability", "Backup", "DR"]
-categories: ["Cloud Architecture", "Disaster Recovery", "Kubernetes"]
+categories: ["Cloud", "Disaster Recovery", "Kubernetes"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to implementing cloud-native disaster recovery architectures with Kubernetes, including RTO/RPO strategies, backup automation, cross-region replication, and business continuity patterns for enterprise environments."
 more_link: "yes"

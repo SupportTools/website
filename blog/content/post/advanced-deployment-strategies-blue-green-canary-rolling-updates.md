@@ -2,12 +2,11 @@
 title: "Advanced Deployment Strategies: Blue-Green, Canary, and Rolling Updates for Enterprise Production 2026"
 date: 2026-03-29T00:00:00-05:00
 draft: false
-tags: ["Deployment Strategies", "Blue-Green Deployment", "Canary Deployment", "Rolling Updates", "Progressive Delivery", "Kubernetes", "Production Deployment", "Zero Downtime", "Risk Mitigation", "Enterprise Deployment", "Release Management", "Continuous Deployment", "Traffic Management", "A/B Testing", "Feature Flags"]
+tags: ["Deployment Strategies", "Blue-Green Deployment", "Canary Deployment", "Rolling Updates", "Progressive Delivery", "Kubernetes", "Production Deployment", "Zero Downtime", "Risk Mitigation", "Enterprise Deployment", "Release Management", "Continuous Deployment", "Traffic Management", "A/B Testing", "Feature Flags", "Production Systems"]
 categories:
 - Deployment
 - Kubernetes
 - DevOps
-- Production Systems
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Master advanced deployment strategies including blue-green, canary, and rolling updates for enterprise production environments. Comprehensive guide to progressive delivery, risk mitigation, and zero-downtime deployment frameworks."
 more_link: "yes"

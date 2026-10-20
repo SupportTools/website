@@ -5,7 +5,7 @@ draft: false
 tags: ["Go", "Golang", "Middleware", "HTTP", "gRPC", "Database", "Context", "Circuit Breaker"]
 categories:
 - Go
-- Backend
+- Backend Engineering
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to Go middleware patterns covering HTTP middleware chaining, gRPC interceptor chains, database middleware for query logging and circuit breakers, context propagation, and timeout middleware."
 more_link: "yes"

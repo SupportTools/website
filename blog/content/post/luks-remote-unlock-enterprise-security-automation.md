@@ -5,8 +5,8 @@ draft: false
 tags: ["LUKS", "Full Disk Encryption", "Remote Unlock", "Dropbear", "Security", "Enterprise", "Linux", "Cryptography", "SSH", "Automation"]
 categories:
 - Security
-- Enterprise Infrastructure
-- Linux Administration
+- Infrastructure
+- System Administration
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to enterprise LUKS implementation, remote unlock automation, advanced security configurations, and production-grade full disk encryption management for critical infrastructure"
 more_link: "yes"

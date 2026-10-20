@@ -5,7 +5,7 @@ draft: false
 tags: ["Go", "Rate Limiting", "Redis", "API", "Performance", "Distributed Systems"]
 categories:
 - Go
-- API Development
+- API Design
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive Go implementation guide for five rate limiting algorithms: token bucket, leaky bucket, sliding window log, Generic Cell Rate Algorithm (GCRA), and distributed rate limiting with Redis."
 more_link: "yes"

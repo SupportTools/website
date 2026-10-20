@@ -3,7 +3,7 @@ title: "AI/ML Workloads with Kubeflow: Enterprise Machine Learning Platform on K
 date: 2026-04-25T00:00:00-05:00
 draft: false
 tags: ["Kubeflow", "Machine Learning", "AI", "Kubernetes", "MLOps", "TensorFlow", "PyTorch", "Model Training"]
-categories: ["Machine Learning", "Kubernetes", "MLOps"]
+categories: ["AI & ML", "Kubernetes", "MLOps"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to implementing AI/ML workloads with Kubeflow on Kubernetes, including pipeline orchestration, distributed training, model serving, experiment tracking, and production-ready MLOps patterns."
 more_link: "yes"

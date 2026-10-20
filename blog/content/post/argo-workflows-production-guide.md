@@ -5,7 +5,7 @@ draft: false
 tags: ["Argo", "Workflows", "Kubernetes", "CI/CD", "Orchestration"]
 categories:
 - Kubernetes
-- CI/CD
+- "CI & CD"
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Workflow templates, DAG tasks, artifact passing, parallelism, resource templates, executor configuration, workflow archiving with MinIO, RBAC, and production operational patterns."
 more_link: "yes"

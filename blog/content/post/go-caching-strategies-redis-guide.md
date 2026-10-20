@@ -5,7 +5,7 @@ draft: false
 tags: ["Go", "Redis", "Caching", "Performance"]
 categories:
 - Go
-- Backend
+- Backend Engineering
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Go caching architecture: Redis with go-redis, connection pooling, pipeline and transaction patterns, distributed locks with Redlock, in-memory caching with ristretto, and cache invalidation strategies."
 more_link: "yes"

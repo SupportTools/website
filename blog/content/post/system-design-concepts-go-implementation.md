@@ -3,7 +3,7 @@ title: "System Design Concepts Implemented in Go: A Practical Guide"
 date: 2027-05-18T09:00:00-05:00
 draft: false
 tags: ["golang", "system design", "architecture", "microservices", "distributed systems"]
-categories: ["Development", "Go", "System Architecture"]
+categories: ["Development", "Go", "Architecture"]
 ---
 
 ## Introduction

@@ -3,7 +3,7 @@ title: "Tekton Chains: Supply Chain Security for Kubernetes CI/CD"
 date: 2027-01-13T00:00:00-05:00
 draft: false
 tags: ["Kubernetes", "Tekton", "Supply Chain Security", "SLSA", "Sigstore"]
-categories: ["Kubernetes", "Security", "CI/CD"]
+categories: ["Kubernetes", "Security", "CI & CD"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to implementing Tekton Chains for supply chain security in Kubernetes CI/CD pipelines, covering SLSA attestations, Cosign image signing, KMS key integration, Rekor transparency logging, and admission policy enforcement."
 more_link: "yes"

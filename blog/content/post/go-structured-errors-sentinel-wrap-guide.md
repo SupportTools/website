@@ -5,7 +5,7 @@ draft: false
 tags: ["Go", "Error Handling", "Software Design", "Production", "Architecture"]
 categories:
 - Go
-- Software Design
+- Architecture
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive guide to Go error architecture: sentinel errors vs structured types, fmt.Errorf %w wrapping, errors.Is/errors.As for unwrapping, HTTP status mapping, errors.Join for multi-error grouping, stack trace capture, and testing error paths."
 more_link: "yes"

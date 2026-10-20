@@ -5,7 +5,7 @@ draft: false
 tags: ["BrowserStack", "GitHub Actions", "CI/CD", "Automated Testing", "Selenium", "Appium", "Cross-Browser Testing", "Mobile Testing", "DevOps", "QA Automation"]
 categories:
 - Testing
-- CI/CD
+- "CI & CD"
 - DevOps
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to implementing automated cross-browser and cross-platform testing using BrowserStack with GitHub Actions. Learn how to set up matrix testing for web and mobile applications with detailed workflows, configuration patterns, and best practices."

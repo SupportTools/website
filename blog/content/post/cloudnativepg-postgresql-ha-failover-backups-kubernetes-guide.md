@@ -3,7 +3,7 @@ title: "Kubernetes CloudNativePG Operator: PostgreSQL High Availability, Automat
 date: 2031-08-20T00:00:00-05:00
 draft: false
 tags: ["Kubernetes", "PostgreSQL", "CloudNativePG", "High Availability", "Backups", "Operators", "Database"]
-categories: ["Kubernetes", "Database"]
+categories: ["Kubernetes", "Databases"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive guide to deploying PostgreSQL on Kubernetes with CloudNativePG: cluster architecture, automated failover, WAL streaming, continuous archiving to S3, point-in-time recovery, and production monitoring."
 more_link: "yes"

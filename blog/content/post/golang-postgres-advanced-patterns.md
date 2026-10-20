@@ -3,7 +3,7 @@ title: "Golang and PostgreSQL: Advanced Patterns for Production Applications"
 date: 2026-08-06T09:00:00-05:00
 draft: false
 tags: ["Go", "PostgreSQL", "Database", "Connection Pooling", "Transactions", "Performance"]
-categories: ["Database Optimization", "Go Programming"]
+categories: ["Databases", "Go"]
 ---
 
 Go and PostgreSQL form a powerful foundation for building robust, high-performance applications. This combination delivers exceptional concurrency, reliability, and developer productivity when implemented correctly. However, building production-ready applications requires a deeper understanding of how these technologies interact, particularly around connection management, transaction handling, and performance tuning.

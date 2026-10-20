@@ -6,7 +6,7 @@ tags: ["Kubernetes", "Ray", "Machine Learning", "Distributed Computing", "GPU"]
 categories:
 - Kubernetes
 - MLOps
-- Machine Learning
+- "AI & ML"
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Production guide to running Ray on Kubernetes with KubeRay operator, covering RayCluster, RayJob, RayService CRDs, GPU scheduling, distributed training with Ray Train, hyperparameter tuning with Ray Tune, model serving, and production monitoring."
 more_link: "yes"

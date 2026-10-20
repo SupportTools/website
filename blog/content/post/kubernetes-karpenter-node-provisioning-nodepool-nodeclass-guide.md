@@ -5,7 +5,7 @@ draft: false
 tags: ["Kubernetes", "Karpenter", "Autoscaling", "AWS", "Node Provisioning", "Cost Optimization"]
 categories:
 - Kubernetes
-- Cloud Infrastructure
+- Cloud
 author: "Matthew Mattox - mmattox@support.tools"
 description: "A production-grade guide to Karpenter architecture, NodePool and NodeClass APIs, instance selection, spot interruption handling, and cost-optimized fleet management for enterprise Kubernetes clusters."
 more_link: "yes"

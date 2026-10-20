@@ -3,8 +3,8 @@ title: "Network Protocol Implementation from Scratch: Building Custom Communicat
 date: 2026-10-07T00:00:00-05:00
 author: "Systems Engineering Team"
 description: "Master the art of implementing custom network protocols from scratch. Learn protocol design principles, state machines, packet parsing, and error handling for enterprise-grade network applications."
-categories: ["Systems Programming", "Networking", "Protocol Development"]
-tags: ["network protocols", "socket programming", "C", "protocol design", "packet parsing", "state machines", "TCP", "UDP", "custom protocols", "network engineering"]
+categories: ["Systems Programming", "Networking"]
+tags: ["network protocols", "socket programming", "C", "protocol design", "packet parsing", "state machines", "TCP", "UDP", "custom protocols", "network engineering", "Protocol Development"]
 keywords: ["network protocol implementation", "custom protocol development", "socket programming", "packet parsing", "protocol state machine", "network programming", "C networking", "protocol design", "enterprise networking"]
 draft: false
 toc: true

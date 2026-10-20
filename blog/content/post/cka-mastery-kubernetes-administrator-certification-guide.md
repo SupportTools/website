@@ -2,7 +2,7 @@
 title: "CKA Mastery: The Complete Guide to Kubernetes Administration and Certification Excellence"
 date: 2025-11-25T09:00:00-05:00
 draft: false
-categories: ["Kubernetes", "Certification", "DevOps", "Infrastructure"]
+categories: ["Kubernetes", "Kubernetes Certification", "DevOps", "Infrastructure"]
 tags: ["CKA", "Kubernetes", "Certification", "kubectl", "Cluster Administration", "DevOps", "Cloud Native", "Infrastructure Management", "Linux Foundation", "Career Development", "System Administration", "Container Orchestration"]
 ---
 

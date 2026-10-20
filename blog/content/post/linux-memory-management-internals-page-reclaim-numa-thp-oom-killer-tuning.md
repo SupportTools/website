@@ -3,7 +3,7 @@ title: "Linux Memory Management Internals: Page Reclaim, NUMA Balancing, THP Def
 date: 2031-11-07T00:00:00-05:00
 draft: false
 tags: ["Linux", "Memory Management", "NUMA", "THP", "OOM Killer", "Kernel", "Performance Tuning"]
-categories: ["Linux", "Systems Administration"]
+categories: ["Linux", "System Administration"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "An in-depth guide to Linux kernel memory management covering page reclaim algorithms, NUMA balancing policies, Transparent Huge Page defragmentation strategies, and OOM killer tuning for production workloads."
 more_link: "yes"

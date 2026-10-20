@@ -4,7 +4,7 @@ date: 2024-02-18T00:29:19-06:00
 draft: false
 tags: ["Ubuntu", "Disable IPv6", "Linux Networking", "sysctl", "GRUB", "IPv6 Security"]
 categories:
-- Linux Administration
+- System Administration
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to disable IPv6 on Ubuntu servers to improve network security, simplify troubleshooting, and ensure compatibility with legacy applications."
 more_link: "yes"

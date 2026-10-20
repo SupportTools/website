@@ -2,10 +2,9 @@
 title: "A Eulogy for DevOps"
 date: 2025-07-15T12:00:00-05:00
 draft: false
-tags: ["DevOps", "Platform Engineering", "Infrastructure", "Kubernetes"]
+tags: ["DevOps", "Platform Engineering", "Infrastructure", "Kubernetes", "Industry Trends"]
 categories:
 - DevOps
-- Industry Trends
 author: "Matthew Mattox - mmattox@support.tools"
 description: "An in-depth look at the rise and fall of DevOps, its impact on software development, and the emerging shift towards platform engineering."
 more_link: "yes"

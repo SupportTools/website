@@ -4,7 +4,7 @@ date: 2026-02-10T09:00:00-05:00
 draft: false
 description: "Comprehensive enterprise guide to cloud monitoring and observability covering Prometheus, Grafana, distributed tracing, OpenTelemetry, and advanced monitoring strategies for production systems."
 tags: ["monitoring", "observability", "prometheus", "grafana", "opentelemetry", "distributed-tracing", "enterprise", "cloud", "devops", "sre"]
-categories: ["Cloud Monitoring", "Enterprise Observability", "DevOps"]
+categories: ["Monitoring", "Observability", "DevOps"]
 author: "Support Tools"
 showToc: true
 TocOpen: false
