@@ -15,6 +15,7 @@
     "build": "npm run build:hugo && npm run build:search",
     "serve": "cd blog && hugo server -D --bind=0.0.0.0 --baseURL=http://localhost:1313",
     "check:contrast": "node scripts/check-contrast.mjs",
+    "check:headings": "node scripts/check-headings.mjs",
     "test:theme": "node tests/theme/build-fixtures.mjs && node --test tests/theme/*.test.mjs"
   },
   "devDependencies": {

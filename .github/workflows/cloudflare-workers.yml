@@ -87,6 +87,9 @@ jobs:
       - name: Check theme color contrast
         run: npm run check:contrast
 
+      - name: Check heading structure
+        run: npm run check:headings
+
       - name: Test Hugo build
         run: |
           npm run build:hugo -- --panicOnWarning
