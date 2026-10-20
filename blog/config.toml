@@ -18,52 +18,34 @@ enableRobotsTXT = true
 
 [menu]
   [[menu.main]]
-    identifier = "home"
-    name = "Home"
-    url = "/"
-    weight = 1
-    
-  [[menu.main]]
     identifier = "search"
     name = "Search"
     url = "/search/"
-    weight = 2
+    weight = 10
 
   [[menu.main]]
     identifier = "categories"
-    name = "Categories"
+    name = "Topics"
     url = "/categories/"
-    weight = 3
-
-  [[menu.main]]
-    identifier = "about"
-    name = "About"
-    url = "/about/"
-    weight = 4
-
-  [[menu.main]]
-    identifier = "certificates"
-    name = "Certificates"
-    url = "/certificates/"
-    weight = 5
-
-  [[menu.main]]
-    identifier = "publications"
-    name = "Publications"
-    url = "/publications/"
-    weight = 6
+    weight = 20
 
   [[menu.main]]
     identifier = "training"
     name = "Training"
     url = "/training/"
-    weight = 7
+    weight = 30
 
   [[menu.main]]
     identifier = "known-good-designs"
-    name = "Known Good Designs"
+    name = "Reference Designs"
     url = "/known-good-designs/"
-    weight = 8
+    weight = 40
+
+  [[menu.main]]
+    identifier = "about"
+    name = "About"
+    url = "/about/"
+    weight = 50
 
 [params]
   author = "Matthew Mattox"

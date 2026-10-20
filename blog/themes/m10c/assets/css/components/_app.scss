@@ -241,7 +241,7 @@
   color: var(--color-accent);
 }
 
-@media (min-width: 84rem) {
+@media (min-width: 72rem) {
   .site-header-inner {
     flex-direction: row;
     align-items: center;
@@ -250,10 +250,6 @@
 
   .site-nav ul {
     justify-content: flex-end;
-  }
-
-  .site-nav-link {
-    padding-inline: var(--space-2);
   }
 
   .site-nav {
