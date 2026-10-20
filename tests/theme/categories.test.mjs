@@ -14,9 +14,21 @@ test('block list form is parsed', () => {
   assert.deepEqual(parseCategories(text), ['Kubernetes', 'Site Reliability']);
 });
 
-test('missing categories and TOML frontmatter yield none', () => {
+test('missing categories yield none; TOML without categories is clean', () => {
   assert.deepEqual(parseCategories('---\ntitle: "T"\n---\n'), []);
-  assert.deepEqual(parseCategories('+++\ntitle = "T"\n+++\n'), []);
+  assert.deepEqual(checkFiles([['t.md', '+++\ntitle = "T"\n+++\n']], allow), []);
+});
+
+test('TOML frontmatter with categories fails hard', () => {
+  const f = checkFiles([['t.md', '+++\ntitle = "T"\ncategories = ["X"]\n+++\n']], allow);
+  assert.equal(f.length, 1);
+  assert.match(f[0], /^t\.md: TOML/);
+});
+
+test('multi-line flow list fails hard instead of being skipped', () => {
+  const f = checkFiles([['m.md', '---\ncategories: [\n  "X",\n  "Y"\n]\n---\n']], allow);
+  assert.equal(f.length, 1);
+  assert.match(f[0], /multi-line/);
 });
 
 test('allow-listed categories pass', () => {
