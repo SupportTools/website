@@ -101,6 +101,8 @@ enableRobotsTXT = true
   googleAnalytics = "UA-151436906-1"
 
 [markup]
+  [markup.highlight]
+    noClasses = false
   [markup.goldmark]
     [markup.goldmark.renderer]
       unsafe = true
