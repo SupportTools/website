@@ -1,0 +1,14 @@
+{{- if eq .Type "alert" -}}
+  {{- $kind := "note" -}}
+  {{- $label := "Note" -}}
+  {{- if eq .AlertType "tip" -}}
+    {{- $kind = "tip" -}}
+    {{- $label = "Tip" -}}
+  {{- else if eq .AlertType "warning" -}}
+    {{- $kind = "warning" -}}
+    {{- $label = "Warning" -}}
+  {{- end -}}
+<aside class="callout callout-{{ $kind }}" aria-label="{{ $label }}"><p class="callout-label">{{ $label }}</p>{{ .Text }}</aside>
+{{- else -}}
+<blockquote>{{ .Text }}</blockquote>
+{{- end -}}

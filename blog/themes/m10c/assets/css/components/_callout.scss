@@ -1,0 +1,28 @@
+// GitHub-style alerts (layouts/_default/_markup/render-blockquote.html).
+// Note and tip share one treatment; warning uses the warn tokens.
+
+.callout {
+  margin: 0 0 var(--space-7);
+  padding: var(--space-4) var(--space-5);
+  background: var(--color-chip);
+  border-left: 4px solid var(--color-accent);
+}
+
+.callout > :last-child {
+  margin-bottom: 0;
+}
+
+.callout-label {
+  margin: 0 0 var(--space-2);
+  font-weight: 700;
+  color: var(--color-chip-ink);
+}
+
+.callout-warning {
+  background: var(--color-warn-bg);
+  border-left-color: var(--color-warn-line);
+}
+
+.callout-warning .callout-label {
+  color: var(--color-warn-ink);
+}

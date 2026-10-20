@@ -77,3 +77,19 @@ graph TD
 ## Raw HTML
 
 <pre>raw pre block</pre>
+
+## Callouts
+
+> [!NOTE]
+> Notes carry supporting context for the surrounding text.
+
+> [!TIP]
+> Tips suggest a faster or safer way to do the work.
+
+> [!WARNING]
+> Warnings flag steps that can cause an outage if skipped.
+
+> [!CAUTION]
+> Cautions render as a note because only three kinds are styled.
+
+> A plain blockquote keeps its markup.
