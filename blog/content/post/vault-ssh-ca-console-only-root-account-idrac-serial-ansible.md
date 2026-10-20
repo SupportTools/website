@@ -1,6 +1,6 @@
 ---
 title: "Two Doors In: Vault SSH Certificates for the Network, a Console-Only Root Account for Everything Else"
-date: 2026-10-21T09:00:00-05:00
+date: 2029-01-14T09:00:00-06:00
 draft: false
 tags: ["Vault", "SSH", "Ansible", "PAM", "iDRAC", "Serial Console", "Linux Security"]
 categories:
@@ -8,14 +8,14 @@ categories:
 - Linux
 - Automation
 author: "Matthew Mattox - mmattox@support.tools"
-description: "An Ansible-managed Linux access model with two accounts: one logs in over SSH only with a short-lived Vault SSH CA certificate and needs a per-host Vault password for sudo, the other is root but can only log in at a physical or iDRAC serial console. Includes the sshd, PAM, GRUB and racadm configuration, the self-verifying rollback pattern, and what a one-server pilot caught."
+description: "An Ansible-managed Linux access model with two accounts: one uses a short-lived Vault SSH CA certificate for remote access and a per-host Vault password for sudo, while the other has root privileges but is denied SSH access and reserved for a physical or iDRAC serial console."
 more_link: "yes"
 url: "/vault-ssh-ca-console-only-root-account-idrac-serial-ansible/"
 ---
 
 Most fleets end up with one of two bad access models. Either a single long-lived SSH key is authorized for root on every host (and gets copied somewhere it should not be), or root is locked everywhere and the only recovery path when the network dies is rebooting into single-user mode through a virtual console. It is common to have both at once: an old workstation key on dozens of hosts, and a console audit that finds **no server can actually be logged into over its out-of-band serial console**. When a node loses its network, the only way back in is a BIOS job, a power cycle and the GRUB editor.
 
-The fix is to split access into two doors that never overlap. One account, called `sre` in this post, comes in over the network and can only do so with a short-lived certificate signed by a Vault SSH CA; becoming root additionally requires a random per-host password that lives in Vault. The other account, `console-admin`, has full root but cannot log in over SSH at all: it works only at a console, which on Dell servers means the iDRAC serial-over-LAN session. Every sshd and PAM change is applied by Ansible, proven with a fresh root login, and rolled back automatically if that login fails. This post walks through the design, the configuration, and the two bugs a single-server pilot caught before the rollout touched anything else.
+The fix is to separate normal remote access from the recovery path. One account, called `sre` in this post, can enter over the network only with a short-lived certificate signed by a Vault SSH CA; becoming root additionally requires a random per-host password that lives in Vault. Unless local PAM policy separately denies it, that password can also authenticate `sre` at a physical console. The other account, `console-admin`, has full root privileges but cannot log in over SSH: it is reserved for a console, which on Dell servers means the iDRAC serial-over-LAN session. Every sshd and PAM change is applied by Ansible, proven with a fresh root login, and rolled back automatically if that login fails. This post walks through the design, the configuration, and the two bugs a single-server pilot caught before the rollout touched anything else.
 
 <!--more-->
 
@@ -23,17 +23,17 @@ The fix is to split access into two doors that never overlap. One account, calle
 
 | Account | How it logs in | Privilege | Credential |
 |---|---|---|---|
-| `sre` | SSH only, with a Vault SSH CA user certificate. Never a password over SSH. | `sudo` asks for a password | Random, generated per host, stored only in Vault |
-| `console-admin` | Local console or serial console only. Never SSH, never `su`. | `sudo` without a password | Strong password stored in Vault |
+| `sre` | SSH requires a Vault SSH CA user certificate; SSH never offers password authentication. Local console login remains possible unless separately denied by PAM. | `sudo` asks for a password | Random, generated per host, stored only in Vault |
+| `console-admin` | Local or serial console. SSH is denied; `su` from an SSH pseudo-terminal is denied. | `sudo` without a password | Strong password stored in Vault |
 | `root` | Console only for password logins | root | Strong password stored in Vault |
 
 All account names, Vault mounts and role names in this post are examples. Pick your own.
 
-The asymmetry is deliberate. The network is where attackers live, so the network account gets two factors: a certificate that expires in hours and a password that is different on every host. The console is reachable only after authenticating to the BMC, so the console account gets the fastest possible path to root, because the moment you need it is usually the middle of an outage, typing through a laggy serial session.
+The asymmetry is deliberate. Remote login requires a certificate that expires in hours, while privilege escalation requires a separate password that is different on every host. This is not multi-factor authentication for SSH itself: the password is an additional control for becoming root after login. The console is reachable only after authenticating to the BMC, so the console account gets the fastest possible path to root, because the moment you need it is usually the middle of an outage, typing through a laggy serial session.
 
 Three properties hold for every secret in the design:
 
-1. **Vault is the only place a password exists in plaintext.** Each Vault entry holds `username`, `password` (for a human to read) and `sha512_crypt` (what goes into `/etc/shadow`). Hosts only ever receive the hash.
+1. **Vault is the only persistent system that stores a password in plaintext.** During creation the plaintext exists transiently in the controller process and `jq` environment before being written to Vault. Each Vault entry holds `username`, `password` (for a human to read) and `sha512_crypt` (what goes into `/etc/shadow`). Hosts only ever receive the hash.
 2. **No plaintext in Ansible variables, command lines or logs.** Generated passwords are created, hashed and written to Vault inside a single shell on the controller.
 3. **A rerun can never rotate a password that is in use.** Generated secrets are written with check-and-set `cas=0`, which only succeeds if the path has never existed.
 
@@ -117,7 +117,7 @@ The network account gets its own key, separate from any daily key, because OpenS
 ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519_sre -C sre
 
 vault write -field=signed_key ssh-client-ca/sign/admin-role \
-    public_key=@$HOME/.ssh/id_ed25519_sre.pub \
+    public_key=@"$HOME"/.ssh/id_ed25519_sre.pub \
     valid_principals=sre \
     > ~/.ssh/id_ed25519_sre-cert.pub
 
@@ -408,7 +408,7 @@ Run these per host before moving to the next one:
 
 ```bash
 # Network path: certificate works, password does not
-ssh -F /dev/null -o IdentitiesOnly=yes -i ~/.ssh/id_ed25519_sre \
+ssh -tt -F /dev/null -o IdentitiesOnly=yes -i ~/.ssh/id_ed25519_sre \
     -o CertificateFile=~/.ssh/id_ed25519_sre-cert.pub sre@host 'sudo -k; sudo -v && echo SUDO-OK'
 ssh -o PubkeyAuthentication=no -o PreferredAuthentications=password,keyboard-interactive sre@host
 #   expect: Permission denied (publickey) with no password prompt

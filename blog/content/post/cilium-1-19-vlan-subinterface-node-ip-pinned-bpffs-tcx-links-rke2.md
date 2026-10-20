@@ -1,6 +1,6 @@
 ---
-title: "Cilium 1.19 Upgrade Traps on RKE2: VLAN Sub-Interface Node IPs and Pinned bpffs Links That Keep a Node Dark"
-date: 2026-10-21T09:00:00-05:00
+title: "A Cilium 1.19 Upgrade Incident on RKE2: VLAN Sub-Interface Node IPs and Pinned bpffs Links"
+date: 2027-06-28T09:00:00-05:00
 draft: false
 tags: ["Cilium", "RKE2", "Kubernetes", "eBPF", "Networking", "VLAN", "Linux Bridge", "br_netfilter", "Troubleshooting", "KubeVirt"]
 categories:
@@ -8,14 +8,14 @@ categories:
 - Networking
 - Troubleshooting
 author: "Matthew Mattox - mmattox@support.tools"
-description: "Two Cilium v1.19.6 upgrade traps on RKE2: host traffic dropped when the node IP sits on a VLAN sub-interface, and pinned tcx links in bpffs that keep a node dark after rke2-killall.sh."
+description: "An RKE2 cluster incident after upgrading to Cilium v1.19.6: two nodes with IPs on VLAN sub-interfaces lost host traffic, while pinned tcx links in bpffs kept the failed datapath attached after rke2-killall.sh."
 more_link: "yes"
 url: "/cilium-1-19-vlan-subinterface-node-ip-pinned-bpffs-tcx-links-rke2/"
 ---
 
 A Cilium minor upgrade on a bare-metal RKE2 cluster is normally a non-event: bump the chart version in the `HelmChartConfig`, watch the DaemonSet roll one node at a time, move on. During a v1.18.1 to v1.19.6 upgrade, two worker nodes dropped off the network completely about half a minute after their new agent started. No SSH, no ping on IPv4 or IPv6, kubelet flapping `NotReady`. Every other node upgraded cleanly.
 
-Two separate problems stacked on top of each other. The first: Cilium v1.19.6 drops all host traffic on a node whose IP lives directly on a VLAN sub-interface such as `bond0.100`, a layout that worked on v1.18. The second turned a ten-minute fix into an hour of console work: stopping RKE2 and running `rke2-killall.sh` did **not** bring the node back, because Cilium's datapath programs are attached as **tcx links pinned in bpffs**, and pinned links outlive every process that created them. This post covers both traps, the network layout that fixed the first one, the `br_netfilter` regression that layout introduced, the exact cleanup for the second, and the pre-upgrade audit that would have caught all of it.
+Two separate problems stacked on top of each other. First, after this cluster moved to Cilium v1.19.6, both nodes whose IP lived directly on a VLAN sub-interface such as `bond0.100` lost all host traffic. The same layout had worked on v1.18, but the incident did not isolate the exact upstream change or prove that every v1.19.6 installation with this topology is affected. Second, stopping RKE2 and running `rke2-killall.sh` did **not** bring the nodes back, because Cilium's datapath programs were attached as **tcx links pinned in bpffs**, and pinned links outlived every process that created them. This post covers the observed interaction, the network layout that fixed it, the `br_netfilter` regression that layout introduced, the exact cleanup for the second problem, and the pre-upgrade audit that would have caught the risky topology.
 
 <!--more-->
 
@@ -51,7 +51,7 @@ Put those together for the bridge layout. `br0` holds the node IP, so it is a Ci
 
 The bridge-over-VLAN nodes in this cluster had already hit that failure on an earlier node rebuild, which is why a `CiliumNodeConfig` granting `vlan-bpf-bypass` existed for them, selected by a node label. The nodes with the IP directly on `bond0.100` had no bridge, so they were not labeled and not covered. Under v1.18 they did not need to be.
 
-## Trap 1: v1.19.6 Breaks the VLAN Sub-Interface Layout
+## Trap 1: The VLAN Sub-Interface Layout Failed After the Upgrade
 
 The upgrade itself was an ordinary `HelmChartConfig` change. When the DaemonSet reached the first of the two nonstandard nodes, its new agent started and the node vanished. The second node had the same layout and would have followed it.
 
@@ -105,7 +105,7 @@ spec:
     matchLabels:
       network.support.tools/vlan-subif: "true"
   defaults:
-    vlan-bpf-bypass: "100 104"
+    vlan-bpf-bypass: "100,104"
 ```
 
 After an agent restart and a power cycle, neither node came back. The precise change in v1.19 that broke this layout was not bisected during the incident, and that is worth stating plainly rather than guessing at. What is known: the same bypass mechanism keeps the bridge-over-VLAN layout working on v1.19.6, and it did not rescue the sub-interface layout. The practical conclusion is to stop running the layout that broke, not to keep tuning a knob that did not help.
@@ -216,7 +216,7 @@ spec:
     # bpf_host on bond0 drops every tagged VLAN 100 frame and the node goes dark.
     vlan-bpf-bypass: "100"
     # Pin the datapath devices so admin/OOB ports are never attached (see below).
-    devices: "br0 bond0"
+    devices: "br0,bond0"
 ```
 
 ```bash
@@ -293,7 +293,7 @@ Verify the fix the same way the problem was detected: with a sample large enough
 # 200 probes against the VIP; any failure means a node in the ECMP set still drops traffic
 VIP=198.51.100.20
 fail=0
-for i in $(seq 1 200); do
+for _ in $(seq 1 200); do
   curl -s -o /dev/null --max-time 2 "http://${VIP}/healthz" || fail=$((fail + 1))
 done
 echo "failures: ${fail}/200"
@@ -323,7 +323,7 @@ When the datapath is the thing breaking the node, the same design is a trap. A B
 bpftool net show
 
 # The pinned links themselves
-ls -R /sys/fs/bpf/cilium/devices/ | head -50
+find /sys/fs/bpf/cilium/devices -maxdepth 4 -print 2>/dev/null | head -50
 ```
 
 ### The Recovery Procedure
@@ -343,15 +343,22 @@ systemctl disable --now rke2-agent
 # 2. Record what is still attached, for the incident notes.
 bpftool net show > /root/bpf-net-before-cleanup.txt 2>&1
 
-# 3. Remove the pinned links for EVERY device, not only the suspect one.
-#    br0, bond0, the physical NICs and the cilium_* devices all carry pins.
-for link in /sys/fs/bpf/cilium/devices/*/links/*; do
-  [ -e "${link}" ] && rm -f "${link}"
+# 3. Snapshot the devices Cilium actually manages, then remove their pins.
+#    Do not delete clsact qdiscs from every host interface: other software may own them.
+mapfile -t cilium_devs < <(
+  find /sys/fs/bpf/cilium/devices -mindepth 1 -maxdepth 1 -type d \
+    -printf '%f\n' 2>/dev/null
+)
+
+for dev in "${cilium_devs[@]}"; do
+  for link in "/sys/fs/bpf/cilium/devices/${dev}/links/"*; do
+    [ -e "${link}" ] && rm -f "${link}"
+  done
 done
 
-# 4. Remove any classic tc attachments as well (older kernels, legacy mode).
-for dev in /sys/class/net/*; do
-  tc qdisc del dev "$(basename "${dev}")" clsact 2>/dev/null
+# 4. Remove classic tc attachments only from those confirmed Cilium devices.
+for dev in "${cilium_devs[@]}"; do
+  [ -d "/sys/class/net/${dev}" ] && tc qdisc del dev "${dev}" clsact 2>/dev/null
 done
 
 # 5. Confirm: no cil_* programs on physical devices, and the gateway answers.
@@ -359,7 +366,7 @@ bpftool net show
 ping -c 3 -W 2 192.0.2.1
 ```
 
-Two details from the incident are worth emphasizing. First, removing only `bond0`'s links was not enough; the node came back only after the pins on all devices were removed. Second, host networking returned immediately after steps 3 and 4, with no reboot. If `ping` still fails at that point, the problem is not Cilium.
+Two details from the incident are worth emphasizing. First, removing only `bond0`'s links was not enough; the node came back only after the pins on all Cilium-managed devices were removed. Second, host networking returned immediately after steps 3 and 4, with no reboot. On a legacy setup with Cilium attachments that are not represented under `/sys/fs/bpf/cilium/devices`, use `bpftool net show` to identify the additional devices and remove `clsact` only from interfaces confirmed to belong to Cilium. If `ping` still fails after the confirmed Cilium attachments are gone, continue troubleshooting the host network rather than deleting unrelated qdiscs.
 
 Then fix the cause (for the VLAN case, the bridge layout and label above) before letting RKE2 start again:
 
@@ -374,11 +381,11 @@ When a node's only network path is the one Cilium just dropped, SSH is gone and 
 
 ## Pinning Cilium Devices on Nodes Without a Bridge
 
-The incident surfaced a related problem on nodes that were never at risk from the VLAN trap. The cluster-wide `devices` setting was a wildcard list, `br+ bond+ en+ eth+`. On nodes with dedicated admin or out-of-band ports (`eno3` and `eno4`, on a separate rescue network), those wildcards matched the admin ports. Cilium attached `cil_from_netdev` to them and adopted the admin address as an additional node address.
+The incident surfaced a related problem on nodes that were never at risk from the VLAN trap. The cluster-wide `devices` setting was a wildcard list, `br+,bond+,en+,eth+`. On nodes with dedicated admin or out-of-band ports (`eno3` and `eno4`, on a separate rescue network), those wildcards matched the admin ports. Cilium attached `cil_from_netdev` to them and adopted the admin address as an additional node address.
 
 That is harmful in two ways. The rescue network is supposed to be plain kernel networking, so that it still works when Cilium does not, and attaching Cilium to it defeats the purpose. And every device that enters or leaves the selected set is a datapath reload on that node.
 
-The bridge `CiliumNodeConfig` above already pins `devices: "br0 bond0"`. Nodes it does not cover get their own explicit list, scoped by hostname:
+The bridge `CiliumNodeConfig` above already pins `devices: "br0,bond0"`. Nodes it does not cover get their own explicit list, scoped by hostname:
 
 ```yaml
 # CLUSTER-SCOPED: one cluster only.
@@ -409,7 +416,7 @@ spec:
       kubernetes.io/hostname: office-01
   defaults:
     # Node IP on br0 over an UNTAGGED bond0: no VLAN, so no vlan-bpf-bypass needed
-    devices: "br0 bond0"
+    devices: "br0,bond0"
 ```
 
 A naming trick helps here too. An admin bond named something like `admin0` matches none of Cilium's wildcard patterns, and its member ports are enslaved and therefore excluded, so even the cluster default leaves it alone. Defense in depth: name the rescue path so Cilium cannot select it, and pin devices explicitly anyway.
@@ -423,14 +430,19 @@ Nothing in the cluster flagged the two nodes with a nonstandard layout. Every sy
 ```bash
 #!/usr/bin/env bash
 # For each node: which device holds the node IP, is it a VLAN, does it have a master.
-# Flags the layout that Cilium v1.19.6 drops (node IP directly on a VLAN sub-interface).
+# Flags the VLAN sub-interface layout associated with this v1.19.6 incident.
 set -euo pipefail
 
-kubectl get nodes -o jsonpath='{range .items[*]}{.metadata.name}{" "}{.status.addresses[?(@.type=="InternalIP")].address}{"\n"}{end}' |
-while read -r node ip; do
+kubectl get nodes -o json \
+  | jq -r '.items[]
+      | .metadata.name as $node
+      | ([.status.addresses[] | select(.type == "InternalIP") | .address]) as $ips
+      | [$node, (($ips | map(select(contains(":") | not)) | first) // ($ips | first))]
+      | @tsv' |
+while IFS=$'\t' read -r node ip; do
   # ssh -n keeps ssh from consuming the while-loop's stdin
   info=$(ssh -n -o ConnectTimeout=5 "${node}" "
-    dev=\$(ip -o addr show | awk -v ip='${ip}' '\$4 ~ \"^\"ip\"/\" {print \$2; exit}')
+    dev=\$(ip -o addr show | awk -v ip='${ip}' '{addr=\$4; sub(/\\/.*/, \"\", addr); if (addr == ip) {print \$2; exit}}')
     [ -n \"\$dev\" ] || { echo 'NOT-FOUND - -'; exit 0; }
     kind=plain
     [ -e /proc/net/vlan/\$dev ] && kind=vlan
@@ -464,11 +476,11 @@ Beyond the audit, three habits limit the damage when something slips through any
 
 ## Conclusion
 
-Neither trap is exotic. A VLAN sub-interface holding a node IP is a textbook Linux layout, and pinned BPF links are an intentional Cilium design that makes agent restarts seamless. The damage came from the combination: a layout that was quietly nonstandard for the fleet, a minor CNI version that changed how that layout was handled, and a recovery step (stopping the agent) that does not do what most operators assume it does.
+Neither trap is exotic. A VLAN sub-interface holding a node IP is a textbook Linux layout, and pinned BPF links are an intentional Cilium design that makes agent restarts seamless. The damage appeared during a minor CNI upgrade and came from the combination of that quietly nonstandard fleet layout and a recovery step (stopping the agent) that does not do what most operators assume it does.
 
-- **Cilium v1.19.6 drops all host traffic when the node IP sits directly on a VLAN sub-interface** such as `bond0.100`. A per-node `vlan-bpf-bypass` did not fix it. Moving the node IP to a `br0` over the VLAN and covering it with a label-selected `CiliumNodeConfig` did.
+- **In this cluster, the v1.19.6 rollout dropped all host traffic on the two nodes whose IP sat directly on a VLAN sub-interface** such as `bond0.100`. A correctly comma-delimited per-node `vlan-bpf-bypass` did not fix the observed failure. Moving the node IP to a `br0` over the VLAN and covering it with a label-selected `CiliumNodeConfig` did. Treat this as an incident report and topology warning, not proof that every v1.19.6 cluster has the same regression.
 - **Moving a node IP onto a bridge turns on bridge netfilter for that traffic.** With kube-proxy in iptables mode, that drops most off-node LoadBalancer and NodePort traffic. Set `bridge-nf-call-iptables=0` and `bridge-nf-call-ip6tables=0` in an `ExecStartPost` drop-in on the RKE2 unit, because RKE2 resets them to 1 on every start.
-- **Stopping Cilium does not detach Cilium.** tcx links pinned in `/sys/fs/bpf/cilium/devices/*/links/` outlive the agent and `rke2-killall.sh`. Disable the RKE2 unit, remove the pins on every device, and delete the `clsact` qdiscs to restore host networking.
+- **Stopping Cilium does not detach Cilium.** tcx links pinned in `/sys/fs/bpf/cilium/devices/*/links/` outlive the agent and `rke2-killall.sh`. Disable the RKE2 unit, remove the pins from every Cilium-managed device, and delete only the `clsact` qdiscs confirmed to belong to Cilium to restore host networking.
 - **Pin `devices` explicitly on every node.** Wildcard defaults select admin ports and other devices that should stay plain kernel networking, and every change to the selected set is a datapath reload.
 - **Audit node network layouts before every CNI upgrade,** confirm console access on every node, and keep a rollout pause ready to apply in seconds.
 

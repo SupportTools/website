@@ -1,6 +1,6 @@
 ---
 title: "Longhorn Volumes Stuck Degraded With Zero Rebuilds: rebuildRetryCount Exhaustion on Longhorn 1.12"
-date: 2026-10-19T09:00:00-05:00
+date: 2027-04-10T09:00:00-05:00
 draft: false
 tags: ["Longhorn", "Kubernetes", "Storage", "RKE2", "Cilium", "Troubleshooting", "Incident Response", "jq", "Prometheus"]
 categories:
@@ -343,7 +343,7 @@ kubectl -n longhorn-system patch settings.longhorn.io \
   concurrent-replica-rebuild-per-node-limit --type=merge -p '{"value":"5"}'
 ```
 
-Do not go higher than 5. The SUSE KB warns against exceeding it, citing [longhorn/longhorn#13087](https://github.com/longhorn/longhorn/issues/13087), an instance-manager nil-pointer panic at higher concurrency. Raising the limit also does not fix slot saturation by itself. It only gives the zombie replicas more room before they block everything again. The counter reset is the actual fix.
+Treat 5 as a conservative starting point, not a universal maximum. It is the Longhorn 1.12 default, but the safe value depends on storage throughput, network capacity and instance-manager headroom. The SUSE KB cites [longhorn/longhorn#13087](https://github.com/longhorn/longhorn/issues/13087), an instance-manager nil-pointer panic observed on Longhorn 1.10.2 during a rebuild storm; that bug was fixed and verified on the 1.12 branch. Raise concurrency incrementally while watching instance-manager restarts, node load and rebuild throughput. Raising the limit also does not fix slot saturation by itself. It only provides more room while the underlying blocked replicas remain. The counter reset was the actual fix in this incident.
 
 ### offline-replica-rebuilding
 
@@ -405,11 +405,11 @@ Verify any alert like this against ground truth before relying on it: a rule tha
 - **Don't trust a KB's jq across Longhorn versions.** Check that every field the filter depends on exists, with something like `jq '[.items[] | select(.status.currentReplicas)] | length'`. A missing field turns a precise filter into a broad one without any error.
 - **Don't delete and hope.** On 1.12, deleting an exhausted replica produced another exhausted replica. Understand why Longhorn is not rebuilding before removing anything.
 - **Fix the network first, then reset counters.** The retry limit is a safety mechanism. Resetting it while the underlying fault is still present just burns through the retries again.
-- **Keep `concurrent-replica-rebuild-per-node-limit` at or below 5**, and keep `offline-replica-rebuilding` off outside of deliberate recovery.
+- **Change `concurrent-replica-rebuild-per-node-limit` conservatively.** Five is the 1.12 default, not a hard safety ceiling; validate higher values against the cluster's storage, network and instance-manager capacity. Keep `offline-replica-rebuilding` off outside of deliberate recovery.
 
 ## References
 
 - SUSE KB 000023009: [Harvester VM volumes stuck in Degraded state due to Longhorn rebuild slot saturation](https://support.scc.suse.com/s/kb/Harvester-VM-volumes-stuck-in-Degraded-state-due-to-Longhorn-rebuild-slot-saturation?language=en_US)
-- [longhorn/longhorn#13087](https://github.com/longhorn/longhorn/issues/13087): instance-manager panic at high rebuild concurrency
+- [longhorn/longhorn#13087](https://github.com/longhorn/longhorn/issues/13087): historical instance-manager panic during a rebuild storm, fixed and verified on the 1.12 branch
 - [Longhorn settings reference](https://longhorn.io/docs/latest/references/settings/)
 - [Longhorn Prometheus metrics](https://longhorn.io/docs/latest/monitoring/metrics/)

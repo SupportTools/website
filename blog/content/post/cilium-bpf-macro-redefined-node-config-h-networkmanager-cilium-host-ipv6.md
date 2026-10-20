@@ -1,6 +1,6 @@
 ---
 title: "Cilium BPF Compile Fails with 'macro redefined': How NetworkManager Disabled IPv6 on cilium_host"
-date: 2026-10-22T09:00:00-05:00
+date: 2027-04-11T09:00:00-05:00
 draft: false
 tags: ["Cilium", "Kubernetes", "NetworkManager", "Netplan", "eBPF", "IPv6", "Troubleshooting", "RKE2", "CNI"]
 categories:
@@ -166,6 +166,10 @@ kubectl -n kube-system delete pod -l k8s-app=cilium \
 # Wait for the replacement to become ready
 kubectl -n kube-system wait pod -l k8s-app=cilium \
   --field-selector spec.nodeName="${NODE}" --for=condition=Ready --timeout=5m
+
+# The old pod name no longer exists; discover the replacement for later checks
+POD=$(kubectl -n kube-system get pod -l k8s-app=cilium \
+  --field-selector spec.nodeName="${NODE}" -o jsonpath='{.items[0].metadata.name}')
 ```
 
 Do not try to persist the sysctl with a file in `/etc/sysctl.d/`. Those files are applied at boot, before Cilium creates `cilium_host`, so a per-interface key for an interface that does not exist yet does nothing. If NetworkManager is left in control of the device, it will flip the flag back on its next activation anyway. The durable fixes are the next two.
@@ -313,12 +317,13 @@ kubectl -n kube-system logs "${POD}" -c cilium-agent --since=10m | grep -c "macr
 kubectl -n kube-system exec "${POD}" -c cilium-agent -- cilium-dbg status --verbose \
   | grep -E "Controller Status|Cluster health|IPv6"
 
-# 4. The fix survives NetworkManager restarting and re-evaluating devices
-sudo systemctl restart NetworkManager
+# 4. Reload NetworkManager configuration without bouncing active connections
+sudo nmcli general reload conf
+nmcli -f DEVICE,TYPE,STATE device status | grep -E "cilium|lxc"
 cat /proc/sys/net/ipv6/conf/cilium_host/disable_ipv6   # must still print 0
 ```
 
-Step 4 is the one that matters most. A node where `disable_ipv6` goes back to `1` after a NetworkManager restart is a node that will fail again on its next reboot.
+Step 4 is the one that matters most. Every Cilium device should remain `unmanaged`, and `disable_ipv6` must remain `0`. If policy requires proving the fix across a full NetworkManager service restart, do that from an out-of-band console during a maintenance window. Restarting NetworkManager over the same SSH path being tested can disconnect the node.
 
 Finish with a real traffic check: schedule a test pod pinned to the node and resolve a name through cluster DNS, which forces traffic from the new endpoint to CoreDNS pods that are usually on other nodes.
 
@@ -414,7 +419,7 @@ Pair the alert with a runbook line that says, in bold, to read the first error i
 
 ## References
 
-- NetworkManager.conf(5): `unmanaged-devices` and device specification syntax
-- netplan YAML reference: `match`, `renderer`, and the `networkmanager.passthrough` mapping
-- Cilium documentation: System Requirements, notes on network managers and Cilium-owned interfaces
-- Linux kernel `ip-sysctl` documentation: `net.ipv6.conf.<interface>.disable_ipv6`
+- [NetworkManager.conf(5)](https://networkmanager.dev/docs/api/latest/NetworkManager.conf.html): `unmanaged-devices` and device specification syntax
+- [Netplan YAML reference](https://netplan.readthedocs.io/en/latest/netplan-yaml/): `match`, `renderer`, and the `networkmanager.passthrough` mapping
+- [Cilium system requirements](https://docs.cilium.io/en/stable/operations/system_requirements/): host networking requirements and Cilium-owned interfaces
+- [Linux kernel IP sysctl documentation](https://docs.kernel.org/networking/ip-sysctl.html): `net.ipv6.conf.<interface>.disable_ipv6`
