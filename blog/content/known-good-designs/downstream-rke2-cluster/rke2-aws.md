@@ -16,20 +16,20 @@ This guide demonstrates how to add AWS cloud credentials in Rancher and use them
 
 <!--more-->
 
-# [Overview](#overview)
+## [Overview](#overview)
 
-## [AWS RKE2 Cluster in Rancher](#aws-rke2-cluster-in-rancher)
+### [AWS RKE2 Cluster in Rancher](#aws-rke2-cluster-in-rancher)
 Rancher makes it easy to provision and manage downstream RKE2 clusters in AWS. By adding your AWS credentials to Rancher, you can create a fully managed RKE2 cluster tailored to your specific needs.
 
 ---
 
-# [Adding AWS Cloud Credentials](#adding-aws-cloud-credentials)
+## [Adding AWS Cloud Credentials](#adding-aws-cloud-credentials)
 
-### Prerequisites
+#### Prerequisites
 - An AWS account with sufficient permissions to create resources (e.g., EC2 instances, VPCs, and security groups).
 - Rancher installed and accessible.
 
-### Steps to Add AWS Cloud Credentials
+#### Steps to Add AWS Cloud Credentials
 1. **Log in to Rancher:**
    Access your Rancher installation via its hostname (e.g., `https://rancher.your-domain.com`).
 
@@ -47,9 +47,9 @@ Rancher makes it easy to provision and manage downstream RKE2 clusters in AWS. B
 
 ---
 
-# [Provisioning the RKE2 Cluster](#provisioning-the-rke2-cluster)
+## [Provisioning the RKE2 Cluster](#provisioning-the-rke2-cluster)
 
-### Steps to Provision an RKE2 Cluster in AWS
+#### Steps to Provision an RKE2 Cluster in AWS
 1. **Navigate to Cluster Management:**
    - In the Rancher UI, click on **Cluster Management**.
    - Select **Create** to start the cluster provisioning process.
@@ -79,9 +79,9 @@ Rancher makes it easy to provision and manage downstream RKE2 clusters in AWS. B
 
 ---
 
-# [Testing and Validation](#testing-and-validation)
+## [Testing and Validation](#testing-and-validation)
 
-### Accessing the Cluster
+#### Accessing the Cluster
 1. Verify the cluster status in Rancher:
    - Navigate to **Cluster Management** and check the cluster state.
    - The status should show as **Active** once the provisioning is complete.
@@ -95,7 +95,7 @@ Rancher makes it easy to provision and manage downstream RKE2 clusters in AWS. B
    kubectl --kubeconfig=/path/to/kubeconfig get nodes
    ```
 
-### Testing Workloads
+#### Testing Workloads
 Deploy a test application to ensure the cluster is functional:
 ```yaml
 apiVersion: v1
@@ -117,7 +117,7 @@ kubectl get pods
 
 ---
 
-# [References](#references)
+## [References](#references)
 - [Rancher Documentation: Provisioning Clusters](https://rancher.com/docs/rancher/v2.7/en/cluster-provisioning/)
 - [AWS EC2 Documentation](https://docs.aws.amazon.com/ec2/index.html)
 - [RKE2 Documentation](https://docs.rke2.io/)

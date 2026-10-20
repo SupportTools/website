@@ -18,12 +18,12 @@ This is the known good design for deploying ArgoCD in a Kubernetes cluster.
 
 <!--more-->
 
-# [Overview](#overview)
+## [Overview](#overview)
 
-## [ArgoCD Overview](#argocd-overview)
+### [ArgoCD Overview](#argocd-overview)
 ArgoCD is a declarative, GitOps continuous delivery tool for Kubernetes. It allows you to manage application deployments through Git repositories, ensuring your Kubernetes cluster state matches the desired state defined in your Git repositories.
 
-### Key Features
+#### Key Features
 - **GitOps Workflow:** Keeps cluster applications in sync with Git repositories.
 - **Declarative Configuration:** Enables version control for application configurations.
 - **Self-Healing:** Automatically detects and fixes configuration drifts.
@@ -35,9 +35,9 @@ ArgoCD is a declarative, GitOps continuous delivery tool for Kubernetes. It allo
 
 ---
 
-## [Implementation Details](#implementation-details)
+### [Implementation Details](#implementation-details)
 
-### [Step 1: Install ArgoCD](#step-1-install-argocd)
+#### [Step 1: Install ArgoCD](#step-1-install-argocd)
 To install ArgoCD, use the official Helm chart for streamlined deployment:
 ```bash
 helm repo add argo https://argoproj.github.io/argo-helm
@@ -49,7 +49,7 @@ For additional guidance, refer to the [Rancher Documentation](https://rancherman
 
 ---
 
-### [Step 2: Access ArgoCD Locally via kubectl port-forward](#step-2-access-argocd-locally-via-kubectl-port-forward)
+#### [Step 2: Access ArgoCD Locally via kubectl port-forward](#step-2-access-argocd-locally-via-kubectl-port-forward)
 
 If you prefer not to expose ArgoCD externally, you can use `kubectl port-forward` to access the ArgoCD server from your local machine.
 
@@ -78,9 +78,9 @@ If you prefer not to expose ArgoCD externally, you can use `kubectl port-forward
 
 ---
 
-## [Configuring ArgoCD Applications](#configuring-argocd-applications)
+### [Configuring ArgoCD Applications](#configuring-argocd-applications)
 
-### Example: Deploying an Application Using ArgoCD
+#### Example: Deploying an Application Using ArgoCD
 ```yaml
 apiVersion: argoproj.io/v1alpha1
 kind: Application
@@ -113,9 +113,9 @@ kubectl apply -f application.yaml
 
 ---
 
-## [Monitoring and Troubleshooting](#monitoring-and-troubleshooting)
+### [Monitoring and Troubleshooting](#monitoring-and-troubleshooting)
 
-### [Monitoring ArgoCD](#monitoring-argocd)
+#### [Monitoring ArgoCD](#monitoring-argocd)
 ArgoCD exposes metrics compatible with Prometheus. To monitor ArgoCD:
 1. Install Prometheus and Grafana in your cluster.
 2. Create a `ServiceMonitor` for ArgoCD:
@@ -133,7 +133,7 @@ ArgoCD exposes metrics compatible with Prometheus. To monitor ArgoCD:
      - port: http-metrics
    ```
 
-### [Troubleshooting Common Issues](#troubleshooting-common-issues)
+#### [Troubleshooting Common Issues](#troubleshooting-common-issues)
 - **Sync Failures:** Check the logs for the ArgoCD application controller:
   ```bash
   kubectl logs -n argocd -l app.kubernetes.io/name=argocd-application-controller
@@ -143,7 +143,7 @@ ArgoCD exposes metrics compatible with Prometheus. To monitor ArgoCD:
 
 ---
 
-## [Considerations](#considerations)
+### [Considerations](#considerations)
 - **Namespace Isolation:** Use ArgoCD projects to isolate applications by namespace and permissions.
 - **RBAC Configuration:** Limit access to ArgoCD applications based on team roles.
 - **Backup and Restore:** Regularly back up ArgoCD configurations and secrets to ensure recoverability in case of failure.

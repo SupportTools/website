@@ -18,12 +18,12 @@ This is the known good design for Cert Manager using Helm or ArgoCD.
 
 <!--more-->
 
-# [Overview](#overview)
+## [Overview](#overview)
 
-## [Cert Manager Overview](#cert-manager-overview)
+### [Cert Manager Overview](#cert-manager-overview)
 Cert Manager is a Kubernetes-native tool that automates the management and issuance of TLS certificates. It integrates seamlessly with certificate authorities like Let's Encrypt and HashiCorp Vault, making it a vital component for securing Kubernetes workloads. Cert Manager handles certificate lifecycle management, including issuance, renewal, and revocation, ensuring your clusters remain compliant with security standards.
 
-### Key Features
+#### Key Features
 - **Automated Certificate Renewal:** Avoid downtime caused by expired certificates.
 - **Support for Multiple Certificate Authorities:** Flexible configuration for various environments.
 - **Built-in Validation Mechanisms:** Includes HTTP-01, DNS-01, and TLS-ALPN-01 challenges.
@@ -35,9 +35,9 @@ Cert Manager is a Kubernetes-native tool that automates the management and issua
 
 ---
 
-## [Implementation Details](#implementation-details)
+### [Implementation Details](#implementation-details)
 
-### [Option A: Helm Installation](#option-a-helm-installation)
+#### [Option A: Helm Installation](#option-a-helm-installation)
 
 #### [Step 1: Install Cert Manager](#step-1-install-cert-manager)
 Install Cert Manager using Helm to manage the CRDs and its deployment:
@@ -94,7 +94,7 @@ kubectl apply -f cluster-issuer.yaml
 
 ---
 
-### [Option B: ArgoCD Installation](#option-b-argocd-installation)
+#### [Option B: ArgoCD Installation](#option-b-argocd-installation)
 
 #### [Step 1: Install Cert Manager](#step-1-install-cert-manager)
 
@@ -144,9 +144,9 @@ kubectl apply -f cert-manager-argocd.yaml
 
 ---
 
-## [Monitoring and Troubleshooting](#monitoring-and-troubleshooting)
+### [Monitoring and Troubleshooting](#monitoring-and-troubleshooting)
 
-### [Monitoring Certificates](#monitoring-certificates)
+#### [Monitoring Certificates](#monitoring-certificates)
 Cert Manager exposes metrics compatible with Prometheus:
 1. Install Prometheus Operator in your cluster.
 2. Configure a `ServiceMonitor` for Cert Manager:
@@ -164,13 +164,13 @@ Cert Manager exposes metrics compatible with Prometheus:
      - port: http-metrics
    ```
 
-## [Common Issues](#common-issues)
+### [Common Issues](#common-issues)
 - **Challenge Validation Failure:** Check the DNS records or Ingress configuration to ensure the challenge is reachable.
 - **Rate Limits:** Use staging servers for testing to avoid hitting Let's Encrypt's rate limits.
 
 ---
 
-## [Considerations](#considerations)
+### [Considerations](#considerations)
 - **Resource Allocation:** Cert Manager's webhook can be resource-intensive. Ensure your cluster has adequate resources.
 - **Namespace Scope:** Use `Issuer` for certificates within a namespace and `ClusterIssuer` for cluster-wide certificates.
 - **Backup Certificates:** Regularly back up secrets containing certificate keys to avoid downtime in case of data loss.

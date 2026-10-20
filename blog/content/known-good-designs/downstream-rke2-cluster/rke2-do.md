@@ -16,20 +16,20 @@ This guide demonstrates how to add DigitalOcean cloud credentials in Rancher and
 
 <!--more-->
 
-# [Overview](#overview)
+## [Overview](#overview)
 
-## [DigitalOcean RKE2 Cluster in Rancher](#digitalocean-rke2-cluster-in-rancher)
+### [DigitalOcean RKE2 Cluster in Rancher](#digitalocean-rke2-cluster-in-rancher)
 Rancher simplifies the provisioning of downstream RKE2 clusters in DigitalOcean by integrating with the DigitalOcean API. By adding your DigitalOcean API token to Rancher, you can create a fully managed RKE2 cluster customized to your requirements.
 
 ---
 
-# [Adding DigitalOcean Cloud Credentials](#adding-digitalocean-cloud-credentials)
+## [Adding DigitalOcean Cloud Credentials](#adding-digitalocean-cloud-credentials)
 
-### Prerequisites
+#### Prerequisites
 - A DigitalOcean account with an active API token.
 - Rancher installed and accessible.
 
-### Steps to Add DigitalOcean Cloud Credentials
+#### Steps to Add DigitalOcean Cloud Credentials
 1. **Log in to Rancher:**
    Access your Rancher installation via its hostname (e.g., `https://rancher.your-domain.com`).
 
@@ -46,9 +46,9 @@ Rancher simplifies the provisioning of downstream RKE2 clusters in DigitalOcean 
 
 ---
 
-# [Provisioning the RKE2 Cluster](#provisioning-the-rke2-cluster)
+## [Provisioning the RKE2 Cluster](#provisioning-the-rke2-cluster)
 
-### Steps to Provision an RKE2 Cluster in DigitalOcean
+#### Steps to Provision an RKE2 Cluster in DigitalOcean
 1. **Navigate to Cluster Management:**
    - In the Rancher UI, click on **Cluster Management**.
    - Select **Create** to start the cluster provisioning process.
@@ -77,9 +77,9 @@ Rancher simplifies the provisioning of downstream RKE2 clusters in DigitalOcean 
 
 ---
 
-# [Testing and Validation](#testing-and-validation)
+## [Testing and Validation](#testing-and-validation)
 
-### Accessing the Cluster
+#### Accessing the Cluster
 1. Verify the cluster status in Rancher:
    - Navigate to **Cluster Management** and check the cluster state.
    - The status should show as **Active** once the provisioning is complete.
@@ -93,7 +93,7 @@ Rancher simplifies the provisioning of downstream RKE2 clusters in DigitalOcean 
    kubectl --kubeconfig=/path/to/kubeconfig get nodes
    ```
 
-### Testing Workloads
+#### Testing Workloads
 Deploy a test application to ensure the cluster is functional:
 ```yaml
 apiVersion: v1
@@ -115,7 +115,7 @@ kubectl get pods
 
 ---
 
-# [References](#references)
+## [References](#references)
 - [Rancher Documentation: Provisioning Clusters](https://rancher.com/docs/rancher/v2.7/en/cluster-provisioning/)
 - [DigitalOcean API Documentation](https://docs.digitalocean.com/reference/api/)
 - [RKE2 Documentation](https://docs.rke2.io/)

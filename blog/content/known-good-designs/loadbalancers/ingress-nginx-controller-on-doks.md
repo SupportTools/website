@@ -18,12 +18,12 @@ This is the known good design for deploying the Ingress NGINX Controller on Digi
 
 <!--more-->
 
-# [Overview](#overview)
+## [Overview](#overview)
 
-## [Ingress NGINX Overview](#ingress-nginx-overview)
+### [Ingress NGINX Overview](#ingress-nginx-overview)
 The Ingress NGINX Controller is a Kubernetes-native load balancer that manages external access to services in a cluster. On DOKS, it works seamlessly with DigitalOcean Load Balancers to provide robust HTTP(S) ingress capabilities.
 
-### Key Features
+#### Key Features
 - **Supports HTTP and HTTPS:** Handles secure and non-secure traffic.
 - **Rule-Based Routing:** Route traffic based on host, path, or headers.
 - **Custom Annotations:** Allows fine-grained control over NGINX configurations.
@@ -37,9 +37,9 @@ For more details, refer to the [DigitalOcean Documentation](https://docs.digital
 
 ---
 
-## [DigitalOcean Load Balancer Behavior](#digitalocean-load-balancer-behavior)
+### [DigitalOcean Load Balancer Behavior](#digitalocean-load-balancer-behavior)
 
-### How DigitalOcean Deploys a TCP Load Balancer
+#### How DigitalOcean Deploys a TCP Load Balancer
 
 When a service is configured with `type: LoadBalancer` in a DOKS cluster, DigitalOcean automatically creates a TCP Load Balancer outside the cluster. This load balancer forwards external traffic to the node ports associated with the service.
 
@@ -56,9 +56,9 @@ For more information, see the [DigitalOcean Load Balancers Documentation](https:
 
 ---
 
-## [Helm Deployment Example](#helm-deployment-example)
+### [Helm Deployment Example](#helm-deployment-example)
 
-### Step 1: Install the Ingress NGINX Controller with Helm
+#### Step 1: Install the Ingress NGINX Controller with Helm
 
 1. **Add the Helm Repository:**
    ```bash
@@ -90,9 +90,9 @@ ingress-nginx-controller             LoadBalancer   10.245.89.53    123.45.67.89
 
 ---
 
-## [ArgoCD Deployment Example](#argocd-deployment-example)
+### [ArgoCD Deployment Example](#argocd-deployment-example)
 
-### Deploying the Ingress NGINX Controller with ArgoCD
+#### Deploying the Ingress NGINX Controller with ArgoCD
 
 The following is an example of deploying the Ingress NGINX Controller using ArgoCD:
 
@@ -151,7 +151,7 @@ spec:
       - CreateNamespace=true
 ```
 
-### Key Features in the Configuration
+#### Key Features in the Configuration
 - **Load Balancer:** Configures the service type as `LoadBalancer` for external access.
 - **Prometheus Metrics:** Enables metrics collection for monitoring with Prometheus.
 - **Timeouts and Limits:** Configures proxy and client body limits to handle large requests.
@@ -161,11 +161,11 @@ spec:
 
 ---
 
-## [Using Annotations to Customize the Load Balancer](#using-annotations-to-customize-the-load-balancer)
+### [Using Annotations to Customize the Load Balancer](#using-annotations-to-customize-the-load-balancer)
 
 DigitalOcean provides annotations to customize the behavior of its Load Balancers. These annotations can be applied to the Kubernetes service record to fine-tune the Load Balancer's functionality.
 
-### Example Service with Annotations
+#### Example Service with Annotations
 ```yaml
 apiVersion: v1
 kind: Service
@@ -191,7 +191,7 @@ spec:
 
 ---
 
-## [References](#references)
+### [References](#references)
 - [Ingress NGINX Documentation](https://kubernetes.github.io/ingress-nginx/)
 - [DigitalOcean Load Balancers Documentation](https://docs.digitalocean.com/products/kubernetes/how-to/configure-load-balancers/)
 - [DigitalOcean Installation Guide for NGINX Ingress Controller](https://docs.digitalocean.com/products/kubernetes/getting-started/operational-readiness/install-nginx-ingress-controller/)

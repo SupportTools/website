@@ -18,12 +18,12 @@ This is the known good design for deploying the Ingress NGINX Controller on Amaz
 
 <!--more-->
 
-# [Overview](#overview)
+## [Overview](#overview)
 
-## [Ingress NGINX Overview](#ingress-nginx-overview)
+### [Ingress NGINX Overview](#ingress-nginx-overview)
 The Ingress NGINX Controller is a Kubernetes-native load balancer that manages external access to services in a cluster. On EKS, it works seamlessly with Amazon Elastic Load Balancers (ELBs) to provide robust HTTP(S) ingress capabilities.
 
-### Key Features
+#### Key Features
 - **Supports HTTP and HTTPS:** Handles secure and non-secure traffic.
 - **Rule-Based Routing:** Route traffic based on host, path, or headers.
 - **Custom Annotations:** Allows fine-grained control over NGINX configurations.
@@ -37,9 +37,9 @@ For more details, refer to the [AWS Documentation](https://docs.aws.amazon.com/e
 
 ---
 
-## [AWS Load Balancer Behavior](#aws-load-balancer-behavior)
+### [AWS Load Balancer Behavior](#aws-load-balancer-behavior)
 
-### How AWS Deploys a Load Balancer
+#### How AWS Deploys a Load Balancer
 
 When a service is configured with `type: LoadBalancer` in an EKS cluster, AWS automatically creates an Elastic Load Balancer (ELB) outside the cluster. This load balancer forwards external traffic to the node ports associated with the service.
 
@@ -54,9 +54,9 @@ For more information, see the [AWS Load Balancers Documentation](https://docs.aw
 
 ---
 
-## [Helm Deployment Example](#helm-deployment-example)
+### [Helm Deployment Example](#helm-deployment-example)
 
-### Step 1: Install the Ingress NGINX Controller with Helm
+#### Step 1: Install the Ingress NGINX Controller with Helm
 
 1. **Add the Helm Repository:**
    ```bash
@@ -88,9 +88,9 @@ ingress-nginx-controller             LoadBalancer   10.245.89.53    123.45.67.89
 
 ---
 
-## [ArgoCD Deployment Example](#argocd-deployment-example)
+### [ArgoCD Deployment Example](#argocd-deployment-example)
 
-### Deploying the Ingress NGINX Controller with ArgoCD
+#### Deploying the Ingress NGINX Controller with ArgoCD
 
 The following is an example of deploying the Ingress NGINX Controller using ArgoCD:
 
@@ -149,7 +149,7 @@ spec:
       - CreateNamespace=true
 ```
 
-### Key Features in the Configuration
+#### Key Features in the Configuration
 - **Load Balancer:** Configures the service type as `LoadBalancer` for external access.
 - **Prometheus Metrics:** Enables metrics collection for monitoring with Prometheus.
 - **Timeouts and Limits:** Configures proxy and client body limits to handle large requests.
@@ -159,11 +159,11 @@ spec:
 
 ---
 
-## [Using Annotations to Customize the Load Balancer](#using-annotations-to-customize-the-load-balancer)
+### [Using Annotations to Customize the Load Balancer](#using-annotations-to-customize-the-load-balancer)
 
 AWS Load Balancers can be customized using annotations on the Kubernetes service resource. The following example demonstrates commonly used annotations:
 
-### Example Service with Annotations
+#### Example Service with Annotations
 ```yaml
 apiVersion: v1
 kind: Service
@@ -188,7 +188,7 @@ spec:
       targetPort: https
 ```
 
-### Annotation Details
+#### Annotation Details
 - `service.beta.kubernetes.io/aws-load-balancer-backend-protocol`: Specifies the protocol for the backend (`http` or `tcp`).
 - `service.beta.kubernetes.io/aws-load-balancer-ssl-cert`: Associates an ACM certificate for HTTPS traffic.
 - `service.beta.kubernetes.io/aws-load-balancer-ssl-ports`: Defines which ports should use SSL.
@@ -200,7 +200,7 @@ For a complete list of available annotations, see the [AWS Load Balancers Docume
 
 ---
 
-## [References](#references)
+### [References](#references)
 - [Ingress NGINX Documentation](https://kubernetes.github.io/ingress-nginx/)
 - [AWS Load Balancers Documentation](https://docs.aws.amazon.com/eks/latest/userguide/load-balancing.html)
 - [AWS Installation Guide for NGINX Ingress Controller](https://aws.amazon.com/blogs/containers/nginx-ingress-controller-on-amazon-eks/)

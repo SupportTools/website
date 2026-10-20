@@ -18,12 +18,12 @@ This is the known good design for leveraging the built-in Ingress NGINX Controll
 
 <!--more-->
 
-# [Overview](#overview)
+## [Overview](#overview)
 
-## [Ingress NGINX on RKE2](#ingress-nginx-on-rke2)
+### [Ingress NGINX on RKE2](#ingress-nginx-on-rke2)
 RKE2 comes with the Ingress NGINX Controller enabled by default as part of its bundled networking stack. This eliminates the need to manually install or manage the Ingress NGINX Controller, providing seamless integration with the RKE2 ecosystem.
 
-### Key Features
+#### Key Features
 - **Preconfigured and Managed**: RKE2 automatically deploys and manages the lifecycle of the Ingress NGINX Controller.
 - **Cluster-Aware Configuration**: Default values are tailored to the cluster’s networking setup (e.g., CIDRs, DNS settings).
 - **Integrated with HelmChart CRD**: Managed using the `HelmChart` custom resource, which simplifies upgrades and configuration changes.
@@ -37,9 +37,9 @@ For more details, refer to the [RKE2 Networking Documentation](https://docs.rke2
 
 ---
 
-## [How RKE2 Manages Ingress NGINX](#how-rke2-manages-ingress-nginx)
+### [How RKE2 Manages Ingress NGINX](#how-rke2-manages-ingress-nginx)
 
-### HelmChart Custom Resource
+#### HelmChart Custom Resource
 RKE2 uses a `HelmChart` custom resource in the `kube-system` namespace to manage the Ingress NGINX Controller. This ensures the controller is automatically deployed and kept up-to-date.
 
 #### Example HelmChart Resource
@@ -57,7 +57,7 @@ spec:
     global.systemDefaultIngressClass: ingress-nginx
 ```
 
-### Preconfigured Values
+#### Preconfigured Values
 RKE2 configures Ingress NGINX with cluster-specific values, including:
 - `global.clusterCIDR`: The cluster’s pod CIDR range.
 - `global.serviceCIDR`: The service CIDR range.
@@ -66,7 +66,7 @@ RKE2 configures Ingress NGINX with cluster-specific values, including:
 
 ---
 
-## [Differences from Standalone Deployments](#differences-from-standalone-deployments)
+### [Differences from Standalone Deployments](#differences-from-standalone-deployments)
 
 1. **Integrated Management**:
    - RKE2 handles the lifecycle of the Ingress NGINX Controller via the `HelmChart` CRD.
@@ -85,11 +85,11 @@ RKE2 configures Ingress NGINX with cluster-specific values, including:
 
 ---
 
-## [Customizing Ingress NGINX on RKE2](#customizing-ingress-nginx-on-rke2)
+### [Customizing Ingress NGINX on RKE2](#customizing-ingress-nginx-on-rke2)
 
 While RKE2 provides sensible defaults, users can customize the Ingress NGINX Controller by editing the `HelmChart` resource:
 
-### Example Customization
+#### Example Customization
 1. **Retrieve the Current Configuration:**
    ```bash
    kubectl -n kube-system get helmchart rke2-ingress-nginx -o yaml
@@ -115,6 +115,6 @@ While RKE2 provides sensible defaults, users can customize the Ingress NGINX Con
 
 ---
 
-## [References](#references)
+### [References](#references)
 - [RKE2 Ingress NGINX GitHub Repository](https://github.com/rancher/rke2-charts/tree/main-source/packages/rke2-ingress-nginx)
 - [RKE2 Networking Documentation](https://docs.rke2.io/networking/networking_services?_highlight=ingress#nginx-ingress-controller)

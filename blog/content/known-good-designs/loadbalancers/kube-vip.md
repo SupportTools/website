@@ -20,12 +20,12 @@ For details on configuring ingress within RKE2, refer to the [Ingress NGINX Cont
 
 <!--more-->
 
-# [Overview](#overview)
+## [Overview](#overview)
 
-## [What is Kube-VIP?](#what-is-kube-vip)
+### [What is Kube-VIP?](#what-is-kube-vip)
 Kube-VIP is a lightweight virtual IP (VIP) manager that provides TCP/UDP load balancing and virtual IPs for Kubernetes clusters. In Layer2 mode, Kube-VIP broadcasts ARP packets to associate a VIP with the active Kubernetes node.
 
-### Key Features
+#### Key Features
 - **Layer2 ARP-Based VIP Management**: Ideal for bare-metal and on-prem environments.
 - **Built-in TCP/UDP Load Balancer**: Provides load balancing for Kubernetes services.
 - **High Availability**: Ensures failover between nodes for VIPs.
@@ -36,9 +36,9 @@ For more details, visit the [Kube-VIP Documentation](https://kube-vip.io/).
 
 ---
 
-# [Setup Instructions](#setup-instructions)
+## [Setup Instructions](#setup-instructions)
 
-## [Step 1: Install Kube-VIP](#step-1-install-kube-vip)
+### [Step 1: Install Kube-VIP](#step-1-install-kube-vip)
 
 1. **Deploy the Kube-VIP Manifest**:
    ```bash
@@ -51,9 +51,9 @@ For more details, visit the [Kube-VIP Documentation](https://kube-vip.io/).
    kubectl get pods -n kube-system -l app=kube-vip
    ```
 
-## [Step 2: Configure the Kube-VIP ConfigMap](#step-2-configure-the-kube-vip-configmap)
+### [Step 2: Configure the Kube-VIP ConfigMap](#step-2-configure-the-kube-vip-configmap)
 
-### Example: Static VIP Configuration
+#### Example: Static VIP Configuration
 1. **Edit the ConfigMap**:
    Retrieve and edit the Kube-VIP ConfigMap:
    ```bash
@@ -85,7 +85,7 @@ For more details, visit the [Kube-VIP Documentation](https://kube-vip.io/).
                  port: 6443
    ```
 
-### Example: DHCP Configuration
+#### Example: DHCP Configuration
 1. **Edit the ConfigMap**:
    If you prefer to use DHCP to obtain the VIP, modify the `ConfigMap` as follows:
    ```yaml
@@ -110,7 +110,7 @@ For more details, visit the [Kube-VIP Documentation](https://kube-vip.io/).
                  port: 6443
    ```
 
-## [Step 3: Test the VIP](#step-3-test-the-vip)
+### [Step 3: Test the VIP](#step-3-test-the-vip)
 
 1. **Validate ARP Entries**:
    Check ARP entries on another machine in the same network:
@@ -126,11 +126,11 @@ For more details, visit the [Kube-VIP Documentation](https://kube-vip.io/).
 
 ---
 
-# [Deploying Kube-VIP via ArgoCD](#deploying-kube-vip-via-argocd)
+## [Deploying Kube-VIP via ArgoCD](#deploying-kube-vip-via-argocd)
 
 For environments leveraging ArgoCD for GitOps, you can deploy Kube-VIP with the following manifest:
 
-### ArgoCD Application Manifest
+#### ArgoCD Application Manifest
 ```yaml
 apiVersion: argoproj.io/v1alpha1
 kind: Application
@@ -156,11 +156,11 @@ spec:
 
 ---
 
-# [Customizing Load Balancers](#customizing-load-balancers)
+## [Customizing Load Balancers](#customizing-load-balancers)
 
 Kube-VIP supports custom TCP/UDP load balancer configurations. For example, to add an HTTP(S) load balancer for ingress traffic:
 
-### Example ConfigMap Entry for Ingress Traffic
+#### Example ConfigMap Entry for Ingress Traffic
 ```yaml
 loadBalancers:
   - name: ingress-http
@@ -187,12 +187,12 @@ loadBalancers:
 
 ---
 
-# [Integration with RKE2](#integration-with-rke2)
+## [Integration with RKE2](#integration-with-rke2)
 
 Kube-VIP integrates seamlessly with RKE2 clusters to provide load balancing for Kubernetes services, including the control plane and ingress traffic. For more details, refer to the [Ingress NGINX Controller on RKE2 Guide](/known-good-designs/loadbalancers/ingress-nginx-controller-on-rke2/).
 
 ---
 
-# [References](#references)
+## [References](#references)
 - [Kube-VIP Documentation](https://kube-vip.io/)
 - [Ingress NGINX Controller on RKE2 Guide](/known-good-designs/loadbalancers/ingress-nginx-controller-on-rke2/)

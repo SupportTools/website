@@ -16,16 +16,16 @@ This guide demonstrates how to deploy a small EKS cluster with Rancher installed
 
 <!--more-->
 
-# [Overview](#overview)
+## [Overview](#overview)
 
-## [Small EKS Cluster for Rancher](#small-eks-cluster-for-rancher)
+### [Small EKS Cluster for Rancher](#small-eks-cluster-for-rancher)
 This configuration deploys a lightweight Amazon EKS cluster consisting of two `c8g.xlarge` nodes, the NGINX ingress controller, and Rancher as the Kubernetes management platform. This setup is ideal for development and testing environments.
 
 ---
 
-# [Terraform Script](#terraform-script)
+## [Terraform Script](#terraform-script)
 
-### Infrastructure Provisioning
+#### Infrastructure Provisioning
 The following Terraform script provisions the EKS cluster:
 
 ```terraform
@@ -54,11 +54,11 @@ module "eks" {
 
 ---
 
-# [Ingress NGINX Deployment](#ingress-nginx-deployment)
+## [Ingress NGINX Deployment](#ingress-nginx-deployment)
 
 Deploy the NGINX ingress controller using Helm:
 
-### Create the Namespace
+#### Create the Namespace
 ```yaml
 resource "kubernetes_namespace" "ingress_nginx" {
   metadata {
@@ -67,7 +67,7 @@ resource "kubernetes_namespace" "ingress_nginx" {
 }
 ```
 
-### Helm Chart Deployment
+#### Helm Chart Deployment
 ```yaml
 resource "helm_release" "nginx_ingress" {
   name       = "ingress-nginx"
@@ -100,9 +100,9 @@ resource "helm_release" "nginx_ingress" {
 
 ---
 
-# [Rancher Deployment](#rancher-deployment)
+## [Rancher Deployment](#rancher-deployment)
 
-### Create the Namespace
+#### Create the Namespace
 ```yaml
 resource "kubernetes_namespace" "cattle_system" {
   metadata {
@@ -111,7 +111,7 @@ resource "kubernetes_namespace" "cattle_system" {
 }
 ```
 
-### Helm Chart Deployment
+#### Helm Chart Deployment
 ```yaml
 resource "helm_release" "rancher" {
   name       = "rancher"
@@ -144,9 +144,9 @@ resource "helm_release" "rancher" {
 
 ---
 
-# [Testing and Validation](#testing-and-validation)
+## [Testing and Validation](#testing-and-validation)
 
-### Accessing Rancher
+#### Accessing Rancher
 1. Once the Helm installation is complete, verify the Rancher pods:
    ```bash
    kubectl get pods -n cattle-system
@@ -157,12 +157,12 @@ resource "helm_release" "rancher" {
    https://rancher.your-domain.com
    ```
 
-### Testing NGINX Ingress
+#### Testing NGINX Ingress
 Deploy a sample application and verify ingress access using the LoadBalancer endpoint.
 
 ---
 
-# [References](#references)
+## [References](#references)
 - [Terraform AWS EKS Module Documentation](https://github.com/terraform-aws-modules/terraform-aws-eks)
 - [Ingress NGINX Documentation](https://kubernetes.github.io/ingress-nginx/)
 - [Rancher Helm Chart Documentation](https://rancher.com/docs/rancher/v2.7/en/installation/helm-chart-install/)
