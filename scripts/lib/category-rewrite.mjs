@@ -258,6 +258,12 @@ export function rewriteText(text, map) {
   if (m.problems.length) return res;
   if (m.categories.join('\n') !== cat.values.join('\n')) setCategories(lines, 'categories', m.categories, m.sources);
   if (m.tags.length) {
+    const tagList = findList(lines, 'tags');
+    if (tagList?.unsupported) {
+      res.problems.push(`unsupported tags shape: ${tagList.unsupported}; cannot add demoted ${m.tags.map((t) => `"${t}"`).join(', ')}`);
+      res.text = text;
+      return res;
+    }
     const prior = new Set((findList(lines, 'tags')?.values ?? []).map(normalizeKey));
     res.tags = m.tags.filter((t) => !prior.has(normalizeKey(t)));
     addTags(lines, m.tags, findList(lines, 'categories'));

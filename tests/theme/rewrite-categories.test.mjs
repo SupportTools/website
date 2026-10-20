@@ -148,6 +148,15 @@ test('unsupported multi-line flow list is reported, not rewritten', () => {
   assert.equal(r.problems.length, 1);
 });
 
+test('multi-line flow tags list with a demoted category is reported, not written', () => {
+  const text = fm('categories: ["Linux", "Cilium"]\ntags: [\n  "a"\n]');
+  const r = run(text);
+  assert.equal(r.text, text);
+  assert.equal(r.changed, false);
+  assert.deepEqual(r.tags, []);
+  assert.match(r.problems.join(), /unsupported tags shape/);
+});
+
 test('idempotent: running twice equals running once', () => {
   const inputs = [
     fm('categories: ["Golang", "Cilium", "Go Programming"]'),
