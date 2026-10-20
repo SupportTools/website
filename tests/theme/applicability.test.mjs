@@ -38,12 +38,14 @@ test('pages without the fields render no panel', () => {
   assert.ok(!readPage('theme-fixture-short').includes('class="applicability"'));
 });
 
-test('pilot guides render the panel', () => {
+test('guides without applicability fields render no panel', () => {
+  // Owner removed the placeholder values pending verified ones; the panel
+  // must stay absent until real applies_to/last_validated fields return.
   for (const url of [
     'known-good-designs/upstream-rancher-cluster/rancher-rke2-small',
     'known-good-designs/downstream-rke2-cluster/rke2-custom-vms',
   ]) {
-    assert.ok(readPage(url).includes('class="applicability"'), url);
+    assert.ok(!readPage(url).includes('class="applicability"'), url);
   }
 });
 
