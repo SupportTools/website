@@ -13,6 +13,7 @@ more_link: "yes"
 url: "/template/"  # Adjust as per the content
 # quick_fix: "One or two sentences with the exact command and the version it applies to"  # Optional: renders a Quick fix box at the top of the post
 # Design guides only (all optional; the Applicability panel renders when applies_to or last_validated is set):
+# Quote version numbers: unquoted 1.30 is parsed as a number and renders as 1.3
 # applies_to:  # Versions the guide was tested with; keys: rancher, kubernetes, rke2, os, or charts (a map of chart: version)
 #   rancher: "2.9.x"
 #   kubernetes: "1.30"

@@ -38,13 +38,27 @@ test('pages without the fields render no panel', () => {
   assert.ok(!readPage('theme-fixture-short').includes('class="applicability"'));
 });
 
-test('pilot guides render the panel and emit last_validated as dateModified', () => {
+test('pilot guides render the panel', () => {
   for (const url of [
     'known-good-designs/upstream-rancher-cluster/rancher-rke2-small',
     'known-good-designs/downstream-rke2-cluster/rke2-custom-vms',
   ]) {
-    const html = readPage(url);
-    assert.ok(html.includes('class="applicability"'), url);
-    assert.match(html, /"dateModified":"2024-12-17T/, url);
+    assert.ok(readPage(url).includes('class="applicability"'), url);
   }
+});
+
+function modified(url) {
+  return readPage(url).match(/"dateModified":"([^"]+)"/)?.[1];
+}
+
+test('last_validated overrides dateModified when it differs from date', () => {
+  assert.match(modified('theme-fixture-guide'), /^2023-01-15T/);
+});
+
+test('dateModified falls back to the page date without last_validated', () => {
+  assert.match(modified('theme-fixture-short'), /^2020-01-01T/);
+});
+
+test('dateModified never precedes the publish date', () => {
+  assert.match(modified('theme-fixture-guide-early'), /^2020-01-01T/);
 });
