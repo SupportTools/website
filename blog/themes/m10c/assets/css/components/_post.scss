@@ -128,6 +128,45 @@
   }
 }
 
+.related-guides {
+  margin: 0 0 var(--space-6);
+}
+
+.related-guides-title {
+  margin: 0 0 var(--space-3);
+  font-size: 1.1rem;
+}
+
+.related-guides-list {
+  display: grid;
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.related-guides-list a {
+  display: grid;
+  min-height: 4rem;
+  align-content: center;
+  padding: var(--space-4);
+  color: var(--color-ink);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  text-decoration: none;
+}
+
+.related-guides-list a:hover,
+.related-guides-list a:visited {
+  color: var(--color-ink);
+}
+
+@media (min-width: 48rem) {
+  .related-guides-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
 // Optional applicability panel for design guides (partials/applicability.html).
 .applicability {
   margin: 0 0 var(--space-7);

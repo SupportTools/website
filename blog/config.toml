@@ -123,3 +123,16 @@ enableRobotsTXT = true
 #  lightColor = "#d6d6d6"
 #  lightestColor = "#d3d3d3"
 #  primaryColor = "#ffffff"
+
+[related]
+  includeNewer = true
+  threshold = 60
+  toLower = true
+
+  [[related.indices]]
+    name = "tags"
+    weight = 80
+
+  [[related.indices]]
+    name = "categories"
+    weight = 40

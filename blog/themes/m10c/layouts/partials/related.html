@@ -1,0 +1,16 @@
+{{- $related := site.RegularPages.Related . -}}
+{{- if eq .Section "known-good-designs" -}}
+  {{- $sameSection := where $related "Section" "known-good-designs" -}}
+  {{- if ge (len $sameSection) 2 }}{{ $related = $sameSection }}{{ end -}}
+{{- end -}}
+{{- $related = first 4 (where $related "Permalink" "ne" .Permalink) -}}
+{{- if $related }}
+<section class="related-guides" aria-labelledby="related-guides-title" data-pagefind-ignore>
+  <h2 id="related-guides-title" class="related-guides-title">Related guides</h2>
+  <ul class="related-guides-list">
+    {{- range $related }}
+    <li><a href="{{ .RelPermalink }}"><strong>{{ .LinkTitle }}</strong></a></li>
+    {{- end }}
+  </ul>
+</section>
+{{- end -}}

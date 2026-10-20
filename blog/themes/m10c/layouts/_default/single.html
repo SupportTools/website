@@ -83,6 +83,9 @@
         {{ with .OutputFormats.Get "markdown" }}
         <p class="agent-format-link"><a href="{{ .RelPermalink }}">View this page as Markdown</a></p>
         {{ end }}
+        {{ if in (slice "post" "known-good-designs") .Section }}
+        {{ partial "related.html" . }}
+        {{ end }}
         {{ if and (in (slice "post" "known-good-designs") .Section) (or .PrevInSection .NextInSection) }}
         <nav class="post-pagination" aria-label="More articles">
           {{ with .NextInSection }}
