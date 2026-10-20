@@ -10,6 +10,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Theme fixture"
 more_link: "yes"
 url: "/theme-fixture/"
+quick_fix: "Scale the deployment to zero, then back to one: `kubectl scale deploy/app --replicas=0`"
 ---
 
 Fixture used by the theme tests. Not published.

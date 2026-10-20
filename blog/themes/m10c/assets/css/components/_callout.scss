@@ -26,3 +26,22 @@
 .callout-warning .callout-label {
   color: var(--color-warn-ink);
 }
+
+// Optional quick_fix summary box at the top of a post (single.html).
+.quick-fix {
+  margin: 0 0 var(--space-7);
+  padding: var(--space-4) var(--space-5);
+  background: var(--color-chip);
+  border-left: 4px solid var(--color-lime);
+}
+
+.quick-fix > :last-child {
+  margin-bottom: 0;
+}
+
+.quick-fix-title {
+  margin: 0 0 var(--space-2);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-chip-ink);
+}

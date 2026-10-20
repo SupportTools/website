@@ -53,7 +53,12 @@
   {{- $showToc := ge $tocCount 3 }}
   <div class="post-layout">
     <div class="post-main">
-      {{/* Quick-fix slot (Task 7): reserved for the quick-fix box; renders nothing yet. */}}
+      {{- with .Params.quick_fix }}
+      <section class="quick-fix" aria-labelledby="quick-fix-title">
+        <h2 id="quick-fix-title" class="quick-fix-title">Quick fix</h2>
+        {{ . | markdownify }}
+      </section>
+      {{- end }}
       {{ if $showToc }}
       <details class="post-toc" data-pagefind-ignore>
         <summary>On this page</summary>
