@@ -47,8 +47,17 @@ $toc-wide: 72rem;
     align-items: start;
   }
 
+  // The sidebar comes first in the DOM so keyboard users reach it before the
+  // article body; the grid places it in the right-hand column.
+  .post-main {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
   .toc-sidebar {
     display: block;
+    grid-column: 2;
+    grid-row: 1;
     position: sticky;
     top: 1.5rem;
     max-height: calc(100vh - 3rem);

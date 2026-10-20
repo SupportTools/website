@@ -36,3 +36,13 @@ test('Markdown output carries no TOC', () => {
   assert.doesNotMatch(md, /On this page/);
   assert.doesNotMatch(md, /toc-sidebar/);
 });
+
+test('sidebar TOC precedes the article body inside post-layout', () => {
+  const html = readPage('theme-fixture');
+  const layout = html.indexOf('<div class="post-layout">');
+  const sidebar = html.indexOf('<nav class="toc-sidebar"');
+  const main = html.indexOf('<div class="post-main">');
+  assert.ok(layout >= 0 && sidebar >= 0 && main >= 0, 'all three present');
+  assert.ok(layout < sidebar, 'sidebar inside post-layout');
+  assert.ok(sidebar < main, 'sidebar before post-main');
+});

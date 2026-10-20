@@ -31,12 +31,17 @@ async function copyBlock(block, button, status) {
   clearTimeout(button.resetTimer);
   button.textContent = ok ? 'Copied' : 'Copy failed';
   if (status) {
+    // Clear, then set the text on a later task, so screen readers announce a
+    // repeat of the same message.
     status.textContent = '';
-    status.textContent = statusText(ok);
+    setTimeout(() => {
+      status.textContent = statusText(ok);
+    }, 100);
   }
   if (ok) {
     button.resetTimer = setTimeout(() => {
       button.textContent = 'Copy';
+      if (status) status.textContent = '';
     }, COPIED_MS);
   }
 }

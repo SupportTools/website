@@ -40,6 +40,18 @@
   border-left: 0.3rem solid var(--color-lime);
 }
 
+// Line-number tables (linenos=table) scroll inside their wrapper.
+.post-content .highlight > div {
+  overflow-x: auto;
+}
+
+// Markdown tables (render-table.html) scroll inside their wrapper instead of
+// widening the page.
+.post-content .table-scroll {
+  margin: 0 0 1.15rem;
+  overflow-x: auto;
+}
+
 .post-content img {
   max-width: 100%;
 }
@@ -55,7 +67,9 @@
 
 .post-meta > div {
   display: inline-flex;
+  flex-wrap: wrap;
   align-items: center;
+  min-width: 0;
   gap: var(--space-2);
 }
 

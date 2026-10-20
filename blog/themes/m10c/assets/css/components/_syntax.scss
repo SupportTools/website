@@ -88,3 +88,22 @@
   color: inherit;
   background: none;
 }
+
+// Line-number layouts. linenos=table renders a two-cell table that must not
+// inherit the content-table width, padding or borders. Both layouts need a gap
+// between the number and the code.
+.chroma .lntable {
+  width: auto;
+  margin: 0;
+  border-spacing: 0;
+}
+
+.chroma .lntable td {
+  padding: 0;
+  border: 0;
+}
+
+.chroma .ln,
+.chroma .lnt {
+  margin-right: 0.75em;
+}

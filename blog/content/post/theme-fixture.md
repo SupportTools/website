@@ -94,3 +94,10 @@ graph TD
 > Cautions render as a note because only three kinds are styled.
 
 > A plain blockquote keeps its markup.
+
+## Table
+
+| Setting | Default | Description |
+|:--------|--------:|:-----------:|
+| `replica-count` | 3 | Number of replicas Longhorn keeps for each volume across distinct nodes |
+| `storage-over-provisioning-percentage` | 100 | Upper bound on scheduled capacity relative to the actual disk size |

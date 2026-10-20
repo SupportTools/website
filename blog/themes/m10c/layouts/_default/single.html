@@ -52,6 +52,12 @@
   {{- $tocCount := len (findRE "<a href=" .TableOfContents) }}
   {{- $showToc := ge $tocCount 3 }}
   <div class="post-layout">
+    {{ if $showToc }}
+    <nav class="toc-sidebar" aria-label="On this page" data-pagefind-ignore>
+      <p class="toc-sidebar-title" aria-hidden="true">On this page</p>
+      {{ $toc | safeHTML }}
+    </nav>
+    {{ end }}
     <div class="post-main">
       {{- with .Params.quick_fix }}
       <section class="quick-fix" aria-labelledby="quick-fix-title">
@@ -85,12 +91,6 @@
         {{ template "_internal/disqus.html" . }}
       </div>
     </div>
-    {{ if $showToc }}
-    <nav class="toc-sidebar" aria-label="On this page" data-pagefind-ignore>
-      <p class="toc-sidebar-title" aria-hidden="true">On this page</p>
-      {{ $toc | safeHTML }}
-    </nav>
-    {{ end }}
   </div>
 </article>
 {{ end }}
