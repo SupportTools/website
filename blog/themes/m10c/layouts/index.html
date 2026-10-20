@@ -1,0 +1,54 @@
+{{ define "main" }}
+<article class="archive home">
+  <header class="page-intro">
+    <h1>Systems knowledge you can put to work.</h1>
+    <p class="page-intro-summary">{{ .Site.Params.description }} Written for engineers operating real systems.</p>
+  </header>
+
+  <form class="home-search" action="{{ "/search/" | relURL }}" method="get" role="search">
+    <label for="home-search-q">Search the library</label>
+    <div class="home-search-row">
+      <input id="home-search-q" type="search" name="q" placeholder="Search articles and guides" autocomplete="off">
+      <button type="submit" class="button-link">Search</button>
+    </div>
+  </form>
+
+  <section class="home-section" aria-labelledby="start-here">
+    <h2 id="start-here" class="archive-heading">Start here</h2>
+    <ul class="hub-grid">
+      {{ range hugo.Data.home.hubs }}
+      {{ $term := site.GetPage (strings.TrimSuffix "/" .url) }}
+      {{ if not $term }}{{ errorf "data/home.yaml: hub %q url %q does not resolve to a page" .title .url }}{{ end }}
+      <li class="hub-card">
+        <a href="{{ $term.RelPermalink }}">
+          <span class="hub-card-title">{{ .title }}</span>
+          <span class="hub-card-summary">{{ .summary }}</span>
+        </a>
+      </li>
+      {{ end }}
+    </ul>
+  </section>
+
+  <section class="home-section" aria-labelledby="reference-designs">
+    <h2 id="reference-designs" class="archive-heading">Reference designs</h2>
+    <ul class="design-grid">
+      {{ range hugo.Data.home.featured }}
+      {{ $design := site.GetPage . }}
+      {{ if not $design }}{{ errorf "data/home.yaml: featured design %q does not resolve to a page" . }}{{ end }}
+      <li class="design-card">
+        <a href="{{ $design.RelPermalink }}">
+          <span class="design-card-title">{{ $design.Title }}</span>
+          {{ with $design.Description }}<span class="design-card-summary">{{ . | truncate 110 }}</span>{{ end }}
+        </a>
+      </li>
+      {{ end }}
+    </ul>
+  </section>
+
+  <section class="home-section" aria-labelledby="latest-writing">
+    <h2 id="latest-writing" class="archive-heading">Latest writing</h2>
+    {{ partial "posts-list.html" (first 8 site.RegularPages) }}
+    <p class="home-browse-all"><a href="{{ "/archive/" | relURL }}">Browse all articles</a></p>
+  </section>
+</article>
+{{ end }}

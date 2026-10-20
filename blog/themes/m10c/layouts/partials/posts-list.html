@@ -1,0 +1,22 @@
+<ul class="posts-list">
+  {{ range . }}
+  {{ if . }}
+  <li class="posts-list-item">
+    <article>
+      <h3 class="posts-list-item-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+      <div class="posts-list-item-description">
+        <time datetime="{{ .PublishDate.Format "2006-01-02" }}">{{ .PublishDate.Format "Jan 2, 2006" }}</time>
+        <span aria-hidden="true">&middot;</span>
+        <span>{{ if .ReadingTime }}{{ .ReadingTime }} min read{{ else }}1 min read{{ end }}</span>
+      </div>
+      <p class="posts-list-item-summary">{{ partial "plain-summary.html" . | truncate 180 }}</p>
+      {{ with .GetTerms "categories" }}
+      <ul class="term-list" aria-label="Categories">
+        {{ range first 2 . }}<li><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></li>{{ end }}
+      </ul>
+      {{ end }}
+    </article>
+  </li>
+  {{ end }}
+  {{ end }}
+</ul>

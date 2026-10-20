@@ -1,0 +1,25 @@
+# Homepage task paths. Hub urls must be taxonomy term pages; featured entries must be content paths.
+# A broken reference fails the Hugo build.
+hubs:
+  - title: Kubernetes
+    summary: Cluster operations, workloads, policy, and day-two troubleshooting.
+    url: /categories/kubernetes/
+  - title: Rancher & RKE2
+    summary: Install, upgrade, and run Rancher-managed RKE2 clusters.
+    url: /categories/rancher/
+  - title: Linux & Systems
+    summary: Administration, kernel behavior, and the host layer under your workloads.
+    url: /categories/linux/
+  - title: Networking
+    summary: Load balancing, DNS, segmentation, and tracing packets end to end.
+    url: /categories/networking/
+  - title: Storage & Databases
+    summary: Persistent volumes, replication, backup, and recovery that holds up.
+    url: /categories/storage/
+  - title: Observability & SRE
+    summary: Metrics, logs, alerting, and reliability practice for production.
+    url: /categories/observability/
+featured:
+  - known-good-designs/upstream-rancher-cluster/rancher-rke2-small
+  - known-good-designs/downstream-rke2-cluster/rke2-custom-vms
+  - known-good-designs/loadbalancers/ingress-nginx-controller-on-rke2

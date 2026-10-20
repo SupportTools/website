@@ -121,7 +121,7 @@ test('llms.txt entry for the short fixture omits code-block labels, when listed'
 
 test('every summary consumer uses the plain-summary partial', () => {
   for (const rel of [
-    '_default/list.html',
+    'partials/posts-list.html',
     '_default/baseof.html',
     'partials/structured-data.html',
     'home.llms.txt',

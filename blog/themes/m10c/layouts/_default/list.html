@@ -1,43 +1,10 @@
 {{ define "main" }}
 <article class="archive">
-  {{ if .IsHome }}
-  <header class="page-intro">
-    <h1>Systems knowledge you can put to work.</h1>
-    <p class="page-intro-summary">{{ .Site.Params.description }} Written for engineers operating real systems.</p>
-    <div class="page-intro-actions">
-      <a class="button-link" href="{{ "/search/" | relURL }}">Search the library</a>
-      <a href="{{ "/categories/" | relURL }}">Browse categories</a>
-    </div>
-  </header>
-  <h2 class="archive-heading">Latest writing</h2>
-  {{ else }}
   <header class="page-intro">
     <h1>{{ .Title }}</h1>
     {{ with .Description }}<p class="page-intro-summary">{{ . }}</p>{{ end }}
   </header>
-  {{ end }}
-  <ul class="posts-list">
-    {{ range .Paginator.Pages }}
-    {{ if . }}
-    <li class="posts-list-item">
-      <article>
-        <h3 class="posts-list-item-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
-        <div class="posts-list-item-description">
-          <time datetime="{{ .PublishDate.Format "2006-01-02" }}">{{ .PublishDate.Format "Jan 2, 2006" }}</time>
-          <span aria-hidden="true">&middot;</span>
-          <span>{{ if .ReadingTime }}{{ .ReadingTime }} min read{{ else }}1 min read{{ end }}</span>
-        </div>
-        <p class="posts-list-item-summary">{{ partial "plain-summary.html" . | truncate 180 }}</p>
-        {{ with .GetTerms "categories" }}
-        <ul class="term-list" aria-label="Categories">
-          {{ range first 2 . }}<li><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></li>{{ end }}
-        </ul>
-        {{ end }}
-      </article>
-    </li>
-    {{ end }}
-    {{ end }}
-  </ul>
+  {{ partial "posts-list.html" .Paginator.Pages }}
   {{ partial "pagination.html" $ }}
 </article>
 {{ end }}

@@ -104,3 +104,92 @@
   font-weight: 600;
   text-decoration: none;
 }
+
+.home-section {
+  margin-top: var(--space-7);
+}
+
+.home-search {
+  margin-top: var(--space-6);
+}
+
+.home-search label {
+  display: block;
+  margin-bottom: var(--space-2);
+  font-weight: 700;
+}
+
+.home-search-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.home-search-row input {
+  flex: 1 1 14rem;
+  min-height: 2.75rem;
+  padding: var(--space-2) var(--space-3);
+  color: var(--color-ink);
+  background: var(--color-surface);
+  border: 2px solid var(--color-border-strong);
+  border-radius: var(--radius);
+  font: inherit;
+}
+
+.home-search-row .button-link {
+  cursor: pointer;
+  font: inherit;
+  font-weight: 700;
+}
+
+.hub-grid,
+.design-grid {
+  display: grid;
+  gap: var(--space-4);
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.hub-grid {
+  grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
+}
+
+.design-grid {
+  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+}
+
+.hub-card a,
+.design-card a {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  height: 100%;
+  padding: var(--space-4);
+  color: inherit;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  text-decoration: none;
+}
+
+.hub-card a:hover,
+.design-card a:hover {
+  border-color: var(--color-accent);
+}
+
+.hub-card-title,
+.design-card-title {
+  color: var(--color-accent);
+  font-weight: 700;
+}
+
+.hub-card-summary,
+.design-card-summary {
+  color: var(--color-muted);
+  font-size: 0.95rem;
+}
+
+.home-browse-all {
+  margin-top: var(--space-5);
+  font-weight: 700;
+}

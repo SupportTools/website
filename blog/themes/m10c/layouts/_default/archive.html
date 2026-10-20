@@ -1,0 +1,11 @@
+{{ define "main" }}
+{{ $pager := .Paginate site.RegularPages }}
+<article class="archive">
+  <header class="page-intro">
+    <h1>{{ .Title }}</h1>
+    {{ with .Description }}<p class="page-intro-summary">{{ . }}</p>{{ end }}
+  </header>
+  {{ partial "posts-list.html" $pager.Pages }}
+  {{ partial "pagination.html" $ }}
+</article>
+{{ end }}

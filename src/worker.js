@@ -51,6 +51,12 @@ export default {
         return response;
       }
       
+      // The homepage feed moved to /archive/; keep old paginated URLs working.
+      const legacyPage = url.pathname.match(/^\/page\/(\d+)\/?$/);
+      if ((request.method === 'GET' || request.method === 'HEAD') && legacyPage) {
+        return Response.redirect(`${url.origin}/archive/page/${legacyPage[1]}/`, 301);
+      }
+
       // Serve the Hugo-generated Markdown representation to clients that ask
       // for it, while preserving the canonical HTML URL.
       const acceptsMarkdown = request.headers.get('accept')?.includes('text/markdown');
