@@ -73,6 +73,9 @@ jobs:
           echo "$RUNNER_TEMP/dart-sass" >> "$GITHUB_PATH"
           "$RUNNER_TEMP/dart-sass/sass" --version
 
+      - name: Check theme color contrast
+        run: npm run check:contrast
+
       - name: Test Hugo build
         run: |
           npm run build:hugo -- --panicOnWarning
