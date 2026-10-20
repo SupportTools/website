@@ -17,6 +17,7 @@
     "check:contrast": "node scripts/check-contrast.mjs",
     "check:headings": "node scripts/check-headings.mjs",
     "check:categories": "node scripts/check-categories.mjs",
+    "check:paths": "node scripts/check-duplicate-paths.mjs",
     "test:theme": "node tests/theme/build-fixtures.mjs && node --test tests/theme/*.test.mjs"
   },
   "devDependencies": {

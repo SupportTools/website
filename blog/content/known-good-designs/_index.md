@@ -1,5 +1,5 @@
 ---
-title: "Known Good Designs"
+title: "Reference Designs"
 description: "Explore validated Kubernetes cluster designs and configurations, including Cluster Services, Load Balancers, and Upstream/Downstream designs."
 ---
 

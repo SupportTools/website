@@ -93,6 +93,9 @@ jobs:
       - name: Check category allow-list
         run: npm run check:categories
 
+      - name: Check duplicate target paths
+        run: npm run check:paths
+
       - name: Test Hugo build
         run: |
           npm run build:hugo -- --panicOnWarning

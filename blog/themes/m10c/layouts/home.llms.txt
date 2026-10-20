@@ -7,9 +7,10 @@ Support Tools is Matthew Mattox's technical publication about production infrast
 ## Navigation
 
 - [Search]({{ "search/" | absURL }}): Full-text search across published articles and guides.
-- [Categories]({{ "categories/" | absURL }}): Browse the library by topic.
+- [Topics]({{ "categories/" | absURL }}): Browse the library by topic.
 - [Training]({{ "training/" | absURL }}): Training notes and learning resources.
-- [Known Good Designs]({{ "known-good-designs/" | absURL }}): Reference architectures and validated patterns.
+- [Archive]({{ "archive/" | absURL }}): Chronological list of every article.
+- [Reference Designs]({{ "known-good-designs/" | absURL }}): Reference architectures and validated patterns.
 - [RSS feed]({{ "index.xml" | absURL }}): Recent site updates.
 
 ## Recent articles

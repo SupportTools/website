@@ -13,7 +13,12 @@
 {{- $image := index .Site.Params.images 0 | absURL -}}
 {{- with .Params.images }}{{ $image = index . 0 | absURL }}{{ end -}}
 {{- $modified := .Lastmod -}}
-{{- with .Params.last_validated }}{{ $modified = cond (gt (. | time.AsTime) $.PublishDate) (. | time.AsTime) $.PublishDate }}{{ end -}}
+{{- with .Params.last_validated -}}
+{{- $validated := . | time.AsTime -}}
+{{- $modified = $.PublishDate -}}
+{{- if gt $validated $modified }}{{ $modified = $validated }}{{ end -}}
+{{- if gt $.Lastmod $modified }}{{ $modified = $.Lastmod }}{{ end -}}
+{{- end -}}
 {{- $articleSchema := dict
   "@context" "https://schema.org"
   "@type" "BlogPosting"
