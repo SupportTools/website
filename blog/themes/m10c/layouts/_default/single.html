@@ -3,8 +3,12 @@
   <nav class="breadcrumbs" aria-label="Breadcrumb">
     <a href="{{ .Site.Home.RelPermalink }}">Home</a>
     <span aria-hidden="true">/</span>
+    {{ if eq .Section "known-good-designs" }}
+    {{ range .Ancestors.Reverse }}{{ if not .IsHome }}<a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a><span aria-hidden="true">/</span>{{ end }}{{ end }}
+    {{ else }}
     {{ with .GetTerms "categories" }}
     {{ range first 1 . }}<a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a><span aria-hidden="true">/</span>{{ end }}
+    {{ end }}
     {{ end }}
     <span aria-current="page">{{ .Title }}</span>
   </nav>
