@@ -1,5 +1,5 @@
-// Progressive enhancement for article pages: Copy buttons on code blocks and
-// scroll-spy for the sidebar table of contents.
+// Progressive enhancement: Copy buttons on code blocks, scroll-spy for the
+// sidebar table of contents, and the search query kept in the page URL.
 
 const COPIED_MS = 2000;
 
@@ -101,9 +101,55 @@ function enhanceToc() {
   orderedIds.forEach((id) => observer.observe(document.getElementById(id)));
 }
 
+const SEARCH_DEBOUNCE_MS = 300;
+
+// The search term carried in a URL's q parameter, or '' when there is none.
+export function queryFromUrl(href) {
+  return new URL(href).searchParams.get('q') || '';
+}
+
+// The same-page relative URL with q set to the trimmed query, or with q
+// removed when the query is blank. Other parameters and the hash are kept.
+export function urlWithQuery(href, query) {
+  const url = new URL(href);
+  const term = query.trim();
+  if (term) url.searchParams.set('q', term);
+  else url.searchParams.delete('q');
+  return url.pathname + url.search + url.hash;
+}
+
+// Keeps ?q= in step with the Pagefind search box: restores the box from the
+// URL on load, and rewrites the URL, debounced, as the reader types. The term
+// only ever goes into the input's value property and the URL, never into HTML.
+async function initSearchUrl() {
+  if (!document.querySelector('.search-interface')) return;
+  if (typeof customElements === 'undefined') return;
+  await customElements.whenDefined('pagefind-input');
+  const input = document.querySelector('.search-interface .pf-input');
+  if (!input) return;
+
+  const initial = queryFromUrl(location.href);
+  if (initial) {
+    input.value = initial;
+    input.dispatchEvent(new Event('input', { bubbles: true }));
+  }
+
+  let timer;
+  input.addEventListener('input', () => {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      const next = urlWithQuery(location.href, input.value);
+      if (next !== location.pathname + location.search + location.hash) {
+        history.replaceState(history.state, '', next);
+      }
+    }, SEARCH_DEBOUNCE_MS);
+  });
+}
+
 function init() {
   enhanceCodeBlocks();
   enhanceToc();
+  initSearchUrl();
 }
 
 if (typeof document !== 'undefined') {
