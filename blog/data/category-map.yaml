@@ -1,0 +1,590 @@
+# Category map: DRAFT for owner review. Applied by scripts/rewrite-categories.mjs.
+#
+# Every source label below is rewritten on every post under blog/content.
+# Nothing is deleted: a demoted label stays on the post as a tag.
+#
+# merge:   "Source": "Target"
+#   Replaces Source with Target in the post's categories (duplicates collapse).
+#   Use for case variants, plurals, slash names and clear synonyms.
+# demote:  "Source": "Fallback"   (Fallback may be null)
+#   Removes Source from categories and adds it to the post's tags (skipped if an
+#   equal tag exists, ignoring case and hyphens). If that leaves a post with no
+#   category at all, Fallback becomes its category. A null fallback on such a
+#   post is an error: the script refuses to run until the map is fixed.
+# hubs:    "Hub": followed by "- Category" lines
+#   Documentation only. Groups the final categories under the ten top-level
+#   hubs for the dry-run report and for hub landing pages. Does not change posts.
+#
+# Rules: a target or fallback must never itself be a source (no chains), a
+# demoted label may not contain "/" or "&" (it would become a tag URL with a
+# nested path), and every final name must be added to blog/data/categories.yaml
+# when this map is applied. Categories not listed here are left unchanged.
+
+merge:
+  "Advanced Architecture": "Architecture"
+  "AI": "AI & ML"
+  "AI Development": "AI & ML"
+  "AI/ML": "AI & ML"
+  "API": "API Design"
+  "API Architecture": "API Design"
+  "API Development": "API Design"
+  "API Management": "API Design"
+  "API Testing": "Testing"
+  "APIs": "API Design"
+  "Asynchronous Programming": "Concurrency"
+  "Backend": "Backend Engineering"
+  "Backend Development": "Backend Engineering"
+  "Backup": "Backup & Recovery"
+  "Backups": "Backup & Recovery"
+  "Career Advice": "Career Development"
+  "Certificate Management": "TLS & Certificates"
+  "Certificates": "TLS & Certificates"
+  "Certification": "Kubernetes Certification"
+  "CI-CD": "CI & CD"
+  "CI/CD": "CI & CD"
+  "Clean Code": "Best Practices"
+  "Cloud Architecture": "Cloud"
+  "Cloud Computing": "Cloud"
+  "Cloud Infrastructure": "Cloud"
+  "Cloud Management": "Cloud"
+  "Cloud Monitoring": "Monitoring"
+  "Cloud Storage": "Storage"
+  "Cloud-Native": "Cloud Native"
+  "CloudFlare": "Cloudflare"
+  "Cluster Management": "Kubernetes"
+  "Code Quality": "Best Practices"
+  "Concurrency Engineering": "Concurrency"
+  "Configuration": "Configuration Management"
+  "Container Management": "Containers"
+  "Container Runtime": "Containers"
+  "Container Technologies": "Containers"
+  "Container Technology": "Containers"
+  "Container-Orchestration": "Container Orchestration"
+  "Containerization": "Containers"
+  "Cybersecurity": "Security"
+  "Data Recovery": "Backup & Recovery"
+  "Database": "Databases"
+  "Database Administration": "Databases"
+  "Database Engineering": "Databases"
+  "Database Management": "Databases"
+  "Database Migration": "Databases"
+  "Database Optimization": "Databases"
+  "Database Performance": "Databases"
+  "Database Programming": "Databases"
+  "Design Patterns": "Architecture"
+  "Developer Productivity": "Developer Experience"
+  "Developer Tooling": "Developer Tools"
+  "Development Tools": "Developer Tools"
+  "DevOps Automation": "DevOps"
+  "Disk Management": "Storage"
+  "Distributed Computing": "Distributed Systems"
+  "Distributed-Systems": "Distributed Systems"
+  "EKS": "Amazon EKS"
+  "Embedded Programming": "Embedded Systems"
+  "Engineering": "Software Engineering"
+  "Enterprise Architecture": "Architecture"
+  "Enterprise Automation": "Automation"
+  "Enterprise Compliance": "Compliance"
+  "Enterprise Deployment": "Deployment"
+  "Enterprise Development": "Development"
+  "Enterprise DevOps": "DevOps"
+  "Enterprise Engineering": "Software Engineering"
+  "Enterprise Governance": "Compliance"
+  "Enterprise Infrastructure": "Infrastructure"
+  "Enterprise IT": "Infrastructure"
+  "Enterprise Observability": "Observability"
+  "Enterprise Operations": "Operations"
+  "Enterprise Programming": "Programming"
+  "Enterprise Security": "Security"
+  "Enterprise Systems": "Infrastructure"
+  "Enterprise Tools": "Developer Tools"
+  "Enterprise-Architecture": "Architecture"
+  "Event-Driven": "Event-Driven Architecture"
+  "Filesystem Development": "File Systems"
+  "Frontend": "Web Development"
+  "Frontend Development": "Web Development"
+  "Go Development": "Go"
+  "Go Programming": "Go"
+  "Go Systems Programming": "Go"
+  "Golang": "Go"
+  "GoLang": "Go"
+  "Governance": "Compliance"
+  "GPU": "GPU Computing"
+  "GPU Programming": "GPU Computing"
+  "Hardware Configuration": "Hardware"
+  "Hardware Management": "Hardware"
+  "IaC": "Infrastructure as Code"
+  "Incident Management": "Incident Response"
+  "Infrastructure Automation": "Automation"
+  "IT Tools": "Developer Tools"
+  "k3s": "K3s"
+  "Kernel": "Kernel Development"
+  "kubernetes": "Kubernetes"
+  "Kubernetes Deep Dive": "Kubernetes"
+  "Kubernetes Operations": "Kubernetes"
+  "Kubernetes Policy": "Policy"
+  "Linux Administration": "System Administration"
+  "Linux Kernel": "Kernel Development"
+  "Load Balancing": "Load Balancers"
+  "Log Analysis": "Logging"
+  "Log Management": "Logging"
+  "Log Monitoring": "Monitoring"
+  "Machine Learning": "AI & ML"
+  "Message Queues": "Messaging"
+  "monitoring": "Monitoring"
+  "Multi-Cloud": "Cloud"
+  "Network Engineering": "Networking"
+  "Network Monitoring": "Monitoring"
+  "Network Storage": "Storage"
+  "networking": "Networking"
+  "Nginx": "NGINX"
+  "Nvidia": "NVIDIA"
+  "Optimization": "Performance"
+  "Parallel Processing": "Concurrency"
+  "Parallel Programming": "Concurrency"
+  "Performance Analysis": "Performance"
+  "Performance Engineering": "Performance"
+  "Performance Monitoring": "Monitoring"
+  "Performance Optimization": "Performance"
+  "Performance Tuning": "Performance"
+  "PKI": "TLS & Certificates"
+  "Policy Engineering": "Policy"
+  "Policy Management": "Policy"
+  "Postgres": "PostgreSQL"
+  "Production Operations": "Operations"
+  "Productivity": "Developer Experience"
+  "Professional Development": "Career Development"
+  "Programming Languages": "Programming"
+  "Quality": "Testing"
+  "Quality Assurance": "Testing"
+  "Quality Engineering": "Testing"
+  "rancher": "Rancher"
+  "Real-time": "Real-Time Systems"
+  "Real-Time Programming": "Real-Time Systems"
+  "Reliability": "SRE"
+  "Remote Host": "Remote Access"
+  "Remote Management": "Remote Access"
+  "Remote Server": "Remote Access"
+  "Resource Optimization": "Performance"
+  "rke2": "RKE2"
+  "Security Automation": "Security"
+  "Security Infrastructure": "Security"
+  "Security Programming": "Security"
+  "Server Administration": "System Administration"
+  "Server Management": "System Administration"
+  "Service-Mesh": "Service Mesh"
+  "Shell Scripting": "Scripting"
+  "Site Reliability": "SRE"
+  "Site Reliability Engineering": "SRE"
+  "Software Architecture": "Architecture"
+  "Software Design": "Architecture"
+  "Software Development": "Development"
+  "SSL/TLS": "TLS & Certificates"
+  "Storage Management": "Storage"
+  "Storage Systems": "Storage"
+  "SUSE Rancher": "Rancher"
+  "System Architecture": "Architecture"
+  "System Configuration": "Configuration Management"
+  "System Design": "Architecture"
+  "System Monitoring": "Monitoring"
+  "System Programming": "Systems Programming"
+  "Systems": "Systems Programming"
+  "Systems Administration": "System Administration"
+  "Systems Engineering": "Systems Programming"
+  "Threading": "Concurrency"
+  "TLS": "TLS & Certificates"
+  "Tooling": "Developer Tools"
+  "Tools": "Developer Tools"
+  "training": "Training"
+  "VMWare": "VMware"
+  "Web Performance": "Performance"
+  "Web Programming": "Web Development"
+
+demote:
+  "Access Management": null
+  "Agile": null
+  "AI Models": "AI & ML"
+  "AI Operations": "AI & ML"
+  "AI Tools": "AI & ML"
+  "API Security": null
+  "Application Patterns": null
+  "Application Security": null
+  "Argo Workflows": null
+  "Assembly Language": null
+  "Audio Programming": null
+  "Background Processing": null
+  "Backstage": null
+  "Beginner Guides": null
+  "BGP": null
+  "Blockchain": null
+  "broadcom": "Virtualization"
+  "Business Continuity": "Disaster Recovery"
+  "Cache": null
+  "Capacity Planning": null
+  "CDN": null
+  "Ceph": "Storage"
+  "cert-manager": "TLS & Certificates"
+  "Chromium": null
+  "Cilium": "Networking"
+  "Cisco Nk5k": null
+  "CKA": "Kubernetes Certification"
+  "CKAD": "Kubernetes Certification"
+  "CKS": "Kubernetes Certification"
+  "CLI Development": null
+  "Cloud Security": "Security"
+  "CloudFront": "AWS"
+  "CloudNativePG": null
+  "Cluster API": "Kubernetes"
+  "Cluster Lifecycle": "Kubernetes"
+  "Cluster Services": "Kubernetes"
+  "Compiler Development": null
+  "Compiler Engineering": null
+  "Compiler Technology": null
+  "Confidential Computing": null
+  "Crossplane": null
+  "CSS": null
+  "cURL": "Networking"
+  "Dashboard": null
+  "Data Architecture": null
+  "Data Governance": null
+  "Data Lake Architecture": null
+  "Data Pipeline": null
+  "Data Quality": null
+  "Data Science": null
+  "Database Security": "Security"
+  "Dell Hardware": null
+  "Desktop Configuration": null
+  "Development Environments": null
+  "Distributed Tracing": null
+  "Distributed Training": null
+  "Emerging Technologies": null
+  "Enterprise": "Infrastructure"
+  "ESXi": "Virtualization"
+  "Exchange Server": null
+  "Falco": "Security"
+  "File Services": "Storage"
+  "Gaming Infrastructure": null
+  "Gateway API": "Ingress"
+  "GitLab": null
+  "Graphics": null
+  "Graphics Programming": null
+  "HAProxy": null
+  "Harvester": "Virtualization"
+  "HashiCorp Vault": "Secret Management"
+  "High Performance Computing": null
+  "Home Automation": "Automation"
+  "Homelab": null
+  "HPC": null
+  "HTTP": "Networking"
+  "Hyperconverged Infrastructure": null
+  "Identity Management": null
+  "Industry Trends": null
+  "Installation": null
+  "Installation Guide": null
+  "Integration": null
+  "Inter-Process Communication": null
+  "IoT": null
+  "IoT Infrastructure": null
+  "IPv6 Implementation": null
+  "IPv6 Transition": null
+  "Jaeger": null
+  "k3sup": "K3s"
+  "KEDA": null
+  "kubeconfig": null
+  "Kubernetes Security": "Security"
+  "KubeVirt": "Virtualization"
+  "Kyverno": "Policy"
+  "Lab Setup": null
+  "Linux Tools": "Linux"
+  "Maintenance": null
+  "Media Management": null
+  "Memory Management": null
+  "Metrics": null
+  "Migration Patterns": null
+  "Misc": "Infrastructure"
+  "Mittwald": null
+  "Mobile Development": null
+  "Model Serving": null
+  "MPLS": null
+  "Multimedia Programming": null
+  "Neovim": null
+  "Network Analysis": null
+  "Network Automation": null
+  "Network Devices": "Networking"
+  "Network Privacy": null
+  "Network Tools": "Networking"
+  "NFS": "Storage"
+  "NFV": null
+  "Node Operations": "Kubernetes"
+  "Node.js": null
+  "NodeLocal DNSCache": "DNS"
+  "NoSQL": null
+  "OAuth": null
+  "Ollama": "AI & ML"
+  "Orchestration": null
+  "Organization": null
+  "P4": null
+  "Packet Manipulation": null
+  "Payment Security": null
+  "PCI DSS": "Compliance"
+  "Pipeline Security": null
+  "Podman": "Containers"
+  "Policy Enforcement": null
+  "Port Management": null
+  "Portfolio": null
+  "Post-Quantum": "Cryptography"
+  "Production": null
+  "Production Deployment": null
+  "Production Systems": null
+  "Protocol Analysis": null
+  "Protocol Development": null
+  "Quantum Computing": null
+  "racadm": null
+  "Raspberry Pi": null
+  "RBAC": null
+  "Red Team": null
+  "Release Management": null
+  "Release Notes": null
+  "Resilience": null
+  "Resilience Patterns": null
+  "RKE": "Rancher"
+  "RKE1": "Rancher"
+  "Routing": null
+  "Runtime Security": "Security"
+  "S3": "AWS"
+  "SaaS": null
+  "Scalability": null
+  "SDN": null
+  "Search": null
+  "SEO": null
+  "Serial Communication": null
+  "Service Management": null
+  "SIEM": null
+  "Signal Processing": null
+  "SMTP": null
+  "SOC": null
+  "SOC 2": "Compliance"
+  "Strategic Technology": null
+  "Strategy": null
+  "Subnetting": null
+  "Supply Chain": null
+  "Support": null
+  "Sustainability": null
+  "system-upgrade-controller": "RKE2"
+  "Team Management": null
+  "Tech": "Infrastructure"
+  "Tech Solutions": null
+  "Technology": "Infrastructure"
+  "Thanos": null
+  "Threat Detection": null
+  "Time Series Databases": null
+  "Traffic Engineering": null
+  "Tutorials": null
+  "TypeScript": null
+  "Upgrade": null
+  "Upgrades": null
+  "USB": null
+  "User Management": null
+  "Velero": "Backup & Recovery"
+  "vLLM": "AI & ML"
+  "Voice Computing": null
+  "Volumes": "Storage"
+  "Vue.js": null
+  "Vulnerability Management": null
+  "WAF": null
+  "Web Browsers": null
+  "Web Security": null
+  "WordPress": null
+  "Workflow Orchestration": null
+  "Workload Management": "Kubernetes"
+  "wsl": "Windows"
+  "ZFS": "Storage"
+
+hubs:
+  "Kubernetes":
+    - "Kubernetes"
+    - "Containers"
+    - "Container Orchestration"
+    - "Docker"
+    - "Helm"
+    - "Operators"
+    - "Multi-Cluster"
+    - "Autoscaling"
+    - "Service Mesh"
+    - "Istio"
+    - "Ingress"
+    - "etcd"
+    - "Kubernetes Certification"
+    - "Training"
+  "Rancher & RKE2":
+    - "Rancher"
+    - "RKE2"
+    - "RKE2 Training"
+    - "K3s"
+    - "Downstream RKE2 Cluster"
+    - "Upstream Rancher Cluster"
+    - "Known Good Designs"
+  "Linux & Systems":
+    - "Linux"
+    - "System Administration"
+    - "Systems Programming"
+    - "Kernel Development"
+    - "Ubuntu"
+    - "Windows"
+    - "Windows Server"
+    - "Active Directory"
+    - "PowerShell"
+    - "SSH"
+    - "Hardware"
+    - "Device Drivers"
+    - "Package Management"
+    - "Process Management"
+    - "Scripting"
+    - "Virtualization"
+    - "VMware"
+    - "eBPF"
+    - "Embedded Systems"
+    - "Real-Time Systems"
+    - "Terminal"
+    - "Concurrency"
+    - "Remote Access"
+  "Networking":
+    - "Networking"
+    - "DNS"
+    - "Load Balancers"
+    - "VPN"
+    - "Network Programming"
+    - "Segmentation"
+    - "NGINX"
+    - "Apache"
+    - "Web Servers"
+    - "gRPC"
+    - "Edge Computing"
+  "Security":
+    - "Security"
+    - "Compliance"
+    - "Container Security"
+    - "DevSecOps"
+    - "Cryptography"
+    - "TLS & Certificates"
+    - "Zero Trust"
+    - "Authentication"
+    - "Secret Management"
+    - "Penetration Testing"
+    - "Network Security"
+    - "Policy"
+  "Observability & SRE":
+    - "Observability"
+    - "Monitoring"
+    - "Logging"
+    - "Prometheus"
+    - "Grafana"
+    - "Alerting"
+    - "Tracing"
+    - "OpenTelemetry"
+    - "SRE"
+    - "Incident Response"
+    - "Troubleshooting"
+    - "Debugging"
+    - "Performance"
+    - "High Availability"
+    - "Chaos Engineering"
+  "Storage & Databases":
+    - "Storage"
+    - "Longhorn"
+    - "File Systems"
+    - "Databases"
+    - "PostgreSQL"
+    - "MySQL"
+    - "MongoDB"
+    - "Redis"
+    - "Elasticsearch"
+    - "Caching"
+    - "Backup & Recovery"
+    - "Disaster Recovery"
+    - "Data Protection"
+    - "Data Engineering"
+    - "Data Management"
+    - "Big Data"
+    - "Kafka"
+    - "Streaming"
+    - "Stream Processing"
+    - "Event Streaming"
+    - "Real-Time Analytics"
+    - "Analytics"
+  "Go & Programming":
+    - "Go"
+    - "Programming"
+    - "Python"
+    - "Rust"
+    - "Java"
+    - "JavaScript"
+    - "React"
+    - "Web Development"
+    - "Backend Engineering"
+    - "Algorithms"
+    - "Git"
+    - "GitHub"
+    - "Software Engineering"
+    - "Testing"
+    - "Best Practices"
+    - "API Design"
+    - "GraphQL"
+    - "Development"
+    - "Developer Tools"
+    - "Developer Experience"
+    - "Engineering Culture"
+    - "Career Development"
+    - "Build Systems"
+    - "Documentation"
+    - "WebAssembly"
+    - "Hugo"
+    - "Theme"
+    - "Open Source"
+  "Platform & DevOps":
+    - "DevOps"
+    - "Platform Engineering"
+    - "GitOps"
+    - "CI & CD"
+    - "Infrastructure"
+    - "Infrastructure as Code"
+    - "Terraform"
+    - "Operations"
+    - "Automation"
+    - "Configuration Management"
+    - "Deployment"
+    - "Progressive Delivery"
+    - "ArgoCD"
+    - "Flux"
+    - "Tekton"
+    - "GitHub Actions"
+    - "Harbor"
+    - "Cloud"
+    - "Cloud Native"
+    - "AWS"
+    - "Azure"
+    - "Google Cloud"
+    - "GKE"
+    - "Amazon EKS"
+    - "Cloudflare"
+    - "FinOps"
+    - "Cost Optimization"
+    - "Cost Management"
+    - "Serverless"
+    - "Microservices"
+    - "Distributed Systems"
+    - "Architecture"
+    - "Migration"
+    - "Multi-Tenancy"
+    - "Resource Management"
+    - "Production Engineering"
+    - "Self-Hosting"
+    - "Email"
+    - "Event-Driven Architecture"
+    - "Messaging"
+  "AI & ML":
+    - "AI & ML"
+    - "MLOps"
+    - "AI Infrastructure"
+    - "GPU Computing"
+    - "NVIDIA"
