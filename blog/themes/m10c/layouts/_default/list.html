@@ -27,7 +27,7 @@
           <span aria-hidden="true">&middot;</span>
           <span>{{ if .ReadingTime }}{{ .ReadingTime }} min read{{ else }}1 min read{{ end }}</span>
         </div>
-        <p class="posts-list-item-summary">{{ .Summary | plainify | truncate 180 }}</p>
+        <p class="posts-list-item-summary">{{ partial "plain-summary.html" . | truncate 180 }}</p>
         {{ with .GetTerms "categories" }}
         <ul class="term-list" aria-label="Categories">
           {{ range first 2 . }}<li><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></li>{{ end }}

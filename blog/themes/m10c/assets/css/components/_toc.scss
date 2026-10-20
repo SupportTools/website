@@ -1,0 +1,120 @@
+// Table of contents (layouts/_default/single.html). Rendered twice from the
+// same markup: a collapsed <details> above the article on narrow screens and a
+// sticky sidebar on wide ones. display: none keeps only one in the
+// accessibility tree at a time. enhance.js marks the active sidebar link with
+// aria-current="location".
+
+$toc-wide: 72rem;
+
+.post-content :is(h2, h3, h4, h5, h6) {
+  scroll-margin-top: 1rem;
+}
+
+.post-toc {
+  margin: 0 0 var(--space-7);
+  padding: var(--space-4) var(--space-5);
+  background: var(--color-code-surface);
+  border: 1px solid var(--color-border);
+}
+
+.post-toc summary {
+  min-height: 2rem;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.post-toc nav {
+  margin-top: var(--space-3);
+}
+
+.post-toc ul {
+  margin-bottom: var(--space-2);
+}
+
+.toc-sidebar {
+  display: none;
+}
+
+@media (min-width: $toc-wide) {
+  .post-toc {
+    display: none;
+  }
+
+  .post-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 70ch) 16rem;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  // The sidebar comes first in the DOM so keyboard users reach it before the
+  // article body; the grid places it in the right-hand column.
+  .post-main {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .toc-sidebar {
+    display: block;
+    grid-column: 2;
+    grid-row: 1;
+    position: sticky;
+    top: 1.5rem;
+    max-height: calc(100vh - 3rem);
+    overflow: auto;
+    font-size: 0.9rem;
+    border-left: 1px solid var(--color-border);
+  }
+
+  .toc-sidebar-title {
+    margin: 0 0 var(--space-2);
+    padding-left: var(--space-4);
+    color: var(--color-muted);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .toc-sidebar ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .toc-sidebar ul ul a {
+    padding-left: calc(var(--space-4) + var(--space-4));
+  }
+
+  .toc-sidebar a {
+    display: block;
+    margin-left: -1px;
+    padding: var(--space-1) var(--space-2) var(--space-1) var(--space-4);
+    color: var(--color-muted);
+    text-decoration: none;
+    border-left: 3px solid transparent;
+  }
+
+  .toc-sidebar a:hover {
+    color: var(--color-ink);
+    text-decoration: underline;
+  }
+
+  // The sidebar scrolls, so an outset ring would be clipped at its edges.
+  .toc-sidebar a:focus-visible {
+    outline-offset: -3px;
+  }
+
+  .toc-sidebar a[aria-current="location"] {
+    color: var(--color-ink);
+    font-weight: 600;
+    border-left-color: var(--color-lime);
+  }
+}
+
+@media print {
+  .toc-sidebar,
+  .post-toc {
+    display: none;
+  }
+}

@@ -9,7 +9,7 @@
 {{- if .IsHome -}}
 <script type="application/ld+json">{{ $siteSchema | jsonify | safeJS }}</script>
 {{- else if and .IsPage (eq .Section "post") -}}
-{{- $description := .Description | default (.Summary | plainify | truncate 160) -}}
+{{- $description := .Description | default (partial "plain-summary.html" . | truncate 160) -}}
 {{- $image := index .Site.Params.images 0 | absURL -}}
 {{- with .Params.images }}{{ $image = index . 0 | absURL }}{{ end -}}
 {{- $articleSchema := dict

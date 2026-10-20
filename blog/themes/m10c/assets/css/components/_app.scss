@@ -20,6 +20,11 @@
   border-bottom: 1px solid #315442;
 }
 
+.site-header a:focus-visible,
+.site-header button:focus-visible {
+  outline-color: var(--color-header-focus);
+}
+
 .site-header-inner,
 .site-footer-inner {
   width: min(100% - 2rem, 76rem);
@@ -52,6 +57,8 @@
   width: 3.25rem;
   height: 3.25rem;
   object-fit: cover;
+  padding: 2px;
+  background: #ffffff;
   border: 2px solid #8bd6aa;
   border-radius: 50%;
 }
@@ -96,7 +103,7 @@
   font-size: 0.95rem;
   font-weight: 600;
   text-decoration: none;
-  border-bottom: 2px solid transparent;
+  border-bottom: 3px solid transparent;
   white-space: nowrap;
 }
 
@@ -105,9 +112,12 @@
   color: #ffffff;
 }
 
-.site-nav-link:hover,
-.site-nav-link[aria-current="page"] {
+.site-nav-link:hover {
   border-bottom-color: #8bd6aa;
+}
+
+.site-nav-link[aria-current="page"] {
+  border-bottom: 3px solid var(--color-lime);
 }
 
 .site-header-actions {
@@ -190,6 +200,13 @@
 .app-container > article,
 .app-container > section {
   max-width: 70ch;
+}
+
+// Wide screens: the post grid sizes its own 70ch text column plus the TOC.
+@media (min-width: 72rem) {
+  .app-container > article.post {
+    max-width: none;
+  }
 }
 
 .site-footer {

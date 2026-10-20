@@ -1,0 +1,140 @@
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&family=IBM+Plex+Mono:wght@400&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&family=Source+Sans+3:wght@400;600;700&family=JetBrains+Mono:wght@400&display=swap">
+<style>
+  .dir { margin-bottom: 2.5rem; }
+  .pair { display: grid; grid-template-columns: 1fr 1fr; border-radius: 8px; overflow: hidden; border: 1px solid #8884; }
+  @media (max-width: 900px) { .pair { grid-template-columns: 1fr; } }
+  .pg { font-size: 15px; line-height: 1.6; background: var(--bg); color: var(--ink); }
+  .pg .top { display:flex; justify-content:space-between; align-items:center; padding: 10px 22px; background: var(--hdbg); border-bottom: var(--hdline); font-size:13px; }
+  .pg .brand { display:flex; align-items:center; gap:10px; font-weight:700; color: var(--hdink); font-family: var(--head); font-size:16px; }
+  .pg .brand img { width:38px; height:38px; border-radius: var(--logorad); background: var(--logobg); padding: var(--logopad); object-fit: contain; }
+  .pg .nav a { color: var(--hdmuted); margin-left:12px; text-decoration:none; }
+  .pg .nav a.on { color: var(--hdon); font-weight:600; text-decoration: underline; text-decoration-color: var(--lime); text-decoration-thickness: 3px; text-underline-offset: 6px; }
+  .pg .body { padding: 14px 22px 20px; }
+  .pg .crumb { font-size:12px; color: var(--muted); }
+  .pg h1 { font-family: var(--head); font-size: 23px; line-height:1.25; margin: 4px 0 6px; color: var(--ink); }
+  .pg .meta { font-size:12.5px; color: var(--muted); margin-bottom:12px; }
+  .pg .tag { display:inline-block; font-size:11.5px; font-weight:600; padding:1px 9px; border-radius:99px; background: var(--chip); color: var(--chipink); margin-right:4px; }
+  .pg p { margin: 0 0 10px; font-family: var(--body); }
+  .pg a.link { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+  .pg .callout { border-left: 4px solid var(--warnline); background: var(--warnbg); color: var(--ink); padding: 8px 12px; font-size: 13.5px; margin: 10px 0; border-radius: 0 4px 4px 0; }
+  .pg .callout b { color: var(--warnink); }
+  .pg pre { margin: 10px 0 0; padding: 12px 14px; background: var(--codebg); color: var(--c-text); font: 12.5px/1.55 var(--mono); border-radius: 6px; border: 1px solid var(--line); border-left: 4px solid var(--lime); overflow-x: auto; position: relative; }
+  .pg pre .copy { position:absolute; top:6px; right:8px; font: 11px var(--body); color: var(--muted); border:1px solid var(--line); border-radius:4px; padding:1px 7px; background: var(--bg); }
+  .pg pre .lang { position:absolute; top:6px; right:62px; font: 11px var(--body); color: var(--muted); }
+  .k{color:var(--c-kw)} .s{color:var(--c-str)} .f{color:var(--c-fn)} .c{color:var(--c-com);font-style:italic} .n{color:var(--c-num)}
+  .pg .btn { display:inline-block; margin-top:12px; font: 600 13px var(--body); padding: 6px 14px; border-radius: 6px; background: var(--btnbg); color: var(--btnink); }
+  .pg .focusdemo { margin-top: 10px; font-size: 12.5px; color: var(--muted); }
+  .pg .focusdemo span { outline: 3px solid var(--focus); outline-offset: 2px; color: var(--accent); padding: 0 3px; border-radius: 3px; }
+  .swatches { display:flex; gap:6px; flex-wrap:wrap; margin: 6px 0 10px; }
+  .swatches span { font: 11px monospace; padding: 4px 8px; border-radius: 4px; border:1px solid #8884; }
+
+  /* shared syntax + text tokens (all verified AA) */
+  .l { --c-text:#1c2b1e; --c-kw:#9f1d4f; --c-str:#1d5c2e; --c-fn:#5b3cc4; --c-com:#55665a; --c-num:#0b5394;
+       --warnbg:#fdf6e3; --warnline:#a16207; --warnink:#7c4a03; }
+  .d { --c-text:#dfe9e1; --c-kw:#ff8fb3; --c-str:#a6dd6b; --c-fn:#c4b5fd; --c-com:#93a596; --c-num:#8cc8ff;
+       --warnbg:#2a2412; --warnline:#e0b04a; --warnink:#f3d38a; }
+
+  /* G1: Bean Green, light header. Lime is a brand color for bars, borders, chips. Text greens are darker. */
+  .G1.l { --bg:#fbfcf8; --ink:#14210f; --muted:#4a5a45; --line:#dde5d6; --accent:#2e6b0e; --lime:#60a818; --chip:#e7f3d9; --chipink:#285e0c; --codebg:#f1f5ec; --focus:#2e6b0e;
+          --hdbg:#fbfcf8; --hdline:4px solid #60a818; --hdink:#14210f; --hdmuted:#4a5a45; --hdon:#14210f; --btnbg:#2e6b0e; --btnink:#ffffff;
+          --logobg:transparent; --logopad:0; --logorad:0;
+          --head:'Source Serif 4',serif; --body:'Source Sans 3',sans-serif; --mono:'JetBrains Mono',monospace; }
+  .G1.d { --bg:#0f1610; --ink:#e4ede0; --muted:#a6b8a0; --line:#2b3a2b; --accent:#8fd14f; --lime:#60a818; --chip:#1f3315; --chipink:#b9e68a; --codebg:#161f17; --focus:#8fd14f;
+          --hdbg:#0f1610; --hdline:4px solid #60a818; --hdink:#e4ede0; --hdmuted:#a6b8a0; --hdon:#e4ede0; --btnbg:#8fd14f; --btnink:#0f1a08;
+          --logobg:transparent; --logopad:0; --logorad:0;
+          --head:'Source Serif 4',serif; --body:'Source Sans 3',sans-serif; --mono:'JetBrains Mono',monospace; }
+
+  /* G2: Forest Header. Deep green header band like today's, light reading area, lime highlights. */
+  .G2.l { --bg:#ffffff; --ink:#111a12; --muted:#4b5a4d; --line:#e1e7e0; --accent:#2e6b0e; --lime:#60a818; --chip:#eaf4df; --chipink:#285e0c; --codebg:#f4f7f1; --focus:#2e6b0e;
+          --hdbg:#10261b; --hdline:0; --hdink:#ffffff; --hdmuted:#c3d6c8; --hdon:#ffffff; --btnbg:#2e6b0e; --btnink:#ffffff;
+          --logobg:#ffffff; --logopad:2px; --logorad:50%;
+          --head:'IBM Plex Sans',sans-serif; --body:'IBM Plex Sans',sans-serif; --mono:'IBM Plex Mono',monospace; }
+  .G2.d { --bg:#0e1511; --ink:#e3ece5; --muted:#a3b5a7; --line:#2a3a2f; --accent:#8fd14f; --lime:#60a818; --chip:#1f3315; --chipink:#b9e68a; --codebg:#151f18; --focus:#8fd14f;
+          --hdbg:#07100b; --hdline:0; --hdink:#ffffff; --hdmuted:#b4c8b9; --hdon:#ffffff; --btnbg:#8fd14f; --btnink:#0f1a08;
+          --logobg:#ffffff; --logopad:2px; --logorad:50%;
+          --head:'IBM Plex Sans',sans-serif; --body:'IBM Plex Sans',sans-serif; --mono:'IBM Plex Mono',monospace; }
+
+  /* G3: Lime Forward. Lime used boldly as button and chip fills with dark text on top. */
+  .G3.l { --bg:#f7f9f4; --ink:#10200a; --muted:#495843; --line:#d9e2d2; --accent:#285e0c; --lime:#60a818; --chip:#60a818; --chipink:#10200a; --codebg:#eef3e8; --focus:#285e0c;
+          --hdbg:#f7f9f4; --hdline:1px solid #d9e2d2; --hdink:#10200a; --hdmuted:#495843; --hdon:#10200a; --btnbg:#60a818; --btnink:#10200a;
+          --logobg:#60a818; --logopad:3px; --logorad:10px;
+          --head:'Source Sans 3',sans-serif; --body:'Source Sans 3',sans-serif; --mono:'JetBrains Mono',monospace; }
+  .G3.d { --bg:#11170e; --ink:#e6eedf; --muted:#a8b8a0; --line:#2c3a26; --accent:#a6dd6b; --lime:#60a818; --chip:#60a818; --chipink:#10200a; --codebg:#182114; --focus:#a6dd6b;
+          --hdbg:#11170e; --hdline:1px solid #2c3a26; --hdink:#e6eedf; --hdmuted:#a8b8a0; --hdon:#e6eedf; --btnbg:#60a818; --btnink:#10200a;
+          --logobg:#60a818; --logopad:3px; --logorad:10px;
+          --head:'Source Sans 3',sans-serif; --body:'Source Sans 3',sans-serif; --mono:'JetBrains Mono',monospace; }
+</style>
+
+<h2>Keeping your green and your logo</h2>
+<p class="subtitle">Your bean's lime green (<code>#60a818</code>) only reaches 2.95:1 on white, so it can't be used for body text or links. In each option below, lime is the brand color for bars, borders, chips, and buttons. Text and links use darker greens from the same family (5–10:1). Light mode is on the left, dark on the right.</p>
+
+<div class="swatches">
+  <span style="background:#60a818;color:#10200a">#60a818 bean lime</span>
+  <span style="background:#2e6b0e;color:#fff">#2e6b0e link green</span>
+  <span style="background:#285e0c;color:#fff">#285e0c deep green</span>
+  <span style="background:#10261b;color:#fff">#10261b forest (today's header)</span>
+  <span style="background:#8fd14f;color:#0f1a08">#8fd14f dark-mode green</span>
+</div>
+
+<div class="options">
+
+<div class="option dir" data-choice="g1" onclick="toggleSelect(this)">
+  <div class="letter">1</div>
+  <div class="content" style="width:100%">
+    <h3>Bean Green: light header with a lime rule</h3>
+    <p>Calm and bookish. Serif headings, the bean sitting plainly in a light header, and a thick lime line under it. Lime shows up as accents only.</p>
+    <div class="pair"><div class="pg G1 l"></div><div class="pg G1 d"></div></div>
+  </div>
+</div>
+
+<div class="option dir" data-choice="g2" onclick="toggleSelect(this)">
+  <div class="letter">2</div>
+  <div class="content" style="width:100%">
+    <h3>Forest Header: today's dark green band, refreshed</h3>
+    <p>Closest to the current site. A deep forest header with the bean in a white circle, a bright reading area, and IBM Plex type.</p>
+    <div class="pair"><div class="pg G2 l"></div><div class="pg G2 d"></div></div>
+  </div>
+</div>
+
+<div class="option dir" data-choice="g3" onclick="toggleSelect(this)">
+  <div class="letter">3</div>
+  <div class="content" style="width:100%">
+    <h3>Lime Forward: the bean color front and center</h3>
+    <p>The loudest option. Lime tags and buttons with dark text on them, and the bean on a lime tile. Most playful, most "you".</p>
+    <div class="pair"><div class="pg G3 l"></div><div class="pg G3 d"></div></div>
+  </div>
+</div>
+
+</div>
+
+<h3 style="margin-top:2rem">Which logo is the one you mean?</h3>
+<p class="subtitle">The site header uses the bean today. <code>static/images/logo.png</code> (the gold "M" chip) is what search engines and social cards see. Click the one that should lead.</p>
+<div class="options">
+  <div class="option" data-choice="logo-bean" onclick="toggleSelect(this)"><div class="letter">B</div><div class="content"><img src="/files/bean.png" alt="Green bean avatar with pixel sunglasses" width="80" height="80"><h3>The bean</h3></div></div>
+  <div class="option" data-choice="logo-chip" onclick="toggleSelect(this)"><div class="letter">M</div><div class="content"><img src="/files/chip.png" alt="Gold M on a circuit-board chip" width="80" height="80"><h3>The chip "M"</h3></div></div>
+  <div class="option" data-choice="logo-both" onclick="toggleSelect(this)"><div class="letter">+</div><div class="content"><h3>Both</h3><p>The bean in the header, the chip for social and search cards (or the reverse).</p></div></div>
+</div>
+
+<template id="post">
+  <div class="top"><span class="brand"><img src="/files/bean.png" alt="">Support Tools</span><span class="nav"><a class="on" href="#">Posts</a><a href="#">Training</a><a href="#">Search</a><a href="#">About</a></span></div>
+  <div class="body">
+  <div class="crumb">Home / Posts / Longhorn</div>
+  <h1>Longhorn Degraded Volumes: Rebuild Retry Count Exhausted</h1>
+  <div class="meta">Oct 12, 2026 · 9 min read · <span class="tag">longhorn</span><span class="tag">kubernetes</span></div>
+  <p>When a replica fails to rebuild too many times, Longhorn stops trying and the volume stays <a class="link" href="#">degraded</a>. Here's how to find the stuck replica and reset it safely.</p>
+  <div class="callout"><b>Warning:</b> do not delete the last healthy replica. Check the replica count first.</div>
+<pre><span class="lang">bash</span><span class="copy">Copy</span><span class="c"># List degraded volumes and their robustness</span>
+<span class="f">kubectl</span> -n longhorn-system get volumes.longhorn.io \
+  -o <span class="s">'custom-columns=NAME:.metadata.name,STATE:.status.robustness'</span>
+
+<span class="k">for</span> r <span class="k">in</span> $(<span class="f">kubectl</span> get replicas -l <span class="s">"longhornvolume=$VOL"</span> -o name); <span class="k">do</span>
+  <span class="f">kubectl</span> patch <span class="s">"$r"</span> --type merge -p <span class="s">'{"spec":{"rebuildRetryCount":</span><span class="n">0</span><span class="s">}}'</span>
+<span class="k">done</span></pre>
+  <span class="btn">Read the Longhorn series →</span>
+  <div class="focusdemo">Keyboard focus looks like: <span>this link</span></div>
+  </div>
+</template>
+<script>
+  const t = document.getElementById('post').innerHTML;
+  document.querySelectorAll('.pg').forEach(el => el.innerHTML = t);
+</script>

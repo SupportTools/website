@@ -1,0 +1,109 @@
+// Chroma token colors (markup.highlight.noClasses = false). Colors come from
+// the --syntax-* tokens in _base.scss so light and dark stay in sync.
+
+.chroma {
+  color: var(--syntax-text);
+  background: var(--color-code-surface);
+}
+
+// Keywords
+.chroma .k,
+.chroma .kc,
+.chroma .kd,
+.chroma .kn,
+.chroma .kp,
+.chroma .kr,
+.chroma .kt,
+.chroma .nt,
+.chroma .ow {
+  color: var(--syntax-kw);
+}
+
+// Strings
+.chroma .s,
+.chroma .sa,
+.chroma .sb,
+.chroma .sc,
+.chroma .dl,
+.chroma .sd,
+.chroma .s2,
+.chroma .se,
+.chroma .sh,
+.chroma .si,
+.chroma .sx,
+.chroma .sr,
+.chroma .s1,
+.chroma .ss {
+  color: var(--syntax-str);
+}
+
+// Names
+.chroma .nf,
+.chroma .fm,
+.chroma .nc,
+.chroma .nb,
+.chroma .bp,
+.chroma .nd,
+.chroma .ne,
+.chroma .nx,
+.chroma .na,
+.chroma .nl,
+.chroma .nn {
+  color: var(--syntax-fn);
+}
+
+// Comments
+.chroma .c,
+.chroma .ch,
+.chroma .cm,
+.chroma .c1,
+.chroma .cs,
+.chroma .cp,
+.chroma .cpf {
+  color: var(--syntax-com);
+  font-style: italic;
+}
+
+// Literals
+.chroma .m,
+.chroma .mb,
+.chroma .mf,
+.chroma .mh,
+.chroma .mi,
+.chroma .il,
+.chroma .mo,
+.chroma .no {
+  color: var(--syntax-num);
+}
+
+// Line numbers
+.chroma .ln,
+.chroma .lnt {
+  color: var(--color-muted);
+  user-select: none;
+}
+
+// Chroma flags unlexable input as an error; keep the text color, no red box.
+.chroma .err {
+  color: inherit;
+  background: none;
+}
+
+// Line-number layouts. linenos=table renders a two-cell table that must not
+// inherit the content-table width, padding or borders. Both layouts need a gap
+// between the number and the code.
+.chroma .lntable {
+  width: auto;
+  margin: 0;
+  border-spacing: 0;
+}
+
+.chroma .lntable td {
+  padding: 0;
+  border: 0;
+}
+
+.chroma .ln,
+.chroma .lnt {
+  margin-right: 0.75em;
+}

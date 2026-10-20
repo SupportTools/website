@@ -10,4 +10,8 @@ tags: {{ . | jsonify }}
 {{- end }}
 ---
 
-{{ .RenderShortcodes }}
+{{ with .Params.quick_fix }}## Quick fix
+
+{{ . }}
+
+{{ end }}{{ .RenderShortcodes }}

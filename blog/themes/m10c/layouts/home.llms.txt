@@ -15,7 +15,7 @@ Support Tools is Matthew Mattox's technical publication about production infrast
 ## Recent articles
 
 {{ range first 50 (where .Site.RegularPages.ByPublishDate.Reverse "Section" "post") -}}
-- [{{ .LinkTitle }}]({{ .Permalink }}): {{ .Summary | plainify | htmlUnescape | truncate 180 }}
+- [{{ .LinkTitle }}]({{ .Permalink }}): {{ partial "plain-summary.html" . | truncate 180 }}
 {{ end }}
 
 ## Popular categories

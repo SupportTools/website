@@ -37,7 +37,19 @@
 .post-content .highlight > div {
   padding: var(--space-4) var(--space-5);
   background: var(--color-code-surface);
-  border-left: 0.3rem solid var(--color-accent);
+  border-left: 0.3rem solid var(--color-lime);
+}
+
+// Line-number tables (linenos=table) scroll inside their wrapper.
+.post-content .highlight > div {
+  overflow-x: auto;
+}
+
+// Markdown tables (render-table.html) scroll inside their wrapper instead of
+// widening the page.
+.post-content .table-scroll {
+  margin: 0 0 1.15rem;
+  overflow-x: auto;
 }
 
 .post-content img {
@@ -55,29 +67,10 @@
 
 .post-meta > div {
   display: inline-flex;
+  flex-wrap: wrap;
   align-items: center;
+  min-width: 0;
   gap: var(--space-2);
-}
-
-.post-toc {
-  margin: 0 0 var(--space-7);
-  padding: var(--space-4) var(--space-5);
-  background: var(--color-code-surface);
-  border: 1px solid var(--color-border);
-}
-
-.post-toc summary {
-  min-height: 2rem;
-  cursor: pointer;
-  font-weight: 700;
-}
-
-.post-toc nav {
-  margin-top: var(--space-3);
-}
-
-.post-toc ul {
-  margin-bottom: var(--space-2);
 }
 
 .post-footer {

@@ -7,8 +7,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="author" content="{{ .Site.Params.author }}" />
   <meta name="description"
-    content="{{ if .IsHome }}{{ .Site.Params.description }}{{ else }}{{ .Description | default .Summary | plainify | truncate 160 }}{{ end }}" />
-  <meta name="theme-color" content="#f6f7f3" />
+    content="{{ if .IsHome }}{{ .Site.Params.description }}{{ else }}{{ .Description | default (partial "plain-summary.html" .) | truncate 160 }}{{ end }}" />
+  <meta name="theme-color" content="#ffffff" />
   <script>
     (function () {
       document.documentElement.classList.add('js');
@@ -35,7 +35,7 @@
   <!-- Publication typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&amp;family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&amp;family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;display=swap" rel="stylesheet" />
 
   <!-- Styles -->
   {{ $styleVars := dict
@@ -190,7 +190,7 @@
         button.setAttribute('aria-label', 'Use ' + nextTheme + ' theme');
         button.setAttribute('title', 'Use ' + nextTheme + ' theme');
         button.querySelector('.theme-toggle-label').textContent = label;
-        if (themeColor) themeColor.setAttribute('content', dark ? '#0f1712' : '#f6f7f3');
+        if (themeColor) themeColor.setAttribute('content', dark ? '#0e1511' : '#ffffff');
       }
 
       button.addEventListener('click', function () {
@@ -211,6 +211,9 @@
       updateControl();
     }());
   </script>
+  <div id="copy-status" class="visually-hidden" role="status" aria-live="polite" aria-atomic="true" data-pagefind-ignore></div>
+  {{ $js := resources.Get "js/enhance.js" | js.Build (dict "format" "esm" "minify" true) | fingerprint }}
+  <script type="module" src="{{ $js.RelPermalink }}"></script>
 </body>
 
 </html>

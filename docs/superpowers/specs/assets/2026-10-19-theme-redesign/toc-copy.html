@@ -1,0 +1,229 @@
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap">
+<style>
+  .fh { --bg:#ffffff; --ink:#111a12; --muted:#4b5a4d; --line:#e1e7e0; --accent:#2e6b0e; --lime:#60a818; --chip:#eaf4df; --chipink:#285e0c; --codebg:#f4f7f1; --focus:#2e6b0e;
+        --c-text:#1c2b1e; --c-kw:#9f1d4f; --c-str:#1d5c2e; --c-fn:#5b3cc4; --c-com:#55665a; --c-num:#0b5394;
+        font: 14.5px/1.6 'IBM Plex Sans', sans-serif; color: var(--ink); background: var(--bg); border:1px solid #8884; border-radius:8px; overflow:hidden; }
+  .fh .hd { display:flex; align-items:center; gap:10px; background:#10261b; color:#fff; padding:8px 16px; font-weight:700; }
+  .fh .hd img { width:30px; height:30px; border-radius:50%; background:#fff; padding:2px; }
+  .fh .hd .nav { margin-left:auto; font-weight:400; font-size:12.5px; color:#c3d6c8; }
+  .fh .scroll { height: 430px; overflow-y: auto; position: relative; scroll-behavior: smooth; }
+  .fh .wrap { padding: 14px 18px 40px; }
+  .fh h1 { font-size: 20px; line-height:1.25; margin: 0 0 4px; }
+  .fh h2 { font-size: 16px; margin: 18px 0 6px; scroll-margin-top: 8px; }
+  .fh p { margin: 0 0 8px; }
+  .fh .meta { font-size:12px; color:var(--muted); margin-bottom:10px; }
+  .fh a { color: var(--accent); }
+  .fh :focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; border-radius: 3px; }
+  .k{color:var(--c-kw)} .s{color:var(--c-str)} .f{color:var(--c-fn)} .c{color:var(--c-com);font-style:italic} .n{color:var(--c-num)}
+  .out { color: var(--muted); }
+  .prompt { color: var(--muted); user-select: none; }
+
+  /* ---------- TOC variants ---------- */
+  .t1 .grid { display:grid; grid-template-columns: 1fr 170px; gap: 18px; }
+  .t1 .side { position: sticky; top: 10px; align-self: start; font-size: 12.5px; border-left: 2px solid var(--line); padding-left: 10px; }
+  .t1 .side b { display:block; font-size:11px; letter-spacing:.06em; text-transform:uppercase; color: var(--muted); margin-bottom:4px; }
+  .t1 .side a { display:block; color: var(--muted); text-decoration:none; padding: 2px 0 2px 8px; margin-left:-12px; border-left: 3px solid transparent; }
+  .t1 .side a.active { color: var(--ink); font-weight:600; border-left-color: var(--lime); }
+
+  .t2 .box { border:1px solid var(--line); border-left:4px solid var(--lime); background: var(--codebg); padding: 10px 14px; margin: 6px 0 14px; border-radius: 0 6px 6px 0; }
+  .t2 .box b { font-size: 12px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+  .t2 .box ol { margin: 4px 0 0; padding-left: 20px; columns: 2; font-size: 13px; }
+  .t2 .quick { border:1px solid #2e6b0e55; background:#eaf4df; padding: 10px 14px; border-radius: 6px; margin-bottom: 10px; }
+  .t2 .quick b { color:#285e0c; }
+
+  .t3 .fab { position: sticky; bottom: 10px; float: right; margin-right: 6px; background:#10261b; color:#fff; border:0; border-radius: 99px; padding: 7px 14px; font: 600 12.5px 'IBM Plex Sans'; cursor:pointer; box-shadow: 0 2px 8px #0004; }
+  .t3 .sheet { position: sticky; bottom: 48px; float:right; clear:right; width: 230px; background:#fff; border:1px solid var(--line); border-radius: 8px; box-shadow: 0 6px 24px #0003; padding: 10px 12px; font-size: 13px; display:none; }
+  .t3 .sheet.open { display:block; }
+  .t3 .sheet a { display:block; padding: 3px 0; text-decoration:none; }
+  .t3 .bar { position: sticky; top: 0; height: 3px; background: var(--line); z-index: 2; }
+  .t3 .bar i { display:block; height:3px; width:0; background: var(--lime); }
+
+  /* ---------- Copy variants ---------- */
+  .code { position: relative; margin: 8px 0 12px; border:1px solid var(--line); border-left: 4px solid var(--lime); border-radius: 6px; background: var(--codebg); }
+  .code pre { margin:0; padding: 10px 12px; font: 12.5px/1.55 'IBM Plex Mono', monospace; color: var(--c-text); overflow-x:auto; }
+  .cbtn { font: 600 11.5px 'IBM Plex Sans'; color: var(--ink); background:#fff; border:1px solid #9aa89c; border-radius: 4px; padding: 2px 9px; cursor:pointer; }
+  .cbtn.done { background:#eaf4df; border-color:#2e6b0e; color:#285e0c; }
+  /* C1: header bar */
+  .c1 .bar { display:flex; align-items:center; gap:8px; padding: 4px 8px 4px 12px; border-bottom:1px solid var(--line); font-size: 11.5px; color: var(--muted); }
+  .c1 .bar .file { font-family:'IBM Plex Mono', monospace; color: var(--ink); }
+  .c1 .bar .cbtn { margin-left:auto; }
+  /* C2: corner button, shown on hover/focus with mouse, always on touch */
+  .c2 .cbtn { position:absolute; top:6px; right:6px; opacity:0; transition: opacity .15s; }
+  .c2 .code:hover .cbtn, .c2 .code:focus-within .cbtn, .c2 .cbtn.done { opacity:1; }
+  @media (hover: none) { .c2 .cbtn { opacity: 1; } }
+  /* C3: commands-only */
+  .c3 .bar { display:flex; gap:6px; justify-content:flex-end; padding: 4px 8px; border-bottom:1px solid var(--line); }
+  .c3 .bar .lang { margin-right:auto; font-size:11.5px; color:var(--muted); align-self:center; padding-left:4px; }
+
+  .live { position:absolute; width:1px; height:1px; overflow:hidden; clip: rect(0 0 0 0); }
+  .note { font-size: 12.5px; color: #4b5a4d; margin: 6px 2px 0; }
+</style>
+
+<h2>Finding the fix fast: table of contents</h2>
+<p class="subtitle">Each panel scrolls like a real post. Try scrolling inside it and clicking the contents links. Pick the one that works best. Mixing is fine, since an option can differ by screen size.</p>
+
+<div class="options">
+  <div class="option" data-choice="toc-sidebar" onclick="toggleSelect(this)">
+    <div class="letter">1</div>
+    <div class="content" style="width:100%">
+      <h3>Sticky sidebar that follows you</h3>
+      <p>On wide screens, the contents stay pinned to the right and highlight the section you're reading. On phones they fold into a "Contents" box at the top, as today.</p>
+      <div class="fh t1"><div class="hd"><img src="/files/bean.png" alt="">Support Tools<span class="nav">Posts · Training · Search</span></div>
+        <div class="scroll" data-spy><div class="wrap"><div class="grid"><div class="art" data-article></div>
+          <nav class="side" aria-label="On this page"><b>On this page</b><span data-toclinks></span></nav></div></div></div></div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="toc-quick" onclick="toggleSelect(this)">
+    <div class="letter">2</div>
+    <div class="content" style="width:100%">
+      <h3>"Quick fix" box plus open contents at the top</h3>
+      <p>The answer comes first: a short summary box with the key command and a link to the full steps, then an open, numbered contents list. Nothing sticky. Simplest, and works the same on every screen.</p>
+      <div class="fh t2"><div class="hd"><img src="/files/bean.png" alt="">Support Tools<span class="nav">Posts · Training · Search</span></div>
+        <div class="scroll"><div class="wrap">
+          <h1>Longhorn Degraded Volumes: Rebuild Retry Count Exhausted</h1>
+          <div class="meta">Oct 12, 2026 · 9 min read</div>
+          <div class="quick"><b>Quick fix:</b> reset <code>rebuildRetryCount</code> to 0 on the stuck replicas, then let Longhorn rebuild. <a href="#" data-jump="fix">Full steps ↓</a></div>
+          <nav class="box" aria-label="On this page"><b>On this page</b><ol data-toclinks></ol></nav>
+          <div data-article data-notitle></div>
+        </div></div></div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="toc-floating" onclick="toggleSelect(this)">
+    <div class="letter">3</div>
+    <div class="content" style="width:100%">
+      <h3>Floating "Contents" button and reading progress bar</h3>
+      <p>A thin lime bar shows how far through the post you are. A button in the corner opens the contents from anywhere on the page. Phone-friendly, and stays out of the way.</p>
+      <div class="fh t3"><div class="hd"><img src="/files/bean.png" alt="">Support Tools<span class="nav">Posts · Training · Search</span></div>
+        <div class="scroll" data-progress><div class="bar"><i></i></div><div class="wrap"><div data-article></div>
+          <div class="sheet" id="sheet" role="dialog" aria-label="Contents"><b>Contents</b><span data-toclinks></span></div>
+          <button class="fab" aria-expanded="false" aria-controls="sheet" onclick="event.stopPropagation(); const s=document.getElementById('sheet'); const o=s.classList.toggle('open'); this.setAttribute('aria-expanded', o);">☰ Contents</button>
+        </div></div></div>
+    </div>
+  </div>
+</div>
+
+<h2 style="margin-top:2.5rem">Copy buttons on code blocks</h2>
+<p class="subtitle">These really copy. Click one, then paste somewhere to see exactly what you'd get. Screen readers hear "Copied" when it works.</p>
+
+<div class="options">
+  <div class="option" data-choice="copy-header" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <div class="content" style="width:100%">
+      <h3>Header bar: language, filename, Copy</h3>
+      <p>Every block gets a slim top bar showing what it is (bash, YAML, and a filename when there is one) and an always-visible Copy button. Most discoverable.</p>
+      <div class="fh c1" style="padding:12px 14px">
+        <div class="code"><div class="bar"><span>yaml</span><span class="file">longhorn-settings.yaml</span><button class="cbtn" data-copy>Copy</button></div>
+<pre><span class="k">apiVersion</span>: longhorn.io/v1beta2
+<span class="k">kind</span>: Setting
+<span class="k">metadata</span>:
+  <span class="k">name</span>: replica-replenishment-wait-interval
+  <span class="k">namespace</span>: longhorn-system
+<span class="k">value</span>: <span class="s">"600"</span></pre></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="copy-corner" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <div class="content" style="width:100%">
+      <h3>Corner button, shown on hover</h3>
+      <p>Cleanest look. The button appears when you hover over or tab into the block, and is always visible on phones. Downside: people who don't hover may never notice it.</p>
+      <div class="fh c2" style="padding:12px 14px">
+        <div class="code"><button class="cbtn" data-copy>Copy</button>
+<pre><span class="f">kubectl</span> -n longhorn-system get volumes.longhorn.io \
+  -o <span class="s">'custom-columns=NAME:.metadata.name,STATE:.status.robustness'</span></pre></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="copy-commands" onclick="toggleSelect(this)">
+    <div class="letter">C</div>
+    <div class="content" style="width:100%">
+      <h3>Header bar plus "Copy commands only"</h3>
+      <p>Same as A, but terminal sessions that show <code>$</code> prompts and output get a second button that copies only the commands, without prompts or output, ready to paste.</p>
+      <div class="fh c3" style="padding:12px 14px">
+        <div class="code"><div class="bar"><span class="lang">terminal</span><button class="cbtn" data-copy="commands">Copy commands</button><button class="cbtn" data-copy>Copy all</button></div>
+<pre><span class="prompt">$ </span><span class="f">kubectl</span> -n longhorn-system get replicas -l longhornvolume=pvc-3f2a
+<span class="out">NAME                      STATE     NODE     FAILEDAT</span>
+<span class="out">pvc-3f2a-r-1b9c           running   node-a</span>
+<span class="out">pvc-3f2a-r-7d41           stopped   node-c   2026-10-12T04:11:09Z</span>
+<span class="prompt">$ </span><span class="f">kubectl</span> -n longhorn-system patch replica pvc-3f2a-r-7d41 --type merge -p <span class="s">'{"spec":{"rebuildRetryCount":0}}'</span>
+<span class="out">replica.longhorn.io/pvc-3f2a-r-7d41 patched</span></pre></div>
+      </div>
+    </div>
+  </div>
+</div>
+<p class="note">All three keep the fixes from the color work: AA-contrast syntax colors and a visible keyboard focus ring. Tab to a button to see it.</p>
+<div class="live" aria-live="polite" id="live"></div>
+
+<template id="article">
+  <h1 data-title>Longhorn Degraded Volumes: Rebuild Retry Count Exhausted</h1>
+  <div class="meta" data-title>Oct 12, 2026 · 9 min read</div>
+  <h2 id="symptoms">Symptoms</h2>
+  <p>The volume shows <b>Degraded</b> in the UI and never recovers. Replica events repeat "rebuild failed" and then stop.</p>
+  <p>Longhorn keeps a per-replica retry counter. Once it hits the limit, the controller stops scheduling rebuilds on purpose.</p>
+  <h2 id="diagnose">Diagnose the stuck replica</h2>
+  <p>List the volume's replicas and look for one in <code>stopped</code> with a recent <code>failedAt</code>.</p>
+  <div class="code"><pre><span class="f">kubectl</span> -n longhorn-system get replicas -l longhornvolume=<span class="s">$VOL</span></pre></div>
+  <p>Check node disk pressure before going further. Rebuilds into a full disk fail the same way.</p>
+  <h2 id="fix">Reset the retry count</h2>
+  <p>Patch the counter back to zero and Longhorn will try again on its next reconcile.</p>
+  <div class="code"><pre><span class="f">kubectl</span> -n longhorn-system patch replica <span class="s">$R</span> --type merge \
+  -p <span class="s">'{"spec":{"rebuildRetryCount":</span><span class="n">0</span><span class="s">}}'</span></pre></div>
+  <h2 id="verify">Verify the rebuild</h2>
+  <p>Watch robustness go from degraded to healthy. Large volumes can take a while.</p>
+  <p>If it fails again right away, the root cause is still there. Go back to diagnosis.</p>
+  <h2 id="prevent">Prevent it next time</h2>
+  <p>Alert on <code>longhorn_volume_robustness</code> greater than 1 for 30 minutes, and keep node disks below 80%.</p>
+  <p>Set replica anti-affinity so a single node failure can't take out two replicas.</p>
+</template>
+
+<script>
+  const art = document.getElementById('article').innerHTML;
+  const secs = [['symptoms','Symptoms'],['diagnose','Diagnose the stuck replica'],['fix','Reset the retry count'],['verify','Verify the rebuild'],['prevent','Prevent it next time']];
+  document.querySelectorAll('[data-article]').forEach((el, i) => {
+    el.innerHTML = art.replace(/id="(\w+)"/g, `id="$1-${i}"`);
+    if (el.hasAttribute('data-notitle')) el.querySelectorAll('[data-title]').forEach(n => n.remove());
+    const fh = el.closest('.fh');
+    fh.querySelectorAll('[data-toclinks]').forEach(t => {
+      secs.forEach(([id, label]) => {
+        const a = document.createElement('a'); a.href = '#'; a.textContent = label; a.dataset.target = `${id}-${i}`;
+        if (t.tagName === 'OL') { const li = document.createElement('li'); li.appendChild(a); t.appendChild(li); } else t.appendChild(a);
+      });
+    });
+    fh.querySelectorAll('[data-jump]').forEach(a => a.dataset.target = `${a.dataset.jump}-${i}`);
+  });
+  // in-panel navigation (keeps the outer page from jumping)
+  document.querySelectorAll('[data-target]').forEach(a => a.addEventListener('click', e => {
+    e.preventDefault(); e.stopPropagation();
+    const t = document.getElementById(a.dataset.target); const sc = t.closest('.scroll');
+    sc.scrollTop = t.offsetTop - 6; const s = document.getElementById('sheet'); if (a.closest('#sheet')) s.classList.remove('open');
+  }));
+  // scroll-spy for option 1
+  document.querySelectorAll('[data-spy]').forEach(sc => {
+    const links = [...sc.querySelectorAll('.side a')];
+    const spy = () => { let cur = links[0]; links.forEach(a => { if (document.getElementById(a.dataset.target).offsetTop - sc.scrollTop < 60) cur = a; }); links.forEach(a => a.classList.toggle('active', a === cur)); };
+    sc.addEventListener('scroll', spy); spy();
+  });
+  // progress bar for option 3
+  document.querySelectorAll('[data-progress]').forEach(sc => sc.addEventListener('scroll', () => {
+    sc.querySelector('.bar i').style.width = (100 * sc.scrollTop / (sc.scrollHeight - sc.clientHeight)) + '%';
+  }));
+  // copy buttons (falls back to execCommand because this page is served over plain http)
+  function copyText(txt) {
+    if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(txt);
+    const ta = document.createElement('textarea'); ta.value = txt; ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.select(); document.execCommand('copy'); ta.remove(); return Promise.resolve();
+  }
+  document.querySelectorAll('[data-copy]').forEach(b => b.addEventListener('click', e => {
+    e.stopPropagation();
+    const pre = b.closest('.code').querySelector('pre');
+    let txt = pre.innerText;
+    if (b.dataset.copy === 'commands') txt = [...pre.innerText.split('\n')].filter(l => l.startsWith('$ ')).map(l => l.slice(2)).join('\n');
+    const label = b.textContent;
+    copyText(txt).then(() => { b.textContent = 'Copied ✓'; b.classList.add('done'); document.getElementById('live').textContent = 'Copied to clipboard';
+      setTimeout(() => { b.textContent = label; b.classList.remove('done'); document.getElementById('live').textContent = ''; }, 1800); });
+  }));
+</script>

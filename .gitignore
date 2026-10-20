@@ -11,3 +11,8 @@ social-media-post/
 wrangler.log
 .dev.vars
 node_modules/
+
+# Brainstorm mockups (chosen ones preserved in docs/superpowers/specs/assets/)
+.superpowers/
+.theme-baseline-public/
+.theme-test-public/
