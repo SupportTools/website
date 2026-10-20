@@ -206,7 +206,7 @@
   "blog/content/training/k3s/0-k3s-basics.md",
   "blog/content/training/k3s/1-installation-and-ha.md",
   "blog/content/training/k3s/2-networking.md",
-  "blog/content/training/k3s/load-balanacer.md",
+  "blog/content/training/k3s/load-balancer.md",
   "blog/content/training/kubernetes-deep-dive/cloud-controllers.md",
   "blog/content/training/kubernetes-deep-dive/cluster-dns-coredns.md",
   "blog/content/training/kubernetes-deep-dive/containerd.md",

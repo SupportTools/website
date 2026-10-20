@@ -9,6 +9,7 @@ categories:
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Understanding how K3s implements its lightweight load balancer and how it enhances cluster networking."
 more_link: "yes"
+aliases: ["/training/k3s/load-balanacer/"]
 url: "/training/k3s/load-balancer/"
 ---
 

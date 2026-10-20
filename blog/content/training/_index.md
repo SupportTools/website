@@ -13,7 +13,6 @@ Explore our in-depth training resources on Kubernetes, Rancher, networking, and 
 
 - [Kubernetes Deep Dive](/training/kubernetes-deep-dive/)
 - [Rancher](/training/rancher/)
-- [RKE](/training/rke/)
 - [RKE2](/training/rke2/)
 - [RKE2 the hard way](/training/rke2-hard-way/)
 - [Longhorn](/training/longhorn/)

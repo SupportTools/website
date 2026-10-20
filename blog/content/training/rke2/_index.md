@@ -1,5 +1,6 @@
 ---
 title: "RKE2 Deep Dive"
+aliases: ["/training/rke/"]
 description: "Master RKE2, the next-generation Kubernetes distribution from Rancher."
 tags: ["Kubernetes", "RKE2", "Deep Dive", "Training"]
 categories:
