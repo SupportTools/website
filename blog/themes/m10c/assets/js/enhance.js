@@ -1,4 +1,5 @@
-// Progressive enhancement for article pages: Copy buttons on code blocks.
+// Progressive enhancement for article pages: Copy buttons on code blocks and
+// scroll-spy for the sidebar table of contents.
 
 const COPIED_MS = 2000;
 
@@ -55,10 +56,55 @@ function enhanceCodeBlocks() {
   });
 }
 
+// The active TOC entry: the first heading, in document order, that is in the
+// observed band; when none is, the previous entry stays active.
+export function pickActive(visibleIds, orderedIds, previous) {
+  for (const id of orderedIds) {
+    if (visibleIds.has(id)) return id;
+  }
+  return previous;
+}
+
+// Marks the sidebar link for the current section with aria-current. It does
+// not move focus, write history, or announce anything.
+function enhanceToc() {
+  const sidebar = document.querySelector('.toc-sidebar');
+  if (!sidebar || typeof IntersectionObserver === 'undefined') return;
+  const links = new Map();
+  sidebar.querySelectorAll('a[href^="#"]').forEach((link) => {
+    const id = decodeURIComponent(link.getAttribute('href').slice(1));
+    if (id && document.getElementById(id)) links.set(id, link);
+  });
+  if (!links.size) return;
+  const orderedIds = [...links.keys()];
+  const visible = new Set();
+  let active = null;
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) visible.add(entry.target.id);
+        else visible.delete(entry.target.id);
+      });
+      const next = pickActive(visible, orderedIds, active);
+      if (next === active) return;
+      if (active) links.get(active).removeAttribute('aria-current');
+      if (next) links.get(next).setAttribute('aria-current', 'location');
+      active = next;
+    },
+    { rootMargin: '0px 0px -70% 0px' },
+  );
+  orderedIds.forEach((id) => observer.observe(document.getElementById(id)));
+}
+
+function init() {
+  enhanceCodeBlocks();
+  enhanceToc();
+}
+
 if (typeof document !== 'undefined') {
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', enhanceCodeBlocks);
+    document.addEventListener('DOMContentLoaded', init);
   } else {
-    enhanceCodeBlocks();
+    init();
   }
 }

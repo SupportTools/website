@@ -48,30 +48,44 @@
     </div>
     {{- end }}
   </header>
-  {{ if and (gt .WordCount 700) (ne .TableOfContents `<nav id="TableOfContents"></nav>`) }}
-  <details class="post-toc">
-    <summary>On this page</summary>
-    {{ .TableOfContents }}
-  </details>
-  {{ end }}
-  <div class="post-content">
-    {{ replaceRE `(?s)<h1[^>]*>.*?</h1>` "" .Content 1 | safeHTML }}
-  </div>
-  <div class="post-footer">
-    {{ with .OutputFormats.Get "markdown" }}
-    <p class="agent-format-link"><a href="{{ .RelPermalink }}">View this page as Markdown</a></p>
-    {{ end }}
-    {{ if or .PrevInSection .NextInSection }}
-    <nav class="post-pagination" aria-label="More articles">
-      {{ with .NextInSection }}
-      <a href="{{ .RelPermalink }}"><span>Newer article</span><strong>{{ .LinkTitle }}</strong></a>
+  {{- $toc := replaceRE ` id="TableOfContents"` "" .TableOfContents }}
+  {{- $tocCount := len (findRE "<a href=" .TableOfContents) }}
+  {{- $showToc := ge $tocCount 3 }}
+  <div class="post-layout">
+    <div class="post-main">
+      {{/* Quick-fix slot (Task 7): reserved for the quick-fix box; renders nothing yet. */}}
+      {{ if $showToc }}
+      <details class="post-toc" data-pagefind-ignore>
+        <summary>On this page</summary>
+        {{ $toc | safeHTML }}
+      </details>
       {{ end }}
-      {{ with .PrevInSection }}
-      <a href="{{ .RelPermalink }}"><span>Older article</span><strong>{{ .LinkTitle }}</strong></a>
-      {{ end }}
+      <div class="post-content">
+        {{ replaceRE `(?s)<h1[^>]*>.*?</h1>` "" .Content 1 | safeHTML }}
+      </div>
+      <div class="post-footer">
+        {{ with .OutputFormats.Get "markdown" }}
+        <p class="agent-format-link"><a href="{{ .RelPermalink }}">View this page as Markdown</a></p>
+        {{ end }}
+        {{ if or .PrevInSection .NextInSection }}
+        <nav class="post-pagination" aria-label="More articles">
+          {{ with .NextInSection }}
+          <a href="{{ .RelPermalink }}"><span>Newer article</span><strong>{{ .LinkTitle }}</strong></a>
+          {{ end }}
+          {{ with .PrevInSection }}
+          <a href="{{ .RelPermalink }}"><span>Older article</span><strong>{{ .LinkTitle }}</strong></a>
+          {{ end }}
+        </nav>
+        {{ end }}
+        {{ template "_internal/disqus.html" . }}
+      </div>
+    </div>
+    {{ if $showToc }}
+    <nav class="toc-sidebar" aria-label="On this page" data-pagefind-ignore>
+      <p class="toc-sidebar-title" aria-hidden="true">On this page</p>
+      {{ $toc | safeHTML }}
     </nav>
     {{ end }}
-    {{ template "_internal/disqus.html" . }}
   </div>
 </article>
 {{ end }}

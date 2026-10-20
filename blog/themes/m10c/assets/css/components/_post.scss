@@ -59,27 +59,6 @@
   gap: var(--space-2);
 }
 
-.post-toc {
-  margin: 0 0 var(--space-7);
-  padding: var(--space-4) var(--space-5);
-  background: var(--color-code-surface);
-  border: 1px solid var(--color-border);
-}
-
-.post-toc summary {
-  min-height: 2rem;
-  cursor: pointer;
-  font-weight: 700;
-}
-
-.post-toc nav {
-  margin-top: var(--space-3);
-}
-
-.post-toc ul {
-  margin-bottom: var(--space-2);
-}
-
 .post-footer {
   margin-top: var(--space-7);
   padding-top: var(--space-6);
