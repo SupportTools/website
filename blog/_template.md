@@ -12,6 +12,15 @@ description: "TEMPLATE"  # Add a brief description
 more_link: "yes"
 url: "/template/"  # Adjust as per the content
 # quick_fix: "One or two sentences with the exact command and the version it applies to"  # Optional: renders a Quick fix box at the top of the post
+# Design guides only (all optional; the Applicability panel renders when applies_to or last_validated is set):
+# applies_to:  # Versions the guide was tested with; keys: rancher, kubernetes, rke2, os, or charts (a map of chart: version)
+#   rancher: "2.9.x"
+#   kubernetes: "1.30"
+#   charts:
+#     cert-manager: "1.15"
+# last_validated: 2025-01-15  # Date the steps were last run end to end; a badge appears when older than 12 months
+# scope: "Single site, three nodes, no HA control plane"  # What the guide covers and what it does not
+# feedback_url: "https://github.com/supporttools/website/issues/new"  # Overrides params.feedbackUrl for this guide
 ---
 
 TEMPLATE CONTENT

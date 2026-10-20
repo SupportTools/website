@@ -10,6 +10,14 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Guide to provisioning an RKE2 cluster on custom VMs created outside Rancher."
 more_link: "yes"
 url: "/known-good-designs/downstream-rke2-cluster/rke2-custom-vms/"
+# owner: verify values
+applies_to:
+  rancher: "2.9.x"
+  rke2: "v1.30"
+  kubernetes: "1.30"
+  os: "Ubuntu 22.04"
+last_validated: 2024-12-17
+scope: "RKE2 on custom VMs registered to an existing Rancher server."
 ---
 
 This guide demonstrates how to provision an RKE2 cluster on custom VMs that are created and configured outside Rancher, and then import the cluster into Rancher for centralized management.

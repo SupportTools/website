@@ -52,6 +52,7 @@
     </div>
     {{- end }}
   </header>
+  {{- partial "applicability.html" . }}
   {{- $toc := replaceRE ` id="TableOfContents"` "" .TableOfContents }}
   {{- $tocCount := len (findRE "<a href=" .TableOfContents) }}
   {{- $showToc := ge $tocCount 3 }}

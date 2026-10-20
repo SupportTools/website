@@ -10,6 +10,14 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Deploy a small RKE2 cluster with Rancher on custom on-prem servers using Helm."
 more_link: "yes"
 url: "/known-good-designs/upstream-rancher-cluster/rancher-rke2-small/"
+# owner: verify values
+applies_to:
+  rancher: "2.9.x"
+  rke2: "v1.30"
+  kubernetes: "1.30"
+  os: "Ubuntu 22.04"
+last_validated: 2024-12-17
+scope: "Three on-premises servers: two control-plane nodes and one worker. Not a high-availability design."
 ---
 
 This guide demonstrates how to deploy a small RKE2 cluster with Rancher installed, designed for on-premises environments with three pre-configured servers.

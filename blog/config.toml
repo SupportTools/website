@@ -48,6 +48,7 @@ enableRobotsTXT = true
     weight = 50
 
 [params]
+  feedbackUrl = "https://github.com/supporttools/website/issues/new"
   author = "Matthew Mattox"
   description = "Practical guides for Kubernetes, Linux, networking, observability, automation, and production infrastructure."
   avatar = "https://cdn.support.tools/profiles/avatar-centered.png"

@@ -1,0 +1,59 @@
+{{- with .Params }}
+{{- if or .applies_to .last_validated }}
+{{- $labels := dict "rancher" "Rancher" "kubernetes" "Kubernetes" "rke2" "RKE2" "os" "OS" "charts" "Charts" }}
+{{- $validated := false }}
+{{- $stale := false }}
+{{- with .last_validated }}
+{{- $validated = . | time.AsTime }}
+{{- $stale = now.After ($validated.AddDate 1 0 0) }}
+{{- end }}
+{{- $feedback := .feedback_url | default site.Params.feedbackUrl }}
+<section class="applicability" aria-labelledby="applicability-title" data-pagefind-ignore>
+  <h2 id="applicability-title" class="applicability-title">Applicability</h2>
+  <dl class="applicability-list">
+    {{- with .applies_to }}
+    <div class="applicability-row">
+      <dt>Tested with</dt>
+      <dd>
+        <ul class="applicability-versions">
+          {{- range $key, $value := . }}
+          {{- $label := index $labels $key | default (humanize $key) }}
+          {{- if reflect.IsMap $value }}
+          {{- range $name, $ver := $value }}
+          <li><span class="applicability-name">{{ $name }}</span> {{ $ver }}</li>
+          {{- end }}
+          {{- else }}
+          <li><span class="applicability-name">{{ $label }}</span> {{ $value }}</li>
+          {{- end }}
+          {{- end }}
+        </ul>
+      </dd>
+    </div>
+    {{- end }}
+    <div class="applicability-row">
+      <dt>Last validated</dt>
+      <dd>
+        {{- if $validated }}
+        <time datetime="{{ $validated.Format "2006-01-02" }}">{{ $validated.Format "Jan 2, 2006" }}</time>
+        {{- if $stale }} <span class="applicability-stale">Over 12 months ago, re-check before relying on it</span>{{ end }}
+        {{- else }}
+        Validation date not recorded
+        {{- end }}
+      </dd>
+    </div>
+    {{- with .scope }}
+    <div class="applicability-row">
+      <dt>Scope</dt>
+      <dd>{{ . }}</dd>
+    </div>
+    {{- end }}
+    {{- with $feedback }}
+    <div class="applicability-row">
+      <dt>Report an issue</dt>
+      <dd><a href="{{ . }}" rel="noopener">Tell us what no longer works</a></dd>
+    </div>
+    {{- end }}
+  </dl>
+</section>
+{{- end }}
+{{- end }}
