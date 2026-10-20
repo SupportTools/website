@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="author" content="{{ .Site.Params.author }}" />
   <meta name="description"
-    content="{{ if .IsHome }}{{ .Site.Params.description }}{{ else }}{{ .Description | default .Summary | plainify | truncate 160 }}{{ end }}" />
+    content="{{ if .IsHome }}{{ .Site.Params.description }}{{ else }}{{ .Description | default (partial "plain-summary.html" .) | truncate 160 }}{{ end }}" />
   <meta name="theme-color" content="#ffffff" />
   <script>
     (function () {
@@ -211,6 +211,9 @@
       updateControl();
     }());
   </script>
+  <div id="copy-status" class="visually-hidden" role="status" aria-live="polite" aria-atomic="true" data-pagefind-ignore></div>
+  {{ $js := resources.Get "js/enhance.js" | js.Build (dict "format" "esm" "minify" true) | fingerprint }}
+  <script type="module" src="{{ $js.RelPermalink }}"></script>
 </body>
 
 </html>

@@ -1,0 +1,3 @@
+{{- /* The page summary as plain text, without code-block header labels. */ -}}
+{{- $summary := replaceRE `<div class="code-block-header"[^>]*>[\s\S]*?</div>` "" (string .Summary) -}}
+{{- return ($summary | plainify | htmlUnescape) -}}

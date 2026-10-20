@@ -1,0 +1,16 @@
+{{- $lang := .Type -}}
+{{- $filename := .Attributes.filename | default "" -}}
+{{- $n := add .Ordinal 1 -}}
+{{- $label := printf "Copy code, block %d" $n -}}
+{{- if and $lang $filename -}}
+  {{- $label = printf "Copy %s code from %s" $lang $filename -}}
+{{- else if $lang -}}
+  {{- $label = printf "Copy %s code, block %d" $lang $n -}}
+{{- end -}}
+<div class="code-block" data-copy-label="{{ $label }}">
+  <div class="code-block-header" data-pagefind-ignore>
+    {{- with $lang }}<span class="code-block-lang">{{ . }}</span>{{ end -}}
+    {{- with $filename }}<span class="code-block-filename">{{ . }}</span>{{ end -}}
+  </div>
+  {{ transform.Highlight .Inner .Type .Options }}
+</div>

@@ -1,0 +1,72 @@
+// Fenced code blocks: header bar with language, optional filename, and a
+// JS-inserted Copy button (layouts/_default/_markup/render-codeblock.html).
+
+.code-block {
+  margin: 1.5rem 0;
+  background: var(--color-code-surface);
+  border-left: 0.3rem solid var(--color-lime);
+}
+
+.post-content .code-block .highlight {
+  margin: 0;
+}
+
+// Fences without a language skip Chroma and render a bare <pre>.
+.post-content .code-block > pre {
+  margin: 0;
+  padding: var(--space-4) var(--space-5);
+}
+
+.post-content .code-block .highlight > pre,
+.post-content .code-block .highlight > div {
+  border-left: 0;
+}
+
+.code-block-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 2.25rem;
+  padding: var(--space-1) var(--space-2) var(--space-1) var(--space-4);
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-muted);
+  font-size: 0.8rem;
+}
+
+.code-block-lang {
+  font-variant: small-caps;
+  letter-spacing: 0.04em;
+}
+
+.code-block-filename {
+  overflow-wrap: anywhere;
+  color: var(--color-ink);
+  font-family: var(--font-code);
+}
+
+.code-copy {
+  margin-left: auto;
+  padding: 0.15rem 0.6rem;
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--color-ink);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.code-copy:hover {
+  border-color: var(--color-ink);
+}
+
+.code-copy:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+@media print {
+  .code-copy {
+    display: none;
+  }
+}
