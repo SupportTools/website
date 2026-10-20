@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { contrastRatio, parseTokens, PAIRS, check } from '../../scripts/check-contrast.mjs';
+import { readFileSync } from 'node:fs';
+import { contrastRatio, parseTokens, parsePfMappings, checkPagefind, PAIRS, check } from '../../scripts/check-contrast.mjs';
 
 test('contrastRatio black on white is 21', () => {
   assert.equal(contrastRatio('#000000', '#ffffff').toFixed(2), '21.00');
@@ -68,4 +69,32 @@ test('check reports a missing token instead of throwing', () => {
   delete t.dark['syntax-kw'];
   const msgs = check(t);
   assert.ok(msgs.some((m) => m.includes('syntax-kw') && /missing/i.test(m)), msgs.join('\n'));
+});
+
+const THEME_CSS = 'blog/themes/m10c/assets/css';
+const FOREGROUND_TOKENS = ['color-ink', 'color-muted', 'color-accent'];
+
+test('parsePfMappings reads only known var() mappings', () => {
+  const m = parsePfMappings('.x { --pf-mark: var(--color-accent); --pf-font: var(--font-body); --pf-input-height: 3rem; }');
+  assert.deepEqual(m, { '--pf-mark': 'color-accent' });
+});
+
+test('checkPagefind flags a background-role token mapped to --pf-mark', () => {
+  const tokens = parseTokens(readFileSync(`${THEME_CSS}/_base.scss`, 'utf8'));
+  const mappings = parsePfMappings(readFileSync(`${THEME_CSS}/_extra.scss`, 'utf8'));
+  const msgs = checkPagefind(tokens, { ...mappings, '--pf-mark': 'color-mark-bg' });
+  assert.ok(msgs.some((x) => x.includes('color-mark-bg') && x.includes('--pf-mark') && x.includes('4.5')), msgs.join('\n'));
+});
+
+test('checkPagefind reports an unmapped role', () => {
+  const tokens = parseTokens(readFileSync(`${THEME_CSS}/_base.scss`, 'utf8'));
+  const msgs = checkPagefind(tokens, {});
+  assert.ok(msgs.some((x) => x.includes('--pf-mark') && /no var/.test(x)), msgs.join('\n'));
+});
+
+test('_extra.scss maps --pf-mark to an approved foreground token that passes AA', () => {
+  const tokens = parseTokens(readFileSync(`${THEME_CSS}/_base.scss`, 'utf8'));
+  const mappings = parsePfMappings(readFileSync(`${THEME_CSS}/_extra.scss`, 'utf8'));
+  assert.ok(FOREGROUND_TOKENS.includes(mappings['--pf-mark']), `--pf-mark -> ${mappings['--pf-mark']}`);
+  assert.deepEqual(checkPagefind(tokens, mappings), []);
 });

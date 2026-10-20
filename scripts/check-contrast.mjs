@@ -3,6 +3,7 @@ import { readFileSync } from 'node:fs';
 import { pathToFileURL } from 'node:url';
 
 const DEFAULT_SCSS = 'blog/themes/m10c/assets/css/_base.scss';
+const DEFAULT_EXTRA_SCSS = 'blog/themes/m10c/assets/css/_extra.scss';
 const HEX = /^#[0-9a-f]{6}$/;
 
 function channel(v) {
@@ -59,6 +60,46 @@ export const PAIRS = [
   ...pairs(3, 'color-header', ['color-header-focus']),
 ];
 
+export const PF_ROLES = {
+  '--pf-mark': 4.5,
+  '--pf-text': 4.5,
+  '--pf-text-secondary': 4.5,
+  '--pf-text-muted': 4.5,
+  '--pf-border': 3,
+  '--pf-border-focus': 3,
+  '--pf-outline-focus': 3,
+};
+
+export function parsePfMappings(scss) {
+  const out = {};
+  for (const m of scss.matchAll(/(--pf-[a-z0-9-]+)\s*:\s*var\(--([a-z0-9-]+)\)\s*;/gi)) {
+    if (m[1] in PF_ROLES) out[m[1]] = m[2];
+  }
+  return out;
+}
+
+export function checkPagefind(tokens, mappings) {
+  const failures = [];
+  for (const [prop, min] of Object.entries(PF_ROLES)) {
+    const token = mappings[prop];
+    if (!token) {
+      failures.push(`pagefind: ${prop} has no var(--token) mapping`);
+      continue;
+    }
+    for (const mode of ['light', 'dark']) {
+      const set = tokens[mode] || {};
+      const missing = [token, 'color-surface'].filter((t) => !set[t]);
+      if (missing.length) {
+        failures.push(`${mode}: missing token ${missing.join(', ')} (needed for ${prop} -> ${token} on color-surface)`);
+        continue;
+      }
+      const ratio = contrastRatio(set[token], set['color-surface']);
+      if (ratio < min) failures.push(`${mode}: ${token} on color-surface ${ratio.toFixed(2)} < ${min} (${prop})`);
+    }
+  }
+  return failures;
+}
+
 export function check(tokens) {
   const failures = [];
   for (const mode of ['light', 'dark']) {
@@ -85,11 +126,16 @@ export function check(tokens) {
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
   const path = process.argv[2] || DEFAULT_SCSS;
-  const failures = check(parseTokens(readFileSync(path, 'utf8')));
+  const extraPath = process.argv[3] || DEFAULT_EXTRA_SCSS;
+  const tokens = parseTokens(readFileSync(path, 'utf8'));
+  const failures = [
+    ...check(tokens),
+    ...checkPagefind(tokens, parsePfMappings(readFileSync(extraPath, 'utf8'))),
+  ];
   if (failures.length) {
-    console.error(`Contrast check failed (${failures.length}) for ${path}:`);
+    console.error(`Contrast check failed (${failures.length}) for ${path} and ${extraPath}:`);
     for (const f of failures) console.error(`  ${f}`);
     process.exit(1);
   }
-  console.log(`Contrast check passed for ${path}`);
+  console.log(`Contrast check passed for ${path} and ${extraPath}`);
 }
