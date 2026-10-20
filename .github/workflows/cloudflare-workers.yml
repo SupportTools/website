@@ -90,6 +90,9 @@ jobs:
       - name: Check heading structure
         run: npm run check:headings
 
+      - name: Check category allow-list
+        run: npm run check:categories
+
       - name: Test Hugo build
         run: |
           npm run build:hugo -- --panicOnWarning

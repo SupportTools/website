@@ -3,6 +3,7 @@ title: "TEMPLATE"
 date: 2025-01-01T00:00:00-05:00
 draft: true
 tags: ["Nvidia", "k3s"]
+# categories: choose only from blog/data/categories.yaml (max 4); add new names there deliberately
 categories:
 - Nvidia
 - k3s
