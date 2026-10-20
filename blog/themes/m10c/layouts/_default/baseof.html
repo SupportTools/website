@@ -144,7 +144,7 @@
     </div>
   </header>
 
-  <main class="app-container" id="main-content"{{ if and .IsPage (ne .Layout "search") }} data-pagefind-body{{ end }}>
+  <main class="app-container" id="main-content">
     {{ block "main" . }}
     {{ .Content }}
     {{ if .Page.Store.Get "hasMermaid" }}

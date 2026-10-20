@@ -9,12 +9,12 @@
     <span aria-current="page">{{ .Title }}</span>
   </nav>
   <header class="post-header">
-    <h1 class="post-title">{{ .Title }}</h1>
+    <h1 class="post-title" data-pagefind-meta="title">{{ .Title }}</h1>
     {{- if ne .Type "page" }}
     <div class="post-meta">
       <div>
         {{ partial "icon.html" (dict "ctx" $ "name" "calendar") }}
-        <time datetime="{{ .PublishDate.Format "2006-01-02" }}">{{ .PublishDate.Format "Jan 2, 2006" }}</time>
+        <time data-pagefind-meta="date[datetime]" datetime="{{ .PublishDate.Format "2006-01-02" }}">{{ .PublishDate.Format "Jan 2, 2006" }}</time>
       </div>
       <div>
         {{ partial "icon.html" (dict "ctx" $ "name" "clock") }}
@@ -58,7 +58,7 @@
       {{ $toc | safeHTML }}
     </nav>
     {{ end }}
-    <div class="post-main">
+    <div class="post-main" data-pagefind-body>
       {{- with .Params.quick_fix }}
       <section class="quick-fix" aria-labelledby="quick-fix-title">
         <h2 id="quick-fix-title" class="quick-fix-title">Quick fix</h2>
@@ -74,7 +74,7 @@
       <div class="post-content">
         {{ replaceRE `(?s)<h1[^>]*>.*?</h1>` "" .Content 1 | safeHTML }}
       </div>
-      <div class="post-footer">
+      <div class="post-footer" data-pagefind-ignore>
         {{ with .OutputFormats.Get "markdown" }}
         <p class="agent-format-link"><a href="{{ .RelPermalink }}">View this page as Markdown</a></p>
         {{ end }}
