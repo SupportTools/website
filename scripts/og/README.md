@@ -37,7 +37,13 @@ npm run og -- flagged                 # list + contact sheet .og-work/flagged.ht
 npm run og -- approve <slug>          # upload the flagged card as is
 npm run og -- reject <slug> [note]    # redraw; the note is passed to Codex
 npm run test:og
+scripts/og/daily-publish.sh           # commit + push new cards (deploys); cron 00:15
 ```
+
+`daily-publish.sh` stages only the manifest and posts whose sole change is an
+`images:` line, refuses to commit if a live card is not linked from its post,
+and logs to `~/.cache/og-daily-publish.log`. `OG_PUBLISH_DRY_RUN=1` checks
+without committing.
 
 ## Requirements
 
