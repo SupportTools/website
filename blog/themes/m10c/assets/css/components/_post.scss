@@ -74,6 +74,23 @@
   font-size: 0.95rem;
 }
 
+.post-header:has(+ .post-cover) .post-meta {
+  margin-bottom: var(--space-5);
+}
+
+.post-cover {
+  margin: 0 0 var(--space-7);
+}
+
+.post-cover img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1200 / 630;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+}
+
 .post-meta > div {
   display: inline-flex;
   flex-wrap: wrap;

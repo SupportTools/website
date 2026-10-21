@@ -4,7 +4,8 @@ Every post gets a unique 1200x630 share card: a Codex illustration of the
 article's subject with the short title, topic chip and support.tools mark laid
 over the left side. The card is hosted on `cdn.support.tools` and linked from the
 post's frontmatter `images` field, which feeds `og:image`, `twitter:image` and the
-JSON-LD Article `image` (and so Buffer's link previews).
+JSON-LD Article `image` (and so Buffer's link previews). The post page also shows it
+as a cover under the header (`blog/themes/m10c/layouts/_default/single.html`).
 
 Design record: `docs/superpowers/specs/2026-10-21-og-share-cards-design.md`.
 

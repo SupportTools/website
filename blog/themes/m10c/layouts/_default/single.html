@@ -52,6 +52,12 @@
     </div>
     {{- end }}
   </header>
+  {{- with .Params.images }}{{ with index . 0 }}
+  <figure class="post-cover">
+    {{- /* Share card (scripts/og): 1200x630, title already in the h1, so decorative. */}}
+    <img src="{{ . }}" alt="" width="1200" height="630" fetchpriority="high" decoding="async">
+  </figure>
+  {{- end }}{{ end }}
   {{- partial "applicability.html" . }}
   {{- $toc := replaceRE ` id="TableOfContents"` "" .TableOfContents }}
   {{- $tocCount := len (findRE "<a href=" .TableOfContents) }}
