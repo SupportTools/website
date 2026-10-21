@@ -74,12 +74,12 @@
   font-size: 0.95rem;
 }
 
-.post-header:has(+ .post-cover) .post-meta {
+.post:has(.post-cover) .post-meta {
   margin-bottom: var(--space-5);
 }
 
 .post-cover {
-  margin: 0 0 var(--space-7);
+  margin: 0 0 var(--space-6);
 }
 
 .post-cover img {

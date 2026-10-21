@@ -52,12 +52,6 @@
     </div>
     {{- end }}
   </header>
-  {{- with .Params.images }}{{ with index . 0 }}
-  <figure class="post-cover">
-    {{- /* Share card (scripts/og): 1200x630, title already in the h1, so decorative. */}}
-    <img src="{{ . }}" alt="" width="1200" height="630" fetchpriority="high" decoding="async">
-  </figure>
-  {{- end }}{{ end }}
   {{- partial "applicability.html" . }}
   {{- $toc := replaceRE ` id="TableOfContents"` "" .TableOfContents }}
   {{- $tocCount := len (findRE "<a href=" .TableOfContents) }}
@@ -70,6 +64,13 @@
     </nav>
     {{ end }}
     <div class="post-main" data-pagefind-body>
+      {{- /* In the reading column so its edges match the text and the TOC starts beside it. */}}
+      {{- with .Params.images }}{{ with index . 0 }}
+      <figure class="post-cover" data-pagefind-ignore>
+        {{- /* Share card (scripts/og): 1200x630, title already in the h1, so decorative. */}}
+        <img src="{{ . }}" alt="" width="1200" height="630" fetchpriority="high" decoding="async">
+      </figure>
+      {{- end }}{{ end }}
       {{- with .Params.quick_fix }}
       <section class="quick-fix" aria-labelledby="quick-fix-title">
         <h2 id="quick-fix-title" class="quick-fix-title">Quick fix</h2>
