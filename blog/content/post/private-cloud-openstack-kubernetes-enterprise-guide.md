@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to building enterprise-grade private cloud infrastructure combining OpenStack for infrastructure as a service with Kubernetes for container orchestration, including deployment, integration, and management strategies."
 more_link: "yes"
 url: "/private-cloud-openstack-kubernetes-enterprise-guide/"
+images: ["https://cdn.support.tools/posts/private-cloud-openstack-kubernetes-enterprise-guide/og-ffd67d7a91.jpg"]
 ---
 
 Building a private cloud infrastructure that combines OpenStack's Infrastructure as a Service (IaaS) capabilities with Kubernetes' container orchestration creates a powerful, flexible platform for enterprise workloads. This comprehensive guide covers the architecture, deployment, and operational strategies for running production-grade private clouds using OpenStack and Kubernetes together.

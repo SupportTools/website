@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to on-call rotation management for enterprise teams, including scheduling strategies, burnout prevention, escalation policies, and production-ready tooling."
 more_link: "yes"
 url: "/on-call-rotation-best-practices-enterprise-guide/"
+images: ["https://cdn.support.tools/posts/on-call-rotation-best-practices-enterprise-guide/og-5de9db9dde.jpg"]
 ---
 
 Effective on-call management is critical for maintaining system reliability while preventing team burnout. This comprehensive guide covers proven strategies for building sustainable on-call rotations, from scheduling and compensation to tooling and escalation policies.

@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to automating post-mortem creation and analysis for enterprise environments, including template generation, data collection, root cause analysis automation, and action item tracking."
 more_link: "yes"
 url: "/post-mortem-template-automation-guide/"
+images: ["https://cdn.support.tools/posts/post-mortem-template-automation-guide/og-2f4ca34a33.jpg"]
 ---
 
 Post-mortems are critical for organizational learning, but manual creation is time-consuming and often incomplete. This comprehensive guide provides enterprise-grade automation for post-mortem generation, data collection, analysis, and follow-up tracking that transforms incident response into systematic improvement.

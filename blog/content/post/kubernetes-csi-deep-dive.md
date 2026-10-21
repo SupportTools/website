@@ -10,6 +10,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive guide to understanding Kubernetes Container Storage Interface (CSI), how it works, and implementing it with Azure Disk CSI driver"
 more_link: "yes"
 url: "/kubernetes-csi-deep-dive/"
+images: ["https://cdn.support.tools/posts/kubernetes-csi-deep-dive/og-1c67a85144.jpg"]
 ---
 
 Storage is a critical component in any Kubernetes environment. The Container Storage Interface (CSI) has revolutionized how storage is managed in Kubernetes, providing flexibility and standardization that the previous in-tree volume plugins couldn't match.

@@ -10,6 +10,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to implementing PCI DSS compliance for cloud-native applications, including cardholder data protection, network segmentation, and automated compliance validation in Kubernetes environments."
 more_link: "yes"
 url: "/pci-dss-compliance-cloud-native-applications-guide/"
+images: ["https://cdn.support.tools/posts/pci-dss-compliance-cloud-native-applications-guide/og-292f28fe9c.jpg"]
 ---
 
 PCI DSS compliance in cloud-native environments requires sophisticated approaches to cardholder data protection, network segmentation, and security controls that adapt to dynamic container orchestration. This guide provides enterprise-grade implementations for achieving and maintaining PCI DSS compliance in Kubernetes and microservices architectures.

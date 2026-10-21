@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to Python async performance optimization, including event loop tuning, concurrency patterns, FastAPI optimization, and production-ready async patterns for high-performance applications."
 more_link: "yes"
 url: "/python-async-performance-patterns-production-guide/"
+images: ["https://cdn.support.tools/posts/python-async-performance-patterns-production-guide/og-2adad21b68.jpg"]
 ---
 
 Master Python async performance optimization for production environments. Learn event loop tuning, concurrency patterns, memory management, FastAPI optimization techniques, and enterprise-grade async patterns for building high-performance asynchronous applications.

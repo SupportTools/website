@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to implementing Pod Security Standards (PSS) and Pod Security Admission (PSA) in enterprise Kubernetes environments with practical examples, migration strategies, and enforcement patterns."
 more_link: "yes"
 url: "/pod-security-standards-implementation-enterprise-guide/"
+images: ["https://cdn.support.tools/posts/pod-security-standards-implementation-enterprise-guide/og-1e3fd5e2c6.jpg"]
 ---
 
 Pod Security Standards (PSS) represent the modern approach to enforcing security policies in Kubernetes clusters, replacing the deprecated Pod Security Policies (PSP). This comprehensive guide provides enterprise teams with practical strategies for implementing PSS using Pod Security Admission (PSA), including migration from PSP, custom enforcement patterns, and production-ready configurations.

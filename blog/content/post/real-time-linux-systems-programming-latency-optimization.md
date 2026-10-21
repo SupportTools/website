@@ -12,6 +12,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Master real-time Linux programming for building deterministic enterprise applications. Learn RT-PREEMPT configuration, latency optimization techniques, priority inheritance, and lock-free programming for time-critical systems."
 more_link: "yes"
 url: "/real-time-linux-systems-programming-latency-optimization/"
+images: ["https://cdn.support.tools/posts/real-time-linux-systems-programming-latency-optimization/og-129f3e3a1d.jpg"]
 ---
 
 Real-time Linux systems are essential for enterprise applications requiring deterministic response times and predictable behavior. This comprehensive guide explores advanced real-time programming techniques, RT-PREEMPT kernel configuration, and optimization strategies for building time-critical enterprise systems.

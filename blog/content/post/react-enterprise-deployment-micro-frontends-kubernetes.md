@@ -21,6 +21,7 @@ keywords:
 - React state management
 - Frontend CI/CD
 - Enterprise React architecture
+images: ["https://cdn.support.tools/posts/react-enterprise-deployment-micro-frontends-kubernetes/og-421384ef07.jpg"]
 ---
 
 In the modern enterprise landscape, frontend applications have grown exponentially in complexity and scale. Traditional monolithic frontend architectures struggle to meet the demands of large development teams, independent deployments, and technology diversity. This comprehensive guide explores how to implement and deploy React micro-frontends on Kubernetes, providing production-ready patterns for enterprise environments.

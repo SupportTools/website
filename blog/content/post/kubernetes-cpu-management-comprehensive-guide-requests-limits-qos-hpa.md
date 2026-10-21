@@ -4,6 +4,7 @@ date: 2026-10-27T09:00:00-05:00
 draft: false
 categories: ["Kubernetes", "Performance", "Resource Management"]
 tags: ["Kubernetes", "CPU Management", "QoS Classes", "HPA", "Resource Requests", "Resource Limits", "Pod Scheduling", "Performance Tuning", "Cluster Optimization", "Autoscaling"]
+images: ["https://cdn.support.tools/posts/kubernetes-cpu-management-comprehensive-guide-requests-limits-qos-hpa/og-a47ea672cc.jpg"]
 ---
 
 # Complete Guide to Kubernetes CPU Management: Requests, Limits, QoS Classes, and HPA Optimization

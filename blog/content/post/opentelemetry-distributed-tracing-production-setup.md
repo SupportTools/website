@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Complete guide to implementing OpenTelemetry distributed tracing in production environments with Kubernetes, including auto-instrumentation, sampling strategies, and performance optimization."
 more_link: "yes"
 url: "/opentelemetry-distributed-tracing-production-setup/"
+images: ["https://cdn.support.tools/posts/opentelemetry-distributed-tracing-production-setup/og-f46be8910f.jpg"]
 ---
 
 Implementing distributed tracing in complex microservices environments requires a robust, vendor-neutral solution that can scale with your infrastructure. OpenTelemetry has emerged as the industry standard for observability, providing a unified approach to traces, metrics, and logs. This comprehensive guide covers production-grade OpenTelemetry deployment strategies for enterprise Kubernetes environments.

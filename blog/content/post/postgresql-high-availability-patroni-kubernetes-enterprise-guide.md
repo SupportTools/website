@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive enterprise guide to implementing PostgreSQL high availability using Patroni on Kubernetes, including StatefulSets configuration, failover scenarios, persistent volumes, monitoring strategies, and performance tuning for production environments."
 more_link: "yes"
 url: "/postgresql-high-availability-patroni-kubernetes-enterprise-guide/"
+images: ["https://cdn.support.tools/posts/postgresql-high-availability-patroni-kubernetes-enterprise-guide/og-6a2a38f1f5.jpg"]
 ---
 
 ## Executive Summary

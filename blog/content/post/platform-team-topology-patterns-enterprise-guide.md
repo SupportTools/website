@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to platform team organization patterns, interaction modes, and cognitive load management for building effective platform engineering organizations."
 more_link: "yes"
 url: "/platform-team-topology-patterns-enterprise-guide/"
+images: ["https://cdn.support.tools/posts/platform-team-topology-patterns-enterprise-guide/og-22ff3bfcc1.jpg"]
 ---
 
 Platform engineering requires thoughtful team organization to deliver effective developer experiences. Based on Team Topologies principles, this guide explores proven patterns for structuring platform teams, defining interaction modes, and managing cognitive load to build scalable platform engineering organizations.

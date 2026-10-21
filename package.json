@@ -18,7 +18,9 @@
     "check:headings": "node scripts/check-headings.mjs",
     "check:categories": "node scripts/check-categories.mjs",
     "check:paths": "node scripts/check-duplicate-paths.mjs",
-    "test:theme": "node tests/theme/build-fixtures.mjs && node --test tests/theme/*.test.mjs"
+    "test:theme": "node tests/theme/build-fixtures.mjs && node --test tests/theme/*.test.mjs",
+    "test:og": "node --test tests/og/*.test.mjs",
+    "og": "node scripts/og/run.mjs"
   },
   "devDependencies": {
     "pagefind": "1.5.2",

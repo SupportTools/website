@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to implementing Open Policy Agent Gatekeeper for enterprise Kubernetes policy enforcement, including constraint templates, mutation policies, and compliance automation."
 more_link: "yes"
 url: "/opa-gatekeeper-policy-enforcement-kubernetes-production/"
+images: ["https://cdn.support.tools/posts/opa-gatekeeper-policy-enforcement-kubernetes-production/og-5fc4cc23e4.jpg"]
 ---
 
 Open Policy Agent (OPA) Gatekeeper has become the industry standard for policy-based control in Kubernetes environments. As a CNCF graduated project, Gatekeeper extends OPA's policy-as-code capabilities with Kubernetes-native resources, providing declarative admission control that enforces organizational policies across clusters.

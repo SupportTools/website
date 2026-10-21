@@ -11,6 +11,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Master real-time data pipeline architecture using Apache Kafka and Flink for high-throughput, low-latency data processing. Learn production-ready configurations, optimization techniques, and best practices for building scalable streaming data platforms."
 more_link: "yes"
 url: "/real-time-data-pipeline-kafka-flink/"
+images: ["https://cdn.support.tools/posts/real-time-data-pipeline-kafka-flink/og-1e059fab01.jpg"]
 ---
 
 Building robust real-time data pipelines is crucial for modern data-driven organizations that need to process and analyze streaming data at scale. Apache Kafka and Apache Flink form a powerful combination for creating high-performance, fault-tolerant streaming data platforms that can handle millions of events per second with minimal latency.

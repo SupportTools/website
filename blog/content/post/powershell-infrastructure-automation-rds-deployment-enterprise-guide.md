@@ -11,6 +11,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Master PowerShell-driven infrastructure automation with comprehensive RDS deployment workflows. Complete guide to automated VM provisioning, domain controller setup, and Remote Desktop Services configuration for enterprise environments."
 more_link: "yes"
 url: "/powershell-infrastructure-automation-rds-deployment-enterprise-guide/"
+images: ["https://cdn.support.tools/posts/powershell-infrastructure-automation-rds-deployment-enterprise-guide/og-c49eaed1a8.jpg"]
 ---
 
 PowerShell infrastructure automation transforms manual server provisioning into repeatable, version-controlled deployment workflows. This comprehensive guide demonstrates enterprise-grade automation patterns for Remote Desktop Services deployment, from ISO conversion to fully configured production environments.

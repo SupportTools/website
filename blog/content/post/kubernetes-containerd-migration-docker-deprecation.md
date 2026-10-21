@@ -12,6 +12,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive guide to understanding Kubernetes' transition from Docker to containerd, with practical migration strategies, troubleshooting tips, and best practices for modern container orchestration"
 more_link: "yes"
 url: "/kubernetes-containerd-migration-docker-deprecation/"
+images: ["https://cdn.support.tools/posts/kubernetes-containerd-migration-docker-deprecation/og-d4b787e019.jpg"]
 ---
 
 Kubernetes has deprecated and removed Docker support, but this doesn't mean containers are going away. In fact, this architectural shift towards direct integration with containerd represents a significant evolution in container orchestration. This guide explores what this change means for your clusters, how to prepare, and why this transition ultimately creates a more stable and efficient Kubernetes ecosystem.

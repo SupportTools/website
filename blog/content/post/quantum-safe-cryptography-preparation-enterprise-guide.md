@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to preparing enterprise infrastructure for quantum-safe cryptography, including PQC algorithm implementation, hybrid cryptography strategies, and migration planning for post-quantum security."
 more_link: "yes"
 url: "/quantum-safe-cryptography-preparation-enterprise-guide/"
+images: ["https://cdn.support.tools/posts/quantum-safe-cryptography-preparation-enterprise-guide/og-b9be9b6537.jpg"]
 ---
 
 Enterprise organizations face an emerging threat from quantum computers capable of breaking current cryptographic algorithms. This comprehensive guide covers quantum-safe cryptography preparation, including post-quantum cryptographic (PQC) algorithm implementation, hybrid cryptography strategies, and complete migration planning for enterprise infrastructure.

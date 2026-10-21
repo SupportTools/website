@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Complete guide to deploying highly available Prometheus in production Kubernetes environments with Thanos integration, federation, and advanced alerting strategies."
 more_link: "yes"
 url: "/prometheus-high-availability-production-configuration/"
+images: ["https://cdn.support.tools/posts/prometheus-high-availability-production-configuration/og-0b09e2bb7e.jpg"]
 ---
 
 Building a highly available Prometheus monitoring infrastructure is critical for enterprise environments where monitoring downtime is unacceptable. This comprehensive guide covers production-grade Prometheus HA deployment patterns, Thanos integration for long-term storage and global querying, advanced federation strategies, and alerting configuration for resilient monitoring at scale.

@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to implementing high availability PostgreSQL clusters on Kubernetes using operators, with production-ready configurations, failover strategies, and performance optimization."
 more_link: "yes"
 url: "/postgresql-operator-high-availability-kubernetes-enterprise-guide/"
+images: ["https://cdn.support.tools/posts/postgresql-operator-high-availability-kubernetes-enterprise-guide/og-86c7f908ba.jpg"]
 ---
 
 Implementing highly available PostgreSQL clusters on Kubernetes requires careful consideration of replication, failover mechanisms, backup strategies, and operator selection. This comprehensive guide covers enterprise-grade PostgreSQL HA implementations using Kubernetes operators.

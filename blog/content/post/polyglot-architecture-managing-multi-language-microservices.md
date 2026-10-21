@@ -9,6 +9,7 @@ description: "Comprehensive guide to building and managing polyglot microservice
 toc: true
 keywords: ["polyglot microservices", "multi-language architecture", "microservices patterns", "service mesh", "distributed systems", "language selection", "enterprise architecture", "cross-language communication"]
 url: "/polyglot-architecture-managing-multi-language-microservices/"
+images: ["https://cdn.support.tools/posts/polyglot-architecture-managing-multi-language-microservices/og-7652d8dc82.jpg"]
 ---
 
 ## Introduction

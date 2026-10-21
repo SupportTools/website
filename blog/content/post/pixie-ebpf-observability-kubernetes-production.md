@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Production guide to deploying Pixie for zero-instrumentation Kubernetes observability using eBPF, providing automatic telemetry collection without code changes."
 more_link: "yes"
 url: "/pixie-ebpf-observability-kubernetes-production/"
+images: ["https://cdn.support.tools/posts/pixie-ebpf-observability-kubernetes-production/og-642e5c9bdb.jpg"]
 ---
 
 Pixie leverages eBPF technology to provide zero-instrumentation observability for Kubernetes clusters, automatically collecting telemetry data without requiring code changes or manual instrumentation. This guide covers production deployment, use cases, and integration with existing observability stacks for comprehensive cluster visibility.

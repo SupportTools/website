@@ -11,6 +11,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Master Kubernetes security with CIS Benchmarks through enterprise hardening patterns, automated compliance scanning, and comprehensive CKS exam preparation."
 more_link: "yes"
 url: "/kubernetes-cis-benchmarks-comprehensive-security-guide/"
+images: ["https://cdn.support.tools/posts/kubernetes-cis-benchmarks-comprehensive-security-guide/og-0c1b409809.jpg"]
 ---
 
 CIS Benchmarks provide the gold standard for Kubernetes security hardening, offering comprehensive guidelines that transform vulnerable clusters into fortress-like environments. This guide explores enterprise-grade implementation strategies, automated compliance workflows, and everything needed to master CIS Benchmarks for both production environments and CKS exam success.

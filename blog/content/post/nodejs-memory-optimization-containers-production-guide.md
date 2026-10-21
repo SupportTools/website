@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to Node.js memory optimization in containerized environments, including V8 heap tuning, memory leak detection, garbage collection strategies, and production monitoring for enterprise workloads."
 more_link: "yes"
 url: "/nodejs-memory-optimization-containers-production-guide/"
+images: ["https://cdn.support.tools/posts/nodejs-memory-optimization-containers-production-guide/og-e08b38eb6f.jpg"]
 ---
 
 Master Node.js memory optimization for containerized applications in Kubernetes. Learn V8 engine tuning, memory leak detection and prevention, garbage collection optimization, and production-ready monitoring strategies for high-performance Node.js deployments.

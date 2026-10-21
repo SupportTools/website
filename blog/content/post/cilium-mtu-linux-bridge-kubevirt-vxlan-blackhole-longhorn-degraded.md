@@ -11,6 +11,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Cilium with no MTU set followed a Linux bridge's MTU live. KubeVirt VM veths dragged it from 9000 to 1500, VXLAN silently dropped large packets, and Longhorn stayed degraded. Detection, fix, and the outage."
 more_link: "yes"
 url: "/cilium-mtu-linux-bridge-kubevirt-vxlan-blackhole-longhorn-degraded/"
+images: ["https://cdn.support.tools/posts/cilium-mtu-linux-bridge-kubevirt-vxlan-blackhole-longhorn-degraded/og-27e9d8bc08.jpg"]
 ---
 
 For about ten hours, roughly 45 Longhorn volumes on one of our production RKE2 clusters sat in a degraded state. Replicas flapped to `ERR`, rebuilds started and failed, and the Longhorn event stream logged more than 1,400 replica errors, nearly 800 of them in a single hour on one node. Small API calls worked. DNS worked. Health checks were green. Only bulk traffic between certain pairs of nodes was disappearing, and which pairs changed over the course of the day.
