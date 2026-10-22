@@ -1,3 +1,5 @@
+import CATEGORY_REDIRECTS from './category-redirects.json';
+
 const AGENT_POLICY = 'ai-train=no, search=yes, ai-input=yes';
 
 function addDiscoveryHeaders(response) {
@@ -55,6 +57,14 @@ export default {
       const legacyPage = url.pathname.match(/^\/page\/(\d+)\/?$/);
       if ((request.method === 'GET' || request.method === 'HEAD') && legacyPage) {
         return Response.redirect(`${url.origin}/archive/page/${legacyPage[1]}/`, 301);
+      }
+
+      // Categories merged in 2f953d21 (canonical taxonomy); send old term pages,
+      // their pagination and feeds to the category they were merged into.
+      const oldCategory = url.pathname.match(/^\/categories\/([^/]+)\//);
+      if ((request.method === 'GET' || request.method === 'HEAD') && oldCategory
+          && Object.hasOwn(CATEGORY_REDIRECTS, oldCategory[1])) {
+        return Response.redirect(`${url.origin}/categories/${CATEGORY_REDIRECTS[oldCategory[1]]}/`, 301);
       }
 
       // Serve the Hugo-generated Markdown representation to clients that ask
