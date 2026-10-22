@@ -18,6 +18,8 @@ import (
 	"testing"
 	"time"
 
+	"github.com/supporttools/website/exporters/blog-metrics/internal/testsrv"
+
 	"github.com/supporttools/website/exporters/blog-metrics/internal/snapshot"
 )
 
@@ -36,7 +38,7 @@ func testKey(t *testing.T) (*rsa.PrivateKey, []byte) {
 // tokenServer checks the JWT assertion's signature and claims and counts calls.
 func tokenServer(t *testing.T, k *rsa.PrivateKey, calls *int) *httptest.Server {
 	t.Helper()
-	srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+	srv := testsrv.New(t, http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		*calls++
 		r.ParseForm()
 		if r.Form.Get("grant_type") != "urn:ietf:params:oauth:grant-type:jwt-bearer" {
@@ -109,7 +111,7 @@ func TestGSCWindowDates(t *testing.T) {
 // fakeGSC answers searchAnalytics by the requested dimension.
 func fakeGSC(t *testing.T) *httptest.Server {
 	t.Helper()
-	srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+	srv := testsrv.New(t, http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		if r.URL.Path == "/token" {
 			io.WriteString(w, `{"access_token":"tok","expires_in":3600}`)
 			return
@@ -182,7 +184,7 @@ func TestSearchByTopic(t *testing.T) {
 
 func TestQueryErrorIncludesStatus(t *testing.T) {
 	_, keyJSON := testKey(t)
-	srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+	srv := testsrv.New(t, http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		if r.URL.Path == "/token" {
 			io.WriteString(w, `{"access_token":"tok","expires_in":3600}`)
 			return

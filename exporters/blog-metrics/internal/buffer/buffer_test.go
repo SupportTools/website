@@ -5,16 +5,17 @@ import (
 	"encoding/json"
 	"io"
 	"net/http"
-	"net/http/httptest"
 	"strings"
 	"testing"
 	"time"
+
+	"github.com/supporttools/website/exporters/blog-metrics/internal/testsrv"
 
 	"github.com/supporttools/website/exporters/blog-metrics/internal/snapshot"
 )
 
 func TestAggregatedSendsQueryAndKeepsKnownMetrics(t *testing.T) {
-	srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+	srv := testsrv.New(t, http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		if r.Header.Get("Authorization") != "Bearer buf_test" {
 			t.Errorf("Authorization = %q", r.Header.Get("Authorization"))
 		}
@@ -54,7 +55,7 @@ func TestAggregatedSendsQueryAndKeepsKnownMetrics(t *testing.T) {
 }
 
 func TestAggregatedGraphQLErrorIsAnError(t *testing.T) {
-	srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+	srv := testsrv.New(t, http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		io.WriteString(w, `{"errors":[{"message":"Not authorized"}]}`)
 	}))
 	defer srv.Close()
@@ -67,7 +68,7 @@ func TestAggregatedGraphQLErrorIsAnError(t *testing.T) {
 
 func TestCollectPerWindowAndChannel(t *testing.T) {
 	calls := 0
-	srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+	srv := testsrv.New(t, http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		calls++
 		io.WriteString(w, `{"data":{"aggregatedPostMetrics":{"metrics":[{"type":"postCount","value":1}]}}}`)
 	}))

@@ -4,8 +4,9 @@ import (
 	"context"
 	"io"
 	"net/http"
-	"net/http/httptest"
 	"testing"
+
+	"github.com/supporttools/website/exporters/blog-metrics/internal/testsrv"
 )
 
 func TestSlugFromURL(t *testing.T) {
@@ -23,7 +24,7 @@ func TestSlugFromURL(t *testing.T) {
 }
 
 func TestFetchIndex(t *testing.T) {
-	srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+	srv := testsrv.New(t, http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		io.WriteString(w, `[{"post_slug":"curl-host-header","post_category":"networking","post_kind":"guide"},
 			{"post_slug":"no-topic","post_category":""},
 			{"post_slug":"kgd/a","post_category":"rancher"}]`)
@@ -43,7 +44,7 @@ func TestFetchIndexRejectsBadStatusAndEmpty(t *testing.T) {
 		status int
 		body   string
 	}{{500, "oops"}, {200, "[]"}} {
-		srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		srv := testsrv.New(t, http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			w.WriteHeader(tc.status)
 			io.WriteString(w, tc.body)
 		}))

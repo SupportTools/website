@@ -9,6 +9,8 @@ import (
 	"strings"
 	"testing"
 
+	"github.com/supporttools/website/exporters/blog-metrics/internal/testsrv"
+
 	"github.com/supporttools/website/exporters/blog-metrics/internal/botfilter"
 	"github.com/supporttools/website/exporters/blog-metrics/internal/snapshot"
 )
@@ -17,7 +19,7 @@ import (
 func fakeAPI(t *testing.T, answers map[string]string) (*httptest.Server, *[]string) {
 	t.Helper()
 	var seen []string
-	srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+	srv := testsrv.New(t, http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		if r.Method != http.MethodPost || r.URL.Path != "/api/projects/78897/query/" {
 			t.Errorf("request %s %s", r.Method, r.URL.Path)
 		}
@@ -64,7 +66,7 @@ func TestQuerySendsHogQLAndParsesResults(t *testing.T) {
 }
 
 func TestQueryErrorIncludesStatus(t *testing.T) {
-	srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+	srv := testsrv.New(t, http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, `{"detail":"permission denied"}`, http.StatusForbidden)
 	}))
 	defer srv.Close()
