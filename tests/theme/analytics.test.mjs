@@ -42,8 +42,35 @@ test('no categories and a hostile tag still give valid, contained JSON', () => {
   const p = props('theme-fixture-error-fix');
   assert.equal(p.post_category, '');
   assert.deepEqual(p.post_tags, ['Theme', 'a"b</script>c']);
-  const raw = readPage('theme-fixture-error-fix').split('id="post-analytics">')[1].split('</script>')[0];
-  assert.ok(!raw.includes('</script'), 'tag text did not close the script element');
+  // The whole block, up to its own closing tag, must hold no raw '<': the
+  // tag's '</script>' has to arrive escaped as \u003c, or it ends the element.
+  const block = readPage('theme-fixture-error-fix').match(/id="post-analytics">([^<]*)<\/script>/);
+  assert.ok(block, 'data block ends at its own closing tag');
+  assert.match(block[1], /\\u003c\/script\\u003e/);
+});
+
+// Runs the before_send IIFE from the built page against a stub document.
+function beforeSend(urlPath) {
+  const html = readPage(urlPath);
+  const block = html.match(/<script type="application\/json" id="post-analytics">([\s\S]*?)<\/script>/);
+  const src = html.match(/before_send: (\(function \(\) \{[\s\S]*?\}\(\)\))/);
+  assert.ok(src, 'before_send source found');
+  const document = { getElementById: (id) => (id === 'post-analytics' && block ? { textContent: block[1] } : null) };
+  return new Function('document', `return ${src[1]};`)(document);
+}
+
+test('before_send adds post properties without overwriting PostHog keys', () => {
+  const send = beforeSend('theme-fixture');
+  const ev = send({ event: '$pageview', properties: { $current_url: 'x', post_kind: 'kept' } });
+  assert.equal(ev.properties.post_slug, 'theme-fixture');
+  assert.equal(ev.properties.post_category, 'theme');
+  assert.equal(ev.properties.$current_url, 'x');
+  assert.equal(ev.properties.post_kind, 'kept');
+});
+
+test('before_send passes events through unchanged on pages without a data block', () => {
+  const ev = beforeSend('about')({ event: '$pageview', properties: { a: 1 } });
+  assert.deepEqual(ev.properties, { a: 1 });
 });
 
 test('non-article pages have no data block', () => {
