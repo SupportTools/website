@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive guide to optimizing Docker images using multi-stage builds, reducing a production Go application from 1.2GB to 400MB while improving build times, security, and deployment performance. Includes production-ready patterns, layer caching strategies, and CI/CD integration."
 more_link: "yes"
 url: "/multi-stage-docker-builds-reducing-image-sizes/"
+images: ["https://cdn.support.tools/posts/multi-stage-docker-builds-reducing-image-sizes/og-e5beaf3c0d.jpg"]
 ---
 
 "Why does our container image take 8 minutes to pull in production?" This question from our SRE team kicked off an investigation that revealed our Docker images had ballooned to over 1.2GB - filled with build tools, test dependencies, and debugging utilities that had no business in production. What followed was a comprehensive optimization effort that reduced image sizes by 67%, improved deployment times by 75%, and strengthened our security posture.

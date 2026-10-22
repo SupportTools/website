@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to Kubernetes Quality of Service (QoS) classes, resource management, and surviving resource pressure in production through proper configuration of Guaranteed, Burstable, and BestEffort pods."
 more_link: "yes"
 url: "/kubernetes-qos-pod-management-resource-pressure-production/"
+images: ["https://cdn.support.tools/posts/kubernetes-qos-pod-management-resource-pressure-production/og-36f3d0da84.jpg"]
 ---
 
 Resource exhaustion is one of the most common causes of production incidents in Kubernetes clusters. When nodes run out of memory or CPU, the kubelet must make critical decisions about which pods to evict, potentially taking down critical services. Understanding Kubernetes Quality of Service (QoS) classes—Guaranteed, Burstable, and BestEffort—is essential for building resilient production systems that survive resource pressure without service degradation. This comprehensive guide explores QoS mechanics, resource management strategies, and production-tested configurations for critical workloads.

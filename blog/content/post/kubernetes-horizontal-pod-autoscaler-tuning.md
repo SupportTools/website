@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to tuning Kubernetes Horizontal Pod Autoscaler for production workloads, including custom metrics, advanced algorithms, and optimization strategies."
 more_link: "yes"
 url: "/kubernetes-horizontal-pod-autoscaler-tuning/"
+images: ["https://cdn.support.tools/posts/kubernetes-horizontal-pod-autoscaler-tuning/og-fdd596144a.jpg"]
 ---
 
 The Horizontal Pod Autoscaler (HPA) automatically scales workloads based on observed metrics. Effective HPA tuning requires understanding scaling algorithms, metric collection, and workload characteristics. This guide covers advanced HPA configurations, custom metrics integration, and production optimization strategies.

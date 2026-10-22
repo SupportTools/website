@@ -11,6 +11,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive guide to designing and implementing a flexible access control system for microservices architectures using Open Policy Agent (OPA), including architecture patterns, implementation strategies, and performance considerations"
 more_link: "yes"
 url: "/implementing-access-control-microservices-opa/"
+images: ["https://cdn.support.tools/posts/implementing-access-control-microservices-opa/og-effe7c68a7.jpg"]
 ---
 
 As microservices architectures become increasingly common, implementing consistent and flexible access control across distributed services presents significant challenges. Open Policy Agent (OPA) offers a powerful solution for decoupling authorization logic from business code, enabling scalable and maintainable access control.

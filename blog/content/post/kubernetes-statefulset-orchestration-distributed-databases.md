@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to deploying and managing distributed databases using Kubernetes StatefulSets with production-ready patterns, failure recovery, and scaling strategies."
 more_link: "yes"
 url: "/kubernetes-statefulset-orchestration-distributed-databases/"
+images: ["https://cdn.support.tools/posts/kubernetes-statefulset-orchestration-distributed-databases/og-6c95c66c81.jpg"]
 ---
 
 Deploying distributed databases on Kubernetes requires careful orchestration to maintain data consistency, ensure proper ordering of operations, and provide stable network identities. StatefulSets are the cornerstone of running stateful workloads in Kubernetes, offering guarantees that Deployments cannot provide. This comprehensive guide explores production-ready patterns for orchestrating distributed databases using StatefulSets.

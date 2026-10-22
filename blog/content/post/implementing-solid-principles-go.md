@@ -4,6 +4,7 @@ date: 2026-09-10T09:00:00-05:00
 draft: false
 tags: ["golang", "solid principles", "software architecture", "clean code", "best practices"]
 categories: ["Development", "Go", "Architecture"]
+images: ["https://cdn.support.tools/posts/implementing-solid-principles-go/og-23a8e1ff4b.jpg"]
 ---
 
 ## Introduction

@@ -12,6 +12,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Master network automation with Ansible and NAPALM for enterprise infrastructure. Learn advanced configuration management, automated deployment strategies, and production-ready network automation frameworks."
 more_link: "yes"
 url: "/network-automation-ansible-napalm-enterprise-guide/"
+images: ["https://cdn.support.tools/posts/network-automation-ansible-napalm-enterprise-guide/og-8f7847bbae.jpg"]
 ---
 
 Network automation with Ansible and NAPALM revolutionizes enterprise network operations by enabling consistent, reliable, and scalable configuration management. This comprehensive guide explores advanced automation techniques, infrastructure-as-code practices, and production-ready frameworks for enterprise network environments.

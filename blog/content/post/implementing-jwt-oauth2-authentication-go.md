@@ -4,6 +4,7 @@ date: 2026-09-01T09:00:00-05:00
 draft: false
 tags: ["go", "golang", "security", "jwt", "oauth2", "authentication", "authorization"]
 categories: ["Programming", "Go", "Security"]
+images: ["https://cdn.support.tools/posts/implementing-jwt-oauth2-authentication-go/og-aa30982d04.jpg"]
 ---
 
 Security is a critical concern for modern web applications. Authentication and authorization mechanisms ensure that your application's resources are accessible only to legitimate users with appropriate permissions. This guide explores how to implement two popular authentication methods in Go applications: JWT (JSON Web Tokens) and OAuth2.

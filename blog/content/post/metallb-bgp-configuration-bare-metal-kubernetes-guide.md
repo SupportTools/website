@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to deploying and configuring MetalLB with BGP on bare metal Kubernetes clusters for enterprise load balancing with advanced routing, high availability, and production best practices."
 more_link: "yes"
 url: "/metallb-bgp-configuration-bare-metal-kubernetes-guide/"
+images: ["https://cdn.support.tools/posts/metallb-bgp-configuration-bare-metal-kubernetes-guide/og-18c173f770.jpg"]
 ---
 
 MetalLB brings cloud-provider LoadBalancer functionality to bare metal Kubernetes clusters, enabling the use of LoadBalancer-type Services without relying on external cloud infrastructure. Operating in either Layer 2 (ARP/NDP) or BGP mode, MetalLB provides enterprise-grade load balancing capabilities essential for on-premises and edge Kubernetes deployments.

@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Complete guide to resolving MacOS Keychain access issues with Docker credential storage, including automated fixes, alternative credential stores, and enterprise CI/CD patterns for secure credential management."
 more_link: "yes"
 url: "/macos-keychain-docker-credential-user-interaction-not-allowed/"
+images: ["https://cdn.support.tools/posts/macos-keychain-docker-credential-user-interaction-not-allowed/og-4d94336a1a.jpg"]
 ---
 
 At 3 AM on a Tuesday, our CI/CD pipeline for a critical customer deployment failed with a cryptic error: "Error saving credentials: error storing credentials - err: exit status 1, out: User interaction is not allowed." The failure cascaded through 47 downstream builds, blocking releases for 12 development teams. This is the complete story of how we diagnosed and permanently resolved MacOS Keychain credential storage issues across our entire build infrastructure.

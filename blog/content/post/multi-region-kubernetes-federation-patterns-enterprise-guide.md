@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to implementing multi-region Kubernetes federation patterns for enterprise deployments, covering global load balancing, cross-cluster service discovery, data replication, and disaster recovery strategies."
 more_link: "yes"
 url: "/multi-region-kubernetes-federation-patterns-enterprise-guide/"
+images: ["https://cdn.support.tools/posts/multi-region-kubernetes-federation-patterns-enterprise-guide/og-eada4cdcc5.jpg"]
 ---
 
 Building globally distributed Kubernetes infrastructure requires sophisticated federation patterns that span multiple regions, cloud providers, and data centers. Multi-region Kubernetes deployments provide high availability, disaster recovery capabilities, and improved user experience through geographic proximity. This comprehensive guide explores enterprise-grade federation architectures, implementation patterns, and operational strategies for managing distributed Kubernetes environments at scale.

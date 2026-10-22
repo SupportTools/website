@@ -10,6 +10,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive guide to building, deploying, and securing Slack Slash Commands using Go and Google Cloud Functions"
 more_link: "yes"
 url: "/implementing-slack-slash-commands-go-cloud-functions/"
+images: ["https://cdn.support.tools/posts/implementing-slack-slash-commands-go-cloud-functions/og-40a86a4ba7.jpg"]
 ---
 
 Slack Slash Commands offer a powerful way to extend your workspace with custom functionality. In this guide, we'll implement a robust, secure Slash Command handler using Go and Google Cloud Functions to create a serverless integration that's both cost-effective and scalable.

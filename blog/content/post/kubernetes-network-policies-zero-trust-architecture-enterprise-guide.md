@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to implementing Kubernetes Network Policies for zero-trust security architecture in production environments, including advanced CNI implementations with Calico and Cilium."
 more_link: "yes"
 url: "/kubernetes-network-policies-zero-trust-architecture-enterprise-guide/"
+images: ["https://cdn.support.tools/posts/kubernetes-network-policies-zero-trust-architecture-enterprise-guide/og-ff039898ea.jpg"]
 ---
 
 Zero-trust network architecture represents a fundamental shift in cloud-native security strategy, requiring explicit authorization for every network connection rather than implicit trust based on network location. Kubernetes Network Policies provide the foundational building blocks for implementing zero-trust networking at the pod level. This comprehensive guide explores enterprise-grade network policy implementations using native Kubernetes Network Policies and advanced CNI-specific features from Calico and Cilium.

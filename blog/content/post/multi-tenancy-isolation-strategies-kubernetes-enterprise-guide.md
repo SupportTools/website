@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to implementing multi-tenant Kubernetes platforms with strong isolation, covering namespaces, RBAC, network policies, and advanced isolation techniques."
 more_link: "yes"
 url: "/multi-tenancy-isolation-strategies-kubernetes-enterprise-guide/"
+images: ["https://cdn.support.tools/posts/multi-tenancy-isolation-strategies-kubernetes-enterprise-guide/og-c01083da26.jpg"]
 ---
 
 Multi-tenant Kubernetes platforms enable multiple teams to share infrastructure while maintaining security isolation. This guide explores strategies for implementing strong multi-tenancy, from basic namespace isolation to advanced techniques like virtual clusters and sandboxed containers.

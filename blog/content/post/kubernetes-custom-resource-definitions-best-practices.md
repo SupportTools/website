@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to designing, implementing, and operating Custom Resource Definitions (CRDs) in Kubernetes with production-ready patterns, validation, and versioning strategies."
 more_link: "yes"
 url: "/kubernetes-custom-resource-definitions-best-practices/"
+images: ["https://cdn.support.tools/posts/kubernetes-custom-resource-definitions-best-practices/og-c87c7d9105.jpg"]
 ---
 
 Custom Resource Definitions (CRDs) extend the Kubernetes API to manage application-specific resources with the same rigor as built-in Kubernetes objects. When properly designed, CRDs enable declarative management of complex applications and infrastructure. This comprehensive guide explores enterprise-ready patterns for creating robust, maintainable, and scalable CRDs.

@@ -11,6 +11,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Master Model Context Protocol (MCP) server configuration for Claude Code with comprehensive integration patterns. Complete guide to MCP tool setup, environment management, and enterprise-grade tool orchestration."
 more_link: "yes"
 url: "/mcp-model-context-protocol-claude-code-configuration-enterprise-guide/"
+images: ["https://cdn.support.tools/posts/mcp-model-context-protocol-claude-code-configuration-enterprise-guide/og-880d1171e1.jpg"]
 ---
 
 Model Context Protocol (MCP) enables Claude Code to integrate with external tools, databases, and services through a standardized interface. This comprehensive guide covers MCP server configuration, tool orchestration, and production-ready integration patterns for enterprise development workflows.

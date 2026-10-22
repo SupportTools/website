@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to implementing robust backup and recovery strategies for MySQL on Kubernetes using operators, with automated backup scheduling, point-in-time recovery, and disaster recovery procedures."
 more_link: "yes"
 url: "/mysql-operator-backup-strategies-kubernetes-enterprise-guide/"
+images: ["https://cdn.support.tools/posts/mysql-operator-backup-strategies-kubernetes-enterprise-guide/og-aa317e613e.jpg"]
 ---
 
 Implementing comprehensive backup strategies for MySQL on Kubernetes is critical for data protection and business continuity. This guide covers enterprise-grade backup implementations using MySQL operators, including automated scheduling, incremental backups, and point-in-time recovery.

@@ -12,6 +12,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Master network segmentation and micro-segmentation for enterprise security. Learn advanced isolation strategies, zero trust implementation, and production-ready segmentation architectures."
 more_link: "yes"
 url: "/network-segmentation-micro-segmentation-enterprise-guide/"
+images: ["https://cdn.support.tools/posts/network-segmentation-micro-segmentation-enterprise-guide/og-6c8aeafdcc.jpg"]
 ---
 
 Network segmentation and micro-segmentation form critical security layers in modern enterprise networks, providing granular access control and threat containment. This comprehensive guide explores advanced segmentation strategies, zero trust architectures, and production-ready implementations for enterprise environments.

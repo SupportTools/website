@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to Linkerd service profiles, traffic splitting, observability, and advanced service mesh patterns for ultra-lightweight, production-grade Kubernetes deployments."
 more_link: "yes"
 url: "/linkerd-service-profiles-configuration/"
+images: ["https://cdn.support.tools/posts/linkerd-service-profiles-configuration/og-5f1800d6b4.jpg"]
 ---
 
 Linkerd stands out as the ultralight, security-first service mesh designed specifically for Kubernetes. With its focus on simplicity, performance, and reliability, Linkerd provides production-grade service mesh capabilities with minimal resource overhead. This comprehensive guide explores advanced Linkerd configurations, service profiles, traffic management, and enterprise deployment patterns.

@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Master Kubernetes Longhorn storage upgrade incident response with comprehensive troubleshooting strategies, production recovery procedures, and enterprise-grade storage management patterns for critical infrastructure."
 more_link: "yes"
 url: "/kubernetes-longhorn-storage-upgrade-incident-response-production-guide/"
+images: ["https://cdn.support.tools/posts/kubernetes-longhorn-storage-upgrade-incident-response-production-guide/og-57ae47bb23.jpg"]
 ---
 
 Production Kubernetes storage systems represent some of the most critical infrastructure components in modern enterprise environments, where storage upgrade incidents can cascade into application-wide outages affecting business continuity. Longhorn, as a cloud-native distributed storage solution, requires sophisticated upgrade procedures and incident response strategies that minimize service disruption while maintaining data integrity.

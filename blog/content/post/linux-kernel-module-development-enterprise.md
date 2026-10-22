@@ -12,6 +12,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Master advanced Linux kernel module development techniques for enterprise environments. Learn kernel APIs, memory management, synchronization, debugging, and production deployment strategies."
 more_link: "yes"
 url: "/linux-kernel-module-development-enterprise/"
+images: ["https://cdn.support.tools/posts/linux-kernel-module-development-enterprise/og-f59c9ce141.jpg"]
 ---
 
 Linux kernel module development is a critical skill for enterprise systems programming, enabling custom functionality, device drivers, and system-level optimizations. This comprehensive guide covers advanced kernel programming techniques, from low-level APIs to production deployment strategies.

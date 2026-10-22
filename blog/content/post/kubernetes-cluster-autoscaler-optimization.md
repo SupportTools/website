@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to optimizing Kubernetes Cluster Autoscaler for efficient node scaling, including cloud provider integration, scaling policies, and cost optimization strategies."
 more_link: "yes"
 url: "/kubernetes-cluster-autoscaler-optimization/"
+images: ["https://cdn.support.tools/posts/kubernetes-cluster-autoscaler-optimization/og-f5843d92e1.jpg"]
 ---
 
 The Kubernetes Cluster Autoscaler automatically adjusts the size of a cluster by adding or removing nodes based on pod scheduling needs. This guide covers advanced configuration, cloud provider integration, optimization strategies, and troubleshooting for production environments.

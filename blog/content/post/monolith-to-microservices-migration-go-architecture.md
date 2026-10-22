@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive guide to migrating from monolithic to microservices architecture using Go, including domain-driven design principles, service communication patterns, data separation strategies, and production deployment patterns based on a real-world migration project."
 more_link: "yes"
 url: "/monolith-to-microservices-migration-go-architecture/"
+images: ["https://cdn.support.tools/posts/monolith-to-microservices-migration-go-architecture/og-648e2219a4.jpg"]
 ---
 
 "We need to scale the task management system, but the monolith is holding us back." This statement kicked off a nine-month migration project that transformed a 150,000-line Go monolith into a distributed microservices architecture. The journey was challenging, filled with architectural decisions, technical challenges, and valuable lessons about when (and when not) to break apart a monolith.

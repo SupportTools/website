@@ -11,6 +11,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Master Network Function Virtualization (NFV) implementation for enterprise infrastructure transformation. Learn MANO orchestration, VNF development, service chaining, and production-ready NFV architectures."
 more_link: "yes"
 url: "/network-function-virtualization-nfv-implementation-enterprise-guide/"
+images: ["https://cdn.support.tools/posts/network-function-virtualization-nfv-implementation-enterprise-guide/og-324a48b0d4.jpg"]
 ---
 
 Network Function Virtualization (NFV) revolutionizes traditional network infrastructure by replacing dedicated hardware appliances with software-based network functions running on commodity hardware. This comprehensive guide explores enterprise NFV implementation, MANO orchestration, VNF development, and advanced service chaining for production environments.

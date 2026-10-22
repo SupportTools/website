@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to implementing Kubernetes Vertical Pod Autoscaler for optimal resource allocation, including recommendations, update policies, and integration with HPA."
 more_link: "yes"
 url: "/kubernetes-vertical-pod-autoscaler-implementation/"
+images: ["https://cdn.support.tools/posts/kubernetes-vertical-pod-autoscaler-implementation/og-cd3c7fd675.jpg"]
 ---
 
 The Vertical Pod Autoscaler (VPA) automatically adjusts CPU and memory requests and limits for containers based on historical usage patterns. This guide covers VPA implementation strategies, recommendation modes, update policies, and best practices for production environments.

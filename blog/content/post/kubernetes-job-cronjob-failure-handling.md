@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to implementing robust failure handling, retry strategies, and monitoring patterns for Kubernetes Jobs and CronJobs in production environments."
 more_link: "yes"
 url: "/kubernetes-job-cronjob-failure-handling/"
+images: ["https://cdn.support.tools/posts/kubernetes-job-cronjob-failure-handling/og-6fe97fecbb.jpg"]
 ---
 
 Kubernetes Jobs and CronJobs are essential for running batch workloads, scheduled tasks, and one-time operations. However, production environments require sophisticated failure handling strategies to ensure reliability and observability. This comprehensive guide explores enterprise-ready patterns for managing Job and CronJob failures, implementing retry logic, and building resilient batch processing systems.

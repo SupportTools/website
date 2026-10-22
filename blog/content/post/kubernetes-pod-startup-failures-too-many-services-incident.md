@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive analysis of a production incident where enableServiceLinks caused 'argument list too long' errors during pod startup, including root cause analysis, debugging strategies, and prevention patterns for enterprise Kubernetes environments."
 more_link: "yes"
 url: "/kubernetes-pod-startup-failures-too-many-services-incident/"
+images: ["https://cdn.support.tools/posts/kubernetes-pod-startup-failures-too-many-services-incident/og-07e0cb9461.jpg"]
 ---
 
 At 3:47 AM on a Tuesday morning, our production monitoring system lit up with critical alerts: dozens of pods across multiple namespaces were failing to start. The error message was cryptic: "standard_init_linux.go:228: exec user process caused: argument list too long." This incident would eventually reveal a subtle but devastating interaction between Kubernetes service discovery mechanisms and operating system limitations that affects large-scale deployments.

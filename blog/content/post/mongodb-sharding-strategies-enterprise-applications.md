@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive enterprise guide to MongoDB sharding architecture, shard key selection strategies, zone sharding implementation, performance optimization, and migration patterns from replica sets to sharded clusters for production environments."
 more_link: "yes"
 url: "/mongodb-sharding-strategies-enterprise-applications/"
+images: ["https://cdn.support.tools/posts/mongodb-sharding-strategies-enterprise-applications/og-561a55ccfd.jpg"]
 ---
 
 ## Executive Summary

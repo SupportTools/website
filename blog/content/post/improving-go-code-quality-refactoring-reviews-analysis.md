@@ -11,6 +11,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to significantly improve your Go codebase through structured refactoring, effective code reviews, and automated static analysis tools, with practical examples and implementation strategies"
 more_link: "yes"
 url: "/improving-go-code-quality-refactoring-reviews-analysis/"
+images: ["https://cdn.support.tools/posts/improving-go-code-quality-refactoring-reviews-analysis/og-4c9cc51c91.jpg"]
 ---
 
 Writing Go code that simply works isn't enough for professional environments. High-quality Go code must be readable, maintainable, testable, and performant. This comprehensive guide explores three key approaches to improving code quality in Go projects: refactoring techniques, effective code reviews, and automated static analysis.

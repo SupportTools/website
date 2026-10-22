@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to network packet capture and analysis in Kubernetes environments, including pod-level captures, service mesh traffic inspection, and encrypted traffic analysis for enterprise troubleshooting."
 more_link: "yes"
 url: "/kubernetes-network-packet-capture-analysis-guide/"
+images: ["https://cdn.support.tools/posts/kubernetes-network-packet-capture-analysis-guide/og-172d5d92a5.jpg"]
 ---
 
 Master network packet capture and analysis in Kubernetes with production-ready techniques for pod-level traffic inspection, service mesh analysis, encrypted traffic decryption, and comprehensive troubleshooting workflows for enterprise environments.

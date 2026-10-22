@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to deploying and managing MinIO object storage on Kubernetes with multi-tenancy, high availability, encryption, and S3 compatibility for enterprise workloads."
 more_link: "yes"
 url: "/minio-object-storage-kubernetes-implementation/"
+images: ["https://cdn.support.tools/posts/minio-object-storage-kubernetes-implementation/og-93fd784e14.jpg"]
 ---
 
 MinIO provides high-performance, S3-compatible object storage that's perfect for cloud-native applications on Kubernetes. This comprehensive guide covers enterprise deployment patterns, multi-tenancy configuration, security hardening, and performance optimization for production MinIO clusters.

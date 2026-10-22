@@ -11,6 +11,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive guide to implementing secure JWT authentication in React applications with react-router, including protected routes and axios integration"
 more_link: "yes"
 url: "/jwt-authentication-react-router/"
+images: ["https://cdn.support.tools/posts/jwt-authentication-react-router/og-aa6b092c98.jpg"]
 ---
 
 Implementing proper authentication is crucial for modern web applications. In this guide, we'll explore how to integrate JWT (JSON Web Token) authentication in React applications using React Router to create protected routes and manage user sessions effectively.

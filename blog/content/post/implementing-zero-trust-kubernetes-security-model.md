@@ -11,6 +11,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "A detailed guide to implementing zero-trust security architecture in Kubernetes environments with practical examples, best practices, and implementation strategies"
 more_link: "yes"
 url: "/implementing-zero-trust-kubernetes-security-model/"
+images: ["https://cdn.support.tools/posts/implementing-zero-trust-kubernetes-security-model/og-9593327370.jpg"]
 ---
 
 Zero-trust security has emerged as a critical security paradigm for modern cloud-native environments. This comprehensive guide explores how to implement a zero-trust architecture in Kubernetes, covering network policies, authentication, authorization, encryption, and continuous verification to create a robust security posture.

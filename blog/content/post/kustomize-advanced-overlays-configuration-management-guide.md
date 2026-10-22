@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Master advanced Kustomize overlay patterns, component architecture, strategic merge patches, and production-ready configuration management for enterprise Kubernetes deployments."
 more_link: "yes"
 url: "/kustomize-advanced-overlays-configuration-management-guide/"
+images: ["https://cdn.support.tools/posts/kustomize-advanced-overlays-configuration-management-guide/og-2136689e78.jpg"]
 ---
 
 Learn advanced Kustomize techniques including sophisticated overlay strategies, component composition, strategic merge patches, generator plugins, and production-ready patterns for managing complex Kubernetes configurations at scale.

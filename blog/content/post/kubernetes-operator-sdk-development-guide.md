@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Complete guide to developing production-ready Kubernetes operators using Operator SDK, including CRD design, controller patterns, testing strategies, and deployment best practices."
 more_link: "yes"
 url: "/kubernetes-operator-sdk-development-guide/"
+images: ["https://cdn.support.tools/posts/kubernetes-operator-sdk-development-guide/og-1ad2ff5ffe.jpg"]
 ---
 
 Kubernetes Operators extend the platform's capabilities by encoding operational knowledge into software. This comprehensive guide covers building production-ready operators using the Operator SDK, from initial design through deployment and lifecycle management.

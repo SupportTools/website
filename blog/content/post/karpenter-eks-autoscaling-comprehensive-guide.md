@@ -4,6 +4,7 @@ date: 2026-10-06T09:00:00-05:00
 draft: false
 categories: ["AWS", "Kubernetes", "Infrastructure"]
 tags: ["Karpenter", "EKS", "Kubernetes", "Autoscaling", "NodePool", "EC2NodeClass", "AWS", "Cost Optimization", "Infrastructure Automation", "Container Orchestration"]
+images: ["https://cdn.support.tools/posts/karpenter-eks-autoscaling-comprehensive-guide/og-b231f462fb.jpg"]
 ---
 
 # Karpenter for EKS: A Comprehensive Guide to Efficient Kubernetes Autoscaling

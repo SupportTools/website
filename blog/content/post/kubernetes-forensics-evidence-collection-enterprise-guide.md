@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to Kubernetes forensics and evidence collection for incident response, including cluster state preservation, container analysis, and chain of custody procedures for enterprise environments."
 more_link: "yes"
 url: "/kubernetes-forensics-evidence-collection-enterprise-guide/"
+images: ["https://cdn.support.tools/posts/kubernetes-forensics-evidence-collection-enterprise-guide/og-7d60a2479b.jpg"]
 ---
 
 Master Kubernetes forensics and evidence collection for enterprise incident response with comprehensive techniques for cluster state preservation, container analysis, and maintaining proper chain of custody in production environments.

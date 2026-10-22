@@ -12,6 +12,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Master network security architecture and zero trust implementation for enterprise infrastructure. Learn advanced security frameworks, identity-based access controls, and production-ready zero trust architectures."
 more_link: "yes"
 url: "/network-security-architecture-zero-trust-enterprise-guide/"
+images: ["https://cdn.support.tools/posts/network-security-architecture-zero-trust-enterprise-guide/og-a345894d55.jpg"]
 ---
 
 Network security architecture and zero trust implementation represent the modern approach to enterprise cybersecurity, moving from perimeter-based security to identity-centric, continuous verification models. This comprehensive guide explores advanced security frameworks, zero trust principles, and production-ready architectures for enterprise environments.

@@ -8,6 +8,7 @@ tags: ["memory mapping", "mmap", "file I/O", "performance optimization", "huge p
 keywords: ["memory mapped files", "mmap programming", "high performance I/O", "zero-copy I/O", "huge pages", "NUMA optimization", "async file I/O", "memory mapping techniques", "file system optimization"]
 draft: false
 toc: true
+images: ["https://cdn.support.tools/posts/memory-mapped-file-io-high-performance/og-bce1734123.jpg"]
 ---
 
 Memory-mapped file I/O represents one of the most powerful techniques for achieving high-performance file access in modern applications. By mapping files directly into virtual memory, applications can eliminate the overhead of traditional read/write system calls and leverage the operating system's virtual memory subsystem for optimal performance. This comprehensive guide explores advanced memory-mapping techniques and their implementation in enterprise-scale systems.

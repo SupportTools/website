@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive guide to implementing proper health checks, graceful shutdowns, and auto-scaling strategies with AWS Application Load Balancer and Kubernetes, including production patterns for zero-downtime deployments and connection draining."
 more_link: "yes"
 url: "/kubernetes-health-checks-aws-alb-graceful-shutdowns/"
+images: ["https://cdn.support.tools/posts/kubernetes-health-checks-aws-alb-graceful-shutdowns/og-4e2b00539a.jpg"]
 ---
 
 "Why are users seeing 502 errors during deployments?" This question triggered a deep investigation into our Kubernetes health check implementation with AWS Application Load Balancer. What we discovered was a complex dance between Kubernetes pod lifecycle, ALB target group health checks, and application shutdown behavior that, when misaligned, creates windows of unavailability during routine operations.

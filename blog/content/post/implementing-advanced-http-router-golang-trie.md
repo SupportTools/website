@@ -11,6 +11,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive guide to designing and implementing a high-performance HTTP router in Go using Trie data structures, with support for path parameters, wildcards, and middleware"
 more_link: "yes"
 url: "/implementing-advanced-http-router-golang-trie/"
+images: ["https://cdn.support.tools/posts/implementing-advanced-http-router-golang-trie/og-be4266d94b.jpg"]
 ---
 
 As applications grow in complexity, efficient request routing becomes essential. Go's standard library provides a basic router with `http.ServeMux`, but building your own HTTP router unlocks powerful capabilities like method-based routing, path parameters, and middleware chains. This comprehensive guide walks through building an advanced HTTP router using Trie data structures.

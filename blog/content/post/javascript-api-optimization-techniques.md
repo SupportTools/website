@@ -10,6 +10,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Practical strategies to dramatically reduce API latency in JavaScript applications without changing backend code, with real-world benchmarks and implementation examples"
 more_link: "yes"
 url: "/javascript-api-optimization-techniques/"
+images: ["https://cdn.support.tools/posts/javascript-api-optimization-techniques/og-c9011e97e0.jpg"]
 ---
 
 Modern web applications rely heavily on APIs, and the latency of these API calls directly impacts user experience. This article explores practical techniques to significantly reduce API latency in JavaScript applications without modifying your backend code.

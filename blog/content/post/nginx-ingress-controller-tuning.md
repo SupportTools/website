@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to NGINX Ingress Controller optimization including advanced configuration, SSL/TLS tuning, rate limiting, caching strategies, and high-availability patterns for enterprise Kubernetes deployments."
 more_link: "yes"
 url: "/nginx-ingress-controller-tuning/"
+images: ["https://cdn.support.tools/posts/nginx-ingress-controller-tuning/og-9a1a90286f.jpg"]
 ---
 
 NGINX Ingress Controller serves as the primary entry point for traffic into Kubernetes clusters, making its performance and reliability critical for production deployments. This comprehensive guide explores advanced NGINX Ingress tuning techniques, security hardening, and enterprise-grade configuration patterns.

@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive analysis of critical Kubernetes production failures including crypto miner exploits, IP address exhaustion, etcd bugs, and cascading cluster failures with detailed incident response playbooks and prevention strategies."
 more_link: "yes"
 url: "/kubernetes-fail-compilation-critical-production-incidents/"
+images: ["https://cdn.support.tools/posts/kubernetes-fail-compilation-critical-production-incidents/og-37d3cd8087.jpg"]
 ---
 
 Over five years managing production Kubernetes clusters, I've witnessed spectacular failures that would make any Site Reliability Engineer's blood run cold. From cryptocurrency miners consuming $45,000 in cloud compute costs in 72 hours, to complete cluster failures from IP address exhaustion, to etcd corruption taking down entire data centers - this is the unvarnished truth about Kubernetes in production. These are real incidents, real root causes, and real solutions that prevented future disasters.

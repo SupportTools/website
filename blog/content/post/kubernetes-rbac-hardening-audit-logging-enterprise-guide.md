@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to hardening Kubernetes RBAC, implementing least-privilege access control, and configuring comprehensive audit logging for enterprise compliance and security."
 more_link: "yes"
 url: "/kubernetes-rbac-hardening-audit-logging-enterprise-guide/"
+images: ["https://cdn.support.tools/posts/kubernetes-rbac-hardening-audit-logging-enterprise-guide/og-5fa4150baa.jpg"]
 ---
 
 Role-Based Access Control (RBAC) is the cornerstone of Kubernetes security, providing fine-grained authorization for who can perform what actions on which resources. When combined with comprehensive audit logging, RBAC creates a security foundation that meets the most stringent enterprise and compliance requirements.

@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to implementing Pod Disruption Budgets for maintaining application availability during voluntary disruptions like node drains, upgrades, and cluster scaling."
 more_link: "yes"
 url: "/kubernetes-pod-disruption-budgets-practice/"
+images: ["https://cdn.support.tools/posts/kubernetes-pod-disruption-budgets-practice/og-849aeb4f87.jpg"]
 ---
 
 Pod Disruption Budgets (PDBs) protect application availability during voluntary disruptions by limiting the number of pods that can be simultaneously unavailable. This guide covers PDB design patterns, best practices, integration with autoscaling, and troubleshooting strategies for production environments.

@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to implementing multi-cluster Kubernetes federation using Admiralty, including cluster mesh configuration, workload scheduling, service discovery, and disaster recovery strategies."
 more_link: "yes"
 url: "/kubernetes-multi-cluster-federation-admiralty/"
+images: ["https://cdn.support.tools/posts/kubernetes-multi-cluster-federation-admiralty/og-e087518596.jpg"]
 ---
 
 Multi-cluster Kubernetes deployments enable high availability, disaster recovery, and geographic distribution of workloads. Admiralty provides sophisticated multi-cluster scheduling capabilities that seamlessly distribute workloads across federated clusters. This guide covers production implementation patterns and operational best practices.
