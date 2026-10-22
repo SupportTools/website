@@ -1,0 +1,1 @@
+NOT (properties.$os = 'Linux' AND properties.$browser = 'Chrome' AND toInt(properties.$viewport_width) = 1919 AND toInt(properties.$viewport_height) = 992)
