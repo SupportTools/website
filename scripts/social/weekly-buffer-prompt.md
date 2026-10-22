@@ -26,7 +26,8 @@ appears in a post on that channel. Never schedule a dueAt in the past.
   metadata.linkedin.firstComment, never in the body. If the article has a live share
   card, attach it as the post image.
 - Bluesky: every article (up to 2 per day). One punchy line under 300 characters.
-  Link via metadata.bluesky.linkAttachment {url, title, description}.
+  Link via metadata.bluesky.linkAttachment {url, title, description, thumbnail}, with
+  thumbnail set to the article's live share card URL (omit it only if there is none).
 - Slot: an article publishing at 09:00 gets the afternoon slot (LinkedIn 17:33,
   Bluesky 16:26), because the morning slot fires before the page is live. An article
   publishing at 00:00 gets the morning slot (08:45 / 08:53). A second Bluesky article
