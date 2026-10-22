@@ -33,8 +33,11 @@ appears in a post on that channel. Never schedule a dueAt in the past.
   publishing at 00:00 gets the morning slot (08:45 / 08:53). A second Bluesky article
   on the same day takes the other slot only if that slot is after its publish time;
   otherwise skip it.
-- Links: https://support.tools/<slug>/?utm_source=linkedin&utm_medium=social (or
-  utm_source=bluesky).
+- Links: the article's real path plus ?utm_source=linkedin&utm_medium=social (or
+  utm_source=bluesky). The path is the frontmatter `url:` when set; a post with no
+  `url:` lives at /post/<file name without .md>/, not at /<slug>/. Check each link
+  returns 200 on the live site (or, for a future post, that the built page exists at
+  that path) before scheduling.
 - No em dashes or en dashes anywhere in the copy. No emoji walls, no "In today's
   fast-paced world" openers, no invented facts: use only what the article says.
 - dueAt: ISO 8601 in America/Chicago with the correct offset for that date
