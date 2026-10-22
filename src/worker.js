@@ -1,4 +1,4 @@
-import CATEGORY_REDIRECTS from './category-redirects.json';
+import CATEGORY_REDIRECTS from './category-redirects.json' with { type: 'json' };
 
 const AGENT_POLICY = 'ai-train=no, search=yes, ai-input=yes';
 
