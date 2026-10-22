@@ -9,6 +9,7 @@ categories:
 author: "Matthew Mattox - mmattox@support.tools"
 more_link: "yes"
 url: "/theme-fixture-short/"
+post_kind: incident
 ---
 
 Short fixture without a description.
