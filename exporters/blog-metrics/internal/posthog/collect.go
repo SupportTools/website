@@ -9,8 +9,11 @@ import (
 	"github.com/supporttools/website/exporters/blog-metrics/internal/snapshot"
 )
 
-const topTopics = 20
 const topPosts = 20
+
+// groupLimit is set on every grouped query: without a LIMIT the query API returns
+// at most 100 rows, and Query fails if a result is still truncated.
+const groupLimit = "LIMIT 10000"
 
 // windowCounts are the three window columns every grouped query returns, in the
 // order of snapshot.TrafficWindows (1d, 7d, 28d). Queries scan 28 days.
@@ -40,25 +43,27 @@ func Collect(ctx context.Context, c *Client, host string) (snapshot.Traffic, err
 	if err != nil {
 		return tr, fmt.Errorf("totals: %w", err)
 	}
-	if len(rows) == 1 && len(rows[0]) == 6 {
-		for i, w := range snapshot.TrafficWindows {
-			tr.Pageviews[w] = toFloat(rows[0][i])
-			tr.Visitors[w] = toFloat(rows[0][3+i])
-		}
+	if len(rows) != 1 || len(rows[0]) != 6 {
+		return tr, fmt.Errorf("totals: unexpected result shape %v", rows)
+	}
+	for i, w := range snapshot.TrafficWindows {
+		tr.Pageviews[w] = toFloat(rows[0][i])
+		tr.Visitors[w] = toFloat(rows[0][3+i])
 	}
 
 	rows, err = c.Query(ctx, `SELECT `+windowCounts+` FROM events WHERE event = '$pageview' AND `+bot)
 	if err != nil {
 		return tr, fmt.Errorf("bot: %w", err)
 	}
-	if len(rows) == 1 && len(rows[0]) == 3 {
-		for i, w := range snapshot.TrafficWindows {
-			tr.Bot[w] = toFloat(rows[0][i])
-		}
+	if len(rows) != 1 || len(rows[0]) != 3 {
+		return tr, fmt.Errorf("bot: unexpected result shape %v", rows)
+	}
+	for i, w := range snapshot.TrafficWindows {
+		tr.Bot[w] = toFloat(rows[0][i])
 	}
 
 	rows, err = c.Query(ctx, `SELECT properties.$referring_domain, properties.utm_source, `+windowCounts+`
-		FROM events WHERE event = '$pageview' AND `+human+` GROUP BY 1, 2`)
+		FROM events WHERE event = '$pageview' AND `+human+` GROUP BY 1, 2 `+groupLimit)
 	if err != nil {
 		return tr, fmt.Errorf("channels: %w", err)
 	}
@@ -71,29 +76,24 @@ func Collect(ctx context.Context, c *Client, host string) (snapshot.Traffic, err
 	}
 
 	rows, err = c.Query(ctx, `SELECT properties.post_category, event, `+windowCounts+`
-		FROM events WHERE event IN ('$pageview', 'article_read') AND `+human+` GROUP BY 1, 2`)
+		FROM events WHERE event IN ('$pageview', 'article_read') AND `+human+` GROUP BY 1, 2 `+groupLimit)
 	if err != nil {
 		return tr, fmt.Errorf("topics: %w", err)
 	}
-	topics, reads := windowMaps(), windowMaps()
+	// All topics are kept here; the scrape and /report decide how to bucket them.
 	for _, r := range rows {
 		if len(r) != 5 || str(r[0]) == "" {
 			continue
 		}
 		if str(r[1]) == "article_read" {
-			addWindows(reads, str(r[0]), r[2:])
+			addWindows(tr.Reads, str(r[0]), r[2:])
 		} else {
-			addWindows(topics, str(r[0]), r[2:])
+			addWindows(tr.Topics, str(r[0]), r[2:])
 		}
-	}
-	keep := classify.TopKeys(topics[snapshot.W28d], topTopics)
-	for _, w := range snapshot.TrafficWindows {
-		tr.Topics[w] = classify.Bucket(topics[w], keep, "other")
-		tr.Reads[w] = classify.Bucket(reads[w], keep, "other")
 	}
 
 	rows, err = c.Query(ctx, `SELECT properties.post_kind, `+windowCounts+`
-		FROM events WHERE event = '$pageview' AND `+human+` GROUP BY 1`)
+		FROM events WHERE event = '$pageview' AND `+human+` GROUP BY 1 `+groupLimit)
 	if err != nil {
 		return tr, fmt.Errorf("kinds: %w", err)
 	}

@@ -6,6 +6,7 @@ import (
 	"io"
 	"net/http"
 	"net/http/httptest"
+	"strconv"
 	"strings"
 	"testing"
 
@@ -159,5 +160,61 @@ func TestTopPostsQueryExcludesNullSlugs(t *testing.T) {
 	}
 	if n != 2 {
 		t.Fatalf("top-posts queries = %d, want 2", n)
+	}
+}
+
+// The query API returns at most 100 rows unless the query sets its own LIMIT
+// (posthog.com/docs/api/queries), so every grouped query must set one.
+func TestGroupedQueriesSetAnExplicitLimit(t *testing.T) {
+	srv, seen := fakeAPI(t, canned)
+	if _, err := Collect(context.Background(), client(srv.URL), "support.tools"); err != nil {
+		t.Fatal(err)
+	}
+	for _, q := range *seen {
+		if strings.Contains(q, "GROUP BY") && !strings.Contains(q, "LIMIT") {
+			t.Errorf("grouped query without LIMIT: %s", q)
+		}
+	}
+}
+
+func TestQueryErrorsWhenResultIsTruncated(t *testing.T) {
+	srv := testsrv.New(t, http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		io.WriteString(w, `{"results":[[1]],"hasMore":true}`)
+	}))
+	_, err := client(srv.URL).Query(context.Background(), "SELECT 1")
+	if err == nil || !strings.Contains(err.Error(), "truncated") {
+		t.Fatalf("err = %v, want a truncation error", err)
+	}
+}
+
+func TestCollectRejectsUnexpectedTotalsShape(t *testing.T) {
+	bad := map[string]string{}
+	for k, v := range canned {
+		bad[k] = v
+	}
+	bad["uniqIf"] = `[[5, 40]]`
+	srv, _ := fakeAPI(t, bad)
+	if _, err := Collect(context.Background(), client(srv.URL), "support.tools"); err == nil {
+		t.Fatal("want an error when the totals row has the wrong shape, not a silent empty result")
+	}
+}
+
+func TestCollectKeepsAllTopicsUnbucketed(t *testing.T) {
+	rows := []string{}
+	for i := 0; i < 25; i++ {
+		rows = append(rows, `["t`+string(rune('a'+i))+`", "$pageview", 1, 1, `+strconv.Itoa(i+1)+`]`)
+	}
+	many := map[string]string{}
+	for k, v := range canned {
+		many[k] = v
+	}
+	many["properties.post_category"] = "[" + strings.Join(rows, ",") + "]"
+	srv, _ := fakeAPI(t, many)
+	tr, err := Collect(context.Background(), client(srv.URL), "support.tools")
+	if err != nil {
+		t.Fatal(err)
+	}
+	if n := len(tr.Topics[snapshot.W28d]); n != 25 {
+		t.Fatalf("topics = %d, want all 25 (bucketing happens at scrape time)", n)
 	}
 }

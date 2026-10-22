@@ -6,7 +6,6 @@ import (
 	"sort"
 	"time"
 
-	"github.com/supporttools/website/exporters/blog-metrics/internal/classify"
 	"github.com/supporttools/website/exporters/blog-metrics/internal/postindex"
 	"github.com/supporttools/website/exporters/blog-metrics/internal/snapshot"
 )
@@ -50,8 +49,6 @@ func Collect(ctx context.Context, c *Client, topics map[string]string, now time.
 		ClicksByTopic:      map[snapshot.Window]map[string]float64{},
 		ImpressionsByTopic: map[snapshot.Window]map[string]float64{},
 	}
-	clicks := map[snapshot.Window]map[string]float64{}
-	impressions := map[snapshot.Window]map[string]float64{}
 	for w, r := range Windows(now) {
 		rows, err := c.Query(ctx, r[0], r[1], nil, 1)
 		if err != nil {
@@ -65,7 +62,8 @@ func Collect(ctx context.Context, c *Client, topics map[string]string, now time.
 		if err != nil {
 			return s, fmt.Errorf("pages %s: %w", w, err)
 		}
-		clicks[w], impressions[w] = map[string]float64{}, map[string]float64{}
+		// All topics are kept here; the scrape and /report decide how to bucket them.
+		clicks, impressions := map[string]float64{}, map[string]float64{}
 		for _, row := range rows {
 			if len(row.Keys) == 0 {
 				continue
@@ -74,14 +72,10 @@ func Collect(ctx context.Context, c *Client, topics map[string]string, now time.
 			if !ok {
 				topic = otherTopic
 			}
-			clicks[w][topic] += row.Clicks
-			impressions[w][topic] += row.Impressions
+			clicks[topic] += row.Clicks
+			impressions[topic] += row.Impressions
 		}
-	}
-	keep := classify.TopKeys(clicks[snapshot.W28d], topTopics)
-	for _, w := range snapshot.LongWindows {
-		s.ClicksByTopic[w] = classify.Bucket(clicks[w], keep, otherTopic)
-		s.ImpressionsByTopic[w] = classify.Bucket(impressions[w], keep, otherTopic)
+		s.ClicksByTopic[w], s.ImpressionsByTopic[w] = clicks, impressions
 	}
 	articles := map[string]float64{}
 	for _, t := range topics {

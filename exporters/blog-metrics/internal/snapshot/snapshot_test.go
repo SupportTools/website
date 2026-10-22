@@ -2,6 +2,7 @@ package snapshot
 
 import (
 	"encoding/json"
+	"fmt"
 	"sort"
 	"strings"
 	"testing"
@@ -168,4 +169,74 @@ func TestReportShape(t *testing.T) {
 	if len(topics) != 3 { // networking, rke2 (traffic), kubernetes (search only)
 		t.Fatalf("topics = %v", topics)
 	}
+}
+
+// manyTopics returns 25 topics t00..t24 where t24 has the most pageviews.
+func manyTopics() map[string]float64 {
+	m := map[string]float64{}
+	for i := 0; i < 25; i++ {
+		m[fmt.Sprintf("t%02d", i)] = float64(i + 1)
+	}
+	return m
+}
+
+// Traffic and search topics are bucketed with one top-20 set (by 28-day
+// pageviews), so a topic row never joins a different "other" across sources.
+func TestCollectorUsesOneTopSetForTrafficAndSearch(t *testing.T) {
+	s := NewStore(fixedNow())
+	tr := sampleTraffic()
+	tr.Topics = map[Window]map[string]float64{W28d: manyTopics()}
+	tr.Reads = map[Window]map[string]float64{}
+	s.SetTraffic(tr)
+	s.SetSearch(Search{
+		Totals:             map[Window]Totals{W28d: {}},
+		ClicksByTopic:      map[Window]map[string]float64{W28d: {"t00": 500, "t24": 1, "nonarticle": 7}},
+		ImpressionsByTopic: map[Window]map[string]float64{W28d: {"t00": 900}},
+	})
+	mfs := gather(t, s)
+	keep := map[string]bool{"other": true}
+	for _, m := range mfs["blog_pageviews_by_topic"].GetMetric() {
+		keep[label(m, "topic")] = true
+	}
+	if len(keep) != 21 || keep["t00"] || !keep["t24"] {
+		t.Fatalf("traffic topics = %v, want t05..t24 plus other", keep)
+	}
+	clicks := map[string]float64{}
+	for _, m := range mfs["blog_search_clicks_by_topic"].GetMetric() {
+		if !keep[label(m, "topic")] {
+			t.Fatalf("search topic %q is outside the traffic top set", label(m, "topic"))
+		}
+		clicks[label(m, "topic")] = m.GetGauge().GetValue()
+	}
+	if clicks["other"] != 507 || clicks["t24"] != 1 {
+		t.Fatalf("search clicks by topic = %v, want t00 and nonarticle in other", clicks)
+	}
+}
+
+func TestCollectorFallsBackToSearchTopSetWithoutTraffic(t *testing.T) {
+	s := NewStore(fixedNow())
+	s.SetSearch(Search{ClicksByTopic: map[Window]map[string]float64{W28d: manyTopics()}})
+	got := gather(t, s)["blog_search_clicks_by_topic"].GetMetric()
+	if len(got) != 21 {
+		t.Fatalf("search topics = %d, want 20 plus other", len(got))
+	}
+}
+
+// /report joins unbucketed maps, so a topic outside one source's top 20 still
+// shows its real numbers from the other.
+func TestReportJoinsUnbucketedTopics(t *testing.T) {
+	s := NewStore(fixedNow())
+	tr := sampleTraffic()
+	tr.Topics = map[Window]map[string]float64{W28d: manyTopics()}
+	s.SetTraffic(tr)
+	s.SetSearch(Search{ClicksByTopic: map[Window]map[string]float64{W28d: {"t00": 500}}})
+	for _, row := range Report(s.Get()).Topics {
+		if row.Topic == "t00" {
+			if row.Pageviews28d != 1 || row.SearchClicks28d != 500 {
+				t.Fatalf("t00 row = %+v", row)
+			}
+			return
+		}
+	}
+	t.Fatal("t00 missing from /report topics")
 }

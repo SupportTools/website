@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"net/http/httptest"
 	"net/url"
+	"strconv"
 	"strings"
 	"testing"
 	"time"
@@ -197,5 +198,41 @@ func TestQueryErrorIncludesStatus(t *testing.T) {
 	_, err := c.Query(context.Background(), "2026-10-01", "2026-10-07", nil, 1)
 	if err == nil || !strings.Contains(err.Error(), "403") || !strings.Contains(err.Error(), "sufficient permission") {
 		t.Fatalf("err = %v", err)
+	}
+}
+
+func TestSearchKeepsAllTopicsUnbucketed(t *testing.T) {
+	_, keyJSON := testKey(t)
+	var rows []string
+	topics := map[string]string{}
+	for i := 0; i < 25; i++ {
+		slug := "p" + strconv.Itoa(i)
+		topics[slug] = "t" + strconv.Itoa(i)
+		rows = append(rows, `{"keys":["https://support.tools/`+slug+`/"],"clicks":`+strconv.Itoa(i+1)+`,"impressions":10}`)
+	}
+	srv := testsrv.New(t, http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		if r.URL.Path == "/token" {
+			io.WriteString(w, `{"access_token":"tok","expires_in":3600}`)
+			return
+		}
+		var body struct {
+			Dimensions []string `json:"dimensions"`
+		}
+		json.NewDecoder(r.Body).Decode(&body)
+		if strings.Join(body.Dimensions, ",") == "page" {
+			io.WriteString(w, `{"rows":[`+strings.Join(rows, ",")+`]}`)
+			return
+		}
+		io.WriteString(w, `{"rows":[]}`)
+	}))
+	now := time.Date(2026, 10, 23, 12, 0, 0, 0, time.UTC)
+	ts, _ := NewTokenSource(keyJSON, srv.URL+"/token", func() time.Time { return now })
+	c := &Client{BaseURL: srv.URL, Site: "sc-domain:support.tools", Tokens: ts, HTTP: http.DefaultClient}
+	s, err := Collect(context.Background(), c, topics, now)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if n := len(s.ClicksByTopic[snapshot.W28d]); n != 25 {
+		t.Fatalf("topics = %d, want all 25 (bucketing happens at scrape time)", n)
 	}
 }

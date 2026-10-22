@@ -4,7 +4,15 @@ import (
 	"strconv"
 
 	"github.com/prometheus/client_golang/prometheus"
+
+	"github.com/supporttools/website/exporters/blog-metrics/internal/classify"
 )
+
+// topTopics is the topic label budget per metric: the 20 topics with the most
+// 28-day article pageviews (or search clicks when PostHog has no data yet),
+// with every other topic summed into "other". Traffic and search share this one
+// set so their topic series line up.
+const topTopics = 20
 
 // collector builds const metrics from the store on every scrape, so a label
 // value that left the data (a top post, a topic) disappears instead of staying
@@ -67,6 +75,17 @@ func (c collector) Collect(ch chan<- prometheus.Metric) {
 			}
 		}
 	}
+	keep := classify.TopKeys(v.Search.ClicksByTopic[W28d], topTopics)
+	if v.Status[SourcePostHog].HasData {
+		keep = classify.TopKeys(v.Traffic.Topics[W28d], topTopics)
+	}
+	bucket := func(m map[Window]map[string]float64) map[Window]map[string]float64 {
+		out := make(map[Window]map[string]float64, len(m))
+		for w, kv := range m {
+			out[w] = classify.Bucket(kv, keep, "other")
+		}
+		return out
+	}
 
 	for _, s := range Sources {
 		st := v.Status[s]
@@ -92,13 +111,14 @@ func (c collector) Collect(ch chan<- prometheus.Metric) {
 			gauge(dBot, val, string(w))
 		}
 		byKey(dChannel, t.Channels)
-		byKey(dTopic, t.Topics)
-		byKey(dReads, t.Reads)
+		topics, reads := bucket(t.Topics), bucket(t.Reads)
+		byKey(dTopic, topics)
+		byKey(dReads, reads)
 		byKey(dKind, t.Kinds)
-		for w, pv := range t.Topics {
+		for w, pv := range topics {
 			for topic, n := range pv {
 				if n > 0 {
-					gauge(dReadRate, t.Reads[w][topic]/n, string(w), topic)
+					gauge(dReadRate, reads[w][topic]/n, string(w), topic)
 				}
 			}
 		}
@@ -116,8 +136,8 @@ func (c collector) Collect(ch chan<- prometheus.Metric) {
 			gauge(dSCTR, t.CTR, string(w))
 			gauge(dSPos, t.Position, string(w))
 		}
-		byKey(dSClicksT, v.Search.ClicksByTopic)
-		byKey(dSImprT, v.Search.ImpressionsByTopic)
+		byKey(dSClicksT, bucket(v.Search.ClicksByTopic))
+		byKey(dSImprT, bucket(v.Search.ImpressionsByTopic))
 	}
 
 	if v.Status[SourceBuffer].HasData {

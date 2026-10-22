@@ -53,11 +53,16 @@ func (c *Client) Query(ctx context.Context, hogql string) ([][]any, error) {
 	}
 	var out struct {
 		Results [][]any `json:"results"`
+		HasMore bool    `json:"hasMore"`
 	}
 	dec := json.NewDecoder(resp.Body)
 	dec.UseNumber()
 	if err := dec.Decode(&out); err != nil {
 		return nil, fmt.Errorf("posthog query: decode: %w", err)
+	}
+	if out.HasMore {
+		// Partial rows would silently drop channels or topics; fail the poll instead.
+		return nil, fmt.Errorf("posthog query: result truncated at %d rows; raise the query's LIMIT", len(out.Results))
 	}
 	return out.Results, nil
 }
