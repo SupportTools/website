@@ -1,0 +1,14 @@
+{{- /* /post-index.json: the properties of every built article, for the
+       blog-metrics exporter (search pages to topics). Tags are left out. */ -}}
+{{- $out := slice -}}
+{{- range where site.RegularPages "Section" "in" (slice "post" "known-good-designs" "training") -}}
+{{- $p := partial "post-props.html" . -}}
+{{- $out = $out | append (dict
+      "post_slug" $p.post_slug
+      "post_section" $p.post_section
+      "post_category" $p.post_category
+      "post_kind" $p.post_kind
+      "post_published" $p.post_published
+      "post_words" $p.post_words) -}}
+{{- end -}}
+{{- $out | jsonify -}}

@@ -6,7 +6,7 @@ locale = "en-US"
 enableRobotsTXT = true
 
 [outputs]
-  home = ["HTML", "RSS", "LLMS"]
+  home = ["HTML", "RSS", "LLMS", "PostIndex"]
   page = ["HTML", "Markdown"]
 
 [outputFormats.LLMS]
@@ -15,6 +15,12 @@ enableRobotsTXT = true
   isPlainText = true
   notAlternative = true
   root = true
+
+[outputFormats.PostIndex]
+  mediaType = "application/json"
+  baseName = "post-index"
+  isPlainText = true
+  notAlternative = true
 
 [menu]
   [[menu.main]]

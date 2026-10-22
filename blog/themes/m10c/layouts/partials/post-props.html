@@ -1,0 +1,21 @@
+{{- /* The post properties shared by the PostHog data block (analytics-props.html)
+       and /post-index.json. post_kind: the frontmatter override wins, then design
+       and training sections are reference, then an error or fix title or slug (or
+       the Troubleshooting category) is troubleshooting. */ -}}
+{{- $cats := .Params.categories | default slice -}}
+{{- $category := "" -}}
+{{- with $cats }}{{ $category = index . 0 | urlize }}{{ end -}}
+{{- $kind := "guide" -}}
+{{- $signal := `\b(fix|fixes|fixed|fixing|troubleshoot\w*|errors?|not working|failed|failing|stuck|crashloop\w*|denied|refused|timeouts?)\b` -}}
+{{- if or (findRE $signal (lower (printf "%s %s" .Title .RelPermalink))) (in $cats "Troubleshooting") }}{{ $kind = "troubleshooting" }}{{ end -}}
+{{- if in (slice "known-good-designs" "training") .Section }}{{ $kind = "reference" }}{{ end -}}
+{{- with .Params.post_kind }}{{ $kind = . }}{{ end -}}
+{{- $props := dict
+      "post_slug" (strings.Trim .RelPermalink "/")
+      "post_section" .Section
+      "post_category" $category
+      "post_tags" (first 5 (.Params.tags | default slice))
+      "post_kind" $kind
+      "post_published" (.Date.Format "2006-01-02")
+      "post_words" .WordCount -}}
+{{- return $props -}}

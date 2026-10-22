@@ -10,7 +10,7 @@ export function readPage(urlPath) {
     throw new Error('run npm run test:theme first');
   }
   const rel = urlPath.replace(/^\/+/, '').replace(/\/+$/, '');
-  const file = /\.(md|txt)$/.test(rel)
+  const file = /\.(md|txt|json)$/.test(rel)
     ? path.join(PUBLIC_DIR, rel)
     : path.join(PUBLIC_DIR, rel, 'index.html');
   return fs.readFileSync(file, 'utf8');
