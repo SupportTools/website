@@ -15,6 +15,9 @@ exec >>"$LOG" 2>&1
 echo "== $(date -Is)"
 exec 9>"$REPO/.og-work/daily-publish.lock"
 flock -n 9 || { echo "another run holds the lock"; exit 0; }
+# Wait (up to 90 min) for nightly-cards.sh to finish so no card is mid-write.
+exec 8>"$REPO/.og-work/run.lock"
+flock -w 5400 8 || { echo "card run still going after 90 min; skipping"; exit 1; }
 cd "$REPO"
 
 [ "$(git branch --show-current)" = main ] || { echo "not on main; skipping"; exit 1; }

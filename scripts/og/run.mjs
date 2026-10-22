@@ -26,6 +26,8 @@ const CONTENT = join(ROOT, 'blog', 'content', 'post');
 const WORK = join(ROOT, '.og-work');
 const MANIFEST = join(ROOT, 'scripts', 'og', 'manifest.json');
 const ATTEMPTS = 2;
+// A Codex usage limit fails every card in seconds; stop instead of marking the whole queue failed.
+const MAX_FAILS_IN_A_ROW = Number(process.env.OG_MAX_FAILS_IN_A_ROW || 5);
 
 const argv = process.argv.slice(2);
 const flag = (n) => argv.includes(n);
@@ -37,6 +39,8 @@ const now = () => new Date().toISOString();
 const log = (slug, msg) => console.log(`${new Date().toTimeString().slice(0, 8)} ${slug}: ${msg}`);
 
 let uploadsDisabled = flag('--no-upload');
+let failsInARow = 0;
+let halted = '';
 
 async function makeCard(post, dir, note) {
   const prompt = imagePrompt(post, excerpt(post.body), note);
@@ -73,6 +77,7 @@ async function processPost(post) {
         if (verdict.verdict === 'pass') break;
         note = verdict.reason;
       }
+      failsInARow = 0;
       Object.assign(entry, { promptVersion: PROMPT_VERSION, reason: verdict.reason, updated: now() });
       delete entry.note;
       if (verdict.verdict !== 'pass') {
@@ -93,6 +98,10 @@ async function processPost(post) {
     }
     Object.assign(entry, { status: 'failed', reason: msg.slice(0, 300), updated: now() });
     log(post.slug, `failed: ${msg}`);
+    if (++failsInARow >= MAX_FAILS_IN_A_ROW && !halted) {
+      halted = `${failsInARow} cards failed in a row, last: ${msg}`;
+      console.error(`stopping: ${halted}`);
+    }
   } finally {
     save();
   }
@@ -107,9 +116,10 @@ async function runAll() {
   console.log(`${posts.length} posts to process, concurrency ${concurrency}${uploadsDisabled ? ', uploads off' : ''}`);
   let next = 0;
   await Promise.all(Array.from({ length: concurrency }, async () => {
-    while (next < posts.length) await processPost(posts[next++]);
+    while (next < posts.length && !halted) await processPost(posts[next++]);
   }));
   status();
+  if (halted) process.exitCode = 2;
 }
 
 function status() {

@@ -50,7 +50,16 @@ export async function generateImage({ dir, prompt, timeoutMs = 600000 }) {
   ], { timeout: timeoutMs, maxBuffer: 64 * 1024 * 1024 });
   // codex exec also reads stdin until EOF; an open pipe makes it wait forever.
   pending.child.stdin.end();
-  const { stdout, stderr } = await pending;
+  let stdout, stderr;
+  try {
+    ({ stdout, stderr } = await pending);
+  } catch (e) {
+    // execFile's message is only the command line; the cause (usage limit, login) is in the output.
+    writeFileSync(join(dir, 'codex.log'), `${e.stdout || ''}\n${e.stderr || ''}`);
+    const lines = `${e.stdout || ''}\n${e.stderr || ''}`.split('\n').map((l) => l.trim()).filter(Boolean);
+    const cause = lines.findLast((l) => /error|limit|quota|log ?in|unauthori[sz]ed|\b4\d\d\b/i.test(l)) || lines.at(-1);
+    throw new Error(`codex exited ${e.code ?? e.signal}: ${cause || 'no output'}`);
+  }
   writeFileSync(join(dir, 'codex.log'), `${stdout}\n${stderr}`);
   if (!existsSync(raw)) throw new Error('codex finished without writing raw.png');
   const { stdout: dims } = await run('magick', ['identify', '-format', '%w %h', raw]);

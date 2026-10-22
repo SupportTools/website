@@ -60,8 +60,10 @@ without committing.
   login, a scoped token in `~/.config/support-tools-og/vault-token` (mode 600,
   override with `OG_VAULT_TOKEN_FILE`) is tried first: policy
   `workstation-website-og-read` (cluster-services `vault/policies/`), read-only on
-  that one path, orphan, 7-day max. Re-mint it with
-  `vault token create -orphan -policy=workstation-website-og-read -ttl=168h -explicit-max-ttl=168h -display-name=website-og-backlog -field=token > ~/.config/support-tools-og/vault-token`
+  that one path, orphan, periodic (7-day period, no max TTL); `nightly-cards.sh`
+  renews it every night, so it only lapses if the workstation is off for 7 days.
+  Mint or re-mint it with
+  `vault token create -orphan -policy=workstation-website-og-read -period=168h -display-name=website-og-cards -field=token > ~/.config/support-tools-og/vault-token`
   (under `umask 077`); revoke with `vault token revoke` on it. The key is read into the process at
   run time and passed only to `aws`; it is never printed or written. If Vault is
   unavailable, uploads stop and reviewed cards wait as `ready`.
