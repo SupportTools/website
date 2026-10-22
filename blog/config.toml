@@ -81,8 +81,6 @@ enableRobotsTXT = true
     name = "Reddit"
     url = "https://www.reddit.com/user/cube8021/"
 
-  googleAnalytics = "UA-151436906-1"
-
 [markup]
   [markup.highlight]
     noClasses = false
