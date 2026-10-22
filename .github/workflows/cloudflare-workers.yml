@@ -23,6 +23,11 @@ on:
       - main
   schedule:
     - cron: "0 6 * * *" # Daily at 06:00 UTC (01:00 EST) — picks up scheduled posts
+    # Posts dated 09:00 America/Chicago would otherwise wait until the 06:00 UTC build,
+    # and the afternoon social slots (16:26/17:33) would link to a 404. One of these is
+    # 09:10 local in each half of the year (CDT 14:10 UTC, CST 15:10 UTC).
+    - cron: "10 14 * * *"
+    - cron: "10 15 * * *"
 
 # Wrangler comes from the in-cluster Verdaccio npm pull-through proxy (a cache we run,
 # cluster-services npm-proxy/; cluster-services-1030), not live from registry.npmjs.org. The
