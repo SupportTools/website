@@ -90,7 +90,19 @@ export default {
 
       // Serve static assets.
       const response = addDiscoveryHeaders(await env.ASSETS.fetch(request));
-      
+
+      // Posts without a `url:` in frontmatter live at /post/<slug>/, but shared
+      // links use /<slug>/. On a root 404, redirect when /post/<slug>/ exists,
+      // keeping the query string so utm tags still attribute the visit.
+      const rootSlug = url.pathname.match(/^\/([a-z0-9][a-z0-9._-]*)\/?$/i);
+      if (response.status === 404 && rootSlug && (request.method === 'GET' || request.method === 'HEAD')) {
+        const postUrl = new URL(`/post/${rootSlug[1]}/`, url.origin);
+        const postResponse = await env.ASSETS.fetch(new Request(postUrl, { method: 'HEAD' }));
+        if (postResponse.ok) {
+          return Response.redirect(`${postUrl.href}${url.search}`, 301);
+        }
+      }
+
       // Log response details
       const duration = Date.now() - startTime;
       console.log(`${request.method} ${url.pathname} - ${response.status} - ${duration}ms - ${response.headers.get('content-length') || 0} bytes`);
