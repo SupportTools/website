@@ -1,5 +1,6 @@
 // Progressive enhancement: Copy buttons on code blocks, scroll-spy for the
-// sidebar table of contents, and the search query kept in the page URL.
+// sidebar table of contents, the search query kept in the page URL, and the
+// article_read and code_copied analytics events.
 
 const COPIED_MS = 2000;
 
@@ -19,6 +20,19 @@ export function codeTextFrom(root) {
   return clone.textContent.replace(/\n$/, '');
 }
 
+// Sends an event to PostHog when it loaded (an ad blocker may stop it).
+// Returns whether it did. Never throws.
+export function track(event, props) {
+  try {
+    const ph = typeof window !== 'undefined' ? window.posthog : undefined;
+    if (!ph || typeof ph.capture !== 'function') return false;
+    ph.capture(event, props);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 async function copyBlock(block, button, status) {
   let ok = false;
   try {
@@ -28,6 +42,7 @@ async function copyBlock(block, button, status) {
   } catch {
     ok = false;
   }
+  if (ok) track('code_copied');
   clearTimeout(button.resetTimer);
   button.textContent = ok ? 'Copied' : 'Copy failed';
   if (status) {
@@ -146,10 +161,72 @@ async function initSearchUrl() {
   });
 }
 
+const READ_RATIO = 0.75;
+const READ_VISIBLE_MS = 30000;
+const READ_CHECK_MS = 5000;
+
+// The share of the article body, from top to bottom, that has been on screen:
+// top is the body's document offset. An empty body counts as read.
+export function readRatio(scrollY, viewportH, top, height) {
+  if (height <= 0) return 1;
+  return Math.min(1, Math.max(0, (scrollY + viewportH - top) / height));
+}
+
+// Visible time so far: adds the span since the last update only when the tab
+// was visible during it.
+export function visibleMs(prevMs, sinceMs, nowMs, hidden) {
+  return hidden ? prevMs : prevMs + (nowMs - sinceMs);
+}
+
+export function shouldSendRead(ratio, visible, sent) {
+  return ratio >= READ_RATIO && visible >= READ_VISIBLE_MS && !sent;
+}
+
+// Sends article_read once, after the reader has seen 75% of the body and
+// spent 30 s with the tab visible.
+function enhanceReadTracking() {
+  const body = document.querySelector('.post-content');
+  if (!body) return;
+  let acc = 0;
+  let since = Date.now();
+  let maxRatio = 0;
+  let sent = false;
+  let frame = 0;
+
+  const measure = () => {
+    frame = 0;
+    const rect = body.getBoundingClientRect();
+    maxRatio = Math.max(maxRatio, readRatio(window.scrollY, window.innerHeight, rect.top + window.scrollY, rect.height));
+  };
+  const elapsed = () => visibleMs(acc, since, Date.now(), document.hidden);
+
+  document.addEventListener('visibilitychange', () => {
+    // The tab was visible until it hid, and hidden until it showed again.
+    acc = visibleMs(acc, since, Date.now(), !document.hidden);
+    since = Date.now();
+  });
+  window.addEventListener('scroll', () => {
+    if (!frame) frame = requestAnimationFrame(measure);
+  }, { passive: true });
+
+  const check = () => {
+    if (!shouldSendRead(maxRatio, elapsed(), sent)) return;
+    sent = true;
+    clearInterval(timer);
+    track('article_read', {
+      read_ratio: Math.round(maxRatio * 100) / 100,
+      visible_seconds: Math.round(elapsed() / 1000),
+    });
+  };
+  const timer = setInterval(check, READ_CHECK_MS);
+  measure();
+}
+
 function init() {
   enhanceCodeBlocks();
   enhanceToc();
   initSearchUrl();
+  enhanceReadTracking();
 }
 
 if (typeof document !== 'undefined') {
