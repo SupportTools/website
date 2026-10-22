@@ -55,14 +55,16 @@ sit in Buffer.
 
 ### 1b. Bot filtering (found 2026-10-21)
 
-About 73% of PostHog's Google-referred pageviews in the last 30 days came from one headless
-browser: Linux, Chrome 154, viewport about 1905 px, one pageview per visitor, `www.google.com`
-referrer (3,893 pageviews). It also caused the Aug 2 and Sep 20 spike weeks and the apparent
-"decline". Search Console shows human search traffic flat at about 150 clicks a week.
+A headless Chrome sends one pageview per visitor from a Linux 1919x992 window
+(Chrome 153 to 156, with or without a `www.google.com` referrer): 3,907 of 8,310
+pageviews in the 30 days to 2026-10-22. It caused the Aug 2 and Sep 20 spike weeks
+and the apparent "decline". Search Console shows human search traffic flat at about
+150 clicks a week.
 
 - Every PostHog query, insight, dashboard tile and exporter metric excludes it through one shared
-  definition (a PostHog cohort-free event filter, saved as the project's test-account filter so
-  "filter test accounts" applies it everywhere), plus `$host = support.tools`.
+  definition: the HogQL expression in `analytics/bot-filter.hogql`, saved (2026-10-22) as a
+  `hogql` entry in project 78897's test-account filters, plus `$host = support.tools`, with
+  "filter test accounts" on by default.
 - Search trends come from Search Console, never from PostHog referrers.
 - The exporter publishes `blog_bot_pageviews{window}` (pageviews the filter removed) so a new or
   changed bot signature shows up as a jump in that series; re-check the signature monthly.
