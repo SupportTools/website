@@ -32,7 +32,7 @@ CoreDNS is a flexible, extensible DNS server and the default cluster DNS provide
 ![CoreDNS](https://cdn.support.tools/posts/coredns/nodelocaldns.svg)
 
 #### CoreDNS in RKE2
-RKE2 installs CoreDNS from its packaged `rke2-coredns` Helm chart into `kube-system`, together with the cluster-proportional-autoscaler that scales CoreDNS replicas with cluster size. Pods keep the `k8s-app=kube-dns` label and the Service is named `rke2-coredns-rke2-coredns`. You change it with a `HelmChartConfig` named `rke2-coredns`, not by editing the ConfigMap, because the Helm controller reverts manual edits. Disable it with `disable: rke2-coredns` in `/etc/rancher/rke2/config.yaml` only if you deploy another cluster DNS.
+RKE2 installs CoreDNS from its packaged `rke2-coredns` Helm chart into `kube-system`, together with the cluster-proportional-autoscaler that scales CoreDNS replicas with cluster size. Pods keep the `k8s-app=kube-dns` label, the Deployment is `rke2-coredns-rke2-coredns`, and the Service is still named `kube-dns`. You change it with a `HelmChartConfig` named `rke2-coredns`, not by editing the ConfigMap, because the Helm controller reverts manual edits. Disable it with `disable: rke2-coredns` in `/etc/rancher/rke2/config.yaml` only if you deploy another cluster DNS.
 
 Recent RKE2 releases (from the September 2026 releases, per the [RKE2 networking docs](https://docs.rke2.io/networking/networking_services)) also allow Corefile customization through the chart. The docs warn that only the default Corefile is tested, so keep changes small.
 
