@@ -14,7 +14,11 @@
 // draft state, live time) and every share card. Results go to stdout, to the
 // Pushgateway (job blog_social_guard, alerts in cluster-services
 // monitoring/a1-ops-prd/blog-metrics-alerts.yaml) and, on problems, a desktop
-// notification. Exit 0 = clean, 2 = problems found, 1 = the run failed.
+// notification when there is a desktop. Exit 0 = clean, 2 = problems found, 1 = the run failed.
+//
+// The scheduled runs are a1-ops-prd CronJobs (cluster-services
+// monitoring/a1-ops-prd/blog-social-guard.yaml) that clone main and run this file;
+// scripts/social/guard.sh is for manual runs on a workstation.
 import { execFileSync } from 'node:child_process';
 import fs from 'node:fs';
 import os from 'node:os';
