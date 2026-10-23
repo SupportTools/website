@@ -1327,6 +1327,7 @@
 /post/wireshark-tcp-segment-reassembled-pdu-explanation/
 /post/wsl-ssh-server-keys/
 /post/x509-certificate-exporter/
+/postgresql-high-availability-patroni-kubernetes-enterprise-guide/
 /privacy/
 /prometheus-monitor-external-services/
 /prometheus-tsdb-compaction-failed-index-64gib-cardinality/
@@ -2128,6 +2129,7 @@
 /tags/gui/
 /tags/gzip/
 /tags/ha-cluster/
+/tags/ha/
 /tags/hacking/
 /tags/hands-on/
 /tags/haproxy/
@@ -2632,6 +2634,7 @@
 /tags/password-recovery/
 /tags/passwordless-login/
 /tags/path-analysis/
+/tags/patroni/
 /tags/paxos/
 /tags/payment-security/
 /tags/pci-dss/
@@ -3024,6 +3027,7 @@
 /tags/state-machines/
 /tags/state-management/
 /tags/statefulset/
+/tags/statefulsets/
 /tags/static-analysis/
 /tags/static-pods/
 /tags/static-sites/
