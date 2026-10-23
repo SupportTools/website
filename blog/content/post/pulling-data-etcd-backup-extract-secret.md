@@ -133,6 +133,8 @@ If you have **encryption at rest** enabled in your Kubernetes cluster, the secre
 
 You can locate the encryption configuration file (usually found under `/etc/kubernetes/`) and use it to decrypt the secret. The process involves using Kubernetes encryption keys to decode the encrypted secret data.
 
+On RKE2, where secrets encryption is on by default, the full procedure (finding the right `aescbc` key, decrypting the value with `openssl` and decoding the protobuf) is in [Decrypt One Secret From an RKE2 etcd Snapshot](/post/extracting-decrypting-secret-etcd-snapshot-rke2/).
+
 ### Conclusion
 
 Extracting a specific secret from an **etcd snapshot** is a valuable method for pulling critical data without the need to restore an entire cluster. By following these steps, you can efficiently retrieve Kubernetes secrets from etcd snapshots using `etcdctl`, saving time and reducing the complexity of your recovery process.
