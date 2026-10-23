@@ -1,6 +1,6 @@
 ---
 title: "Kubernetes Service Account Token Projection and Audience-Bound Tokens for Secure Pod Authentication"
-date: 2031-09-16T00:00:00-05:00
+date: 2027-03-26T00:00:00-05:00
 draft: false
 tags: ["Kubernetes", "Security", "Service Accounts", "OIDC", "Authentication", "RBAC"]
 categories:

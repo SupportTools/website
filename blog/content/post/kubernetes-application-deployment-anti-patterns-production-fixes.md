@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Application Deployment Anti-Patterns: Common Mistakes and How to Fix Them in Production"
 date: 2031-09-09T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Deployments", "Best Practices", "Production", "Reliability", "DevOps"]
 categories:
 - Kubernetes

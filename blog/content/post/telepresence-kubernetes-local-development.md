@@ -1,6 +1,6 @@
 ---
 title: "Simplifying Kubernetes Local Development with Telepresence Replace Mode"
-date: 2027-05-20T09:00:00-05:00
+date: 2026-11-30T09:00:00-06:00
 draft: false
 tags: ["Kubernetes", "Telepresence", "Microservices", "DevOps", "Local Development"]
 categories:

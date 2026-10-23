@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Node Problem Detector: Identifying and Responding to Node Failures"
 date: 2028-10-30T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Node Management", "Troubleshooting", "Monitoring", "SRE"]
 categories:
 - Kubernetes

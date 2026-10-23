@@ -1,7 +1,7 @@
 ---
 title: "Linux systemd Hardening: Security Sandboxing, Capability Restrictions, and Service Isolation"
 date: 2031-07-03T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "systemd", "Security", "Sandboxing", "Capabilities", "Hardening"]
 categories: ["Linux", "Security"]
 author: "Matthew Mattox - mmattox@support.tools"

@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes CIS Benchmark Compliance: Automated Scanning and Remediation"
 date: 2028-03-04T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "CIS Benchmark", "Security", "Compliance", "kube-bench", "OPA Gatekeeper", "Trivy"]
 categories: ["Kubernetes", "Security"]
 author: "Matthew Mattox - mmattox@support.tools"

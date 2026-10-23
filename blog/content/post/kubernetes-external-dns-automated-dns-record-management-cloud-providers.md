@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes External DNS: Automated DNS Record Management Across Cloud Providers"
 date: 2030-12-17T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "ExternalDNS", "DNS", "AWS Route53", "Cloudflare", "GCP", "Multi-Cluster", "Networking"]
 categories:
 - Kubernetes

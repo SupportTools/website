@@ -1,7 +1,7 @@
 ---
 title: "Go Concurrency Patterns: Channels, Context, and Production-Safe Design"
 date: 2028-02-25T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Concurrency", "Channels", "Context", "Goroutines", "Production"]
 categories: ["Go", "Software Engineering"]
 author: "Matthew Mattox - mmattox@support.tools"

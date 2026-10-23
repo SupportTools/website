@@ -1,7 +1,7 @@
 ---
 title: "Linux TCP/IP Stack Internals: Socket Buffers, Congestion Control, and Tuning"
 date: 2029-07-08T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "TCP", "Networking", "Performance", "Kernel", "Socket Buffers", "Congestion Control"]
 categories: ["Linux", "Networking", "Performance"]
 author: "Matthew Mattox - mmattox@support.tools"

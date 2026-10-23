@@ -1,7 +1,7 @@
 ---
 title: "Understanding Istio Ingress Gateway: A Comprehensive Guide"
 date: 2027-05-27T09:00:00-05:00
-draft: false
+draft: true
 tags: ["Istio", "Kubernetes", "Service Mesh", "Ingress", "Gateway"]
 categories:
 - Kubernetes

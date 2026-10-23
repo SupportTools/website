@@ -1,7 +1,7 @@
 ---
 title: "Distributed Tracing in Go with OpenTelemetry: Spans, Baggage, and Sampling"
 date: 2028-02-22T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "OpenTelemetry", "Distributed Tracing", "Observability", "gRPC", "Kubernetes"]
 categories: ["Go", "Observability"]
 author: "Matthew Mattox - mmattox@support.tools"

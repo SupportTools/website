@@ -1,7 +1,7 @@
 ---
 title: "Go Security Hardening: Input Sanitization, SSRF Prevention, SQL Injection Defense, and Secure Headers"
 date: 2028-09-10T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Security", "SSRF", "SQL Injection", "Input Validation", "Secure Headers"]
 categories:
 - Go

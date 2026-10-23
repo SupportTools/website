@@ -1,7 +1,7 @@
 ---
 title: "Go Memory Management: Escape Analysis, Stack vs Heap, and Allocation Optimization"
 date: 2030-08-03T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Performance", "Memory Management", "pprof", "GC", "Escape Analysis", "sync.Pool"]
 categories:
 - Go

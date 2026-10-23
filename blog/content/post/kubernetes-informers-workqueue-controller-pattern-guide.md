@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Informers and WorkQueues: Building Efficient Controllers"
 date: 2027-04-28T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Informers", "WorkQueue", "Controller", "Go", "Operator"]
 categories: ["Kubernetes", "Development"]
 author: "Matthew Mattox - mmattox@support.tools"

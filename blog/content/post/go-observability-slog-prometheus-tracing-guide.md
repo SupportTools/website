@@ -1,7 +1,7 @@
 ---
 title: "Go Observability Patterns: Structured Logging with slog, Prometheus Metrics, and Distributed Tracing"
 date: 2028-07-09T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "slog", "Prometheus", "OpenTelemetry", "Observability", "Logging"]
 categories:
 - Go

@@ -1,7 +1,7 @@
 ---
 title: "Go: Implementing a Robust Webhook Server with HMAC Signature Verification and Retry Queuing"
 date: 2031-08-28T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Webhooks", "HMAC", "Security", "Microservices", "Queuing", "Reliability"]
 categories:
 - Go

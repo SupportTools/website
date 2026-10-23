@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Headless Services and DNS: StatefulSet Service Discovery Internals"
 date: 2029-09-06T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "DNS", "StatefulSet", "Service Discovery", "Networking", "CoreDNS"]
 categories: ["Kubernetes", "Networking"]
 author: "Matthew Mattox - mmattox@support.tools"

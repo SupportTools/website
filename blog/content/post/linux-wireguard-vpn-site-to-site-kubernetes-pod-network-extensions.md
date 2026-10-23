@@ -1,7 +1,7 @@
 ---
 title: "Linux WireGuard VPN: Site-to-Site Tunnels and Kubernetes Pod Network Extensions"
 date: 2030-10-24T00:00:00-05:00
-draft: false
+draft: true
 tags: ["WireGuard", "VPN", "Linux", "Kubernetes", "Networking", "Site-to-Site"]
 categories:
 - Linux

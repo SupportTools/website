@@ -1,7 +1,7 @@
 ---
 title: "Load Balancer Showdown: Nginx vs HAProxy vs Cloud-Native Solutions"
 date: 2027-02-04T09:00:00-05:00
-draft: false
+draft: true
 tags: ["Load Balancing", "Nginx", "HAProxy", "AWS", "GCP", "Azure", "Kubernetes", "Infrastructure", "DevOps"]
 categories:
 - Infrastructure

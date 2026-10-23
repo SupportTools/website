@@ -1,7 +1,7 @@
 ---
 title: "Linux LVM Thin Provisioning: Snapshot Strategies for Development Environments"
 date: 2031-02-24T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "LVM", "Storage", "Thin Provisioning", "Snapshots", "DevOps", "Docker"]
 categories:
 - Linux

@@ -1,7 +1,7 @@
 ---
 title: "Go: Implementing OpenTelemetry Tracing with Automatic Instrumentation, Sampling Strategies, and Jaeger Export"
 date: 2031-06-19T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "OpenTelemetry", "Tracing", "Jaeger", "Observability", "Distributed Tracing", "Instrumentation"]
 categories:
 - Go

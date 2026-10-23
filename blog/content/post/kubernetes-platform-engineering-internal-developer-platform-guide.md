@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Platform Engineering: Building an Internal Developer Platform"
 date: 2029-08-06T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Platform Engineering", "Backstage", "IDP", "Developer Experience", "GitOps", "DevOps"]
 categories: ["Kubernetes", "Platform Engineering", "DevOps"]
 author: "Matthew Mattox - mmattox@support.tools"

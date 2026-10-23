@@ -1,6 +1,6 @@
 ---
 title: "Linux Transparent Huge Pages: Performance Tuning for Databases and JVMs"
-date: 2029-01-11T00:00:00-05:00
+date: 2026-12-23T00:00:00-06:00
 draft: false
 tags: ["Linux", "Performance", "Transparent Huge Pages", "THP", "Databases", "JVM", "Kernel Tuning"]
 categories:

@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Karpenter Node Autoscaling: Provisioners, Disruption Budgets, and Spot Instance Optimization"
 date: 2028-07-18T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Karpenter", "Autoscaling", "Spot Instances", "AWS", "Cost Optimization"]
 categories:
 - Kubernetes

@@ -1,7 +1,7 @@
 ---
 title: "Go Plugin Architecture: Building Extensible Systems with Hashicorp go-plugin, RPC Plugins, and Hot Reload"
 date: 2031-10-27T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Golang", "Plugins", "go-plugin", "Hashicorp", "RPC", "Architecture", "Hot Reload"]
 categories:
 - Go

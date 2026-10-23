@@ -1,7 +1,7 @@
 ---
 title: "Go Distributed Rate Limiting: Token Bucket Across Replicas, Redis Sliding Window, and Circuit Breaker Integration"
 date: 2031-11-09T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Golang", "Rate Limiting", "Redis", "Distributed Systems", "Circuit Breaker", "Token Bucket"]
 categories: ["Go", "Distributed Systems"]
 author: "Matthew Mattox - mmattox@support.tools"

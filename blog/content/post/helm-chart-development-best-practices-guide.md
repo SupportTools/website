@@ -1,7 +1,7 @@
 ---
 title: "Helm Chart Development Best Practices: Enterprise Patterns and Testing Strategies"
 date: 2027-08-24T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Helm", "Kubernetes", "DevOps", "CI/CD"]
 categories:
 - Kubernetes

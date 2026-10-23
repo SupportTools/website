@@ -1,7 +1,7 @@
 ---
 title: "Volcano: Batch Scheduling for AI/ML Workloads on Kubernetes"
 date: 2027-01-11T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Volcano", "Batch Scheduling", "AI/ML", "GPU"]
 categories: ["Kubernetes", "AI & ML", "Platform Engineering"]
 author: "Matthew Mattox - mmattox@support.tools"

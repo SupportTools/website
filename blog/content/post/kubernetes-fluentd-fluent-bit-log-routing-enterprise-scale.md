@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Fluentd vs Fluent Bit: Log Routing Architecture for Enterprise Scale"
 date: 2031-01-09T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Fluentd", "Fluent Bit", "Logging", "Observability", "Log Routing", "OpenTelemetry", "ELK", "Loki"]
 categories:
 - Kubernetes

@@ -1,7 +1,7 @@
 ---
 title: "Go Service Discovery and Client-Side Load Balancing with gRPC and Consul"
 date: 2030-08-06T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "gRPC", "Consul", "Service Discovery", "Load Balancing", "Microservices", "Resilience"]
 categories:
 - Go

@@ -1,7 +1,7 @@
 ---
 title: "Go Channel Patterns: Timeouts, Pipelines, and Back-Pressure Implementation"
 date: 2030-04-19T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Channels", "Concurrency", "Pipelines", "Back-Pressure", "Goroutines", "Production"]
 categories: ["Go", "Systems Programming"]
 author: "Matthew Mattox - mmattox@support.tools"

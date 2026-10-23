@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Crossplane Compositions: Composite Resources, Patches, Transforms, XRD Versioning, and Claim Binding"
 date: 2031-11-25T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Crossplane", "Infrastructure as Code", "Platform Engineering", "GitOps", "Compositions", "XRD"]
 categories:
 - Kubernetes

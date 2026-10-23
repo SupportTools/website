@@ -1,7 +1,7 @@
 ---
 title: "Go Kafka Consumer Group Patterns: Offset Management, Rebalancing, and Error Recovery"
 date: 2028-05-08T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Kafka", "Consumer Groups", "Sarama", "franz-go", "Messaging"]
 categories: ["Go", "Distributed Systems"]
 author: "Matthew Mattox - mmattox@support.tools"

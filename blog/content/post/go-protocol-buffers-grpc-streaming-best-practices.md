@@ -1,7 +1,7 @@
 ---
 title: "Go Protocol Buffers: proto3, gRPC Server Streaming, and Protobuf Best Practices"
 date: 2030-04-25T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "gRPC", "Protocol Buffers", "Protobuf", "Streaming", "API Design"]
 categories: ["Go", "API Design"]
 author: "Matthew Mattox - mmattox@support.tools"

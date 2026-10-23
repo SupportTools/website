@@ -1,7 +1,7 @@
 ---
 title: "Go: Implementing Content-Addressable Storage (CAS) with SHA-256 Deduplication for File Systems"
 date: 2031-09-27T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Storage", "SHA-256", "Deduplication", "Content-Addressable Storage", "File Systems"]
 categories: ["Go", "Storage"]
 author: "Matthew Mattox - mmattox@support.tools"

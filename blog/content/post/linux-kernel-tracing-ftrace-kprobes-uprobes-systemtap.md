@@ -1,7 +1,7 @@
 ---
 title: "Linux Kernel Tracing: ftrace, kprobes, uprobes, and SystemTap"
 date: 2029-12-13T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "ftrace", "kprobes", "uprobes", "SystemTap", "Performance", "Tracing", "Debugging"]
 categories:
 - Linux

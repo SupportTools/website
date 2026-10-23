@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Strimzi Kafka Operator: Event Streaming Infrastructure on Kubernetes"
 date: 2031-05-15T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Kafka", "Strimzi", "Event Streaming", "Operators", "Prometheus", "Grafana"]
 categories:
 - Kubernetes

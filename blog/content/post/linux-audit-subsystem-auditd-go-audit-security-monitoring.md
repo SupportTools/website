@@ -1,7 +1,7 @@
 ---
 title: "Linux Audit Subsystem: Real-Time Security Monitoring with auditd and go-audit"
 date: 2031-04-12T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Security", "Auditd", "Monitoring", "SIEM", "Kubernetes", "Go"]
 categories:
 - Linux

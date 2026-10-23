@@ -1,7 +1,7 @@
 ---
 title: "Prometheus + Thanos: Long-Term Metrics Storage and Global Query at Scale"
 date: 2027-07-05T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Prometheus", "Thanos", "Kubernetes", "Observability", "Monitoring"]
 categories:
 - Prometheus

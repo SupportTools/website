@@ -1,7 +1,7 @@
 ---
 title: "Go Table-Driven Tests and Test Helper Patterns for Enterprise Codebases"
 date: 2030-05-18T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Testing", "Table-Driven Tests", "Test Helpers", "Golden Files", "Benchmarks", "CI/CD"]
 categories:
 - Go

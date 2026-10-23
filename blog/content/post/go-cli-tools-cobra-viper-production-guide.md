@@ -1,7 +1,7 @@
 ---
 title: "Production CLI Tools in Go: cobra, viper, and Distribution Patterns"
 date: 2028-11-03T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "CLI", "cobra", "viper", "DevOps"]
 categories:
 - Go

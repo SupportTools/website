@@ -1,7 +1,7 @@
 ---
 title: "vLLM on Kubernetes: Production LLM Inference at Scale"
 date: 2027-09-29T00:00:00-05:00
-draft: false
+draft: true
 tags: ["vLLM", "LLM", "Kubernetes", "GPU", "AI/ML", "Inference"]
 categories:
 - "AI & ML"

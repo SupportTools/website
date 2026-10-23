@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Storage Troubleshooting: Persistent Volumes, CSI, and StatefulSets"
 date: 2027-03-07T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Storage", "PersistentVolume", "CSI", "Troubleshooting"]
 categories: ["Kubernetes", "Storage", "Troubleshooting"]
 author: "Matthew Mattox - mmattox@support.tools"

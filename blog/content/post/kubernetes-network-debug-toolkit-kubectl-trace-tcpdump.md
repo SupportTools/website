@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Network Debug Toolkit: kubectl-trace, tcpdump in Pods, and Network Troubleshooting"
 date: 2030-04-15T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Networking", "tcpdump", "kubectl-trace", "eBPF", "Troubleshooting", "Production"]
 categories: ["Kubernetes", "DevOps"]
 author: "Matthew Mattox - mmattox@support.tools"

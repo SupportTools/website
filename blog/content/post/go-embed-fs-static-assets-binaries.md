@@ -1,7 +1,7 @@
 ---
 title: "Go Embed FS: Packaging Static Assets and Templates in Binaries"
 date: 2029-01-10T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Golang", "embed", "Static Assets", "Binary Distribution", "Templates"]
 categories:
 - Go

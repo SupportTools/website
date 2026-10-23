@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Chaos Engineering with Chaos Mesh: Fault Injection Patterns"
 date: 2029-08-03T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Chaos Engineering", "Chaos Mesh", "Resilience", "Testing", "SRE"]
 categories: ["Kubernetes", "SRE", "Testing"]
 author: "Matthew Mattox - mmattox@support.tools"

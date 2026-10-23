@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Workload Identity Federation: OIDC, JWT, and Cloud IAM Integration"
 date: 2028-05-12T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "OIDC", "JWT", "IAM", "Workload Identity", "Security"]
 categories: ["Kubernetes", "Security"]
 author: "Matthew Mattox - mmattox@support.tools"

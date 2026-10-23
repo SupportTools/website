@@ -1,7 +1,7 @@
 ---
 title: "Go Structured Concurrency: Context Trees and Goroutine Lifecycle Management"
 date: 2030-10-19T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Concurrency", "Goroutines", "Context", "errgroup", "Graceful Shutdown", "Production"]
 categories:
 - Go

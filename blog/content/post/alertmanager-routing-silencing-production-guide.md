@@ -1,7 +1,7 @@
 ---
 title: "Alertmanager: Advanced Routing, Silencing, and Inhibition for Production"
 date: 2027-03-21T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Alertmanager", "Prometheus", "Alerting", "Incident Management"]
 categories: ["Kubernetes", "Observability", "Incident Response"]
 author: "Matthew Mattox - mmattox@support.tools"

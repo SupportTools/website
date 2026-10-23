@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Dynamic Admission Webhooks: ValidatingAdmissionWebhook, MutatingAdmissionWebhook, Cert Rotation, and Testing"
 date: 2031-12-14T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Admission Webhooks", "Validating", "Mutating", "cert-manager", "Operator SDK", "Policy", "Security"]
 categories: ["Kubernetes", "Platform Engineering"]
 author: "Matthew Mattox - mmattox@support.tools"

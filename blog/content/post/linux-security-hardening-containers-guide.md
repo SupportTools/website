@@ -1,7 +1,7 @@
 ---
 title: "Linux Security Hardening for Container Hosts: seccomp, AppArmor, and Audit"
 date: 2027-09-21T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Security", "Containers", "seccomp", "AppArmor", "SELinux", "auditd"]
 categories: ["Linux", "Security"]
 author: "Matthew Mattox - mmattox@support.tools"

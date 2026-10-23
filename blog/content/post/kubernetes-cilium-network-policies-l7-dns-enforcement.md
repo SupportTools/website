@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Cilium Network Policies: L7 Policy Enforcement and DNS-Based Rules"
 date: 2031-05-25T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Cilium", "eBPF", "Network Policy", "L7", "DNS", "Security", "Hubble", "Zero Trust"]
 categories:
 - Kubernetes

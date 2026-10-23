@@ -1,7 +1,7 @@
 ---
 title: "Linux Memory Forensics: Volatility, /proc, and Live Analysis"
 date: 2029-10-01T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Security", "Forensics", "Memory Analysis", "Volatility", "Incident Response"]
 categories: ["Linux", "Security"]
 author: "Matthew Mattox - mmattox@support.tools"

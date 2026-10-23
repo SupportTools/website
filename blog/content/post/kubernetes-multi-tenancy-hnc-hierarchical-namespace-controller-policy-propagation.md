@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Multi-Tenancy with HNC (Hierarchical Namespace Controller): Namespace Trees, Policy Propagation, and Enterprise Isolation"
 date: 2031-10-25T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "HNC", "Multi-Tenancy", "RBAC", "Namespace", "Policy", "Security"]
 categories:
 - Kubernetes

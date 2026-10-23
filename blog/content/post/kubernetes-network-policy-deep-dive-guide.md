@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Network Policy Deep Dive: Ingress/Egress Rules, Namespace Isolation, and Cilium Network Policies"
 date: 2028-07-02T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Network Policy", "Cilium", "Security", "Zero Trust"]
 categories:
 - Kubernetes

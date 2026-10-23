@@ -1,7 +1,7 @@
 ---
 title: "Cilium Advanced Networking: eBPF-Powered Kubernetes Networking Enterprise Guide"
 date: 2026-12-23T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Cilium", "eBPF", "Kubernetes", "Networking", "Network Policy", "Service Mesh", "BGP", "Hubble"]
 categories:
 - Networking

@@ -1,7 +1,7 @@
 ---
 title: "Distributed Caching in Go: GroupCache, Dragonfly, and Cache-Aside Patterns"
 date: 2028-10-07T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Caching", "Distributed Systems", "Redis", "Performance"]
 categories:
 - Go

@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Pod Affinity and Anti-Affinity: Topology Constraints for HA Deployments"
 date: 2029-03-08T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Scheduling", "High Availability", "Topology", "Anti-Affinity", "StatefulSets"]
 categories:
 - Kubernetes

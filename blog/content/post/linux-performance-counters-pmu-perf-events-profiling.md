@@ -1,7 +1,7 @@
 ---
 title: "Linux Performance Counters: PMU, perf Events, and Hardware-Level Profiling"
 date: 2030-03-08T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Performance", "perf", "PMU", "Profiling", "Intel PT", "Hardware"]
 categories: ["Linux", "Performance"]
 author: "Matthew Mattox - mmattox@support.tools"

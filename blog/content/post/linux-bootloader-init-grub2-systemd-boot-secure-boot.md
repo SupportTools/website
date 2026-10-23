@@ -1,7 +1,7 @@
 ---
 title: "Linux Bootloader and Init: GRUB2, systemd-boot, systemd-nspawn, and Secure Boot"
 date: 2030-04-17T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "GRUB2", "systemd-boot", "Secure Boot", "systemd-nspawn", "TPM", "Boot"]
 categories: ["Linux", "System Administration"]
 author: "Matthew Mattox - mmattox@support.tools"

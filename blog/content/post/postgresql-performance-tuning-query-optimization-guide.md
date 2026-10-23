@@ -1,7 +1,7 @@
 ---
 title: "PostgreSQL Performance Tuning: Query Optimization, Indexes, and Configuration"
 date: 2028-09-24T00:00:00-05:00
-draft: false
+draft: true
 tags: ["PostgreSQL", "Database", "Performance", "SQL", "Kubernetes"]
 categories:
 - PostgreSQL

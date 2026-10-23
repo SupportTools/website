@@ -1,7 +1,7 @@
 ---
 title: "Linux Memory-Mapped I/O: /dev/mem, MMIO, and Kernel Device Drivers"
 date: 2029-09-20T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Kernel", "Device Drivers", "MMIO", "PCIe", "VFIO", "UIO", "Systems Programming"]
 categories: ["Linux", "Systems Programming"]
 author: "Matthew Mattox - mmattox@support.tools"

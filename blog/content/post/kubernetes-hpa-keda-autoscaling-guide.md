@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes HPA and KEDA: Advanced Autoscaling Patterns for Production"
 date: 2028-02-24T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "HPA", "KEDA", "Autoscaling", "Prometheus", "Kafka", "VPA"]
 categories: ["Kubernetes", "Performance"]
 author: "Matthew Mattox - mmattox@support.tools"

@@ -1,7 +1,7 @@
 ---
 title: "Go Concurrency Patterns: Worker Pools, Fan-Out/Fan-In, Pipeline Patterns, and Backpressure"
 date: 2028-07-21T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Concurrency", "Goroutines", "Channels", "Worker Pool", "Patterns"]
 categories:
 - Go

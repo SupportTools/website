@@ -1,7 +1,7 @@
 ---
 title: "Go Build Optimization: Module Caching, Build Constraints, and Reproducible Builds"
 date: 2029-12-31T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Build Optimization", "Modules", "Build Constraints", "Reproducible Builds", "CI/CD", "Bazel", "Performance"]
 categories:
 - Go

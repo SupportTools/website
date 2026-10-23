@@ -1,7 +1,7 @@
 ---
 title: "Linux eBPF CO-RE: Compile Once Run Everywhere for Portable Kernel Observability"
 date: 2031-09-01T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "eBPF", "CO-RE", "Observability", "Kernel", "BPF", "libbpf"]
 categories:
 - Linux

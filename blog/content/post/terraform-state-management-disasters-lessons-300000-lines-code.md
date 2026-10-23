@@ -1,7 +1,7 @@
 ---
 title: "Terraform State Management Disasters: Lessons from 300,000 Lines of Code"
 date: 2026-12-01T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Terraform", "Infrastructure as Code", "State Management", "DevOps", "Disaster Recovery", "Best Practices", "Production"]
 categories: ["Infrastructure as Code", "DevOps", "Operations"]
 author: "Matthew Mattox - mmattox@support.tools"

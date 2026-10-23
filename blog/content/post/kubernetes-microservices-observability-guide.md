@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Microservices Observability: A Complete Implementation Guide"
 date: 2026-11-24T09:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Microservices", "Observability", "Tracing", "Security", "DevOps", "Monitoring"]
 categories:
 - Kubernetes

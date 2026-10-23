@@ -1,7 +1,7 @@
 ---
 title: "Go Observability SDK: Building Custom Instrumentation Libraries for Internal Services"
 date: 2030-11-12T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "OpenTelemetry", "Observability", "Tracing", "Metrics", "gRPC", "HTTP", "Platform Engineering"]
 categories:
 - Go

@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Security Scanning: kubescape, kube-bench, and CIS Benchmarks"
 date: 2029-11-07T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Security", "CIS Benchmarks", "kubescape", "kube-bench", "DevSecOps", "Compliance"]
 categories:
 - Kubernetes

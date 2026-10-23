@@ -1,7 +1,7 @@
 ---
 title: "Linux eBPF Socket Filtering: SO_ATTACH_BPF, sk_filter Programs, cgroup-sock Programs, and Traffic Accounting"
 date: 2031-12-17T00:00:00-05:00
-draft: false
+draft: true
 tags: ["eBPF", "Linux", "Networking", "Socket Programming", "cgroup", "Traffic Accounting", "Kernel", "BPF"]
 categories:
 - Linux

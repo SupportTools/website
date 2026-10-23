@@ -1,7 +1,7 @@
 ---
 title: "Go Module Proxy and Private Modules: Athens, GOPROXY, and Enterprise Module Management"
 date: 2030-03-13T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Golang", "Modules", "Athens", "GOPROXY", "Supply Chain Security", "Air-Gapped"]
 categories: ["Go", "DevOps", "Security"]
 author: "Matthew Mattox - mmattox@support.tools"

@@ -1,7 +1,7 @@
 ---
 title: "Grafana Mimir: Horizontally Scalable Prometheus for Enterprise"
 date: 2027-01-01T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Grafana Mimir", "Prometheus", "Kubernetes", "Monitoring", "Observability"]
 categories:
 - Kubernetes

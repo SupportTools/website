@@ -1,7 +1,7 @@
 ---
 title: "Go Rate Limiting: Token Bucket, Sliding Window, and Distributed Rate Limiting with Redis"
 date: 2029-12-28T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Rate Limiting", "Redis", "Token Bucket", "Sliding Window", "Distributed Systems", "API", "Performance"]
 categories:
 - Go

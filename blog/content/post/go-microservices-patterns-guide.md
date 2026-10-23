@@ -1,7 +1,7 @@
 ---
 title: "Go Microservices Patterns: Circuit Breakers, Retries, and Service Discovery"
 date: 2028-04-03T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Microservices", "Circuit Breaker", "Resilience", "Service Discovery", "Consul", "Kubernetes"]
 categories: ["Go", "Architecture"]
 author: "Matthew Mattox - mmattox@support.tools"

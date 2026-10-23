@@ -1,7 +1,7 @@
 ---
 title: "Platform Engineering Golden Paths: Standardizing Developer Workflows"
 date: 2027-10-24T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Platform Engineering", "Golden Paths", "Developer Experience", "IDP", "DevOps"]
 categories:
 - Platform Engineering

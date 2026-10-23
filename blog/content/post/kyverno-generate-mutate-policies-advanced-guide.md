@@ -1,7 +1,7 @@
 ---
 title: "Kyverno Advanced Policies: Generate, Mutate, and VerifyImages at Scale"
 date: 2027-04-09T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Kyverno", "Policy", "Security", "Admission Control", "Policy Enforcement"]
 categories: ["Kubernetes", "Security"]
 author: "Matthew Mattox - mmattox@support.tools"

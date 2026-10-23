@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Admission Controller Development: Validating and Mutating Webhooks"
 date: 2028-03-15T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Admission Controllers", "Webhooks", "Go", "controller-runtime", "cert-manager", "Security"]
 categories: ["Kubernetes", "Development"]
 author: "Matthew Mattox - mmattox@support.tools"

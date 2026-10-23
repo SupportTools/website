@@ -1,7 +1,7 @@
 ---
 title: "Open Cluster Management: Multi-Cluster Governance and Policy Enforcement"
 date: 2027-02-18T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Open Cluster Management", "Multi-Cluster", "Policy", "Governance"]
 categories: ["Kubernetes", "Multi-Cluster", "Compliance"]
 author: "Matthew Mattox - mmattox@support.tools"

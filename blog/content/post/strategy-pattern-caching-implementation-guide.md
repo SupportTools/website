@@ -1,7 +1,7 @@
 ---
 title: "The Strategy Pattern in Caching: Flexible Data Access Patterns in Go"
 date: 2027-05-11T09:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Golang", "Design Patterns", "Caching", "Strategy Pattern", "Performance", "Scalability", "Redis", "In-Memory Cache"]
 categories:
 - Go

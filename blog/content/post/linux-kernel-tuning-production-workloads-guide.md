@@ -1,7 +1,7 @@
 ---
 title: "Linux Kernel Tuning for Production Workloads: sysctl, cgroups, and NUMA"
 date: 2028-10-10T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Kernel", "Performance", "sysctl", "Kubernetes"]
 categories:
 - Linux

@@ -1,7 +1,7 @@
 ---
 title: "VLAN Network Segmentation: 802.1Q Tagging and Enterprise Virtual LAN Architecture"
 date: 2026-12-11T00:00:00-05:00
-draft: false
+draft: true
 tags: ["vlan", "networking", "802.1q", "network-segmentation", "switching", "enterprise", "security", "trunk", "cisco"]
 categories:
 - Networking

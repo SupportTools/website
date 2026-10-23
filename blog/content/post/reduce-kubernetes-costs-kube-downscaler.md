@@ -1,6 +1,6 @@
 ---
 title: "Slashing Kubernetes Costs: How kube-downscaler Saved Us 65% on Non-Production Clusters"
-date: 2027-04-01T09:00:00-05:00
+date: 2026-11-16T09:00:00-06:00
 draft: false
 tags: ["Kubernetes", "Cost Optimization", "DevOps", "kube-downscaler", "Cloud Native", "Kubernetes Tools"]
 categories:

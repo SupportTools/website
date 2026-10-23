@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Resource Management: Requests, Limits, QoS Classes, and OOM Debugging"
 date: 2027-05-09T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Resource Management", "QoS", "OOM", "Performance", "CPU Throttling"]
 categories: ["Kubernetes", "Platform Engineering"]
 author: "Matthew Mattox - mmattox@support.tools"

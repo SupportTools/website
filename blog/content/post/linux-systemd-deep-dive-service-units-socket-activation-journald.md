@@ -1,7 +1,7 @@
 ---
 title: "Linux Systemd Deep Dive: Service Units, Socket Activation, Journald, and Targets"
 date: 2029-12-20T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Systemd", "Service Management", "Socket Activation", "Journald", "Security Hardening", "Init System"]
 categories:
 - Linux

@@ -1,7 +1,7 @@
 ---
 title: "Linux Socket Buffer Tuning for High-Throughput Kubernetes Services: TCP BBR, REUSEPORT, and SO_RCVBUF"
 date: 2032-04-19T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Networking", "Kubernetes", "TCP", "Performance", "Socket", "Kernel Tuning"]
 categories:
 - Linux

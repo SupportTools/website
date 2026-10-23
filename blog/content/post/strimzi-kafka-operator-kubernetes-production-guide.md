@@ -1,7 +1,7 @@
 ---
 title: "Strimzi: Running Apache Kafka on Kubernetes at Production Scale"
 date: 2026-12-31T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Strimzi", "Kafka", "Kubernetes", "Messaging", "Operator"]
 categories:
 - Kubernetes

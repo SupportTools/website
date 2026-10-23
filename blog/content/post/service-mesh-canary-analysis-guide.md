@@ -1,7 +1,7 @@
 ---
 title: "Service Mesh Canary Analysis: Automated Rollback with Prometheus Metrics"
 date: 2028-03-08T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Flagger", "Canary", "Istio", "Prometheus", "Service Mesh", "Progressive Delivery"]
 categories: ["Kubernetes", "Progressive Delivery"]
 author: "Matthew Mattox - mmattox@support.tools"

@@ -1,7 +1,7 @@
 ---
 title: "GPU Workload Management on Kubernetes: NVIDIA GPU Operator Deep Dive"
 date: 2028-01-02T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "GPU", "NVIDIA", "Machine Learning", "DCGM", "MIG", "GPU Operator"]
 categories: ["Kubernetes", "AI & ML"]
 author: "Matthew Mattox - mmattox@support.tools"

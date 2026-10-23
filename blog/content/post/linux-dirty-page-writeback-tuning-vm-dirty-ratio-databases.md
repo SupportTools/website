@@ -1,6 +1,6 @@
 ---
 title: "Linux Dirty Page Writeback: Tuning vm.dirty_ratio for Databases"
-date: 2029-09-01T00:00:00-05:00
+date: 2027-01-29T00:00:00-06:00
 draft: false
 tags: ["Linux", "Performance", "Kernel", "Databases", "PostgreSQL", "MySQL", "vm.dirty_ratio", "I/O"]
 categories: ["Linux", "Performance", "Databases"]

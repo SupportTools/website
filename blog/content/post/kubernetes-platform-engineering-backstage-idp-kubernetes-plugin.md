@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Platform Engineering: Backstage IDP with Kubernetes Plugin Integration"
 date: 2029-12-15T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Backstage", "Platform Engineering", "IDP", "Internal Developer Platform", "Scaffolder", "Helm", "DevEx"]
 categories:
 - Kubernetes

@@ -1,7 +1,7 @@
 ---
 title: "Service Mesh mTLS Configuration Patterns: Enterprise-Grade Mutual TLS Implementation in Istio and Linkerd"
 date: 2026-11-19T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Service Mesh", "mTLS", "Istio", "Linkerd", "Security", "Kubernetes", "Zero Trust"]
 categories: ["Kubernetes", "Security", "Networking"]
 author: "Matthew Mattox - mmattox@support.tools"

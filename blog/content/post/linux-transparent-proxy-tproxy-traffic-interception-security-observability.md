@@ -1,7 +1,7 @@
 ---
 title: "Linux Transparent Proxy with TPROXY: Intercepting Traffic for Security and Observability"
 date: 2031-01-22T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Networking", "TPROXY", "iptables", "Proxy", "Istio", "Envoy", "Security", "Observability"]
 categories:
 - Linux

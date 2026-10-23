@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes FinOps: Rightsizing with Goldilocks, Spot Instance Handling, and Cost Attribution"
 date: 2030-02-09T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "FinOps", "Goldilocks", "Spot Instances", "Cost Optimization", "VPA", "Cost Attribution", "Chargeback"]
 categories: ["Kubernetes", "FinOps"]
 author: "Matthew Mattox - mmattox@support.tools"

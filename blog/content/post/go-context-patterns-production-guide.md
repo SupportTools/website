@@ -1,7 +1,7 @@
 ---
 title: "Go Context Patterns: Cancellation, Timeouts, and Value Propagation in Production"
 date: 2028-04-08T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Context", "Concurrency", "Cancellation", "Production"]
 categories: ["Go", "Backend Engineering"]
 author: "Matthew Mattox - mmattox@support.tools"

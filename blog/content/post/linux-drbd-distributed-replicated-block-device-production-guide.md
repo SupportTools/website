@@ -1,7 +1,7 @@
 ---
 title: "Linux DRBD: Resource Configuration, Protocol Modes, Split-Brain Recovery, and Promotion Procedures"
 date: 2032-02-28T00:00:00-05:00
-draft: false
+draft: true
 tags: ["DRBD", "Linux", "High Availability", "Storage", "Replication", "Pacemaker"]
 categories:
 - Linux

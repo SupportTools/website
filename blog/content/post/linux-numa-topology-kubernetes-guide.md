@@ -1,7 +1,7 @@
 ---
 title: "NUMA Topology in Kubernetes: CPU Manager, Memory Manager, and Topology Manager for Latency-Sensitive Workloads"
 date: 2028-06-11T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "NUMA", "CPU Manager", "Performance", "Linux", "GPU", "HPC"]
 categories: ["Kubernetes", "Performance", "Infrastructure"]
 author: "Matthew Mattox - mmattox@support.tools"

@@ -1,7 +1,7 @@
 ---
 title: "NGINX Ingress Controller: Enterprise Configuration and Performance Tuning"
 date: 2028-01-15T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "NGINX", "Ingress", "Performance", "WAF", "ModSecurity", "Prometheus", "Rate Limiting"]
 categories: ["Kubernetes", "Networking", "Security"]
 author: "Matthew Mattox - mmattox@support.tools"

@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Cluster Backup with Velero: Scheduled Backups and Cross-Region DR"
 date: 2029-03-23T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Velero", "Disaster Recovery", "Backup", "AWS", "Restic"]
 categories:
 - Kubernetes

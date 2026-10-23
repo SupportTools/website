@@ -1,7 +1,7 @@
 ---
 title: "Gitea: Self-Hosted Git Service on Kubernetes for Air-Gapped Environments"
 date: 2027-01-23T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Gitea", "Git", "DevOps", "Self-Hosted"]
 categories:
 - DevOps

@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Image Build Optimization: Kaniko, BuildKit Cache Mounts, Multi-Stage Minimization, and OCI Image Spec"
 date: 2032-01-04T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Docker", "BuildKit", "Kaniko", "OCI", "CI/CD", "Container Security", "DevOps"]
 categories:
 - Kubernetes

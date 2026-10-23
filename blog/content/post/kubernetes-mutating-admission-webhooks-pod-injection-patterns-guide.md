@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Mutating Admission Webhooks: Pod Injection Patterns"
 date: 2029-07-13T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Admission Webhooks", "Security", "Sidecar Injection", "Go", "Policy", "Service Mesh"]
 categories: ["Kubernetes", "DevOps", "Security"]
 author: "Matthew Mattox - mmattox@support.tools"

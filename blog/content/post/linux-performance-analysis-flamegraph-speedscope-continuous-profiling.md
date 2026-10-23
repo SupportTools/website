@@ -1,7 +1,7 @@
 ---
 title: "Linux Performance Analysis: flamegraph, speedscope, and Continuous Profiling"
 date: 2029-08-05T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Performance", "Profiling", "flamegraph", "Pyroscope", "eBPF", "pprof", "Go", "JVM"]
 categories: ["Linux", "Performance", "Observability"]
 author: "Matthew Mattox - mmattox@support.tools"

@@ -1,7 +1,7 @@
 ---
 title: "Go Serverless: AWS Lambda, Google Cloud Functions, and Cold Start Optimization"
 date: 2029-09-10T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Serverless", "AWS Lambda", "Cloud Functions", "Cold Start", "Performance"]
 categories: ["Go", "Cloud"]
 author: "Matthew Mattox - mmattox@support.tools"

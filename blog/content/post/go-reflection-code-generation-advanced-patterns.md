@@ -1,7 +1,7 @@
 ---
 title: "Go Reflection and Code Generation: Advanced Patterns"
 date: 2029-03-31T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Golang", "Reflection", "Code Generation", "protobuf", "go generate"]
 categories: ["Go", "Software Engineering"]
 author: "Matthew Mattox - mmattox@support.tools"

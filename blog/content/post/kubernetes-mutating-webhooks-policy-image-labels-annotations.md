@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Mutating Webhooks for Policy: Image Pull Policy, Labels, and Annotations"
 date: 2029-01-30T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Webhooks", "Policy", "Go", "Security", "Admission Control"]
 categories:
 - Kubernetes

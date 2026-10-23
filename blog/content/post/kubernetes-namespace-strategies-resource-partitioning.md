@@ -1,7 +1,7 @@
 ---
 title: "Advanced Kubernetes Namespace Strategies: Beyond Basic Resource Partitioning"
 date: 2026-12-01T09:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Namespaces", "Resource Management", "Multi-tenancy", "RBAC", "Resource Quotas", "DevOps"]
 categories:
 - Kubernetes

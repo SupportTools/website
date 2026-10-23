@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes OPA Gatekeeper v3.x: Rego Policies, Constraint Templates, Audit Mode, and External Data Providers"
 date: 2031-11-04T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "OPA", "Gatekeeper", "Policy", "Rego", "Security", "Admission Control", "Compliance"]
 categories:
 - Kubernetes

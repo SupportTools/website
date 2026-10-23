@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Pod Security Admission: Enforcing Security Standards at Scale"
 date: 2027-04-12T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Pod Security", "PSA", "Security", "Compliance"]
 categories: ["Kubernetes", "Security", "Compliance"]
 author: "Matthew Mattox - mmattox@support.tools"

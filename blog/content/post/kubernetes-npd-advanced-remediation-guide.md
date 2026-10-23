@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Node Problem Detector: Proactive Node Health Management"
 date: 2027-10-27T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Node Problem Detector", "Monitoring", "Node Health"]
 categories:
 - Kubernetes

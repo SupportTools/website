@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Multi-Region Active-Active: Global Load Balancing, Data Replication, and Conflict Resolution"
 date: 2030-02-19T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Multi-Region", "Active-Active", "BGP Anycast", "CockroachDB", "YugabyteDB", "Disaster Recovery", "High Availability"]
 categories: ["Kubernetes", "Architecture"]
 author: "Matthew Mattox - mmattox@support.tools"

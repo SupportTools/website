@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Cluster Autoscaler v1.30+: Expander Strategies, Scale-Down Simulation, AWS/GCP/Azure Cloud Providers"
 date: 2032-01-03T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Cluster Autoscaler", "AWS", "GCP", "Azure", "Auto Scaling", "Node Groups", "FinOps"]
 categories:
 - Kubernetes

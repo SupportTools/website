@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Crossplane Functions: Composing Infrastructure with Pipeline Functions"
 date: 2031-05-18T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Crossplane", "Infrastructure as Code", "Platform Engineering", "Go", "DevOps"]
 categories:
 - Kubernetes

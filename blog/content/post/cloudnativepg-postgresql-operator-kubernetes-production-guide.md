@@ -1,7 +1,7 @@
 ---
 title: "CloudNativePG: Production PostgreSQL on Kubernetes with the CNPG Operator"
 date: 2026-12-21T00:00:00-05:00
-draft: false
+draft: true
 tags: ["CloudNativePG", "PostgreSQL", "Kubernetes", "Database Operator", "High Availability", "Backup", "Production"]
 categories:
 - Databases

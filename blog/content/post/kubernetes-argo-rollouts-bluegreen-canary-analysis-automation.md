@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Argo Rollouts Advanced: BlueGreen with Analysis, Canary with Header Routing, and Pause/Promote Automation"
 date: 2031-11-01T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Argo Rollouts", "BlueGreen", "Canary", "Progressive Delivery", "GitOps", "Deployment"]
 categories:
 - Kubernetes

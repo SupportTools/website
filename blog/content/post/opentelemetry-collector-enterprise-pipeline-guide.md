@@ -1,7 +1,7 @@
 ---
 title: "OpenTelemetry Collector: Building Enterprise Observability Pipelines"
 date: 2028-09-17T00:00:00-05:00
-draft: false
+draft: true
 tags: ["OpenTelemetry", "Observability", "Kubernetes", "Tracing", "Metrics"]
 categories:
 - OpenTelemetry

@@ -1,7 +1,7 @@
 ---
 title: "Grafana Loki on Kubernetes: Log Aggregation, Query Optimization, and Production Scaling"
 date: 2027-06-08T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Loki", "Grafana", "Logging", "Kubernetes", "Observability", "LogQL"]
 categories: ["Monitoring", "Observability"]
 author: "Matthew Mattox - mmattox@support.tools"

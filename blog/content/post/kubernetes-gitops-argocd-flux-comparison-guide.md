@@ -1,7 +1,7 @@
 ---
 title: "GitOps on Kubernetes: ArgoCD vs Flux Comparison and Migration Patterns"
 date: 2027-09-04T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "GitOps", "ArgoCD", "Flux", "CI/CD"]
 categories:
 - Kubernetes

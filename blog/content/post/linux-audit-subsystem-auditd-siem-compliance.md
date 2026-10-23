@@ -1,7 +1,7 @@
 ---
 title: "Linux Audit Subsystem: auditd Rules, SIEM Integration, and Compliance Automation"
 date: 2030-03-14T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "auditd", "SIEM", "Compliance", "PCI-DSS", "SOC2", "Security", "Filebeat"]
 categories: ["Linux", "Security", "Compliance"]
 author: "Matthew Mattox - mmattox@support.tools"

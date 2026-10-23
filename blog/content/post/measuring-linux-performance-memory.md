@@ -1,7 +1,7 @@
 ---
 title: "Measuring Linux Performance the Right Way: Memory"
 date: 2032-05-01T09:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Performance", "Memory", "Kubernetes", "cgroups", "OOM", "Observability", "Prometheus", "Troubleshooting", "SRE", "DevOps"]
 categories:
 - Performance

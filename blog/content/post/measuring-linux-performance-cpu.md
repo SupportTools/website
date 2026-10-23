@@ -1,7 +1,7 @@
 ---
 title: "Measuring Linux Performance: CPU (and the Mistakes Almost Everyone Makes)"
 date: 2032-04-30T09:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Performance", "CPU", "Observability", "Kubernetes", "cgroups", "Prometheus", "Troubleshooting", "SRE", "Cloud", "perf", "PSI"]
 categories:
 - Linux

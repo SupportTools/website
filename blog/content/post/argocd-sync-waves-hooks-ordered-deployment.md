@@ -1,6 +1,6 @@
 ---
 title: "ArgoCD Sync Waves and Hooks: Ordered Multi-Component Application Deployment"
-date: 2029-02-01T00:00:00-05:00
+date: 2027-01-01T00:00:00-06:00
 draft: false
 tags: ["ArgoCD", "GitOps", "Kubernetes", "CI/CD", "Deployment"]
 categories:

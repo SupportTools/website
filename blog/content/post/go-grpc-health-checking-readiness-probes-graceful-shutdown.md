@@ -1,7 +1,7 @@
 ---
 title: "Go: gRPC Health Checking Protocol, Readiness Probes, and Graceful Shutdown Patterns"
 date: 2031-08-01T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "gRPC", "Health Checks", "Kubernetes", "Graceful Shutdown", "Production", "Golang", "Readiness Probes"]
 categories:
 - Go

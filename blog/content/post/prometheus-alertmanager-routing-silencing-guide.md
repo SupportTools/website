@@ -1,7 +1,7 @@
 ---
 title: "Prometheus Alertmanager: Advanced Routing, Inhibition, and Silence Management"
 date: 2028-10-23T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Prometheus", "Alertmanager", "Monitoring", "Alerting", "SRE"]
 categories:
 - Prometheus

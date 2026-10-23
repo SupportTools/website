@@ -1,7 +1,7 @@
 ---
 title: "Go Database Patterns: Connection Pooling, Transactions, and Query Optimization"
 date: 2028-01-22T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Database", "PostgreSQL", "Connection Pooling", "Transactions", "OpenTelemetry", "pgx"]
 categories: ["Go", "Databases"]
 author: "Matthew Mattox - mmattox@support.tools"

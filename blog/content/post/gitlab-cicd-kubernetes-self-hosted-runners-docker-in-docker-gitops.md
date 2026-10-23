@@ -1,7 +1,7 @@
 ---
 title: "GitLab CI/CD for Kubernetes: Self-Hosted Runners, Docker-in-Docker, and GitOps Integration"
 date: 2030-08-25T00:00:00-05:00
-draft: false
+draft: true
 tags: ["GitLab", "CI/CD", "Kubernetes", "GitOps", "ArgoCD", "Docker", "DevOps"]
 categories:
 - "CI & CD"

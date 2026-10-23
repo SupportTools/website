@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Cluster Upgrades: Zero-Downtime Strategies"
 date: 2029-04-12T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Cluster Upgrade", "Zero Downtime", "etcd", "PodDisruptionBudget", "Node Drain"]
 categories:
 - Kubernetes

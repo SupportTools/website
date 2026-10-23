@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Multi-Tenancy: Capsule, vcluster, and Tenant Isolation Patterns"
 date: 2029-12-11T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Multi-Tenancy", "Capsule", "vcluster", "Security", "Resource Quotas", "Network Policy"]
 categories:
 - Kubernetes

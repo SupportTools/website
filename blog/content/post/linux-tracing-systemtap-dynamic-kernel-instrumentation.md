@@ -1,7 +1,7 @@
 ---
 title: "Linux Tracing with SystemTap: Dynamic Kernel Instrumentation for Production"
 date: 2031-03-19T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "SystemTap", "Tracing", "Kernel", "Performance", "eBPF"]
 categories:
 - Linux

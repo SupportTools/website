@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Image Build Pipeline: BuildKit, Kaniko, and Supply Chain Security"
 date: 2030-08-18T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "BuildKit", "Kaniko", "Supply Chain Security", "Cosign", "SBOM", "SLSA", "GitOps"]
 categories:
 - Kubernetes

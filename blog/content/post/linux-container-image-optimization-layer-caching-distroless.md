@@ -1,7 +1,7 @@
 ---
 title: "Linux Container Image Optimization: Layer Caching, Multi-Stage Builds, and Distroless"
 date: 2030-09-10T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Docker", "Containers", "Distroless", "Multi-Stage Builds", "Security", "CI/CD", "Trivy", "Image Optimization"]
 categories:
 - DevOps

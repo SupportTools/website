@@ -1,7 +1,7 @@
 ---
 title: "Contour Ingress Controller: HTTPProxy CRD and Advanced Routing on Kubernetes"
 date: 2027-03-31T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Contour", "Ingress", "HTTPProxy", "Envoy"]
 categories: ["Kubernetes", "Networking", "Ingress"]
 author: "Matthew Mattox - mmattox@support.tools"

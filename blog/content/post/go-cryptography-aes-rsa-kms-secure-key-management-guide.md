@@ -1,7 +1,7 @@
 ---
 title: "Go Cryptography Patterns: AES Encryption, RSA Signing, and Secure Key Management"
 date: 2030-11-15T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Cryptography", "AES", "RSA", "ECDSA", "KMS", "Security", "Key Management"]
 categories:
 - Go

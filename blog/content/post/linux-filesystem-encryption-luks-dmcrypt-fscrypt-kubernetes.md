@@ -1,7 +1,7 @@
 ---
 title: "Linux Filesystem Encryption: LUKS, dm-crypt, and fscrypt for Kubernetes Volumes"
 date: 2029-01-31T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Security", "LUKS", "Kubernetes", "Encryption", "Storage"]
 categories:
 - Linux

@@ -1,7 +1,7 @@
 ---
 title: "The Complete Guide to SSH SOCKS Proxies: Dynamic Port Forwarding for Secure Admin Access"
 date: 2032-05-11T09:00:00-05:00
-draft: false
+draft: true
 tags: ["SSH", "SOCKS5", "Port Forwarding", "Bastion", "Jump Host", "Networking", "Kubernetes", "Security", "DevOps", "Linux", "autossh", "Zero Trust"]
 categories:
 - SSH

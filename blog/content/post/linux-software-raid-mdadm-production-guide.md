@@ -1,7 +1,7 @@
 ---
 title: "Linux Software RAID with mdadm: RAID 0/1/5/6/10, Chunk Size Tuning, Hot Spare Management, Degraded Array Recovery"
 date: 2031-11-30T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "RAID", "mdadm", "Storage", "System Administration", "Reliability", "Disk Management"]
 categories:
 - Linux

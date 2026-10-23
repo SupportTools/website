@@ -1,7 +1,7 @@
 ---
 title: "Go Distributed Locking Patterns: Redis Redlock, etcd Leases, and Postgres Advisory Locks"
 date: 2028-05-05T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Distributed Systems", "Redis", "etcd", "Locking", "Concurrency"]
 categories: ["Go", "Distributed Systems"]
 author: "Matthew Mattox - mmattox@support.tools"

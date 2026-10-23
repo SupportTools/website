@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes StatefulSet Advanced Patterns: Ordered Operations, Pod Identity, and Storage"
 date: 2029-11-28T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "StatefulSet", "Storage", "Databases", "Headless Services", "PVC", "Production"]
 categories:
 - Kubernetes

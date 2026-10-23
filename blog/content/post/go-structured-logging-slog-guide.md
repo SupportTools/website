@@ -1,7 +1,7 @@
 ---
 title: "Go Structured Logging with slog: Production Patterns and Observability Integration"
 date: 2027-09-15T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Logging", "slog", "Observability"]
 categories:
 - Go

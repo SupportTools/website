@@ -1,7 +1,7 @@
 ---
 title: "Container Runtime Internals: containerd, runc, and the OCI Specification"
 date: 2028-02-15T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Containers", "containerd", "runc", "OCI", "Linux", "Security", "Kubernetes"]
 categories:
 - Containers

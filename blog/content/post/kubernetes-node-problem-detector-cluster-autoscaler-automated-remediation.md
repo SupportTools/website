@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Node Problem Detector and Cluster Autoscaler Integration for Automated Remediation"
 date: 2031-07-04T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Node Problem Detector", "Cluster Autoscaler", "SRE", "Automated Remediation", "Observability"]
 categories: ["Kubernetes", "SRE"]
 author: "Matthew Mattox - mmattox@support.tools"

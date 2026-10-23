@@ -1,7 +1,7 @@
 ---
 title: "Optimizing Microservices Testing: Sandbox-Based Kubernetes Environments"
 date: 2027-01-12T09:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Microservices", "Testing", "Service Mesh", "DevOps", "Cost Optimization"]
 categories:
 - Kubernetes

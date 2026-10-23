@@ -1,7 +1,7 @@
 ---
 title: "Optimizing Go Applications in Kubernetes: A Resource Efficiency Guide"
 date: 2027-03-18T09:00:00-05:00
-draft: false
+draft: true
 tags: ["golang", "kubernetes", "resource optimization", "performance", "cost optimization", "containerization"]
 categories: ["Development", "Go", "Kubernetes", "DevOps"]
 ---

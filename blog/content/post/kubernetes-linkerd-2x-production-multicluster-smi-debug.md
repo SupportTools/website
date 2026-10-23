@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Linkerd 2.x Production: Control Plane HA, Multicluster Service Mirroring, SMI Traffic Split, and Debug Tools"
 date: 2031-12-31T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Linkerd", "Service Mesh", "mTLS", "Multicluster", "SMI", "Observability"]
 categories:
 - Kubernetes

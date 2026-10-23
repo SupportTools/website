@@ -1,7 +1,7 @@
 ---
 title: "Go JSON Schema Validation: jsonschema Library, Custom Validators, Schema Generation from Structs, and Error Formatting"
 date: 2032-03-01T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "JSON Schema", "Validation", "API", "jsonschema", "OpenAPI"]
 categories:
 - Go

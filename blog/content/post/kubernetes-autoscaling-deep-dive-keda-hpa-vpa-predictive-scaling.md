@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Autoscaling Deep Dive: KEDA, HPA, VPA, and Predictive Scaling"
 date: 2030-10-22T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "KEDA", "HPA", "VPA", "Autoscaling", "Predictive Scaling"]
 categories:
 - Kubernetes

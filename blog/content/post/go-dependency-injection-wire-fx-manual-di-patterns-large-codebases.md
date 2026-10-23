@@ -1,7 +1,7 @@
 ---
 title: "Go Dependency Injection: Wire, fx, and Manual DI Patterns for Large Codebases"
 date: 2030-12-12T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Golang", "Dependency Injection", "Wire", "fx", "Architecture", "Testing", "Design Patterns"]
 categories:
 - Go

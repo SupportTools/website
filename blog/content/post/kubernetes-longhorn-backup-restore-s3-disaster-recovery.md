@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Longhorn Backup and Restore: S3-Compatible Disaster Recovery"
 date: 2030-12-20T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Longhorn", "Backup", "Disaster Recovery", "S3", "Storage", "Restore", "Rancher"]
 categories:
 - Kubernetes

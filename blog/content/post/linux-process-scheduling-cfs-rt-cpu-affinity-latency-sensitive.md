@@ -1,7 +1,7 @@
 ---
 title: "Linux Process Scheduling: CFS, RT Scheduling, and CPU Affinity for Latency-Sensitive Apps"
 date: 2031-01-15T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Scheduling", "CFS", "Real-Time", "CPU Affinity", "Performance", "Kernel", "Latency"]
 categories:
 - Linux

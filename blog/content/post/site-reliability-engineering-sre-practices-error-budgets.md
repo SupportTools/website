@@ -1,7 +1,7 @@
 ---
 title: "Site Reliability Engineering (SRE) Practices and Error Budgets: Enterprise Production Framework 2026"
 date: 2026-11-21T00:00:00-05:00
-draft: false
+draft: true
 tags: ["SRE", "Site Reliability Engineering", "Error Budgets", "SLI", "SLO", "Monitoring", "Incident Response", "Reliability", "DevOps", "Production Systems", "Service Level", "Performance", "Availability", "Enterprise SRE", "Operations"]
 categories:
 - SRE

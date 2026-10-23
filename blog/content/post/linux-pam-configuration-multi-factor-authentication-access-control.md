@@ -1,7 +1,7 @@
 ---
 title: "Linux PAM Configuration: Multi-Factor Authentication and Access Control"
 date: 2031-04-18T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "PAM", "Security", "MFA", "Authentication", "LDAP", "SSH", "Kubernetes"]
 categories:
 - Linux

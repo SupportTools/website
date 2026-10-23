@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Strimzi Kafka Operator: Topic Management, Authentication, Mirror Maker 2, Kafka Connect, and Schema Registry"
 date: 2031-12-28T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Kafka", "Strimzi", "Kafka Connect", "Mirror Maker", "Schema Registry", "Streaming"]
 categories:
 - Kubernetes

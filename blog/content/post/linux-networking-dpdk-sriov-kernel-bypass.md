@@ -1,7 +1,7 @@
 ---
 title: "Linux Networking Deep Dive: DPDK, SR-IOV, and Kernel Bypass for Line-Rate Processing"
 date: 2030-02-08T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "DPDK", "SR-IOV", "Networking", "Performance", "Kernel Bypass", "OVS-DPDK", "High Performance"]
 categories: ["Linux", "Networking"]
 author: "Matthew Mattox - mmattox@support.tools"

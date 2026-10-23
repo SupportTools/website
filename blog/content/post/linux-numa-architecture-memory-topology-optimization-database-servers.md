@@ -1,7 +1,7 @@
 ---
 title: "Linux NUMA Architecture: Memory Topology Optimization for Database Servers"
 date: 2030-12-03T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "NUMA", "Performance", "Databases", "Kubernetes", "CPU Affinity", "Memory"]
 categories:
 - Linux

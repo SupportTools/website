@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Lease and Leader Election: Distributed Coordination for Operators"
 date: 2030-09-25T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Operators", "Leader Election", "Lease", "controller-runtime", "High Availability"]
 categories:
 - Kubernetes

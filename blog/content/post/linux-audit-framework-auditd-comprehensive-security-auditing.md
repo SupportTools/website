@@ -1,7 +1,7 @@
 ---
 title: "Linux Audit Framework: Comprehensive Security Auditing with auditd and auditctl"
 date: 2030-12-23T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Security", "auditd", "auditctl", "SIEM", "Compliance", "Kubernetes", "Syscall"]
 categories:
 - Linux

@@ -1,7 +1,7 @@
 ---
 title: "Prometheus Operator: CRD-Based Monitoring Stack Management for Kubernetes"
 date: 2030-07-13T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Prometheus", "Kubernetes", "Monitoring", "Observability", "Operator", "AlertManager", "ServiceMonitor"]
 categories:
 - Kubernetes

@@ -1,7 +1,7 @@
 ---
 title: "OpenCost: Kubernetes Cost Attribution and FinOps Implementation"
 date: 2027-11-09T00:00:00-05:00
-draft: false
+draft: true
 tags: ["OpenCost", "FinOps", "Kubernetes", "Cost Optimization", "Cloud"]
 categories:
 - Kubernetes

@@ -1,7 +1,7 @@
 ---
 title: "Helm Plugin Development: Building Custom Commands for Enterprise Workflows"
 date: 2027-01-14T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Helm", "Kubernetes", "DevOps", "Plugin Development"]
 categories: ["Kubernetes", "DevOps", "Developer Tools"]
 author: "Matthew Mattox - mmattox@support.tools"

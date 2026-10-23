@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Spinnaker: Halyard to Operator Migration, Pipeline Templates, Canary Analysis, and Manual Judgments"
 date: 2032-02-16T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Spinnaker", "CI/CD", "Canary", "Deployment", "Pipeline"]
 categories:
 - Kubernetes

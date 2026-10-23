@@ -1,7 +1,7 @@
 ---
 title: "Pyroscope: Continuous Profiling for Kubernetes Production Workloads"
 date: 2027-01-02T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Pyroscope", "Profiling", "Kubernetes", "Observability", "Performance"]
 categories:
 - Kubernetes

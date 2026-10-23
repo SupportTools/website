@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes OpenTelemetry Operator: Auto-Instrumentation and Collector Management"
 date: 2031-04-10T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "OpenTelemetry", "Observability", "Tracing", "Operator", "Jaeger", "Tempo", "Prometheus"]
 categories:
 - Kubernetes

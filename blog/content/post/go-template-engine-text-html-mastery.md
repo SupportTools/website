@@ -1,7 +1,7 @@
 ---
 title: "Go Template Engine: text/template and html/template Mastery"
 date: 2029-04-30T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Templates", "text/template", "html/template", "Helm", "Code Generation"]
 categories:
 - Go

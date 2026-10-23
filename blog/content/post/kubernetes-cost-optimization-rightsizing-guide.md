@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Cost Optimization: Rightsizing, Spot Instances, and FinOps Practices"
 date: 2028-03-07T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Cost Optimization", "FinOps", "VPA", "Spot Instances", "Goldilocks", "OpenCost"]
 categories: ["Kubernetes", "FinOps"]
 author: "Matthew Mattox - mmattox@support.tools"

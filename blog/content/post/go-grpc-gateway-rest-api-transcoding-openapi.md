@@ -1,7 +1,7 @@
 ---
 title: "Go gRPC Gateway: Exposing gRPC Services as REST APIs with Transcoding"
 date: 2030-10-09T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "gRPC", "REST", "API Gateway", "Protobuf", "OpenAPI", "Kubernetes"]
 categories:
 - Go

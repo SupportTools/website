@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Cluster API: Infrastructure Provisioning as Kubernetes Resources"
 date: 2029-05-18T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Cluster API", "CAPI", "Infrastructure", "AWS", "Azure", "vSphere", "GitOps"]
 categories: ["Kubernetes", "Infrastructure"]
 author: "Matthew Mattox - mmattox@support.tools"

@@ -1,7 +1,7 @@
 ---
 title: "Linux ext4 vs XFS vs Btrfs: Filesystem Selection Guide for Kubernetes Persistent Storage Workloads"
 date: 2031-07-13T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Filesystem", "ext4", "XFS", "Btrfs", "Kubernetes", "Storage", "Performance"]
 categories: ["Linux", "Kubernetes"]
 author: "Matthew Mattox - mmattox@support.tools"

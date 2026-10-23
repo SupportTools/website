@@ -1,7 +1,7 @@
 ---
 title: "Knative: Serverless Workloads and Event-Driven Architecture on Kubernetes"
 date: 2027-02-17T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Knative", "Serverless", "Event-Driven", "Scale to Zero"]
 categories: ["Kubernetes", "Serverless", "Cloud Native"]
 author: "Matthew Mattox - mmattox@support.tools"

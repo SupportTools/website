@@ -1,7 +1,7 @@
 ---
 title: "Go Zero-Downtime Deployments: Graceful HTTP Server Shutdown, Connection Draining, and Health Gates"
 date: 2031-11-19T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Golang", "Zero-Downtime", "Graceful Shutdown", "Kubernetes", "Health Checks", "SIGTERM", "Deployment"]
 categories:
 - Go

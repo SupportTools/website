@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Network Observability: Hubble, Retina, and Deep Packet Inspection at Scale"
 date: 2030-01-13T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Hubble", "Cilium", "Retina", "Network Observability", "eBPF", "Network Policy"]
 categories: ["Kubernetes", "Observability", "Networking"]
 author: "Matthew Mattox - mmattox@support.tools"

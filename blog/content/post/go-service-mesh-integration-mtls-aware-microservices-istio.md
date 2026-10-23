@@ -1,7 +1,7 @@
 ---
 title: "Go Service Mesh Integration: Building mTLS-Aware Microservices with Istio"
 date: 2031-01-27T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Golang", "Istio", "Service Mesh", "mTLS", "SPIFFE", "Security", "Microservices", "gRPC"]
 categories:
 - Go

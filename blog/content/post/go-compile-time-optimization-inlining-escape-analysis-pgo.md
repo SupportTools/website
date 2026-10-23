@@ -1,7 +1,7 @@
 ---
 title: "Go Compile-Time Optimization: Inlining, Escape Analysis, and Devirtualization"
 date: 2031-03-08T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Golang", "Performance", "Compiler", "Optimization", "PGO", "Inlining"]
 categories:
 - Go

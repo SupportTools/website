@@ -1,7 +1,7 @@
 ---
 title: "Linux Performance Profiling with perf: CPU Flamegraphs and Kernel Analysis"
 date: 2028-03-19T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Performance", "Profiling", "perf", "Flamegraphs", "Kernel", "Observability"]
 categories: ["Linux", "Performance"]
 author: "Matthew Mattox - mmattox@support.tools"

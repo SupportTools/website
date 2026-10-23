@@ -1,7 +1,7 @@
 ---
 title: "Linux Process Scheduling: CFS Tuning, Real-Time Priorities, cgroup CPU Scheduling, and Latency Optimization"
 date: 2028-08-24T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Scheduling", "CFS", "Real-Time", "cgroups", "Latency"]
 categories:
 - Linux

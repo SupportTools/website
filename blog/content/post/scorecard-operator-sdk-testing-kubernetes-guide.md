@@ -1,7 +1,7 @@
 ---
 title: "Operator SDK Scorecard: Testing and Validating Kubernetes Operators"
 date: 2027-03-02T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Operator SDK", "Scorecard", "Testing", "Operators"]
 categories: ["Kubernetes", "DevOps", "Testing"]
 author: "Matthew Mattox - mmattox@support.tools"

@@ -1,7 +1,7 @@
 ---
 title: "React Enterprise Deployment: Micro-Frontends with Kubernetes"
 date: 2026-11-02T00:00:00-05:00
-draft: false
+draft: true
 tags: ["React", "Micro-Frontends", "Kubernetes", "DevOps", "Frontend", "Module Federation", "CI/CD", "Performance"]
 categories:
 - Web Development

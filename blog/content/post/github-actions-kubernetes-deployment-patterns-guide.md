@@ -1,7 +1,7 @@
 ---
 title: "GitHub Actions Kubernetes Deployment Patterns: OIDC, Self-Hosted Runners, and Security"
 date: 2027-06-22T00:00:00-05:00
-draft: false
+draft: true
 tags: ["GitHub Actions", "CI/CD", "Kubernetes", "OIDC", "Security", "Self-Hosted Runners"]
 categories:
 - GitHub Actions

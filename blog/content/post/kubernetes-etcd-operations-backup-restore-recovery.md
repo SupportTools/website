@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes ETCD Operations: Backup, Restore, Defragmentation, and Cluster Recovery"
 date: 2030-06-22T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "etcd", "Backup", "Disaster Recovery", "Operations", "SRE"]
 categories:
 - Kubernetes

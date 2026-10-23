@@ -1,7 +1,7 @@
 ---
 title: "OpenTelemetry Auto-Instrumentation: Zero-Code Observability on Kubernetes"
 date: 2027-03-18T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "OpenTelemetry", "Auto-Instrumentation", "Observability", "Java", "Python", "Node.js"]
 categories: ["Kubernetes", "Observability", "OpenTelemetry"]
 author: "Matthew Mattox - mmattox@support.tools"

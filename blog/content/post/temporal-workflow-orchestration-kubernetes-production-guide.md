@@ -1,7 +1,7 @@
 ---
 title: "Temporal: Durable Workflow Orchestration on Kubernetes"
 date: 2027-01-21T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Temporal", "Workflow", "Microservices", "Reliability"]
 categories: ["Kubernetes", "DevOps", "Microservices"]
 author: "Matthew Mattox - mmattox@support.tools"

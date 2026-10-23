@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Cluster Upgrade Strategy: Zero-Downtime Procedures for Control Plane and Nodes"
 date: 2027-05-23T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Upgrade", "kubeadm", "Node Management", "High Availability", "SRE"]
 categories: ["Kubernetes", "Operations"]
 author: "Matthew Mattox - mmattox@support.tools"

@@ -1,7 +1,7 @@
 ---
 title: "Linux File Descriptor Management: ulimits, inotify, and High-Connection Services"
 date: 2030-08-17T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "File Descriptors", "ulimits", "inotify", "epoll", "Performance", "Kubernetes"]
 categories:
 - Linux

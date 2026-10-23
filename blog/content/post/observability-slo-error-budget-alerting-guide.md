@@ -1,7 +1,7 @@
 ---
 title: "SLO-Based Alerting: Error Budgets, Burn Rates, and Multi-Window Alerting"
 date: 2028-10-09T00:00:00-05:00
-draft: false
+draft: true
 tags: ["SRE", "SLO", "Observability", "Prometheus", "Alerting"]
 categories:
 - SRE

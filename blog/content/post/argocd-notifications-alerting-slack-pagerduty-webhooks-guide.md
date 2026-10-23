@@ -1,7 +1,7 @@
 ---
 title: "ArgoCD Notifications and Alerting: Slack, PagerDuty, and Custom Webhooks"
 date: 2028-12-13T00:00:00-05:00
-draft: false
+draft: true
 tags: ["ArgoCD", "GitOps", "Kubernetes", "Notifications", "PagerDuty", "Slack"]
 categories:
 - Kubernetes

@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Descheduler: Automated Workload Rebalancing for Production Clusters"
 date: 2027-10-28T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Descheduler", "Scheduling", "Resource Optimization"]
 categories:
 - Kubernetes

@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes GitOps with Flux: Progressive Delivery and Automated Rollbacks"
 date: 2029-10-31T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Flux", "GitOps", "Progressive Delivery", "Flagger", "Automated Rollbacks", "Canary"]
 categories: ["Kubernetes", "GitOps"]
 author: "Matthew Mattox - mmattox@support.tools"

@@ -1,7 +1,7 @@
 ---
 title: "Go WebSocket Production Patterns: Connection Lifecycle, Authentication, and Redis Pub/Sub Scaling"
 date: 2028-05-25T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "WebSocket", "Redis", "gorilla/websocket", "Real-Time", "Production"]
 categories: ["Go", "Backend Engineering", "Architecture"]
 author: "Matthew Mattox - mmattox@support.tools"

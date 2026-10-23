@@ -1,6 +1,6 @@
 ---
 title: "PostgreSQL Connection Pooling with PgBouncer: Transaction Mode and Kubernetes"
-date: 2029-02-04T00:00:00-05:00
+date: 2027-01-04T00:00:00-06:00
 draft: false
 tags: ["PostgreSQL", "PgBouncer", "Kubernetes", "Database", "Performance"]
 categories:

@@ -1,7 +1,7 @@
 ---
 title: "VictoriaMetrics: High-Performance Time Series Monitoring for Kubernetes"
 date: 2027-04-23T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "VictoriaMetrics", "Monitoring", "Prometheus", "Observability"]
 categories: ["Kubernetes", "Monitoring"]
 author: "Matthew Mattox - mmattox@support.tools"

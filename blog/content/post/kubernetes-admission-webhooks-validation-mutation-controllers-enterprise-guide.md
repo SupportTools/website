@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Admission Webhooks: Building Custom Validation and Mutation Controllers"
 date: 2030-05-14T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Admission Webhooks", "Go", "Security", "Policy Enforcement", "TLS", "Custom Controllers"]
 categories:
 - Kubernetes

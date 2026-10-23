@@ -1,7 +1,7 @@
 ---
 title: "Go Reflection and Code Generation: reflect Package Deep Dive, AST Parsing, text/template for Codegen, and unsafe Pointers"
 date: 2032-01-05T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Golang", "Reflection", "Code Generation", "AST", "Templates", "Performance", "Systems Programming"]
 categories:
 - Go

@@ -1,7 +1,7 @@
 ---
 title: "Hierarchical Namespace Controller: Namespace Trees for Kubernetes"
 date: 2027-01-28T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "HNC", "Multi-Tenancy", "Namespaces", "RBAC"]
 categories: ["Kubernetes", "Platform Engineering"]
 author: "Matthew Mattox - mmattox@support.tools"

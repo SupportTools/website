@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Storage: CSI Driver Development and Volume Lifecycle Management"
 date: 2029-12-08T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "CSI", "Storage", "Volume Snapshots", "Go", "StorageClass", "PersistentVolume"]
 categories:
 - Kubernetes

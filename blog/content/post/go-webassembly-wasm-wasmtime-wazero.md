@@ -1,7 +1,7 @@
 ---
 title: "Go WebAssembly: Compiling Go to WASM, Browser Integration, and Server-Side WASM with Wasmtime"
 date: 2030-02-10T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "WebAssembly", "WASM", "TinyGo", "Wasmtime", "wazero", "Browser", "Server-Side"]
 categories: ["Go", "WebAssembly"]
 author: "Matthew Mattox - mmattox@support.tools"

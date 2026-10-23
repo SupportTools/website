@@ -1,7 +1,7 @@
 ---
 title: "Go HTTP Client Best Practices: Timeouts, Retries, and Connection Management"
 date: 2028-01-29T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "HTTP", "Performance", "Networking", "Reliability", "Circuit Breaker", "mTLS"]
 categories: ["Go", "Backend Engineering", "SRE"]
 author: "Matthew Mattox - mmattox@support.tools"

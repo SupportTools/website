@@ -1,6 +1,6 @@
 ---
 title: "Live Pod Resizing in Kubernetes: A Practical Guide to InPlacePodVerticalScaling"
-date: 2026-11-10T09:00:00-05:00
+date: 2026-11-04T09:00:00-06:00
 draft: false
 tags: ["Kubernetes", "Resource Management", "Vertical Scaling", "Containers", "v1.33", "Performance Tuning", "DevOps"]
 categories:

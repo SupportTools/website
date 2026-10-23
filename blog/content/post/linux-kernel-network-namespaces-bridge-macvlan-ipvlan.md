@@ -1,7 +1,7 @@
 ---
 title: "Linux Kernel Network Namespaces: Bridge, Macvlan, and IPVLAN"
 date: 2029-08-17T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Networking", "Kubernetes", "CNI", "Network Namespaces", "Macvlan", "IPVLAN"]
 categories: ["Linux", "Networking", "Kubernetes"]
 author: "Matthew Mattox - mmattox@support.tools"

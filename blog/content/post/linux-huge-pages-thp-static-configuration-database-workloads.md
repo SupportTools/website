@@ -1,7 +1,7 @@
 ---
 title: "Linux Huge Pages: THP and Static Configuration for Database Workloads"
 date: 2030-11-23T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Huge Pages", "THP", "PostgreSQL", "Redis", "Performance", "Kubernetes", "NUMA", "Memory"]
 categories:
 - Linux

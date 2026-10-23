@@ -1,7 +1,7 @@
 ---
 title: "Argo Workflows: Cloud-Native Workflow Orchestration at Scale"
 date: 2027-10-30T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Argo", "Workflows", "Kubernetes", "CI/CD", "Orchestration"]
 categories:
 - Kubernetes

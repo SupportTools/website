@@ -1,7 +1,7 @@
 ---
 title: "Go Build System Optimization: Build Cache Strategies, CGO Avoidance, Reproducible Builds, and ldflags for Version Injection"
 date: 2031-10-13T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Golang", "Build", "CI/CD", "Docker", "Reproducible Builds", "CGO", "ldflags"]
 categories:
 - Go

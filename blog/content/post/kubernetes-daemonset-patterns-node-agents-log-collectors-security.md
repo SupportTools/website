@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes DaemonSet Patterns: Node Agents, Log Collectors, and Security Sensors"
 date: 2029-03-18T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "DaemonSet", "Node Agents", "Logging", "Security", "Observability"]
 categories:
 - Kubernetes

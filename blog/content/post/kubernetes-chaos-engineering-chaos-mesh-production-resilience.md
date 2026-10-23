@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Chaos Engineering with Chaos Mesh: Production Resilience Testing"
 date: 2030-08-15T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Chaos Engineering", "Chaos Mesh", "Kubernetes", "Resilience", "Testing", "SRE", "CI/CD"]
 categories:
 - Kubernetes

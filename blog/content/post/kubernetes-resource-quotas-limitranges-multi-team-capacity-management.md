@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Resource Quotas and LimitRanges: Multi-Team Capacity Management and Fairness Enforcement"
 date: 2031-07-17T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Resource Quotas", "LimitRanges", "Multi-tenancy", "Capacity Management", "Platform Engineering"]
 categories: ["Kubernetes", "Platform Engineering"]
 author: "Matthew Mattox - mmattox@support.tools"

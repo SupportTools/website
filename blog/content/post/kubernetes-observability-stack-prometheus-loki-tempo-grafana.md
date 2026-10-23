@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Observability Stack: Prometheus, Loki, Tempo, and Grafana"
 date: 2029-02-26T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Prometheus", "Loki", "Tempo", "Grafana", "Observability"]
 categories:
 - Kubernetes

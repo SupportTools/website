@@ -1,7 +1,7 @@
 ---
 title: "Pulumi Kubernetes Operator: GitOps with Infrastructure-as-Code"
 date: 2027-04-08T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Pulumi", "GitOps", "Operator", "Infrastructure as Code"]
 categories: ["Kubernetes", "GitOps", "Infrastructure as Code"]
 author: "Matthew Mattox - mmattox@support.tools"

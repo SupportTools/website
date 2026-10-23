@@ -1,7 +1,7 @@
 ---
 title: "Karpenter Advanced Node Provisioning: Cost-Optimized Kubernetes Scaling"
 date: 2027-10-10T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Karpenter", "Kubernetes", "Autoscaling", "AWS", "Cost Optimization"]
 categories:
 - Kubernetes

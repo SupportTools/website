@@ -1,7 +1,7 @@
 ---
 title: "Linux Interrupt Handling and Softirq: Kernel Bottom Half Mechanisms"
 date: 2029-08-02T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Kernel", "Interrupts", "Softirq", "Performance", "Containers", "Networking"]
 categories: ["Linux", "Systems Programming", "Performance"]
 author: "Matthew Mattox - mmattox@support.tools"

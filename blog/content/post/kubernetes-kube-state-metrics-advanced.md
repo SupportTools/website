@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Kube-state-metrics: Advanced Metrics and Custom Resources"
 date: 2029-01-17T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "kube-state-metrics", "Prometheus", "Monitoring", "Custom Resources", "Observability"]
 categories:
 - Kubernetes

@@ -1,6 +1,6 @@
 ---
 title: "Go Streaming JSON: Large Payload Handling with json.Decoder"
-date: 2029-09-27T00:00:00-05:00
+date: 2027-02-12T00:00:00-06:00
 draft: false
 tags: ["Go", "JSON", "Streaming", "Performance", "Memory Optimization", "encoding/json"]
 categories: ["Go", "Performance"]

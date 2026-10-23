@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Operators 2025: The Complete Enterprise Development Guide"
 date: 2026-12-10T09:00:00-05:00
-draft: false
+draft: true
 tags:
 - kubernetes
 - operators

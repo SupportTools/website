@@ -1,7 +1,7 @@
 ---
 title: "OpenTelemetry Go SDK: Production Tracing, Metrics, and OTLP Export"
 date: 2027-09-25T00:00:00-05:00
-draft: false
+draft: true
 tags: ["OpenTelemetry", "Go", "Tracing", "Observability", "OTLP", "Jaeger", "Prometheus"]
 categories: ["Observability", "Go"]
 author: "Matthew Mattox - mmattox@support.tools"

@@ -1,7 +1,7 @@
 ---
 title: "Linux systemd Advanced: Service Management, Timers, and Unit Dependencies"
 date: 2028-10-03T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "systemd", "Service Management", "Automation", "DevOps"]
 categories:
 - Linux

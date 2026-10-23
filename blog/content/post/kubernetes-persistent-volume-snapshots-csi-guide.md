@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Persistent Volume Snapshots: CSI Snapshot API, Velero Integration, and Cross-Cluster Recovery"
 date: 2028-06-23T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "CSI", "Snapshots", "Storage", "Velero", "Backup"]
 categories:
 - Kubernetes

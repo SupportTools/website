@@ -1,7 +1,7 @@
 ---
 title: "Go Protobuf and gRPC Code Generation: buf CLI and Buf Schema Registry"
 date: 2031-05-03T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "gRPC", "Protobuf", "buf", "Schema Registry", "API Design", "Code Generation"]
 categories: ["Go", "API Design"]
 author: "Matthew Mattox - mmattox@support.tools"

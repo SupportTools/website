@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes HPA with Custom Metrics: Datadog, Dynatrace, and Prometheus Adapter"
 date: 2029-03-05T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "HPA", "Autoscaling", "Prometheus", "Datadog", "Observability"]
 categories:
 - Kubernetes

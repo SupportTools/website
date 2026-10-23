@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Workload Identity Federation: Keyless Cloud Access for Pods"
 date: 2031-06-04T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "AWS", "GCP", "Azure", "IRSA", "Workload Identity", "OIDC", "Security"]
 categories:
 - Kubernetes

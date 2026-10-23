@@ -1,7 +1,7 @@
 ---
 title: "Pulumi for Kubernetes: Infrastructure as Code with Real Languages"
 date: 2027-10-14T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Pulumi", "Kubernetes", "IaC", "Go", "DevOps"]
 categories:
 - Infrastructure as Code

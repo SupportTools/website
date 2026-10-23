@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Prometheus Operator: Custom Alerting Rules and Recording Rules at Scale"
 date: 2030-12-14T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Prometheus", "Alerting", "Monitoring", "Observability", "PrometheusRule", "Alertmanager", "SRE"]
 categories:
 - Kubernetes

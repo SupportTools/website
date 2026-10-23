@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Cluster DNS: CoreDNS Advanced Configuration and Troubleshooting"
 date: 2029-05-09T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "CoreDNS", "DNS", "Networking", "NodeLocal DNSCache", "DNSSEC", "Troubleshooting"]
 categories: ["Kubernetes", "Networking"]
 author: "Matthew Mattox - mmattox@support.tools"

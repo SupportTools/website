@@ -1,7 +1,7 @@
 ---
 title: "Go API Versioning: URL Paths, Headers, and Backwards-Compatible Schema Evolution"
 date: 2030-09-16T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Golang", "API", "REST", "Versioning", "Microservices", "Enterprise"]
 categories:
 - Go

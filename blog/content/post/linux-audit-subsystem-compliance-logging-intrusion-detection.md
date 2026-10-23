@@ -1,7 +1,7 @@
 ---
 title: "Linux Audit Subsystem: Compliance Logging and Intrusion Detection"
 date: 2029-05-17T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Audit", "auditd", "Security", "Compliance", "Falco", "Kubernetes"]
 categories: ["Linux", "Security"]
 author: "Matthew Mattox - mmattox@support.tools"

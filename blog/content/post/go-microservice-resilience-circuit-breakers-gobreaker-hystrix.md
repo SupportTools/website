@@ -1,7 +1,7 @@
 ---
 title: "Go Microservice Resilience: Circuit Breakers with gobreaker and Hystrix-Go"
 date: 2031-05-26T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Circuit Breaker", "Resilience", "gobreaker", "Hystrix", "Bulkhead", "Prometheus", "Microservices"]
 categories:
 - Go

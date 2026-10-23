@@ -1,7 +1,7 @@
 ---
 title: "GraphQL Server Patterns in Go: gqlgen, DataLoaders, and Production Hardening"
 date: 2028-04-01T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "GraphQL", "gqlgen", "DataLoader", "Production", "API", "Federation"]
 categories: ["Go", "API Design"]
 author: "Matthew Mattox - mmattox@support.tools"

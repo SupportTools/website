@@ -1,7 +1,7 @@
 ---
 title: "WebAssembly in Kubernetes with Krustlet: Production Implementation Guide"
 date: 2026-12-14T00:00:00-05:00
-draft: false
+draft: true
 tags: ["WebAssembly", "Kubernetes", "Krustlet", "WASM", "Container Runtime", "Cloud Native", "Performance", "Emerging Technologies"]
 categories: ["Kubernetes", "Cloud Native"]
 author: "Matthew Mattox - mmattox@support.tools"

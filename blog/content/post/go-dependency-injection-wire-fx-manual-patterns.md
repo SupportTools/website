@@ -1,7 +1,7 @@
 ---
 title: "Go Dependency Injection: Wire, Fx, and Manual DI Patterns"
 date: 2029-05-19T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Dependency Injection", "Wire", "Fx", "Architecture", "Testing", "golang"]
 categories: ["Go", "Architecture"]
 author: "Matthew Mattox - mmattox@support.tools"

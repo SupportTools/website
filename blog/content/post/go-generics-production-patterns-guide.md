@@ -1,7 +1,7 @@
 ---
 title: "Go Generics in Production: Type Parameters, Constraints, and Real-World Patterns"
 date: 2028-04-11T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Generics", "Type Parameters", "Production", "Performance"]
 categories: ["Go", "Software Engineering"]
 author: "Matthew Mattox - mmattox@support.tools"

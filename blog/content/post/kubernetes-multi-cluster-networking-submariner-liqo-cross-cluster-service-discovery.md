@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Multi-Cluster Networking: Submariner and Liqo for Cross-Cluster Service Discovery"
 date: 2030-08-01T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Multi-Cluster", "Submariner", "Liqo", "Networking", "Service Discovery", "Federation"]
 categories:
 - Kubernetes

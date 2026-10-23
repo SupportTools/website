@@ -1,7 +1,7 @@
 ---
 title: "Advanced Go Testing: Table-Driven Tests, Mocks, and Integration Patterns"
 date: 2027-11-17T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Testing", "TDD", "Mocks", "Integration Tests"]
 categories:
 - Go

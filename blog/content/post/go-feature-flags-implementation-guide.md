@@ -1,7 +1,7 @@
 ---
 title: "Feature Flags in Go: OpenFeature, LaunchDarkly, Unleash, and Gradual Rollout Patterns"
 date: 2028-06-07T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Feature Flags", "OpenFeature", "LaunchDarkly", "Unleash", "A/B Testing"]
 categories: ["Go", "DevOps", "Architecture"]
 author: "Matthew Mattox - mmattox@support.tools"

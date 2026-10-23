@@ -1,6 +1,6 @@
 ---
 title: "Linux High Availability with Keepalived: VRRP for Floating IPs and Health Checks"
-date: 2031-02-07T00:00:00-05:00
+date: 2027-02-26T00:00:00-06:00
 draft: false
 tags: ["Linux", "High Availability", "Keepalived", "VRRP", "Networking", "Load Balancing", "Kubernetes", "MetalLB"]
 categories:

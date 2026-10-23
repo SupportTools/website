@@ -1,7 +1,7 @@
 ---
 title: "Go GraphQL Server: gqlgen Code-First Schema and DataLoader Pattern"
 date: 2031-05-23T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "GraphQL", "gqlgen", "DataLoader", "WebSocket", "Subscriptions", "Federation", "Apollo"]
 categories:
 - Go

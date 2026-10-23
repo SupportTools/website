@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Keycloak Integration: OIDC Authentication for API Server and Applications"
 date: 2031-03-31T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Keycloak", "OIDC", "Authentication", "RBAC", "Security"]
 categories:
 - Kubernetes

@@ -1,7 +1,7 @@
 ---
 title: "Go API Versioning Strategies: URL Path, Headers, Content Negotiation, and OpenAPI Spec Management"
 date: 2028-06-09T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "API", "Versioning", "OpenAPI", "REST", "Architecture"]
 categories: ["Go", "API Design", "Backend Engineering"]
 author: "Matthew Mattox - mmattox@support.tools"

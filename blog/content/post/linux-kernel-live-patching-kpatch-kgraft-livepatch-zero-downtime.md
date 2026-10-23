@@ -1,7 +1,7 @@
 ---
 title: "Linux Kernel Live Patching: kpatch, kGraft, and Livepatch for Zero-Downtime Security Updates"
 date: 2032-03-14T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Kernel", "Live Patching", "kpatch", "Security", "CVE", "Zero-Downtime"]
 categories:
 - Linux

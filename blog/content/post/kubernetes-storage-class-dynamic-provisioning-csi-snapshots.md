@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Storage Class Provisioning: Dynamic PV with CSI and Snapshots"
 date: 2029-01-25T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "CSI", "Storage", "PersistentVolume", "Snapshots", "StorageClass"]
 categories:
 - Kubernetes

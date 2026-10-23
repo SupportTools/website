@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Cilium Hubble: Network Flow Observability and Policy Visualization"
 date: 2030-11-01T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Cilium", "Hubble", "eBPF", "Network Observability", "Network Policy", "Prometheus"]
 categories:
 - Kubernetes

@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Node Problem Detector: Automated Node Health Management and Self-Healing"
 date: 2027-05-30T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Node Problem Detector", "Node Health", "Reliability", "Operations"]
 categories: ["Kubernetes", "Operations"]
 author: "Matthew Mattox - mmattox@support.tools"

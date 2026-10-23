@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Network Policy Deep Dive: Cilium eBPF Policy Enforcement at Scale"
 date: 2029-11-25T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Cilium", "eBPF", "Network Policy", "Security", "Multi-Cluster", "DNS Policy"]
 categories:
 - Kubernetes

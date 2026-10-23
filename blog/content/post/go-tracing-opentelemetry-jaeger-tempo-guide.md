@@ -1,7 +1,7 @@
 ---
 title: "Distributed Tracing in Go: OpenTelemetry SDK with Jaeger and Tempo"
 date: 2028-10-31T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "OpenTelemetry", "Tracing", "Jaeger", "Observability"]
 categories:
 - Go

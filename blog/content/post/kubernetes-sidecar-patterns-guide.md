@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Sidecar Patterns: Proxies, Adapters, and Ambassador Containers"
 date: 2028-01-30T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Sidecar", "Patterns", "Architecture", "Service Mesh", "Platform Engineering"]
 categories: ["Kubernetes", "Architecture", "Platform Engineering"]
 author: "Matthew Mattox - mmattox@support.tools"

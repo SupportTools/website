@@ -1,7 +1,7 @@
 ---
 title: "Go Hexagonal Architecture: Ports, Adapters, and Clean Code"
 date: 2029-07-21T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Hexagonal Architecture", "Clean Architecture", "Ports and Adapters", "DDD", "Testing"]
 categories: ["Go", "Architecture"]
 author: "Matthew Mattox - mmattox@support.tools"

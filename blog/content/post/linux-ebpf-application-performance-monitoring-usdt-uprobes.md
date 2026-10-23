@@ -1,7 +1,7 @@
 ---
 title: "Linux eBPF for Application Performance Monitoring: User-Space Probes with USDT and uprobes"
 date: 2031-09-28T00:00:00-05:00
-draft: false
+draft: true
 tags: ["eBPF", "Linux", "Performance Monitoring", "USDT", "uprobes", "Observability"]
 categories: ["Linux", "Observability"]
 author: "Matthew Mattox - mmattox@support.tools"

@@ -1,7 +1,7 @@
 ---
 title: "Go Security Best Practices: Input Validation, SSRF Prevention, and Secure Defaults"
 date: 2030-03-22T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Golang", "Security", "SSRF", "Input Validation", "AppSec", "Secure Coding"]
 categories: ["Go", "Security"]
 author: "Matthew Mattox - mmattox@support.tools"

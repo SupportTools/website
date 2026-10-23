@@ -1,7 +1,7 @@
 ---
 title: "Linux Process Scheduling: CFS, Real-Time Priorities, and CPU Affinity Tuning"
 date: 2030-07-25T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Scheduling", "CFS", "Real-Time", "CPU Affinity", "Kubernetes", "Performance"]
 categories:
 - Linux

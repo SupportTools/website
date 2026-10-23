@@ -1,7 +1,7 @@
 ---
 title: "Linux Capabilities: Privilege Reduction for Secure Service Deployment"
 date: 2031-01-25T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Security", "Capabilities", "Containers", "Kubernetes", "seccomp", "Privilege Reduction"]
 categories:
 - Linux

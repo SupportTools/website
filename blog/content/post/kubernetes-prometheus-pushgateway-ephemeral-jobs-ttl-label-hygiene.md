@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Prometheus Pushgateway: Ephemeral Job Metrics, TTL Cleanup, Label Hygiene, and Anti-Patterns"
 date: 2032-01-17T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Prometheus", "Pushgateway", "Monitoring", "Observability", "Metrics"]
 categories:
 - Kubernetes

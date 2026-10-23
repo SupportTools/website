@@ -1,7 +1,7 @@
 ---
 title: "Go AWS SDK v2 Patterns: Credential Management, Retry Logic, and Service Client Optimization"
 date: 2028-04-30T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "AWS", "SDK", "S3", "DynamoDB", "Credentials"]
 categories: ["Go", "AWS"]
 author: "Matthew Mattox - mmattox@support.tools"

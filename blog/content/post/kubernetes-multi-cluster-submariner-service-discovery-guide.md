@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Multi-Cluster Service Discovery with Submariner"
 date: 2029-05-12T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Submariner", "Multi-Cluster", "Service Discovery", "Networking", "MCS API"]
 categories: ["Kubernetes", "Networking"]
 author: "Matthew Mattox - mmattox@support.tools"

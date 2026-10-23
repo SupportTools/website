@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Cluster Autoscaler vs Karpenter: Node Provisioning for Cost Efficiency"
 date: 2028-04-21T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Karpenter", "Cluster Autoscaler", "Cost Optimization", "AWS"]
 categories: ["Kubernetes", "Cloud"]
 author: "Matthew Mattox - mmattox@support.tools"

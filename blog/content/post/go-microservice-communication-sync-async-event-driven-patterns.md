@@ -1,7 +1,7 @@
 ---
 title: "Go Microservice Communication: Sync vs Async Patterns and Event-Driven Architecture"
 date: 2030-08-13T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Microservices", "gRPC", "Kafka", "Event-Driven", "Architecture", "Circuit Breaker"]
 categories:
 - Go

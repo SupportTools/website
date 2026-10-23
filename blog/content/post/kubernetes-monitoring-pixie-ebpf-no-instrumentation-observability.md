@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Monitoring with Pixie: eBPF-Based No-Instrumentation Observability"
 date: 2030-10-12T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Pixie", "eBPF", "Observability", "Monitoring", "OpenTelemetry", "Grafana"]
 categories:
 - Kubernetes

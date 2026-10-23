@@ -1,7 +1,7 @@
 ---
 title: "K8sGPT: AI-Powered Kubernetes Diagnostics and Cluster Analysis"
 date: 2027-03-08T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "K8sGPT", "AI", "Diagnostics", "Observability"]
 categories: ["Kubernetes", "AI & ML", "Observability"]
 author: "Matthew Mattox - mmattox@support.tools"

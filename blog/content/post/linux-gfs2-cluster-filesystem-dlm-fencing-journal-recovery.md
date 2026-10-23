@@ -1,7 +1,7 @@
 ---
 title: "Linux GFS2 Cluster Filesystem: DLM Lock Manager, Fencing Integration, Journal Recovery, and Performance Tuning"
 date: 2032-03-02T00:00:00-05:00
-draft: false
+draft: true
 tags: ["GFS2", "Linux", "Cluster", "High Availability", "Pacemaker", "Storage", "DLM"]
 categories:
 - Linux

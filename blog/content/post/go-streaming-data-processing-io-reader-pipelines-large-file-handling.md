@@ -1,7 +1,7 @@
 ---
 title: "Go Streaming Data Processing: io.Reader Pipelines, Chunked Transfer, and Large File Handling"
 date: 2030-10-29T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Streaming", "io.Reader", "S3", "Chunked Transfer", "Memory Management", "Backpressure"]
 categories:
 - Go

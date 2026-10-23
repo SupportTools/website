@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Cert-Manager Advanced: ACME DNS-01 Challenges, Vault PKI, and Certificate Policy Enforcement"
 date: 2028-07-24T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "cert-manager", "PKI", "TLS", "Vault", "ACME"]
 categories:
 - Kubernetes

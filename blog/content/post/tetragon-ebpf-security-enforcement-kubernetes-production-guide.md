@@ -1,7 +1,7 @@
 ---
 title: "Tetragon eBPF Security Enforcement: Proactive Kubernetes Threat Prevention Guide"
 date: 2026-12-27T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Tetragon", "eBPF", "Security", "Kubernetes", "Runtime Enforcement", "Cilium", "SIEM", "Threat Prevention"]
 categories:
 - Security

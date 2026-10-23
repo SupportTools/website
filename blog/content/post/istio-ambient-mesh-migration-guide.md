@@ -1,6 +1,6 @@
 ---
 title: "Istio Ambient Mesh: Sidecar-Free Service Mesh Migration Guide"
-date: 2027-11-06T00:00:00-05:00
+date: 2026-12-04T00:00:00-06:00
 draft: false
 tags: ["Istio", "Ambient Mesh", "Service Mesh", "Kubernetes", "eBPF"]
 categories:

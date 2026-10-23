@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Network Debugging Toolkit: netshoot, tcpdump in Pods, and eBPF Network Tracing"
 date: 2031-10-02T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Networking", "Debugging", "netshoot", "tcpdump", "eBPF", "Troubleshooting"]
 categories: ["Kubernetes", "Networking"]
 author: "Matthew Mattox - mmattox@support.tools"

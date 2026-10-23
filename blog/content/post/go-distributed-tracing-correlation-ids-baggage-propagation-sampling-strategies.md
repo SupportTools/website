@@ -1,7 +1,7 @@
 ---
 title: "Go: Distributed Tracing with Correlation IDs, Baggage Propagation, and Trace Sampling Strategies"
 date: 2031-07-25T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Distributed Tracing", "OpenTelemetry", "Observability", "Jaeger", "Sampling"]
 categories:
 - Go

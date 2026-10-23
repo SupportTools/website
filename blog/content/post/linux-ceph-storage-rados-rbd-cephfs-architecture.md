@@ -1,7 +1,7 @@
 ---
 title: "Linux Ceph Storage: RADOS, RBD, and CephFS Architecture"
 date: 2029-11-09T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Ceph", "Storage", "Linux", "RADOS", "RBD", "CephFS", "Kubernetes", "Rook"]
 categories:
 - Storage

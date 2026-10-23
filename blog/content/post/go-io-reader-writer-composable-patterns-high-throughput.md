@@ -1,7 +1,7 @@
 ---
 title: "Go io.Reader and io.Writer: Composable I/O Patterns for High-Throughput Pipelines"
 date: 2029-03-07T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "I/O", "Performance", "Streaming", "Pipelines", "Concurrency"]
 categories:
 - Go

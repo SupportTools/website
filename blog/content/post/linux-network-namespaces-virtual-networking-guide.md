@@ -1,7 +1,7 @@
 ---
 title: "Linux Network Namespaces and Virtual Networking: Deep Dive for Container Engineers"
 date: 2028-05-07T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Networking", "Namespaces", "veth", "Bridge", "iptables", "Containers"]
 categories: ["Linux", "Networking"]
 author: "Matthew Mattox - mmattox@support.tools"

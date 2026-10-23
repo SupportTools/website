@@ -1,7 +1,7 @@
 ---
 title: "Go: Building WebSocket Servers with gorilla/websocket for Real-Time Collaboration"
 date: 2031-08-11T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Golang", "WebSocket", "Real-Time", "gorilla", "Concurrency"]
 categories:
 - Go

@@ -1,7 +1,7 @@
 ---
 title: "Go Distributed Locks: Redis SETNX vs Redlock, etcd Leader Election, Database Advisory Locks, and Fencing Tokens"
 date: 2032-02-20T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Distributed Systems", "Redis", "etcd", "Locking", "Concurrency"]
 categories:
 - Go

@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes vCluster: Virtual Clusters for Tenant Isolation and Multi-Tenancy at Scale"
 date: 2031-11-15T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "vCluster", "Multi-Tenancy", "Tenant Isolation", "Virtual Clusters", "Platform Engineering"]
 categories:
 - Kubernetes

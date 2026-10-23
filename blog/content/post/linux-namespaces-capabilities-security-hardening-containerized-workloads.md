@@ -1,7 +1,7 @@
 ---
 title: "Linux Namespaces and Capabilities: Security Hardening for Containerized Workloads"
 date: 2031-07-26T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Security", "Containers", "Namespaces", "Capabilities", "Kubernetes"]
 categories:
 - Linux

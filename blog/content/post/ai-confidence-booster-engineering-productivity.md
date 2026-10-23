@@ -1,7 +1,7 @@
 ---
 title: "AI as a Confidence Booster: Lowering the Activation Energy for Infrastructure Work"
 date: 2032-04-22T09:00:00-05:00
-draft: false
+draft: true
 tags: ["AI", "DevOps", "SRE", "Productivity", "Kubernetes", "Helm", "Terraform", "Bash", "Learning", "Engineering Culture", "Automation"]
 categories:
 - DevOps

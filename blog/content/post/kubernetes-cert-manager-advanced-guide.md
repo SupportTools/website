@@ -1,7 +1,7 @@
 ---
 title: "cert-manager Advanced Configuration: Internal PKI, ACME, and mTLS"
 date: 2028-03-27T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "cert-manager", "PKI", "TLS", "mTLS", "ACME", "Let's Encrypt", "Vault"]
 categories: ["Kubernetes", "Security"]
 author: "Matthew Mattox - mmattox@support.tools"

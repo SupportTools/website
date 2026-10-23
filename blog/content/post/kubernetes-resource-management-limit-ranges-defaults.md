@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Resource Management: Limit Ranges and Default Container Resources"
 date: 2029-09-12T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "LimitRange", "Resource Management", "Namespaces", "VPA"]
 categories: ["Kubernetes", "Operations"]
 author: "Matthew Mattox - mmattox@support.tools"

@@ -1,7 +1,7 @@
 ---
 title: "Go Generics: Functional Programming Patterns with Type Parameters"
 date: 2029-02-25T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Generics", "Functional Programming", "Type Parameters", "Patterns"]
 categories:
 - Go

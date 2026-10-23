@@ -1,7 +1,7 @@
 ---
 title: "Linux AppArmor Profiles: Profile Modes, Path-Based Access Control, Network Rules, Container Confinement, and AA Tools"
 date: 2032-01-02T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "AppArmor", "Security", "Containers", "Kubernetes", "Access Control", "Hardening"]
 categories:
 - Linux

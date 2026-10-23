@@ -1,7 +1,7 @@
 ---
 title: "Go: Implementing CQRS and Event Sourcing Patterns for Scalable Distributed Systems"
 date: 2031-06-25T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "CQRS", "Event Sourcing", "Distributed Systems", "Architecture", "Microservices", "DDD"]
 categories:
 - Go

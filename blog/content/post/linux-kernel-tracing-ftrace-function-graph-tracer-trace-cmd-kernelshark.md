@@ -1,7 +1,7 @@
 ---
 title: "Linux Kernel Tracing with ftrace: Function Graph Tracer, Event Tracing, trace-cmd, and KernelShark Visualization"
 date: 2031-11-10T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "ftrace", "Kernel Tracing", "trace-cmd", "KernelShark", "Performance Analysis", "Debugging"]
 categories: ["Linux", "System Administration"]
 author: "Matthew Mattox - mmattox@support.tools"

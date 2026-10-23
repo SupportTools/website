@@ -1,7 +1,7 @@
 ---
 title: "Go Assembly Language: Performance-Critical Functions"
 date: 2029-04-16T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Golang", "Assembly", "Performance", "SIMD", "Crypto", "Optimization"]
 categories:
 - Go

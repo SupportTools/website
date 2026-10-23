@@ -1,7 +1,7 @@
 ---
 title: "Secrets Management Mastery: The Complete Guide to Securing Sensitive Data in Python Applications and Cloud Environments"
 date: 2027-04-27T09:00:00-05:00
-draft: false
+draft: true
 categories: ["Security", "Python", "DevSecOps"]
 tags: ["Secrets Management", "Python Security", "Cloud Security", "DevSecOps", "Azure Key Vault", "AWS Secrets Manager", "Google Secret Manager", "HashiCorp Vault", "Zero Trust", "Application Security", "CI/CD Security", "Infrastructure Security"]
 ---

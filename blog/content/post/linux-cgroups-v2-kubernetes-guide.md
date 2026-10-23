@@ -1,7 +1,7 @@
 ---
 title: "Linux cgroups v2: Resource Management, Kubernetes Integration, and Performance Isolation"
 date: 2028-06-26T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "cgroups", "Kubernetes", "Resource Management", "Performance"]
 categories:
 - Linux

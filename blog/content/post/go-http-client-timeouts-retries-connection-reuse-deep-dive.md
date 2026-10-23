@@ -1,7 +1,7 @@
 ---
 title: "Go HTTP Client Best Practices: Timeouts, Retries, and Connection Reuse"
 date: 2029-03-01T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "HTTP", "Networking", "Performance", "Reliability", "Microservices"]
 categories:
 - Go

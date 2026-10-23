@@ -1,6 +1,6 @@
 ---
 title: "Kubernetes API Priority and Fairness: APF Flow Control for Multi-Tenant Clusters"
-date: 2029-01-02T00:00:00-05:00
+date: 2026-12-18T00:00:00-06:00
 draft: false
 tags: ["Kubernetes", "API Server", "APF", "Multi-Tenancy", "Flow Control"]
 categories:

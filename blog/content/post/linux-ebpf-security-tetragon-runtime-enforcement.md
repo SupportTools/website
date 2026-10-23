@@ -1,7 +1,7 @@
 ---
 title: "Linux eBPF Security: Tetragon Runtime Enforcement and Policy Tracing"
 date: 2029-12-07T00:00:00-05:00
-draft: false
+draft: true
 tags: ["eBPF", "Tetragon", "Security", "Kubernetes", "Runtime Enforcement", "TracingPolicy", "SIEM", "Cilium"]
 categories:
 - Security

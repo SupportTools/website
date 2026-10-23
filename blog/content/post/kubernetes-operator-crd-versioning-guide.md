@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Operator CRD Versioning: Safe API Evolution and Conversion"
 date: 2027-11-13T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Operators", "CRD", "API Versioning", "Webhooks"]
 categories:
 - Kubernetes

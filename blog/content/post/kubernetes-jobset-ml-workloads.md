@@ -1,7 +1,7 @@
 ---
 title: "Orchestrating Distributed ML Training with Kubernetes JobSet"
 date: 2026-11-12T09:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Machine Learning", "JobSet", "Distributed Computing", "GPUs", "TPUs", "HPC"]
 categories:
 - Kubernetes

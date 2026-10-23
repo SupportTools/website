@@ -1,7 +1,7 @@
 ---
 title: "Distributed Tracing Sampling Strategies in Go: Head-Based, Tail-Based, and Adaptive Sampling for High-Traffic Services"
 date: 2028-06-17T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Distributed Tracing", "OpenTelemetry", "Jaeger", "Tempo", "Sampling", "Observability"]
 categories: ["Go", "Observability"]
 author: "Matthew Mattox - mmattox@support.tools"

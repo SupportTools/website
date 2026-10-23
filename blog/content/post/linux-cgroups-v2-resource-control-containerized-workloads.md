@@ -1,7 +1,7 @@
 ---
 title: "Linux cgroups v2: Resource Control for Containerized Workloads"
 date: 2030-05-16T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "cgroups", "Kubernetes", "Containers", "Resource Management", "PSI", "Performance"]
 categories:
 - Linux

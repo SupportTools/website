@@ -1,7 +1,7 @@
 ---
 title: "Go Microservices Observability: OpenTelemetry Traces, Metrics, and Logs Correlation"
 date: 2029-11-26T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "OpenTelemetry", "Observability", "Tracing", "Metrics", "Logging", "Tempo", "Loki", "Prometheus"]
 categories:
 - Go

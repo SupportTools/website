@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Autoscaling Deep Dive: HPA, VPA, KEDA, and Cluster Autoscaler Integration"
 date: 2027-05-21T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "HPA", "VPA", "KEDA", "Autoscaling", "Performance"]
 categories: ["Kubernetes", "Platform Engineering"]
 author: "Matthew Mattox - mmattox@support.tools"

@@ -1,7 +1,7 @@
 ---
 title: "Pulumi: Kubernetes and Cloud Infrastructure as Code with TypeScript and Go"
 date: 2027-02-27T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Pulumi", "Infrastructure as Code", "TypeScript", "Go"]
 categories: ["Kubernetes", "DevOps", "Infrastructure as Code"]
 author: "Matthew Mattox - mmattox@support.tools"

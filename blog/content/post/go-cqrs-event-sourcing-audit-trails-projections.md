@@ -1,7 +1,7 @@
 ---
 title: "Go CQRS with Event Sourcing: Building Audit Trails and Projections"
 date: 2029-11-04T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "CQRS", "Event Sourcing", "PostgreSQL", "NATS", "Audit Trail", "Domain-Driven Design"]
 categories: ["Go", "Architecture"]
 author: "Matthew Mattox - mmattox@support.tools"

@@ -1,7 +1,7 @@
 ---
 title: "Linux Huge Page Defragmentation: compaction, migration, and THP tuning"
 date: 2029-10-13T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Memory", "Performance", "THP", "Huge Pages", "Kernel", "NUMA"]
 categories:
 - Linux

@@ -1,7 +1,7 @@
 ---
 title: "Linux Kernel Namespaces: Isolation Primitives Behind Container Security"
 date: 2030-08-14T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Namespaces", "Containers", "Security", "Kernel", "Docker", "Kubernetes"]
 categories:
 - Linux

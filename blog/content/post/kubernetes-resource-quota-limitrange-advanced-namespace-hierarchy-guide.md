@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Resource Quota and LimitRange Advanced: Namespace Hierarchy, Admission Validation, and Burst Handling"
 date: 2031-12-11T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Resource Quota", "LimitRange", "Admission Control", "Multi-Tenancy", "Capacity Planning", "Namespace Management"]
 categories: ["Kubernetes", "Platform Engineering"]
 author: "Matthew Mattox - mmattox@support.tools"

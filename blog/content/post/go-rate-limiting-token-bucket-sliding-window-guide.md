@@ -1,7 +1,7 @@
 ---
 title: "Rate Limiting in Go: Token Bucket, Sliding Window, and Distributed Limiting"
 date: 2028-10-29T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Rate Limiting", "Performance", "API", "Redis"]
 categories:
 - Go

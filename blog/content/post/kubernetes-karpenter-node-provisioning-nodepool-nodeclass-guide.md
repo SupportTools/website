@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Karpenter Node Provisioning: Just-in-Time Scaling with NodePool and NodeClass"
 date: 2031-02-19T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Karpenter", "Autoscaling", "AWS", "Node Provisioning", "Cost Optimization"]
 categories:
 - Kubernetes

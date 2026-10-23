@@ -1,7 +1,7 @@
 ---
 title: "Surgical Kubernetes Recovery: Extracting Individual Objects from etcd Snapshots"
 date: 2027-05-13T09:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "etcd", "Disaster Recovery", "ConfigMap", "Backup", "Restore", "Operations", "Data Recovery"]
 categories:
 - Kubernetes

@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Compliance Automation: DISA STIG, CIS Benchmarks, and Continuous Compliance"
 date: 2030-11-07T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Compliance", "CIS", "DISA STIG", "kube-bench", "Falco", "Security", "Audit"]
 categories:
 - Kubernetes

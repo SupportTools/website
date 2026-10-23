@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes GPU Scheduling: NVIDIA MIG, Time-Slicing, and GPU Sharing"
 date: 2029-08-15T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "GPU", "NVIDIA", "MIG", "DCGM", "AI", "Machine Learning"]
 categories: ["Kubernetes", "GPU Computing"]
 author: "Matthew Mattox - mmattox@support.tools"

@@ -1,7 +1,7 @@
 ---
 title: "Container Image Supply Chain Security: Sigstore, SLSA, and Admission Enforcement"
 date: 2027-06-23T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Supply Chain Security", "Sigstore", "Cosign", "SLSA", "Kubernetes", "Security"]
 categories:
 - Security

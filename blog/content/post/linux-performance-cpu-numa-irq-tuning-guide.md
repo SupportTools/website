@@ -1,7 +1,7 @@
 ---
 title: "Linux Performance Tuning: CPU Pinning, NUMA Awareness, IRQ Affinity, and Kernel Bypass Networking"
 date: 2028-07-06T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Performance", "CPU", "NUMA", "IRQ", "Kernel"]
 categories:
 - Linux

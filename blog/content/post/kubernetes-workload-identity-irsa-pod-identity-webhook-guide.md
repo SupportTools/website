@@ -1,6 +1,6 @@
 ---
 title: "Kubernetes Workload Identity with IRSA (IAM Roles for Service Accounts) and Pod Identity Webhooks"
-date: 2031-08-23T00:00:00-05:00
+date: 2027-03-19T00:00:00-05:00
 draft: false
 tags: ["Kubernetes", "AWS", "IRSA", "IAM", "Workload Identity", "Security", "EKS", "Pod Identity"]
 categories: ["Kubernetes", "AWS", "Security"]

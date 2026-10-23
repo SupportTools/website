@@ -1,7 +1,7 @@
 ---
 title: "Go CGO Alternatives: Pure Go FFI with purego and dlopen Patterns"
 date: 2029-02-15T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "CGO", "FFI", "purego", "dlopen", "Systems Programming"]
 categories:
 - Go

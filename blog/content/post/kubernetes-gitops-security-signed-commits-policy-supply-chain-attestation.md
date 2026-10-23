@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes GitOps Security: Signed Commits, Policy as Code, and Supply Chain Attestation"
 date: 2030-04-03T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "GitOps", "Security", "Sigstore", "Cosign", "SLSA", "Supply Chain", "ArgoCD", "Flux", "OPA Gatekeeper"]
 categories: ["Kubernetes", "Security", "GitOps"]
 author: "Matthew Mattox - mmattox@support.tools"

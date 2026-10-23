@@ -1,7 +1,7 @@
 ---
 title: "Linux perf: Production Performance Analysis for Kernel and Userspace"
 date: 2030-05-22T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "perf", "Performance", "Profiling", "Kernel", "Flame Graphs", "CPU Counters", "Production"]
 categories:
 - Linux

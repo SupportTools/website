@@ -1,7 +1,7 @@
 ---
 title: "Stream Processing Patterns and Event-Driven Analytics"
 date: 2026-11-27T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Stream Processing", "Event-Driven Architecture", "Apache Flink", "Apache Kafka", "Event Sourcing", "CQRS", "Real-Time Analytics", "Microservices"]
 categories:
 - Stream Processing

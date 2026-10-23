@@ -1,7 +1,7 @@
 ---
 title: "SAML SSO in Go: Enterprise Authentication with Identity Providers"
 date: 2028-10-14T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "SAML", "SSO", "Security", "Authentication"]
 categories:
 - Go

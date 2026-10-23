@@ -1,7 +1,7 @@
 ---
 title: "Go Database Connection Pool Tuning: pgx v5, Connection Lifecycle, Prepared Statements, and Observability"
 date: 2032-04-14T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "PostgreSQL", "pgx", "Connection Pool", "Database", "Observability", "Performance"]
 categories:
 - Go

@@ -1,7 +1,7 @@
 ---
 title: "Go Cron and Task Scheduling: gocron, asynq, and Distributed Job Queues"
 date: 2030-09-09T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Scheduling", "gocron", "asynq", "Redis", "Distributed Systems", "Job Queues", "Observability"]
 categories:
 - Go

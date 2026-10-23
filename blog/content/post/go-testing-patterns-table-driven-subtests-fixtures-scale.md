@@ -1,7 +1,7 @@
 ---
 title: "Go Testing Patterns: Table-Driven Tests, Subtests, and Test Fixtures at Scale"
 date: 2031-01-21T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Golang", "Testing", "TDD", "Unit Tests", "Integration Tests", "Testify"]
 categories:
 - Go

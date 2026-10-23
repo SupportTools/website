@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Argo CD Image Updater: Automated Container Image Version Management in GitOps Pipelines"
 date: 2031-08-10T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "ArgoCD", "GitOps", "CI/CD", "Image Updater", "Automation"]
 categories:
 - Kubernetes

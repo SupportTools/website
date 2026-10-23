@@ -1,7 +1,7 @@
 ---
 title: "Go Dependency Management: Security Scanning with govulncheck and SBOM Generation"
 date: 2031-05-16T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Security", "SBOM", "govulncheck", "Supply Chain Security", "DevSecOps", "CI/CD"]
 categories:
 - Go

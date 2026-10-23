@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Debugging Techniques: Ephemeral Containers, kubectl-debug, and Core Dumps"
 date: 2028-04-12T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Debugging", "Ephemeral Containers", "Profiling", "kubectl"]
 categories: ["Kubernetes", "Debugging"]
 author: "Matthew Mattox - mmattox@support.tools"

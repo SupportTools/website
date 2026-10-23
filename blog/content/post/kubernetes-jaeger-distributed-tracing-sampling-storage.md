@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Jaeger Distributed Tracing: Sampling Strategies and Storage Backends"
 date: 2031-03-14T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Jaeger", "Distributed Tracing", "OpenTelemetry", "Observability", "Elasticsearch"]
 categories:
 - Kubernetes

@@ -1,7 +1,7 @@
 ---
 title: "Crossplane: Kubernetes-Native Infrastructure Provisioning and Composition"
 date: 2028-10-12T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Crossplane", "Kubernetes", "Infrastructure as Code", "AWS", "Platform Engineering"]
 categories:
 - Kubernetes

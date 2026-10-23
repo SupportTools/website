@@ -1,7 +1,7 @@
 ---
 title: "GitOps Multi-Environment Promotion: From Dev to Production Safely"
 date: 2028-11-17T00:00:00-05:00
-draft: false
+draft: true
 tags: ["GitOps", "Kubernetes", "CI/CD", "ArgoCD", "Flux"]
 categories:
 - GitOps

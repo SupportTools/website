@@ -1,7 +1,7 @@
 ---
 title: "Istio Production Operations: Traffic Management, mTLS, and Observability at Scale"
 date: 2027-06-30T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Istio", "Service Mesh", "Kubernetes", "mTLS", "Traffic Management", "Observability"]
 categories:
 - Kubernetes

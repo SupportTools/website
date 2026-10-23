@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Cost Optimization: OpenCost, Kubecost, and FinOps Tooling"
 date: 2029-07-03T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "FinOps", "Cost Optimization", "OpenCost", "Kubecost", "Cloud Cost", "Rightsizing"]
 categories: ["Kubernetes", "FinOps", "Operations"]
 author: "Matthew Mattox - mmattox@support.tools"

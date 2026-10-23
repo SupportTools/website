@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Image Policy: Enforcing Registry and Signature Verification"
 date: 2027-12-21T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Kyverno", "Cosign", "Sigstore", "Supply Chain Security", "OPA", "Notary", "Admission Control", "Supply Chain"]
 categories:
 - Kubernetes

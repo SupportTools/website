@@ -1,7 +1,7 @@
 ---
 title: "Advanced Helm Chart Development: Library Charts, Hooks, and Testing"
 date: 2028-02-06T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Helm", "Kubernetes", "Helm Hooks", "Chart Testing", "Library Charts", "OCI Registry", "DevOps"]
 categories:
 - Kubernetes

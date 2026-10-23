@@ -1,7 +1,7 @@
 ---
 title: "Go Error Wrapping and Stack Traces: Production Debugging"
 date: 2029-04-13T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Golang", "Error Handling", "Debugging", "Sentry", "Observability", "Production"]
 categories:
 - Go

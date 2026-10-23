@@ -1,7 +1,7 @@
 ---
 title: "Linux Crash Consistency: Journaling, COW Filesystems, and fsync Patterns"
 date: 2031-03-09T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Filesystem", "ext4", "btrfs", "ZFS", "fsync", "Database", "Durability"]
 categories:
 - Linux

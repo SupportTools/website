@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Single-Replica PDB Gotchas: Avoid Downtime and Resource Waste"
 date: 2027-01-14T09:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "PodDisruptionBudget", "EKS", "Cluster Autoscaler", "High Availability"]
 categories:
 - Kubernetes

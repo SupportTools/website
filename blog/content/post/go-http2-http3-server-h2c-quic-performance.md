@@ -1,7 +1,7 @@
 ---
 title: "Go HTTP/2 and HTTP/3 Server Implementation: h2c, QUIC, and Performance Tuning"
 date: 2029-12-09T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "HTTP/2", "HTTP/3", "QUIC", "h2c", "TLS", "Performance", "net/http"]
 categories:
 - Go

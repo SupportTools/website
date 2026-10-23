@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Resource Quotas and LimitRanges: Namespace Resource Management"
 date: 2027-12-03T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Resource Quota", "LimitRange", "Namespace", "Multi-Tenancy"]
 categories:
 - Kubernetes

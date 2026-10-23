@@ -1,7 +1,7 @@
 ---
 title: "vLLM Inference on Kubernetes: High-Throughput LLM Serving with PagedAttention"
 date: 2027-07-17T00:00:00-05:00
-draft: false
+draft: true
 tags: ["vLLM", "LLM", "Kubernetes", "GPU", "AI/ML", "Inference"]
 categories:
 - Kubernetes

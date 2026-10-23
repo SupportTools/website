@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Horizontal Scaling with Custom Metrics: KEDA ScaledObjects and Prometheus Adapter"
 date: 2030-03-21T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "KEDA", "HPA", "Custom Metrics", "Prometheus", "Auto-scaling", "Kafka", "SQS"]
 categories: ["Kubernetes", "Platform Engineering"]
 author: "Matthew Mattox - mmattox@support.tools"

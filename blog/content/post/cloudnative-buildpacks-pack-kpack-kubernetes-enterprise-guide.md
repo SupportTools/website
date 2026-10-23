@@ -1,7 +1,7 @@
 ---
 title: "Cloud Native Buildpacks: Automated Container Builds with kpack on Kubernetes"
 date: 2027-01-26T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Buildpacks", "kpack", "CI/CD", "Container Images"]
 categories:
 - "CI & CD"

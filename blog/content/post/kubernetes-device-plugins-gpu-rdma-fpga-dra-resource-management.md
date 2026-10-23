@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Device Plugins: GPU, RDMA, and FPGA Resource Management with Dynamic Resource Allocation"
 date: 2032-01-24T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "GPU", "RDMA", "FPGA", "Device Plugins", "DRA", "NVIDIA", "Resource Management"]
 categories:
 - Kubernetes

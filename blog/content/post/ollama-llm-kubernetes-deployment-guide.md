@@ -1,7 +1,7 @@
 ---
 title: "Ollama LLM on Kubernetes: Self-Hosted Language Models with GPU Scheduling"
 date: 2027-07-16T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Ollama", "LLM", "Kubernetes", "GPU", "AI/ML"]
 categories:
 - Kubernetes

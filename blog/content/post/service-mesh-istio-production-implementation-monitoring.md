@@ -1,7 +1,7 @@
 ---
 title: "Service Mesh with Istio: Production Implementation and Monitoring - Lessons from a gRPC Microservice Deployment"
 date: 2026-11-18T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Istio", "Service Mesh", "Kubernetes", "gRPC", "Microservices", "Observability", "mTLS", "Kiali"]
 categories: ["Kubernetes", "Service Mesh", "Microservices"]
 author: "Matthew Mattox - mmattox@support.tools"

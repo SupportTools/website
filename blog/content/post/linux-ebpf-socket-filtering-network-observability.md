@@ -1,7 +1,7 @@
 ---
 title: "Linux eBPF Socket Filtering: Network Observability Without the Overhead"
 date: 2030-05-19T00:00:00-05:00
-draft: false
+draft: true
 tags: ["eBPF", "Linux", "Networking", "XDP", "Observability", "Performance", "TC", "BPF"]
 categories:
 - Linux

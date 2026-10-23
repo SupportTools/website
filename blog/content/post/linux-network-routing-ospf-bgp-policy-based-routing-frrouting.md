@@ -1,7 +1,7 @@
 ---
 title: "Linux Network Routing: OSPF, BGP, and Policy-Based Routing with FRRouting"
 date: 2030-08-04T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Networking", "FRRouting", "OSPF", "BGP", "MetalLB", "Routing"]
 categories:
 - Linux

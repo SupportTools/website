@@ -1,7 +1,7 @@
 ---
 title: "Go Database Connection Pool Tuning: MaxOpenConns, MaxIdleConns, ConnMaxLifetime, Observability with OpenTelemetry"
 date: 2031-12-02T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Golang", "Database", "PostgreSQL", "Connection Pooling", "Performance", "OpenTelemetry", "Observability"]
 categories:
 - Go

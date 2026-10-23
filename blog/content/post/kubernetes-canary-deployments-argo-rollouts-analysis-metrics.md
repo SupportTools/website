@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Canary Deployments: Argo Rollouts Analysis and Metrics"
 date: 2029-09-21T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Argo Rollouts", "Canary Deployments", "Progressive Delivery", "Prometheus", "GitOps"]
 categories: ["Kubernetes", "DevOps"]
 author: "Matthew Mattox - mmattox@support.tools"

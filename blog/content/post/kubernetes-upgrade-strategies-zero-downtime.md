@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Cluster Upgrades: Zero-Downtime Strategies for Production"
 date: 2027-11-30T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Upgrades", "Zero Downtime", "kubeadm", "EKS"]
 categories:
 - Kubernetes

@@ -1,7 +1,7 @@
 ---
 title: "Go Error Wrapping and Inspection: fmt.Errorf, errors.Is, errors.As Best Practices"
 date: 2031-02-03T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Golang", "Error Handling", "Best Practices", "gRPC", "HTTP", "Observability"]
 categories:
 - Go

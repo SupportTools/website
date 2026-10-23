@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Observability: The Four Golden Signals and USE/RED Methods"
 date: 2028-02-21T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Observability", "Prometheus", "Grafana", "Monitoring", "SRE", "Alerting"]
 categories:
 - Kubernetes

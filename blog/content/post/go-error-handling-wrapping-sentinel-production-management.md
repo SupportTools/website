@@ -1,7 +1,7 @@
 ---
 title: "Go Error Handling: Wrapping, Sentinel Errors, and Production Error Management"
 date: 2030-06-10T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Golang", "Error Handling", "Production", "Best Practices", "Software Engineering", "Observability"]
 categories:
 - Go

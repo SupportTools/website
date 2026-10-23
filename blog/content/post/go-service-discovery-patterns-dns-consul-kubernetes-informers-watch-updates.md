@@ -1,7 +1,7 @@
 ---
 title: "Go Service Discovery Patterns: DNS-Based, Consul Integration, Kubernetes Informers, and Watch-Based Updates"
 date: 2031-12-19T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Service Discovery", "Kubernetes", "Consul", "DNS", "Informers", "Microservices", "Architecture"]
 categories:
 - Go

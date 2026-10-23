@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Cluster Upgrade Automation: Zero-Downtime Control Plane and Node Rolling"
 date: 2030-12-10T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Upgrades", "Automation", "Zero-Downtime", "kubeadm", "PodDisruptionBudget", "Operations"]
 categories:
 - Kubernetes

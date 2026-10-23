@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Telepresence: Remote Cluster Development with Local Code"
 date: 2031-08-27T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Telepresence", "Development", "DevEx", "Microservices", "Inner Loop"]
 categories:
 - Kubernetes

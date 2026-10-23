@@ -1,7 +1,7 @@
 ---
 title: "Linux OverlayFS with User Namespaces: Rootless Container Storage, Idmap Mounts, and Upper/Lower Dir Patterns"
 date: 2032-02-01T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "OverlayFS", "Containers", "User Namespaces", "Rootless", "Storage", "Kernel"]
 categories:
 - Linux

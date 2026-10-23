@@ -1,7 +1,7 @@
 ---
 title: "Linux Disk IO Scheduling: CFQ, mq-deadline, and NVMe Optimization"
 date: 2029-02-07T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Performance", "Storage", "NVMe", "IO Scheduling", "Kubernetes"]
 categories:
 - Linux

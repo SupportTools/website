@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes CIS Benchmarking: Automated Security Hardening with kube-bench"
 date: 2027-11-19T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Security", "CIS", "kube-bench", "Hardening"]
 categories:
 - Kubernetes

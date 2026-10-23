@@ -1,7 +1,7 @@
 ---
 title: "Velero Backup and Restore: Enterprise Kubernetes Disaster Recovery"
 date: 2027-12-13T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Velero", "Backup", "Disaster Recovery", "Storage", "Restic", "Kopia", "CSI"]
 categories:
 - Kubernetes

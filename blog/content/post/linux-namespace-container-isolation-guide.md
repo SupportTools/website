@@ -1,7 +1,7 @@
 ---
 title: "Linux Namespaces: Understanding the Isolation Primitives Behind Containers"
 date: 2028-12-02T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Namespaces", "Containers", "Security", "Systems Programming"]
 categories:
 - Linux

@@ -1,7 +1,7 @@
 ---
 title: "Go Testing Patterns: Table-Driven Tests, Golden Files, and Property-Based Testing with rapid"
 date: 2030-03-10T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Golang", "Testing", "TDD", "Property-Based Testing", "Golden Files", "rapid"]
 categories: ["Go", "Testing"]
 author: "Matthew Mattox - mmattox@support.tools"

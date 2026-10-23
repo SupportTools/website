@@ -1,7 +1,7 @@
 ---
 title: "Mastering Kubernetes Network Policies: A Comprehensive Guide to Zero-Trust Networking and CKS Exam Success"
 date: 2026-12-03T09:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Network Policies", "CKS", "Security", "Zero-Trust", "Networking", "DevSecOps", "Cloud Security", "Container Security", "Microservices"]
 categories:
 - Kubernetes

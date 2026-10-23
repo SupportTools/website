@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Admission Webhook Development: MutatingWebhookConfiguration, Dynamic Defaulting, and Idempotency"
 date: 2032-04-16T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Admission Webhooks", "MutatingWebhookConfiguration", "Go", "Security", "Policy"]
 categories:
 - Kubernetes

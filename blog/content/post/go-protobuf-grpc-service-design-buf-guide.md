@@ -1,7 +1,7 @@
 ---
 title: "Go Protocol Buffers: Protobuf v2, gRPC Service Design, Backward Compatibility, and Buf CLI"
 date: 2028-08-19T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Protobuf", "gRPC", "Buf", "API Design"]
 categories:
 - Go

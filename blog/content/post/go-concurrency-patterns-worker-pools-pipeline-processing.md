@@ -1,7 +1,7 @@
 ---
 title: "Go Concurrency Patterns: Worker Pools, Fan-Out/Fan-In, and Pipeline Processing"
 date: 2030-06-21T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Golang", "Concurrency", "Goroutines", "Channels", "Performance"]
 categories:
 - Go

@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Trident Storage Operator: NetApp Backend Configuration, StorageClass Parameters, Volume Import, and Snapshots"
 date: 2032-02-06T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Trident", "NetApp", "Storage", "CSI", "StorageClass", "Snapshots", "ONTAP", "PersistentVolume"]
 categories: ["Kubernetes", "Storage", "Infrastructure"]
 author: "Matthew Mattox - mmattox@support.tools"

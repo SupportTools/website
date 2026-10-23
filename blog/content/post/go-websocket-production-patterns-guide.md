@@ -1,7 +1,7 @@
 ---
 title: "WebSocket Production Patterns in Go: Hub Architecture and Scaling"
 date: 2028-03-26T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "WebSocket", "Redis", "Concurrency", "Production", "Scaling", "gorilla"]
 categories: ["Go", "Networking"]
 author: "Matthew Mattox - mmattox@support.tools"

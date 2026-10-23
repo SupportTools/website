@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes GitOps Security: Signed Commits, Policy Enforcement, and Audit Trails"
 date: 2029-07-28T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "GitOps", "Security", "ArgoCD", "Flux", "OPA", "GPG", "Audit"]
 categories: ["Kubernetes", "Security", "GitOps"]
 author: "Matthew Mattox - mmattox@support.tools"

@@ -1,7 +1,7 @@
 ---
 title: "Cilium Network Policies: Advanced eBPF-Based Microsegmentation for Kubernetes"
 date: 2030-06-03T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Cilium", "Kubernetes", "eBPF", "Network Policy", "Hubble", "Microsegmentation", "Security"]
 categories:
 - Kubernetes

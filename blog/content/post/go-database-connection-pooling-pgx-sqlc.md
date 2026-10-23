@@ -1,7 +1,7 @@
 ---
 title: "Go Database Connection Pooling: pgx, database/sql, and sqlc"
 date: 2029-06-22T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "PostgreSQL", "pgx", "sqlc", "Database", "Performance", "Connection Pooling"]
 categories: ["Go", "Databases"]
 author: "Matthew Mattox - mmattox@support.tools"

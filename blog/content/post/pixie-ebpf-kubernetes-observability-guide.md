@@ -1,7 +1,7 @@
 ---
 title: "Pixie: eBPF-Based Kubernetes Observability Without Instrumentation"
 date: 2027-04-24T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Pixie", "eBPF", "Observability", "Tracing", "Performance"]
 categories: ["Kubernetes", "Observability"]
 author: "Matthew Mattox - mmattox@support.tools"

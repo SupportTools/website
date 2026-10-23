@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Admission Webhook Development: Validating and Mutating Webhooks in Go"
 date: 2030-02-22T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Admission Webhooks", "Go", "Security", "Policy Enforcement", "Mutating Webhook", "Validating Webhook"]
 categories: ["Kubernetes", "Go"]
 author: "Matthew Mattox - mmattox@support.tools"

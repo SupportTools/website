@@ -1,7 +1,7 @@
 ---
 title: "Go Event-Driven Architecture: Kafka Consumer Groups, Exactly-Once Delivery"
 date: 2027-09-13T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Kafka", "Event-Driven", "Microservices"]
 categories:
 - Go

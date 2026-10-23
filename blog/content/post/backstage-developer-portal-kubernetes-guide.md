@@ -1,7 +1,7 @@
 ---
 title: "Backstage Developer Portal on Kubernetes: Service Catalog, TechDocs, and Templates"
 date: 2027-07-09T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Backstage", "Platform Engineering", "Kubernetes", "Developer Experience"]
 categories: ["Platform Engineering", "Kubernetes", "Developer Experience"]
 author: "Matthew Mattox - mmattox@support.tools"

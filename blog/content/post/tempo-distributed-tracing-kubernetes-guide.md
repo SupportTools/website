@@ -1,7 +1,7 @@
 ---
 title: "Grafana Tempo: Distributed Tracing at Scale on Kubernetes"
 date: 2027-03-17T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Tempo", "Distributed Tracing", "Observability", "OpenTelemetry"]
 categories: ["Kubernetes", "Observability", "Tracing"]
 author: "Matthew Mattox - mmattox@support.tools"

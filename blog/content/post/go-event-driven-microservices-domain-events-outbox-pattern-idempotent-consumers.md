@@ -1,7 +1,7 @@
 ---
 title: "Go Event-Driven Microservices: Domain Events, Outbox Pattern, Event Deduplication, and Idempotent Consumers"
 date: 2032-03-11T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Microservices", "Event-Driven", "Outbox Pattern", "Kafka", "Idempotency", "Domain Events"]
 categories:
 - Go

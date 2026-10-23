@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Topology Aware Routing: Latency-Optimized Traffic"
 date: 2029-04-15T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Topology Aware Routing", "EndpointSlices", "Networking", "AWS", "GCP", "Latency"]
 categories:
 - Kubernetes

@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Gateway API with Envoy: EnvoyProxy CRD, BackendTrafficPolicy, and SecurityPolicy Implementation"
 date: 2032-02-02T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Gateway API", "Envoy", "EnvoyGateway", "Security", "Networking", "Ingress"]
 categories:
 - Kubernetes

@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes ArgoCD Progressive Delivery: Rollouts, Analysis Templates, and Automated Rollback"
 date: 2028-07-08T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "ArgoCD", "Argo Rollouts", "GitOps", "Canary", "Blue-Green"]
 categories:
 - Kubernetes

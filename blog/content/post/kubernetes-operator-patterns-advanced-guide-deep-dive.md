@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Operator Patterns: Reconciliation Loops, Status Subresources, and Finalizers"
 date: 2028-04-04T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Operators", "controller-runtime", "Go", "CRD"]
 categories: ["Kubernetes", "DevOps"]
 author: "Matthew Mattox - mmattox@support.tools"

@@ -1,7 +1,7 @@
 ---
 title: "Go gRPC Production Patterns: Load Balancing, TLS, Interceptors, and Health Checking"
 date: 2028-04-05T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "gRPC", "Protobuf", "TLS", "Load Balancing"]
 categories: ["Go", "Microservices"]
 author: "Matthew Mattox - mmattox@support.tools"

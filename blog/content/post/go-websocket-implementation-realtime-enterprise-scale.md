@@ -1,7 +1,7 @@
 ---
 title: "Go WebSocket Implementation: Real-Time Communication at Enterprise Scale"
 date: 2030-12-08T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Golang", "WebSocket", "Real-Time", "Redis", "Pub/Sub", "Scalability", "TLS"]
 categories:
 - Go

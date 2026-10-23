@@ -1,7 +1,7 @@
 ---
 title: "Linux OOM Killer Tuning: Memory Management for Kubernetes Nodes"
 date: 2030-06-01T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "OOM Killer", "Kubernetes", "Memory Management", "Performance", "Kernel", "Nodes"]
 categories:
 - Linux

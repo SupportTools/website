@@ -1,7 +1,7 @@
 ---
 title: "How to Add Swap on Linux: A Practical Guide"
 date: 2032-05-05T09:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Swap", "Memory", "swapfile", "fstab", "swappiness", "zram", "Kubernetes", "Sysadmin", "DevOps", "Performance"]
 categories:
 - Linux

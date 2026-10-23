@@ -1,7 +1,7 @@
 ---
 title: "Go Context Cancellation Patterns: Deadlines, Timeouts, and Propagation Trees"
 date: 2029-03-11T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Context", "Concurrency", "Cancellation", "Production", "Microservices"]
 categories:
 - Go

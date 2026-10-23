@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Multi-Tenancy with Capsule: Namespace Hierarchy and Tenant Isolation"
 date: 2031-01-03T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Multi-Tenancy", "Capsule", "Namespace", "RBAC", "Network Policy", "Tenant Isolation"]
 categories:
 - Kubernetes

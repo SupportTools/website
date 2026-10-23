@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Pod Security Admission: Migrating from PSP to Pod Security Standards"
 date: 2027-08-26T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Security", "Pod Security"]
 categories:
 - Kubernetes

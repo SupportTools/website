@@ -1,7 +1,7 @@
 ---
 title: "Go Benchmarking and Performance Testing: testing.B, pprof Integration, Benchstat, and Regression Detection"
 date: 2028-08-21T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Benchmarking", "Performance", "testing.B", "pprof", "Benchstat"]
 categories:
 - Go

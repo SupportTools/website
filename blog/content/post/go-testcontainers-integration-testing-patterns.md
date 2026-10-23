@@ -1,7 +1,7 @@
 ---
 title: "Go Structured Testing: TestContainers, Docker Compose in Tests, and Integration Test Patterns"
 date: 2030-02-26T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Testing", "TestContainers", "Integration Testing", "PostgreSQL", "Redis", "Kafka"]
 categories: ["Go", "Testing"]
 author: "Matthew Mattox - mmattox@support.tools"

@@ -1,6 +1,6 @@
 ---
 title: "A Cilium 1.19 Upgrade Incident on RKE2: VLAN Sub-Interface Node IPs and Pinned bpffs Links"
-date: 2027-06-28T09:00:00-05:00
+date: 2026-12-02T09:00:00-06:00
 draft: false
 tags: ["Cilium", "RKE2", "Kubernetes", "eBPF", "Networking", "VLAN", "Linux Bridge", "br_netfilter", "Troubleshooting", "KubeVirt"]
 categories:

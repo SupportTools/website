@@ -1,7 +1,7 @@
 ---
 title: "Caching Patterns in Go: Redis, In-Memory, and Cache-Aside Strategies"
 date: 2028-03-24T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Redis", "Caching", "Performance", "Distributed Systems", "Backend Engineering"]
 categories: ["Go", "Performance"]
 author: "Matthew Mattox - mmattox@support.tools"

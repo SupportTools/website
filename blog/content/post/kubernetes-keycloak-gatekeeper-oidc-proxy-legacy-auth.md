@@ -1,6 +1,6 @@
 ---
 title: "Kubernetes Keycloak Gatekeeper: OIDC Proxy for Legacy Application Authentication"
-date: 2031-05-12T00:00:00-05:00
+date: 2027-03-12T00:00:00-06:00
 draft: false
 tags: ["Kubernetes", "Keycloak", "OIDC", "Authentication", "Security", "oauth2-proxy", "Service Mesh"]
 categories:

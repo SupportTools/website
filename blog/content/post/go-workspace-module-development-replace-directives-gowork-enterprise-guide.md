@@ -1,7 +1,7 @@
 ---
 title: "Go Workspace-Aware Module Development: replace Directives, go.work Files, Toolchain Management, and GOPATH vs Modules"
 date: 2032-02-10T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Go Modules", "go.work", "Workspaces", "replace directives", "Toolchain", "GOPATH", "Dependency Management"]
 categories: ["Go", "DevOps", "Development"]
 author: "Matthew Mattox - mmattox@support.tools"

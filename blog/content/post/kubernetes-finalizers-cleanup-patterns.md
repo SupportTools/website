@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Finalizers: Preventing Premature Deletion and Cleanup Patterns"
 date: 2029-09-09T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Finalizers", "Garbage Collection", "Controllers", "Operators"]
 categories: ["Kubernetes", "Development"]
 author: "Matthew Mattox - mmattox@support.tools"

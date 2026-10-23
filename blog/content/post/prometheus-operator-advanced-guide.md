@@ -1,7 +1,7 @@
 ---
 title: "Prometheus Operator Advanced: Custom Metrics, Federation, and Remote Write"
 date: 2027-09-22T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Prometheus", "Kubernetes", "Monitoring", "Prometheus Operator", "Alertmanager", "Thanos"]
 categories: ["Monitoring", "Kubernetes"]
 author: "Matthew Mattox - mmattox@support.tools"

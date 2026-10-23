@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes HPA with Custom Metrics and KEDA: Advanced Autoscaling Patterns"
 date: 2027-08-18T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "HPA", "KEDA", "Autoscaling"]
 categories:
 - Kubernetes

@@ -1,7 +1,7 @@
 ---
 title: "Linux Bonding and Team Drivers: 802.3ad LACP, Active-Backup, balance-alb, Monitoring, and NetworkManager Configuration"
 date: 2032-01-16T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Networking", "Bonding", "LACP", "NetworkManager", "High Availability"]
 categories:
 - Linux

@@ -1,7 +1,7 @@
 ---
 title: "Go: gRPC Streaming Patterns for Real-Time Data Pipelines Including Bidirectional Streaming and Flow Control"
 date: 2031-06-22T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "gRPC", "Streaming", "Data Pipelines", "Protobuf", "Real-Time", "Microservices"]
 categories:
 - Go

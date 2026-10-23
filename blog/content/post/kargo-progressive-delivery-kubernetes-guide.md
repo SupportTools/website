@@ -1,7 +1,7 @@
 ---
 title: "Kargo Progressive Delivery: GitOps-Driven Promotion Workflows Across Environments"
 date: 2027-07-12T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kargo", "Progressive Delivery", "GitOps", "Kubernetes", "CI/CD"]
 categories: ["DevOps", "Kubernetes", "CI & CD"]
 author: "Matthew Mattox - mmattox@support.tools"

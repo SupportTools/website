@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Node Problem Detector: Advanced Configuration, Custom Problem Rules, and Cluster Autoscaler Integration"
 date: 2028-06-18T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Node Problem Detector", "NPD", "Node Health", "Cluster Autoscaler", "Observability"]
 categories: ["Kubernetes", "Operations"]
 author: "Matthew Mattox - mmattox@support.tools"

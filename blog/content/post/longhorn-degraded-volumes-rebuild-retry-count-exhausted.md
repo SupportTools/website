@@ -1,6 +1,6 @@
 ---
 title: "Longhorn Volumes Stuck Degraded With Zero Rebuilds: rebuildRetryCount Exhaustion on Longhorn 1.12"
-date: 2027-04-10T09:00:00-05:00
+date: 2026-11-18T09:00:00-06:00
 draft: false
 tags: ["Longhorn", "Kubernetes", "Storage", "RKE2", "Cilium", "Troubleshooting", "Incident Response", "jq", "Prometheus"]
 categories:

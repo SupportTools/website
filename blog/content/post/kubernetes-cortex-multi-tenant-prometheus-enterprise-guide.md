@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Cortex Multi-Tenant Prometheus: Tenant Isolation, Query Frontend Sharding, Ruler, and Compactor"
 date: 2032-02-13T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Cortex", "Prometheus", "Multi-Tenancy", "Observability", "Monitoring"]
 categories:
 - Kubernetes

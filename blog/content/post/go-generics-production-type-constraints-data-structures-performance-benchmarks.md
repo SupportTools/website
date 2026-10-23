@@ -1,7 +1,7 @@
 ---
 title: "Go Generics in Production: Type Constraints, Generic Data Structures, and Performance Benchmarks vs interface{}"
 date: 2031-10-17T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Generics", "Performance", "Data Structures", "Type Constraints", "Benchmarking"]
 categories:
 - Go

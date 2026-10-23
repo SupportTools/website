@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Operator Webhooks: Defaulting, Validation, and Conversion Webhooks"
 date: 2030-07-19T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Operators", "Webhooks", "CRD", "Admission Control", "Go", "controller-runtime"]
 categories:
 - Kubernetes

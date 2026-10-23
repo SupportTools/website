@@ -1,7 +1,7 @@
 ---
 title: "Argo Workflows: Kubernetes-Native Pipeline Orchestration at Scale"
 date: 2027-03-13T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Argo Workflows", "CI/CD", "Pipelines", "Workflow Orchestration"]
 categories: ["Kubernetes", "CI & CD", "Automation"]
 author: "Matthew Mattox - mmattox@support.tools"

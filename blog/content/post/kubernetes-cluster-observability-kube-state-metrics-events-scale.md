@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Cluster Observability: kube-state-metrics and Events at Scale"
 date: 2031-03-04T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Observability", "Prometheus", "kube-state-metrics", "Monitoring", "Grafana", "Events"]
 categories:
 - Kubernetes

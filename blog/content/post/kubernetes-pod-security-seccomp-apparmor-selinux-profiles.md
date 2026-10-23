@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Pod Security: Seccomp, AppArmor, and SELinux Profiles"
 date: 2031-02-05T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Security", "Seccomp", "AppArmor", "SELinux", "Pod Security", "CIS", "Linux"]
 categories:
 - Kubernetes

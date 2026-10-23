@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Cluster Autoscaler vs Karpenter: Scale-Out Strategy Deep Dive"
 date: 2028-02-13T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Cluster Autoscaler", "Karpenter", "Auto Scaling", "FinOps", "AWS EKS", "Node Management"]
 categories:
 - Kubernetes

@@ -1,7 +1,7 @@
 ---
 title: "Go Signal Handling and Process Lifecycle: SIGTERM, SIGHUP, and Graceful Restarts"
 date: 2029-02-22T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Signals", "Process Management", "Kubernetes", "Graceful Shutdown"]
 categories:
 - Go

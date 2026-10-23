@@ -1,7 +1,7 @@
 ---
 title: "Linux Seccomp-BPF: Syscall Filtering for Container Security"
 date: 2028-11-19T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Seccomp", "Security", "Containers", "Kubernetes"]
 categories:
 - Linux

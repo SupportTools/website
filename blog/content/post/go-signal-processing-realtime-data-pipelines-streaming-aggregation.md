@@ -1,7 +1,7 @@
 ---
 title: "Go Signal Processing and Real-Time Data Pipelines with Streaming Aggregation"
 date: 2030-11-08T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Golang", "Data Pipelines", "Streaming", "Performance", "Time Series", "Aggregation"]
 categories:
 - Go

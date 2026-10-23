@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Velero with Restic: Application-Consistent Backups and Cross-Cloud Migration"
 date: 2030-12-24T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Velero", "Restic", "Kopia", "Backup", "Disaster Recovery", "Migration", "CSI"]
 categories:
 - Kubernetes

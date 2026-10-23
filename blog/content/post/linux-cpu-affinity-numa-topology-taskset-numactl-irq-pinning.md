@@ -1,7 +1,7 @@
 ---
 title: "Linux CPU Affinity and NUMA Topology: taskset, numactl, and IRQ Pinning"
 date: 2029-08-24T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Performance", "NUMA", "CPU Affinity", "IRQ Pinning", "DPDK", "Network Performance"]
 categories: ["Linux", "Performance", "System Administration"]
 author: "Matthew Mattox - mmattox@support.tools"

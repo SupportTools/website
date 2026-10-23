@@ -1,7 +1,7 @@
 ---
 title: "Linux Filesystem Performance: ext4 vs XFS vs Btrfs vs ZFS Benchmarking and Tuning"
 date: 2030-01-22T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Filesystem", "ext4", "XFS", "Btrfs", "ZFS", "Kubernetes", "Storage", "Performance"]
 categories: ["Linux", "Storage"]
 author: "Matthew Mattox - mmattox@support.tools"

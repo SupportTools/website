@@ -1,7 +1,7 @@
 ---
 title: "Linux eBPF Security: LSM Hooks and Mandatory Access Control"
 date: 2029-06-20T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "eBPF", "Security", "LSM", "Tetragon", "KRSI", "Kernel Security"]
 categories: ["Linux", "Security"]
 author: "Matthew Mattox - mmattox@support.tools"

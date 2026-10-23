@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Tekton Triggers: GitHub Webhooks and Event-Driven CI Pipelines"
 date: 2029-02-11T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Tekton", "Kubernetes", "CI/CD", "GitHub", "Webhooks", "GitOps"]
 categories:
 - Kubernetes

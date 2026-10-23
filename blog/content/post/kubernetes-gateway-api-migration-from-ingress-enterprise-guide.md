@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Gateway API Migration from Ingress: Enterprise Guide to HTTPRoute, GatewayClass, and Traffic Management Patterns"
 date: 2031-06-08T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Gateway API", "Ingress", "HTTPRoute", "GatewayClass", "Networking", "Traffic Management"]
 categories:
 - Kubernetes

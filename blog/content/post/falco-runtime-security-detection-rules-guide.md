@@ -1,7 +1,7 @@
 ---
 title: "Falco Runtime Security: Writing Custom Detection Rules for Kubernetes"
 date: 2028-09-18T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Falco", "Security", "Kubernetes", "Runtime Security", "eBPF"]
 categories:
 - Security

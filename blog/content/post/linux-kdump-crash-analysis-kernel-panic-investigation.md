@@ -1,7 +1,7 @@
 ---
 title: "Linux Kdump and Crash Analysis: Kernel Panic Investigation in Production Systems"
 date: 2030-12-29T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "kdump", "crash", "kernel", "debugging", "vmcore", "kexec", "SRE"]
 categories:
 - Linux

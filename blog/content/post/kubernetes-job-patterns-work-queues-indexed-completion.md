@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Job Patterns: Work Queues, Indexed Jobs, and Completion Policies"
 date: 2029-10-02T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Jobs", "Batch", "Work Queues", "CronJob", "Parallelism"]
 categories: ["Kubernetes", "Operations"]
 author: "Matthew Mattox - mmattox@support.tools"

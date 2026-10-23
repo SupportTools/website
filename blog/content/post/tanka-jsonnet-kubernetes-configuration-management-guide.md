@@ -1,7 +1,7 @@
 ---
 title: "Tanka and Jsonnet: Programmatic Kubernetes Configuration Management"
 date: 2027-02-26T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Tanka", "Jsonnet", "Configuration Management", "GitOps"]
 categories: ["Kubernetes", "DevOps", "Configuration Management"]
 author: "Matthew Mattox - mmattox@support.tools"

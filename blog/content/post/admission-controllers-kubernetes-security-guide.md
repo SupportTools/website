@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Admission Controllers: Security Enforcement at Scale"
 date: 2027-10-03T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Admission Controllers", "Security", "OPA", "Kyverno"]
 categories:
 - Security

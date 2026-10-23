@@ -1,7 +1,7 @@
 ---
 title: "Go Distributed Caching: Redis Cluster, Dragonfly, and Cache-Aside Patterns at Scale"
 date: 2030-01-21T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Redis", "Dragonfly", "Caching", "Distributed Systems", "Performance", "Architecture"]
 categories: ["Go", "Performance"]
 author: "Matthew Mattox - mmattox@support.tools"

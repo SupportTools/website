@@ -1,7 +1,7 @@
 ---
 title: "Go Memory Safety with the Race Detector: -race Flag, sync.Mutex vs sync.RWMutex, Atomic Operations, and Data Race Patterns"
 date: 2032-01-08T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Golang", "Concurrency", "Race Detector", "sync", "Atomic", "Memory Safety", "Performance"]
 categories:
 - Go

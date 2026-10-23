@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Operator Testing: envtest, ENVTEST, and End-to-End Validation"
 date: 2031-05-29T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Operators", "envtest", "controller-runtime", "Testing", "kubebuilder", "kind"]
 categories:
 - Kubernetes

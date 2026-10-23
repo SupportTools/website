@@ -1,7 +1,7 @@
 ---
 title: "Go AI Integration Patterns: Ollama, LangChain-Go, and Production LLM Inference"
 date: 2030-01-03T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "AI", "LLM", "Ollama", "LangChain-Go", "RAG", "Inference", "OpenAI", "Production", "Machine Learning"]
 categories:
 - Go

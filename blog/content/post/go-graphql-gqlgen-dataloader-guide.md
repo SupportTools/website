@@ -1,7 +1,7 @@
 ---
 title: "Go GraphQL Server: gqlgen Schema-First Development, DataLoaders, Subscriptions, and Authorization"
 date: 2028-08-27T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "GraphQL", "gqlgen", "DataLoader", "Subscriptions", "Authorization"]
 categories:
 - Go

@@ -1,7 +1,7 @@
 ---
 title: "WebSockets in Go: Real-Time Communication with gorilla/websocket"
 date: 2028-10-25T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "WebSocket", "Real-Time", "Networking", "API"]
 categories:
 - Go

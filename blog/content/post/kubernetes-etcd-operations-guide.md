@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes etcd Operations: Backup, Restore, Compaction, and Disaster Recovery"
 date: 2027-08-21T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "etcd", "Backup", "Disaster Recovery"]
 categories:
 - Kubernetes

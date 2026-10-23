@@ -1,7 +1,7 @@
 ---
 title: "gRPC in Go: Production Patterns for High-Performance Services"
 date: 2027-11-24T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "gRPC", "Protobuf", "Microservices", "Kubernetes"]
 categories:
 - Go

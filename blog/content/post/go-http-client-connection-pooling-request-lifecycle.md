@@ -1,7 +1,7 @@
 ---
 title: "Go HTTP Client Best Practices: Connection Pooling and Request Lifecycle"
 date: 2029-10-17T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "HTTP", "Performance", "Connection Pooling", "httptrace", "Networking"]
 categories: ["Go", "Performance", "Networking"]
 author: "Matthew Mattox - mmattox@support.tools"

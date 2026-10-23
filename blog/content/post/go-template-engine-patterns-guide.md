@@ -1,7 +1,7 @@
 ---
 title: "Go Template Engines: text/template vs html/template Security, Composition Patterns, and Alternatives"
 date: 2028-06-19T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Templates", "html/template", "text/template", "Templ", "Security", "Performance"]
 categories: ["Go", "Web Development"]
 author: "Matthew Mattox - mmattox@support.tools"

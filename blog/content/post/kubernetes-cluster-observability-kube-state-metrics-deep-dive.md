@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Cluster Observability: kube-state-metrics Deep Dive"
 date: 2029-10-22T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Observability", "kube-state-metrics", "Prometheus", "Monitoring", "Metrics"]
 categories: ["Kubernetes", "Observability", "Monitoring"]
 author: "Matthew Mattox - mmattox@support.tools"

@@ -1,7 +1,7 @@
 ---
 title: "Linux Filesystem Performance: ext4, XFS, and Btrfs Tuning for Production Workloads"
 date: 2030-07-31T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Filesystem", "ext4", "XFS", "Btrfs", "Performance", "Storage", "Kubernetes"]
 categories:
 - Linux

@@ -1,7 +1,7 @@
 ---
 title: "Cloud Native Buildpacks: Image Building Without Dockerfiles"
 date: 2027-12-20T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Buildpacks", "Kubernetes", "kpack", "Paketo", "Container Security", "CI/CD", "Supply Chain", "Tekton"]
 categories:
 - Kubernetes

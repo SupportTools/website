@@ -1,7 +1,7 @@
 ---
 title: "Advanced Go Concurrency: Pipelines, Fan-out/Fan-in, and Backpressure"
 date: 2028-01-11T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Concurrency", "Channels", "Goroutines", "Pipelines", "Production"]
 categories:
 - Go

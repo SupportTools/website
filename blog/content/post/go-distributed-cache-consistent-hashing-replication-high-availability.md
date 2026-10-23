@@ -1,7 +1,7 @@
 ---
 title: "Go: Building a Distributed Cache with Consistent Hashing and Replication for High Availability"
 date: 2031-08-31T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Distributed Systems", "Caching", "Consistent Hashing", "Replication", "High Availability"]
 categories:
 - Go

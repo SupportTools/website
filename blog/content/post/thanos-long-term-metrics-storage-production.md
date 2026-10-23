@@ -1,7 +1,7 @@
 ---
 title: "Thanos for Long-Term Metrics Storage: Global Query View and Unlimited Retention at Scale"
 date: 2026-12-03T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Thanos", "Prometheus", "Metrics Storage", "Observability", "S3", "Object Storage", "Long-Term Storage"]
 categories: ["Observability", "Monitoring", "Infrastructure"]
 author: "Matthew Mattox - mmattox@support.tools"

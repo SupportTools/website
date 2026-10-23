@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes ArgoCD Vault Plugin: Secrets Management for GitOps Workflows"
 date: 2030-09-28T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "ArgoCD", "HashiCorp Vault", "GitOps", "Secrets Management", "Security"]
 categories:
 - Kubernetes

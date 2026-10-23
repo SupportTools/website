@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Ambient Mesh: Istio Without Sidecars for Simpler Zero-Trust Networking"
 date: 2030-11-20T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Istio", "Ambient Mesh", "Service Mesh", "Zero Trust", "mTLS", "ztunnel", "Networking"]
 categories:
 - Kubernetes

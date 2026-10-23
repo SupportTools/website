@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Ingress Controller Comparison: NGINX, Traefik, HAProxy, and Contour"
 date: 2029-01-19T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Ingress", "NGINX", "Traefik", "HAProxy", "Contour", "Networking"]
 categories:
 - Kubernetes

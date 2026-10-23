@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes PodDisruptionBudget Deep Dive: Ensuring Availability During Disruptions"
 date: 2028-04-09T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "PDB", "Availability", "Upgrades", "StatefulSet"]
 categories: ["Kubernetes", "SRE"]
 author: "Matthew Mattox - mmattox@support.tools"

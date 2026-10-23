@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Tekton Pipelines: Cloud-Native CI/CD Patterns"
 date: 2029-08-27T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Tekton", "Kubernetes", "CI/CD", "Supply Chain Security", "DevOps", "Tekton Triggers", "Tekton Chains"]
 categories: ["Kubernetes", "CI & CD", "DevOps"]
 author: "Matthew Mattox - mmattox@support.tools"

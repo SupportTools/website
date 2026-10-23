@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes cert-manager ACME DNS Challenges: Route53, Cloudflare, Webhook Solvers, Wildcard Certificates, and Renewals"
 date: 2032-02-19T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "cert-manager", "TLS", "ACME", "Let's Encrypt", "DNS", "Security"]
 categories:
 - Kubernetes

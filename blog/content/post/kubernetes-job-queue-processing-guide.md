@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Job and Queue Processing: Batch Workloads, CronJobs, and Work Queues"
 date: 2027-05-13T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Jobs", "CronJob", "Batch", "Queue", "KEDA"]
 categories: ["Kubernetes", "Automation"]
 author: "Matthew Mattox - mmattox@support.tools"

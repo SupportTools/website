@@ -1,7 +1,7 @@
 ---
 title: "Linux Tracing with ftrace: Function Tracing, Latency Analysis, and Kernel Profiling"
 date: 2029-03-29T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "ftrace", "Performance", "Kernel", "Tracing", "Observability"]
 categories:
 - Linux

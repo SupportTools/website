@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Multi-Region Active-Active: Traffic Management and Data Synchronization"
 date: 2030-10-28T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Multi-Region", "Active-Active", "Global Load Balancing", "Data Synchronization", "Federation"]
 categories:
 - Kubernetes

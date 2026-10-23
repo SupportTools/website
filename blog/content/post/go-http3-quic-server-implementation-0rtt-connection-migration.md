@@ -1,7 +1,7 @@
 ---
 title: "Go HTTP/3 and QUIC: quic-go Server Implementation, 0-RTT, Connection Migration, and Performance Benchmarks"
 date: 2032-04-05T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "HTTP/3", "QUIC", "quic-go", "Performance", "Networking", "TLS", "0-RTT"]
 categories:
 - Go

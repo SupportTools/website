@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Rook Ceph Dashboard: Operations and Monitoring for Production Ceph Clusters"
 date: 2031-05-19T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Rook", "Ceph", "Storage", "Monitoring", "Prometheus", "Dashboard", "Object Storage"]
 categories:
 - Kubernetes

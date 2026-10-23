@@ -1,7 +1,7 @@
 ---
 title: "Go Tracing with OpenTelemetry: Distributed Context Propagation"
 date: 2029-06-05T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "OpenTelemetry", "Distributed Tracing", "Observability", "Jaeger", "Tempo", "OTLP"]
 categories: ["Go", "Observability"]
 author: "Matthew Mattox - mmattox@support.tools"

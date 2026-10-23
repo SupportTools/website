@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Workload Identity for Cloud: Pod Identity with AWS, GCP, and Azure"
 date: 2030-03-03T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "AWS", "GCP", "Azure", "Workload Identity", "IRSA", "Security", "OIDC"]
 categories: ["Kubernetes", "Cloud", "Security"]
 author: "Matthew Mattox - mmattox@support.tools"

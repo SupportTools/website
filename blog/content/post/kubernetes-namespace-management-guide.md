@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Namespace Management: Multi-Team Resource Isolation and Quota Enforcement"
 date: 2028-04-06T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Namespaces", "RBAC", "ResourceQuota", "Multi-team"]
 categories: ["Kubernetes", "Platform Engineering"]
 author: "Matthew Mattox - mmattox@support.tools"

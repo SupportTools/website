@@ -1,7 +1,7 @@
 ---
 title: "Go Structured Logging: slog, zerolog, and Production Log Pipeline Design"
 date: 2029-12-12T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Logging", "slog", "zerolog", "Loki", "Elasticsearch", "Observability", "Production"]
 categories:
 - Go

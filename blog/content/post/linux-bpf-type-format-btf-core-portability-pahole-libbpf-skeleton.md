@@ -1,7 +1,7 @@
 ---
 title: "Linux BPF Type Format (BTF): CO-RE Portability, pahole Tooling, and libbpf Skeleton Workflow"
 date: 2031-10-18T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "eBPF", "BTF", "CO-RE", "libbpf", "Kernel", "Observability"]
 categories:
 - Linux

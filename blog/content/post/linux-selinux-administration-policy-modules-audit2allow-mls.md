@@ -1,7 +1,7 @@
 ---
 title: "Linux SELinux Administration: Policy Modules, audit2allow Workflow, Booleans, File Contexts, and MLS/MCS"
 date: 2032-02-25T00:00:00-05:00
-draft: false
+draft: true
 tags: ["SELinux", "Linux", "Security", "RHEL", "Policy", "Compliance"]
 categories:
 - Linux

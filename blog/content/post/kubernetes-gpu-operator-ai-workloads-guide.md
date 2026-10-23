@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes GPU Operator for AI/ML: NVIDIA Driver Management and Workload Scheduling"
 date: 2028-03-22T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "GPU", "NVIDIA", "AI/ML", "GPU Operator", "MLOps", "DCGM"]
 categories: ["Kubernetes", "AI & ML"]
 author: "Matthew Mattox - mmattox@support.tools"

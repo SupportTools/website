@@ -1,7 +1,7 @@
 ---
 title: "Cluster API: Declarative Kubernetes Cluster Lifecycle Management"
 date: 2027-12-26T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Cluster API", "CAPI", "Multi-Cluster", "Infrastructure as Code", "kubeadm"]
 categories: ["Kubernetes", "Infrastructure"]
 author: "Matthew Mattox - mmattox@support.tools"

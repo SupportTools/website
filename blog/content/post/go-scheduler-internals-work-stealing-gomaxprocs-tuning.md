@@ -1,7 +1,7 @@
 ---
 title: "Go Scheduler Internals: Work Stealing and GOMAXPROCS Tuning"
 date: 2031-03-02T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Golang", "Scheduler", "Performance", "Concurrency", "GOMAXPROCS", "Runtime"]
 categories:
 - Go

@@ -1,7 +1,7 @@
 ---
 title: "Go Embed and Static Asset Serving: High-Performance Frontend Delivery from Go Binaries"
 date: 2030-10-26T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "embed", "Static Assets", "HTTP", "Performance", "SPA", "Caching"]
 categories:
 - Go

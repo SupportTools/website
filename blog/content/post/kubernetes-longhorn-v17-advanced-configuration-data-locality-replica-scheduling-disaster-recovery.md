@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Longhorn v1.7 Advanced Configuration: Data Locality, Replica Scheduling, and Cross-Zone Disaster Recovery"
 date: 2031-10-16T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Longhorn", "Storage", "Disaster Recovery", "CSI", "Persistent Volumes"]
 categories:
 - Kubernetes

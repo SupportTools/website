@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes AWS EKS Fargate: Serverless Kubernetes Node Provisioning"
 date: 2031-06-01T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "AWS", "EKS", "Fargate", "Serverless", "DevOps", "Cloud"]
 categories:
 - Kubernetes

@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes KEDA: Event-Driven Autoscaling on Metrics from Kafka, Redis, and Custom Sources"
 date: 2031-06-27T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "KEDA", "Autoscaling", "Kafka", "Redis", "Event-Driven", "HPA"]
 categories:
 - Kubernetes

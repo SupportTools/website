@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Admission Controllers: OPA Gatekeeper Policies and Constraint Frameworks"
 date: 2029-12-01T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "OPA", "Gatekeeper", "Policy", "Security", "Admission Controllers", "Rego", "Compliance"]
 categories:
 - Kubernetes

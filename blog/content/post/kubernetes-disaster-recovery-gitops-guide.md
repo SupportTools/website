@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Disaster Recovery with GitOps: RTO/RPO Planning and Runbook Automation"
 date: 2027-07-28T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Disaster Recovery", "GitOps", "High Availability", "Runbook"]
 categories:
 - Kubernetes

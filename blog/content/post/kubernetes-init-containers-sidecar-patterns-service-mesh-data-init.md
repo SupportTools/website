@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Init Containers and Sidecar Containers: Patterns for Service Mesh Injection and Data Initialization"
 date: 2031-10-05T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Init Containers", "Sidecar", "Service Mesh", "Istio", "Patterns", "Pod Design"]
 categories: ["Kubernetes", "Architecture"]
 author: "Matthew Mattox - mmattox@support.tools"

@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Storage Troubleshooting: Diagnosing PVC Binding, Mount, and Performance Issues"
 date: 2027-08-20T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Storage", "Troubleshooting", "PersistentVolumes"]
 categories:
 - Kubernetes

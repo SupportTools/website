@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Velero Plugin Development: Custom Backup Hooks and Object Store Providers"
 date: 2028-04-16T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Velero", "Backup", "Plugin Development", "Go"]
 categories: ["Kubernetes", "DevOps"]
 author: "Matthew Mattox - mmattox@support.tools"

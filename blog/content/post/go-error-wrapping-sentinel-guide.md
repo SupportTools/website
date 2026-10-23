@@ -1,7 +1,7 @@
 ---
 title: "Go Error Design: Sentinel Errors, Custom Types, and Wrapping Patterns"
 date: 2028-03-21T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Error Handling", "Best Practices", "Software Design", "Production Engineering"]
 categories: ["Go", "Architecture"]
 author: "Matthew Mattox - mmattox@support.tools"

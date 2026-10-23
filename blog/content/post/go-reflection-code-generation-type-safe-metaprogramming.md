@@ -1,7 +1,7 @@
 ---
 title: "Go Reflection and Code Generation: Type-Safe Metaprogramming Patterns"
 date: 2030-06-24T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Reflection", "Code Generation", "Metaprogramming", "Performance", "go/ast"]
 categories:
 - Go

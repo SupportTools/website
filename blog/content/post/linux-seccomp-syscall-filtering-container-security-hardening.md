@@ -1,7 +1,7 @@
 ---
 title: "Linux Seccomp: System Call Filtering for Container Security Hardening"
 date: 2031-03-06T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Security", "Linux", "Seccomp", "Containers", "Kubernetes", "Docker", "Hardening"]
 categories:
 - Security

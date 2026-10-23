@@ -1,7 +1,7 @@
 ---
 title: "Linux Audit System: Compliance Logging and Security Event Monitoring"
 date: 2028-11-29T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Security", "Audit", "Compliance", "SIEM"]
 categories:
 - Linux

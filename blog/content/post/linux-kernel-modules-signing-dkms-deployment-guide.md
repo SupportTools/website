@@ -1,7 +1,7 @@
 ---
 title: "Linux Kernel Modules: Writing, Signing, and Deploying Custom Kernel Modules"
 date: 2030-04-29T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Kernel", "Kernel Modules", "DKMS", "Secure Boot", "Systems Programming"]
 categories: ["Linux", "Systems Programming"]
 author: "Matthew Mattox - mmattox@support.tools"

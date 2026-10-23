@@ -1,7 +1,7 @@
 ---
 title: "Linux strace and ltrace: System Call Tracing for Production Debugging and Performance Analysis"
 date: 2031-08-05T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "strace", "ltrace", "Debugging", "Performance", "System Calls", "Production", "Observability"]
 categories:
 - Linux

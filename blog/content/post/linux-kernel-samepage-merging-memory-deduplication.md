@@ -1,6 +1,6 @@
 ---
 title: "Linux Kernel Samepage Merging: Memory Deduplication for Virtualized Workloads"
-date: 2029-01-21T00:00:00-05:00
+date: 2026-12-30T00:00:00-06:00
 draft: false
 tags: ["Linux", "KSM", "Virtualization", "Memory", "KVM", "Performance", "Kernel"]
 categories:

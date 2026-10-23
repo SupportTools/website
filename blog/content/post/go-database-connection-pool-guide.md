@@ -1,7 +1,7 @@
 ---
 title: "Go Database Connection Pool Tuning: pgxpool, sqlx, and Connection Lifecycle"
 date: 2028-04-20T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "PostgreSQL", "pgx", "sqlx", "Connection Pooling", "Performance"]
 categories: ["Go", "Databases"]
 author: "Matthew Mattox - mmattox@support.tools"

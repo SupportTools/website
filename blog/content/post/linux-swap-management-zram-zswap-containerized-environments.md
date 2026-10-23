@@ -1,7 +1,7 @@
 ---
 title: "Linux Swap Management: ZRAM, ZSWAP, and Swap Strategies for Containerized Environments"
 date: 2030-03-27T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Swap", "ZRAM", "ZSWAP", "Kubernetes", "Memory Management", "Performance", "OOM"]
 categories: ["Linux", "Kubernetes", "System Administration"]
 author: "Matthew Mattox - mmattox@support.tools"

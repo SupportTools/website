@@ -1,7 +1,7 @@
 ---
 title: "Go SQL Query Builder Patterns: squirrel, sq, and Raw Query Safety"
 date: 2029-01-23T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "SQL", "Database", "Security", "squirrel", "PostgreSQL", "Query Builder"]
 categories:
 - Go

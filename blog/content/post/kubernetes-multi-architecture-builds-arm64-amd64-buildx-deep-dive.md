@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Multi-Architecture Builds: ARM64 and AMD64 Manifests with Buildx"
 date: 2029-03-25T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Docker", "ARM64", "Buildx", "CI/CD", "Multi-Architecture"]
 categories:
 - Kubernetes

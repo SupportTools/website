@@ -1,7 +1,7 @@
 ---
 title: "Linux TCP/IP Troubleshooting: ss, tcpdump, and Wireshark for Production"
 date: 2031-05-11T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Networking", "TCP/IP", "tcpdump", "Wireshark", "Kubernetes", "Troubleshooting"]
 categories:
 - Linux

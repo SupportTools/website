@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Storage Classes and Dynamic Provisioning: CSI Drivers, Topology, and WaitForFirstConsumer"
 date: 2030-03-28T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Storage", "CSI", "StorageClass", "PersistentVolume", "Topology", "WaitForFirstConsumer"]
 categories: ["Kubernetes", "Storage", "Infrastructure"]
 author: "Matthew Mattox - mmattox@support.tools"

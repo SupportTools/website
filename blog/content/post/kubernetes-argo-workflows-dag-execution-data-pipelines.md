@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Argo Workflows: Directed Acyclic Graph Execution for Data Pipelines"
 date: 2031-01-16T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Argo Workflows", "DAG", "Data Pipelines", "CI/CD", "Workflow Automation"]
 categories:
 - Kubernetes

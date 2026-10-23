@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Helm Library Charts: Reusable Templates for Platform Teams"
 date: 2031-04-19T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Helm", "DevOps", "Platform Engineering", "GitOps", "Templates", "Testing"]
 categories:
 - Kubernetes

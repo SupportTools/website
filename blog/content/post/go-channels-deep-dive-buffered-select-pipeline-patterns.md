@@ -1,7 +1,7 @@
 ---
 title: "Go Channels Deep Dive: Buffered vs Unbuffered, Select with Default, Channel Direction, Pipeline Patterns, and Closing Correctly"
 date: 2032-01-18T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Golang", "Channels", "Concurrency", "Goroutines", "Pipelines"]
 categories:
 - Go

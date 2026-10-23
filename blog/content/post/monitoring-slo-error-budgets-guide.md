@@ -1,7 +1,7 @@
 ---
 title: "SLO Implementation: Error Budgets, Burn Rates, and Automated Responses"
 date: 2028-02-05T00:00:00-05:00
-draft: false
+draft: true
 tags: ["SLO", "SLI", "Error Budgets", "Prometheus", "Grafana", "Sloth", "Observability", "SRE"]
 categories:
 - Observability

@@ -1,6 +1,6 @@
 ---
 title: "Linux TCP BBR v3: Internals, Congestion Window, Pacing Rate, and BBRv3 vs CUBIC Benchmarks"
-date: 2032-01-26T00:00:00-05:00
+date: 2027-04-09T00:00:00-05:00
 draft: false
 tags: ["Linux", "TCP", "BBR", "Networking", "Kernel", "Performance", "Congestion Control"]
 categories:

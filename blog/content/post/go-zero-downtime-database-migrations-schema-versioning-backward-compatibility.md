@@ -1,7 +1,7 @@
 ---
 title: "Go: Implementing Zero-Downtime Database Migrations with Schema Versioning and Backward Compatibility"
 date: 2031-07-15T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Database", "Migrations", "PostgreSQL", "Zero-Downtime", "Schema", "Golang"]
 categories: ["Go", "Databases"]
 author: "Matthew Mattox - mmattox@support.tools"

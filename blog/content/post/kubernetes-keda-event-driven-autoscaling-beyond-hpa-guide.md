@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes KEDA: Event-Driven Autoscaling Beyond HPA"
 date: 2029-04-09T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "KEDA", "Autoscaling", "HPA", "Kafka", "Prometheus", "Event-Driven"]
 categories:
 - Kubernetes

@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Network Chaos Engineering: Simulating Failures with tc and Toxiproxy"
 date: 2031-02-25T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Chaos Engineering", "Network", "tc", "Toxiproxy", "Chaos Mesh", "Resilience"]
 categories:
 - Kubernetes

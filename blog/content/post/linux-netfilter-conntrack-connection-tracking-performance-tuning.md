@@ -1,7 +1,7 @@
 ---
 title: "Linux Netfilter and Conntrack: Connection Tracking Tables and Performance Tuning"
 date: 2030-09-14T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Netfilter", "Conntrack", "Networking", "Kubernetes", "Performance", "Kernel"]
 categories:
 - Linux

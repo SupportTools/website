@@ -1,7 +1,7 @@
 ---
 title: "Go Dependency Injection with Wire: Compile-Time DI for Large Codebases"
 date: 2028-12-21T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Dependency Injection", "Wire", "Architecture", "Enterprise", "Code Generation"]
 categories:
 - Go

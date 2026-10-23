@@ -1,7 +1,7 @@
 ---
 title: "Linux Seccomp: System Call Filtering for Containers"
 date: 2029-04-18T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Seccomp", "Security", "Containers", "Kubernetes", "Docker", "OCI"]
 categories:
 - Linux

@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Velero CSI Snapshot Integration: Volume Backup at Scale"
 date: 2029-10-11T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Velero", "CSI", "Backup", "Disaster Recovery", "Storage", "Snapshots"]
 categories:
 - Kubernetes

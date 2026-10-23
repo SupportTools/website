@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Submariner: Cross-Cluster Service Connectivity Without VPN Overlays"
 date: 2031-04-16T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Submariner", "Multi-Cluster", "Networking", "Service Mesh", "DNS", "Globalnet"]
 categories:
 - Kubernetes

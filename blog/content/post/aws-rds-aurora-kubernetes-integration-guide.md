@@ -1,7 +1,7 @@
 ---
 title: "AWS RDS Aurora and Kubernetes: Connection Pooling, IAM Auth, and Operator Patterns"
 date: 2028-11-04T00:00:00-05:00
-draft: false
+draft: true
 tags: ["AWS", "RDS", "Aurora", "Kubernetes", "PostgreSQL"]
 categories:
 - AWS

@@ -1,7 +1,7 @@
 ---
 title: "Linux eBPF Network Security: XDP Firewall, Traffic Filtering, and DDoS Mitigation"
 date: 2030-01-06T00:00:00-05:00
-draft: false
+draft: true
 tags: ["eBPF", "XDP", "Linux", "Network Security", "DDoS", "Firewall", "Performance"]
 categories: ["Linux", "Network Security"]
 author: "Matthew Mattox - mmattox@support.tools"

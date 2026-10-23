@@ -1,7 +1,7 @@
 ---
 title: "Go Plugin Architecture: HashiCorp go-plugin, yaegi Interpreter, and WASM Extensions"
 date: 2029-12-25T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Plugins", "HashiCorp", "WebAssembly", "WASM", "yaegi", "wazero", "go-plugin", "gRPC", "Enterprise"]
 categories:
 - Go

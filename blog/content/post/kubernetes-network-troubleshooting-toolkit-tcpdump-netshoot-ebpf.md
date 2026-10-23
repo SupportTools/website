@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Network Troubleshooting Toolkit: tcpdump, netshoot, and eBPF-Based Debugging"
 date: 2030-10-08T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Networking", "tcpdump", "eBPF", "Cilium", "Debugging", "DNS"]
 categories:
 - Kubernetes

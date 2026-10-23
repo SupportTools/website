@@ -1,7 +1,7 @@
 ---
 title: "Go Event-Driven Architecture: CQRS, Event Sourcing with EventStoreDB"
 date: 2030-01-15T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "CQRS", "Event Sourcing", "EventStoreDB", "Microservices", "Architecture"]
 categories: ["Go", "Architecture"]
 author: "Matthew Mattox - mmattox@support.tools"

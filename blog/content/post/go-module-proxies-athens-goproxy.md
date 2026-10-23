@@ -1,6 +1,6 @@
 ---
 title: "Go Module Proxies: Private Module Hosting with Athens and GOPROXY"
-date: 2029-01-16T00:00:00-05:00
+date: 2026-12-28T00:00:00-06:00
 draft: false
 tags: ["Go", "Golang", "Go Modules", "Athens", "GOPROXY", "Module Proxy", "Air-Gapped", "Private Registry"]
 categories:

@@ -1,7 +1,7 @@
 ---
 title: "Linux Filesystem Internals: VFS, Inodes, and Dentries"
 date: 2029-05-23T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Filesystem", "VFS", "Inodes", "Kernel", "Performance", "OverlayFS"]
 categories: ["Linux", "Systems Programming"]
 author: "Matthew Mattox - mmattox@support.tools"

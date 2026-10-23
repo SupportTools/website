@@ -1,7 +1,7 @@
 ---
 title: "Dependency Injection in Go: Wire vs Fx vs Manual Patterns"
 date: 2028-09-28T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Dependency Injection", "Wire", "Fx", "Software Architecture"]
 categories:
 - Go

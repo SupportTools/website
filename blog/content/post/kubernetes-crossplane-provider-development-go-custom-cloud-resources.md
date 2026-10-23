@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Crossplane Provider Development: Building Custom Cloud Resource Providers with Go"
 date: 2031-09-29T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Crossplane", "Go", "Infrastructure as Code", "Custom Providers", "Cloud Native"]
 categories: ["Kubernetes", "DevOps"]
 author: "Matthew Mattox - mmattox@support.tools"

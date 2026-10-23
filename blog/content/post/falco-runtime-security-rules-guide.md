@@ -1,7 +1,7 @@
 ---
 title: "Falco Runtime Security: Custom Rules and Production Threat Detection"
 date: 2027-10-01T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Falco", "Security", "Kubernetes", "Runtime Security", "eBPF"]
 categories:
 - Security

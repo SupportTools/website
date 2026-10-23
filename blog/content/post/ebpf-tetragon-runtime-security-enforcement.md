@@ -1,7 +1,7 @@
 ---
 title: "eBPF for Security: Tetragon Runtime Enforcement and Policy"
 date: 2029-01-15T00:00:00-05:00
-draft: false
+draft: true
 tags: ["eBPF", "Tetragon", "Kubernetes", "Security", "Runtime Security", "Cilium", "SIGKILL"]
 categories:
 - Security

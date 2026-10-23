@@ -1,7 +1,7 @@
 ---
 title: "Go Microservices Patterns: Service Registry, Health Checks, Graceful Degradation, and Bulkhead Pattern"
 date: 2028-08-31T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Microservices", "Service Registry", "Health Checks", "Bulkhead", "Resilience"]
 categories:
 - Go

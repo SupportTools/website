@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes VPA Deep Dive: Recommendation Engine, Update Modes, and Production Tuning"
 date: 2031-06-11T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "VPA", "Vertical Pod Autoscaler", "Resource Management", "Autoscaling", "Performance"]
 categories:
 - Kubernetes

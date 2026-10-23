@@ -1,7 +1,7 @@
 ---
 title: "Go Circuit Breaker and Bulkhead Patterns: Resilience Engineering"
 date: 2029-05-22T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Circuit Breaker", "Resilience", "Bulkhead", "golang", "Microservices", "Distributed Systems"]
 categories: ["Go", "Distributed Systems"]
 author: "Matthew Mattox - mmattox@support.tools"

@@ -1,7 +1,7 @@
 ---
 title: "Linux NFSv4.2: Parallel NFS, Server-Side Copy, Sparse File Support, Kerberos Security, and NFSv4 ACLs"
 date: 2032-01-06T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "NFS", "NFSv4", "Kerberos", "Storage", "Network", "Security", "Enterprise Storage"]
 categories:
 - Linux

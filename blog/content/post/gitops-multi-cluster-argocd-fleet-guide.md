@@ -1,7 +1,7 @@
 ---
 title: "GitOps Multi-Cluster Management: ArgoCD with Cluster Fleet Patterns"
 date: 2027-04-02T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "GitOps", "ArgoCD", "Multi-Cluster", "Fleet Management"]
 categories: ["Kubernetes", "GitOps", "Multi-Cluster"]
 author: "Matthew Mattox - mmattox@support.tools"

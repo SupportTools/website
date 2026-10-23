@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Multi-Cluster Traffic Management with Istio"
 date: 2029-10-16T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Istio", "Service Mesh", "Multi-Cluster", "Traffic Management", "East-West Gateway"]
 categories: ["Kubernetes", "Networking", "Service Mesh"]
 author: "Matthew Mattox - mmattox@support.tools"

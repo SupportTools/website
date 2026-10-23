@@ -1,7 +1,7 @@
 ---
 title: "Linux Kernel Tuning for Kubernetes: sysctl Parameters and Node Optimization"
 date: 2029-03-19T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Kubernetes", "sysctl", "Performance", "Node Optimization", "Networking"]
 categories:
 - Linux

@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Logging Architecture: Fluent Operator, Loki, and Structured Log Pipeline"
 date: 2030-04-21T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Logging", "Fluent Operator", "Loki", "Grafana", "Observability", "Fluentd", "FluentBit"]
 categories: ["Kubernetes", "Observability"]
 author: "Matthew Mattox - mmattox@support.tools"

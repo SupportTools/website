@@ -1,7 +1,7 @@
 ---
 title: "KubeVirt: Running Virtual Machines on Kubernetes in Production"
 date: 2027-01-08T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "KubeVirt", "Virtualization", "VMs"]
 categories: ["Kubernetes", "Virtualization", "Cloud Native"]
 author: "Matthew Mattox - mmattox@support.tools"

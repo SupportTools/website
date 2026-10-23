@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Workload Identity: IRSA, Workload Identity Federation, and Pod Identity for AWS, GCP, and Azure"
 date: 2028-07-03T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "IRSA", "Workload Identity", "AWS", "GCP", "Security"]
 categories:
 - Kubernetes

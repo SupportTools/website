@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes ResourceQuota and LimitRange: Namespace-Level Resource Governance"
 date: 2030-05-30T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "ResourceQuota", "LimitRange", "Resource Management", "Multi-Tenancy", "Namespace"]
 categories:
 - Kubernetes

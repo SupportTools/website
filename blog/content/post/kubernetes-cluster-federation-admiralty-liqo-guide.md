@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Cluster Federation: Admiralty, Liqo, and Submariner for Multi-Cluster Service Discovery"
 date: 2028-08-26T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Federation", "Admiralty", "Liqo", "Submariner", "Multi-Cluster"]
 categories:
 - Kubernetes

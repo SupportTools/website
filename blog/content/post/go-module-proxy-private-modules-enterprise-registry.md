@@ -1,7 +1,7 @@
 ---
 title: "Go Module Proxy and Private Modules: GOPROXY, GONOSUMCHECK, and Enterprise Registry"
 date: 2031-03-15T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Modules", "DevOps", "Enterprise", "Security", "Air-Gap"]
 categories:
 - Go

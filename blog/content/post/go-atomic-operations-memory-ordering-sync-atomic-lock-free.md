@@ -1,7 +1,7 @@
 ---
 title: "Go Atomic Operations and Memory Ordering: sync/atomic for Lock-Free Structures"
 date: 2031-01-14T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Concurrency", "sync/atomic", "Lock-Free", "Performance", "Memory Model"]
 categories:
 - Go

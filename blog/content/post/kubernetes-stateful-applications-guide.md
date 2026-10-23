@@ -1,7 +1,7 @@
 ---
 title: "Running Stateful Applications on Kubernetes: Patterns and Anti-Patterns"
 date: 2027-11-28T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "StatefulSets", "Storage", "Databases", "Operators"]
 categories:
 - Kubernetes

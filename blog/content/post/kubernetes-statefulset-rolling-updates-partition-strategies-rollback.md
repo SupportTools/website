@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes StatefulSet Rolling Updates: Partition-Based Updates, maxUnavailable, Update Strategies, and Rollback"
 date: 2032-01-30T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "StatefulSet", "Rolling Updates", "Database", "Operations", "Rollback"]
 categories:
 - Kubernetes

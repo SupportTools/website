@@ -1,7 +1,7 @@
 ---
 title: "Prometheus Alertmanager: Production Configuration, Routing, and Incident Reduction"
 date: 2027-06-04T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Prometheus", "Alertmanager", "Monitoring", "Observability", "SRE", "On-Call"]
 categories: ["Monitoring", "SRE"]
 author: "Matthew Mattox - mmattox@support.tools"

@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes External DNS: Automated DNS Management for Services and Ingresses"
 date: 2030-09-22T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "ExternalDNS", "DNS", "Route53", "Cloudflare", "GCP DNS", "Networking"]
 categories:
 - Kubernetes

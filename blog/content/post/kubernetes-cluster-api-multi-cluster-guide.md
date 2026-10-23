@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Multi-Cluster Management with Cluster API: Provider Implementation and GitOps Integration"
 date: 2028-07-10T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Cluster API", "Multi-Cluster", "GitOps", "Infrastructure"]
 categories:
 - Kubernetes

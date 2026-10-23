@@ -1,7 +1,7 @@
 ---
 title: "Go Interface Segregation and Dependency Inversion in Large Codebases"
 date: 2029-07-11T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Golang", "Interface Design", "SOLID", "Testing", "Architecture", "Dependency Injection"]
 categories: ["Go", "Architecture", "Best Practices"]
 author: "Matthew Mattox - mmattox@support.tools"

@@ -1,7 +1,7 @@
 ---
 title: "Zot OCI Registry: Lightweight Container Registry with Built-in Supply Chain Security"
 date: 2027-01-24T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "OCI Registry", "Zot", "Supply Chain Security", "Sigstore"]
 categories:
 - Security

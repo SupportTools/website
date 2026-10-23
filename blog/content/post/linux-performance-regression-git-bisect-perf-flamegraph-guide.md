@@ -1,7 +1,7 @@
 ---
 title: "Linux Performance Regression Analysis with git bisect, perf, and Flamegraph Automation"
 date: 2031-08-22T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Performance", "git bisect", "perf", "Flamegraph", "Profiling", "Debugging"]
 categories: ["Linux", "Performance"]
 author: "Matthew Mattox - mmattox@support.tools"

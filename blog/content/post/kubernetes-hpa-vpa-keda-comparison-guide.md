@@ -1,7 +1,7 @@
 ---
 title: "HPA vs VPA vs KEDA: Choosing the Right Kubernetes Autoscaling Strategy"
 date: 2027-12-09T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "HPA", "VPA", "KEDA", "Autoscaling", "Prometheus", "Performance", "Resource Management"]
 categories:
 - Kubernetes

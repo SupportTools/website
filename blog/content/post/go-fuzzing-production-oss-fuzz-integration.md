@@ -1,7 +1,7 @@
 ---
 title: "Go Fuzzing in Production: go-fuzz, OSS-Fuzz Integration, and Continuous Security Testing"
 date: 2030-02-14T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Fuzzing", "Security", "Testing", "OSS-Fuzz", "CI/CD", "go-fuzz"]
 categories: ["Go", "Security"]
 author: "Matthew Mattox - mmattox@support.tools"

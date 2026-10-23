@@ -1,6 +1,6 @@
 ---
 title: "Kubernetes Admission Webhook TLS: Certificate Rotation and Production Hardening"
-date: 2027-04-25T00:00:00-05:00
+date: 2026-11-23T00:00:00-06:00
 draft: false
 tags: ["Kubernetes", "Admission Webhook", "TLS", "Certificates", "cert-manager", "Security"]
 categories: ["Kubernetes", "Security"]

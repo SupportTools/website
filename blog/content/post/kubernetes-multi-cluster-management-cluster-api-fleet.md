@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Multi-Cluster Management with Cluster API and Fleet"
 date: 2030-01-04T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Cluster API", "Fleet", "GitOps", "Multi-Cluster", "Platform Engineering"]
 categories: ["Kubernetes", "Platform Engineering"]
 author: "Matthew Mattox - mmattox@support.tools"

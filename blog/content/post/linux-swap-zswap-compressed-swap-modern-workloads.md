@@ -1,7 +1,7 @@
 ---
 title: "Linux Swap and zswap: Compressed Swap for Modern Workloads"
 date: 2029-09-04T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Kernel", "Memory Management", "zswap", "Performance", "Kubernetes", "Containers"]
 categories: ["Linux", "Performance", "Kubernetes"]
 author: "Matthew Mattox - mmattox@support.tools"

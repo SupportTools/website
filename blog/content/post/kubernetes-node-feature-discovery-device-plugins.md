@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Node Feature Discovery and Device Plugins: GPU, FPGA, and Custom Hardware"
 date: 2030-02-25T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Node Feature Discovery", "GPU", "Device Plugins", "FPGA", "Hardware Scheduling"]
 categories: ["Kubernetes", "Infrastructure"]
 author: "Matthew Mattox - mmattox@support.tools"

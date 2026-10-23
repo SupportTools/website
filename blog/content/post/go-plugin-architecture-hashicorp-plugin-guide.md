@@ -1,7 +1,7 @@
 ---
 title: "Go Plugin Architecture: Building Extensible Systems with HashiCorp go-plugin"
 date: 2028-09-26T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Plugin Architecture", "HashiCorp", "gRPC", "Software Design"]
 categories:
 - Go

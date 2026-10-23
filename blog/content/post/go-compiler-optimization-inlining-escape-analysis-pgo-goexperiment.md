@@ -1,7 +1,7 @@
 ---
 title: "Go Compiler Optimization: Inlining, Escape Analysis, and GOEXPERIMENT Features"
 date: 2030-10-03T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Golang", "Compiler", "Performance", "PGO", "Optimization", "Profiling"]
 categories:
 - Go

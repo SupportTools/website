@@ -1,7 +1,7 @@
 ---
 title: "Go Reflection and Code Generation: reflect package, go/types, and Automated Boilerplate"
 date: 2030-03-07T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Golang", "Reflection", "Code Generation", "AST", "go/types", "Tooling"]
 categories: ["Go", "Developer Tools"]
 author: "Matthew Mattox - mmattox@support.tools"

@@ -1,7 +1,7 @@
 ---
 title: "OpenTelemetry Collector Pipeline Configuration: Production Observability at Scale"
 date: 2026-12-22T00:00:00-05:00
-draft: false
+draft: true
 tags: ["OpenTelemetry", "Observability", "Distributed Tracing", "Metrics", "Logs", "Kubernetes", "Production"]
 categories:
 - Observability

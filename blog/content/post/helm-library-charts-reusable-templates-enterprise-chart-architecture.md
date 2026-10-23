@@ -1,7 +1,7 @@
 ---
 title: "Helm Library Charts: Reusable Templates and Enterprise Chart Architecture"
 date: 2030-07-26T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Helm", "Kubernetes", "GitOps", "DevOps", "Chart Architecture", "OCI Registry"]
 categories:
 - Kubernetes

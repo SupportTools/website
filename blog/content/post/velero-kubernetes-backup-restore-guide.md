@@ -1,7 +1,7 @@
 ---
 title: "Velero Kubernetes Backup and Restore: Cluster Migration and DR Automation"
 date: 2027-07-25T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Velero", "Kubernetes", "Backup", "Disaster Recovery"]
 categories:
 - Kubernetes

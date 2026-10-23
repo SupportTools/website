@@ -1,7 +1,7 @@
 ---
 title: "Linux kdump v2: Crash Kernel Configuration, vmcore Analysis with crash Utility, and Kernel Module Debugging"
 date: 2032-02-08T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "kdump", "kernel", "crash", "vmcore", "Debugging", "System Administration", "kexec", "Kernel Modules"]
 categories: ["Linux", "System Administration", "Debugging"]
 author: "Matthew Mattox - mmattox@support.tools"

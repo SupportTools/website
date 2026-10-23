@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes OpenCost: Open-Source Cost Monitoring with Prometheus, Cloud Pricing APIs, and Grafana Dashboards"
 date: 2031-12-25T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "OpenCost", "Prometheus", "Grafana", "FinOps", "Cost Monitoring", "Cloud Cost"]
 categories:
 - Kubernetes

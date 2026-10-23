@@ -1,7 +1,7 @@
 ---
 title: "Beyond Garbage Collection: Rust's Ownership Model and Modern Memory Management"
 date: 2027-04-15T09:00:00-05:00
-draft: false
+draft: true
 tags: ["Rust", "Go", "Memory Management", "Performance", "Garbage Collection", "Ownership"]
 categories:
 - Programming

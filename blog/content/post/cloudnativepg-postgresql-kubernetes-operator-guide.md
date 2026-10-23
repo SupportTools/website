@@ -1,7 +1,7 @@
 ---
 title: "CloudNativePG: Production PostgreSQL on Kubernetes with Streaming Replication"
 date: 2028-09-15T00:00:00-05:00
-draft: false
+draft: true
 tags: ["CloudNativePG", "PostgreSQL", "Kubernetes", "Database", "High Availability"]
 categories:
 - PostgreSQL

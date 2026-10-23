@@ -1,7 +1,7 @@
 ---
 title: "Go Struct Tags: Custom Marshaling, Validation, and ORM Integration"
 date: 2031-04-14T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Golang", "Struct Tags", "Validation", "GORM", "JSON", "Reflection"]
 categories:
 - Go

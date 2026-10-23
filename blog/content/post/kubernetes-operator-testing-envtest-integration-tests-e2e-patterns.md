@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Operator Testing: envtest, Integration Tests, and E2E Patterns"
 date: 2029-09-18T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Operators", "Testing", "envtest", "controller-runtime", "Go", "kind", "E2E"]
 categories: ["Kubernetes", "Testing"]
 author: "Matthew Mattox - mmattox@support.tools"

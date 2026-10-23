@@ -1,7 +1,7 @@
 ---
 title: "Jaeger Distributed Tracing on Kubernetes: Sampling, Storage, and Query Optimization"
 date: 2027-07-08T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Jaeger", "Distributed Tracing", "Kubernetes", "Observability"]
 categories:
 - Kubernetes

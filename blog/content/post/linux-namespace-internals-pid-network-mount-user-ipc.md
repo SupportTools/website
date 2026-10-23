@@ -1,7 +1,7 @@
 ---
 title: "Linux Namespace Internals: PID, Network, Mount, User, and IPC Namespaces"
 date: 2029-12-10T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Namespaces", "Containers", "Security", "Kernel", "cgroups", "unshare", "setns"]
 categories:
 - Linux

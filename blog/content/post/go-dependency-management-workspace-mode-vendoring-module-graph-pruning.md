@@ -1,7 +1,7 @@
 ---
 title: "Go Dependency Management: Workspace Mode, Vendoring Strategies, and Module Graph Pruning"
 date: 2030-03-26T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Golang", "Modules", "Dependency Management", "Go Workspace", "Vendoring", "govulncheck"]
 categories: ["Go", "DevOps", "Development"]
 author: "Matthew Mattox - mmattox@support.tools"

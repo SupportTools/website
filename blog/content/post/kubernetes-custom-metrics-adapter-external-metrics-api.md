@@ -1,6 +1,6 @@
 ---
 title: "Kubernetes Custom Metrics Adapter: Implementing external.metrics.k8s.io"
-date: 2029-11-10T00:00:00-05:00
+date: 2027-02-17T00:00:00-06:00
 draft: false
 tags: ["Kubernetes", "Custom Metrics", "HPA", "Autoscaling", "KEDA", "Go", "Metrics API"]
 categories:

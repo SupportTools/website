@@ -1,7 +1,7 @@
 ---
 title: "Kata Containers: VM-Level Isolation for Kubernetes Workloads"
 date: 2027-02-12T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Kata Containers", "Confidential Computing", "Security", "Isolation"]
 categories: ["Kubernetes", "Security", "Containers"]
 author: "Matthew Mattox - mmattox@support.tools"

@@ -1,7 +1,7 @@
 ---
 title: "Zero Trust Networking in Go: mTLS, SPIFFE, and SPIRE for Service Identity"
 date: 2028-10-17T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Zero Trust", "mTLS", "SPIFFE", "Security"]
 categories:
 - Go

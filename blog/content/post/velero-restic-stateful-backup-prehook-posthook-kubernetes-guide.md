@@ -1,6 +1,6 @@
 ---
 title: "Kubernetes Velero + Restic: Application-Consistent Backups for Stateful Workloads with Pre/Post Hooks"
-date: 2031-08-26T00:00:00-05:00
+date: 2027-03-22T00:00:00-05:00
 draft: false
 tags: ["Kubernetes", "Velero", "Restic", "Backup", "Disaster Recovery", "StatefulSet", "Storage"]
 categories: ["Kubernetes", "Backup & Recovery", "Storage"]

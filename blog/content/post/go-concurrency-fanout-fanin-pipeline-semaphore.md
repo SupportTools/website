@@ -1,7 +1,7 @@
 ---
 title: "Go Concurrency Patterns: Fan-Out, Fan-In, Pipeline, and Semaphore"
 date: 2029-06-25T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Concurrency", "Goroutines", "Channels", "errgroup", "Pipeline", "Worker Pool"]
 categories: ["Go", "Software Engineering"]
 author: "Matthew Mattox - mmattox@support.tools"

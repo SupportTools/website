@@ -1,7 +1,7 @@
 ---
 title: "GitHub Actions Advanced: Reusable Workflows, Matrix Strategies, and Self-Hosted Runners"
 date: 2028-09-21T00:00:00-05:00
-draft: false
+draft: true
 tags: ["GitHub Actions", "CI/CD", "DevOps", "Automation", "Kubernetes"]
 categories:
 - GitHub Actions

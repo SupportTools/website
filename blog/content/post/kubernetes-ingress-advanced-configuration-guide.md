@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Ingress Advanced Configuration: TLS, Rate Limiting, and Auth"
 date: 2027-11-23T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Ingress", "NGINX", "TLS", "Rate Limiting"]
 categories:
 - Kubernetes

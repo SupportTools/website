@@ -1,7 +1,7 @@
 ---
 title: "Argo Rollouts: Progressive Delivery with Canary and Blue/Green Strategies"
 date: 2028-01-01T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Argo Rollouts", "Progressive Delivery", "Canary", "Blue/Green", "Kubernetes", "GitOps"]
 categories: ["Kubernetes", "CI & CD"]
 author: "Matthew Mattox - mmattox@support.tools"

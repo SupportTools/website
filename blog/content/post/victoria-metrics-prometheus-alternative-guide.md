@@ -1,7 +1,7 @@
 ---
 title: "VictoriaMetrics as a Prometheus Alternative: Production Deployment Guide"
 date: 2027-09-24T00:00:00-05:00
-draft: false
+draft: true
 tags: ["VictoriaMetrics", "Prometheus", "Monitoring", "Kubernetes", "TSDB"]
 categories:
   - Monitoring

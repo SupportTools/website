@@ -1,7 +1,7 @@
 ---
 title: "Go Caching Strategies: Ristretto, Redis, and Production-Ready Cache Patterns"
 date: 2028-06-04T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Caching", "Redis", "Ristretto", "Performance", "Architecture"]
 categories: ["Go", "Performance", "Backend Engineering"]
 author: "Matthew Mattox - mmattox@support.tools"

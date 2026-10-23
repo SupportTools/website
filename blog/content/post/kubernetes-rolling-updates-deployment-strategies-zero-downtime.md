@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Rolling Updates and Deployment Strategies: Zero-Downtime Production Patterns"
 date: 2030-09-11T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Deployments", "Rolling Updates", "Zero Downtime", "Production", "GitOps", "SRE"]
 categories:
 - Kubernetes

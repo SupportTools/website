@@ -1,7 +1,7 @@
 ---
 title: "Linux Audit Framework: auditd Rules, Syscall Monitoring, and SIEM Integration"
 date: 2029-12-23T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Audit", "auditd", "Security", "SIEM", "Compliance", "Syscall", "File Integrity", "Elasticsearch"]
 categories:
 - Linux

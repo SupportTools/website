@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Karpenter: Next-Generation Node Autoscaling"
 date: 2029-05-29T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Karpenter", "Autoscaling", "AWS", "EKS", "Node Management", "Spot Instances"]
 categories: ["Kubernetes", "Cloud"]
 author: "Matthew Mattox - mmattox@support.tools"

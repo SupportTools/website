@@ -1,7 +1,7 @@
 ---
 title: "Go Build Constraints and Platform-Specific Code"
 date: 2029-04-26T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Build Constraints", "Cross-Compilation", "GOOS", "GOARCH", "CGO", "Platform"]
 categories: ["Go", "DevOps"]
 author: "Matthew Mattox - mmattox@support.tools"

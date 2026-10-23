@@ -1,7 +1,7 @@
 ---
 title: "Go Telemetry: OpenTelemetry SDK, Metric Instruments, Baggage Propagation, and Exemplar Linking"
 date: 2028-09-08T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "OpenTelemetry", "Metrics", "Baggage", "Tracing", "Observability"]
 categories:
 - Go

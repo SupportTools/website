@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes GPU Scheduling: NVIDIA GPU Operator and Time-Slicing for ML Workloads"
 date: 2030-10-05T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "GPU", "NVIDIA", "Machine Learning", "DCGM", "MIG", "CUDA"]
 categories:
 - Kubernetes

@@ -1,7 +1,7 @@
 ---
 title: "AWS EKS Production Deployment: Managed Node Groups, IRSA, and Cost Optimization"
 date: 2027-08-04T00:00:00-05:00
-draft: false
+draft: true
 tags: ["AWS", "EKS", "Kubernetes", "Cloud", "Production"]
 categories:
 - AWS

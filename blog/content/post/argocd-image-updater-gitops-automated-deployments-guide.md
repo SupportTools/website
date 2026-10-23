@@ -1,7 +1,7 @@
 ---
 title: "ArgoCD Image Updater: Automated Container Image Updates in GitOps"
 date: 2027-02-01T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "ArgoCD", "GitOps", "CI/CD", "Automation"]
 categories:
 - Kubernetes

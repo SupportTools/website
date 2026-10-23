@@ -1,7 +1,7 @@
 ---
 title: "Linux Disk Encryption: LUKS2, Clevis/Tang for Network Unlocking, and Key Management"
 date: 2030-03-02T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Security", "LUKS2", "Disk Encryption", "Clevis", "Tang", "NBDE", "TPM2"]
 categories: ["Linux", "Security"]
 author: "Matthew Mattox - mmattox@support.tools"

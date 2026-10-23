@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Prometheus Operator v0.7x: ServiceMonitor, PrometheusRule, AlertmanagerConfig, and Sharding"
 date: 2031-11-08T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Prometheus", "Prometheus Operator", "Monitoring", "Alertmanager", "Observability", "ServiceMonitor"]
 categories: ["Kubernetes", "Observability"]
 author: "Matthew Mattox - mmattox@support.tools"

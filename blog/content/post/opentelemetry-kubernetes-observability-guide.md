@@ -1,7 +1,7 @@
 ---
 title: "OpenTelemetry on Kubernetes: Collector Deployment, Auto-Instrumentation, and Trace Analysis"
 date: 2027-06-07T00:00:00-05:00
-draft: false
+draft: true
 tags: ["OpenTelemetry", "Observability", "Tracing", "Kubernetes", "OTLP", "Jaeger", "Tempo"]
 categories: ["Observability", "Kubernetes"]
 author: "Matthew Mattox - mmattox@support.tools"

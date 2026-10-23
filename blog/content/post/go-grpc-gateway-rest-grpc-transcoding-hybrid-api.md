@@ -1,7 +1,7 @@
 ---
 title: "Go gRPC Gateway: REST to gRPC Transcoding for Hybrid API Services"
 date: 2031-04-24T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "gRPC", "REST", "API", "Protocol Buffers", "OpenAPI"]
 categories:
 - Go

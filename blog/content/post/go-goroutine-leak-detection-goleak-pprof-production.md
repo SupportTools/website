@@ -1,6 +1,6 @@
 ---
 title: "Go Goroutine Leak Detection: goleak, Runtime Metrics, and Production Prevention"
-date: 2031-03-25T00:00:00-05:00
+date: 2027-03-03T00:00:00-06:00
 draft: false
 tags: ["Go", "Goroutines", "Memory Leaks", "pprof", "goleak", "Production", "Performance"]
 categories:

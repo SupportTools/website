@@ -1,7 +1,7 @@
 ---
 title: "Prometheus Pushgateway: Monitoring Batch Jobs and Short-Lived Workloads"
 date: 2027-03-20T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Prometheus", "Pushgateway", "Batch Jobs", "Monitoring"]
 categories: ["Kubernetes", "Observability", "Prometheus"]
 author: "Matthew Mattox - mmattox@support.tools"

@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Security Scanning: Trivy Operator for Continuous Vulnerability Management"
 date: 2028-01-13T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Security", "Trivy", "Vulnerability Scanning", "Compliance", "OPA", "DevSecOps"]
 categories:
 - Kubernetes

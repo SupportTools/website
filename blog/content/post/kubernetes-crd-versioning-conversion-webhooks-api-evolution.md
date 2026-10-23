@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes CRD Versioning: Conversion Webhooks, Hub Versions, and API Evolution"
 date: 2030-04-18T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "CRD", "API Versioning", "Conversion Webhooks", "CEL", "Operators", "Go"]
 categories: ["Kubernetes", "DevOps"]
 author: "Matthew Mattox - mmattox@support.tools"

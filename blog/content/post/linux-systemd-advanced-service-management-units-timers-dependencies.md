@@ -1,7 +1,7 @@
 ---
 title: "Linux systemd Advanced Service Management: Units, Timers, and Dependency Graphs"
 date: 2030-06-05T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "systemd", "Service Management", "Timers", "journald", "DevOps", "System Administration"]
 categories:
 - Linux

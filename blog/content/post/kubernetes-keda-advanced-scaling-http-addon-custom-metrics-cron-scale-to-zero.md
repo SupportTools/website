@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes KEDA Advanced Scaling: HTTP Add-on, Custom Metrics, Cron Scalers, and Scale-to-Zero Patterns"
 date: 2032-03-24T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "KEDA", "Autoscaling", "HTTP", "Custom Metrics", "Cron", "Scale-to-Zero"]
 categories:
 - Kubernetes

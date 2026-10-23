@@ -1,7 +1,7 @@
 ---
 title: "Neovim for DevOps Engineers: Terminal-Based Development Environment"
 date: 2027-10-04T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Neovim", "DevOps", "Developer Tools", "Terminal", "Productivity"]
 categories:
 - Developer Tools

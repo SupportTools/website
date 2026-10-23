@@ -1,7 +1,7 @@
 ---
 title: "Linux XDP and AF_XDP: High-Performance Packet Processing at the Driver Layer"
 date: 2029-12-17T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "XDP", "AF_XDP", "eBPF", "Networking", "DPDK", "Zero-Copy", "Kernel", "Performance"]
 categories:
 - Linux

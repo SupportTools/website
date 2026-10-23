@@ -1,7 +1,7 @@
 ---
 title: "Go Performance Profiling: pprof, Trace, and Memory Optimization in Production"
 date: 2028-02-17T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Golang", "Performance", "Profiling", "pprof", "Memory", "Optimization"]
 categories:
 - Go

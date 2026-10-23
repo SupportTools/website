@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Backup and Restore with Velero: PVC Snapshots and Cross-Cluster Migration"
 date: 2030-09-08T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Velero", "Backup", "Disaster Recovery", "PVC", "CSI", "Migration", "Storage"]
 categories:
 - Kubernetes

@@ -1,7 +1,7 @@
 ---
 title: "Tekton Chains: Supply Chain Security for Kubernetes CI/CD"
 date: 2027-01-13T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Tekton", "Supply Chain Security", "SLSA", "Sigstore"]
 categories: ["Kubernetes", "Security", "CI & CD"]
 author: "Matthew Mattox - mmattox@support.tools"

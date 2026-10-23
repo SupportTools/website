@@ -1,7 +1,7 @@
 ---
 title: "Go slog: Structured Logging for Production Services"
 date: 2028-11-23T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Logging", "slog", "Observability", "Production"]
 categories:
 - Go

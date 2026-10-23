@@ -1,7 +1,7 @@
 ---
 title: "Go Distributed Locks: Redis SETNX, etcd Leases, and ZooKeeper for Leader Election"
 date: 2030-04-10T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Distributed Systems", "Redis", "etcd", "Leader Election", "Distributed Locks", "Concurrency"]
 categories: ["Go", "Distributed Systems"]
 author: "Matthew Mattox - mmattox@support.tools"

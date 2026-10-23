@@ -1,7 +1,7 @@
 ---
 title: "Crossplane: Infrastructure as Code with Kubernetes APIs"
 date: 2027-10-31T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Crossplane", "Infrastructure as Code", "Kubernetes", "AWS", "GCP"]
 categories:
 - Kubernetes

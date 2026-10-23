@@ -1,7 +1,7 @@
 ---
 title: "Time Series Database Optimization: InfluxDB vs TimescaleDB vs ClickHouse"
 date: 2026-12-04T00:00:00-05:00
-draft: false
+draft: true
 tags: ["InfluxDB", "TimescaleDB", "ClickHouse", "Time Series", "Database Optimization", "Performance Tuning", "Monitoring", "IoT", "Analytics", "Time Series Databases"]
 categories:
 - Databases

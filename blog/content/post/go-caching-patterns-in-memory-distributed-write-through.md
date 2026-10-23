@@ -1,7 +1,7 @@
 ---
 title: "Go Caching Patterns: In-Memory, Distributed, and Write-Through"
 date: 2029-05-30T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Caching", "Redis", "Performance", "Distributed Systems", "Golang", "Ristretto"]
 categories: ["Go", "Performance"]
 author: "Matthew Mattox - mmattox@support.tools"

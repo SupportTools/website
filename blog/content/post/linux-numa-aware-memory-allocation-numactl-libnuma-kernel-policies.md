@@ -1,7 +1,7 @@
 ---
 title: "Linux NUMA-Aware Memory Allocation: numactl, libnuma, and Kernel Policies"
 date: 2029-07-30T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "NUMA", "Memory", "Performance", "Kernel", "numactl", "libnuma"]
 categories: ["Linux", "Performance", "Systems Programming"]
 author: "Matthew Mattox - mmattox@support.tools"

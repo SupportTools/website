@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Admission Controllers: Validating and Mutating Webhooks Deep Dive"
 date: 2029-04-05T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Admission Controllers", "Webhooks", "Security", "Policy", "cert-manager"]
 categories: ["Kubernetes", "Security", "DevOps"]
 author: "Matthew Mattox - mmattox@support.tools"

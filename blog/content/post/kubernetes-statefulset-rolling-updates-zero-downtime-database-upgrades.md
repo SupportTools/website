@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes StatefulSet Rolling Updates: Zero-Downtime Database Upgrades"
 date: 2028-12-20T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "StatefulSet", "Rolling Updates", "Databases", "Zero Downtime", "PostgreSQL"]
 categories:
 - Kubernetes

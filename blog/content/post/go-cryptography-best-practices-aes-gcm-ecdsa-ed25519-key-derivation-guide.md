@@ -1,7 +1,7 @@
 ---
 title: "Go Cryptography Best Practices: AES-GCM, ECDSA, Ed25519, Constant-Time Comparisons, and Key Derivation"
 date: 2031-11-22T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Golang", "Cryptography", "Security", "AES-GCM", "Ed25519", "ECDSA", "HKDF", "Enterprise Security"]
 categories:
 - Go

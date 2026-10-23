@@ -1,7 +1,7 @@
 ---
 title: "Go Code Generation: protoc plugins, go generate, and AST Manipulation for Boilerplate Elimination"
 date: 2030-01-30T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Code Generation", "protobuf", "AST", "protoc", "go generate", "Tooling"]
 categories: ["Go", "Developer Tools", "Architecture"]
 author: "Matthew Mattox - mmattox@support.tools"

@@ -1,7 +1,7 @@
 ---
 title: "Go Garbage Collector Internals: Tri-Color Mark-Sweep and GC Tuning"
 date: 2029-07-27T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Garbage Collection", "GC Tuning", "Performance", "Memory Management", "GOGC", "GOMEMLIMIT"]
 categories: ["Go", "Performance"]
 author: "Matthew Mattox - mmattox@support.tools"

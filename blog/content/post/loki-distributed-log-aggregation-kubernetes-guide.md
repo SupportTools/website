@@ -1,7 +1,7 @@
 ---
 title: "Loki Distributed Mode: Enterprise Log Aggregation on Kubernetes"
 date: 2027-03-16T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Loki", "Logging", "Observability", "Grafana"]
 categories: ["Kubernetes", "Observability", "Logging"]
 author: "Matthew Mattox - mmattox@support.tools"

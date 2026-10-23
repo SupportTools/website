@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Falco v0.38: Custom Rules, gRPC Output, Audit Events, and Sidekick Alerting Integrations"
 date: 2031-12-15T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Falco", "Kubernetes", "Security", "eBPF", "Runtime Security", "SIEM", "Sidekick", "Audit Logging"]
 categories:
 - Kubernetes

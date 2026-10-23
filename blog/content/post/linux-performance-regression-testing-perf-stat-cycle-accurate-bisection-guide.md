@@ -1,7 +1,7 @@
 ---
 title: "Linux Performance Regression Testing: Benchmark Before/After with perf stat, Cycle-Accurate Profiling, and Bisection"
 date: 2031-12-10T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Performance", "perf", "Profiling", "Benchmarking", "Regression Testing", "Systems Engineering"]
 categories: ["Linux", "Performance"]
 author: "Matthew Mattox - mmattox@support.tools"

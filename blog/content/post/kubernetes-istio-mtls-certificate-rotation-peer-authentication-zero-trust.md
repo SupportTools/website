@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Istio mTLS: Certificate Rotation, PeerAuthentication, and Zero-Trust Networking"
 date: 2030-09-12T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Istio", "mTLS", "Zero-Trust", "Security", "Service Mesh", "Certificates"]
 categories:
 - Kubernetes

@@ -1,7 +1,7 @@
 ---
 title: "Kubescape: Kubernetes Security Scanning and Compliance Automation"
 date: 2027-01-05T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubescape", "Kubernetes", "Security", "Compliance", "NSA", "MITRE"]
 categories:
 - Kubernetes

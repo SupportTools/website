@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Cluster Networking Deep Dive: Troubleshooting and Optimization"
 date: 2027-12-31T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Networking", "CNI", "Cilium", "Calico", "CoreDNS", "Troubleshooting"]
 categories: ["Kubernetes", "Networking"]
 author: "Matthew Mattox - mmattox@support.tools"

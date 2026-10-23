@@ -1,7 +1,7 @@
 ---
 title: "Kyverno: Kubernetes-Native Policy Engine for Security and Compliance"
 date: 2028-10-18T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kyverno", "Kubernetes", "Policy", "Security", "Compliance"]
 categories:
 - Kubernetes

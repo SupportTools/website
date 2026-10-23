@@ -1,7 +1,7 @@
 ---
 title: "Linux System Calls: strace Analysis, seccomp Allowlists, and Syscall Overhead Reduction"
 date: 2030-04-26T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "System Calls", "seccomp", "strace", "io_uring", "Performance", "Security"]
 categories: ["Linux", "Performance", "Security"]
 author: "Matthew Mattox - mmattox@support.tools"

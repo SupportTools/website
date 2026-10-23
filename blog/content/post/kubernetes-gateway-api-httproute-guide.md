@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Gateway API: HTTPRoute, TCPRoute, TLSRoute, and Multi-Cluster Traffic Routing"
 date: 2028-08-02T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Gateway API", "HTTPRoute", "Service Mesh", "Traffic Management"]
 categories:
 - Kubernetes

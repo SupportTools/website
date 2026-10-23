@@ -1,6 +1,6 @@
 ---
 title: "Go Fuzzing for Security Testing: Finding Bugs with go test -fuzz"
-date: 2028-06-12T00:00:00-05:00
+date: 2026-12-11T00:00:00-06:00
 draft: false
 tags: ["Go", "Security", "Fuzzing", "Testing", "CI/CD", "Vulnerabilities"]
 categories: ["Go", "Security", "Testing"]

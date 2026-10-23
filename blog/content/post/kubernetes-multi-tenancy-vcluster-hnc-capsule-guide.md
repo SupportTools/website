@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Multi-Tenancy: Namespace Isolation, Hierarchical Namespaces, and Virtual Clusters"
 date: 2027-09-06T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Multi-tenancy", "Security", "vcluster"]
 categories:
 - Kubernetes

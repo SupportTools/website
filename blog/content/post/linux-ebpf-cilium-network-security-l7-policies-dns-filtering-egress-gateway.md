@@ -1,7 +1,7 @@
 ---
 title: "Linux eBPF Network Security with Cilium: L7 Policies, DNS-Based Filtering, and Egress Gateway"
 date: 2031-07-20T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Cilium", "eBPF", "Kubernetes", "Network Security", "L7 Policy", "Egress Gateway"]
 categories:
 - Kubernetes

@@ -1,7 +1,7 @@
 ---
 title: "Linux Kernel Networking: TCP/IP Stack Internals, Socket Buffers, and Performance Tuning"
 date: 2030-01-09T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Networking", "TCP", "Kernel", "Performance", "NAPI", "Socket Buffers"]
 categories: ["Linux", "Networking"]
 author: "Matthew Mattox - mmattox@support.tools"

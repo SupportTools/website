@@ -1,7 +1,7 @@
 ---
 title: "Go Event-Driven Architecture: NATS JetStream for Durable Messaging"
 date: 2029-08-01T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "NATS", "JetStream", "Event-Driven", "Messaging", "Architecture", "Kubernetes"]
 categories: ["Go", "Architecture", "Messaging"]
 author: "Matthew Mattox - mmattox@support.tools"

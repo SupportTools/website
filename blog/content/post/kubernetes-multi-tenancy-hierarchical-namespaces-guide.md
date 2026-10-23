@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Multi-Tenancy: Hierarchical Namespaces and Policy Propagation"
 date: 2028-02-11T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Multi-Tenancy", "HNC", "Hierarchical Namespaces", "RBAC", "NetworkPolicy", "vCluster"]
 categories:
 - Kubernetes

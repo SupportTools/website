@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Descheduler: Automatic Pod Rebalancing and Eviction Policies"
 date: 2028-10-26T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Scheduling", "Descheduler", "Resource Management", "Performance"]
 categories:
 - Kubernetes

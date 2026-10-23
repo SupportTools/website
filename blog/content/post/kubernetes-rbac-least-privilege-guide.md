@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes RBAC Advanced Patterns: Least Privilege at Scale"
 date: 2027-11-25T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "RBAC", "Security", "Audit", "Access Control"]
 categories:
 - Kubernetes

@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Monitoring Deep Dive: kube-state-metrics, node-exporter, API Server Metrics, and Custom Controllers"
 date: 2028-08-13T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Monitoring", "Prometheus", "kube-state-metrics", "Metrics"]
 categories:
 - Kubernetes

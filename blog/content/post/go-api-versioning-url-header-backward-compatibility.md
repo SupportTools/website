@@ -1,7 +1,7 @@
 ---
 title: "Go API Versioning: URL Versioning, Header Negotiation, and Backward Compatibility Strategies"
 date: 2030-03-04T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "API Design", "REST", "Versioning", "Backward Compatibility", "Microservices"]
 categories: ["Go", "API Design"]
 author: "Matthew Mattox - mmattox@support.tools"

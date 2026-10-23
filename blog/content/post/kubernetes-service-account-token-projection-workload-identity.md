@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Service Account Token Projection: Workload Identity"
 date: 2029-04-29T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Service Accounts", "OIDC", "AWS IRSA", "GCP Workload Identity", "Security", "Tokens"]
 categories:
 - Kubernetes

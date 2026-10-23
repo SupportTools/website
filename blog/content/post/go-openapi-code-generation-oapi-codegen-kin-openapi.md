@@ -1,7 +1,7 @@
 ---
 title: "Go OpenAPI: Code Generation with oapi-codegen and kin-openapi"
 date: 2029-10-26T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "OpenAPI", "oapi-codegen", "kin-openapi", "API", "Code Generation", "REST"]
 categories: ["Go", "API Design"]
 author: "Matthew Mattox - mmattox@support.tools"

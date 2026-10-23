@@ -1,7 +1,7 @@
 ---
 title: "ArgoCD ApplicationSets: Advanced Multi-Cluster GitOps Patterns"
 date: 2027-10-08T00:00:00-05:00
-draft: false
+draft: true
 tags: ["ArgoCD", "GitOps", "ApplicationSets", "Multi-Cluster", "Kubernetes"]
 categories:
 - GitOps

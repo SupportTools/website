@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Node Problem Detector: Hardware and OS Issue Detection"
 date: 2029-07-20T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Node Problem Detector", "NPD", "Observability", "Hardware", "Node Health"]
 categories: ["Kubernetes", "Operations"]
 author: "Matthew Mattox - mmattox@support.tools"

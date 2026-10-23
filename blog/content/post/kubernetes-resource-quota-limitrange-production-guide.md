@@ -1,7 +1,7 @@
 ---
 title: "ResourceQuota and LimitRange: Namespace-Level Resource Governance in Kubernetes"
 date: 2027-03-05T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "ResourceQuota", "LimitRange", "Multi-Tenancy", "Resource Management"]
 categories: ["Kubernetes", "Multi-Tenancy", "Operations"]
 author: "Matthew Mattox - mmattox@support.tools"

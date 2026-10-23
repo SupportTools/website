@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Autoscaling Deep Dive: VPA, HPA, KEDA, and Cluster Autoscaler Interaction Patterns"
 date: 2028-08-30T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Autoscaling", "VPA", "HPA", "KEDA", "Cluster Autoscaler"]
 categories:
 - Kubernetes

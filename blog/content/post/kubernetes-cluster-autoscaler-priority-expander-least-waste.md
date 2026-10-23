@@ -1,6 +1,6 @@
 ---
 title: "Kubernetes Cluster Autoscaler: Priority Expander and Least Waste Algorithms"
-date: 2029-02-14T00:00:00-05:00
+date: 2027-01-08T00:00:00-06:00
 draft: false
 tags: ["Kubernetes", "Cluster Autoscaler", "Autoscaling", "Cost Optimization", "Node Groups", "FinOps"]
 categories:

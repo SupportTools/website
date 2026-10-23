@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes KEDA ScaledJobs: Batch Workload Autoscaling Patterns"
 date: 2028-12-14T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "KEDA", "ScaledJobs", "Autoscaling", "Batch Processing", "Event-Driven"]
 categories:
 - Kubernetes

@@ -1,7 +1,7 @@
 ---
 title: "AWS EKS Cost Optimization: Spot Instances, Karpenter, and Right-Sizing"
 date: 2028-02-09T00:00:00-05:00
-draft: false
+draft: true
 tags: ["AWS", "EKS", "Karpenter", "Spot Instances", "Cost Optimization", "FinOps", "Kubernetes", "Graviton"]
 categories:
 - AWS

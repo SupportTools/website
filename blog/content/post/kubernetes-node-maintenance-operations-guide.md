@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Node Maintenance: Zero-Downtime Operations and Upgrades"
 date: 2027-12-29T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Node Maintenance", "PodDisruptionBudget", "kured", "Upgrades", "Operations"]
 categories: ["Kubernetes", "Operations"]
 author: "Matthew Mattox - mmattox@support.tools"

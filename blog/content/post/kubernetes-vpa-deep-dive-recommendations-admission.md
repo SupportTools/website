@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Vertical Pod Autoscaler Deep Dive: Recommendations and Admission"
 date: 2029-06-16T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "VPA", "Autoscaling", "Resource Management", "Goldilocks", "Performance"]
 categories: ["Kubernetes", "DevOps"]
 author: "Matthew Mattox - mmattox@support.tools"

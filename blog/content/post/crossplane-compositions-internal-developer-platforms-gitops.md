@@ -1,7 +1,7 @@
 ---
 title: "Crossplane Compositions: Building Internal Developer Platforms with GitOps"
 date: 2030-07-16T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Crossplane", "Kubernetes", "GitOps", "IDP", "AWS", "GCP", "Azure", "Infrastructure as Code"]
 categories:
 - Kubernetes

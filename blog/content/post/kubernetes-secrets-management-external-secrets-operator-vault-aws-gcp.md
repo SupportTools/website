@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Secrets Management: External Secrets Operator with Vault, AWS, and GCP"
 date: 2029-12-18T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "External Secrets", "Vault", "AWS", "GCP", "Secrets Management", "Security", "ESO"]
 categories:
 - Kubernetes

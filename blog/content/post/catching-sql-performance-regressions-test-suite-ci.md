@@ -1,6 +1,6 @@
 ---
 title: "Catching SQL Performance Regressions in Your Test Suite and CI"
-date: 2032-04-26T09:00:00-05:00
+date: 2027-04-23T09:00:00-05:00
 draft: false
 tags: ["SQL", "Performance", "Testing", "CI", "PHPUnit", "Pest", "Laravel", "Django", "Go", "N+1", "Database", "DevOps"]
 categories:

@@ -1,7 +1,7 @@
 ---
 title: "Linux Job Scheduling: cron, systemd Timers, and Kubernetes CronJobs Compared"
 date: 2030-06-11T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "cron", "systemd", "Kubernetes", "CronJob", "Job Scheduling", "DevOps", "System Administration"]
 categories:
 - Linux

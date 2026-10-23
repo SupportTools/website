@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Custom Scheduler: Building and Deploying Scheduling Plugins"
 date: 2029-01-15T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Scheduler", "Scheduling Framework", "Custom Scheduler", "Plugin Development", "Go"]
 categories:
 - Kubernetes

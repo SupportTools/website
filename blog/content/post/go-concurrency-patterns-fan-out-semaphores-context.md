@@ -1,7 +1,7 @@
 ---
 title: "Go Concurrency Patterns: Fan-Out/Fan-In, Semaphores, and Context Cancellation"
 date: 2030-03-01T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Concurrency", "Goroutines", "Context", "Channels", "Performance"]
 categories: ["Go", "Performance"]
 author: "Matthew Mattox - mmattox@support.tools"

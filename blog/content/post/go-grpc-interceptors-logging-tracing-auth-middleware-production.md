@@ -1,7 +1,7 @@
 ---
 title: "Go gRPC Interceptors: Logging, Tracing, and Auth Middleware for Production"
 date: 2031-05-20T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "gRPC", "Interceptors", "OpenTelemetry", "JWT", "mTLS", "Middleware", "Observability"]
 categories:
 - Go

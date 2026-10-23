@@ -1,7 +1,7 @@
 ---
 title: "Linux eBPF XDP Programs for High-Performance Packet Processing and DDoS Mitigation at Line Rate"
 date: 2031-06-13T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "eBPF", "XDP", "Networking", "DDoS", "Performance", "Security", "Packet Processing"]
 categories:
 - Linux

@@ -1,7 +1,7 @@
 ---
 title: "Go Profiling in Production: pprof, Continuous Profiling with Pyroscope, and Performance Analysis"
 date: 2030-01-11T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Golang", "Profiling", "pprof", "Pyroscope", "Performance", "Flame Graphs"]
 categories: ["Go", "Observability"]
 author: "Matthew Mattox - mmattox@support.tools"

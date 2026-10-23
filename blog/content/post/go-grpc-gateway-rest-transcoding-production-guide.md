@@ -1,7 +1,7 @@
 ---
 title: "Go: Implementing a gRPC Gateway for REST-to-gRPC Transcoding with grpc-gateway"
 date: 2031-09-20T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "gRPC", "REST", "API Gateway", "grpc-gateway", "Protobuf"]
 categories:
 - Go

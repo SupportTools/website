@@ -1,7 +1,7 @@
 ---
 title: "Linux Kernel Debugging: kprobes, kretprobes, and Dynamic Tracing"
 date: 2029-05-11T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Kernel", "kprobes", "Debugging", "eBPF", "bpftrace", "perf", "SystemTap"]
 categories: ["Linux", "Systems Programming"]
 author: "Matthew Mattox - mmattox@support.tools"

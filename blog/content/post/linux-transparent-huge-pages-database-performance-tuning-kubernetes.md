@@ -1,7 +1,7 @@
 ---
 title: "Linux Transparent Huge Pages: Database Performance Tuning and Kubernetes Impact"
 date: 2030-09-30T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Performance", "THP", "PostgreSQL", "Redis", "Kubernetes", "Huge Pages", "Memory Management"]
 categories:
 - Linux

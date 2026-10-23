@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes StatefulSet Rolling Upgrades: Zero-Downtime Database Operator Patterns"
 date: 2030-06-02T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "StatefulSet", "Rolling Upgrades", "PostgreSQL", "Redis", "Operators", "Databases"]
 categories:
 - Kubernetes

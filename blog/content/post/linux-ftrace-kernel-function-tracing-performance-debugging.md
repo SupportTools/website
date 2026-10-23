@@ -1,7 +1,7 @@
 ---
 title: "Linux ftrace: Kernel Function Tracing for Performance and Debugging"
 date: 2030-05-29T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "ftrace", "Performance", "Debugging", "Kernel", "Tracing", "Systems"]
 categories:
 - Linux

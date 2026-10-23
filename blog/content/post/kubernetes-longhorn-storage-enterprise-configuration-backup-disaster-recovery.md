@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Longhorn Storage: Enterprise Configuration, Backup, and Disaster Recovery"
 date: 2030-09-21T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Longhorn", "Storage", "Backup", "Disaster Recovery", "Production", "S3"]
 categories:
 - Kubernetes

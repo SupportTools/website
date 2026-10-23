@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes VPA Vertical Pod Autoscaler: Recommender, Updater, and Admission Controller Integration in Production"
 date: 2032-04-06T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "VPA", "Autoscaling", "Resource Management", "VerticalPodAutoscaler", "Performance", "Cost Optimization"]
 categories:
 - Kubernetes

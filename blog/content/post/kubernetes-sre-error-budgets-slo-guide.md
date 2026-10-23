@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes SRE: Error Budgets, SLOs, and Reliability Engineering at Scale"
 date: 2027-07-30T00:00:00-05:00
-draft: false
+draft: true
 tags: ["SRE", "Kubernetes", "SLO", "Error Budget", "Reliability"]
 categories:
 - SRE

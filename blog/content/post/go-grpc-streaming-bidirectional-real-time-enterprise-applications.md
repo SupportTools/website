@@ -1,7 +1,7 @@
 ---
 title: "Go gRPC Streaming: Bidirectional Real-Time Communication for Enterprise Applications"
 date: 2030-11-28T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "gRPC", "Streaming", "Protobuf", "Microservices", "Real-Time", "Enterprise"]
 categories: ["Go", "Microservices"]
 author: "Matthew Mattox - mmattox@support.tools"

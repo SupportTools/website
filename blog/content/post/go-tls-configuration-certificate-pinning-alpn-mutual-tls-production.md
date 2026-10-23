@@ -1,7 +1,7 @@
 ---
 title: "Go TLS Configuration: Certificate Pinning, ALPN, and Mutual TLS in Production"
 date: 2031-02-16T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "TLS", "Security", "mTLS", "ALPN", "Certificates", "Production"]
 categories:
 - Go

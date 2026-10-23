@@ -1,7 +1,7 @@
 ---
 title: "Go API Rate Limiting: Token Buckets, Sliding Windows, and Redis-Based Distributed Limiting"
 date: 2028-01-18T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Rate Limiting", "Redis", "API", "Middleware", "Performance", "Security"]
 categories: ["Go", "API Design"]
 author: "Matthew Mattox - mmattox@support.tools"

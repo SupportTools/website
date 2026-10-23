@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Resource Management: Requests, Limits, and QoS Deep Dive"
 date: 2027-05-09T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Resources", "CPU", "Memory", "QoS", "LimitRange", "ResourceQuota"]
 categories: ["Kubernetes", "Operations"]
 author: "Matthew Mattox - mmattox@support.tools"

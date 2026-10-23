@@ -1,7 +1,7 @@
 ---
 title: "Terraform Enterprise Patterns: Modules, Workspaces, and State Management at Scale"
 date: 2028-09-29T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Terraform", "Infrastructure as Code", "DevOps", "AWS", "Kubernetes"]
 categories:
 - Terraform

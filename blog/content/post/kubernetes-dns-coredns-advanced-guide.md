@@ -1,7 +1,7 @@
 ---
 title: "CoreDNS Advanced Configuration: DNS Architecture for Production Kubernetes Clusters"
 date: 2027-08-08T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "CoreDNS", "DNS", "Networking"]
 categories:
 - Kubernetes

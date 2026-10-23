@@ -1,7 +1,7 @@
 ---
 title: "Linux Process Tracing with strace and ltrace: Syscall Filtering, Timing, Process Trees, and Performance"
 date: 2032-01-29T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "strace", "ltrace", "Debugging", "System Calls", "Performance", "Tracing"]
 categories:
 - Linux

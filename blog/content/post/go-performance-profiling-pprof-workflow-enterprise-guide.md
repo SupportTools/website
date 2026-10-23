@@ -1,7 +1,7 @@
 ---
 title: "Go Performance Profiling Workflow: pprof HTTP Endpoint, go tool pprof, inuse_space vs alloc_space, Mutex Profiling"
 date: 2031-11-26T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Golang", "Performance", "Profiling", "pprof", "Observability", "Memory Management"]
 categories:
 - Go

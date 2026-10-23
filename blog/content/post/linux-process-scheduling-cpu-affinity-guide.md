@@ -1,7 +1,7 @@
 ---
 title: "Linux Process Scheduling and CPU Affinity for Latency-Sensitive Workloads"
 date: 2028-05-02T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Scheduler", "CPU Affinity", "NUMA", "Real-time", "Latency"]
 categories: ["Linux", "Performance"]
 author: "Matthew Mattox - mmattox@support.tools"

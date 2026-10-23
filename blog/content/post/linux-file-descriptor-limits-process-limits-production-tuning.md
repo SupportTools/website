@@ -1,7 +1,7 @@
 ---
 title: "Linux File Descriptor Limits and Process Limits: Production Tuning"
 date: 2029-06-26T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Performance", "File Descriptors", "ulimit", "cgroups", "systemd", "Kubernetes"]
 categories: ["Linux", "Operations"]
 author: "Matthew Mattox - mmattox@support.tools"

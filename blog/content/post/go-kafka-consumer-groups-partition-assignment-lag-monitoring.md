@@ -1,7 +1,7 @@
 ---
 title: "Go Kafka Consumer Groups: Partition Assignment and Lag Monitoring"
 date: 2029-08-28T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Kafka", "Consumer Groups", "Prometheus", "Observability", "sarama", "confluent-kafka-go"]
 categories: ["Go", "Kafka", "Observability"]
 author: "Matthew Mattox - mmattox@support.tools"

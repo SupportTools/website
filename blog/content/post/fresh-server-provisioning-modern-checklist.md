@@ -1,7 +1,7 @@
 ---
 title: "The Modern Fresh-Server Checklist: Provisioning a Production Linux Host From Scratch"
 date: 2032-04-29T09:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Server Hardening", "SSH", "nftables", "Ansible", "cloud-init", "fail2ban", "Prometheus", "System Administration", "Security", "Automation", "Backups"]
 categories:
 - Linux

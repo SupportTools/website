@@ -1,7 +1,7 @@
 ---
 title: "Linux Power Management: cpupower, Turbo Boost, Energy-Performance Governors, RAPL Power Capping, and Thermal Throttling"
 date: 2031-12-30T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Power Management", "cpupower", "RAPL", "Thermal", "Performance", "System Administration"]
 categories:
 - Linux

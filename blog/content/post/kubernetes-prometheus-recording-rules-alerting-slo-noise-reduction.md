@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Prometheus Recording Rules and Alerting: SLO-Based Alerting and Noise Reduction"
 date: 2031-08-06T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Prometheus", "Kubernetes", "Alerting", "SLO", "Recording Rules", "Observability", "Monitoring", "AlertManager"]
 categories:
 - Kubernetes

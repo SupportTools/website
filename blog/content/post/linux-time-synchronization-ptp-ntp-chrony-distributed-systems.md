@@ -1,7 +1,7 @@
 ---
 title: "Linux Time Synchronization: PTP, NTP, and Chrony for Distributed Systems"
 date: 2030-08-30T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "NTP", "PTP", "Chrony", "Distributed Systems", "Kubernetes", "Time Sync"]
 categories:
 - Linux

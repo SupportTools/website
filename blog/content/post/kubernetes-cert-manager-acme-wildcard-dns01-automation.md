@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Cert-Manager ACME: Wildcard Certificates and DNS-01 Challenge Automation"
 date: 2030-12-21T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Cert-Manager", "ACME", "TLS", "DNS", "Route53", "Cloudflare", "Let's Encrypt"]
 categories:
 - Kubernetes

@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Flagger: Progressive Delivery with Canary Analysis and Metrics"
 date: 2029-02-21T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Flagger", "Canary", "Progressive Delivery", "Istio", "Observability"]
 categories:
 - Kubernetes

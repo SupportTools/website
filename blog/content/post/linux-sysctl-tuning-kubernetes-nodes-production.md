@@ -1,7 +1,7 @@
 ---
 title: "Linux Kernel Parameters: sysctl Tuning for Production Kubernetes Nodes"
 date: 2030-06-19T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Kubernetes", "Performance", "sysctl", "Kernel", "System Administration"]
 categories:
 - Linux

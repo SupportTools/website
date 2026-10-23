@@ -1,7 +1,7 @@
 ---
 title: "Service Mesh Comparison 2028: Istio, Linkerd, Cilium, and Ambient Mode"
 date: 2028-02-07T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Service Mesh", "Istio", "Linkerd", "Cilium", "eBPF", "mTLS", "Kubernetes", "Ambient Mode"]
 categories:
 - Kubernetes

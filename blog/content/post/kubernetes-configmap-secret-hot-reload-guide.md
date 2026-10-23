@@ -1,6 +1,6 @@
 ---
 title: "Kubernetes ConfigMap and Secret Hot Reload: Dynamic Configuration Without Restarts"
-date: 2027-05-04T00:00:00-05:00
+date: 2026-11-27T00:00:00-06:00
 draft: false
 tags: ["Kubernetes", "ConfigMap", "Secrets", "Hot Reload", "Reloader", "Configuration"]
 categories: ["Kubernetes", "Operations"]

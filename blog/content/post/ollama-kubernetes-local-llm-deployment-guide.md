@@ -1,7 +1,7 @@
 ---
 title: "Ollama on Kubernetes: Self-Hosted LLM Deployment for Enterprise"
 date: 2027-12-17T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Ollama", "Kubernetes", "LLM", "GPU", "StatefulSet", "Open-WebUI", "AI", "Self-Hosted"]
 categories:
 - Kubernetes

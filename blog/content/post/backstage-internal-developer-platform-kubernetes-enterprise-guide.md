@@ -1,7 +1,7 @@
 ---
 title: "Backstage Internal Developer Platform on Kubernetes: Enterprise Implementation Guide"
 date: 2026-12-19T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Backstage", "Internal Developer Platform", "Platform Engineering", "Kubernetes", "Developer Experience", "IDP"]
 categories:
 - Platform Engineering

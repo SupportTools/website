@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Pod Security Admission: Replacing PodSecurityPolicy"
 date: 2027-12-11T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Security", "Pod Security Admission", "PSA", "PSP", "seccomp", "AppArmor", "RBAC"]
 categories:
 - Kubernetes

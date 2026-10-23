@@ -1,7 +1,7 @@
 ---
 title: "Linux Bonding and LACP: Network Interface Aggregation"
 date: 2029-10-21T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Networking", "Bonding", "LACP", "High Availability", "Network Performance"]
 categories: ["Linux", "Networking", "System Administration"]
 author: "Matthew Mattox - mmattox@support.tools"

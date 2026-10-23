@@ -1,7 +1,7 @@
 ---
 title: "Go gRPC Health Checking: Health Protocol, Reflection, and gRPC Server Management"
 date: 2030-04-07T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "gRPC", "Health Checking", "Kubernetes", "Observability", "Load Balancing", "Protobuf"]
 categories: ["Go", "gRPC", "Kubernetes"]
 author: "Matthew Mattox - mmattox@support.tools"

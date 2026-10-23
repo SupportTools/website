@@ -1,7 +1,7 @@
 ---
 title: "Go Cryptography: AES-GCM, RSA-OAEP, and Elliptic Curve Patterns"
 date: 2029-11-11T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Cryptography", "AES-GCM", "RSA", "ECDH", "ECDSA", "Security", "TLS"]
 categories:
 - Go

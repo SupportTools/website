@@ -1,7 +1,7 @@
 ---
 title: "Linux Crash Consistency: fsck, Journal Replay, and Power-Loss Testing"
 date: 2029-11-22T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Filesystem", "ext4", "btrfs", "Storage", "fsck", "Reliability"]
 categories: ["Linux", "Storage"]
 author: "Matthew Mattox - mmattox@support.tools"

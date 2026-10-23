@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Advanced Workload Scheduling: Priorities, Preemption, and Topology"
 date: 2028-04-02T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Scheduling", "PriorityClass", "Topology", "Descheduler", "Affinity", "Production"]
 categories: ["Kubernetes", "Operations"]
 author: "Matthew Mattox - mmattox@support.tools"

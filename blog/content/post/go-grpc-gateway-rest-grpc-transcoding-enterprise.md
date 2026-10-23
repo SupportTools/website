@@ -1,7 +1,7 @@
 ---
 title: "Go gRPC Gateway: REST/gRPC Transcoding for Enterprise APIs"
 date: 2030-01-18T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "gRPC", "REST", "API", "Protobuf", "OpenAPI", "Microservices"]
 categories: ["Go", "API Design"]
 author: "Matthew Mattox - mmattox@support.tools"

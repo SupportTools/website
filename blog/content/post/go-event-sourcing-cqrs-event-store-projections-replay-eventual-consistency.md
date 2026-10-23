@@ -1,7 +1,7 @@
 ---
 title: "Go Event Sourcing with CQRS: Event Store Implementation, Projections, Replay, and Eventual Consistency Patterns"
 date: 2031-10-20T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Event Sourcing", "CQRS", "Architecture", "Distributed Systems", "PostgreSQL"]
 categories:
 - Go

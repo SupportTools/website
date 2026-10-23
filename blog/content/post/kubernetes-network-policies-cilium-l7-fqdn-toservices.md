@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Network Policies with Cilium: L7 Policies, FQDN Policies, and ToServices"
 date: 2030-03-12T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Cilium", "Network Policy", "eBPF", "Security", "L7", "FQDN"]
 categories: ["Kubernetes", "Networking", "Security"]
 author: "Matthew Mattox - mmattox@support.tools"

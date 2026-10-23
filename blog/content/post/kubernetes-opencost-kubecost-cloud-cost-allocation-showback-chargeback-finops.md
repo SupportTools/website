@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes OpenCost and Kubecost: Cloud Cost Allocation, Showback/Chargeback, and FinOps Dashboards"
 date: 2031-07-21T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "OpenCost", "Kubecost", "FinOps", "Cost Management", "Cloud Cost"]
 categories:
 - Kubernetes

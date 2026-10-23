@@ -1,7 +1,7 @@
 ---
 title: "Go Workspace Mode: Multi-Module Development"
 date: 2029-04-06T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Golang", "Modules", "Workspace", "Monorepo", "Development"]
 categories: ["Go", "Software Engineering"]
 author: "Matthew Mattox - mmattox@support.tools"

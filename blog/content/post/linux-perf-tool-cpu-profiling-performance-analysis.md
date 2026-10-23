@@ -1,7 +1,7 @@
 ---
 title: "Linux perf Tool: CPU Profiling and Performance Analysis"
 date: 2029-04-01T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Performance", "perf", "Profiling", "Flame Graphs", "Observability"]
 categories: ["Linux", "Performance"]
 author: "Matthew Mattox - mmattox@support.tools"

@@ -1,7 +1,7 @@
 ---
 title: "Dagger: Portable CI/CD Pipelines as Code in Go"
 date: 2027-12-15T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Dagger", "CI/CD", "Go", "DevOps", "Containers", "GitHub Actions", "Pipeline", "Build Automation"]
 categories:
 - DevOps

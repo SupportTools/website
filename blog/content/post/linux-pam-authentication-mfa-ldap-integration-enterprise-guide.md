@@ -1,7 +1,7 @@
 ---
 title: "Linux PAM Authentication: Multi-Factor Auth and LDAP Integration for Enterprise Systems"
 date: 2030-10-07T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "PAM", "Authentication", "LDAP", "MFA", "Security", "Active Directory"]
 categories:
 - Linux

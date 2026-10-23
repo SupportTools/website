@@ -1,7 +1,7 @@
 ---
 title: "Go HTTP/2 and HTTP/3: Multiplexing and QUIC for High-Performance APIs"
 date: 2031-02-13T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "HTTP/2", "HTTP/3", "QUIC", "Performance", "TLS", "Networking"]
 categories:
 - Go

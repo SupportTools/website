@@ -1,6 +1,6 @@
 ---
 title: "Go Singleflight and Coalesce: Preventing Cache Stampedes in High-Traffic APIs"
-date: 2031-03-28T00:00:00-05:00
+date: 2027-03-05T00:00:00-06:00
 draft: false
 tags: ["Go", "Performance", "Caching", "Singleflight", "Redis", "Concurrency", "API"]
 categories:

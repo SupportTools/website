@@ -1,7 +1,7 @@
 ---
 title: "Go Structured Concurrency: Context Trees and Lifecycle Management"
 date: 2029-07-29T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Concurrency", "Context", "errgroup", "Goroutines", "Performance"]
 categories: ["Go", "Systems Programming"]
 author: "Matthew Mattox - mmattox@support.tools"

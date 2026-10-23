@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Tekton Pipelines v1: PipelineRun Orchestration, Workspace Sharing, Results Passing, and Triggers"
 date: 2031-10-22T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Tekton", "CI/CD", "Pipelines", "GitOps", "DevOps"]
 categories:
 - Kubernetes

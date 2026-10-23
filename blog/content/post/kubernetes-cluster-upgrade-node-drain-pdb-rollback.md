@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Cluster Upgrade Best Practices: Node Drain Strategies, PDB Enforcement, and Rollback Procedures"
 date: 2031-09-25T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Cluster Upgrade", "Node Drain", "PDB", "Rollback", "Operations"]
 categories:
 - Kubernetes

@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Ingress-NGINX Advanced: Custom Snippets, ModSecurity WAF, and Rate Limiting"
 date: 2030-12-27T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "NGINX", "Ingress", "ModSecurity", "WAF", "Rate Limiting", "Security", "OWASP"]
 categories:
 - Kubernetes

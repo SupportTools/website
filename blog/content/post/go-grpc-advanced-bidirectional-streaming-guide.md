@@ -1,7 +1,7 @@
 ---
 title: "Go gRPC Advanced Patterns: Bidirectional Streaming, Interceptors, and Production Hardening"
 date: 2029-11-29T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "gRPC", "Streaming", "Interceptors", "Production", "Health Checking", "gRPC-Web"]
 categories:
 - Go

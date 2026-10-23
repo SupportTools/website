@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Vertical Pod Autoscaler Deep Dive: Recommendations, Modes, and Pitfalls"
 date: 2029-01-08T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "VPA", "Autoscaling", "Resource Management", "Performance"]
 categories:
 - Kubernetes

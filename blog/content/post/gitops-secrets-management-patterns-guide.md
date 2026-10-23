@@ -1,7 +1,7 @@
 ---
 title: "GitOps Secrets Management: Sealed Secrets, SOPS, and External Secrets"
 date: 2028-01-14T00:00:00-05:00
-draft: false
+draft: true
 tags: ["GitOps", "Secrets Management", "Sealed Secrets", "SOPS", "External Secrets", "ArgoCD", "Vault"]
 categories:
 - Kubernetes

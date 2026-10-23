@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Cost Optimization: Resource Rightsizing, Spot Instances, and FinOps"
 date: 2027-09-03T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "FinOps", "Cost Optimization", "Autoscaling"]
 categories:
 - Kubernetes

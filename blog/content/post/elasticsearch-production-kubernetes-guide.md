@@ -1,7 +1,7 @@
 ---
 title: "Elasticsearch on Kubernetes: Production Deployment with ECK"
 date: 2027-12-04T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Elasticsearch", "ECK", "Kubernetes", "Search", "Logging"]
 categories:
 - Kubernetes

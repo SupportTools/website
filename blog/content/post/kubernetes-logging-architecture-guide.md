@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Logging Architecture: Collecting, Routing, and Storing Application Logs"
 date: 2027-08-31T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Logging", "Observability", "Fluent Bit"]
 categories:
 - Kubernetes

@@ -1,7 +1,7 @@
 ---
 title: "Platform Engineering: Building Golden Paths for Developer Self-Service"
 date: 2028-01-09T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Platform Engineering", "Internal Developer Platform", "Backstage", "Crossplane", "GitOps", "Developer Experience", "Golden Paths"]
 categories:
 - Platform Engineering

@@ -1,7 +1,7 @@
 ---
 title: "Go Functional Options Pattern: API Design for Extensible Libraries"
 date: 2031-04-01T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Golang", "API Design", "Software Architecture", "Design Patterns", "Libraries"]
 categories:
 - Go

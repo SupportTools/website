@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes ConfigMaps and Secrets: Advanced Configuration Management Patterns"
 date: 2027-08-15T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Configuration", "Secrets", "Security"]
 categories:
 - Kubernetes

@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Serverless with OpenFaaS and Knative Functions: FaaS Production Deployment"
 date: 2030-10-31T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "OpenFaaS", "Knative", "Serverless", "FaaS", "Autoscaling", "Event-Driven"]
 categories:
 - Kubernetes

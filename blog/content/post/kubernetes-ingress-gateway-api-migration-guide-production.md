@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Ingress to Gateway API Migration: Practical Guide with Nginx, Traefik, and Contour"
 date: 2028-06-28T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Gateway API", "Ingress", "Nginx", "Traefik", "Migration"]
 categories:
 - Kubernetes

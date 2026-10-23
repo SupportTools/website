@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Gateway API: gRPC Routing and TLS Termination Patterns"
 date: 2028-11-01T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Gateway API", "gRPC", "TLS", "Networking"]
 categories:
 - Kubernetes

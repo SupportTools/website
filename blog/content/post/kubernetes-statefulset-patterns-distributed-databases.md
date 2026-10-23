@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes StatefulSet Patterns for Distributed Databases: Ordering, Identity, and Stable Storage"
 date: 2031-09-22T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "StatefulSet", "Databases", "Distributed Systems", "Storage", "PostgreSQL"]
 categories:
 - Kubernetes

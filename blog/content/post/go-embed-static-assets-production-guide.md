@@ -1,7 +1,7 @@
 ---
 title: "Go Embed and Static Assets: Bundling Frontend, Templates, and Configuration into Go Binaries"
 date: 2028-07-04T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Embed", "Static Assets", "Build", "Deployment"]
 categories:
 - Go

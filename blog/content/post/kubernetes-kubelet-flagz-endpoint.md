@@ -1,6 +1,6 @@
 ---
 title: "Demystifying Kubelet Configuration: The New /flagz Endpoint in Kubernetes v1.33"
-date: 2026-11-17T09:00:00-05:00
+date: 2026-11-06T09:00:00-06:00
 draft: false
 tags: ["Kubernetes", "Kubelet", "v1.33", "Observability", "Debugging", "DevOps", "KEP-4828"]
 categories:

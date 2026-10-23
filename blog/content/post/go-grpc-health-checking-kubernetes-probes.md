@@ -1,7 +1,7 @@
 ---
 title: "Go gRPC Health Checking: Standard Protocol and Kubernetes Probes"
 date: 2029-10-03T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "gRPC", "Kubernetes", "Health Checks", "Observability", "Production"]
 categories: ["Go", "Kubernetes"]
 author: "Matthew Mattox - mmattox@support.tools"

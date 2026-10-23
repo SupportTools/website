@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Explained: The Ultimate Amusement Park Analogy for Beginners"
 date: 2026-11-05T09:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "K8s", "Container Orchestration", "Beginner Guide", "Pods", "Services", "Deployments", "Ingress", "ConfigMaps", "Secrets", "Beginner Guides"]
 categories:
 - Kubernetes

@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Storage Performance Tuning: CSI, Block Devices, and IO Optimization"
 date: 2028-03-02T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Storage", "CSI", "PVC", "Longhorn", "fio", "Performance", "Block Devices"]
 categories: ["Kubernetes", "Storage"]
 author: "Matthew Mattox - mmattox@support.tools"

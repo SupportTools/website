@@ -1,7 +1,7 @@
 ---
 title: "Linux Performance Analysis with perf: Flame Graphs, Hardware Counters, and Production Profiling"
 date: 2031-06-26T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Performance", "perf", "Flame Graphs", "Profiling", "Observability", "System Administration"]
 categories:
 - Linux

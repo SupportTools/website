@@ -1,7 +1,7 @@
 ---
 title: "HashiCorp Vault Kubernetes Secrets Engine: Dynamic Secret Generation"
 date: 2027-11-10T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Vault", "Kubernetes", "Secrets", "Security", "PKI"]
 categories:
 - Security

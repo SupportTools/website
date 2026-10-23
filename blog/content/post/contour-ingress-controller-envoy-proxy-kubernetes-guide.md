@@ -1,7 +1,7 @@
 ---
 title: "Contour Ingress Controller: HTTPProxy and Envoy for Kubernetes"
 date: 2027-01-10T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Contour", "Ingress", "Envoy", "Networking"]
 categories: ["Kubernetes", "Networking", "Cloud Native"]
 author: "Matthew Mattox - mmattox@support.tools"

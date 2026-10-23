@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Observability Pipeline: OpenTelemetry Collector Configuration"
 date: 2029-07-16T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "OpenTelemetry", "Observability", "Prometheus", "Tracing", "Metrics", "Logging"]
 categories: ["Kubernetes", "Observability", "DevOps"]
 author: "Matthew Mattox - mmattox@support.tools"

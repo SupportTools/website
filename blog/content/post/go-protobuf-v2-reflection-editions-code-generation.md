@@ -1,7 +1,7 @@
 ---
 title: "Go Protobuf v2: Reflection, Editions, and Code Generation"
 date: 2029-07-17T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Golang", "Protobuf", "gRPC", "Code Generation", "API Design", "buf"]
 categories: ["Go", "API Design", "Developer Tools"]
 author: "Matthew Mattox - mmattox@support.tools"

@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Service Mesh Comparison 2029: Istio vs Linkerd vs Cilium"
 date: 2029-06-30T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Service Mesh", "Istio", "Linkerd", "Cilium", "eBPF", "mTLS"]
 categories: ["Kubernetes", "Networking", "Security"]
 author: "Matthew Mattox - mmattox@support.tools"

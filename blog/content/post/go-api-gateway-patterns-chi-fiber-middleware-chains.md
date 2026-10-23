@@ -1,7 +1,7 @@
 ---
 title: "Go API Gateway Patterns: Building Custom Middleware Chains with Chi and Fiber"
 date: 2030-10-23T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "API Gateway", "Chi", "Fiber", "Middleware", "Rate Limiting", "Circuit Breaker"]
 categories:
 - Go

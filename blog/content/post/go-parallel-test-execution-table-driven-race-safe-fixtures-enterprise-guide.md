@@ -1,7 +1,7 @@
 ---
 title: "Go Parallel Test Execution: t.Parallel(), Table-Driven Tests, Race-Safe Fixtures, Subtest Isolation, and -count Flag"
 date: 2032-02-07T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Testing", "t.Parallel", "Table-Driven Tests", "Race Detector", "Test Fixtures", "go test", "Subtests"]
 categories: ["Go", "Testing", "DevOps"]
 author: "Matthew Mattox - mmattox@support.tools"

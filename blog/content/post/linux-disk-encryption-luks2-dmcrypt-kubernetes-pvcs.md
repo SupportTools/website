@@ -1,7 +1,7 @@
 ---
 title: "Linux Disk Encryption: LUKS2, dm-crypt, and Encrypted Kubernetes PVCs"
 date: 2030-09-04T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "LUKS", "dm-crypt", "Encryption", "Kubernetes", "Security", "Storage", "PVC"]
 categories:
 - Linux

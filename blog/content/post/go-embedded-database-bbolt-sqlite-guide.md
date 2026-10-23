@@ -1,7 +1,7 @@
 ---
 title: "Embedded Databases in Go: bbolt, SQLite, and DuckDB for Local State"
 date: 2028-11-06T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Database", "bbolt", "SQLite", "Embedded"]
 categories:
 - Go

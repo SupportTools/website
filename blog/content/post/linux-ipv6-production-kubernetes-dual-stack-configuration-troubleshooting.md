@@ -1,7 +1,7 @@
 ---
 title: "Linux IPv6 in Production: Kubernetes Dual-Stack Configuration and Troubleshooting"
 date: 2030-10-20T00:00:00-05:00
-draft: false
+draft: true
 tags: ["IPv6", "Kubernetes", "Dual-Stack", "Networking", "Linux", "SLAAC", "DHCPv6"]
 categories:
 - Kubernetes

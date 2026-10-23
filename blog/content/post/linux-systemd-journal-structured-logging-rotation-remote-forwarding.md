@@ -1,7 +1,7 @@
 ---
 title: "Linux Systemd Journal: Structured Logging, Log Rotation, and Remote Log Forwarding"
 date: 2030-10-17T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Systemd", "Journald", "Logging", "Loki", "Rsyslog", "Observability"]
 categories:
 - Linux

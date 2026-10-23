@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes ArgoCD ApplicationSets Deep Dive: Cluster Generators, Git Generators, and Matrix Combinators"
 date: 2031-10-19T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "ArgoCD", "GitOps", "ApplicationSets", "Multi-Cluster", "CI/CD"]
 categories:
 - Kubernetes

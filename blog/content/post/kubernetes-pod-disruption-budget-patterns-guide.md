@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes PodDisruptionBudgets: Ensuring Availability During Voluntary Disruptions"
 date: 2027-05-08T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "PodDisruptionBudget", "High Availability", "Operations", "Maintenance"]
 categories: ["Kubernetes", "Operations"]
 author: "Matthew Mattox - mmattox@support.tools"

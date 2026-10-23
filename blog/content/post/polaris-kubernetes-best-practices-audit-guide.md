@@ -1,7 +1,7 @@
 ---
 title: "Polaris: Kubernetes Best Practices Auditing and Admission Control"
 date: 2027-02-23T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Polaris", "Best Practices", "Security", "Audit"]
 categories: ["Security", "Kubernetes", "Compliance"]
 author: "Matthew Mattox - mmattox@support.tools"

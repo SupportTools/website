@@ -1,7 +1,7 @@
 ---
 title: "Advanced Kubernetes Pod Scheduling: Affinity, Topology, and Priority"
 date: 2027-12-05T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Scheduling", "Affinity", "Topology Spread", "Priority"]
 categories:
 - Kubernetes

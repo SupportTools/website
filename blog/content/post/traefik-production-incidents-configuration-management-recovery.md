@@ -1,7 +1,7 @@
 ---
 title: "Traefik Production Incidents: Configuration Management and Recovery"
 date: 2026-12-06T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Traefik", "Kubernetes", "Incident Response", "Configuration Management", "Load Balancer"]
 categories: ["DevOps", "Incident Response", "Kubernetes"]
 author: "Matthew Mattox - mmattox@support.tools"

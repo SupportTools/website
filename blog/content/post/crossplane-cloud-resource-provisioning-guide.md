@@ -1,7 +1,7 @@
 ---
 title: "Crossplane: Cloud Resource Provisioning and Infrastructure Composition on Kubernetes"
 date: 2027-04-19T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Crossplane", "Infrastructure as Code", "AWS", "GitOps", "Platform Engineering"]
 categories: ["Kubernetes", "Platform Engineering"]
 author: "Matthew Mattox - mmattox@support.tools"

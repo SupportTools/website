@@ -1,7 +1,7 @@
 ---
 title: "ArgoCD ApplicationSets: Advanced Generators for Multi-Cluster GitOps"
 date: 2028-10-06T00:00:00-05:00
-draft: false
+draft: true
 tags: ["ArgoCD", "GitOps", "Kubernetes", "ApplicationSets", "CI/CD"]
 categories:
 - ArgoCD

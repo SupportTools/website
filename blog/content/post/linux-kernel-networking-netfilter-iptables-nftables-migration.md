@@ -1,7 +1,7 @@
 ---
 title: "Linux Kernel Networking: Netfilter Hooks, iptables Internals, and nftables Migration"
 date: 2031-08-29T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Netfilter", "iptables", "nftables", "Kernel", "Networking", "Security"]
 categories:
 - Linux

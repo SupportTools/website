@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Admission Webhooks: Building Custom Policy Enforcement at Scale"
 date: 2027-08-09T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Security", "Admission Webhooks", "Policy"]
 categories:
 - Kubernetes

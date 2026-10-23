@@ -1,7 +1,7 @@
 ---
 title: "Go Structured Concurrency with errgroup: Goroutine Lifecycle, Leak Detection, and Panic Recovery"
 date: 2031-11-16T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Golang", "Concurrency", "errgroup", "Goroutines", "Context", "Structured Concurrency"]
 categories:
 - Go

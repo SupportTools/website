@@ -1,7 +1,7 @@
 ---
 title: "Go gRPC Interceptors and Middleware: Cross-Cutting Concerns at Scale"
 date: 2030-07-10T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Golang", "gRPC", "Microservices", "Observability", "Authentication", "Middleware"]
 categories:
 - Go

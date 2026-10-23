@@ -1,7 +1,7 @@
 ---
 title: "Go: Implementing Feature Flags with LaunchDarkly and OpenFeature SDK for Progressive Delivery"
 date: 2031-07-09T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Feature Flags", "LaunchDarkly", "OpenFeature", "Progressive Delivery", "DevOps", "Golang"]
 categories: ["Go", "DevOps"]
 author: "Matthew Mattox - mmattox@support.tools"

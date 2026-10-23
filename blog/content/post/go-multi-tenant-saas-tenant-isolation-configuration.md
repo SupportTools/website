@@ -1,7 +1,7 @@
 ---
 title: "Go: Building a Multi-Tenant SaaS Application with Tenant Isolation and Per-Tenant Configuration"
 date: 2031-09-23T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Multi-Tenancy", "SaaS", "Architecture", "Security", "Database"]
 categories:
 - Go

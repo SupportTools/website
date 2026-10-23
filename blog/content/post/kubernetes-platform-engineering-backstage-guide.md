@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Platform Engineering with Backstage: Software Catalog and Golden Paths"
 date: 2028-05-04T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Backstage", "Platform Engineering", "IDP", "Developer Experience"]
 categories: ["Platform Engineering", "Kubernetes"]
 author: "Matthew Mattox - mmattox@support.tools"

@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes ExternalDNS: Automated DNS Record Management for Cloud Providers and Private Zones"
 date: 2031-07-27T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "ExternalDNS", "DNS", "Route53", "Cloud DNS", "Networking"]
 categories:
 - Kubernetes

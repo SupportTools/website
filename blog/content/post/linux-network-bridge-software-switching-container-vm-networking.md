@@ -1,7 +1,7 @@
 ---
 title: "Linux Network Bridge: Software Switching for Container and VM Networking"
 date: 2031-03-29T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Networking", "Bridge", "Docker", "Kubernetes", "KVM", "VLAN", "macvlan"]
 categories:
 - Linux

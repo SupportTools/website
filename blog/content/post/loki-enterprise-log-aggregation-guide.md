@@ -1,7 +1,7 @@
 ---
 title: "Loki Enterprise: Scalable Log Aggregation with Label-Based Indexing"
 date: 2027-11-05T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Loki", "Logging", "Kubernetes", "Grafana", "Observability"]
 categories:
 - Monitoring

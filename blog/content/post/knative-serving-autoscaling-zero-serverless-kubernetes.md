@@ -1,7 +1,7 @@
 ---
 title: "Knative Serving: Autoscaling to Zero and Back for Serverless Kubernetes Workloads"
 date: 2030-06-06T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Knative", "Kubernetes", "Serverless", "Autoscaling", "OpenTelemetry", "Cloud Native", "Scale-to-Zero"]
 categories:
 - Kubernetes

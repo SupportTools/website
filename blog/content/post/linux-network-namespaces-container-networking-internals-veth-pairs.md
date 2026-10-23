@@ -1,7 +1,7 @@
 ---
 title: "Linux Network Namespaces: Container Networking Internals and veth Pair Management"
 date: 2030-12-09T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Networking", "Containers", "Kubernetes", "CNI", "Network Namespaces", "veth", "iptables"]
 categories:
 - Linux

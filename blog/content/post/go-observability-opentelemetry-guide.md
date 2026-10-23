@@ -1,7 +1,7 @@
 ---
 title: "Go Observability with OpenTelemetry: Traces, Metrics, and Logs in Production"
 date: 2027-07-21T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "OpenTelemetry", "Observability", "Tracing", "Metrics"]
 categories:
 - Go

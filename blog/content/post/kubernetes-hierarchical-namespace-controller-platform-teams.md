@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Hierarchical Namespace Controller: Namespace Trees for Platform Teams"
 date: 2031-02-12T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "HNC", "Namespaces", "Platform Engineering", "RBAC", "Multi-tenancy"]
 categories:
 - Kubernetes

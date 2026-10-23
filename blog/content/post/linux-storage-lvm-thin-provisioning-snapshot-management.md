@@ -1,7 +1,7 @@
 ---
 title: "Linux Storage: LVM Thin Provisioning and Snapshot Management"
 date: 2029-10-24T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "LVM", "Storage", "Thin Provisioning", "Snapshots", "DevOps", "Containers"]
 categories: ["Linux", "Storage", "System Administration"]
 author: "Matthew Mattox - mmattox@support.tools"

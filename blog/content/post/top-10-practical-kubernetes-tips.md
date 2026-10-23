@@ -1,7 +1,7 @@
 ---
 title: "10 Practical Tips to Tame Kubernetes in Production"
 date: 2027-05-25T09:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "DevOps", "Best Practices", "Production", "Tips"]
 categories:
 - Kubernetes

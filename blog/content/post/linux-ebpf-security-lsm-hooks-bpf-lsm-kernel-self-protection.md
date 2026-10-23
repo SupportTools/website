@@ -1,7 +1,7 @@
 ---
 title: "Linux eBPF Security: LSM Hooks, BPF-LSM, and Kernel Self-Protection"
 date: 2030-04-23T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "eBPF", "BPF-LSM", "Security", "LSM", "Container Security", "Kernel", "Runtime Security"]
 categories: ["Linux", "Security"]
 author: "Matthew Mattox - mmattox@support.tools"

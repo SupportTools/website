@@ -1,6 +1,6 @@
 ---
 title: "Linux Kdump: Kernel Crash Dump Analysis with crash and gdb"
-date: 2029-10-04T00:00:00-05:00
+date: 2027-02-15T00:00:00-06:00
 draft: false
 tags: ["Linux", "Kdump", "Kernel", "Debugging", "Crash Analysis", "Production"]
 categories: ["Linux", "Operations"]

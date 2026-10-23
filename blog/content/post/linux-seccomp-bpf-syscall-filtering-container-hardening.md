@@ -1,7 +1,7 @@
 ---
 title: "Linux seccomp-BPF: Syscall Filtering, Container Hardening, libseccomp, and Audit Mode"
 date: 2031-12-27T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "seccomp", "Security", "Containers", "BPF", "Kernel", "Hardening"]
 categories:
 - Linux

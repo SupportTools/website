@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Multi-Tenancy with Virtual Clusters: vcluster Production Deployment"
 date: 2030-07-09T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "vcluster", "Multi-Tenancy", "Platform Engineering", "CI/CD", "Isolation", "DevOps"]
 categories:
 - Kubernetes

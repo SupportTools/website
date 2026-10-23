@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes ArgoCD Notifications: Alerting on Sync Status and Health"
 date: 2029-10-28T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "ArgoCD", "GitOps", "Notifications", "Slack", "PagerDuty", "Alerting"]
 categories: ["Kubernetes", "GitOps"]
 author: "Matthew Mattox - mmattox@support.tools"

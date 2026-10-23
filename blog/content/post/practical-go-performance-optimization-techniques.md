@@ -1,7 +1,7 @@
 ---
 title: "Practical Go Performance Optimization Techniques"
 date: 2027-03-30T09:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Performance", "Profiling", "Benchmarking", "Optimization", "pprof", "Memory Management"]
 categories:
 - Go

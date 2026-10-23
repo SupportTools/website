@@ -1,7 +1,7 @@
 ---
 title: "Enterprise System Monitoring with Telegraf: Advanced Hardware Telemetry and Infrastructure Diagnostics for Production Environments"
 date: 2026-11-30T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Telegraf", "Monitoring", "Hardware", "Telemetry", "Infrastructure", "Observability", "Performance", "Diagnostics"]
 categories: ["Monitoring", "Infrastructure", "DevOps"]
 author: "Matthew Mattox - mmattox@support.tools"

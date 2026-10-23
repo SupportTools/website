@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Resource Management: LimitRange, ResourceQuota, and Priority Classes"
 date: 2030-03-18T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Resource Management", "LimitRange", "ResourceQuota", "PriorityClass", "FinOps"]
 categories: ["Kubernetes", "Platform Engineering"]
 author: "Matthew Mattox - mmattox@support.tools"

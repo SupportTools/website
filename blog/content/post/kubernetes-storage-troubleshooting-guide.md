@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Storage Troubleshooting: PVC Stuck States, CSI Driver Issues, and Data Recovery"
 date: 2027-05-28T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Storage", "Troubleshooting", "PVC", "CSI", "Debugging"]
 categories: ["Kubernetes", "Troubleshooting"]
 author: "Matthew Mattox - mmattox@support.tools"

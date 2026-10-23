@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Multi-Cluster Service Discovery with Cilium Cluster Mesh"
 date: 2028-04-24T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Cilium", "Multi-Cluster", "Service Discovery", "eBPF"]
 categories: ["Kubernetes", "Networking"]
 author: "Matthew Mattox - mmattox@support.tools"

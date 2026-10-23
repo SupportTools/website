@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Grafana Mimir: Write Path Sharding, Query Federation, Per-Tenant Overrides, and Alertmanager Integration"
 date: 2032-03-07T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Mimir", "Grafana", "Kubernetes", "Prometheus", "Observability", "Monitoring", "Multi-tenant"]
 categories:
 - Kubernetes

@@ -1,7 +1,7 @@
 ---
 title: "Linux Network Namespaces: Container Networking Internals"
 date: 2029-04-08T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Networking", "Containers", "Kubernetes", "CNI", "iptables", "Network Namespaces"]
 categories: ["Linux", "Networking", "Containers"]
 author: "Matthew Mattox - mmattox@support.tools"

@@ -1,7 +1,7 @@
 ---
 title: "Linux Container Networking Deep Dive: Bridge Mode, Host Mode, and Macvlan"
 date: 2030-10-10T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Networking", "Containers", "Kubernetes", "CNI", "iptables", "Macvlan"]
 categories:
 - Linux

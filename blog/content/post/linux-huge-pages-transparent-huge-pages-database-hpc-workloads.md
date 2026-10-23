@@ -1,7 +1,7 @@
 ---
 title: "Linux Huge Pages and Transparent Huge Pages: Memory Management for Database and HPC Workloads"
 date: 2031-09-04T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Huge Pages", "THP", "Memory Management", "Database", "HPC", "Performance"]
 categories:
 - Linux

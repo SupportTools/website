@@ -1,6 +1,6 @@
 ---
 title: "Kubernetes ValidatingAdmissionPolicy (CEL-Based): Policy Rules, Namespace Selectors, Audit/Warn/Deny Modes"
-date: 2032-01-10T00:00:00-05:00
+date: 2027-04-07T00:00:00-05:00
 draft: false
 tags: ["Kubernetes", "Security", "CEL", "Admission Control", "Policy", "Kyverno", "OPA", "GitOps"]
 categories:

@@ -1,7 +1,7 @@
 ---
 title: "Linux SELinux for Kubernetes: Policy Development and Container Confinement"
 date: 2030-10-14T00:00:00-05:00
-draft: false
+draft: true
 tags: ["SELinux", "Kubernetes", "Security", "Linux", "Container Security", "Policy Development"]
 categories:
 - Security

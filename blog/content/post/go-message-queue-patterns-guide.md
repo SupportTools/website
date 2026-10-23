@@ -1,7 +1,7 @@
 ---
 title: "Message Queue Patterns in Go: Kafka, NATS, and RabbitMQ"
 date: 2028-03-28T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Kafka", "NATS", "RabbitMQ", "Messaging", "Distributed Systems", "Event Streaming"]
 categories: ["Go", "Architecture"]
 author: "Matthew Mattox - mmattox@support.tools"

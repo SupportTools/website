@@ -1,7 +1,7 @@
 ---
 title: "Zero Trust Architecture Implementation with Kubernetes and Service Mesh: Enterprise Security Framework"
 date: 2026-12-16T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Zero Trust", "Kubernetes", "Service Mesh", "Security", "Istio", "Network Policy", "mTLS", "Authentication", "Authorization", "Enterprise Security"]
 categories:
 - Security

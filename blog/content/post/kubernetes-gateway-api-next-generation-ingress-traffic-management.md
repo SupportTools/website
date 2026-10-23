@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Gateway API: Next-Generation Ingress and Traffic Management"
 date: 2029-04-02T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Gateway API", "Ingress", "Networking", "Service Mesh", "Traffic Management"]
 categories: ["Kubernetes", "Networking"]
 author: "Matthew Mattox - mmattox@support.tools"

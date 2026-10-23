@@ -1,7 +1,7 @@
 ---
 title: "Linux RAID Configuration: mdadm Arrays for Production Storage"
 date: 2031-05-01T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "RAID", "mdadm", "Storage", "Kubernetes", "Production", "System Administration"]
 categories: ["Linux", "Storage"]
 author: "Matthew Mattox - mmattox@support.tools"

@@ -1,6 +1,6 @@
 ---
 title: "Linux Socket Programming: AF_UNIX, Abstract Namespace, and SCM_RIGHTS"
-date: 2029-09-17T00:00:00-05:00
+date: 2027-02-05T00:00:00-06:00
 draft: false
 tags: ["Linux", "Sockets", "Systems Programming", "IPC", "Containers", "Go", "C"]
 categories: ["Linux", "Systems Programming"]

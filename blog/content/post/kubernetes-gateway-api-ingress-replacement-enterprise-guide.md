@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Gateway API: The Future of Traffic Management"
 date: 2026-12-30T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Gateway API", "Networking", "Ingress", "Traffic Management"]
 categories:
 - Kubernetes

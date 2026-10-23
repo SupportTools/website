@@ -1,7 +1,7 @@
 ---
 title: "Linux WireGuard VPN: Kernel Module Setup, Key Management, Peer Configuration, Roaming, Split Tunneling, and DNS Leak Prevention"
 date: 2032-02-18T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "WireGuard", "VPN", "Networking", "Security", "Kernel"]
 categories:
 - Linux

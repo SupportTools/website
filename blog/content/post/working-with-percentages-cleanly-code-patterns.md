@@ -1,7 +1,7 @@
 ---
 title: "Working With Percentages Cleanly: Code Patterns That Survive Production"
 date: 2032-05-10T09:00:00-05:00
-draft: false
+draft: true
 tags: ["Software Engineering", "Math", "Floating Point", "Decimal", "Go", "Python", "JavaScript", "PHP", "Fintech", "Data Integrity", "Rounding", "Value Objects"]
 categories:
 - Software Engineering

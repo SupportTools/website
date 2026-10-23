@@ -1,6 +1,6 @@
 ---
 title: "Implementing LDAP Authentication for Kubernetes with Dex and Vcluster"
-date: 2027-01-26T09:00:00-05:00
+date: 2026-11-11T09:00:00-06:00
 draft: false
 tags: ["Kubernetes", "Authentication", "LDAP", "Dex", "Vcluster", "OIDC", "K3s"]
 categories:

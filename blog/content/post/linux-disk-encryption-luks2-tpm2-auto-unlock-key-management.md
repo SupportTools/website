@@ -1,7 +1,7 @@
 ---
 title: "Linux Disk Encryption: LUKS2 with TPM2 Auto-Unlock and Key Management"
 date: 2031-04-08T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Security", "Encryption", "LUKS2", "TPM2", "Key Management", "Cryptography"]
 categories:
 - Linux

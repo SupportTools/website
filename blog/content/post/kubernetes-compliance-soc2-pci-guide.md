@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Compliance: SOC2 and PCI-DSS Controls for Container Workloads"
 date: 2027-07-31T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Compliance", "SOC2", "PCI-DSS", "Security", "Audit"]
 categories:
 - Security

@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Loki Distributed: Index Gateway, Bloom Filters, and Query Acceleration"
 date: 2031-04-06T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Loki", "Logging", "Observability", "Grafana", "Performance"]
 categories:
 - Kubernetes

@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes OpenTelemetry Operator: Auto-Instrumentation for Go, Java, and Python"
 date: 2029-02-03T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "OpenTelemetry", "Observability", "Go", "Java", "Python"]
 categories:
 - Kubernetes

@@ -1,7 +1,7 @@
 ---
 title: "Vector: High-Performance Log Aggregation for Kubernetes"
 date: 2027-01-25T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Vector", "Logging", "Observability", "Fluent Bit"]
 categories:
 - Observability

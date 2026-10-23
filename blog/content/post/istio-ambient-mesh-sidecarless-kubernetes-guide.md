@@ -1,7 +1,7 @@
 ---
 title: "Istio Ambient Mesh: Sidecar-Free Service Mesh for Kubernetes"
 date: 2027-02-19T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Istio", "Service Mesh", "Ambient Mesh", "Networking"]
 categories: ["Kubernetes", "Networking", "Service Mesh"]
 author: "Matthew Mattox - mmattox@support.tools"

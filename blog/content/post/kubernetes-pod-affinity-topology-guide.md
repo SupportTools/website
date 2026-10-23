@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Pod Affinity and Topology Spread: Advanced Workload Placement"
 date: 2028-02-04T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Pod Affinity", "Topology Spread", "Scheduling", "High Availability", "Descheduler"]
 categories:
 - Kubernetes

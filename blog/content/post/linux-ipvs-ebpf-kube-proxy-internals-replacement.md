@@ -1,7 +1,7 @@
 ---
 title: "Linux IPVS and eBPF Load Balancing: Kubernetes kube-proxy Internals and Replacement"
 date: 2030-09-07T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "kube-proxy", "IPVS", "eBPF", "Cilium", "Networking", "Linux", "Performance"]
 categories:
 - Kubernetes

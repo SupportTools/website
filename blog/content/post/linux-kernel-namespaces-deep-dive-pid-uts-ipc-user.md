@@ -1,7 +1,7 @@
 ---
 title: "Linux Kernel Namespaces Deep Dive: PID, UTS, IPC, and User Namespaces"
 date: 2031-02-11T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Namespaces", "Containers", "Security", "containerd", "runc"]
 categories:
 - Linux
