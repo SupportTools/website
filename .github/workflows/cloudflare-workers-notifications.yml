@@ -9,6 +9,10 @@ on:
 jobs:
   notify:
     runs-on: self-hosted-linux
+    # The repository default GITHUB_TOKEN is read-only; the issue step needs
+    # issues: write. Nothing else in this job uses the token.
+    permissions:
+      issues: write
     if: ${{ github.event.workflow_run.conclusion == 'success' || github.event.workflow_run.conclusion == 'failure' }}
     
     steps:
