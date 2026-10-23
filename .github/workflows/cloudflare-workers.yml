@@ -112,10 +112,11 @@ jobs:
         # renaming a page fails here until a redirect covers the old URL.
         run: npm run check:urls
 
-      - name: Unit tests (theme, social link guards, URL guard)
+      - name: Unit tests (theme, social link guards, URL guard, IndexNow)
         run: |
           npm run test:social
           npm run test:urls
+          npm run test:indexnow
           npm run test:theme
 
       - name: Check for expired content
@@ -389,6 +390,21 @@ jobs:
             echo "❌ Production deployment failed - HTTP status: $HTTP_STATUS"
             exit 1
           fi
+
+      - name: Notify IndexNow of changed pages
+        # Tells Bing, Yandex and the other IndexNow engines about pages whose
+        # sitemap lastmod falls in the last 26 hours (scripts/indexnow.mjs), so
+        # posts going live on the cron builds are submitted the same morning.
+        # Fetch tier: runtime notification only, not a build dependency. It is
+        # one POST to https://api.indexnow.org/indexnow after the deploy has
+        # already succeeded, with a 15s timeout and 2 retries; no mirror or
+        # cache applies to an outbound ping. The script exits 0 on any network
+        # or HTTP failure (a ::warning:: annotation shows it), and
+        # continue-on-error plus the step timeout keep it from ever failing
+        # or stalling the deploy. Node built-ins only, nothing installed.
+        continue-on-error: true
+        timeout-minutes: 3
+        run: node scripts/indexnow.mjs --public blog/public --since 26h
 
       - name: Create deployment notification
         run: |
