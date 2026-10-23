@@ -1,6 +1,6 @@
 ---
 title: "Configuring Varnish Cache with systemd Drop-in Overrides: The Upgrade-Safe Way"
-date: 2032-04-23T09:00:00-05:00
+date: 2027-04-16T09:00:00-05:00
 draft: false
 tags: ["Varnish", "systemd", "Linux", "Caching", "HTTP", "Performance", "DevOps", "System Administration", "Web Server", "Kubernetes"]
 categories:

@@ -1,6 +1,6 @@
 ---
 title: "Kubernetes CRD Validation with CEL: Admission-Time Validation Without Webhooks"
-date: 2031-09-19T00:00:00-05:00
+date: 2027-03-31T00:00:00-05:00
 draft: false
 tags: ["Kubernetes", "CRD", "CEL", "Validation", "Custom Resources", "Admission Control"]
 categories:

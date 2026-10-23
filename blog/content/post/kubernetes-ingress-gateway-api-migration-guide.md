@@ -1,6 +1,6 @@
 ---
 title: "Migrating from Kubernetes Ingress to Gateway API: A Practical Guide"
-date: 2028-03-25T00:00:00-05:00
+date: 2026-12-09T00:00:00-06:00
 draft: false
 tags: ["Kubernetes", "Gateway API", "Ingress", "Networking", "NGINX", "Envoy", "Traffic Management"]
 categories: ["Kubernetes", "Networking"]

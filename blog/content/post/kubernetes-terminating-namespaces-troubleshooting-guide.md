@@ -1,6 +1,6 @@
 ---
 title: "Kubernetes Namespaces Stuck in Terminating State: Causes and Solutions"
-date: 2027-01-19T09:00:00-05:00
+date: 2026-11-09T09:00:00-06:00
 draft: false
 tags: ["Kubernetes", "Namespace", "Troubleshooting", "Finalizers", "kubectl", "DevOps"]
 categories:

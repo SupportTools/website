@@ -1,6 +1,6 @@
 ---
 title: "Two Doors In: Vault SSH Certificates for the Network, a Console-Only Root Account for Everything Else"
-date: 2029-01-14T09:00:00-06:00
+date: 2026-12-25T09:00:00-06:00
 draft: false
 tags: ["Vault", "SSH", "Ansible", "PAM", "iDRAC", "Serial Console", "Linux Security"]
 categories:

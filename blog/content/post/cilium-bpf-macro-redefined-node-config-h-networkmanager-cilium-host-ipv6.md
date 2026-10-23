@@ -1,6 +1,6 @@
 ---
 title: "Cilium BPF Compile Fails with 'macro redefined': How NetworkManager Disabled IPv6 on cilium_host"
-date: 2027-04-11T09:00:00-05:00
+date: 2026-11-20T09:00:00-06:00
 draft: false
 tags: ["Cilium", "Kubernetes", "NetworkManager", "Netplan", "eBPF", "IPv6", "Troubleshooting", "RKE2", "CNI"]
 categories:

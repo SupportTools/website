@@ -1,6 +1,6 @@
 ---
 title: "Reddit Kubernetes Cluster Upgrade Failure: When Updates Take Down Production"
-date: 2026-11-05T00:00:00-05:00
+date: 2026-11-02T00:00:00-06:00
 draft: false
 tags: ["Kubernetes", "Cluster Upgrades", "Production Incidents", "Disaster Recovery", "High Availability", "Version Management"]
 categories: ["Kubernetes", "Operations", "Incident Response"]

@@ -1,6 +1,6 @@
 ---
 title: "Go Embed Directive: Bundling Static Assets into Binaries"
-date: 2029-09-13T00:00:00-05:00
+date: 2027-02-01T00:00:00-06:00
 draft: false
 tags: ["Go", "Embed", "Static Assets", "Binary Distribution", "fs.FS", "Templates"]
 categories: ["Go", "Development"]

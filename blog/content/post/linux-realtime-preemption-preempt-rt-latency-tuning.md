@@ -1,6 +1,6 @@
 ---
 title: "Linux Realtime Preemption: PREEMPT_RT Patch and Latency Tuning"
-date: 2029-09-23T00:00:00-05:00
+date: 2027-02-08T00:00:00-06:00
 draft: false
 tags: ["Linux", "Realtime", "PREEMPT_RT", "Kernel", "Latency", "Industrial", "Embedded"]
 categories: ["Linux", "Systems Programming"]

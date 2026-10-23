@@ -1,6 +1,6 @@
 ---
 title: "Secure Your Docker Images With Cosign (and OPA Gatekeeper)"
-date: 2027-04-29T09:00:00-05:00
+date: 2026-11-25T09:00:00-06:00
 draft: false
 tags: ["Kubernetes", "Docker", "Security", "OPA", "Cosign", "Gatekeeper"]
 categories:

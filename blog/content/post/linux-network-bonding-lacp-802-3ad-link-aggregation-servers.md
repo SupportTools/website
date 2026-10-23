@@ -1,6 +1,6 @@
 ---
 title: "Linux Network Bonding with LACP: 802.3ad Link Aggregation for Servers"
-date: 2031-05-04T00:00:00-05:00
+date: 2027-03-08T00:00:00-06:00
 draft: false
 tags: ["Linux", "Networking", "LACP", "Bonding", "802.3ad", "NetworkManager", "Kubernetes"]
 categories: ["Linux", "Networking"]

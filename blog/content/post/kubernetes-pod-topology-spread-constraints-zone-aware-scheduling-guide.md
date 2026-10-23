@@ -1,6 +1,6 @@
 ---
 title: "Kubernetes Pod Topology Spread Constraints: Zone-Aware Scheduling, maxSkew, whenUnsatisfiable, and Label Selectors"
-date: 2031-11-24T00:00:00-05:00
+date: 2027-04-02T00:00:00-05:00
 draft: false
 tags: ["Kubernetes", "Scheduling", "Topology", "High Availability", "Zone Awareness", "Pod Scheduling", "Production"]
 categories:

@@ -1,6 +1,6 @@
 ---
 title: "Linux Performance Debugging: Brendan Gregg's USE Method in Practice"
-date: 2029-05-31T00:00:00-05:00
+date: 2027-01-20T00:00:00-06:00
 draft: false
 tags: ["Linux", "Performance", "Debugging", "Observability", "SRE", "Systems Programming", "Brendan Gregg"]
 categories: ["Linux", "Performance"]

@@ -1,6 +1,6 @@
 ---
 title: "Falco Custom Rules: Writing Detection Rules for Container Escape and Privilege Escalation"
-date: 2029-03-06T00:00:00-05:00
+date: 2027-01-13T00:00:00-06:00
 draft: false
 tags: ["Falco", "Security", "Kubernetes", "Container Security", "eBPF", "Threat Detection"]
 categories:

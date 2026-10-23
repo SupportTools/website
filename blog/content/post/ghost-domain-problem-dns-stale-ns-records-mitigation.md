@@ -1,6 +1,6 @@
 ---
 title: "The DNS Ghost Domain Problem: How Stale NS Records Keep Dead Domains Alive and How to Mitigate It"
-date: 2032-04-24T09:00:00-05:00
+date: 2027-04-19T09:00:00-05:00
 draft: false
 tags: ["DNS", "Security", "BIND", "Unbound", "PowerDNS", "CoreDNS", "Kubernetes", "Caching", "CVE-2012-1033", "Resolver"]
 categories:

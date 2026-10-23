@@ -1,6 +1,6 @@
 ---
 title: "Go Workspace Mode: Multi-Module Development, Replace Directives, Cross-Module Testing, and go work sync"
-date: 2032-01-31T00:00:00-05:00
+date: 2027-04-12T00:00:00-05:00
 draft: false
 tags: ["Go", "Modules", "Workspace", "Development", "Monorepo", "go work"]
 categories:

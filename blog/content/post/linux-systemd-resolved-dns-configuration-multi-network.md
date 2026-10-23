@@ -1,6 +1,6 @@
 ---
 title: "Linux Systemd-Resolved: DNS Configuration for Multi-Network Environments"
-date: 2031-05-07T00:00:00-05:00
+date: 2027-03-10T00:00:00-06:00
 draft: false
 tags: ["Linux", "DNS", "systemd-resolved", "Networking", "Kubernetes", "CoreDNS", "Split-Horizon"]
 categories: ["Linux", "Networking"]

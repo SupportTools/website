@@ -1,6 +1,6 @@
 ---
 title: "Linux Transparent Proxy: iptables TPROXY and Traffic Interception"
-date: 2029-07-15T00:00:00-05:00
+date: 2027-01-27T00:00:00-06:00
 draft: false
 tags: ["Linux", "iptables", "TPROXY", "Networking", "Envoy", "Istio", "Traffic Management"]
 categories: ["Linux", "Networking", "Service Mesh"]

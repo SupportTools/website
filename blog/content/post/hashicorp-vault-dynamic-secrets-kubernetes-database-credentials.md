@@ -1,6 +1,6 @@
 ---
 title: "HashiCorp Vault Dynamic Secrets for Kubernetes: Database Credentials On-Demand"
-date: 2030-05-24T00:00:00-05:00
+date: 2027-02-19T00:00:00-06:00
 draft: false
 tags: ["HashiCorp Vault", "Kubernetes", "Dynamic Secrets", "PostgreSQL", "MySQL", "MongoDB", "Security", "Secrets Management"]
 categories:

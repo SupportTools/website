@@ -1,6 +1,6 @@
 ---
 title: "Linux Scheduling: SCHED_FIFO, SCHED_RR, and Real-Time Priorities"
-date: 2029-07-02T00:00:00-05:00
+date: 2027-01-25T00:00:00-06:00
 draft: false
 tags: ["Linux", "Scheduling", "Real-Time", "SCHED_FIFO", "SCHED_RR", "Kubernetes", "CPU Manager"]
 categories: ["Linux", "Performance", "Systems Programming"]

@@ -1,6 +1,6 @@
 ---
 title: "Go Metrics Cardinality: Avoiding Label Explosion in Prometheus"
-date: 2029-09-16T00:00:00-05:00
+date: 2027-02-03T00:00:00-06:00
 draft: false
 tags: ["Go", "Prometheus", "Metrics", "Observability", "Cardinality", "Performance"]
 categories: ["Go", "Observability"]

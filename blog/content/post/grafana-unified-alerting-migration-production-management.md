@@ -1,6 +1,6 @@
 ---
 title: "Grafana Unified Alerting: Migration from Legacy Alerts and Production Alert Management"
-date: 2030-09-05T00:00:00-05:00
+date: 2027-02-22T00:00:00-06:00
 draft: false
 tags: ["Grafana", "Alerting", "Prometheus", "Loki", "Observability", "Monitoring", "SRE"]
 categories:

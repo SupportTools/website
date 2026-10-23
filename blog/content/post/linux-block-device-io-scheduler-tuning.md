@@ -1,6 +1,6 @@
 ---
 title: "Linux Block Device I/O Scheduler Tuning: none, mq-deadline, bfq"
-date: 2029-06-03T00:00:00-05:00
+date: 2027-01-22T00:00:00-06:00
 draft: false
 tags: ["Linux", "I/O Scheduler", "Performance", "NVMe", "SSD", "Block Device", "Kernel"]
 categories: ["Linux", "Performance"]

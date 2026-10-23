@@ -1,6 +1,6 @@
 ---
 title: "Go: Implementing OAuth2 Device Authorization Flow for CLI and IoT Applications"
-date: 2031-07-22T00:00:00-05:00
+date: 2027-03-17T00:00:00-05:00
 draft: false
 tags: ["Go", "OAuth2", "Device Flow", "CLI", "IoT", "Authentication", "Security"]
 categories:

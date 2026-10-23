@@ -1,6 +1,6 @@
 ---
 title: "PostgreSQL Logical Replication on Kubernetes: CNPG Streaming Replicas"
-date: 2029-01-07T00:00:00-05:00
+date: 2026-12-21T00:00:00-06:00
 draft: false
 tags: ["PostgreSQL", "CNPG", "Kubernetes", "Replication", "CloudNativePG"]
 categories:

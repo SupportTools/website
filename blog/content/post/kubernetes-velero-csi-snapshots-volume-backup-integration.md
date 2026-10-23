@@ -1,6 +1,6 @@
 ---
 title: "Kubernetes Velero CSI Snapshots: Volume Backup Integration with StorageClass Providers"
-date: 2031-03-21T00:00:00-05:00
+date: 2027-03-01T00:00:00-06:00
 draft: false
 tags: ["Kubernetes", "Velero", "CSI", "Backup", "Storage", "AWS EBS", "GCP", "Azure"]
 categories:

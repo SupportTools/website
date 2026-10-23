@@ -1,6 +1,6 @@
 ---
 title: "AWS EKS: Migrating from Managed Node Groups to Karpenter"
-date: 2028-10-28T00:00:00-05:00
+date: 2026-12-16T00:00:00-06:00
 draft: false
 tags: ["AWS", "EKS", "Karpenter", "Kubernetes", "Autoscaling"]
 categories:

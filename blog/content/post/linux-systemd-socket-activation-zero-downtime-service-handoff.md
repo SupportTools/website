@@ -1,6 +1,6 @@
 ---
 title: "Linux Systemd Socket Activation: Zero-Downtime Service Handoff and Lazy Start"
-date: 2030-12-16T00:00:00-05:00
+date: 2027-02-24T00:00:00-06:00
 draft: false
 tags: ["Linux", "Systemd", "Socket Activation", "Zero-Downtime", "Go", "gRPC", "DevOps", "Service Management"]
 categories:

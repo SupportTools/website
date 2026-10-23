@@ -1,6 +1,6 @@
 ---
 title: "Kubernetes Secrets Encryption at Rest: KMS Providers and etcd Encryption"
-date: 2028-01-08T00:00:00-05:00
+date: 2026-12-07T00:00:00-06:00
 draft: false
 tags: ["Kubernetes", "Security", "Secrets", "Encryption", "KMS", "etcd", "AWS KMS", "Vault"]
 categories:

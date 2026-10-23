@@ -1,6 +1,6 @@
 ---
 title: "Linux eBPF Verifier: Safety Guarantees and Common Pitfalls"
-date: 2029-05-04T00:00:00-05:00
+date: 2027-01-15T00:00:00-06:00
 draft: false
 tags: ["Linux", "eBPF", "Kernel", "Security", "Performance", "BTF", "Networking"]
 categories:

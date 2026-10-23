@@ -1,6 +1,6 @@
 ---
 title: "Go OAuth2 PKCE Flow: Secure Authorization Code Flow for Native Apps"
-date: 2029-02-12T00:00:00-05:00
+date: 2027-01-06T00:00:00-06:00
 draft: false
 tags: ["Go", "OAuth2", "PKCE", "Security", "Authentication", "OIDC"]
 categories:

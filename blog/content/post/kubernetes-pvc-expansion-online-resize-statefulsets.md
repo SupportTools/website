@@ -1,6 +1,6 @@
 ---
 title: "Kubernetes Persistent Volume Claim Expansion: Online Resize for StatefulSets"
-date: 2029-03-03T00:00:00-05:00
+date: 2027-01-11T00:00:00-06:00
 draft: false
 tags: ["Kubernetes", "Storage", "PVC", "StatefulSets", "CSI", "Operations"]
 categories:

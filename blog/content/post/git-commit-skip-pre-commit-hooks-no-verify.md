@@ -1,6 +1,6 @@
 ---
 title: "Skipping Git Hooks the Right Way: --no-verify, SKIP, and Keeping CI Honest"
-date: 2032-05-06T09:00:00-05:00
+date: 2027-04-26T09:00:00-05:00
 draft: false
 tags: ["Git", "Pre-commit", "CI/CD", "DevOps", "Hooks", "Version Control", "GitHub Actions", "Code Quality", "Branch Protection", "Engineering Practices"]
 categories:
