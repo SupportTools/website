@@ -1,14 +1,68 @@
 ---
-title: "AWS S3 Storage Classes: Comprehensive Guide to Optimizing Storage Costs and Performance"
+title: "S3 Storage Classes: Minimum Duration, Size and Retrieval Fees"
 date: 2025-09-11T09:00:00-05:00
+lastmod: 2026-10-23T00:00:00-05:00
+description: "Every S3 storage class side by side: minimum storage duration, 128 KB minimum billable size, retrieval fees and latency, plus lifecycle rules that avoid early deletion charges."
+author: "Matthew Mattox - mmattox@support.tools"
 draft: false
 categories: ["AWS", "Storage", "Cost Optimization"]
 tags: ["AWS", "S3", "S3 Storage Classes", "Data Lifecycle Management", "Cloud Architecture", "Cost Optimization", "Glacier", "S3 Intelligent-Tiering", "S3 Standard-IA", "AWS Outposts"]
 ---
 
-# AWS S3 Storage Classes: Comprehensive Guide to Optimizing Storage Costs and Performance
+# S3 Storage Classes: Minimum Duration, Size and Retrieval Fees
 
-Amazon S3 (Simple Storage Service) provides multiple storage classes optimized for different use cases. Understanding these classes enables architects and DevOps engineers to make informed decisions that balance performance, availability, durability, and cost. This guide offers a detailed analysis of each S3 storage class with implementation strategies and real-world examples.
+The cheaper S3 storage classes are only cheaper if your objects are big enough and stay long enough. This page starts with the minimums that decide that, then walks through each class with CLI and lifecycle examples.
+
+## Quick answer
+
+| Storage class | Minimum storage duration | Minimum billable size | Retrieval fee | First byte |
+|---|---|---|---|---|
+| S3 Standard | none | none | none | milliseconds |
+| S3 Intelligent-Tiering | none | none, but objects under 128 KB are never auto-tiered and stay at Frequent Access rates | none (per-object monitoring fee) | milliseconds |
+| S3 Express One Zone | 1 hour | none | per GB | single-digit milliseconds |
+| S3 Standard-IA | 30 days | 128 KB | per GB | milliseconds |
+| S3 One Zone-IA | 30 days | 128 KB | per GB | milliseconds |
+| S3 Glacier Instant Retrieval | 90 days | 128 KB | per GB | milliseconds |
+| S3 Glacier Flexible Retrieval | 90 days | 40 KB metadata overhead per object | per GB, by tier | minutes to hours |
+| S3 Glacier Deep Archive | 180 days | 40 KB metadata overhead per object | per GB, by tier | hours |
+
+What the minimums mean on the bill:
+
+- **Minimum storage duration:** delete, overwrite or transition an object early and you still pay for the rest of the period. A Standard-IA object deleted after 10 days is billed for 30.
+- **Minimum billable size:** a 20 KB object in Standard-IA, One Zone-IA or Glacier Instant Retrieval is billed as 128 KB. Lifecycle rules do not move objects smaller than 128 KB to these classes by default; use `ObjectSizeGreaterThan` to make that explicit.
+- **Glacier overhead:** each object archived to Glacier Flexible Retrieval or Deep Archive adds 40 KB of metadata (8 KB billed at Standard rates, 32 KB at the archive rate), so archive tar or zip bundles rather than millions of small files.
+
+A lifecycle rule that respects the minimums:
+
+```json {filename="lifecycle.json"}
+{
+  "Rules": [
+    {
+      "ID": "logs-tiering",
+      "Status": "Enabled",
+      "Filter": { "And": { "Prefix": "logs/", "ObjectSizeGreaterThan": 131072 } },
+      "Transitions": [
+        { "Days": 30, "StorageClass": "STANDARD_IA" },
+        { "Days": 120, "StorageClass": "GLACIER" }
+      ],
+      "Expiration": { "Days": 400 }
+    }
+  ]
+}
+```
+
+```bash
+aws s3api put-bucket-lifecycle-configuration \
+  --bucket my-bucket --lifecycle-configuration file://lifecycle.json
+```
+
+Transitioning to Glacier at day 120 leaves 90 days in Standard-IA and 280 days in Glacier Flexible Retrieval before expiry, so neither minimum is cut short.
+
+Related guides on this site:
+
+- [S3 with CloudFront and CORS](/post/aws-s3-cloudfront-cors-comprehensive-setup-guide/) for serving objects from these buckets.
+- [Mount an S3 bucket on Linux with Mountpoint](/mount-aws-s3-bucket-linux-mountpoint/) for reading them as files.
+- [Back up Kubernetes to S3 with Velero](/backup-kubernetes-cluster-aws-s3-velero/), a common source of objects that belong in Standard-IA.
 
 ## Introduction to S3 Storage Classes
 
@@ -80,7 +134,7 @@ resource "aws_s3_bucket_intelligent_tiering_configuration" "content_bucket_tieri
 - **Availability**: 99.9%
 - **AZ Redundancy**: Minimum 3 Availability Zones
 - **Retrieval Time**: Milliseconds
-- **Automatic Tiering**: Objects move between two access tiers based on usage patterns
+- **Automatic Tiering**: Objects move between Frequent Access, Infrequent Access (after 30 days without access) and Archive Instant Access (after 90 days); the Archive Access and Deep Archive Access tiers are optional and must be enabled
 - **Monitoring Fee**: $0.0025 per 1,000 objects
 
 ### Implementation Use Cases
@@ -655,12 +709,12 @@ Remember that transitions between storage classes incur costs. Avoid frequent tr
 | Storage Class | Durability | Availability | Min Duration | Min Size | Retrieval Time | Use Case |
 |---------------|------------|--------------|--------------|----------|----------------|----------|
 | Standard | 11 9's | 99.99% | None | None | Milliseconds | Frequently accessed data |
-| Intelligent-Tiering | 11 9's | 99.9% | None | None | Milliseconds | Unknown access patterns |
+| Intelligent-Tiering | 11 9's | 99.9% | None | None (objects under 128KB are not auto-tiered) | Milliseconds | Unknown access patterns |
 | Standard-IA | 11 9's | 99.9% | 30 days | 128KB | Milliseconds | Infrequently accessed data |
 | One Zone-IA | 11 9's (single AZ) | 99.5% | 30 days | 128KB | Milliseconds | Non-critical, infrequent access |
 | Glacier Instant Retrieval | 11 9's | 99.9% | 90 days | 128KB | Milliseconds | Archive with immediate access needs |
-| Glacier Flexible Retrieval | 11 9's | 99.99% (post-restore) | 90 days | 40KB | Minutes to hours | Long-term archive, flexible retrieval |
-| Glacier Deep Archive | 11 9's | 99.99% (post-restore) | 180 days | 40KB | Hours | Lowest-cost long-term archive |
+| Glacier Flexible Retrieval | 11 9's | 99.99% (post-restore) | 90 days | 40KB overhead per object | Minutes to hours | Long-term archive, flexible retrieval |
+| Glacier Deep Archive | 11 9's | 99.99% (post-restore) | 180 days | 40KB overhead per object | Hours | Lowest-cost long-term archive |
 | S3 on Outposts | Varies | Varies | None | None | Milliseconds | On-premises data requirements |
 
 ## Conclusion
