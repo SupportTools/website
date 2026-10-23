@@ -24,7 +24,9 @@
     "check:urls": "node scripts/check-published-urls.mjs",
     "urls:update": "node scripts/check-published-urls.mjs --update",
     "test:social": "node --test tests/social/*.test.mjs",
-    "test:urls": "node --test tests/urls/*.test.mjs"
+    "test:urls": "node --test tests/urls/*.test.mjs",
+    "test:indexnow": "node --test tests/indexnow/*.test.mjs",
+    "indexnow": "node scripts/indexnow.mjs"
   },
   "devDependencies": {
     "pagefind": "1.5.2",
