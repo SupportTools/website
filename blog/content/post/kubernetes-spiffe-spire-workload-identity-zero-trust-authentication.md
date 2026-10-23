@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes SPIFFE/SPIRE: Workload Identity for Zero-Trust Service Authentication"
 date: 2031-03-10T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "SPIFFE", "SPIRE", "Security", "Zero-Trust", "mTLS", "Identity", "Istio"]
 categories:
 - Kubernetes

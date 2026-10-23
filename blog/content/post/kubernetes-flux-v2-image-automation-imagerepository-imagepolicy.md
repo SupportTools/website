@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Flux v2 Image Automation: ImageRepository, ImagePolicy, and Automated PR Workflows"
 date: 2032-04-04T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Flux", "GitOps", "Kubernetes", "Image Automation", "CI/CD", "Continuous Delivery"]
 categories:
 - Kubernetes

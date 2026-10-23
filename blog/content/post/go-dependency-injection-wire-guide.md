@@ -1,7 +1,7 @@
 ---
 title: "Dependency Injection in Go: Wire, Fx, and Manual Patterns for Large Services"
 date: 2028-03-10T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Dependency Injection", "Wire", "Uber Fx", "Architecture", "Testing"]
 categories: ["Go", "Architecture"]
 author: "Matthew Mattox - mmattox@support.tools"

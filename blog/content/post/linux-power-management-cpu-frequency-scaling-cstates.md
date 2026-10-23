@@ -1,7 +1,7 @@
 ---
 title: "Linux Power Management: CPU Frequency Scaling and C-States"
 date: 2029-06-12T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Power Management", "CPU", "Performance", "Kernel", "Datacenter"]
 categories: ["Linux", "System Administration"]
 author: "Matthew Mattox - mmattox@support.tools"

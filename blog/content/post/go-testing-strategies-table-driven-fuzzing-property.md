@@ -1,7 +1,7 @@
 ---
 title: "Go Testing Strategies: Table-Driven Tests, Fuzzing, and Property Testing"
 date: 2029-06-11T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Testing", "Fuzzing", "Property Testing", "TDD", "Quality"]
 categories: ["Go", "Testing"]
 author: "Matthew Mattox - mmattox@support.tools"

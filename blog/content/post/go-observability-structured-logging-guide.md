@@ -1,7 +1,7 @@
 ---
 title: "Go Observability: Structured Logging, Metrics, and Traces in Production"
 date: 2027-12-30T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Observability", "OpenTelemetry", "Prometheus", "Structured Logging", "Tracing"]
 categories: ["Go", "Observability"]
 author: "Matthew Mattox - mmattox@support.tools"

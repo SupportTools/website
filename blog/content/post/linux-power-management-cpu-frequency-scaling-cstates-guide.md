@@ -1,7 +1,7 @@
 ---
 title: "Linux Power Management: CPU Frequency Scaling, C-States, and Energy-Aware Scheduling"
 date: 2030-01-28T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Power Management", "CPU", "Energy", "Kubernetes", "Performance", "RAPL"]
 categories: ["Linux", "Performance", "Infrastructure"]
 author: "Matthew Mattox - mmattox@support.tools"

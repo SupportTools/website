@@ -1,7 +1,7 @@
 ---
 title: "Terraform Kubernetes Provider: Infrastructure and App Management"
 date: 2027-10-13T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Terraform", "Kubernetes", "IaC", "Provider", "DevOps"]
 categories:
 - Terraform

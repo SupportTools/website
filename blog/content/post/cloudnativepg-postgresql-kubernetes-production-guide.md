@@ -1,7 +1,7 @@
 ---
 title: "CloudNativePG: Production PostgreSQL Operator on Kubernetes"
 date: 2027-03-23T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "PostgreSQL", "CloudNativePG", "Database", "Operator"]
 categories: ["Kubernetes", "Databases", "Operators"]
 author: "Matthew Mattox - mmattox@support.tools"

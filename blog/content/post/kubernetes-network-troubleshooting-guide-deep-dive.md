@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Network Troubleshooting: A Systematic Methodology"
 date: 2028-02-26T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Networking", "CNI", "Cilium", "Calico", "tcpdump", "DNS", "NetworkPolicy"]
 categories: ["Kubernetes", "Networking"]
 author: "Matthew Mattox - mmattox@support.tools"

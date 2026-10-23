@@ -1,7 +1,7 @@
 ---
 title: "OpenShift vs Kubernetes: Enterprise Feature Comparison and Migration Guide"
 date: 2027-02-10T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "OpenShift", "Enterprise", "Platform Engineering", "ROSA"]
 categories: ["Kubernetes", "Platform Engineering", "Cloud Native"]
 author: "Matthew Mattox - mmattox@support.tools"

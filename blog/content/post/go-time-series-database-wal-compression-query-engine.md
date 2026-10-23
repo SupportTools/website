@@ -1,7 +1,7 @@
 ---
 title: "Go: Building a Time-Series Database from Scratch with WAL, Compression, and Query Engine"
 date: 2031-09-17T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Time-Series", "Database", "WAL", "Storage Engine", "Performance"]
 categories:
 - Go

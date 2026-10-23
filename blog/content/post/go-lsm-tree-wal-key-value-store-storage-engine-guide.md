@@ -1,7 +1,7 @@
 ---
 title: "Go: Building a High-Performance Key-Value Store with LSM Trees and WAL for Understanding Storage Engines"
 date: 2031-08-21T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "LSM Tree", "WAL", "Storage Engine", "Key-Value Store", "Database Internals", "Performance"]
 categories: ["Go", "Databases"]
 author: "Matthew Mattox - mmattox@support.tools"

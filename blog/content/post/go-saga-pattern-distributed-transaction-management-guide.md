@@ -1,7 +1,7 @@
 ---
 title: "Go Saga Pattern: Distributed Transaction Management"
 date: 2029-07-19T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Saga Pattern", "Distributed Transactions", "Microservices", "Outbox Pattern", "Event-Driven"]
 categories: ["Go", "Architecture"]
 author: "Matthew Mattox - mmattox@support.tools"

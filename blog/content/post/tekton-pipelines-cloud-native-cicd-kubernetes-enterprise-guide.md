@@ -1,7 +1,7 @@
 ---
 title: "Tekton Pipelines: Cloud-Native CI/CD for Kubernetes Workloads"
 date: 2030-05-27T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Tekton", "CI/CD", "Kubernetes", "DevOps", "GitOps", "Pipelines", "Go"]
 categories:
 - Kubernetes

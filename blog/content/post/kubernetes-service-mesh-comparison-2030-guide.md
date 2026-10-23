@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Service Mesh Comparison 2030: Istio vs Linkerd vs Cilium Service Mesh"
 date: 2029-12-04T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Service Mesh", "Istio", "Linkerd", "Cilium", "mTLS", "Observability", "Traffic Management"]
 categories:
 - Kubernetes

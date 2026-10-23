@@ -1,7 +1,7 @@
 ---
 title: "PostgreSQL Connection Pooling: PgBouncer and PgPool-II in Kubernetes"
 date: 2029-04-07T00:00:00-05:00
-draft: false
+draft: true
 tags: ["PostgreSQL", "PgBouncer", "PgPool", "Kubernetes", "Database", "Connection Pooling", "CloudNativePG"]
 categories: ["Databases", "Kubernetes", "Performance"]
 author: "Matthew Mattox - mmattox@support.tools"

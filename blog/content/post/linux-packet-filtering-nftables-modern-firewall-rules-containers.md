@@ -1,7 +1,7 @@
 ---
 title: "Linux Packet Filtering with nftables: Modern Firewall Rules for Containers"
 date: 2031-02-04T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "nftables", "iptables", "Firewall", "Networking", "Docker", "Kubernetes", "Security"]
 categories:
 - Linux

@@ -1,7 +1,7 @@
 ---
 title: "Linux File Descriptor Management: ulimits, epoll, and High-Concurrency I/O Patterns"
 date: 2030-04-11T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Performance", "epoll", "File Descriptors", "I/O", "Systems Programming", "High Concurrency"]
 categories: ["Linux", "Systems Programming", "Performance"]
 author: "Matthew Mattox - mmattox@support.tools"

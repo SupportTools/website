@@ -1,7 +1,7 @@
 ---
 title: "Go Structured Concurrency: errgroup, semaphore, and WorkerPool Patterns"
 date: 2031-05-06T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Concurrency", "errgroup", "semaphore", "Worker Pool", "Goroutines", "Production"]
 categories: ["Go", "Concurrency"]
 author: "Matthew Mattox - mmattox@support.tools"

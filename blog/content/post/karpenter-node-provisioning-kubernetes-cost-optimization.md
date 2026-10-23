@@ -1,7 +1,7 @@
 ---
 title: "Karpenter Node Provisioning: Dynamic Kubernetes Node Management and Cost Optimization"
 date: 2030-06-17T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Karpenter", "AWS", "Cost Optimization", "Autoscaling", "EKS"]
 categories:
 - Kubernetes

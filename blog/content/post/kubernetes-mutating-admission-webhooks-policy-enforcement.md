@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Mutating Admission Webhooks: Automated Policy Enforcement and Configuration Injection"
 date: 2030-06-12T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Admission Webhooks", "Policy", "Security", "Sidecar Injection", "Automation", "Go"]
 categories:
 - Kubernetes

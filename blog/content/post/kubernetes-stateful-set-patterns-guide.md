@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes StatefulSet Advanced Patterns: Pod Management, PVC Lifecycle, and Database Operations"
 date: 2028-06-10T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "StatefulSet", "Databases", "Storage", "PVC", "Distributed Systems"]
 categories: ["Kubernetes", "Storage", "Databases"]
 author: "Matthew Mattox - mmattox@support.tools"

@@ -1,7 +1,7 @@
 ---
 title: "Go Generics in Production: Type Constraints, Type Sets, and Real-World Patterns"
 date: 2029-01-03T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Generics", "Type Constraints", "Performance", "Enterprise"]
 categories:
 - Go

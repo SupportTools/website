@@ -1,7 +1,7 @@
 ---
 title: "Go Build System: Bazel, Buck2, and Hermetic Builds for Monorepos"
 date: 2029-09-19T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Bazel", "Buck2", "Monorepo", "Build Systems", "CI/CD", "Hermetic Builds"]
 categories: ["Go", "DevOps"]
 author: "Matthew Mattox - mmattox@support.tools"

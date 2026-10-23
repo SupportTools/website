@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Logging Architecture: Fluent Bit to Loki Production Setup"
 date: 2028-01-12T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Logging", "Fluent Bit", "Loki", "Grafana", "Observability", "Production"]
 categories:
 - Kubernetes

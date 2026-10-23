@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Cost Optimization: Kubecost, Resource Right-Sizing, Spot Instance Strategies, and FinOps"
 date: 2028-09-09T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Cost Optimization", "Kubecost", "FinOps", "Spot Instances", "Resource Management"]
 categories:
 - Kubernetes

@@ -1,7 +1,7 @@
 ---
 title: "Go Event-Driven Microservices: CloudEvents, Event Bus Patterns, and Schema Registry"
 date: 2030-04-28T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "CloudEvents", "Event-Driven", "Kafka", "Schema Registry", "Microservices"]
 categories: ["Go", "Architecture"]
 author: "Matthew Mattox - mmattox@support.tools"

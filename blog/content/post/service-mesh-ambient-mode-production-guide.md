@@ -1,7 +1,7 @@
 ---
 title: "Istio Ambient Mode: Sidecar-Free Service Mesh in Production"
 date: 2027-10-22T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Istio", "Service Mesh", "Ambient Mode", "Kubernetes", "ztunnel"]
 categories:
 - Service Mesh

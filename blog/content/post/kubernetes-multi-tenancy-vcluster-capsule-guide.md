@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Multi-Tenancy: vCluster and Capsule for Tenant Isolation"
 date: 2028-09-30T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Multi-Tenancy", "vCluster", "Capsule", "Security"]
 categories:
 - Kubernetes

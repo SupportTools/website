@@ -1,7 +1,7 @@
 ---
 title: "Go Compile-Time Safety: go vet, staticcheck, and Custom Analyzers with analysis.Analyzer"
 date: 2030-02-23T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Static Analysis", "go vet", "staticcheck", "Code Quality", "analysis.Analyzer"]
 categories: ["Go", "DevOps"]
 author: "Matthew Mattox - mmattox@support.tools"

@@ -1,7 +1,7 @@
 ---
 title: "Linux Huge Pages: Transparent Huge Pages, HugeTLBFS, and NUMA Optimization"
 date: 2030-03-11T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Huge Pages", "THP", "NUMA", "Performance", "Memory", "Databases"]
 categories: ["Linux", "Performance"]
 author: "Matthew Mattox - mmattox@support.tools"

@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes OpenTelemetry Operator: Auto-Instrumentation, Collector Deployment, and OTLP Pipeline Configuration"
 date: 2031-12-18T00:00:00-05:00
-draft: false
+draft: true
 tags: ["OpenTelemetry", "Kubernetes", "Observability", "Tracing", "Metrics", "OTLP", "Operator", "Auto-Instrumentation"]
 categories:
 - Kubernetes

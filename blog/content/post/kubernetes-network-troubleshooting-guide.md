@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Network Troubleshooting: DNS, CNI, Pod Connectivity, and Service Issues"
 date: 2027-05-27T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Networking", "Troubleshooting", "DNS", "CNI", "Debugging"]
 categories: ["Kubernetes", "Troubleshooting"]
 author: "Matthew Mattox - mmattox@support.tools"

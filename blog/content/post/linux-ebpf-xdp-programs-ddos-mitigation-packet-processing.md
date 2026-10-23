@@ -1,7 +1,7 @@
 ---
 title: "Linux eBPF Networking: XDP Programs for DDoS Mitigation and Packet Processing"
 date: 2031-02-17T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "eBPF", "XDP", "Networking", "DDoS", "Performance", "AF_XDP"]
 categories:
 - Linux

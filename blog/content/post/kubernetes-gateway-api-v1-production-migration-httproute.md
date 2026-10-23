@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Gateway API v1 Production Migration: HTTPRoute, TLSRoute, and Replacing Ingress at Scale"
 date: 2031-10-09T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Gateway API", "Networking", "HTTPRoute", "Ingress", "Migration", "TLS"]
 categories:
 - Kubernetes

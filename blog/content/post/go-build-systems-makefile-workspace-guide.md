@@ -1,7 +1,7 @@
 ---
 title: "Go Build Systems: Makefile Patterns, Build Tags, Go Workspace Modules, and Reproducible Builds"
 date: 2028-08-08T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Build", "Makefile", "Workspace", "Modules", "Reproducible Builds"]
 categories:
 - Go

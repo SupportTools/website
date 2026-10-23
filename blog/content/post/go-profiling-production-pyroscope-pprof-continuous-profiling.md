@@ -1,7 +1,7 @@
 ---
 title: "Go Profiling in Production: Continuous Profiling with Pyroscope and pprof"
 date: 2031-01-31T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Golang", "Profiling", "Pyroscope", "pprof", "Performance", "Observability"]
 categories:
 - Go

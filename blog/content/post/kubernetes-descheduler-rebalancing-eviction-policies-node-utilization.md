@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Descheduler: Rebalancing Pods, Eviction Policies, and Node Utilization"
 date: 2030-03-31T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Descheduler", "Scheduling", "Pod Eviction", "Node Utilization", "Cluster Management"]
 categories: ["Kubernetes", "Operations", "Performance"]
 author: "Matthew Mattox - mmattox@support.tools"

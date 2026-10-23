@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Horizontal Pod Autoscaler v2: Custom and External Metrics"
 date: 2029-07-06T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "HPA", "Autoscaling", "KEDA", "Custom Metrics", "Prometheus", "Scale-to-Zero"]
 categories: ["Kubernetes", "Operations", "Autoscaling"]
 author: "Matthew Mattox - mmattox@support.tools"

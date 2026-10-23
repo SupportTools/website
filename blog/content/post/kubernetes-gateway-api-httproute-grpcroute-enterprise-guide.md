@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Gateway API: Next-Generation Ingress with HTTPRoute and GRPCRoute"
 date: 2030-06-20T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Gateway API", "Ingress", "HTTPRoute", "GRPCRoute", "Networking"]
 categories:
 - Kubernetes

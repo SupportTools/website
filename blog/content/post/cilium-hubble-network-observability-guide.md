@@ -1,7 +1,7 @@
 ---
 title: "Cilium Hubble: Deep Network Observability for Kubernetes"
 date: 2027-11-08T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Cilium", "Hubble", "eBPF", "Network Observability", "Kubernetes"]
 categories:
 - Kubernetes

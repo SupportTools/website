@@ -1,7 +1,7 @@
 ---
 title: "Go: Implementing a Plugin System with Go Plugins and Shared Object Loading"
 date: 2031-08-08T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Golang", "Plugins", "Architecture", "Extensibility", "Systems Programming"]
 categories:
 - Go

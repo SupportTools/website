@@ -1,7 +1,7 @@
 ---
 title: "Go HTTP/2 and HTTP/3: Server Push, Multiplexing, and QUIC"
 date: 2029-05-10T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "HTTP/2", "HTTP/3", "QUIC", "Performance", "Networking", "Golang"]
 categories: ["Go", "Networking"]
 author: "Matthew Mattox - mmattox@support.tools"

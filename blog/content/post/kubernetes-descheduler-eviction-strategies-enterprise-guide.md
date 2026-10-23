@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Descheduler: Advanced Eviction Strategies for Enterprise Cluster Optimization"
 date: 2032-02-03T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Descheduler", "Pod Eviction", "Cluster Optimization", "Scheduling", "LowNodeUtilization", "PodAntiAffinity"]
 categories: ["Kubernetes", "DevOps", "Infrastructure"]
 author: "Matthew Mattox - mmattox@support.tools"

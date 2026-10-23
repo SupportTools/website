@@ -1,7 +1,7 @@
 ---
 title: "Linux Network Namespaces: Building Container Networking From Scratch"
 date: 2029-01-27T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Networking", "Namespaces", "Containers", "CNI", "veth", "iptables"]
 categories:
 - Linux

@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Autoscaling Deep Dive: HPA v2, KEDA, and Predictive Scaling with Predictive HPA"
 date: 2030-02-01T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Autoscaling", "HPA", "KEDA", "Scaling", "Prometheus", "Performance"]
 categories: ["Kubernetes", "Performance", "DevOps"]
 author: "Matthew Mattox - mmattox@support.tools"

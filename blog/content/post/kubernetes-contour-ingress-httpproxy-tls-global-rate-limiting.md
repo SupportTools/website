@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Contour Ingress Controller: HTTPProxy, TLS Termination, and Global Rate Limiting"
 date: 2031-09-02T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Contour", "Ingress", "Envoy", "TLS", "Rate Limiting", "HTTPProxy"]
 categories:
 - Kubernetes

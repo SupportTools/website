@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Pod Disruption Budgets: High Availability Guarantees During Cluster Operations"
 date: 2027-08-13T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "High Availability", "PodDisruptionBudget"]
 categories:
 - Kubernetes

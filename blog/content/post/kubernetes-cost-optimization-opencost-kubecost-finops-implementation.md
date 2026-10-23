@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Cost Optimization: OpenCost, Kubecost, and FinOps Implementation"
 date: 2029-12-27T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "FinOps", "OpenCost", "Kubecost", "Cost Optimization", "Cloud Costs", "Chargeback", "Resource Management"]
 categories:
 - Kubernetes

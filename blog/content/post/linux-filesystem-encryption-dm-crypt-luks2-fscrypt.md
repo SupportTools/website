@@ -1,7 +1,7 @@
 ---
 title: "Linux Filesystem Encryption: dm-crypt, LUKS2, and fscrypt"
 date: 2029-11-12T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Encryption", "LUKS2", "dm-crypt", "fscrypt", "Security", "Kubernetes", "Storage"]
 categories:
 - Linux

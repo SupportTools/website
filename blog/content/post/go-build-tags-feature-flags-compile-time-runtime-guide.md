@@ -1,7 +1,7 @@
 ---
 title: "Go Build Tags and Feature Flags: Compile-Time vs Runtime Configuration"
 date: 2031-05-30T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Golang", "Build Tags", "Feature Flags", "CI/CD", "flipt", "unleash"]
 categories:
 - Go

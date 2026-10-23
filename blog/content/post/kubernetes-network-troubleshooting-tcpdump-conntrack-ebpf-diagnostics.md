@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Network Troubleshooting: tcpdump, conntrack, and eBPF Diagnostics"
 date: 2028-12-29T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Networking", "tcpdump", "eBPF", "conntrack", "Troubleshooting"]
 categories:
 - Kubernetes

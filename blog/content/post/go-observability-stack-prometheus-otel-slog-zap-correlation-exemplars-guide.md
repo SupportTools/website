@@ -1,7 +1,7 @@
 ---
 title: "Go Observability Stack: Prometheus Metrics, OpenTelemetry Traces, slog/zap Logs, Correlation IDs, and Exemplars"
 date: 2031-12-12T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Golang", "Observability", "Prometheus", "OpenTelemetry", "Distributed Tracing", "Logging", "slog", "zap", "Metrics"]
 categories: ["Go", "Observability"]
 author: "Matthew Mattox - mmattox@support.tools"

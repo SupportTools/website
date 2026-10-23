@@ -1,7 +1,7 @@
 ---
 title: "Go Batch Processing: Efficient Large Dataset Handling with Pipelines and Worker Pools"
 date: 2030-10-06T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Golang", "Batch Processing", "Concurrency", "Pipelines", "Performance", "Worker Pools"]
 categories:
 - Go

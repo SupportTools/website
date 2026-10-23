@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Knative Serving: Autoscaling to Zero, Traffic Splitting, and Revision Management"
 date: 2031-07-24T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Knative", "Serverless", "Autoscaling", "Traffic Management", "Service Mesh"]
 categories:
 - Kubernetes

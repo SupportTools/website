@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Cilium Cluster Mesh: Cross-Cluster Networking and Service Discovery"
 date: 2029-10-08T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Cilium", "Networking", "Service Mesh", "eBPF", "Multi-Cluster"]
 categories:
 - Kubernetes

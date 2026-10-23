@@ -1,7 +1,7 @@
 ---
 title: "Go Build System: Bazel and Buck2 for Large-Scale Monorepo Builds"
 date: 2031-03-22T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Bazel", "Buck2", "Monorepo", "Build Systems", "CI/CD", "Remote Build Execution"]
 categories:
 - Go

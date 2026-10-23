@@ -1,7 +1,7 @@
 ---
 title: "Linux tmpfs and ramfs: In-Memory Filesystems for High-Performance Applications"
 date: 2031-01-05T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "tmpfs", "ramfs", "In-Memory", "Kubernetes", "Performance", "Security", "Storage"]
 categories:
 - Linux

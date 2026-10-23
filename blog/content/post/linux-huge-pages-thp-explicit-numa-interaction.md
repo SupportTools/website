@@ -1,7 +1,7 @@
 ---
 title: "Linux Huge Pages: THP, Explicit Huge Pages, and NUMA Interaction"
 date: 2029-07-18T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Huge Pages", "THP", "NUMA", "Performance Tuning", "Kernel", "Memory Management"]
 categories: ["Linux", "Performance"]
 author: "Matthew Mattox - mmattox@support.tools"

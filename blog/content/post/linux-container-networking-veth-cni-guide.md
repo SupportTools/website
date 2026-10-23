@@ -1,7 +1,7 @@
 ---
 title: "Linux Container Networking: veth Pairs, Network Namespaces, iptables, and CNI Plugin Development"
 date: 2028-07-25T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Networking", "Containers", "CNI", "iptables", "Network Namespaces"]
 categories:
 - Linux

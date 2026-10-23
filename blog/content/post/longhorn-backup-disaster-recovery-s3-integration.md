@@ -1,7 +1,7 @@
 ---
 title: "Longhorn Backup and Disaster Recovery: S3-Compatible Storage Integration"
 date: 2029-01-01T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Longhorn", "Kubernetes", "Backup", "Disaster Recovery", "S3"]
 categories:
 - Kubernetes

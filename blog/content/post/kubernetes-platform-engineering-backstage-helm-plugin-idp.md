@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Platform Engineering: Internal Developer Portal with Backstage and Helm Plugin"
 date: 2030-04-06T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Backstage", "Platform Engineering", "Internal Developer Portal", "Helm", "DevOps"]
 categories: ["Kubernetes", "Platform Engineering", "DevOps"]
 author: "Matthew Mattox - mmattox@support.tools"

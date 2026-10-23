@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Cluster Federation: KubeFed and Multicluster API"
 date: 2029-10-19T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Federation", "KubeFed", "Multi-Cluster", "sig-multicluster", "Platform Engineering"]
 categories: ["Kubernetes", "Multi-Cluster", "Platform Engineering"]
 author: "Matthew Mattox - mmattox@support.tools"

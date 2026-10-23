@@ -1,7 +1,7 @@
 ---
 title: "Go Plugin Architecture: Dynamic Loading, Interface Contracts, and Registry Patterns"
 date: 2030-06-30T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Plugins", "Architecture", "hashicorp/go-plugin", "Interface Design", "Hot Reload", "Production"]
 categories:
 - Go

@@ -1,7 +1,7 @@
 ---
 title: "OpenShift vs Kubernetes: Enterprise Platform Selection Guide"
 date: 2027-10-11T00:00:00-05:00
-draft: false
+draft: true
 tags: ["OpenShift", "Kubernetes", "Enterprise", "Red Hat", "Platform"]
 categories:
 - Kubernetes

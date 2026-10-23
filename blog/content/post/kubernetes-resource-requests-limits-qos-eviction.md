@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Resource Management: Requests, Limits, QoS Classes, and Eviction"
 date: 2029-03-10T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Resource Management", "QoS", "Eviction", "Production", "Performance"]
 categories:
 - Kubernetes

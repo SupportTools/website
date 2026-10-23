@@ -1,7 +1,7 @@
 ---
 title: "KEDA: Kubernetes Event-Driven Autoscaling for Production Workloads"
 date: 2027-04-21T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "KEDA", "Autoscaling", "Event-Driven", "Kafka", "Redis"]
 categories: ["Kubernetes", "Autoscaling"]
 author: "Matthew Mattox - mmattox@support.tools"

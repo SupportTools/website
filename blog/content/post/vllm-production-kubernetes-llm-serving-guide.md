@@ -1,7 +1,7 @@
 ---
 title: "vLLM Production Deployment on Kubernetes: Serving Large Language Models at Scale"
 date: 2028-09-13T00:00:00-05:00
-draft: false
+draft: true
 tags: ["vLLM", "LLM", "Kubernetes", "GPU", "AI/ML", "Inference"]
 categories:
 - Kubernetes

@@ -1,7 +1,7 @@
 ---
 title: "Go: Building Reactive Systems with RxGo for Event-Driven Stream Processing Pipelines"
 date: 2031-07-12T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "RxGo", "Reactive Programming", "Stream Processing", "Event-Driven", "Golang", "Concurrency"]
 categories: ["Go", "Architecture"]
 author: "Matthew Mattox - mmattox@support.tools"

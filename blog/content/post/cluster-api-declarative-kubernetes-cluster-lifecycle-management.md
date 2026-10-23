@@ -1,7 +1,7 @@
 ---
 title: "Cluster API: Declarative Kubernetes Cluster Lifecycle Management"
 date: 2030-07-06T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Cluster API", "CAPI", "Kubernetes", "Infrastructure as Code", "GitOps", "AWS", "GCP", "vSphere"]
 categories:
 - Kubernetes

@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes VPA Deep Dive: Recommender, Updater, and Right-Sizing Production Workloads"
 date: 2027-05-31T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "VPA", "Autoscaling", "Resource Management", "Performance", "Cost Optimization"]
 categories: ["Kubernetes", "Platform Engineering"]
 author: "Matthew Mattox - mmattox@support.tools"

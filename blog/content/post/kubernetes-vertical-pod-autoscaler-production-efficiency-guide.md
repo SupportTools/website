@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Vertical Pod Autoscaler: Right-Sizing Workloads for Production Efficiency"
 date: 2030-09-02T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "VPA", "Autoscaling", "Resource Management", "GitOps", "Production"]
 categories:
 - Kubernetes

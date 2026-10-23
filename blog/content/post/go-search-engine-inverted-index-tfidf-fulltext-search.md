@@ -1,7 +1,7 @@
 ---
 title: "Go: Building a Search Engine with Inverted Indexes, TF-IDF Scoring, and Full-Text Search"
 date: 2031-09-10T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Golang", "Search", "Full-Text Search", "Algorithms", "Data Structures", "Performance"]
 categories:
 - Go

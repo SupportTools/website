@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Operator Testing: envtest, Fake Clients, and Controller Integration Testing"
 date: 2030-02-28T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Operators", "Testing", "envtest", "controller-runtime", "Go"]
 categories: ["Kubernetes", "Go"]
 author: "Matthew Mattox - mmattox@support.tools"

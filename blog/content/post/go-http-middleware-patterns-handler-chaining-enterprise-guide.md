@@ -1,7 +1,7 @@
 ---
 title: "Go HTTP Middleware Patterns: Handler Chaining, Context Values, Request ID Propagation, Panic Recovery, Timeouts"
 date: 2031-11-29T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Golang", "HTTP", "Middleware", "Web Development", "Context", "Production Patterns"]
 categories:
 - Go

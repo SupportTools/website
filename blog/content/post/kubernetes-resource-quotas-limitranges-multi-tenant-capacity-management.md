@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Resource Quotas and LimitRanges: Multi-Tenant Capacity Management"
 date: 2029-04-22T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "ResourceQuota", "LimitRange", "Multi-Tenancy", "Capacity Planning", "Admission Control"]
 categories: ["Kubernetes", "Operations"]
 author: "Matthew Mattox - mmattox@support.tools"

@@ -1,7 +1,7 @@
 ---
 title: "Understanding Kubernetes Memory Limits and the OOM Killer"
 date: 2026-11-19T09:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Memory", "cgroups", "Container", "OOM", "Resource Limits"]
 categories:
 - Kubernetes

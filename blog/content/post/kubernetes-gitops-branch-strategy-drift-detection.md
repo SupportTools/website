@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes GitOps Patterns: Branch Strategy, Environment Promotion, and Drift Detection"
 date: 2030-01-20T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "GitOps", "ArgoCD", "Flux", "Environment Promotion", "Drift Detection", "Multi-tenancy"]
 categories: ["Kubernetes", "GitOps"]
 author: "Matthew Mattox - mmattox@support.tools"

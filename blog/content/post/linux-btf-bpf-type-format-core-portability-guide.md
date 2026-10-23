@@ -1,7 +1,7 @@
 ---
 title: "Linux BPF Type Format (BTF): Portability and CO-RE Deep Dive"
 date: 2029-04-11T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "eBPF", "BTF", "CO-RE", "Kernel", "Performance", "Observability"]
 categories:
 - Linux

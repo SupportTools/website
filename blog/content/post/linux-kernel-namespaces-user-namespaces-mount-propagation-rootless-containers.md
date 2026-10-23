@@ -1,7 +1,7 @@
 ---
 title: "Linux Kernel Namespaces: User Namespaces, Mount Propagation, and Rootless Container Security"
 date: 2031-08-15T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Namespaces", "Containers", "Security", "Rootless", "Kernel"]
 categories:
 - Linux

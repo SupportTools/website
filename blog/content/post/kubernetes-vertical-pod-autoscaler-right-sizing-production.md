@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Vertical Pod Autoscaler: Right-Sizing Workloads in Production"
 date: 2030-11-27T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "VPA", "Autoscaling", "Resource Management", "FinOps", "HPA", "Production"]
 categories: ["Kubernetes", "Resource Management"]
 author: "Matthew Mattox - mmattox@support.tools"

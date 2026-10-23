@@ -1,7 +1,7 @@
 ---
 title: "SPIFFE/SPIRE: Zero-Trust Workload Identity for Kubernetes"
 date: 2027-03-10T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "SPIFFE", "SPIRE", "Zero Trust", "mTLS", "Security"]
 categories: ["Kubernetes", "Security", "Zero Trust"]
 author: "Matthew Mattox - mmattox@support.tools"

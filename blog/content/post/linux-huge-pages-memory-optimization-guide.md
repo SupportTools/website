@@ -1,7 +1,7 @@
 ---
 title: "Linux Huge Pages: Memory Optimization for Databases, JVM, and Containers"
 date: 2028-05-22T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Huge Pages", "Memory", "Performance", "PostgreSQL", "JVM", "Kubernetes", "NUMA"]
 categories: ["Linux", "Performance"]
 author: "Matthew Mattox - mmattox@support.tools"

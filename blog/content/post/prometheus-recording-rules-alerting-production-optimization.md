@@ -1,7 +1,7 @@
 ---
 title: "Prometheus Recording Rules and Alerting Rules: Production Optimization Strategies"
 date: 2030-06-13T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Prometheus", "Alerting", "Monitoring", "Observability", "SRE", "Kubernetes"]
 categories:
 - Monitoring

@@ -1,7 +1,7 @@
 ---
 title: "Go CLI Development: cobra, viper, and Plugin Architecture"
 date: 2029-08-26T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "CLI", "cobra", "viper", "Plugins", "DevOps Tools", "Command Line", "CLI Development"]
 categories: ["Go", "DevOps"]
 author: "Matthew Mattox - mmattox@support.tools"

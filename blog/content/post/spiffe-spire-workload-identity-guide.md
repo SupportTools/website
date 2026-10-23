@@ -1,7 +1,7 @@
 ---
 title: "SPIFFE/SPIRE: Workload Identity for Zero-Trust Infrastructure"
 date: 2027-11-02T00:00:00-05:00
-draft: false
+draft: true
 tags: ["SPIFFE", "SPIRE", "Zero Trust", "mTLS", "Workload Identity"]
 categories:
 - Security

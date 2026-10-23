@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Node Feature Discovery: Hardware-Aware Workload Scheduling"
 date: 2029-01-05T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "NFD", "Node Feature Discovery", "Scheduling", "Hardware"]
 categories:
 - Kubernetes

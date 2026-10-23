@@ -1,7 +1,7 @@
 ---
 title: "FinOps for Kubernetes: Cloud Cost Optimization and Chargeback Enterprise Guide"
 date: 2026-12-20T00:00:00-05:00
-draft: false
+draft: true
 tags: ["FinOps", "Kubernetes", "Cost Optimization", "Cloud Cost", "Chargeback", "Kubecost", "Resource Efficiency"]
 categories:
 - FinOps

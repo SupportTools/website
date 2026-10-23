@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Container Runtime: containerd and CRI-O Deep Dive"
 date: 2029-05-02T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "containerd", "CRI-O", "CRI", "Container Runtime", "Kata Containers", "RuntimeClass"]
 categories:
 - Kubernetes

@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Capacity Planning: Resource Forecasting and Autoscaling Economics"
 date: 2027-08-02T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Capacity Planning", "Resource Management", "Autoscaling", "FinOps"]
 categories:
 - Kubernetes

@@ -1,7 +1,7 @@
 ---
 title: "Go Observability Patterns: Metrics, Traces, and Logs in Production"
 date: 2027-10-19T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Observability", "OpenTelemetry", "Prometheus", "Logging"]
 categories:
 - Go

@@ -1,7 +1,7 @@
 ---
 title: "Linux OOM Killer: oom_score_adj, Memory Cgroups, OOM Group Killing, and Kubernetes OOM Behavior"
 date: 2032-04-15T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "OOM Killer", "Kubernetes", "Cgroups", "Memory Management", "Production"]
 categories:
 - Linux

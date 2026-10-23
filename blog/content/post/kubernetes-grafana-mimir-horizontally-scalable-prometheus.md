@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Grafana Mimir: Horizontally Scalable Prometheus-Compatible TSDB"
 date: 2031-03-24T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Grafana Mimir", "Prometheus", "Monitoring", "Observability", "Time Series", "Thanos"]
 categories:
 - Kubernetes

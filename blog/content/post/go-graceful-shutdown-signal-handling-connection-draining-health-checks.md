@@ -1,7 +1,7 @@
 ---
 title: "Go Graceful Shutdown: Signal Handling, Connection Draining, and Health Check Coordination"
 date: 2030-09-13T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Golang", "Kubernetes", "Signal Handling", "gRPC", "Production", "Reliability"]
 categories:
 - Go

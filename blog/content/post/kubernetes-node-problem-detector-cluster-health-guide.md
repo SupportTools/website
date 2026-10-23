@@ -1,7 +1,7 @@
 ---
 title: "Node Problem Detector: Automated Kubernetes Node Health Monitoring"
 date: 2027-03-03T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Node Problem Detector", "Node Health", "Monitoring", "Operations"]
 categories: ["Kubernetes", "Monitoring", "Operations"]
 author: "Matthew Mattox - mmattox@support.tools"

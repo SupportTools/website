@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Istio Service Mesh: mTLS, Traffic Management, Circuit Breaking, and Observability"
 date: 2028-07-05T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Istio", "Service Mesh", "mTLS", "Traffic Management"]
 categories:
 - Kubernetes

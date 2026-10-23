@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Workload Identity: IRSA, Workload Identity Federation, and Pod Identity"
 date: 2029-12-24T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Workload Identity", "IRSA", "GKE", "AWS", "Azure", "OIDC", "Security", "IAM", "Token Projection"]
 categories:
 - Kubernetes

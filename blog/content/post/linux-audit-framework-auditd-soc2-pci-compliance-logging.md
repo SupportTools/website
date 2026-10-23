@@ -1,7 +1,7 @@
 ---
 title: "Linux Audit Framework: auditd Rules, ausearch/aureport Analysis, and Compliance Logging for SOC2 and PCI DSS"
 date: 2031-10-11T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Security", "auditd", "Compliance", "SOC2", "PCI DSS", "Audit", "SIEM"]
 categories:
 - Linux

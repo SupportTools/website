@@ -1,7 +1,7 @@
 ---
 title: "Grafana Tempo: Distributed Tracing at Scale on Kubernetes"
 date: 2026-12-29T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Grafana Tempo", "Distributed Tracing", "Kubernetes", "Observability", "OpenTelemetry"]
 categories:
 - Kubernetes

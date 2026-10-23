@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes RBAC Advanced Patterns: Least Privilege, Aggregated Roles, and Audit-Driven Hardening"
 date: 2027-07-02T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "RBAC", "Security", "Least Privilege", "Audit", "Service Account"]
 categories:
 - Kubernetes

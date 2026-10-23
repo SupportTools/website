@@ -1,7 +1,7 @@
 ---
 title: "Go API Versioning Strategies: URL Versioning, Header Versioning, Backward Compatibility, and Deprecation Lifecycle"
 date: 2031-11-12T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Golang", "API Design", "API Versioning", "Backward Compatibility", "REST", "gRPC"]
 categories: ["Go", "API Design"]
 author: "Matthew Mattox - mmattox@support.tools"

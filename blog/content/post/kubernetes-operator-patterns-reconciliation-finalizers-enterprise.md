@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Operator Patterns: Reconciliation Loops, Finalizers, and Owner References"
 date: 2029-02-18T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Operators", "Go", "controller-runtime", "CRD", "Reconciliation"]
 categories:
 - Kubernetes

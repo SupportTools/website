@@ -1,7 +1,7 @@
 ---
 title: "Go Network Programming: Raw Sockets, ICMP, and Packet Crafting"
 date: 2029-09-22T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Networking", "ICMP", "Raw Sockets", "gopacket", "Network Diagnostics"]
 categories: ["Go", "Networking"]
 author: "Matthew Mattox - mmattox@support.tools"

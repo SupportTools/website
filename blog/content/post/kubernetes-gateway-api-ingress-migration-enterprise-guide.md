@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Gateway API: Migrating from Ingress to the New Standard"
 date: 2028-12-10T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Gateway API", "Ingress", "Networking", "Service Mesh", "Enterprise"]
 categories:
 - Kubernetes

@@ -1,7 +1,7 @@
 ---
 title: "Prometheus Recording Rules and Alerting Rules: Production Optimization"
 date: 2029-03-30T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Prometheus", "Alertmanager", "Monitoring", "Observability", "Kubernetes", "SRE"]
 categories: ["Monitoring", "Observability", "SRE"]
 author: "Matthew Mattox - mmattox@support.tools"

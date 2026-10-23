@@ -1,7 +1,7 @@
 ---
 title: "OpenTelemetry Collector: Production Deployment, Pipelines, and Scaling Strategies"
 date: 2030-08-05T00:00:00-05:00
-draft: false
+draft: true
 tags: ["OpenTelemetry", "Observability", "Kubernetes", "Monitoring", "Tracing", "Metrics", "OTel Collector"]
 categories:
 - Observability

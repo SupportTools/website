@@ -1,7 +1,7 @@
 ---
 title: "Linux systemd Advanced: Socket Activation, Transient Units, cgroup Resource Control, and Dependency Ordering"
 date: 2031-10-21T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "systemd", "cgroups", "Socket Activation", "System Administration", "Resource Management"]
 categories:
 - Linux

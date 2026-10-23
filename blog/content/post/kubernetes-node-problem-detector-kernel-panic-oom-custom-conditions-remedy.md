@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Node Problem Detector: Kernel Panic Detection, OOM Detection, Custom Conditions, and Remedy Controller"
 date: 2032-01-13T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Node Problem Detector", "Monitoring", "OOM", "Kernel", "Node Management", "Reliability", "SRE"]
 categories:
 - Kubernetes

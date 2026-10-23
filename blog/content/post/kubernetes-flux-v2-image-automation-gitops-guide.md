@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Flux v2 Image Automation: GitOps with Automated Image Updates"
 date: 2029-07-26T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Flux", "GitOps", "Image Automation", "Harbor", "ECR", "Continuous Delivery"]
 categories: ["Kubernetes", "GitOps"]
 author: "Matthew Mattox - mmattox@support.tools"

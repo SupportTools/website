@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Multi-Tenancy: Namespace Isolation, Resource Quotas, and Virtual Clusters"
 date: 2028-05-19T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Multi-tenancy", "Namespace", "ResourceQuota", "NetworkPolicy", "vcluster", "HNC"]
 categories: ["Kubernetes", "Security"]
 author: "Matthew Mattox - mmattox@support.tools"

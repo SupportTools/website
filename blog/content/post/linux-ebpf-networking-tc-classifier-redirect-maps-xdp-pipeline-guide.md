@@ -1,7 +1,7 @@
 ---
 title: "Linux eBPF Networking: TC Classifiers, Redirect Maps, XDP Combined Pipelines, and XDP_PASS/DROP"
 date: 2031-11-20T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "eBPF", "XDP", "TC", "Networking", "Kernel", "Performance", "BPF"]
 categories:
 - Linux

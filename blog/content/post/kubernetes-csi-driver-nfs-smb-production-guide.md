@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes CSI Drivers: NFS and SMB Storage for Production Workloads"
 date: 2027-04-30T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "CSI", "NFS", "SMB", "Storage", "Persistent Volumes"]
 categories: ["Kubernetes", "Storage"]
 author: "Matthew Mattox - mmattox@support.tools"

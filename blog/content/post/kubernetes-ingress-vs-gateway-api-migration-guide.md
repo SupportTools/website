@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Ingress vs Gateway API: Migration Guide"
 date: 2029-06-07T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Gateway API", "Ingress", "Migration", "Networking", "HTTPRoute", "Istio", "Envoy"]
 categories: ["Kubernetes", "Networking"]
 author: "Matthew Mattox - mmattox@support.tools"

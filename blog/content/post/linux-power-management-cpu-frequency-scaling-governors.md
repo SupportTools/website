@@ -1,7 +1,7 @@
 ---
 title: "Linux Power Management: CPU Frequency Scaling and Performance Governors"
 date: 2031-05-14T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Power Management", "CPU", "Performance", "Kubernetes", "Systems"]
 categories:
 - Linux

@@ -1,7 +1,7 @@
 ---
 title: "Go Microservices Testing: Consumer-Driven Contracts with Pact"
 date: 2029-08-23T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Testing", "Pact", "Contract Testing", "Microservices", "CI/CD", "API Testing"]
 categories: ["Go", "Testing", "Microservices"]
 author: "Matthew Mattox - mmattox@support.tools"

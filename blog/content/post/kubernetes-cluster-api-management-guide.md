@@ -1,7 +1,7 @@
 ---
 title: "Cluster API: Declarative Kubernetes Cluster Management at Scale"
 date: 2028-03-23T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Cluster API", "CAPI", "CAPA", "CAPD", "Platform Engineering", "Multi-Cloud", "GitOps"]
 categories: ["Kubernetes", "Platform Engineering"]
 author: "Matthew Mattox - mmattox@support.tools"

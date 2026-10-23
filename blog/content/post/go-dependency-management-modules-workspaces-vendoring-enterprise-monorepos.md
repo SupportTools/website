@@ -1,7 +1,7 @@
 ---
 title: "Go Dependency Management: Modules, Workspaces, and Vendoring in Enterprise Monorepos"
 date: 2030-09-19T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Golang", "Modules", "Monorepo", "Dependency Management", "Enterprise", "Security"]
 categories:
 - Go

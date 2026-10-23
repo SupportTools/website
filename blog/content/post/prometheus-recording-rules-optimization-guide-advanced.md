@@ -1,7 +1,7 @@
 ---
 title: "Prometheus Recording Rules: Query Optimization and Dashboard Performance"
 date: 2028-03-12T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Prometheus", "Monitoring", "Recording Rules", "Thanos", "PromQL", "Observability", "Performance"]
 categories: ["Monitoring", "Observability"]
 author: "Matthew Mattox - mmattox@support.tools"

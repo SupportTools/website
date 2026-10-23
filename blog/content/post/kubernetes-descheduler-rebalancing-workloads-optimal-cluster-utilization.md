@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Descheduler: Rebalancing Workloads for Optimal Cluster Utilization"
 date: 2028-12-26T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Descheduler", "Scheduling", "Cluster Optimization", "Resource Management", "Platform Engineering"]
 categories:
 - Kubernetes

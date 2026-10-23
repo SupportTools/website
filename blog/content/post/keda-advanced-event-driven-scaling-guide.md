@@ -1,7 +1,7 @@
 ---
 title: "KEDA: Event-Driven Autoscaling for Kubernetes Workloads"
 date: 2027-10-29T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "KEDA", "Autoscaling", "Kafka", "Event-Driven"]
 categories:
 - Kubernetes

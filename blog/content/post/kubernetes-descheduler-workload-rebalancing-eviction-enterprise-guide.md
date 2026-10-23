@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Descheduler: Workload Rebalancing and Eviction"
 date: 2029-04-17T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Descheduler", "Workload Rebalancing", "Cluster Autoscaler", "Scheduling", "Operations"]
 categories:
 - Kubernetes

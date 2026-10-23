@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Disaster Recovery: Velero 2.0, Cross-Region Backup, and RTO/RPO Optimization"
 date: 2030-02-12T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Disaster Recovery", "Velero", "Backup", "Cross-Region", "RTO", "RPO", "MinIO", "CSI Snapshots"]
 categories: ["Kubernetes", "Disaster Recovery"]
 author: "Matthew Mattox - mmattox@support.tools"

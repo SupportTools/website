@@ -1,7 +1,7 @@
 ---
 title: "Linux Swap Management: zswap, zram, Swappiness Tuning, Memory Pressure Response, and cgroup memory.swap.max"
 date: 2031-12-23T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Swap", "Memory", "zswap", "zram", "cgroup", "Performance", "Kernel", "Memory Management"]
 categories:
 - Linux

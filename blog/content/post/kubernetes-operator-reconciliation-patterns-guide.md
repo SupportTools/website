@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Operator Patterns: Reconciliation Loops, Status Conditions, Finalizers, and Owner References"
 date: 2028-07-29T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Operators", "Controller Runtime", "CRDs", "Reconciliation"]
 categories:
 - Kubernetes

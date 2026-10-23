@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes NodeLocal DNSCache: Reducing DNS Latency at Scale"
 date: 2030-05-23T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "DNS", "CoreDNS", "NodeLocal DNSCache", "Performance", "Networking", "Latency"]
 categories:
 - Kubernetes

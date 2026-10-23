@@ -1,7 +1,7 @@
 ---
 title: "Argo CD ApplicationSets: Dynamic Multi-Cluster and Multi-Environment Deployment"
 date: 2030-06-26T00:00:00-05:00
-draft: false
+draft: true
 tags: ["ArgoCD", "GitOps", "ApplicationSets", "Kubernetes", "Multi-Cluster", "CD", "Generators"]
 categories:
 - Kubernetes

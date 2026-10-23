@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Network Troubleshooting: A Systematic Debugging Methodology"
 date: 2027-08-19T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Networking", "Troubleshooting", "Debugging"]
 categories:
 - Kubernetes

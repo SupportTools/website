@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Topology-Aware Routing: Zone-Aware Load Balancing"
 date: 2028-10-16T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Networking", "Topology", "Load Balancing", "Cloud"]
 categories:
 - Kubernetes

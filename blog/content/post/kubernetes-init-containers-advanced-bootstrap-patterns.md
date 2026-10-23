@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Init Containers: Advanced Patterns for Application Bootstrap Automation"
 date: 2030-06-09T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Init Containers", "DevOps", "Database Migration", "Bootstrap", "Configuration Management"]
 categories:
 - Kubernetes

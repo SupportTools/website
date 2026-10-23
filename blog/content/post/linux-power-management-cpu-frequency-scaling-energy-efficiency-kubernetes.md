@@ -1,7 +1,7 @@
 ---
 title: "Linux Power Management: CPU Frequency Scaling and Energy Efficiency for Kubernetes"
 date: 2030-08-07T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Power Management", "Kubernetes", "CPU", "Energy Efficiency", "Performance", "cpufreq"]
 categories:
 - Linux

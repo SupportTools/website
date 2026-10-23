@@ -1,7 +1,7 @@
 ---
 title: "Go: Building a Distributed Job Scheduler with Persistent Queues, At-Least-Once Delivery, and Worker Pools"
 date: 2031-07-19T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Distributed Systems", "Job Scheduling", "Queues", "Worker Pools", "Redis"]
 categories:
 - Go

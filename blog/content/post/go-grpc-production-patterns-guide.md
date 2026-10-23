@@ -1,7 +1,7 @@
 ---
 title: "Go gRPC Production Patterns: Interceptors, Load Balancing, and Streaming"
 date: 2027-09-12T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "gRPC", "Microservices", "Protobuf"]
 categories:
 - Go

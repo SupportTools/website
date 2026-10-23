@@ -1,7 +1,7 @@
 ---
 title: "FinOps for Kubernetes: Cost Visibility and Optimization at Scale"
 date: 2027-12-19T00:00:00-05:00
-draft: false
+draft: true
 tags: ["FinOps", "Kubernetes", "Kubecost", "OpenCost", "Cost Optimization", "VPA", "Spot Instances", "Cloud Cost"]
 categories:
 - Kubernetes

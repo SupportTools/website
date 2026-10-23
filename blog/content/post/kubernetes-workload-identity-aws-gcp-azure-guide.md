@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Workload Identity: IRSA, Workload Identity Federation, and AKS Managed Identity"
 date: 2027-08-27T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Security", "IAM", "AWS", "GCP", "Azure"]
 categories:
 - Kubernetes

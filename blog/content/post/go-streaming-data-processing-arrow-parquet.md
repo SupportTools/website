@@ -1,7 +1,7 @@
 ---
 title: "Go Streaming Data Processing: Apache Arrow, Parquet, and In-Memory Analytics"
 date: 2030-02-07T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Apache Arrow", "Parquet", "DuckDB", "Analytics", "Data Processing", "Columnar Storage"]
 categories: ["Go", "Data Engineering"]
 author: "Matthew Mattox - mmattox@support.tools"

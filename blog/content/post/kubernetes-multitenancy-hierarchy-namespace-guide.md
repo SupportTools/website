@@ -1,7 +1,7 @@
 ---
 title: "Hierarchical Namespace Controller: Tenant Isolation in Kubernetes"
 date: 2028-12-09T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Multi-Tenancy", "HNC", "Namespaces", "Security"]
 categories:
 - Kubernetes

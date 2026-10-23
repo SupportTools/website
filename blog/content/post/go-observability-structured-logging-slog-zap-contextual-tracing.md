@@ -1,7 +1,7 @@
 ---
 title: "Go Observability: Structured Logging with slog, zap, and Contextual Tracing"
 date: 2031-01-04T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Golang", "Observability", "Logging", "slog", "zap", "OpenTelemetry", "Tracing", "ELK", "Loki"]
 categories:
 - Go

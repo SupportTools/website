@@ -1,7 +1,7 @@
 ---
 title: "Linux Network Namespaces: Container Networking Internals and Manual CNI Implementation"
 date: 2030-06-16T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Networking", "Kubernetes", "CNI", "Containers", "Network Namespaces"]
 categories:
 - Linux

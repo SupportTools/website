@@ -1,7 +1,7 @@
 ---
 title: "Strimzi Kafka Operator: Production Event Streaming on Kubernetes"
 date: 2027-03-27T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Kafka", "Strimzi", "Event Streaming", "Operator"]
 categories: ["Kubernetes", "Messaging", "Operators"]
 author: "Matthew Mattox - mmattox@support.tools"

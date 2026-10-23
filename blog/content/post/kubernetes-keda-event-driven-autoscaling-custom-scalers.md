@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes KEDA: Event-Driven Autoscaling with Custom and External Scalers"
 date: 2030-12-07T00:00:00-05:00
-draft: false
+draft: true
 tags: ["KEDA", "Kubernetes", "Autoscaling", "Event-Driven", "Kafka", "Redis", "Prometheus"]
 categories:
 - Kubernetes

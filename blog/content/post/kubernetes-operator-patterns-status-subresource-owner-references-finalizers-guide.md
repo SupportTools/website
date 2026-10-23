@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Operator Patterns: Status Subresource, Owner References, and Finalizers"
 date: 2030-05-10T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Operators", "controller-runtime", "Go", "CRD", "Finalizers", "Owner References"]
 categories: ["Kubernetes", "Development"]
 author: "Matthew Mattox - mmattox@support.tools"

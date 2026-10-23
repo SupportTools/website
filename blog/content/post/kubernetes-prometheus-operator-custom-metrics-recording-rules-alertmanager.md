@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Prometheus Operator Deep Dive: Custom Metrics, Recording Rules, and Alertmanager Configuration"
 date: 2031-07-08T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Prometheus", "Alertmanager", "Observability", "Monitoring", "PromQL", "Operator"]
 categories: ["Kubernetes", "Observability"]
 author: "Matthew Mattox - mmattox@support.tools"

@@ -1,7 +1,7 @@
 ---
 title: "Linux NUMA Architecture: Memory Policies, numactl, and NUMA-Aware Database Tuning"
 date: 2030-05-06T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "NUMA", "Performance", "PostgreSQL", "Memory Management", "numactl", "Database Tuning"]
 categories: ["Linux", "Performance"]
 author: "Matthew Mattox - mmattox@support.tools"

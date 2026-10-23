@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Multi-Architecture Builds: ARM64/AMD64 Docker Buildx, QEMU, and Mixed Node Pools"
 date: 2028-07-20T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "ARM64", "Docker Buildx", "Multi-Architecture", "CI/CD"]
 categories:
 - Kubernetes

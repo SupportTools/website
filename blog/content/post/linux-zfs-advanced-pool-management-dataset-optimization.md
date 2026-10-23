@@ -1,7 +1,7 @@
 ---
 title: "Linux ZFS on Linux: Advanced Pool Management and Dataset Optimization"
 date: 2031-03-23T00:00:00-05:00
-draft: false
+draft: true
 tags: ["ZFS", "Linux", "Storage", "Kubernetes", "CSI", "Performance", "Backup"]
 categories:
 - Linux

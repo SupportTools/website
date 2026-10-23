@@ -1,7 +1,7 @@
 ---
 title: "Go Reflection and Code Generation: reflect Package, go generate, text/template, and AST Manipulation"
 date: 2028-08-10T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Reflection", "Code Generation", "go generate", "AST"]
 categories:
 - Go

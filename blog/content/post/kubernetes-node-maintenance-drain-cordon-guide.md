@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Node Maintenance: Drain, Cordon, and Zero-Downtime Operations"
 date: 2027-05-02T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Node Maintenance", "Drain", "Cordon", "Operations", "Zero Downtime"]
 categories: ["Kubernetes", "Operations"]
 author: "Matthew Mattox - mmattox@support.tools"

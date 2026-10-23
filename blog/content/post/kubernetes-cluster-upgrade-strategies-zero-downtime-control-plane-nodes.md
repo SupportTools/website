@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Cluster Upgrade Strategies: Zero-Downtime Control Plane and Node Upgrades"
 date: 2029-12-21T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Cluster Upgrade", "kubeadm", "EKS", "GKE", "AKS", "PodDisruptionBudget", "Node Drain", "Zero Downtime"]
 categories:
 - Kubernetes

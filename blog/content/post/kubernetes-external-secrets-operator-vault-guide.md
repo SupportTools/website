@@ -1,7 +1,7 @@
 ---
 title: "External Secrets Operator: Syncing Vault and AWS Secrets Manager to Kubernetes"
 date: 2028-10-22T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Secrets", "Vault", "External Secrets", "Security"]
 categories:
 - Kubernetes

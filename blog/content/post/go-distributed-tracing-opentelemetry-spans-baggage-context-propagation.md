@@ -1,7 +1,7 @@
 ---
 title: "Go Distributed Tracing: OpenTelemetry Spans, Baggage, and Context Propagation"
 date: 2031-02-06T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Golang", "OpenTelemetry", "Distributed Tracing", "Jaeger", "Tempo", "Observability", "gRPC"]
 categories:
 - Go

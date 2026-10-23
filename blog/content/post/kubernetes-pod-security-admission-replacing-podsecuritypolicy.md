@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Pod Security Admission: Replacing PodSecurityPolicy"
 date: 2029-05-07T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Security", "PSA", "Pod Security", "OPA Gatekeeper", "Kyverno", "PodSecurityPolicy"]
 categories:
 - Kubernetes

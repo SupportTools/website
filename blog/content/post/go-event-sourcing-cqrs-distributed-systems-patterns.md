@@ -1,7 +1,7 @@
 ---
 title: "Go Event Sourcing and CQRS: Patterns for Distributed Systems"
 date: 2029-06-14T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Event Sourcing", "CQRS", "Kafka", "Distributed Systems", "Architecture"]
 categories: ["Go", "Distributed Systems"]
 author: "Matthew Mattox - mmattox@support.tools"

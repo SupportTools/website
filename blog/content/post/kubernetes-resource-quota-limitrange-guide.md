@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Resource Quotas and LimitRanges: Multi-Tenant Resource Management"
 date: 2028-03-17T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "ResourceQuota", "LimitRange", "Multi-Tenancy", "FinOps", "Platform Engineering"]
 categories: ["Kubernetes", "Platform Engineering"]
 author: "Matthew Mattox - mmattox@support.tools"

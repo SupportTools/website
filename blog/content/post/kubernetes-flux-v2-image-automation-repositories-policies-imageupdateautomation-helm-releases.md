@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Flux v2 Image Automation: Image Repositories, Image Policies, ImageUpdateAutomation, and Helm Releases"
 date: 2031-11-11T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Flux", "GitOps", "Image Automation", "Helm", "CD", "FluxCD"]
 categories: ["Kubernetes", "GitOps"]
 author: "Matthew Mattox - mmattox@support.tools"

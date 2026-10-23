@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Audit Logging: Compliance, Forensics, and Anomaly Detection"
 date: 2027-04-14T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Audit Logging", "Compliance", "Security", "Forensics"]
 categories: ["Kubernetes", "Security", "Compliance"]
 author: "Matthew Mattox - mmattox@support.tools"

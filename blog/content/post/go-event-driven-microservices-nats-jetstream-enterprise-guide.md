@@ -1,7 +1,7 @@
 ---
 title: "Go: Building Event-Driven Microservices with NATS JetStream, Consumer Groups, and Exactly-Once Delivery"
 date: 2031-06-12T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "NATS", "JetStream", "Event-Driven", "Microservices", "Messaging", "Distributed Systems"]
 categories:
 - Go

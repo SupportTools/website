@@ -1,7 +1,7 @@
 ---
 title: "KEDA: Event-Driven Autoscaling for Kubernetes Workloads"
 date: 2027-04-01T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "KEDA", "Autoscaling", "Event-Driven", "HPA"]
 categories: ["Kubernetes", "Autoscaling", "Event-Driven Architecture"]
 author: "Matthew Mattox - mmattox@support.tools"

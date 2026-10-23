@@ -1,7 +1,7 @@
 ---
 title: "Go Workspace Mode: Multi-Module Development and Dependency Replacement"
 date: 2031-03-05T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Golang", "Workspaces", "Modules", "Monorepo", "Development", "CI/CD"]
 categories:
 - Go

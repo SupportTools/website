@@ -1,7 +1,7 @@
 ---
 title: "Measuring Linux Performance: Disk and Storage Done Right"
 date: 2032-05-02T09:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Performance", "Storage", "iostat", "fio", "NVMe", "SSD", "Kubernetes", "CSI", "blktrace", "Observability", "SRE"]
 categories:
 - Linux

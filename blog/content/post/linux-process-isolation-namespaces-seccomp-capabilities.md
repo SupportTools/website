@@ -1,7 +1,7 @@
 ---
 title: "Linux Process Isolation: namespaces, seccomp, and capabilities deep dive"
 date: 2029-06-29T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Security", "Namespaces", "seccomp", "Capabilities", "Containers", "Kernel"]
 categories: ["Linux", "Security", "Containers"]
 author: "Matthew Mattox - mmattox@support.tools"

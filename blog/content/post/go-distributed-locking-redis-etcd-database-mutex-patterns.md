@@ -1,7 +1,7 @@
 ---
 title: "Go Distributed Locking: Redis, etcd, and Database-Backed Mutex Patterns"
 date: 2030-08-29T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Distributed Systems", "Redis", "etcd", "PostgreSQL", "Locking", "Concurrency"]
 categories:
 - Go

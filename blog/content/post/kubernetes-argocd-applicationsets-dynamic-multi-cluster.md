@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes ArgoCD ApplicationSets: Dynamic Application Generation for Multi-Cluster GitOps"
 date: 2031-05-28T00:00:00-05:00
-draft: false
+draft: true
 tags: ["ArgoCD", "ApplicationSets", "GitOps", "Multi-Cluster", "Kubernetes", "CI/CD"]
 categories: ["Kubernetes", "GitOps", "DevOps"]
 author: "Matthew Mattox - mmattox@support.tools"

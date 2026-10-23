@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Istio Service Mesh: mTLS, Authorization Policies, and Observability"
 date: 2029-06-18T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Istio", "Service Mesh", "mTLS", "Security", "Observability", "Envoy"]
 categories: ["Kubernetes", "Security", "Observability"]
 author: "Matthew Mattox - mmattox@support.tools"

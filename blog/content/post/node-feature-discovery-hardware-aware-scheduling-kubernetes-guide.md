@@ -1,7 +1,7 @@
 ---
 title: "Node Feature Discovery: Hardware-Aware Scheduling in Kubernetes"
 date: 2027-01-16T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Node Feature Discovery", "Scheduling", "Hardware", "GPU"]
 categories: ["Kubernetes", "Infrastructure", "Hardware"]
 author: "Matthew Mattox - mmattox@support.tools"

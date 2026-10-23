@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Container Runtime: containerd Configuration, CRI, and Production Optimization"
 date: 2027-05-19T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "containerd", "CRI", "Container Runtime", "OCI", "Performance"]
 categories: ["Kubernetes", "Infrastructure"]
 author: "Matthew Mattox - mmattox@support.tools"

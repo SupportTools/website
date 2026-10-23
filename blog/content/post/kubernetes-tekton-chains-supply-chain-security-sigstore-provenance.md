@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Tekton Chains: Supply Chain Security with Artifact Signing and Provenance Attestation Using Sigstore"
 date: 2031-06-17T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Tekton", "Supply Chain Security", "Sigstore", "SLSA", "Provenance", "SBOM", "CI/CD"]
 categories:
 - Kubernetes

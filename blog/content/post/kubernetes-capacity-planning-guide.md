@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Capacity Planning: Resource Modeling for Production Clusters"
 date: 2028-01-03T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Capacity Planning", "VPA", "Cluster Autoscaler", "Resource Management", "k6"]
 categories: ["Kubernetes", "Operations"]
 author: "Matthew Mattox - mmattox@support.tools"

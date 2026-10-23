@@ -1,7 +1,7 @@
 ---
 title: "Kyverno: Kubernetes-Native Policy Engine for Admission Control"
 date: 2027-02-21T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Kyverno", "Policy", "Security", "Admission Control"]
 categories: ["Security", "Kubernetes", "Policy"]
 author: "Matthew Mattox - mmattox@support.tools"

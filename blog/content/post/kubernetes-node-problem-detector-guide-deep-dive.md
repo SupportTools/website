@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Node Problem Detector: Proactive Infrastructure Health Monitoring"
 date: 2028-02-28T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Node Problem Detector", "NPD", "Monitoring", "Node Health", "Prometheus"]
 categories: ["Kubernetes", "Operations"]
 author: "Matthew Mattox - mmattox@support.tools"

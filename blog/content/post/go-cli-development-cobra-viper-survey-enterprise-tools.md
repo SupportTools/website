@@ -1,7 +1,7 @@
 ---
 title: "Go CLI Development: cobra, viper, and Survey for Enterprise Tools"
 date: 2031-04-04T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Golang", "CLI", "cobra", "viper", "DevOps", "Tooling"]
 categories:
 - Go

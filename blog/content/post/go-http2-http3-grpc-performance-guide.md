@@ -1,7 +1,7 @@
 ---
 title: "Go HTTP/2 and HTTP/3: QUIC Implementation, gRPC Performance, and Production Configuration"
 date: 2028-06-27T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "HTTP/2", "HTTP/3", "QUIC", "gRPC", "Performance"]
 categories:
 - Go

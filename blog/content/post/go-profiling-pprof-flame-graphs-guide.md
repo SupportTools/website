@@ -1,7 +1,7 @@
 ---
 title: "Go Profiling Deep Dive: pprof HTTP Endpoints, Flame Graphs, Allocation Profiles, and Mutex Contention"
 date: 2028-07-28T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Profiling", "pprof", "Performance", "Flame Graphs", "Optimization"]
 categories:
 - Go

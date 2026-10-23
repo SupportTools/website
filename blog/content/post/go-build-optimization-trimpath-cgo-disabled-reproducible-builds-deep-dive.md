@@ -1,7 +1,7 @@
 ---
 title: "Go Build Optimization: Trimpath, CGO Disabled, and Reproducible Builds"
 date: 2029-03-27T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Build Optimization", "Security", "CI/CD", "Reproducible Builds", "Docker"]
 categories:
 - Go

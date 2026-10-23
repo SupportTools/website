@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Disaster Recovery: Runbooks for Common Failure Scenarios"
 date: 2028-03-31T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Disaster Recovery", "etcd", "Runbooks", "Operations", "SRE", "Incident Response"]
 categories: ["Kubernetes", "Operations"]
 author: "Matthew Mattox - mmattox@support.tools"

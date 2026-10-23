@@ -1,7 +1,7 @@
 ---
 title: "Linux Performance Analysis with perf: CPU Profiling, Cache Misses, Branch Prediction, and Flame Graphs"
 date: 2031-10-14T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Performance", "perf", "Profiling", "Flame Graphs", "CPU", "Optimization"]
 categories:
 - Linux

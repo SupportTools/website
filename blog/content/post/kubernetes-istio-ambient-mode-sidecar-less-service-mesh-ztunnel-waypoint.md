@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Istio Ambient Mode: Sidecar-Less Service Mesh with ztunnel and Waypoint Proxies"
 date: 2031-10-26T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Istio", "Service Mesh", "Ambient Mode", "ztunnel", "Waypoint", "Networking", "Zero Trust"]
 categories:
 - Kubernetes

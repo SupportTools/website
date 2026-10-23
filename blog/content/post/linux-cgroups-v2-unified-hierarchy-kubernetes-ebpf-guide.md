@@ -1,7 +1,7 @@
 ---
 title: "Linux cgroups v2: Resource Management, Unified Hierarchy, and Kubernetes Integration"
 date: 2029-12-03T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "cgroups", "cgroups v2", "Kubernetes", "eBPF", "Resource Management", "CPU", "Memory", "I/O"]
 categories:
 - Linux

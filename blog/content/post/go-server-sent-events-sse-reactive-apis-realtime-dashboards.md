@@ -1,7 +1,7 @@
 ---
 title: "Go: Building Reactive APIs with Server-Sent Events (SSE) for Real-Time Dashboards"
 date: 2031-08-04T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "SSE", "Server-Sent Events", "Real-Time", "Dashboards", "HTTP", "Streaming", "Golang"]
 categories:
 - Go

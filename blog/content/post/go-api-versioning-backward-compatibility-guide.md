@@ -1,7 +1,7 @@
 ---
 title: "Go API Versioning: Backward Compatibility and Deprecation Strategies"
 date: 2028-11-08T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "API Design", "Versioning", "REST", "gRPC"]
 categories:
 - Go

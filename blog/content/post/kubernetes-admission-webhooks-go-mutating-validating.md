@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Admission Webhooks in Go: Building Mutating and Validating Webhooks"
 date: 2028-12-30T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Go", "Admission Webhooks", "Security", "Policy Enforcement"]
 categories:
 - Kubernetes

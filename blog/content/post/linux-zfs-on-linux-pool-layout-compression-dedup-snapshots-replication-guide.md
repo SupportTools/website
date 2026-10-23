@@ -1,7 +1,7 @@
 ---
 title: "Linux ZFS on Linux: Pool Layout, Compression, Deduplication Trade-offs, Snapshots, and Send/Receive Replication"
 date: 2031-11-23T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "ZFS", "Storage", "ZFS on Linux", "OpenZFS", "Snapshots", "Replication", "Data Management"]
 categories:
 - Linux

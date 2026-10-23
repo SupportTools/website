@@ -1,7 +1,7 @@
 ---
 title: "Go: Implementing RBAC with Casbin for Fine-Grained Access Control in Multi-Tenant Applications"
 date: 2031-08-18T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Casbin", "RBAC", "Authorization", "Multi-Tenant", "Security", "Access Control"]
 categories: ["Go", "Security"]
 author: "Matthew Mattox - mmattox@support.tools"

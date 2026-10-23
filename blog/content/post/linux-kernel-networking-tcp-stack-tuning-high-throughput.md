@@ -1,7 +1,7 @@
 ---
 title: "Linux Kernel Networking: TCP Stack Tuning for High Throughput"
 date: 2029-05-01T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "TCP", "Networking", "Performance", "Kernel", "BBR", "Tuning"]
 categories:
 - Linux

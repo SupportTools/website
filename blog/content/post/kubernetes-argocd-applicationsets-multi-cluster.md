@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes ArgoCD ApplicationSets: Templating Multi-Cluster Deployments"
 date: 2029-06-27T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "ArgoCD", "GitOps", "ApplicationSet", "Multi-Cluster", "Argo Rollouts"]
 categories: ["Kubernetes", "GitOps"]
 author: "Matthew Mattox - mmattox@support.tools"

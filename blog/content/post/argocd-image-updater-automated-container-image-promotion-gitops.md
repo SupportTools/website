@@ -1,7 +1,7 @@
 ---
 title: "ArgoCD Image Updater: Automated Container Image Promotion in GitOps"
 date: 2030-12-01T00:00:00-05:00
-draft: false
+draft: true
 tags: ["ArgoCD", "GitOps", "Kubernetes", "CI/CD", "Container Images", "Automation"]
 categories:
 - Kubernetes

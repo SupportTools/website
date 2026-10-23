@@ -1,7 +1,7 @@
 ---
 title: "Linux NUMA Architecture: Memory Locality Optimization"
 date: 2029-04-14T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "NUMA", "Performance", "Memory", "CPU Pinning", "Kubernetes", "HPC"]
 categories:
 - Linux

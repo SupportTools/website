@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Batch Processing: Job Patterns, CronJobs, and Work Queues"
 date: 2028-02-16T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Batch", "Jobs", "CronJob", "KEDA", "Volcano", "Redis"]
 categories:
 - Kubernetes

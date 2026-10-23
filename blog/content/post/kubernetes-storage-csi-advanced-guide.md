@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes CSI Drivers: Advanced Storage Configuration for Production"
 date: 2027-11-18T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "CSI", "Storage", "Longhorn", "Ceph"]
 categories:
 - Kubernetes

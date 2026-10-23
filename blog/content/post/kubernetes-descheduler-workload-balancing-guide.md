@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Descheduler: Rebalancing Workloads After Cluster Events"
 date: 2028-05-21T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Descheduler", "Workload Balancing", "Node Utilization", "Scheduling", "Production"]
 categories: ["Kubernetes", "Infrastructure"]
 author: "Matthew Mattox - mmattox@support.tools"

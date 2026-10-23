@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes OpenTelemetry Collector: Data Collection, Processing Pipelines, and Multi-Backend Export"
 date: 2031-08-13T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "OpenTelemetry", "Observability", "Tracing", "Metrics", "Collector"]
 categories:
 - Kubernetes

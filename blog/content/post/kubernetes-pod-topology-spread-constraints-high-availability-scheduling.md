@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Pod Topology Spread Constraints: High-Availability Scheduling Strategies"
 date: 2030-05-20T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Scheduling", "High Availability", "Topology", "Pod Affinity", "Production", "Resilience"]
 categories:
 - Kubernetes

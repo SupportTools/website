@@ -1,7 +1,7 @@
 ---
 title: "Measuring Linux Performance: A Recap and the Mistakes Everyone Makes"
 date: 2032-05-04T09:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Performance", "Observability", "USE Method", "Pressure Stall Information", "Prometheus", "Kubernetes", "Benchmarking", "System Administration", "Monitoring", "Troubleshooting"]
 categories:
 - Linux

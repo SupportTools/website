@@ -1,7 +1,7 @@
 ---
 title: "Linux Memory Management: OOM Killer, cgroups v2, and Container Memory Tuning"
 date: 2028-12-12T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Memory Management", "OOM Killer", "cgroups", "Kubernetes", "Performance"]
 categories:
 - Linux

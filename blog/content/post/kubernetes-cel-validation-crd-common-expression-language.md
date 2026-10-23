@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Custom Resource Validation with CEL: Common Expression Language in CRDs"
 date: 2030-06-14T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "CRD", "CEL", "Validation", "Custom Resources", "API"]
 categories:
 - Kubernetes

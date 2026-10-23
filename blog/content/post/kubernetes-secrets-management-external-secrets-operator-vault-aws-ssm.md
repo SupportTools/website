@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Secrets Management: External Secrets Operator with Vault and AWS SSM"
 date: 2029-08-19T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Secrets", "HashiCorp Vault", "AWS SSM", "External Secrets", "Security", "GitOps"]
 categories: ["Kubernetes", "Security", "DevOps"]
 author: "Matthew Mattox - mmattox@support.tools"

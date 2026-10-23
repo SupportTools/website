@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Topology-Aware Routing: Zone-Aware Load Balancing and Cross-AZ Cost Reduction"
 date: 2028-06-08T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Networking", "Topology", "Load Balancing", "Cost Optimization", "AWS"]
 categories: ["Kubernetes", "Networking", "Cost Optimization"]
 author: "Matthew Mattox - mmattox@support.tools"

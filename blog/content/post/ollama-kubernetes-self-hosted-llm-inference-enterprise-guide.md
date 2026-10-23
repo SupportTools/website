@@ -1,7 +1,7 @@
 ---
 title: "Ollama on Kubernetes: Self-Hosted LLM Inference for Enterprise Teams"
 date: 2026-12-18T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Ollama", "Kubernetes", "LLM", "AI Infrastructure", "Self-Hosted", "GPU", "MLOps"]
 categories:
 - AI Infrastructure

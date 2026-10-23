@@ -1,7 +1,7 @@
 ---
 title: "Go Template Engines: html/template Security, Sprig Functions, and Server-Side Rendering"
 date: 2030-05-11T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Templates", "html/template", "Security", "Sprig", "XSS", "Server-Side Rendering"]
 categories: ["Go", "Web Development", "Security"]
 author: "Matthew Mattox - mmattox@support.tools"

@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Multi-Cluster Management: Fleet Operations at Scale"
 date: 2027-10-25T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Multi-Cluster", "Fleet", "Management", "ArgoCD"]
 categories:
 - Kubernetes

@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Argo Rollouts: Canary Analysis with Prometheus and Datadog Metrics"
 date: 2031-03-27T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Argo Rollouts", "Canary", "Prometheus", "Datadog", "Progressive Delivery", "Istio"]
 categories:
 - Kubernetes

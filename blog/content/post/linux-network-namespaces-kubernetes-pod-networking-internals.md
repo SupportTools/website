@@ -1,7 +1,7 @@
 ---
 title: "Linux Network Namespaces and Virtual Networking: Understanding Kubernetes Pod Networking Internals"
 date: 2031-07-16T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Kubernetes", "Networking", "Network Namespaces", "CNI", "eBPF", "veth", "Overlay Networks"]
 categories: ["Linux", "Kubernetes"]
 author: "Matthew Mattox - mmattox@support.tools"

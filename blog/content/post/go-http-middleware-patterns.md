@@ -1,7 +1,7 @@
 ---
 title: "Go HTTP Middleware Patterns: Telemetry, Auth, Rate Limiting, and Request Validation"
 date: 2030-02-17T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "HTTP", "Middleware", "OpenTelemetry", "JWT", "Rate Limiting", "Security", "API"]
 categories: ["Go", "Backend Engineering"]
 author: "Matthew Mattox - mmattox@support.tools"

@@ -1,7 +1,7 @@
 ---
 title: "Argo Workflows: Building Data Pipelines and ML Training Jobs on Kubernetes"
 date: 2028-12-06T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Argo Workflows", "Kubernetes", "Data Pipelines", "AI/ML", "CI/CD"]
 categories:
 - Kubernetes

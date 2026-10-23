@@ -1,7 +1,7 @@
 ---
 title: "Linux Performance Analysis: USE Method, RED Method, and Tool Selection"
 date: 2029-01-18T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Performance", "USE Method", "RED Method", "perf", "BPF", "Observability", "Troubleshooting"]
 categories:
 - Linux

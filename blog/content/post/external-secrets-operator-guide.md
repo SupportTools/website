@@ -1,7 +1,7 @@
 ---
 title: "External Secrets Operator: Enterprise Secret Management for Kubernetes"
 date: 2027-10-09T00:00:00-05:00
-draft: false
+draft: true
 tags: ["External Secrets", "Kubernetes", "HashiCorp Vault", "AWS Secrets Manager", "Security"]
 categories:
 - Security

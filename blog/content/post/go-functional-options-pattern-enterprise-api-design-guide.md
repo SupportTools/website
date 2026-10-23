@@ -1,7 +1,7 @@
 ---
 title: "Go Functional Options Pattern: Option Structs vs Functions, Variadic Constructors, Interface vs Concrete Types, and Testing"
 date: 2032-02-17T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Design Patterns", "API Design", "Testing", "Software Engineering"]
 categories:
 - Go

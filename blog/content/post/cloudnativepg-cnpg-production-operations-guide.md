@@ -1,7 +1,7 @@
 ---
 title: "CloudNativePG: Production PostgreSQL on Kubernetes"
 date: 2027-10-05T00:00:00-05:00
-draft: false
+draft: true
 tags: ["PostgreSQL", "CloudNativePG", "Kubernetes", "Databases", "HA"]
 categories:
 - Databases

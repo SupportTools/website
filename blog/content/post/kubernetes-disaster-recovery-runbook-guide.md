@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Disaster Recovery: Runbooks, etcd Restoration, and Cluster Rebuild Procedures"
 date: 2027-05-24T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Disaster Recovery", "etcd", "Backup", "Velero", "SRE"]
 categories: ["Kubernetes", "SRE"]
 author: "Matthew Mattox - mmattox@support.tools"

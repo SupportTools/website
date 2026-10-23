@@ -1,7 +1,7 @@
 ---
 title: "Go Rate Limiting Patterns: Token Bucket, Sliding Window, and Distributed Rate Limiters"
 date: 2030-07-17T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Golang", "Rate Limiting", "Redis", "gRPC", "HTTP", "Distributed Systems"]
 categories:
 - Go

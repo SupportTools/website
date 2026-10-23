@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes RBAC Advanced Patterns: Aggregated ClusterRoles, Impersonation, Audit Logging, and Least Privilege Design"
 date: 2028-08-04T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "RBAC", "Security", "Audit Logging", "Least Privilege"]
 categories:
 - Kubernetes

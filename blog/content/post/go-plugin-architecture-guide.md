@@ -1,7 +1,7 @@
 ---
 title: "Go Plugin Architecture: gRPC Plugins, Hashicorp go-plugin, and Dynamic Loading"
 date: 2028-02-12T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Plugins", "gRPC", "Hashicorp go-plugin", "Architecture", "Extensibility", "RPC"]
 categories:
 - Go

@@ -1,7 +1,7 @@
 ---
 title: "Linux Network Namespaces and Virtual Networking: veth, bridge, macvlan, and ipvlan"
 date: 2030-03-17T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Network Namespaces", "Virtual Networking", "veth", "macvlan", "ipvlan", "Containers"]
 categories: ["Linux", "Networking"]
 author: "Matthew Mattox - mmattox@support.tools"

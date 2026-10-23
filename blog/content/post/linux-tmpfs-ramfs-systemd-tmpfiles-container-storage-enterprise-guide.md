@@ -1,7 +1,7 @@
 ---
 title: "Linux tmpfs and ramfs: Mount Options, Size Limits, /dev/shm, systemd-tmpfiles, and Ephemeral Storage for Containers"
 date: 2032-02-21T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "tmpfs", "ramfs", "systemd", "Containers", "Storage", "Performance"]
 categories:
 - Linux

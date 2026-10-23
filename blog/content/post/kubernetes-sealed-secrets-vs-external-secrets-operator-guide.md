@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Sealed Secrets vs External Secrets Operator: Architecture Comparison, Migration Path, Rotation Workflows"
 date: 2031-12-01T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Secrets Management", "Sealed Secrets", "External Secrets", "Security", "GitOps", "Vault"]
 categories:
 - Kubernetes

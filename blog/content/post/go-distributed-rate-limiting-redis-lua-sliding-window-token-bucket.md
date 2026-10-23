@@ -1,7 +1,7 @@
 ---
 title: "Go Distributed Rate Limiting: Redis Lua, Sliding Window, and Token Bucket at Scale"
 date: 2029-02-02T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Redis", "Rate Limiting", "Distributed Systems", "Performance"]
 categories:
 - Go

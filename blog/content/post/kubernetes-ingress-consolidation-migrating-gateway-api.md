@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Ingress Consolidation: Migrating from Multiple Controllers to Gateway API"
 date: 2030-08-08T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Gateway API", "Ingress", "Networking", "Migration", "nginx", "Envoy"]
 categories:
 - Kubernetes

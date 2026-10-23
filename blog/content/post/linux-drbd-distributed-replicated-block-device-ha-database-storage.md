@@ -1,7 +1,7 @@
 ---
 title: "Linux DRBD: Distributed Replicated Block Device for HA Database Storage"
 date: 2031-01-08T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "DRBD", "High Availability", "Storage", "Pacemaker", "Kubernetes", "Database", "Replication"]
 categories:
 - Linux

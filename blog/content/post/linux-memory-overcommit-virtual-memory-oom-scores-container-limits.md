@@ -1,7 +1,7 @@
 ---
 title: "Linux Memory Overcommit: Virtual Memory, OOM Scores, and Container Memory Limits"
 date: 2029-03-22T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Memory Management", "Kubernetes", "OOM Killer", "Containers", "Performance"]
 categories:
 - Linux

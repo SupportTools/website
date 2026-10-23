@@ -1,7 +1,7 @@
 ---
 title: "Go Plugin Architecture: Building Extensible Production Systems"
 date: 2027-10-17T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Architecture", "Plugins", "Production", "Design Patterns"]
 categories:
 - Go

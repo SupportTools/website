@@ -1,7 +1,7 @@
 ---
 title: "Linux Transparent Proxy with TPROXY: iptables TPROXY Target, SO_TRANSPARENT, Envoy Interception, and Policy Routing"
 date: 2031-12-13T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Networking", "TPROXY", "iptables", "Envoy", "Service Mesh", "Transparent Proxy", "Policy Routing", "Kernel Networking"]
 categories: ["Linux", "Networking", "Service Mesh"]
 author: "Matthew Mattox - mmattox@support.tools"

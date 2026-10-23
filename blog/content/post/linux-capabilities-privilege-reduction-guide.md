@@ -1,7 +1,7 @@
 ---
 title: "Linux Capabilities: Privilege Reduction for Containers and Services"
 date: 2028-12-08T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Security", "Capabilities", "Containers", "Kubernetes"]
 categories:
 - Linux

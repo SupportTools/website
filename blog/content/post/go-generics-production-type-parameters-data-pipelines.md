@@ -1,7 +1,7 @@
 ---
 title: "Go Generics in Production: Type Parameters for Data Pipelines and Collection Libraries"
 date: 2030-12-22T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Golang", "Generics", "Type Parameters", "Data Pipelines", "Performance", "Collections"]
 categories:
 - Go

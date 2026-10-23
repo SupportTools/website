@@ -1,7 +1,7 @@
 ---
 title: "Linux Kernel Live Patching: kpatch and livepatch"
 date: 2029-06-06T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Kernel", "Live Patching", "kpatch", "Security", "RHEL", "Ubuntu", "Uptime"]
 categories: ["Linux", "Security"]
 author: "Matthew Mattox - mmattox@support.tools"

@@ -1,7 +1,7 @@
 ---
 title: "Linux Bonding and Team Drivers: Network Redundancy and Link Aggregation"
 date: 2030-12-19T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Networking", "Bonding", "LACP", "Link Aggregation", "Network Redundancy", "SystemD", "NetworkManager"]
 categories:
 - Linux

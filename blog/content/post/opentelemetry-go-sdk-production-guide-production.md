@@ -1,7 +1,7 @@
 ---
 title: "OpenTelemetry Go SDK: Traces, Metrics, and Logs with Collector Configuration and Sampling Strategies"
 date: 2028-06-29T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "OpenTelemetry", "Tracing", "Observability", "Prometheus", "Jaeger"]
 categories:
 - Go

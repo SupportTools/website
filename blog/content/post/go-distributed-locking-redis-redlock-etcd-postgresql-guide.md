@@ -1,7 +1,7 @@
 ---
 title: "Go Distributed Locking: Redis Redlock, etcd, and PostgreSQL Advisory Locks"
 date: 2031-06-05T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Golang", "Redis", "etcd", "PostgreSQL", "Distributed Systems", "Locking"]
 categories:
 - Go

@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Gateway API: The Next Generation of Ingress"
 date: 2027-05-06T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Gateway API", "Ingress", "Networking", "HTTPRoute", "GatewayClass"]
 categories: ["Kubernetes", "Networking"]
 author: "Matthew Mattox - mmattox@support.tools"

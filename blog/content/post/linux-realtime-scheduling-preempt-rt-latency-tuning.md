@@ -1,7 +1,7 @@
 ---
 title: "Linux Real-Time Scheduling: PREEMPT_RT Patch, Latency Tuning, and RT Workload Isolation"
 date: 2030-01-25T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Real-Time", "PREEMPT_RT", "Kernel", "Latency", "CPU Isolation", "Performance"]
 categories: ["Linux", "Performance", "Systems Programming"]
 author: "Matthew Mattox - mmattox@support.tools"

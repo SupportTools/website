@@ -1,7 +1,7 @@
 ---
 title: "Cilium Network Policies: Advanced L7 Policies and DNS-Based Rules"
 date: 2027-10-15T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Cilium", "Network Policy", "Security", "Kubernetes", "eBPF"]
 categories:
 - Networking

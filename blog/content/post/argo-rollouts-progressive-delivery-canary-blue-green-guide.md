@@ -1,7 +1,7 @@
 ---
 title: "Argo Rollouts: Progressive Delivery with Canary and Blue-Green Deployments on Kubernetes"
 date: 2026-12-28T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Argo Rollouts", "Kubernetes", "Progressive Delivery", "Canary", "Blue-Green"]
 categories:
 - Kubernetes

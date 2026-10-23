@@ -1,7 +1,7 @@
 ---
 title: "cert-manager Advanced Configuration: Enterprise PKI and Certificate Lifecycle"
 date: 2027-12-08T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "cert-manager", "PKI", "TLS", "Certificates", "Vault", "ACME", "Security"]
 categories:
 - Kubernetes

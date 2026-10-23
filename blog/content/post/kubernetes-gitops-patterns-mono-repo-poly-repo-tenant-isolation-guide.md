@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes GitOps Patterns: Mono-Repo vs Poly-Repo and Tenant Isolation"
 date: 2031-06-07T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "GitOps", "ArgoCD", "Flux", "Multi-tenancy", "DevOps", "Platform Engineering"]
 categories:
 - Kubernetes

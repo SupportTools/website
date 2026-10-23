@@ -1,7 +1,7 @@
 ---
 title: "Go Microservice Chassis: Building Reusable Infrastructure with fx and wire"
 date: 2030-01-08T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Golang", "Microservices", "Dependency Injection", "fx", "wire", "Architecture"]
 categories: ["Go", "Architecture"]
 author: "Matthew Mattox - mmattox@support.tools"

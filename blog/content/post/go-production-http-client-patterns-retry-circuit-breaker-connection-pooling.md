@@ -1,7 +1,7 @@
 ---
 title: "Go: Production-Grade HTTP Client Patterns with Retry Logic, Circuit Breakers, and Connection Pooling"
 date: 2031-06-15T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "HTTP", "Client", "Retry", "Circuit Breaker", "Connection Pooling", "Resilience", "Production"]
 categories:
 - Go

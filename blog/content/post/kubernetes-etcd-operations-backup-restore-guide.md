@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes etcd Operations: Backup, Restore, Compaction, Defragmentation, and Cluster Health"
 date: 2028-08-11T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "etcd", "Backup", "Restore", "Operations", "High Availability"]
 categories:
   - Kubernetes

@@ -1,7 +1,7 @@
 ---
 title: "Cilium ClusterMesh: Multi-Cluster Connectivity and Network Policy Federation"
 date: 2029-01-04T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Cilium", "ClusterMesh", "Kubernetes", "Networking", "eBPF"]
 categories:
 - Kubernetes

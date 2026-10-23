@@ -1,7 +1,7 @@
 ---
 title: "Go embed Package Deep Dive: Static Assets, Template Embedding, Database Migrations, and Testing with Embedded FS"
 date: 2032-01-15T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Golang", "embed", "Static Assets", "Database Migrations", "Testing"]
 categories:
 - Go

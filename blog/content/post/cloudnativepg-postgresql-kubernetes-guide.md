@@ -1,7 +1,7 @@
 ---
 title: "CloudNativePG: Production PostgreSQL on Kubernetes with Automated Failover"
 date: 2027-06-24T00:00:00-05:00
-draft: false
+draft: true
 tags: ["PostgreSQL", "CloudNativePG", "Kubernetes", "Database", "High Availability"]
 categories:
 - PostgreSQL

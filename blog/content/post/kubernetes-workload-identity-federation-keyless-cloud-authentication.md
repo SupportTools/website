@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Workload Identity Federation: Keyless Authentication for Cloud APIs"
 date: 2030-07-02T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Security", "Workload Identity", "IRSA", "GKE", "AKS", "SPIFFE", "OIDC", "IAM"]
 categories:
 - Kubernetes

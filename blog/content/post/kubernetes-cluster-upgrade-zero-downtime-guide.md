@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Cluster Upgrade Strategies: Zero-Downtime Node Drain, Version Skew, and RKE2/EKS Upgrade Procedures"
 date: 2028-06-25T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Upgrades", "RKE2", "EKS", "Zero-Downtime", "Production"]
 categories:
 - Kubernetes

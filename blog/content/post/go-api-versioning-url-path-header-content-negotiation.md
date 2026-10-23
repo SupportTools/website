@@ -1,7 +1,7 @@
 ---
 title: "Go API Versioning: URL Path, Header, and Content Negotiation Strategies"
 date: 2031-05-13T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "API", "REST", "Versioning", "OpenAPI", "chi", "gin", "gRPC"]
 categories:
 - Go

@@ -1,7 +1,7 @@
 ---
 title: "Go: Implementing Distributed Consensus with Raft Algorithm Using hashicorp/raft"
 date: 2031-09-13T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Golang", "Raft", "Distributed Systems", "Consensus", "hashicorp/raft", "Production"]
 categories:
 - Go

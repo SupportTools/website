@@ -1,7 +1,7 @@
 ---
 title: "Linux Network Performance: Receive Side Scaling and Interrupt Affinity"
 date: 2029-05-20T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Networking", "Performance", "RSS", "RPS", "IRQ", "NUMA", "ethtool"]
 categories: ["Linux", "Networking", "Performance"]
 author: "Matthew Mattox - mmattox@support.tools"

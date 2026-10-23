@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Operator Development: controller-runtime, Reconciliation Patterns, and Production Readiness"
 date: 2027-06-03T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Operator", "controller-runtime", "Go", "CRD", "Development"]
 categories: ["Kubernetes", "Development"]
 author: "Matthew Mattox - mmattox@support.tools"

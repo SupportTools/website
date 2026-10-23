@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Sidecar Containers: Init Containers, Sidecar Pattern, Istio Proxy Injection, and Pod Lifecycle"
 date: 2028-08-22T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Sidecar", "Init Containers", "Pod Lifecycle", "Istio"]
 categories:
 - Kubernetes

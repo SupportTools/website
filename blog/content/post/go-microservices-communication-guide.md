@@ -1,7 +1,7 @@
 ---
 title: "Go Microservices Communication: REST, gRPC, and Event-Driven Patterns"
 date: 2027-10-21T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Microservices", "gRPC", "REST", "Event-Driven"]
 categories:
 - Go

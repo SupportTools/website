@@ -1,7 +1,7 @@
 ---
 title: "External Secrets Operator: Syncing Secrets from Vault, AWS SSM, and Azure Key Vault"
 date: 2027-12-23T00:00:00-05:00
-draft: false
+draft: true
 tags: ["External Secrets Operator", "Kubernetes", "HashiCorp Vault", "AWS SSM", "Azure Key Vault", "Secret Management", "Security"]
 categories:
 - Kubernetes

@@ -1,7 +1,7 @@
 ---
 title: "Linux Audit Subsystem: Security Event Logging and Compliance Automation"
 date: 2030-07-11T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Security", "Audit", "auditd", "Compliance", "SIEM", "CIS", "PCI-DSS"]
 categories:
 - Linux

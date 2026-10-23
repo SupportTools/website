@@ -1,7 +1,7 @@
 ---
 title: "Istio Traffic Management: Circuit Breaking, Retries, and Timeout Policies"
 date: 2028-11-26T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Istio", "Service Mesh", "Traffic Management", "Resilience", "Kubernetes"]
 categories:
 - Istio

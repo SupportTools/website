@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Gateway API: Production Migration from Ingress to Gateway API"
 date: 2028-05-14T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Gateway API", "Ingress", "HTTPRoute", "GRPCRoute", "Networking", "Multi-cluster"]
 categories: ["Kubernetes", "Networking"]
 author: "Matthew Mattox - mmattox@support.tools"

@@ -1,7 +1,7 @@
 ---
 title: "Go Graceful Shutdown: Signal Handling, Drain Periods, and Cleanup"
 date: 2029-10-23T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Kubernetes", "Graceful Shutdown", "Signal Handling", "Production", "Reliability"]
 categories: ["Go", "Kubernetes", "Production Engineering"]
 author: "Matthew Mattox - mmattox@support.tools"

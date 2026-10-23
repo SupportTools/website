@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Service Account Token Projection: Bound Tokens, Audience Validation, and OIDC Integration"
 date: 2030-05-04T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Service Accounts", "OIDC", "Security", "Authentication", "JWT", "Token Projection"]
 categories: ["Kubernetes", "Security"]
 author: "Matthew Mattox - mmattox@support.tools"

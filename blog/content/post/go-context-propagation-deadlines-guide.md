@@ -1,7 +1,7 @@
 ---
 title: "Go Context Propagation: Deadlines, Cancellation, Value Chaining, and Context-Aware Libraries"
 date: 2028-08-17T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Context", "Concurrency", "Cancellation", "Deadlines"]
 categories:
 - Go

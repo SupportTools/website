@@ -1,7 +1,7 @@
 ---
 title: "Go Functional Options Pattern: API Design for Complex Configuration"
 date: 2029-05-28T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Functional Options", "API Design", "golang", "Patterns", "Architecture"]
 categories: ["Go", "Architecture"]
 author: "Matthew Mattox - mmattox@support.tools"

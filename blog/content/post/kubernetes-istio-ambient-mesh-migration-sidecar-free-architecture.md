@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Istio Ambient Mesh Migration: Sidecar-Free Service Mesh Architecture and Performance Gains"
 date: 2031-07-11T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Istio", "Service Mesh", "Ambient Mesh", "eBPF", "Networking", "Security"]
 categories: ["Kubernetes", "Networking"]
 author: "Matthew Mattox - mmattox@support.tools"

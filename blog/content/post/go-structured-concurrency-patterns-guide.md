@@ -1,7 +1,7 @@
 ---
 title: "Go Structured Concurrency: errgroup, Worker Pools, Fan-Out/Fan-In, and Pipeline Patterns"
 date: 2028-06-02T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Concurrency", "errgroup", "Worker Pool", "Pipeline", "Context", "Goroutines"]
 categories: ["Go", "Backend Engineering", "Architecture"]
 author: "Matthew Mattox - mmattox@support.tools"

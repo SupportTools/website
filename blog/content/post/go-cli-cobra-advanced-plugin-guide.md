@@ -1,7 +1,7 @@
 ---
 title: "Go CLI Development: Cobra Advanced Patterns, Shell Completion, Plugin Architecture, and Distribution"
 date: 2028-09-02T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "CLI", "Cobra", "Shell Completion", "Plugin", "Distribution"]
 categories:
 - Go

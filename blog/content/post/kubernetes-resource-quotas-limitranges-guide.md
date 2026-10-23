@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Resource Quotas and LimitRanges: Namespace Budgets, Priority Classes, and QoS Enforcement"
 date: 2028-07-27T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Resource Quotas", "LimitRange", "QoS", "Multi-Tenancy"]
 categories:
 - Kubernetes

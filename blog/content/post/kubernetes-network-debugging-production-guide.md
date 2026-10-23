@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Network Troubleshooting: Systematic Debugging for Production"
 date: 2027-11-26T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Networking", "Troubleshooting", "CNI", "DNS"]
 categories:
 - Kubernetes

@@ -1,7 +1,7 @@
 ---
 title: "Linux Audit Framework: auditd Rules, auditctl, and Compliance Reporting"
 date: 2029-02-10T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Security", "Compliance", "auditd", "SIEM", "CIS"]
 categories:
 - Linux

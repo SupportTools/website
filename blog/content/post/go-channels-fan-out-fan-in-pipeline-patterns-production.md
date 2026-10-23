@@ -1,7 +1,7 @@
 ---
 title: "Go Channels Deep Dive: Fan-Out, Fan-In, and Pipeline Patterns for Production"
 date: 2031-01-11T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Concurrency", "Channels", "Goroutines", "Performance", "Patterns"]
 categories:
 - Go

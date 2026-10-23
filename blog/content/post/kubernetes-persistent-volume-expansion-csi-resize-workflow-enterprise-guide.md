@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Persistent Volume Expansion: CSI Volume Resizing, PVC Resize Workflow, FileSystem vs Block Mode"
 date: 2032-02-22T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Storage", "PVC", "CSI", "Volume Expansion", "StatefulSet"]
 categories:
 - Kubernetes

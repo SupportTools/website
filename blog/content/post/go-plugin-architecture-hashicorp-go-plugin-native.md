@@ -1,7 +1,7 @@
 ---
 title: "Go Plugin Architecture: Hashicorp go-plugin and Native Plugins"
 date: 2029-05-25T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Plugins", "Hashicorp", "go-plugin", "Architecture", "gRPC", "golang"]
 categories: ["Go", "Architecture"]
 author: "Matthew Mattox - mmattox@support.tools"

@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes OPA Gatekeeper: Policy-as-Code, Constraint Templates, and Enterprise Policy Libraries"
 date: 2028-06-30T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "OPA", "Gatekeeper", "Policy", "Security", "Compliance"]
 categories:
 - Kubernetes

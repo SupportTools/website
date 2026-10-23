@@ -1,7 +1,7 @@
 ---
 title: "Go Event-Driven Architecture: Outbox Pattern, Saga Pattern, and Event Sourcing with PostgreSQL"
 date: 2028-08-15T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Event-Driven", "Outbox Pattern", "Saga", "Event Sourcing", "PostgreSQL"]
 categories:
 - Go

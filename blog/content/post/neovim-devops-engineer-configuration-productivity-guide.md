@@ -1,7 +1,7 @@
 ---
 title: "Neovim for DevOps Engineers: Complete Configuration and Productivity Guide"
 date: 2026-12-25T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Neovim", "DevOps", "Developer Productivity", "Terminal", "Vim", "LSP", "Configuration"]
 categories:
 - Developer Tools

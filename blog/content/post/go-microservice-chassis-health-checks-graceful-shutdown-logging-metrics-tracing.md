@@ -1,7 +1,7 @@
 ---
 title: "Go Microservice Chassis: Health Checks, Graceful Shutdown, Structured Logging, Metrics, and Tracing in a Single Library"
 date: 2032-03-08T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Microservices", "Observability", "OpenTelemetry", "Prometheus", "Health Checks", "Graceful Shutdown"]
 categories:
 - Go

@@ -1,7 +1,7 @@
 ---
 title: "StatefulSet Advanced Patterns: Ordered Deployment, PVC Management, and Rolling Updates"
 date: 2028-02-19T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "StatefulSet", "Cassandra", "MongoDB", "Elasticsearch", "Storage", "PVC"]
 categories:
 - Kubernetes

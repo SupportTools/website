@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Argo Workflows: DAG Pipelines, Artifact Management, and ML Training Orchestration"
 date: 2031-07-31T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Argo Workflows", "Kubernetes", "DAG", "ML Training", "Artifacts", "Pipeline", "Machine Learning", "MLOps"]
 categories:
 - Kubernetes

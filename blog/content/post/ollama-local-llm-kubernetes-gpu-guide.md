@@ -1,7 +1,7 @@
 ---
 title: "Ollama on Kubernetes: Self-Hosted Local LLM Inference with GPU Support"
 date: 2028-10-01T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Ollama", "LLM", "Kubernetes", "GPU", "AI/ML"]
 categories:
 - Kubernetes

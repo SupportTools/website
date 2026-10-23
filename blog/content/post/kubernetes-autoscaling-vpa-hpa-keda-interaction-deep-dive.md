@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Autoscaling Deep Dive: VPA + HPA + KEDA Interaction"
 date: 2029-11-03T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Autoscaling", "VPA", "HPA", "KEDA", "Scale-to-Zero", "Capacity Planning"]
 categories: ["Kubernetes", "Performance"]
 author: "Matthew Mattox - mmattox@support.tools"

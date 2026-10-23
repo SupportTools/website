@@ -1,7 +1,7 @@
 ---
 title: "ArgoCD ApplicationSets: Scaling GitOps Across Hundreds of Clusters"
 date: 2027-12-10T00:00:00-05:00
-draft: false
+draft: true
 tags: ["ArgoCD", "GitOps", "Kubernetes", "ApplicationSets", "Multi-Cluster", "CD", "DevOps"]
 categories:
 - DevOps

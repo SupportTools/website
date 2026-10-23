@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Flux v2 GitOps: Multi-Tenancy, Source Controllers, and Notification Automation"
 date: 2030-10-02T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Flux", "GitOps", "Multi-Tenancy", "Flagger", "Helm", "Kustomize"]
 categories:
 - Kubernetes

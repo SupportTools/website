@@ -1,7 +1,7 @@
 ---
 title: "Harbor: Enterprise Container Registry with Security Scanning and Replication"
 date: 2027-11-03T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Harbor", "Container Registry", "Security", "Trivy", "Kubernetes"]
 categories:
 - Kubernetes

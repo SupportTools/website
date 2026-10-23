@@ -1,7 +1,7 @@
 ---
 title: "OpenTelemetry Collector: Production-Grade Telemetry Pipeline Configuration"
 date: 2027-11-07T00:00:00-05:00
-draft: false
+draft: true
 tags: ["OpenTelemetry", "Observability", "Metrics", "Tracing", "Logs"]
 categories:
 - Monitoring

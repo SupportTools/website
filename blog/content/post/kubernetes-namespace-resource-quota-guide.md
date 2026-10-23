@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Resource Quotas and LimitRanges: Namespace Governance and Capacity Management"
 date: 2027-05-16T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "ResourceQuota", "LimitRange", "Namespace", "Multi-Tenancy", "Capacity Planning"]
 categories: ["Kubernetes", "Platform Engineering"]
 author: "Matthew Mattox - mmattox@support.tools"

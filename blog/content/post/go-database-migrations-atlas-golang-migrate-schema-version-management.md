@@ -1,7 +1,7 @@
 ---
 title: "Go Database Migrations: Atlas, golang-migrate, and Schema Version Management"
 date: 2029-12-22T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Database", "Migrations", "Atlas", "golang-migrate", "PostgreSQL", "Schema Management", "DevOps"]
 categories:
 - Go

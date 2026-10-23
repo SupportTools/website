@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Crossplane: Infrastructure as Code with Kubernetes APIs"
 date: 2029-06-13T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Crossplane", "Infrastructure as Code", "AWS", "GCP", "Azure", "GitOps"]
 categories: ["Kubernetes", "Infrastructure"]
 author: "Matthew Mattox - mmattox@support.tools"

@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Admission Controllers: Production Patterns, Webhook Development, and Security Gates"
 date: 2027-05-17T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Admission Controller", "Webhook", "Security", "OPA", "Kyverno"]
 categories: ["Kubernetes", "Security"]
 author: "Matthew Mattox - mmattox@support.tools"

@@ -1,7 +1,7 @@
 ---
 title: "Grafana Tempo: Distributed Tracing at Scale Without Sampling"
 date: 2027-12-22T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Grafana Tempo", "Distributed Tracing", "Kubernetes", "OpenTelemetry", "Observability", "Prometheus", "Loki", "TraceQL"]
 categories:
 - Kubernetes

@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Ephemeral Containers: Live Debugging Without Restarting Pods"
 date: 2028-01-26T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Debugging", "Ephemeral Containers", "Observability", "Security", "kubectl"]
 categories: ["Kubernetes", "Operations"]
 author: "Matthew Mattox - mmattox@support.tools"

@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Pod Security: Seccomp Profiles, AppArmor, Capability Dropping, and OPA Policies"
 date: 2028-08-20T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Security", "Seccomp", "AppArmor", "Pod Security", "OPA"]
 categories:
 - Kubernetes

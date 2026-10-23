@@ -1,7 +1,7 @@
 ---
 title: "Go Database Patterns: sqlx, GORM, and Connection Pool Optimization"
 date: 2027-07-22T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Database", "PostgreSQL", "GORM", "Performance"]
 categories:
 - Go

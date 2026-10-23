@@ -1,7 +1,7 @@
 ---
 title: "Platform Engineering with Backstage: Building Internal Developer Portals at Scale"
 date: 2028-09-11T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Platform Engineering", "Backstage", "DevOps", "Developer Experience", "Kubernetes"]
 categories:
 - Platform Engineering

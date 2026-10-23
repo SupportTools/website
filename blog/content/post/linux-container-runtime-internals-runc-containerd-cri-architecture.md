@@ -1,7 +1,7 @@
 ---
 title: "Linux Container Runtime Internals: runc, containerd, and CRI Architecture"
 date: 2030-07-21T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Containers", "runc", "containerd", "CRI", "Docker", "Kubernetes", "OCI"]
 categories:
 - Linux

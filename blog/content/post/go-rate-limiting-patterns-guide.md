@@ -1,7 +1,7 @@
 ---
 title: "Go Rate Limiting Patterns: Token Bucket, Sliding Window, and Distributed Redis Limiting"
 date: 2028-05-20T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Rate Limiting", "Redis", "Performance", "API", "Middleware", "golang.org/x/time/rate"]
 categories: ["Go", "Infrastructure"]
 author: "Matthew Mattox - mmattox@support.tools"

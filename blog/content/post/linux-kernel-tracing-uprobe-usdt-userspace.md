@@ -1,7 +1,7 @@
 ---
 title: "Linux Kernel Tracing: Uprobe and USDT Probes for Userspace"
 date: 2029-09-11T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "eBPF", "Uprobe", "USDT", "Tracing", "Observability", "bpftrace"]
 categories: ["Linux", "Observability"]
 author: "Matthew Mattox - mmattox@support.tools"

@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes GitOps Security: Signed Commits, Policy Gates, and Deployment Attestation"
 date: 2031-02-15T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "GitOps", "Sigstore", "Security", "ArgoCD", "SLSA", "Supply Chain"]
 categories:
 - Kubernetes

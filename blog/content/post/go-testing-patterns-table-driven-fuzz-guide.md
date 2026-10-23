@@ -1,7 +1,7 @@
 ---
 title: "Go Testing Patterns: Table-Driven Tests, Test Fixtures, Fuzz Testing, and Integration Test Strategies"
 date: 2028-08-01T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Testing", "Table-Driven Tests", "Fuzz Testing", "Integration Tests"]
 categories:
 - Go

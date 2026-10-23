@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Custom Scheduler: Building Placement Logic with Scheduler Framework"
 date: 2028-02-02T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Scheduler", "Go", "Platform Engineering", "Volcano", "Gang Scheduling"]
 categories: ["Kubernetes", "Platform Engineering", "Go"]
 author: "Matthew Mattox - mmattox@support.tools"

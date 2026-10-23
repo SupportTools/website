@@ -1,7 +1,7 @@
 ---
 title: "Go NATS JetStream: Persistent Messaging, Consumer Groups, and Key-Value Store Patterns"
 date: 2028-07-17T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "NATS", "JetStream", "Messaging", "Event Streaming"]
 categories:
 - Go

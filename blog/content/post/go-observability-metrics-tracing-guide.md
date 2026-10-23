@@ -1,7 +1,7 @@
 ---
 title: "Go Observability Stack: Unified Metrics, Tracing, and Logging"
 date: 2028-03-16T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "OpenTelemetry", "Observability", "Prometheus", "Tracing", "Grafana", "OTLP"]
 categories: ["Go", "Observability"]
 author: "Matthew Mattox - mmattox@support.tools"

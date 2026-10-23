@@ -1,7 +1,7 @@
 ---
 title: "Go Service Mesh Integration: Building gRPC Services with Envoy, xDS API, and Dynamic Configuration"
 date: 2028-08-25T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "gRPC", "Envoy", "xDS", "Service Mesh", "Dynamic Configuration"]
 categories:
 - Go

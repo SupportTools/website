@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Operator Testing: envtest, Mocks, and Integration Testing"
 date: 2028-02-08T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Operators", "controller-runtime", "envtest", "Ginkgo", "Testing", "Go"]
 categories:
 - Kubernetes

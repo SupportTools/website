@@ -1,7 +1,7 @@
 ---
 title: "Go WebSocket Implementation: Real-Time Communication Patterns for Production Services"
 date: 2030-06-27T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "WebSocket", "Real-Time", "gorilla/websocket", "Redis", "Production", "Concurrency"]
 categories:
 - Go

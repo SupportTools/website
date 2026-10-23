@@ -1,7 +1,7 @@
 ---
 title: "Linux Networking: VXLAN, Geneve, and Overlay Network Internals"
 date: 2029-10-18T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Networking", "VXLAN", "Geneve", "Overlay Networks", "Kubernetes", "CNI"]
 categories: ["Linux", "Networking", "Kubernetes"]
 author: "Matthew Mattox - mmattox@support.tools"

@@ -1,7 +1,7 @@
 ---
 title: "Go Microservices Testing: Contract Tests, Integration Tests, and Test Containers"
 date: 2030-09-06T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Testing", "Contract Testing", "Pact", "Testcontainers", "Integration Testing", "Microservices", "WireMock"]
 categories:
 - Go

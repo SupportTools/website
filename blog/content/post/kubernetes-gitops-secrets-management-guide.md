@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes GitOps Secrets Management: Sealed Secrets, ESO, and Vault Agent"
 date: 2027-08-03T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Secrets Management", "GitOps", "Vault", "External Secrets"]
 categories:
 - Security

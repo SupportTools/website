@@ -1,7 +1,7 @@
 ---
 title: "Go Scheduler Internals: Work Stealing, M:N Threading, and GOMAXPROCS"
 date: 2029-07-24T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Scheduler", "Goroutines", "Concurrency", "Performance", "GOMAXPROCS", "Work Stealing"]
 categories: ["Go", "Performance"]
 author: "Matthew Mattox - mmattox@support.tools"

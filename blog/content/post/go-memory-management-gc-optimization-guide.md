@@ -1,7 +1,7 @@
 ---
 title: "Go Memory Management: Escape Analysis, GC Pressure Reduction, and Arena Allocators"
 date: 2028-07-11T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Memory Management", "GC", "Performance", "Profiling"]
 categories:
 - Go

@@ -1,7 +1,7 @@
 ---
 title: "Go Channels Deep Dive: Buffered Channels, Select, and Pipeline Patterns"
 date: 2029-02-19T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Channels", "Concurrency", "Pipelines", "Performance"]
 categories:
 - Go

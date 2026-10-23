@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Audit Logging: Policy Configuration and Security Event Analysis"
 date: 2028-02-23T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Security", "Audit Logging", "Falco", "Loki", "Compliance", "PCI-DSS", "SOC2"]
 categories: ["Kubernetes", "Security"]
 author: "Matthew Mattox - mmattox@support.tools"

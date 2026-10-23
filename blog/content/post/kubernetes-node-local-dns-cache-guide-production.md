@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes NodeLocal DNSCache: Eliminating DNS Bottlenecks at Scale"
 date: 2028-11-22T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "DNS", "CoreDNS", "Networking", "Performance"]
 categories:
 - Kubernetes

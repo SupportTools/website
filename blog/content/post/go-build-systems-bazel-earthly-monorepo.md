@@ -1,7 +1,7 @@
 ---
 title: "Go Build Systems: Bazel, Earthly, and Hermetic Builds for Monorepo Microservices"
 date: 2030-02-20T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Bazel", "Earthly", "Monorepo", "Build Systems", "CI/CD", "Hermetic Builds", "DevOps"]
 categories: ["Go", "DevOps"]
 author: "Matthew Mattox - mmattox@support.tools"

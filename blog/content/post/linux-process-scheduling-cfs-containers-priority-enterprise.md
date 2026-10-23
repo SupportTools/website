@@ -1,7 +1,7 @@
 ---
 title: "Linux Process Scheduling: CFS, Real-Time Classes, and Container CPU Priorities"
 date: 2029-02-20T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Scheduling", "CFS", "cgroups", "Containers", "Performance"]
 categories:
 - Linux

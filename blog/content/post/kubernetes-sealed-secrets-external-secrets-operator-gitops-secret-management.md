@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Sealed Secrets vs External Secrets Operator: GitOps Secret Management"
 date: 2031-01-23T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Secrets", "GitOps", "Sealed Secrets", "External Secrets Operator", "Security", "AWS", "Vault", "ArgoCD"]
 categories:
 - Kubernetes

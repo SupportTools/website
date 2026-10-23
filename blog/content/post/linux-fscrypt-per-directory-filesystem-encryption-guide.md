@@ -1,7 +1,7 @@
 ---
 title: "Linux Filesystem Encryption: fscrypt for Per-Directory Encryption"
 date: 2031-05-31T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Security", "fscrypt", "Encryption", "LUKS", "Kubernetes", "PAM"]
 categories:
 - Linux

@@ -1,7 +1,7 @@
 ---
 title: "Terraform Kubernetes Provider: Managing Cluster Resources as Infrastructure Code"
 date: 2027-04-07T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Terraform", "Infrastructure as Code", "HashiCorp", "GitOps"]
 categories: ["Kubernetes", "Infrastructure as Code", "DevOps"]
 author: "Matthew Mattox - mmattox@support.tools"

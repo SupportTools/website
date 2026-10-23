@@ -1,7 +1,7 @@
 ---
 title: "Linux Huge Pages: 2MB and 1GB Pages for Database and Cache Workloads"
 date: 2029-03-02T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Performance", "Huge Pages", "PostgreSQL", "Redis", "Memory"]
 categories:
 - Linux

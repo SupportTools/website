@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Admission Webhooks: Implementation, cert-manager TLS, and Production Testing"
 date: 2028-05-31T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Admission Webhooks", "Go", "cert-manager", "Security", "Policy Enforcement"]
 categories: ["Kubernetes", "Security", "Platform Engineering"]
 author: "Matthew Mattox - mmattox@support.tools"

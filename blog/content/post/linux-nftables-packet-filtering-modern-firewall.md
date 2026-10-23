@@ -1,7 +1,7 @@
 ---
 title: "Linux Packet Filtering with nftables: Modern Firewall Configuration"
 date: 2029-06-15T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "nftables", "Networking", "Security", "Firewall", "iptables"]
 categories: ["Linux", "Networking"]
 author: "Matthew Mattox - mmattox@support.tools"

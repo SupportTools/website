@@ -1,7 +1,7 @@
 ---
 title: "Go Build Optimization: Module Management, Build Caching, and Multi-Platform Builds"
 date: 2027-09-16T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Build", "Modules", "CI/CD"]
 categories:
 - Go

@@ -1,7 +1,7 @@
 ---
 title: "Go Database Migrations: golang-migrate, Atlas, and goose — Schema Versioning and Zero-Downtime Migrations"
 date: 2028-08-12T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Database", "Migrations", "golang-migrate", "Atlas", "PostgreSQL"]
 categories:
 - Go

@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Observability: Golden Signals, RED Method, and Production Monitoring Patterns"
 date: 2027-05-22T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Observability", "Prometheus", "Grafana", "Monitoring", "SRE"]
 categories: ["Kubernetes", "Observability"]
 author: "Matthew Mattox - mmattox@support.tools"

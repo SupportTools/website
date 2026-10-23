@@ -1,7 +1,7 @@
 ---
 title: "Go WASM: Compiling Go to WebAssembly for Browser and Edge Runtime Deployment"
 date: 2030-09-29T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "WebAssembly", "WASM", "WASI", "TinyGo", "Browser", "Edge Computing"]
 categories:
 - Go

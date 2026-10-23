@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Init Containers and Sidecar Containers: Initialization and Lifecycle Patterns"
 date: 2031-01-26T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Init Containers", "Sidecar Containers", "Pod Lifecycle", "KEP-753", "Microservices", "Service Mesh"]
 categories:
 - Kubernetes

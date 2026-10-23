@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Descheduler: Continuous Workload Rebalancing for Cluster Efficiency"
 date: 2030-11-30T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Descheduler", "Cluster Management", "Resource Optimization", "FinOps", "Scheduling", "Production"]
 categories: ["Kubernetes"]
 author: "Matthew Mattox - mmattox@support.tools"

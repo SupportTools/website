@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Flux v2 GitOps: Image Automation, Kustomize Overlays, and Multi-Tenant Deployments"
 date: 2028-07-13T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Flux", "GitOps", "Kustomize", "Image Automation"]
 categories:
 - Kubernetes

@@ -1,7 +1,7 @@
 ---
 title: "Go: Building a Configuration Management System with Hot-Reloading and Schema Validation"
 date: 2031-10-03T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Configuration Management", "Hot Reload", "Schema Validation", "Production", "DevOps"]
 categories: ["Go", "DevOps"]
 author: "Matthew Mattox - mmattox@support.tools"

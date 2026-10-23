@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Multitenancy: Namespace Isolation vs vCluster vs Kiosk"
 date: 2029-06-24T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Multitenancy", "vCluster", "Kiosk", "HNC", "Security", "Isolation"]
 categories: ["Kubernetes", "Platform Engineering"]
 author: "Matthew Mattox - mmattox@support.tools"

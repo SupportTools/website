@@ -1,7 +1,7 @@
 ---
 title: "GitOps Security: Signed Commits, SOPS Encryption, and Policy Gates in Flux/ArgoCD"
 date: 2028-04-13T00:00:00-05:00
-draft: false
+draft: true
 tags: ["GitOps", "Security", "SOPS", "ArgoCD", "Flux", "Signed Commits"]
 categories: ["GitOps", "Security", "DevOps"]
 author: "Matthew Mattox - mmattox@support.tools"

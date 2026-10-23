@@ -1,7 +1,7 @@
 ---
 title: "NATS JetStream: Persistent Messaging and Event Streaming on Kubernetes"
 date: 2027-01-22T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "NATS", "JetStream", "Messaging", "Event Streaming"]
 categories:
 - Messaging

@@ -1,7 +1,7 @@
 ---
 title: "Linux io_uring: Submission/Completion Rings, Fixed Buffers, Multishot Operations, Performance vs epoll, and Zero-Copy"
 date: 2032-03-09T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "io_uring", "Performance", "Kernel", "Networking", "Zero-Copy", "Systems Programming"]
 categories:
 - Linux

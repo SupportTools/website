@@ -1,7 +1,7 @@
 ---
 title: "Prometheus Operator Deep Dive: ServiceMonitor, PodMonitor, and PrometheusRule"
 date: 2029-01-24T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Prometheus", "Kubernetes", "Monitoring", "Observability", "ServiceMonitor", "PrometheusRule", "Alerting"]
 categories:
 - Monitoring

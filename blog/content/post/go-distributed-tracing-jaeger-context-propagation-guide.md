@@ -1,7 +1,7 @@
 ---
 title: "Go Distributed Tracing: Jaeger Integration, Context Propagation, and Sampling Strategies"
 date: 2029-12-02T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Jaeger", "Distributed Tracing", "OpenTelemetry", "Context Propagation", "B3", "W3C", "Sampling"]
 categories:
 - Go

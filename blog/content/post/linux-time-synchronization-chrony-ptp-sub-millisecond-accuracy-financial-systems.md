@@ -1,7 +1,7 @@
 ---
 title: "Linux Time Synchronization: chrony, PTP, and Sub-Millisecond Accuracy for Financial Systems"
 date: 2030-03-23T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Time Synchronization", "chrony", "PTP", "NTP", "Financial Systems", "Kubernetes"]
 categories: ["Linux", "Infrastructure"]
 author: "Matthew Mattox - mmattox@support.tools"
