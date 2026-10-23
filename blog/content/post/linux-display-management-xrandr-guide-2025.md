@@ -1,20 +1,63 @@
 ---
-title: "Linux Display Management & Multi-Monitor Setup Guide 2025: Complete xrandr Configuration & Automation"
+title: "xrandr: Add a Custom Resolution and Set Up Multiple Monitors"
 date: 2025-08-05T10:00:00-05:00
+lastmod: 2026-10-23T00:00:00-05:00
 draft: false
 tags: ["xrandr", "Linux Display", "Multi-Monitor", "X11", "Wayland", "Display Configuration", "Monitor Setup", "Linux Graphics", "Display Manager", "Screen Resolution", "HDMI Configuration", "Desktop Environment", "Graphics Setup", "Monitor Management", "Desktop Configuration", "Graphics"]
 categories:
 - Linux
 - System Administration
 author: "Matthew Mattox - mmattox@support.tools"
-description: "Master Linux display management with xrandr and modern tools. Complete guide to multi-monitor setup, resolution configuration, automated display switching, graphics troubleshooting, and enterprise desktop deployment."
+description: "Add a missing resolution with cvt and xrandr --newmode, arrange multiple monitors, make it persistent, and what to use instead of xrandr on Wayland."
 more_link: "yes"
 url: "/linux-display-management-xrandr-guide-2025/"
 ---
 
-Linux display management has evolved significantly with modern graphics drivers, multi-monitor setups, and enterprise desktop deployments. This comprehensive guide covers xrandr mastery, automated display configuration, graphics troubleshooting, and advanced multi-monitor management for both X11 and Wayland environments.
+The two things people reach for xrandr to do are adding a resolution the monitor does not advertise and arranging two or more screens. Both take three or four commands on X11. This page starts with those commands, then covers persistence, Wayland (where xrandr cannot change outputs), and scripts for automatic profile switching.
 
 <!--more-->
+
+## Quick answer
+
+**Add a custom resolution** (example: 2560x1440 at 60 Hz on `HDMI-1`):
+
+```bash
+# 1. List outputs and the modes they already support
+xrandr
+
+# 2. Generate a modeline for the resolution you want
+cvt 2560 1440 60
+# Modeline "2560x1440_60.00"  312.25  2560 2752 3024 3488  1440 1443 1448 1493 -hsync +vsync
+
+# 3. Register the mode, attach it to the output, and switch to it
+xrandr --newmode "2560x1440_60.00" 312.25 2560 2752 3024 3488 1440 1443 1448 1493 -hsync +vsync
+xrandr --addmode HDMI-1 "2560x1440_60.00"
+xrandr --output HDMI-1 --mode "2560x1440_60.00"
+```
+
+Copy the numbers from your own `cvt` output; they depend on the resolution and refresh rate. For panels that reject the standard timings, `cvt -r` generates reduced-blanking timings, which many DisplayPort and HDMI monitors accept at high resolutions.
+
+**Arrange two monitors** (laptop panel `eDP-1` plus external `HDMI-1`):
+
+```bash
+# External monitor to the right of the laptop, external is primary
+xrandr --output eDP-1 --auto --output HDMI-1 --auto --right-of eDP-1 --primary
+
+# Mirror instead of extend
+xrandr --output HDMI-1 --auto --same-as eDP-1
+
+# Turn the laptop panel off
+xrandr --output eDP-1 --off
+```
+
+**Make it persistent:** xrandr changes are lost at logout. Put the commands in `~/.xprofile` (read by most display managers at X11 login), or define the mode in an Xorg config file such as `/etc/X11/xorg.conf.d/10-monitor.conf` with a `Modeline` and `PreferredMode` in a `Monitor` section.
+
+**Wayland:** check `echo $XDG_SESSION_TYPE`. On Wayland, xrandr only talks to XWayland and cannot change real outputs. Use the compositor's tool instead: GNOME Settings > Displays (stored in `~/.config/monitors.xml`), `kscreen-doctor` on KDE Plasma, `swaymsg output` on Sway, and `wlr-randr` on other wlroots compositors.
+
+Related guides on this site:
+
+- [X11 forwarding on Linux](/mastering-x11-forwarding-linux-beginners-guide/) for running X applications from a remote host.
+- [Linux graphics programming with DRM/KMS](/advanced-linux-graphics-drm-programming/) for how modes and connectors work below Xorg.
 
 # [Modern Linux Display Architecture](#modern-linux-display-architecture)
 
