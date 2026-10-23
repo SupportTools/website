@@ -1,7 +1,7 @@
 ---
 title: "Prometheus High Availability Configuration: Production-Ready Multi-Cluster Setup with Thanos"
 date: 2026-10-29T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Prometheus", "High Availability", "Monitoring", "Kubernetes", "Thanos", "Observability", "DevOps"]
 categories: ["Monitoring", "Observability", "Infrastructure"]
 author: "Matthew Mattox - mmattox@support.tools"

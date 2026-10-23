@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes CPU Management Deep Dive: Requests, Limits, and Performance Optimization"
 date: 2026-10-29T09:00:00-05:00
-draft: false
+draft: true
 categories: ["Kubernetes", "DevOps", "Performance"]
 tags: ["Kubernetes", "CPU Management", "Resource Requests", "Resource Limits", "CFS Scheduler", "CPU Manager", "Performance Tuning", "Container Orchestration", "Linux Scheduler", "QoS Classes"]
 images: ["https://cdn.support.tools/posts/kubernetes-cpu-management-deep-dive-requests-limits-policies/og-3f8526b121.jpg"]

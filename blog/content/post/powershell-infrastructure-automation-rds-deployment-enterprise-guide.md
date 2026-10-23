@@ -1,7 +1,7 @@
 ---
 title: "PowerShell Infrastructure Automation: Enterprise RDS Deployment from ISO to Production"
 date: 2026-10-26T00:00:00-05:00
-draft: false
+draft: true
 tags: ["powershell", "automation", "windows-server", "rds", "active-directory", "infrastructure-as-code", "virtualization", "devops"]
 categories:
 - PowerShell

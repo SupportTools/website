@@ -1,7 +1,7 @@
 ---
 title: "PostgreSQL Operator High Availability on Kubernetes: Enterprise Production Guide"
 date: 2026-10-24T00:00:00-05:00
-draft: false
+draft: true
 tags: ["PostgreSQL", "Kubernetes", "High Availability", "Database", "Operators", "Patroni", "Zalando"]
 categories: ["Databases", "Kubernetes", "DevOps"]
 author: "Matthew Mattox - mmattox@support.tools"

@@ -1,7 +1,7 @@
 ---
 title: "Progressive Web Apps: Service Workers and Offline-First Architecture"
 date: 2026-10-28T00:00:00-05:00
-draft: false
+draft: true
 tags: ["PWA", "Service Workers", "JavaScript", "Web Development", "Offline First", "Performance", "Security", "Mobile", "Mobile Development"]
 categories:
 - Web Development

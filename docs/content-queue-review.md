@@ -30,6 +30,8 @@ Leaning: when in doubt, hold. Holding is reversible by deleting one `draft: true
 
 ## Needs an owner decision: queued posts already scheduled in Buffer
 
+**Decided 2026-10-23: held.** All 11 now have `draft: true`, and their 19 LinkedIn and Bluesky posts were moved back to Buffer drafts (not deleted), so no social post links to an unpublished page. To release one later, remove its `draft: true` line, then reschedule its Buffer drafts.
+
 These fail the rule but LinkedIn and/or Bluesky posts linking to them are already **scheduled** in Buffer (checked 2026-10-23, org "My Organization"). Holding them would make those social posts link to a 404 (the `guard.sh preflight` job would pull them back to draft). They were left scheduled with dates unchanged. To hold one, add `draft: true` and move its Buffer posts to draft or delete them.
 
 | Date | Title | File | Rule result |
