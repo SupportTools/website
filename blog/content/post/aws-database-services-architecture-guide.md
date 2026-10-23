@@ -1,14 +1,66 @@
 ---
-title: "Complete Guide to AWS Database Architecture: RDS, RDS Proxy, and Redis Integration"
+title: "ElastiCache Redis Replication Group and RDS Proxy Limits"
 date: 2025-09-04T09:00:00-05:00
+lastmod: 2026-10-23T00:00:00-05:00
+description: "Terraform for an ElastiCache replication group (num_cache_clusters explained), RDS Proxy connection limits and the MaxDatabaseConnectionsAllowed metric, with RDS."
+author: "Matthew Mattox - mmattox@support.tools"
 draft: false
 categories: ["AWS", "Databases", "Cloud"]
 tags: ["AWS", "RDS", "RDS Proxy", "Redis", "ElastiCache", "Performance Optimization", "Database Architecture", "Scalability", "High Availability", "Connection Pooling"]
 ---
 
-# Complete Guide to AWS Database Architecture: RDS, RDS Proxy, and Redis Integration
+# ElastiCache Redis Replication Group and RDS Proxy Limits
 
-Modern applications demand database architectures that deliver high performance, scalability, and reliability. AWS offers a comprehensive suite of database services that can be combined to create robust solutions. This guide explores how to architect an optimal database system using Amazon RDS, RDS Proxy, and Redis (ElastiCache).
+Two settings cause most of the confusion when you put ElastiCache in front of RDS and RDS Proxy between the application and the database: `num_cache_clusters` on the ElastiCache replication group, and the connection ceiling RDS Proxy reports as `MaxDatabaseConnectionsAllowed`. This page answers both, then shows the full RDS, RDS Proxy and ElastiCache architecture in Terraform.
+
+## Quick answer
+
+**`num_cache_clusters` in `aws_elasticache_replication_group`** is the total number of nodes (one primary plus read replicas) in a replication group with cluster mode disabled. `num_cache_clusters = 3` means one primary and two replicas. It must be at least 2 when `automatic_failover_enabled` or `multi_az_enabled` is true, defaults to 1, and conflicts with `num_node_groups` and `replicas_per_node_group`, which you use instead for cluster mode enabled (sharded) groups.
+
+```hcl
+# Cluster mode disabled: 1 primary + 2 replicas
+resource "aws_elasticache_replication_group" "cache" {
+  replication_group_id       = "app-cache"
+  description                = "App cache"
+  engine                     = "redis"            # or "valkey"
+  node_type                  = "cache.r7g.large"
+  num_cache_clusters         = 3
+  automatic_failover_enabled = true
+  multi_az_enabled           = true
+}
+
+# Cluster mode enabled: 2 shards, each with 1 primary + 1 replica
+resource "aws_elasticache_replication_group" "sharded" {
+  replication_group_id       = "app-cache-sharded"
+  description                = "Sharded app cache"
+  engine                     = "redis"
+  node_type                  = "cache.r7g.large"
+  num_node_groups            = 2
+  replicas_per_node_group    = 1
+  automatic_failover_enabled = true
+}
+```
+
+ElastiCache also offers Valkey, the open source fork of Redis, as an engine; it uses the same Redis protocol and clients.
+
+**RDS Proxy `MaxDatabaseConnectionsAllowed`** is a CloudWatch metric (namespace `AWS/RDS`, reported every minute) for the maximum number of database connections the proxy may open. It follows from the target group's `max_connections_percent` applied to the database's `max_connections`. If `DatabaseConnections` sits at `MaxDatabaseConnectionsAllowed` and `DatabaseConnectionsBorrowLatency` climbs, clients are queuing for a pooled connection: raise `max_connections_percent`, raise `max_connections` on the database (or move to a larger instance class), or find what is pinning sessions with `DatabaseConnectionsCurrentlySessionPinned`.
+
+```bash
+aws cloudwatch get-metric-statistics \
+  --namespace AWS/RDS \
+  --metric-name MaxDatabaseConnectionsAllowed \
+  --dimensions Name=ProxyName,Value=app-db-proxy \
+  --statistics Sum --period 60 \
+  --start-time "$(date -u -d '-1 hour' +%FT%TZ)" --end-time "$(date -u +%FT%TZ)"
+```
+
+Use `Sum` for these metrics: a proxy can run on several instances and each publishes its own values.
+
+Related guides on this site:
+
+- [Aurora MySQL blue/green deployments and rollback](/post/aurora-mysql-blue-green-deployment-rollback-strategy/) for upgrading the database behind the proxy.
+- [Rising costs of legacy Amazon RDS](/legacy-rds-cost-analysis/) for extended support charges on old engine versions.
+- [Redis is open source again](/redis-open-source-again/) for the Redis and Valkey licensing background.
 
 ## Introduction to AWS Database Services
 
@@ -37,7 +89,7 @@ Amazon RDS provides managed relational databases with automated administrative t
 resource "aws_db_instance" "primary" {
   identifier             = "app-primary-db"
   engine                 = "postgres"
-  engine_version         = "14.5"
+  engine_version         = "17"
   instance_class         = "db.r6g.large"
   allocated_storage      = 100
   max_allocated_storage  = 1000
@@ -61,7 +113,7 @@ resource "aws_db_instance" "primary" {
   # Database parameters
   username               = "dbadmin"
   password               = var.db_password
-  parameter_group_name   = aws_db_parameter_group.postgres14.name
+  parameter_group_name   = aws_db_parameter_group.postgres17.name
   
   deletion_protection    = true
   skip_final_snapshot    = false
@@ -76,7 +128,7 @@ resource "aws_db_instance" "read_replica" {
   instance_class         = "db.r6g.large"
   publicly_accessible    = false
   vpc_security_group_ids = [aws_security_group.db_sg.id]
-  parameter_group_name   = aws_db_parameter_group.postgres14_readonly.name
+  parameter_group_name   = aws_db_parameter_group.postgres17_readonly.name
   
   # Performance insights for monitoring read replica performance
   performance_insights_enabled = true
