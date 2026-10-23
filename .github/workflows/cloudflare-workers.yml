@@ -106,6 +106,18 @@ jobs:
           npm run build:hugo -- --panicOnWarning
           npm run build:search
 
+      - name: Check published URLs still resolve
+        # tests/fixtures/published-urls.txt lists every URL the site has published;
+        # each must still be built or redirected by src/worker.js. Removing or
+        # renaming a page fails here until a redirect covers the old URL.
+        run: npm run check:urls
+
+      - name: Unit tests (theme, social link guards, URL guard)
+        run: |
+          npm run test:social
+          npm run test:urls
+          npm run test:theme
+
       - name: Check for expired content
         run: |
           cd blog

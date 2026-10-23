@@ -20,7 +20,11 @@
     "check:paths": "node scripts/check-duplicate-paths.mjs",
     "test:theme": "node tests/theme/build-fixtures.mjs && node --test tests/theme/*.test.mjs",
     "test:og": "node --test tests/og/*.test.mjs",
-    "og": "node scripts/og/run.mjs"
+    "og": "node scripts/og/run.mjs",
+    "check:urls": "node scripts/check-published-urls.mjs",
+    "urls:update": "node scripts/check-published-urls.mjs --update",
+    "test:social": "node --test tests/social/*.test.mjs",
+    "test:urls": "node --test tests/urls/*.test.mjs"
   },
   "devDependencies": {
     "pagefind": "1.5.2",

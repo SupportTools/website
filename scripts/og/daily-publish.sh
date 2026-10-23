@@ -32,6 +32,23 @@ for f in "${posts[@]}"; do
 done
 git add scripts/og/manifest.json
 
+# Record URLs that went live since the last run, so the CI URL guard
+# (scripts/check-published-urls.mjs) protects them from now on. Built from a clean
+# export of HEAD: CI builds from git, so an uncommitted draft here must never land
+# in the baseline.
+urls_new=0
+tmp=$(mktemp -d)
+if git archive HEAD blog | tar -x -C "$tmp" \
+   && (cd "$tmp/blog" && hugo --gc --baseURL https://support.tools -d "$tmp/public" >/dev/null 2>&1) \
+   && out=$(node scripts/check-published-urls.mjs --update "$tmp/public"); then
+  echo "$out"
+  urls_new=$(sed -n 's/.*(\([0-9]*\) new).*/\1/p' <<<"$out")
+  git add tests/fixtures/published-urls.txt
+else
+  echo "WARNING: URL baseline not updated (build failed, or a published URL no longer resolves)"
+fi
+rm -rf "$tmp"
+
 if git diff --cached --quiet; then echo "nothing new"; exit 0; fi
 
 # Every live card in the staged manifest must be linked from its staged post.
@@ -55,7 +72,8 @@ if [ -n "${OG_PUBLISH_DRY_RUN:-}" ]; then
   git reset -q
   exit 0
 fi
-git commit -q -m "chore(og): $staged more share cards ($live live)"
+if [ "$staged" -gt 0 ]; then msg="chore(og): $staged more share cards ($live live)"; else msg="chore(urls): ${urls_new:-0} newly published URLs"; fi
+git commit -q -m "$msg"
 git fetch -q origin main
 if ! git merge-base --is-ancestor origin/main HEAD; then
   git rebase -q --autostash origin/main

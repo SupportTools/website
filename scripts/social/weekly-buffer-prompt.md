@@ -8,7 +8,8 @@ frontmatter (America/Chicago). Collect every post whose date falls in the target
 week and is not `draft: true`. For each, note: title, description, slug (the file
 name without .md), publish time (00:00 or 09:00 local), and the share card URL if
 scripts/og/manifest.json has an entry for the slug with "status": "live".
-The page URL is https://support.tools/<slug>/ unless the frontmatter sets `url`.
+The page URL is https://support.tools + the frontmatter `url` when it is set; a post
+with no `url` lives at https://support.tools/post/<slug>/ (never /<slug>/).
 
 ## 2. Check Buffer
 Organization "My Organization" 674ab6a112a6ba07b02cc3b3 (timezone America/Chicago).
@@ -33,16 +34,17 @@ appears in a post on that channel. Never schedule a dueAt in the past.
   publishing at 00:00 gets the morning slot (08:45 / 08:53). A second Bluesky article
   on the same day takes the other slot only if that slot is after its publish time;
   otherwise skip it.
-- Links: the article's real path plus ?utm_source=linkedin&utm_medium=social (or
-  utm_source=bluesky). The path is the frontmatter `url:` when set; a post with no
-  `url:` lives at /post/<file name without .md>/, not at /<slug>/. Check each link
-  returns 200 on the live site (or, for a future post, that the built page exists at
-  that path) before scheduling.
+- Links: the article's page URL from step 1 plus ?utm_source=linkedin&utm_medium=social
+  (or utm_source=bluesky). After this run, scripts/social/guard.mjs checks every
+  draft's link against the content files and reports any that do not match.
 - No em dashes or en dashes anywhere in the copy. No emoji walls, no "In today's
   fast-paced world" openers, no invented facts: use only what the article says.
 - dueAt: ISO 8601 in America/Chicago with the correct offset for that date
   (-05:00 during daylight time, -06:00 after DST ends on the first Sunday of November).
 - Create every post with create_post, saveToDraft: true, mode: customScheduled.
+  Do not add tags. The owner reviews the drafts and tags the ones to publish
+  "approved"; scripts/social/guard.mjs promote then schedules each approved draft
+  only after its article is live (its link returns 200).
 
 ## 4. Report
 End with a short plain-text summary: for each day, which article went to which
