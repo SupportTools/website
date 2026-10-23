@@ -1,20 +1,93 @@
 ---
-title: "Enterprise NAT64/DNS64 Deployment Guide: Complete IPv6 Transition and Dual-Stack Architecture for Production Networks"
+title: "NAT64 and DNS64 on Linux: Tayga and BIND 9 Configuration"
 date: 2025-04-15T10:00:00-05:00
+lastmod: 2026-10-23T00:00:00-05:00
 draft: false
 tags: ["NAT64", "DNS64", "IPv6", "IPv4", "Network Transition", "Enterprise Networking", "Tayga", "BIND9", "Linux", "Network Architecture", "IPv6 Transition"]
 categories:
 - Networking
 - Infrastructure
 author: "Matthew Mattox - mmattox@support.tools"
-description: "Comprehensive guide to enterprise NAT64/DNS64 deployment covering advanced configuration, high availability architectures, monitoring solutions, and production-grade IPv6 transition strategies"
+description: "Build a NAT64 gateway with Tayga and a DNS64 resolver with BIND 9 so IPv6-only clients reach IPv4 hosts: tayga.conf, routes, NAT44, the dns64 option, tests."
 more_link: "yes"
 url: "/nat64-dns64-ipv6-transition-enterprise-guide/"
 ---
 
-NAT64 and DNS64 technologies provide critical IPv6 transition mechanisms for enterprise networks, enabling IPv6-only clients to access IPv4-only services while maintaining optimal performance and security. This comprehensive guide covers enterprise deployment strategies, high availability architectures, advanced configuration techniques, and production-grade monitoring solutions for large-scale NAT64/DNS64 implementations.
+NAT64 lets IPv6-only clients reach IPv4-only servers: DNS64 synthesizes an AAAA record inside a NAT64 prefix such as `64:ff9b::/96`, and a NAT64 gateway translates packets sent to that prefix into IPv4. This page gives a working Tayga gateway and BIND 9 resolver first, then the high-availability, monitoring and prefix planning material for larger networks.
 
 <!--more-->
+
+## Quick answer
+
+**1. NAT64 gateway with Tayga** (Debian or Ubuntu, IPv4 uplink on `eth0`):
+
+```bash
+apt install tayga
+```
+
+```text {filename="/etc/tayga.conf"}
+tun-device nat64
+# IPv4 address Tayga uses for itself (ICMP), inside the dynamic pool range
+ipv4-addr 192.168.255.1
+# NAT64 prefix that DNS64 will use
+prefix 64:ff9b::/96
+# IPv4 addresses Tayga maps IPv6 clients onto
+dynamic-pool 192.168.255.0/24
+data-dir /var/spool/tayga
+```
+
+```bash
+# Create and address the tun device, route the pool and the prefix into it
+tayga --mktun
+ip link set nat64 up
+ip addr add 192.0.2.10 dev nat64          # this host's IPv4 address
+ip addr add 2001:db8:64::10 dev nat64     # this host's IPv6 address
+ip route add 192.168.255.0/24 dev nat64
+ip route add 64:ff9b::/96 dev nat64
+
+# Forwarding, and NAT44 so the pool reaches the internet as the host's address
+sysctl -w net.ipv4.ip_forward=1 net.ipv6.conf.all.forwarding=1
+iptables -t nat -A POSTROUTING -s 192.168.255.0/24 -o eth0 -j MASQUERADE
+
+tayga    # or: systemctl enable --now tayga
+```
+
+IPv6 clients need a route for `64:ff9b::/96` toward this host (or this host as their default gateway).
+
+**2. DNS64 with BIND 9** in `named.conf.options`:
+
+```text {filename="/etc/bind/named.conf.options"}
+options {
+    directory "/var/cache/bind";
+    recursion yes;
+    allow-recursion { ::1; 127.0.0.1; 2001:db8:64::/48; };
+    dns64 64:ff9b::/96 {
+        clients { any; };
+    };
+};
+```
+
+**3. Test from an IPv6-only client:**
+
+```bash
+dig AAAA ipv4only.arpa @2001:db8:64::53   # expect 64:ff9b::c000:aa and 64:ff9b::c000:ab
+ping -6 64:ff9b::8.8.8.8                   # literal IPv4 inside the prefix
+curl -6 -I https://example.com
+```
+
+`ipv4only.arpa` only has A records (192.0.0.170 and 192.0.0.171), so any AAAA answer proves DNS64 synthesis is working.
+
+> [!WARNING]
+> With the well-known prefix `64:ff9b::/96`, RFC 6052 forbids translating private IPv4 destinations (10/8, 172.16/12, 192.168/16), and Tayga enforces that by default. To reach private IPv4 servers, use a network-specific prefix from your own allocation (for example `2001:db8:64:ff9b::/96`) in both `tayga.conf` and the BIND `dns64` statement.
+
+Tayga runs in user space. For multi-gigabit translation, Jool (a kernel module) does the same job with the same DNS64 setup.
+
+Related guides on this site:
+
+- [Running K3s IPv6-only with Cilium](/k3s-ipv6-cilium/) for an IPv6-only cluster that needs NAT64 to reach IPv4 registries.
+- [Configuring IPv4 and IPv6 preference on Linux](/configure-ipv4-ipv6-preference/) for gai.conf ordering on dual-stack hosts.
+- [Monitor BIND with Prometheus](/monitor-bind-dns-grafana-prometheus-bind-exporter/) for the DNS64 resolver.
+- [Enterprise IPv6 dual-stack deployment](/ipv6-enterprise-deployment-dual-stack-transition-guide/) for the rest of the transition plan.
 
 # [IPv6 Transition Architecture Overview](#ipv6-transition-architecture-overview)
 
@@ -377,16 +450,8 @@ dynamic-pool $INTERNAL_IPV4_POOL
 ipv6-addr $PRIMARY_IPV6
 prefix $NAT64_PREFIX
 
-# Data and logging
+# Data directory (persistent dynamic mappings)
 data-dir /var/spool/tayga
-pidfile /var/run/tayga.pid
-
-# Performance tuning
-map-timeout 300
-fragment-timeout 60
-
-# Logging configuration
-log-level info
 EOF
 
     # Configure defaults

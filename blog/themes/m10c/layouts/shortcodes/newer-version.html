@@ -1,0 +1,11 @@
+{{- /*
+  Banner pointing a version-bound post at its successor.
+  Usage (call with % so the alert markdown renders):
+    {{% newer-version path="/post/go-1-27-release-generic-methods-json-v2.md" %}}
+  Renders nothing until the target page is built, so a successor that is
+  still future-dated never produces a broken link.
+*/ -}}
+{{- with site.GetPage (.Get "path") -}}
+> [!NOTE]
+> Newer version: [{{ .Title }}]({{ .RelPermalink }})
+{{ end -}}

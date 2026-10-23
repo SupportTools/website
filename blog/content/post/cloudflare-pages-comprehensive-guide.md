@@ -1,6 +1,7 @@
 ---
-title: "Cloudflare Pages: The Complete Guide to Building and Deploying JAMstack Applications"
+title: "Cloudflare Pages Build Output Directory and Next.js Settings"
 date: 2025-12-02T09:00:00-05:00
+lastmod: 2026-10-23T00:00:00-05:00
 draft: false
 tags: ["Cloudflare", "Cloudflare Pages", "JAMstack", "Static Sites", "Web Development", "Workers", "KV", "R2", "Terraform", "CDN"]
 categories:
@@ -8,16 +9,63 @@ categories:
 - Cloudflare
 - Deployment
 author: "Matthew Mattox - mmattox@support.tools"
-description: "Comprehensive guide to Cloudflare Pages for deploying and scaling JAMstack applications with advanced features like Workers, KV Namespace, R2 Storage, and automated deployment workflows."
+description: "Cloudflare Pages build command and output directory per framework, Next.js static export (out), Workers for full-stack Next.js, and R2 bucket setup via API."
 more_link: "yes"
 url: "/cloudflare-pages-comprehensive-guide/"
 ---
 
 ![Cloudflare Pages Architecture](/images/posts/cloudflare/cloudflare-pages-architecture.svg)
 
-Cloudflare Pages offers a powerful platform for deploying static sites and JAMstack applications with global CDN distribution, Git integration, and advanced features. This comprehensive guide explores everything from basic deployments to advanced implementations with Workers, KV, and R2, including automation with Terraform.
+Most failed Cloudflare Pages deployments come down to one setting: the build output directory. This guide gives the correct build command and output directory for each framework, the current answer for Next.js (static export on Pages, full-stack apps on Workers), and how to create R2 buckets from the API for per-customer storage.
 
 <!--more-->
+
+## Quick answer
+
+The **build output directory** is the folder your build command writes the finished site into. Pages uploads only that folder. It is resolved inside the project's **root directory** (the repository root unless you set one for a monorepo).
+
+| Framework | Build command | Build output directory |
+|---|---|---|
+| Next.js (static HTML export) | `npx next build` | `out` |
+| Hugo | `hugo` | `public` |
+| Astro | `npm run build` | `dist` |
+| React (Vite) | `npm run build` | `dist` |
+| Gatsby | `npx gatsby build` | `public` |
+| Jekyll | `jekyll build` | `_site` |
+| SvelteKit | `npm run build` | `.svelte-kit/cloudflare` |
+| Nuxt | `npm run build` | `dist` |
+| Docusaurus | `npm run build` | `build` |
+| Plain HTML, no build step | leave blank (or `exit 0`) | the folder that holds `index.html` |
+
+These match Cloudflare's framework presets. If you point the output directory at the repository root, every file in the repository is published, including configuration files, so keep the site in its own folder.
+
+For Direct Upload or Git projects managed with Wrangler, the same setting lives in `wrangler.toml`:
+
+```toml {filename="wrangler.toml"}
+name = "my-site"
+pages_build_output_dir = "./dist"
+```
+
+**Next.js:** for a static site, set `output: 'export'` in `next.config.js` and use `out` as the output directory. The old `next export` command was removed in Next.js 14. For SSR, API routes, Server Actions or middleware, Cloudflare now recommends deploying to Workers instead of Pages. The `@cloudflare/next-on-pages` adapter (build output `.vercel/output/static`) is deprecated and its repository is archived; Cloudflare points new projects and migrations to vinext on Workers.
+
+**R2 for SaaS tenants:** create a bucket per customer from your backend with the Cloudflare API or Wrangler:
+
+```bash
+# Wrangler
+npx wrangler r2 bucket create customer-1234-uploads
+
+# REST API (token needs R2 edit permission)
+curl -X POST "https://api.cloudflare.com/client/v4/accounts/${CF_ACCOUNT_ID}/r2/buckets" \
+  -H "Authorization: Bearer ${CF_API_TOKEN}" \
+  -H "Content-Type: application/json" \
+  --data '{"name":"customer-1234-uploads"}'
+```
+
+Related guides on this site:
+
+- [Cloudflare Pages, KV and R2 with Terraform](/cloudflare-pages-terraform-deployment-guide/) if you want the project, bindings and buckets as code.
+- [Cloudflare performance and security tuning](/cloudflare-performance-security-tuning/) for cache rules and WAF settings in front of a Pages site.
+- [Optimizing Hugo sitemaps](/optimizing-hugo-sitemaps/) if you deploy a Hugo site to Pages.
 
 # [Cloudflare Pages: Comprehensive Implementation Guide](#cloudflare-pages)
 
@@ -92,9 +140,9 @@ Build command: npm run build
 Build output directory: dist
 ```
 
-**Next.js**:
+**Next.js (static export, with `output: 'export'` in `next.config.js`)**:
 ```
-Build command: npm run build && npm run export
+Build command: npx next build
 Build output directory: out
 ```
 

@@ -1,20 +1,82 @@
 ---
-title: "Advanced Data Warehousing with Snowflake and BigQuery: Architecture, Optimization, and Best Practices"
+title: "Snowflake QUERY_HISTORY: Find COMMIT and ROLLBACK Queries"
 date: 2026-03-28T00:00:00-05:00
+lastmod: 2026-10-23T00:00:00-05:00
 draft: false
-description: "Comprehensive guide to implementing advanced data warehousing solutions with Snowflake and BigQuery, covering architecture patterns, performance optimization, cost management, and enterprise deployment strategies."
+description: "Query Snowflake QUERY_HISTORY by query_type to find COMMIT and ROLLBACK statements and their transactions, plus BigQuery equivalents and tuning."
 keywords: ["data warehousing", "Snowflake", "BigQuery", "cloud data warehouse", "ETL", "data architecture", "performance optimization", "cost optimization", "data lake", "analytics"]
 tags: ["data-engineering", "snowflake", "bigquery", "data-warehouse", "cloud", "analytics", "performance", "optimization"]
 categories: ["Data Engineering", "Analytics", "Cloud"]
-author: "Support Tools Team"
-canonical: "https://support.tools/blog/advanced-data-warehousing-snowflake-bigquery/"
+author: "Matthew Mattox - mmattox@support.tools"
 ---
 
-# Advanced Data Warehousing with Snowflake and BigQuery: Architecture, Optimization, and Best Practices
+# Snowflake QUERY_HISTORY: Find COMMIT and ROLLBACK Queries
 
-Modern data warehousing has evolved beyond traditional on-premises solutions to embrace cloud-native architectures that offer unprecedented scalability, performance, and cost efficiency. Snowflake and Google BigQuery represent the pinnacle of cloud data warehouse technology, each offering unique advantages for different use cases and organizational requirements.
+Snowflake records every statement, including transaction control, in `QUERY_HISTORY`, and the `QUERY_TYPE` column tells you which ones were a `COMMIT` or a `ROLLBACK`. This page starts with the queries that find them and the statements inside those transactions, then covers the BigQuery equivalents and the wider performance and cost tuning for both warehouses.
 
-This comprehensive guide explores advanced data warehousing concepts, implementation strategies, and optimization techniques for both Snowflake and BigQuery, providing enterprise-grade solutions for modern data architecture challenges.
+## Quick answer
+
+Find recent commits and rollbacks across the account:
+
+```sql
+SELECT query_id,
+       start_time,
+       user_name,
+       session_id,
+       transaction_id,
+       query_type,
+       execution_status
+FROM snowflake.account_usage.query_history
+WHERE query_type IN ('COMMIT', 'ROLLBACK')
+  AND start_time >= DATEADD('day', -1, CURRENT_TIMESTAMP())
+ORDER BY start_time DESC;
+```
+
+List every statement that belonged to transactions that were rolled back:
+
+```sql
+WITH rolled_back AS (
+  SELECT DISTINCT transaction_id
+  FROM snowflake.account_usage.query_history
+  WHERE query_type = 'ROLLBACK'
+    AND start_time >= DATEADD('day', -1, CURRENT_TIMESTAMP())
+)
+SELECT q.transaction_id, q.start_time, q.query_type, q.execution_status, q.query_text
+FROM snowflake.account_usage.query_history q
+JOIN rolled_back r ON q.transaction_id = r.transaction_id
+ORDER BY q.transaction_id, q.start_time;
+```
+
+Which source to query:
+
+| Source | Covers | Latency | Notes |
+|---|---|---|---|
+| `SNOWFLAKE.ACCOUNT_USAGE.QUERY_HISTORY` view | 365 days, whole account | up to 45 minutes | needs access to the `SNOWFLAKE` database |
+| `INFORMATION_SCHEMA.QUERY_HISTORY()` table function | last 7 days | near real time | returns 100 rows unless you pass `RESULT_LIMIT` (maximum 10,000) |
+
+```sql
+SELECT query_id, start_time, query_type, query_text
+FROM TABLE(information_schema.query_history(RESULT_LIMIT => 10000))
+WHERE query_type IN ('COMMIT', 'ROLLBACK')
+ORDER BY start_time DESC;
+```
+
+`COMMIT` rows appear only where a commit was actually issued (an explicit `COMMIT`, or a client running with autocommit off). Statements run in autocommit mode do not get a separate `COMMIT` row.
+
+**BigQuery equivalent:** job history lives in `INFORMATION_SCHEMA.JOBS`, and relative date filters use `INTERVAL n unit` with an integer, for example `DATE_SUB(CURRENT_DATE(), INTERVAL 2 YEAR)`:
+
+```sql
+SELECT job_id, creation_time, user_email, statement_type, state, error_result
+FROM `region-us`.INFORMATION_SCHEMA.JOBS
+WHERE creation_time >= TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 7 DAY)
+  AND statement_type IN ('COMMIT_TRANSACTION', 'ROLLBACK_TRANSACTION')
+ORDER BY creation_time DESC;
+```
+
+Related guides on this site:
+
+- [Analytics database performance tuning](/post/advanced-analytics-database-performance-tuning/) for query tuning outside the two warehouses.
+- [MySQL dump without locking tables](/mysqldump-without-locking-tables/) for exporting an OLTP source into the warehouse without blocking writes.
 
 ## Understanding Modern Data Warehouse Architecture
 

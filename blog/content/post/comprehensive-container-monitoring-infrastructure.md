@@ -1,6 +1,7 @@
 ---
-title: "Building a Comprehensive Container Monitoring Infrastructure in 2025"
+title: "Grafana Tempo Ports: 3200, 4317, 4318 and an OTel Stack"
 date: 2025-12-09T09:00:00-05:00
+lastmod: 2026-10-23T00:00:00-05:00
 draft: false
 tags: ["Containers", "Monitoring", "Prometheus", "Grafana", "Elasticsearch", "Kubernetes", "Observability", "DevOps"]
 categories:
@@ -8,16 +9,57 @@ categories:
 - DevOps
 - Containers
 author: "Matthew Mattox - mmattox@support.tools"
-description: "A step-by-step guide to creating a robust, scalable monitoring infrastructure for containerized applications using modern observability tools and best practices"
+description: "Grafana Tempo default ports (3200 HTTP, 9095 gRPC, 4317/4318 OTLP), why receivers bind to localhost, and a working OTel Collector and Tempo Compose stack."
 more_link: "yes"
 url: "/comprehensive-container-monitoring-infrastructure/"
 ---
 
-Effective monitoring is critical in containerized environments where systems are distributed, dynamic, and ephemeral. This guide walks through building a complete monitoring infrastructure using modern tools and techniques to provide full visibility into your container ecosystem.
+Which port does Grafana Tempo listen on, and why does the collector get "connection refused" on 4317? This page answers that first, then builds a complete container monitoring stack (Prometheus, Grafana, Alertmanager, EFK, OpenTelemetry Collector, Jaeger and Tempo) with Docker Compose.
 
 <!--more-->
 
-# Building a Comprehensive Container Monitoring Infrastructure in 2025
+## Quick answer
+
+Grafana Tempo default ports (Tempo 2.x and 3.x):
+
+| Port | Protocol | Used for |
+|---|---|---|
+| 3200 | HTTP | Tempo API and query endpoint; Grafana's Tempo data source points here (`server.http_listen_port`) |
+| 9095 | gRPC | Internal gRPC server between Tempo components (`server.grpc_listen_port`) |
+| 4317 | gRPC | OTLP trace ingest (`distributor.receivers.otlp.protocols.grpc`) |
+| 4318 | HTTP | OTLP trace ingest over HTTP (`distributor.receivers.otlp.protocols.http`) |
+
+The OTLP receivers default to `localhost:4317` and `localhost:4318`, so inside a container nothing else can reach them. Set the endpoints explicitly:
+
+```yaml {filename="tempo.yaml"}
+server:
+  http_listen_port: 3200
+
+distributor:
+  receivers:
+    otlp:
+      protocols:
+        grpc:
+          endpoint: "0.0.0.0:4317"
+        http:
+          endpoint: "0.0.0.0:4318"
+
+storage:
+  trace:
+    backend: local
+    local:
+      path: /var/tempo/traces
+```
+
+The OpenTelemetry Collector has the same localhost default for its own OTLP receiver, so give it `endpoint: 0.0.0.0:4317` too. If the Collector and Tempo run on one host, only one of them can publish host port 4317; publish the Collector's and let it forward to Tempo over the Compose network.
+
+Related guides on this site:
+
+- [OpenTelemetry distributed tracing in production](/opentelemetry-distributed-tracing-production-setup/) for sampling and Collector pipelines.
+- [Kubernetes monitoring with Prometheus and Grafana](/kubernetes-monitoring-prometheus-grafana/) to run the metrics half of this stack on a cluster.
+- [Kubernetes logging with Grafana Loki](/kubernetes-logging-grafana-loki-promtail/) if you prefer Loki to the EFK stack used below.
+
+# Container Monitoring Stack With Prometheus, Grafana, OpenTelemetry and Tempo
 
 ## The Observability Challenge in Container Environments
 
@@ -443,28 +485,33 @@ receivers:
   otlp:
     protocols:
       grpc:
+        endpoint: 0.0.0.0:4317
       http:
+        endpoint: 0.0.0.0:4318
 
 processors:
   batch:
 
 exporters:
-  jaeger:
-    endpoint: jaeger:14250
+  # Jaeger and Tempo both accept OTLP, so both use the otlp exporter.
+  # (The dedicated jaeger exporter was removed from the Collector.)
+  otlp/jaeger:
+    endpoint: jaeger:4317
+    tls:
+      insecure: true
+  otlp/tempo:
+    endpoint: tempo:4317
     tls:
       insecure: true
   prometheus:
     endpoint: "0.0.0.0:8889"
-  tempo:
-    endpoint: tempo:4317
-    insecure: true
 
 service:
   pipelines:
     traces:
       receivers: [otlp]
       processors: [batch]
-      exporters: [jaeger, tempo]
+      exporters: [otlp/jaeger, otlp/tempo]
     metrics:
       receivers: [otlp]
       processors: [batch]
@@ -476,7 +523,7 @@ Add tracing components to the Docker Compose file:
 
 ```yaml
   otel-collector:
-    image: otel/opentelemetry-collector-contrib:0.91.0
+    image: otel/opentelemetry-collector-contrib:0.163.2
     command: ["--config=/etc/otel-collector-config.yaml"]
     volumes:
       - ./opentelemetry/config/otel-collector-config.yaml:/etc/otel-collector-config.yaml
@@ -488,23 +535,33 @@ Add tracing components to the Docker Compose file:
       - monitoring
 
   jaeger:
-    image: jaegertracing/all-in-one:1.47
-    environment:
-      - COLLECTOR_OTLP_ENABLED=true
+    # Jaeger v2 all-in-one; OTLP on 4317/4318 inside the network
+    image: jaegertracing/jaeger:2.22.0
     ports:
       - "16686:16686"  # Jaeger UI
-      - "14250:14250"  # Collector
     networks:
       - monitoring
 
+  # Tempo runs as UID 10001; give it ownership of the data volume first
+  tempo-init:
+    image: grafana/tempo:3.1.1
+    user: root
+    entrypoint: ["chown", "10001:10001", "/var/tempo"]
+    volumes:
+      - tempo-data:/var/tempo
+
   tempo:
-    image: grafana/tempo:2.3.0
+    image: grafana/tempo:3.1.1
+    depends_on:
+      - tempo-init
     command: ["-config.file=/etc/tempo.yaml"]
     volumes:
-      - ./tempo-data:/tmp/tempo
+      - ./tempo/tempo.yaml:/etc/tempo.yaml:ro
+      - tempo-data:/var/tempo
     ports:
-      - "3200:3200"  # Tempo UI
-      - "4317:4317"  # OTLP gRPC
+      - "3200:3200"  # Tempo HTTP API (Grafana data source)
+      # 4317 is not published: the collector already owns host port 4317
+      # and reaches Tempo over the monitoring network.
     networks:
       - monitoring
 
@@ -525,12 +582,15 @@ distributor:
     otlp:
       protocols:
         grpc:
+          endpoint: "0.0.0.0:4317"
+        http:
+          endpoint: "0.0.0.0:4318"
 
 storage:
   trace:
     backend: local
     local:
-      path: /tmp/tempo/traces
+      path: /var/tempo/traces
 
 EOF
 ```

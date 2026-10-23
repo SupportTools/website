@@ -1,6 +1,7 @@
 ---
-title: "Advanced VLAN and Network Virtualization: Enterprise Infrastructure Guide"
+title: "QinQ (802.1ad) on Linux: Stacked VLANs for VMs and Bridges"
 date: 2026-04-18T00:00:00-05:00
+lastmod: 2026-10-23T00:00:00-05:00
 draft: false
 tags: ["VLAN", "Network Virtualization", "SDN", "Infrastructure", "Enterprise", "Segmentation", "Networking"]
 categories:
@@ -9,14 +10,68 @@ categories:
 - Virtualization
 - Segmentation
 author: "Matthew Mattox - mmattox@support.tools"
-description: "Master advanced VLAN management and network virtualization for enterprise infrastructure. Learn sophisticated segmentation strategies, overlay networks, and production-ready virtualization architectures."
+description: "Configure 802.1ad QinQ on Linux with ip link, a VLAN-aware bridge and Open vSwitch dot1q-tunnel, fix the MTU, and verify the 0x88a8 outer tag with tcpdump."
 more_link: "yes"
 url: "/advanced-vlan-network-virtualization-enterprise-guide/"
 ---
 
-Advanced VLAN management and network virtualization enable enterprises to create flexible, scalable, and secure network architectures that support modern business requirements. This comprehensive guide explores sophisticated VLAN strategies, overlay network technologies, and production-ready virtualization frameworks for enterprise environments.
+IEEE 802.1ad (QinQ, or stacked VLANs) puts a second VLAN tag in front of the normal 802.1Q tag, so a provider or a virtualization host can carry each tenant's full VLAN range inside one outer "service" VLAN. This page shows the Linux commands for QinQ on a plain interface, on a Linux bridge and on Open vSwitch, then covers the wider VLAN and overlay design for multi-tenant networks.
 
 <!--more-->
+
+## Quick answer
+
+The outer (service) tag uses TPID `0x88a8`; the inner (customer) tag is a normal 802.1Q tag with TPID `0x8100`.
+
+**Stacked VLAN interfaces with iproute2** (outer VLAN 100, inner VLAN 200 on `eth0`):
+
+```bash
+# Outer S-tag, 802.1ad
+ip link add link eth0 name eth0.100 type vlan proto 802.1ad id 100
+# Inner C-tag, 802.1Q, stacked on the outer interface
+ip link add link eth0.100 name eth0.100.200 type vlan proto 802.1Q id 200
+
+# Each tag adds 4 bytes: raise the parent MTU or lower the inner one
+ip link set eth0 mtu 1504
+ip link set eth0 up
+ip link set eth0.100 up
+ip link set eth0.100.200 up
+ip addr add 192.0.2.10/24 dev eth0.100.200
+```
+
+**VLAN-aware Linux bridge that tags with 802.1ad** (each VM keeps its own 802.1Q VLANs inside S-VLAN 100):
+
+```bash
+ip link add br0 type bridge vlan_filtering 1 vlan_protocol 802.1ad
+ip link set eth0 master br0
+ip link set vnet0 master br0
+bridge vlan add dev eth0 vid 100            # trunk to the provider side
+bridge vlan add dev vnet0 vid 100 pvid untagged
+```
+
+Frames leaving `vnet0` get S-tag 100 pushed on top of whatever 802.1Q tags the guest already sent.
+
+**Open vSwitch** (`dot1q-tunnel` port mode, OVS 2.8 or later):
+
+```bash
+# OVS only parses one VLAN header unless told otherwise
+ovs-vsctl set Open_vSwitch . other_config:vlan-limit=2
+ovs-vsctl set port vnet0 vlan_mode=dot1q-tunnel tag=100
+```
+
+**Verify the outer tag on the wire:**
+
+```bash
+tcpdump -e -n -i eth0 'ether proto 0x88a8'
+```
+
+The upstream switch port must also be configured for QinQ (often called a dot1q-tunnel or S-VLAN port) with an MTU of at least 1504; otherwise full-size inner frames are dropped.
+
+Related guides on this site:
+
+- [Configuring IPv4 and IPv6 preferences on Linux](/configure-ipv4-ipv6-preference/) for the addressing that sits on top of these interfaces.
+- [Linux NAT64 and DNS64 configuration](/nat64-dns64-ipv6-transition-enterprise-guide/) for IPv6-only tenant segments.
+- [Running K3s with Cilium on IPv6](/k3s-ipv6-cilium/) for a Kubernetes node on a tagged segment.
 
 # [Enterprise VLAN and Network Virtualization](#enterprise-vlan-network-virtualization)
 

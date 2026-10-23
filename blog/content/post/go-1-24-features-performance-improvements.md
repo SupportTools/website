@@ -12,6 +12,8 @@ more_link: "yes"
 url: "/go-1-24-features-performance-improvements/"
 ---
 
+{{% newer-version path="/post/go-1-27-release-generic-methods-json-v2.md" %}}
+
 Go 1.24 represents a significant evolution in the language's development, bringing substantial performance improvements and developer-friendly features while maintaining Go's commitment to simplicity and backwards compatibility. This article examines the key enhancements and their practical implications for production systems.
 
 <!--more-->
