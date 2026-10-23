@@ -7,7 +7,7 @@ categories:
 - Go
 - Programming
 author: "Matthew Mattox - mmattox@support.tools"
-description: "What changed in Go 1.27: generic methods, encoding/json/v2 behind encoding/json, the new uuid package, goroutine leak profiles, ML-DSA, and the upgrade traps."
+description: "What changed in Go 1.27: generic methods, encoding/json/v2 behind encoding/json, the uuid package, goroutine leak profiles, ML-DSA and upgrade traps."
 more_link: "yes"
 url: "/go-1-27-release-generic-methods-json-v2/"
 ---

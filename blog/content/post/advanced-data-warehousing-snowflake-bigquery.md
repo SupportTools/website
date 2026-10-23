@@ -3,7 +3,7 @@ title: "Snowflake QUERY_HISTORY: Find COMMIT and ROLLBACK Queries"
 date: 2026-03-28T00:00:00-05:00
 lastmod: 2026-10-23T00:00:00-05:00
 draft: false
-description: "Query Snowflake QUERY_HISTORY by query_type to find COMMIT and ROLLBACK statements and their transactions, plus the BigQuery equivalents and warehouse tuning."
+description: "Query Snowflake QUERY_HISTORY by query_type to find COMMIT and ROLLBACK statements and their transactions, plus BigQuery equivalents and tuning."
 keywords: ["data warehousing", "Snowflake", "BigQuery", "cloud data warehouse", "ETL", "data architecture", "performance optimization", "cost optimization", "data lake", "analytics"]
 tags: ["data-engineering", "snowflake", "bigquery", "data-warehouse", "cloud", "analytics", "performance", "optimization"]
 categories: ["Data Engineering", "Analytics", "Cloud"]

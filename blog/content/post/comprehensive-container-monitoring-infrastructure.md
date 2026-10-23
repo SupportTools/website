@@ -1,5 +1,5 @@
 ---
-title: "Grafana Tempo Ports (3200, 4317, 4318) and an OTel Compose Stack"
+title: "Grafana Tempo Ports: 3200, 4317, 4318 and an OTel Stack"
 date: 2025-12-09T09:00:00-05:00
 lastmod: 2026-10-23T00:00:00-05:00
 draft: false
@@ -9,7 +9,7 @@ categories:
 - DevOps
 - Containers
 author: "Matthew Mattox - mmattox@support.tools"
-description: "Grafana Tempo default ports (3200 HTTP, 9095 gRPC, 4317/4318 OTLP), why receivers bind to localhost, and a working Compose stack with OTel Collector, Tempo, Prometheus."
+description: "Grafana Tempo default ports (3200 HTTP, 9095 gRPC, 4317/4318 OTLP), why receivers bind to localhost, and a working OTel Collector and Tempo Compose stack."
 more_link: "yes"
 url: "/comprehensive-container-monitoring-infrastructure/"
 ---

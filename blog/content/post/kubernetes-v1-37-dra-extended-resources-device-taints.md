@@ -6,7 +6,7 @@ tags: ["Kubernetes", "v1.37", "Dynamic Resource Allocation", "DRA", "GPU", "Devi
 categories:
 - Kubernetes
 author: "Matthew Mattox - mmattox@support.tools"
-description: "What changed for Dynamic Resource Allocation in Kubernetes v1.37: extended resource requests served by DRA (GA), device taints with DeviceTaintRule, and new betas."
+description: "Kubernetes v1.37 DRA changes: extended resource requests served by DRA (GA), device taints with DeviceTaintRule, device status, and the new betas."
 more_link: "yes"
 url: "/kubernetes-v1-37-dra-extended-resources-device-taints/"
 ---

@@ -1,15 +1,15 @@
 ---
-title: "S3 Storage Classes: Minimum Duration, Size and Retrieval Fees"
+title: "S3 Storage Classes: Minimum Duration, Size, Retrieval Fees"
 date: 2025-09-11T09:00:00-05:00
 lastmod: 2026-10-23T00:00:00-05:00
-description: "Every S3 storage class side by side: minimum storage duration, 128 KB minimum billable size, retrieval fees and latency, plus lifecycle rules that avoid early deletion charges."
+description: "Every S3 storage class side by side: minimum storage duration, 128 KB minimum billable size, retrieval fees, and lifecycle rules that avoid early charges."
 author: "Matthew Mattox - mmattox@support.tools"
 draft: false
 categories: ["AWS", "Storage", "Cost Optimization"]
 tags: ["AWS", "S3", "S3 Storage Classes", "Data Lifecycle Management", "Cloud Architecture", "Cost Optimization", "Glacier", "S3 Intelligent-Tiering", "S3 Standard-IA", "AWS Outposts"]
 ---
 
-# S3 Storage Classes: Minimum Duration, Size and Retrieval Fees
+# S3 Storage Classes: Minimum Duration, Size, Retrieval Fees
 
 The cheaper S3 storage classes are only cheaper if your objects are big enough and stay long enough. This page starts with the minimums that decide that, then walks through each class with CLI and lifecycle examples.
 

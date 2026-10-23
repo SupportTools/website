@@ -2,7 +2,7 @@
 title: "ElastiCache Redis Replication Group and RDS Proxy Limits"
 date: 2025-09-04T09:00:00-05:00
 lastmod: 2026-10-23T00:00:00-05:00
-description: "Terraform for an ElastiCache replication group (num_cache_clusters explained), RDS Proxy connection limits and the MaxDatabaseConnectionsAllowed metric, with RDS."
+description: "ElastiCache replication group Terraform with num_cache_clusters explained, plus RDS Proxy connection limits and the MaxDatabaseConnectionsAllowed metric."
 author: "Matthew Mattox - mmattox@support.tools"
 draft: false
 categories: ["AWS", "Databases", "Cloud"]
