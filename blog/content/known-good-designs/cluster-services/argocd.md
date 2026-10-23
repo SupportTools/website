@@ -1,12 +1,13 @@
 ---
 title: "ArgoCD"
 date: 2024-12-17T00:00:00-05:00
+lastmod: 2026-10-23
 draft: false
 tags: ["Known Good Designs", "Cluster Services", "ArgoCD", "GitOps"]
 categories:
 - Known Good Designs
 author: "Matthew Mattox - mmattox@support.tools"
-description: "Known good design for deploying ArgoCD in a Kubernetes cluster."
+description: "Known good design for deploying Argo CD v3 in a Kubernetes cluster with the official Helm chart, including HA settings and Prometheus monitoring."
 more_link: "yes"
 url: "/known-good-designs/cluster-services/argocd/"
 ---
@@ -37,14 +38,44 @@ ArgoCD is a declarative, GitOps continuous delivery tool for Kubernetes. It allo
 ### [Implementation Details](#implementation-details)
 
 #### [Step 1: Install ArgoCD](#step-1-install-argocd)
-To install ArgoCD, use the official Helm chart for streamlined deployment:
+To install ArgoCD, use the official [argo-cd Helm chart](https://github.com/argoproj/argo-helm/tree/main/charts/argo-cd). Pin the chart version; chart 10.9.6 ships Argo CD v3.5.3 (check the [chart index](https://argoproj.github.io/argo-helm/) for newer releases):
 ```bash
 helm repo add argo https://argoproj.github.io/argo-helm
 helm repo update
-helm install argocd argo/argo-cd --namespace argocd --create-namespace
+helm install argocd argo/argo-cd \
+  --namespace argocd \
+  --create-namespace \
+  --version 10.9.6
 ```
 
-For additional guidance, refer to the [Rancher Documentation](https://ranchermanager.docs.rancher.com/getting-started/installation-and-upgrade/install-upgrade-on-a-kubernetes-cluster#4-install-cert-manager) for installing GitOps tools like ArgoCD in Rancher-managed clusters.
+The chart installs the non-HA version of Argo CD by default. For production, use the chart's HA settings. The chart README warns that HA needs at least 3 worker nodes, because Redis HA forces its pods onto separate nodes, and the [Argo CD HA guide](https://argo-cd.readthedocs.io/en/stable/operator-manual/high_availability/) says the same about its anti-affinity rules:
+
+```yaml
+# argocd-ha-values.yaml
+redis-ha:
+  enabled: true
+controller:
+  replicas: 1
+server:
+  autoscaling:
+    enabled: true
+    minReplicas: 2
+repoServer:
+  autoscaling:
+    enabled: true
+    minReplicas: 2
+applicationSet:
+  replicas: 2
+```
+
+```bash
+helm upgrade --install argocd argo/argo-cd \
+  --namespace argocd \
+  --version 10.9.6 \
+  -f argocd-ha-values.yaml
+```
+
+Rancher also ships its own GitOps engine, Fleet (Continuous Delivery), in every Rancher install. Argo CD runs fine alongside it on Rancher-managed clusters.
 
 ---
 
@@ -116,28 +147,38 @@ kubectl apply -f application.yaml
 
 #### [Monitoring ArgoCD](#monitoring-argocd)
 ArgoCD exposes metrics compatible with Prometheus. To monitor ArgoCD:
-1. Install Prometheus and Grafana in your cluster.
-2. Create a `ServiceMonitor` for ArgoCD:
+1. Install the Prometheus Operator (for example kube-prometheus-stack, or Rancher Monitoring).
+2. Let the chart create the metrics Services and ServiceMonitors for each component instead of writing one ServiceMonitor by hand. Each component exposes metrics on its own Service and port:
    ```yaml
-   apiVersion: monitoring.coreos.com/v1
-   kind: ServiceMonitor
-   metadata:
-     name: argocd
-     namespace: argocd
-   spec:
-     selector:
-       matchLabels:
-         app.kubernetes.io/part-of: argocd
-     endpoints:
-     - port: http-metrics
+   controller:
+     metrics:
+       enabled: true
+       serviceMonitor:
+         enabled: true
+   server:
+     metrics:
+       enabled: true
+       serviceMonitor:
+         enabled: true
+   repoServer:
+     metrics:
+       enabled: true
+       serviceMonitor:
+         enabled: true
+   applicationSet:
+     metrics:
+       enabled: true
+       serviceMonitor:
+         enabled: true
    ```
+   See the [Argo CD metrics docs](https://argo-cd.readthedocs.io/en/stable/operator-manual/metrics/) for the metric names.
 
 #### [Troubleshooting Common Issues](#troubleshooting-common-issues)
 - **Sync Failures:** Check the logs for the ArgoCD application controller:
   ```bash
   kubectl logs -n argocd -l app.kubernetes.io/name=argocd-application-controller
   ```
-- **Access Issues:** Ensure the ArgoCD server is exposed correctly via LoadBalancer or Ingress.
+- **Access Issues:** Ensure the ArgoCD server is exposed correctly via LoadBalancer, Ingress, or Gateway API. With an Ingress, set `ingressClassName` to a running controller such as `traefik`; Ingress NGINX was retired in March 2026.
 - **Permission Denied:** Verify that ArgoCD has sufficient RBAC permissions in the target namespace.
 
 ---

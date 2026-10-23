@@ -1,206 +1,202 @@
 ---
-title: "Ingress NGINX Controller on EKS"
+title: "Ingress NGINX Controller on EKS: Retirement and Migrating to Traefik"
 date: 2024-12-17T00:00:00-05:00
+lastmod: 2026-10-23
 draft: false
-tags: ["Known Good Designs", "Load Balancers", "Ingress NGINX", "EKS", "Amazon"]
+tags: ["Known Good Designs", "Load Balancers", "Ingress NGINX", "Traefik", "Gateway API", "EKS", "Amazon"]
 categories:
 - Known Good Designs
 - Load Balancers
 author: "Matthew Mattox - mmattox@support.tools"
-description: "Known good design for deploying Ingress NGINX Controller on Amazon EKS."
+description: "Ingress on Amazon EKS after the Ingress NGINX retirement: Traefik behind an AWS Load Balancer Controller NLB, Helm and Argo CD examples, and the correct load balancer annotations."
 more_link: "yes"
 url: "/known-good-designs/loadbalancers/ingress-nginx-controller-on-eks/"
 ---
 
 ![NGINX Architecture for EKS](https://cdn.support.tools/known-good-designs/load-balancers/ingress-nginx-controller-on-eks/arch_nginx-for_eks.png)
 
-This is the known good design for deploying the Ingress NGINX Controller on Amazon EKS.
+This page used to describe Ingress NGINX on Amazon EKS. Ingress NGINX is now retired, so the known good design for a self-managed ingress controller on EKS is Traefik behind a Network Load Balancer created by the AWS Load Balancer Controller.
 
 <!--more-->
 
 ## [Overview](#overview)
 
-### [Ingress NGINX Overview](#ingress-nginx-overview)
-The Ingress NGINX Controller is a Kubernetes-native load balancer that manages external access to services in a cluster. On EKS, it works seamlessly with Amazon Elastic Load Balancers (ELBs) to provide robust HTTP(S) ingress capabilities.
+### [Ingress NGINX Is Retired](#ingress-nginx-is-retired)
 
-#### Key Features
-- **Supports HTTP and HTTPS:** Handles secure and non-secure traffic.
-- **Rule-Based Routing:** Route traffic based on host, path, or headers.
-- **Custom Annotations:** Allows fine-grained control over NGINX configurations.
-- **Integration with ACM:** Automates TLS certificate provisioning via AWS Certificate Manager.
+Kubernetes SIG Network and the Security Response Committee retired Ingress NGINX in March 2026. There are no further releases, bug fixes, or security patches, and the repositories are read-only ([announcement](https://kubernetes.io/blog/2025/11/11/ingress-nginx-retirement/), [Steering and SRC statement](https://kubernetes.io/blog/2026/01/29/ingress-nginx-statement/)). They recommend migrating to Gateway API or to another Ingress controller. Clusters still running it should plan a migration rather than a fresh install.
 
-For more details, refer to the [AWS Documentation](https://docs.aws.amazon.com/eks/latest/userguide/).
+Rancher's own [Rancher on EKS guide](https://ranchermanager.docs.rancher.com/getting-started/installation-and-upgrade/install-upgrade-on-a-kubernetes-cluster/rancher-on-amazon-eks) now uses Traefik and calls it the recommended migration path for Rancher environments, which is why this design uses it too.
+
+### [Options on EKS](#options-on-eks)
+
+| Option | When to use it |
+|---|---|
+| Traefik behind an NLB (this page) | One controller for many Ingresses, Gateway API support, portable across clusters |
+| AWS Load Balancer Controller Ingress (ALB) | You want AWS-managed layer 7 with ACM certificates and WAF, one ALB per Ingress group |
+| Another Ingress or Gateway API implementation | See the [Kubernetes ingress controllers list](https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/) and [Gateway API implementations](https://gateway-api.sigs.k8s.io/guides/) |
+
+Rancher's EKS guide advises against adding Traefik if you already use a managed ingress controller such as the ALB ingress.
 
 ---
 
 ![Design of NGINX Ingress Controller on EKS](https://cdn.support.tools/known-good-designs/load-balancers/ingress-nginx-controller-on-eks/design-of-NGINX-Ingress-Controller-on-EKS.png)
 
+The diagram shows the original NGINX layout. The Traefik design has the same shape: an NLB in front, controller pods inside the cluster.
+
 ---
 
 ### [AWS Load Balancer Behavior](#aws-load-balancer-behavior)
 
-#### How AWS Deploys a Load Balancer
+From the [EKS network load balancing guide](https://docs.aws.amazon.com/eks/latest/userguide/network-load-balancing.html):
 
-When a service is configured with `type: LoadBalancer` in an EKS cluster, AWS automatically creates an Elastic Load Balancer (ELB) outside the cluster. This load balancer forwards external traffic to the node ports associated with the service.
+- A Service of `type: LoadBalancer` handled by the legacy AWS cloud provider controller gets a **Classic Load Balancer** by default. That controller only receives critical bug fixes.
+- AWS recommends the **AWS Load Balancer Controller** (v2.7.2 or later) instead. It creates **Network Load Balancers** for Services and **Application Load Balancers** for Ingress objects. It never creates Classic Load Balancers.
+- The annotation `service.beta.kubernetes.io/aws-load-balancer-type: "external"` hands the Service to the AWS Load Balancer Controller.
+- NLBs are created `internal` by default. Add `service.beta.kubernetes.io/aws-load-balancer-scheme: "internet-facing"` for a public endpoint.
+- `aws-load-balancer-nlb-target-type: "ip"` registers pod IPs directly (requires the Amazon VPC CNI); `instance` registers nodes and their NodePorts.
+- Do not edit these annotations after the Service is created. Delete and recreate the Service instead.
 
-- The Load Balancer maps to the cluster nodes and routes traffic to the relevant pods via node ports.
-- By default, an Application Load Balancer (ALB) is used for HTTP/HTTPS traffic, while a Network Load Balancer (NLB) is preferred for TCP traffic.
+An ALB is never created for a `type: LoadBalancer` Service. ALBs come only from Ingress objects handled by the AWS Load Balancer Controller.
 
-Example:
-- Service with ports 80 and 443.
-- ELB forwards traffic to random node ports, such as `31567` (HTTP) and `31568` (HTTPS), on each node.
-
-For more information, see the [AWS Load Balancers Documentation](https://docs.aws.amazon.com/eks/latest/userguide/load-balancing.html).
+On EKS Auto Mode, load balancing is built in; see the Auto Mode pages linked from the same AWS guide.
 
 ---
 
 ### [Helm Deployment Example](#helm-deployment-example)
 
-#### Step 1: Install the Ingress NGINX Controller with Helm
+Prerequisite: the [AWS Load Balancer Controller](https://docs.aws.amazon.com/eks/latest/userguide/aws-load-balancer-controller.html) is installed, and public subnets are tagged `kubernetes.io/role/elb=1`.
 
-1. **Add the Helm Repository:**
+1. **Add the Traefik Helm repository:**
    ```bash
-   helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+   helm repo add traefik https://traefik.github.io/charts
    helm repo update
    ```
 
-2. **Install the Ingress NGINX Controller:**
-   Use Helm to install the controller in the `ingress-nginx` namespace:
+2. **Create `traefik-values.yaml`:**
+   ```yaml
+   deployment:
+     replicas: 3
+   podDisruptionBudget:
+     enabled: true
+     maxUnavailable: 1
+   ingressClass:
+     enabled: true
+     isDefaultClass: true
+     name: traefik
+   service:
+     annotations:
+       service.beta.kubernetes.io/aws-load-balancer-type: "external"
+       service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: "ip"
+       service.beta.kubernetes.io/aws-load-balancer-scheme: "internet-facing"
+   ports:
+     web:
+       http:
+         redirections:
+           entryPoint:
+             to: websecure
+             scheme: https
+             permanent: true
+   ```
+
+3. **Install Traefik** (chart 41.6.1 ships Traefik v3.7.13; check the chart index for newer releases):
    ```bash
-   helm install ingress-nginx ingress-nginx/ingress-nginx \
-     --namespace ingress-nginx \
+   helm install traefik traefik/traefik \
+     --namespace traefik \
      --create-namespace \
-     --set controller.service.type=LoadBalancer
+     --version 41.6.1 \
+     -f traefik-values.yaml
    ```
 
-3. **Verify the Installation:**
-   Check the pods and services in the `ingress-nginx` namespace:
+4. **Verify:**
    ```bash
-   kubectl get pods -n ingress-nginx
-   kubectl get svc -n ingress-nginx
+   kubectl -n traefik get pods
+   kubectl -n traefik get svc traefik
    ```
 
-Expected output for the service:
-```plaintext
-NAME                                 TYPE           CLUSTER-IP      EXTERNAL-IP      PORT(S)                      AGE
-ingress-nginx-controller             LoadBalancer   10.245.89.53    123.45.67.89     80:31567/TCP,443:31568/TCP    2m
-```
+The `EXTERNAL-IP` column shows the NLB DNS name, for example `k8s-traefik-traefik-xxxxxxxxxx.elb.us-west-2.amazonaws.com`. Point your DNS records at it.
+
+TLS is terminated by Traefik, with certificates from [cert-manager](/known-good-designs/cluster-services/cert-manager/) (use `ingressClassName: traefik` in the HTTP-01 solver). If you need ACM certificates, terminate at an ALB through the AWS Load Balancer Controller Ingress instead.
 
 ---
 
-### [ArgoCD Deployment Example](#argocd-deployment-example)
-
-#### Deploying the Ingress NGINX Controller with ArgoCD
-
-The following is an example of deploying the Ingress NGINX Controller using ArgoCD:
+### [Argo CD Deployment Example](#argocd-deployment-example)
 
 ```yaml
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: ingress-nginx
+  name: traefik
   namespace: argocd
 spec:
   destination:
-    namespace: ingress-nginx
+    namespace: traefik
     server: https://kubernetes.default.svc
   project: cluster-services
   source:
-    chart: ingress-nginx
+    repoURL: https://traefik.github.io/charts
+    chart: traefik
+    targetRevision: 41.6.1
     helm:
-      values: |
-        controller:
-          service:
-            type: LoadBalancer
-          publishService:
-            enabled: true
-          metrics:
-            enabled: true
-            prometheus:
+      valuesObject:
+        deployment:
+          replicas: 3
+        podDisruptionBudget:
+          enabled: true
+          maxUnavailable: 1
+        ingressClass:
+          enabled: true
+          isDefaultClass: true
+          name: traefik
+        service:
+          annotations:
+            service.beta.kubernetes.io/aws-load-balancer-type: "external"
+            service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: "ip"
+            service.beta.kubernetes.io/aws-load-balancer-scheme: "internet-facing"
+        metrics:
+          prometheus:
+            serviceMonitor:
               enabled: true
-          allowSnippetAnnotations: true
-          config:
-            ssl-ciphers: "ECDHE-RSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-SHA256:AES128-SHA256"
-            ssl-protocols: "TLSv1.2 TLSv1.3"          
-            proxy-connect-timeout: '15'
-            proxy-read-timeout: '600'
-            proxy-send-timeout: '600'
-            hsts-include-subdomains: 'false'
-            body-size: 64m
-            server-name-hash-bucket-size: '256'
-            client-max-body-size: 50m
-          replicaCount: 3
-          podAnnotations:
-            "prometheus.io/scrape": "true"
-            "prometheus.io/port": "10254"
-    repoURL: https://kubernetes.github.io/ingress-nginx
-    targetRevision: 4.10.1
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
     retry:
+      limit: 3
       backoff:
-        duration: 30m
+        duration: 30s
         factor: 2
         maxDuration: 5m
-      limit: 3
     syncOptions:
       - CreateNamespace=true
 ```
 
 #### Key Features in the Configuration
-- **Load Balancer:** Configures the service type as `LoadBalancer` for external access.
-- **Prometheus Metrics:** Enables metrics collection for monitoring with Prometheus.
-- **Timeouts and Limits:** Configures proxy and client body limits to handle large requests.
-- **Replicas:** Deploys three replicas of the Ingress NGINX controller for high availability.
-- **Automated Sync:** Ensures that the deployment self-heals and prunes unused resources automatically.
-- **Namespace Creation:** Automatically creates the `ingress-nginx` namespace if it doesn't exist.
+- **Network Load Balancer:** The AWS Load Balancer Controller creates an internet-facing NLB with IP targets.
+- **Replicas and PDB:** Three Traefik replicas with a PodDisruptionBudget keep ingress available during node drains.
+- **Prometheus Metrics:** Creates a ServiceMonitor (requires the Prometheus Operator CRDs).
+- **Retry backoff:** Starts at 30 seconds and doubles up to 5 minutes. (`duration` must be shorter than `maxDuration`.)
 
 ---
 
-### [Using Annotations to Customize the Load Balancer](#using-annotations-to-customize-the-load-balancer)
+### [Gateway API](#gateway-api)
 
-AWS Load Balancers can be customized using annotations on the Kubernetes service resource. The following example demonstrates commonly used annotations:
+Gateway API is the replacement the Kubernetes project points to. Traefik implements it through its Kubernetes Gateway provider: set `providers.kubernetesGateway.enabled: true` in the values, and the chart creates a GatewayClass and a default Gateway. See the [Traefik Gateway provider docs](https://doc.traefik.io/traefik/reference/install-configuration/providers/kubernetes/kubernetes-gateway/) and use [ingress2gateway](https://github.com/kubernetes-sigs/ingress2gateway) to convert existing Ingress objects.
 
-#### Example Service with Annotations
-```yaml
-apiVersion: v1
-kind: Service
-metadata:
-  name: ingress-nginx-controller
-  namespace: ingress-nginx
-  annotations:
-    service.beta.kubernetes.io/aws-load-balancer-backend-protocol: "http"
-    service.beta.kubernetes.io/aws-load-balancer-ssl-cert: "arn:aws:acm:region:account-id:certificate/certificate-id"
-    service.beta.kubernetes.io/aws-load-balancer-ssl-ports: "443"
-    service.beta.kubernetes.io/aws-load-balancer-access-log-enabled: "true"
-    service.beta.kubernetes.io/aws-load-balancer-access-log-s3-bucket-name: "my-bucket"
-    service.beta.kubernetes.io/aws-load-balancer-access-log-s3-bucket-prefix: "nginx-logs"
-spec:
-  type: LoadBalancer
-  selector:
-    app.kubernetes.io/name: ingress-nginx
-  ports:
-    - port: 80
-      targetPort: http
-    - port: 443
-      targetPort: https
-```
+---
 
-#### Annotation Details
-- `service.beta.kubernetes.io/aws-load-balancer-backend-protocol`: Specifies the protocol for the backend (`http` or `tcp`).
-- `service.beta.kubernetes.io/aws-load-balancer-ssl-cert`: Associates an ACM certificate for HTTPS traffic.
-- `service.beta.kubernetes.io/aws-load-balancer-ssl-ports`: Defines which ports should use SSL.
-- `service.beta.kubernetes.io/aws-load-balancer-access-log-enabled`: Enables access logs for the load balancer.
-- `service.beta.kubernetes.io/aws-load-balancer-access-log-s3-bucket-name`: Specifies the S3 bucket for storing access logs.
-- `service.beta.kubernetes.io/aws-load-balancer-access-log-s3-bucket-prefix`: Defines the log prefix within the S3 bucket.
+### [Migrating from Ingress NGINX](#migrating-from-ingress-nginx)
 
-For a complete list of available annotations, see the [AWS Load Balancers Documentation](https://docs.aws.amazon.com/eks/latest/userguide/load-balancing.html).
+1. Inventory annotations: `kubectl get ingress -A -o yaml | grep nginx.ingress.kubernetes.io | sort | uniq -c`.
+2. Check them against the [Traefik Ingress NGINX provider](https://doc.traefik.io/traefik/reference/install-configuration/providers/kubernetes/kubernetes-ingress-nginx/), which serves Ingresses whose IngressClass uses the `k8s.io/ingress-nginx` controller and supports many, but not all, NGINX annotations. Snippet annotations are the usual blockers.
+3. Install Traefik next to ingress-nginx with its own NLB, test each host against the new NLB with `curl --resolve`, then move DNS.
+4. Remove ingress-nginx and its load balancer once traffic has drained.
 
 ---
 
 ### [References](#references)
-- [Ingress NGINX Documentation](https://kubernetes.github.io/ingress-nginx/)
-- [AWS Load Balancers Documentation](https://docs.aws.amazon.com/eks/latest/userguide/load-balancing.html)
-- [AWS Installation Guide for NGINX Ingress Controller](https://aws.amazon.com/blogs/containers/nginx-ingress-controller-on-amazon-eks/)
+- [Kubernetes: Ingress NGINX retirement](https://kubernetes.io/blog/2025/11/11/ingress-nginx-retirement/)
+- [Rancher on Amazon EKS](https://ranchermanager.docs.rancher.com/getting-started/installation-and-upgrade/install-upgrade-on-a-kubernetes-cluster/rancher-on-amazon-eks)
+- [EKS: Route TCP and UDP traffic with Network Load Balancers](https://docs.aws.amazon.com/eks/latest/userguide/network-load-balancing.html)
+- [AWS Load Balancer Controller service annotations](https://kubernetes-sigs.github.io/aws-load-balancer-controller/latest/guide/service/annotations/)
+- [Traefik documentation](https://doc.traefik.io/traefik/)
+- [Gateway API guides](https://gateway-api.sigs.k8s.io/guides/)

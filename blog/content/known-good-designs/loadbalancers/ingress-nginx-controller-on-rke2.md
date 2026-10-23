@@ -1,120 +1,172 @@
 ---
-title: "Ingress NGINX Controller on RKE2"
+title: "Ingress NGINX Controller on RKE2: Retirement and the Traefik Default"
 date: 2024-12-17T00:00:00-05:00
+lastmod: 2026-10-23
 draft: false
-tags: ["Known Good Designs", "Load Balancers", "Ingress NGINX", "RKE2", "Kubernetes"]
+tags: ["Known Good Designs", "Load Balancers", "Ingress NGINX", "Traefik", "Gateway API", "RKE2", "Kubernetes"]
 categories:
 - Known Good Designs
 - Load Balancers
 author: "Matthew Mattox - mmattox@support.tools"
-description: "Overview of the built-in Ingress NGINX Controller on RKE2 and its differences from standalone deployments."
+description: "How ingress works on RKE2 now that Ingress NGINX is retired: Traefik is the default from v1.36, how to customize it with HelmChartConfig, enable Gateway API, and migrate existing ingress-nginx clusters."
 more_link: "yes"
 url: "/known-good-designs/loadbalancers/ingress-nginx-controller-on-rke2/"
 ---
 
 ![NGINX Architecture for RKE2](https://cdn.support.tools/known-good-designs/load-balancers/ingress-nginx-controller-on-rke2/arch_nginx-for_rke2.png)
 
-This is the known good design for leveraging the built-in Ingress NGINX Controller on RKE2.
+RKE2 used to ship the Ingress NGINX Controller as its built-in ingress. That project is now retired, and RKE2 v1.36 deploys Traefik by default on new clusters. This page covers the current known good design for ingress on RKE2 and how to move existing clusters off ingress-nginx.
 
 <!--more-->
 
-## [Overview](#overview)
+## [Status of Ingress NGINX](#status-of-ingress-nginx)
 
-### [Ingress NGINX on RKE2](#ingress-nginx-on-rke2)
-RKE2 comes with the Ingress NGINX Controller enabled by default as part of its bundled networking stack. This eliminates the need to manually install or manage the Ingress NGINX Controller, providing seamless integration with the RKE2 ecosystem.
+- **Upstream:** Kubernetes SIG Network and the Security Response Committee announced on November 11, 2025 that Ingress NGINX would be retired in March 2026. After that there are no further releases, bug fixes, or security patches, and the repositories become read-only ([announcement](https://kubernetes.io/blog/2025/11/11/ingress-nginx-retirement/)). The Steering and Security Response Committees repeated the warning on January 29, 2026 ([statement](https://kubernetes.io/blog/2026/01/29/ingress-nginx-statement/)). They recommend migrating to Gateway API or another Ingress controller.
+- **RKE2:** According to the [RKE2 networking services docs](https://docs.rke2.io/networking/networking_services):
+  - Starting with v1.36, Traefik is the default ingress controller for new clusters.
+  - v1.36 still ships ingress-nginx as deprecated. You must opt in with `ingress-controller: ingress-nginx`.
+  - In v1.37, ingress-nginx is removed and unavailable for new clusters.
+  - The RKE2 docs note that SUSE Rancher Prime LTS customers get extended Ingress NGINX support through December 2027 ([migration guide](https://docs.rke2.io/reference/ingress_migration)). Everyone else should migrate.
 
-#### Key Features
-- **Preconfigured and Managed**: RKE2 automatically deploys and manages the lifecycle of the Ingress NGINX Controller.
-- **Cluster-Aware Configuration**: Default values are tailored to the cluster’s networking setup (e.g., CIDRs, DNS settings).
-- **Integrated with HelmChart CRD**: Managed using the `HelmChart` custom resource, which simplifies upgrades and configuration changes.
-- **Built-in Default IngressClass**: Configured as the system default ingress class (`ingress-nginx`).
+---
 
-For more details, refer to the [RKE2 Networking Documentation](https://docs.rke2.io/networking/networking_services?_highlight=ingress#nginx-ingress-controller).
+## [Choosing the Ingress Controller](#choosing-the-ingress-controller)
+
+RKE2 selects its packaged ingress controller with the `ingress-controller` key in `/etc/rancher/rke2/config.yaml` on every server node:
+
+```yaml
+# traefik (default for new clusters on v1.36+), ingress-nginx (deprecated), or none
+ingress-controller: traefik
+```
+
+Set `none` if you deploy your own controller or rely only on Gateway API through another implementation.
+
+To see what an existing cluster runs:
+
+```bash
+kubectl get ingressclass
+kubectl -n kube-system get daemonset | grep -E 'traefik|ingress-nginx'
+```
+
+---
+
+## [How RKE2 Deploys Traefik](#how-rke2-deploys-traefik)
+
+RKE2 manages Traefik as the `rke2-traefik` HelmChart in `kube-system`, upgraded together with RKE2 itself. The RKE2 packaging of the upstream Traefik chart changes several defaults (see the [rke2-traefik chart patch](https://github.com/rancher/rke2-charts/tree/main-source/packages/rke2-traefik)):
+
+| Setting | Upstream Traefik chart | RKE2 `rke2-traefik` |
+|---|---|---|
+| Workload kind | Deployment | DaemonSet |
+| Host ports | none | 80 and 443 on every node |
+| Service type | LoadBalancer | ClusterIP |
+| IngressClass | default class, unnamed | `traefik`, not marked default |
+
+Because Traefik binds host ports 80 and 443 on every node, you can put any layer 4 load balancer (hardware, cloud, [kube-vip](/known-good-designs/loadbalancers/kube-vip-layer2/), or DNS round robin) in front of the nodes on those ports. Ports 80 and 443 on the nodes are then not available for other HostPort or NodePort services.
+
+Set `ingressClassName: traefik` explicitly on your Ingress objects so they do not depend on a cluster default class.
+
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: example
+  namespace: default
+spec:
+  ingressClassName: traefik
+  rules:
+  - host: app.example.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: example
+            port:
+              number: 80
+```
+
+---
+
+## [Customizing Traefik on RKE2](#customizing-traefik-on-rke2)
+
+Do not edit the `HelmChart` object directly; RKE2 overwrites it. Use a `HelmChartConfig` named `rke2-traefik` in `kube-system`, either applied with kubectl or dropped into `/var/lib/rancher/rke2/server/manifests/` on a server node:
+
+```yaml
+apiVersion: helm.cattle.io/v1
+kind: HelmChartConfig
+metadata:
+  name: rke2-traefik
+  namespace: kube-system
+spec:
+  valuesContent: |-
+    logs:
+      general:
+        level: INFO
+    ports:
+      websecure:
+        transport:
+          respondingTimeouts:
+            readTimeout: 600s
+```
+
+The `valuesContent` keys are values of the upstream [Traefik Helm chart](https://github.com/traefik/traefik-helm-chart/blob/master/traefik/values.yaml). RKE2's own example in the networking docs sets the log level the same way.
+
+### Gateway API
+
+The RKE2 docs state that Gateway API on RKE2 requires Traefik. Enable Traefik's Gateway provider in the same `HelmChartConfig`:
+
+```yaml
+apiVersion: helm.cattle.io/v1
+kind: HelmChartConfig
+metadata:
+  name: rke2-traefik
+  namespace: kube-system
+spec:
+  valuesContent: |-
+    providers:
+      kubernetesGateway:
+        enabled: true
+```
+
+The RKE2 docs list Traefik v3.7.x with Gateway API v1.5. From v1.37, the Gateway API CRDs ship in a standalone chart instead of with Traefik. Before the April 2026 RKE2 releases, disabling Traefik after enabling it removed the Gateway API CRDs (and every Gateway and HTTPRoute with them), so do not toggle Traefik off on clusters that use Gateway API.
+
+After enabling, check the class name before writing Gateways:
+
+```bash
+kubectl get gatewayclass
+```
+
+---
+
+## [Migrating an Existing ingress-nginx Cluster](#migrating-an-existing-ingress-nginx-cluster)
+
+Upgrading an existing cluster does not by itself move your Ingress objects. Follow the [RKE2 ingress migration guide](https://docs.rke2.io/reference/ingress_migration); in short:
+
+1. Set `ingressClassName: nginx` explicitly on every existing Ingress.
+2. On each server, set `ingress-controller` to both controllers (`ingress-nginx` and `traefik`) and add a `rke2-traefik` HelmChartConfig that moves Traefik to ports 8000 and 8443 and enables Traefik's Ingress NGINX compatibility provider (`kubernetesIngressNGINX`).
+3. Restart `rke2-server` on the control plane nodes and confirm both the `rke2-ingress-nginx-controller` and `rke2-traefik` DaemonSets are running.
+4. Create copies of your Ingresses with the migration IngressClass `rke2-ingress-nginx-migration` and test them through ports 8000 and 8443. Load balancer health checks differ: `/healthz` for NGINX, `/ping` for Traefik.
+5. Set `ingress-controller` to only `traefik`, remove the temporary ports from the HelmChartConfig, and restart.
+6. Delete the old `nginx` Ingress objects.
+
+Traefik's compatibility provider does not support every NGINX annotation. Check the [Traefik Ingress NGINX provider docs](https://doc.traefik.io/traefik/reference/install-configuration/providers/kubernetes/kubernetes-ingress-nginx/) for your annotations, especially `configuration-snippet` and other snippet annotations, before migrating. The RKE2 guide notes the provider name in the HelmChartConfig changed from `kubernetesIngressNginx` to `kubernetesIngressNGINX` in the June 2026 RKE2 releases.
+
+Rancher-provisioned downstream RKE2 clusters have their own migration guide in the Rancher documentation, linked from the [RKE2 for Rancher page](https://ranchermanager.docs.rancher.com/how-to-guides/new-user-guides/kubernetes-cluster-setup/rke2-for-rancher).
 
 ---
 
 ![Design of NGINX Ingress Controller on RKE2](https://cdn.support.tools/known-good-designs/load-balancers/ingress-nginx-controller-on-rke2/design-of-NGINX-Ingress-Controller-on-RKE2.png)
 
----
-
-### [How RKE2 Manages Ingress NGINX](#how-rke2-manages-ingress-nginx)
-
-#### HelmChart Custom Resource
-RKE2 uses a `HelmChart` custom resource in the `kube-system` namespace to manage the Ingress NGINX Controller. This ensures the controller is automatically deployed and kept up-to-date.
-
-##### Example HelmChart Resource
-```yaml
-apiVersion: helm.cattle.io/v1
-kind: HelmChart
-metadata:
-  name: rke2-ingress-nginx
-  namespace: kube-system
-spec:
-  chartContent: ....
-  set:
-    global.clusterCIDR: 10.42.0.0/16
-    global.clusterDNS: 10.43.0.10
-    global.systemDefaultIngressClass: ingress-nginx
-```
-
-#### Preconfigured Values
-RKE2 configures Ingress NGINX with cluster-specific values, including:
-- `global.clusterCIDR`: The cluster’s pod CIDR range.
-- `global.serviceCIDR`: The service CIDR range.
-- `global.clusterDomain`: The cluster domain (e.g., `cluster.local`).
-- `global.systemDefaultIngressClass`: Set to `ingress-nginx` by default.
-
----
-
-### [Differences from Standalone Deployments](#differences-from-standalone-deployments)
-
-1. **Integrated Management**:
-   - RKE2 handles the lifecycle of the Ingress NGINX Controller via the `HelmChart` CRD.
-   - Users do not need to manually install or upgrade the controller.
-
-2. **Preconfigured Defaults**:
-   - RKE2 provides cluster-aware defaults, reducing the need for custom configuration.
-   - These defaults include networking settings like CIDRs and DNS addresses.
-
-3. **IngressClass Configuration**:
-   - The `ingress-nginx` class is set as the default ingress class in RKE2.
-   - This ensures that ingress resources without a specified class automatically use the Ingress NGINX Controller.
-
-4. **Upgrades via RKE2 Release Cycle**:
-   - Ingress NGINX is upgraded alongside RKE2 releases, ensuring compatibility and stability.
-
----
-
-### [Customizing Ingress NGINX on RKE2](#customizing-ingress-nginx-on-rke2)
-
-While RKE2 provides sensible defaults, users can customize the Ingress NGINX Controller by editing the `HelmChart` resource:
-
-#### Example Customization
-1. **Retrieve the Current Configuration:**
-   ```bash
-   kubectl -n kube-system get helmchart rke2-ingress-nginx -o yaml
-   ```
-
-2. **Edit the HelmChart:**
-   ```bash
-   kubectl -n kube-system edit helmchart rke2-ingress-nginx
-   ```
-
-3. **Apply Custom Values:**
-   Modify the `set` section to include custom configurations. For example:
-   ```yaml
-   spec:
-     set:
-       controller.config.ssl-protocols: "TLSv1.2 TLSv1.3"
-       controller.config.proxy-read-timeout: "600"
-       controller.replicaCount: "3"
-   ```
-
-4. **Save and Apply Changes:**
-   The changes will be applied automatically, and the Ingress NGINX Controller will update accordingly.
+The diagram above shows the legacy ingress-nginx layout. Traefik on RKE2 follows the same pattern: one controller pod per node, bound to host ports 80 and 443, with an external layer 4 load balancer in front of the nodes.
 
 ---
 
 ### [References](#references)
-- [RKE2 Ingress NGINX GitHub Repository](https://github.com/rancher/rke2-charts/tree/main-source/packages/rke2-ingress-nginx)
-- [RKE2 Networking Documentation](https://docs.rke2.io/networking/networking_services?_highlight=ingress#nginx-ingress-controller)
+- [RKE2 networking services: Traefik, ingress-nginx, Gateway API](https://docs.rke2.io/networking/networking_services)
+- [RKE2 ingress migration guide](https://docs.rke2.io/reference/ingress_migration)
+- [Kubernetes: Ingress NGINX retirement](https://kubernetes.io/blog/2025/11/11/ingress-nginx-retirement/)
+- [Kubernetes Steering and SRC statement on Ingress NGINX](https://kubernetes.io/blog/2026/01/29/ingress-nginx-statement/)
+- [Traefik Kubernetes Gateway provider](https://doc.traefik.io/traefik/reference/install-configuration/providers/kubernetes/kubernetes-gateway/)
+- [Traefik Ingress NGINX provider](https://doc.traefik.io/traefik/reference/install-configuration/providers/kubernetes/kubernetes-ingress-nginx/)
+- [rke2-traefik chart packaging](https://github.com/rancher/rke2-charts/tree/main-source/packages/rke2-traefik)

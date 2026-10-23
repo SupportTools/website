@@ -1,6 +1,7 @@
 ---
 title: "Provisioning an RKE2 Cluster in DigitalOcean via Rancher"
 date: 2024-12-17T00:00:00-05:00
+lastmod: 2026-10-23
 draft: false
 tags: ["Known Good Designs", "Downstream RKE2 Cluster", "DigitalOcean", "Rancher", "Kubernetes"]
 categories:
@@ -34,11 +35,11 @@ Rancher simplifies the provisioning of downstream RKE2 clusters in DigitalOcean 
    Access your Rancher installation via its hostname (e.g., `https://rancher.your-domain.com`).
 
 2. **Navigate to Cloud Credentials:**
-   - Click on the top-right menu.
-   - Select **Cloud Credentials** under **Cluster Management**.
+   - Open **☰ > Cluster Management**.
+   - Click **Cloud Credentials**.
 
 3. **Add DigitalOcean Credentials:**
-   - Click **Add Cloud Credential**.
+   - Click **Create**.
    - Choose **DigitalOcean** as the cloud credential type.
    - Enter the required details:
      - **API Token**: Your DigitalOcean API token.
@@ -50,26 +51,34 @@ Rancher simplifies the provisioning of downstream RKE2 clusters in DigitalOcean 
 
 ### Steps to Provision an RKE2 Cluster in DigitalOcean
 1. **Navigate to Cluster Management:**
-   - In the Rancher UI, click on **Cluster Management**.
-   - Select **Create** to start the cluster provisioning process.
+   - Open **☰ > Cluster Management**.
+   - Click **Create** on the Clusters page.
 
 2. **Select RKE2 and DigitalOcean:**
-   - Choose **RKE2/K3s** as the cluster type.
-   - Select **DigitalOcean** as the cloud provider.
+   - Set the toggle to **RKE2/K3s**.
+   - Click **DigitalOcean**.
 
 3. **Configure Cluster Details:**
    - Enter a cluster name (e.g., `rke2-do-cluster`).
    - Select your previously added DigitalOcean cloud credentials.
 
-4. **Node Configuration:**
-   - Define the node pool configuration:
-     - **Droplet Type**: Choose a droplet size (e.g., `s-4vcpu-8gb` for small clusters).
-     - **Node Count**: Set the number of control-plane and worker nodes (e.g., 2 control-plane nodes and 3 worker nodes).
-   - Configure additional options as needed (e.g., SSH key pair).
+4. **Machine Pool Configuration:**
+   Create two machine pools, following Rancher's [recommended cluster architecture](https://ranchermanager.docs.rancher.com/how-to-guides/new-user-guides/kubernetes-clusters-in-rancher-setup/checklist-for-production-ready-clusters/recommended-cluster-architecture):
 
-5. **Network Configuration:**
-   - Configure the VPC network to use DigitalOcean’s default VPC or create a new one.
-   - Enable monitoring and private networking if desired.
+   | Pool | Roles | Count | Example Droplet size |
+   |---|---|---|---|
+   | `cp` | etcd, Control Plane | 3 | `s-4vcpu-8gb` |
+   | `workers` | Worker | 2 or more | sized for your workloads |
+
+   - Use **3** etcd nodes, not 2. With 2 etcd members a single failure loses quorum; 3 members tolerate one failure.
+   - Rancher recommends at least two worker nodes and not combining the worker role with etcd or controlplane.
+   - `s-4vcpu-8gb` matches the 4 CPU and 8 GB recommendation in the [RKE2 requirements](https://docs.rke2.io/install/requirements). Droplets use SSD storage, which etcd needs.
+   - Pick an image for an OS that the [RKE2 v1.36 support matrix](https://www.suse.com/suse-rke2/support-matrix/all-supported-versions/rke2-v1-36/) certifies, such as Ubuntu 24.04 or 22.04.
+   - Configure additional options as needed (SSH user, tags, monitoring).
+
+5. **Cluster and Network Configuration:**
+   - Choose a Kubernetes version that your Rancher release supports. New RKE2 v1.36 clusters use Traefik as the default ingress controller, because the Kubernetes Ingress NGINX project was retired in March 2026 (see [Ingress on RKE2](/known-good-designs/loadbalancers/ingress-nginx-controller-on-rke2/)).
+   - Place the Droplets in a VPC so node traffic stays on the private network, and use a Cloud Firewall that allows the RKE2 ports between nodes and 443 outbound to Rancher.
 
 6. **Review and Launch:**
    - Review the configuration summary.
@@ -85,8 +94,8 @@ Rancher simplifies the provisioning of downstream RKE2 clusters in DigitalOcean 
    - The status should show as **Active** once the provisioning is complete.
 
 2. Download the kubeconfig file:
-   - Click on the cluster name.
-   - Select **Kubeconfig File** to download the configuration for kubectl access.
+   - Open the cluster from the Rancher home page.
+   - Use **Download KubeConfig** in the cluster view, or open the built-in **kubectl Shell**.
 
 3. Access the cluster via kubectl:
    ```bash
@@ -104,7 +113,7 @@ metadata:
 spec:
   containers:
   - name: nginx
-    image: nginx:latest
+    image: nginx:stable
     ports:
     - containerPort: 80
 ```
@@ -116,7 +125,8 @@ kubectl get pods
 ---
 
 ## [References](#references)
-- [Rancher Documentation: Provisioning Clusters](https://rancher.com/docs/rancher/v2.7/en/cluster-provisioning/)
+- [Rancher: Creating a DigitalOcean cluster](https://ranchermanager.docs.rancher.com/how-to-guides/new-user-guides/launch-kubernetes-with-rancher/use-new-nodes-in-an-infra-provider/create-a-digitalocean-cluster)
+- [Rancher: Recommended cluster architecture](https://ranchermanager.docs.rancher.com/how-to-guides/new-user-guides/kubernetes-clusters-in-rancher-setup/checklist-for-production-ready-clusters/recommended-cluster-architecture)
 - [DigitalOcean API Documentation](https://docs.digitalocean.com/reference/api/)
 - [RKE2 Documentation](https://docs.rke2.io/)
 
