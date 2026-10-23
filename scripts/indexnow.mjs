@@ -146,12 +146,20 @@ export async function submit(body, {
   let status = 0;
   for (let attempt = 1; attempt <= RETRIES + 1; attempt++) {
     let detail = '';
+    // A ref'd timer, not AbortSignal.timeout (whose timer is unref'd). On Node
+    // 20, when the server resets the connection, fetch's pending promise holds
+    // no live handle; with only an unref'd timer the event loop drains first and
+    // the process exits 13 ("unsettled top-level await") instead of logging
+    // "fetch failed" and exiting 0. This timer keeps the loop alive until the
+    // attempt settles, and still enforces the per-attempt timeout.
+    const ac = new AbortController();
+    const timer = setTimeout(() => ac.abort(new DOMException(`timed out after ${timeoutMs}ms`, 'TimeoutError')), timeoutMs);
     try {
       const res = await fetch(endpoint, {
         method: 'POST',
         headers: { 'content-type': 'application/json; charset=utf-8' },
         body: JSON.stringify(body),
-        signal: AbortSignal.timeout(timeoutMs),
+        signal: ac.signal,
       });
       status = res.status;
       const text = (await res.text().catch(() => '')).trim().slice(0, 300);
@@ -159,6 +167,8 @@ export async function submit(body, {
     } catch (err) {
       status = 0;
       detail = err.name === 'TimeoutError' ? `timed out after ${timeoutMs}ms` : `${err.name}: ${err.message}`;
+    } finally {
+      clearTimeout(timer);
     }
     const ok = status === 200 || status === 202;
     log(`indexnow: attempt ${attempt}: HTTP ${status || 'none'} ${detail}`.trimEnd());
