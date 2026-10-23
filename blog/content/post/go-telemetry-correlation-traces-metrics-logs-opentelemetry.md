@@ -1,7 +1,7 @@
 ---
 title: "Go Telemetry Correlation: Connecting Traces, Metrics, and Logs in Production"
 date: 2030-08-26T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "OpenTelemetry", "Observability", "Prometheus", "Traces", "Metrics", "Logs"]
 categories:
 - Go

@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes GitOps with Flux and GitHub Actions: Automated Image Scanning and Progressive Delivery"
 date: 2031-08-16T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Flux", "GitOps", "GitHub Actions", "Progressive Delivery", "Security"]
 categories:
 - Kubernetes

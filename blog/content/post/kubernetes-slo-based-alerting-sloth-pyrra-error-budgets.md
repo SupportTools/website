@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes SLO-Based Alerting with Sloth and Pyrra"
 date: 2030-09-18T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "SLO", "Prometheus", "Alerting", "SRE", "Sloth", "Pyrra", "Observability"]
 categories:
 - Kubernetes

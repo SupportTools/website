@@ -1,7 +1,7 @@
 ---
 title: "Go Sync Primitives: Mutex, RWMutex, WaitGroup, Once, and Cond"
 date: 2029-04-20T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Concurrency", "Sync", "Mutex", "Performance", "Golang"]
 categories: ["Go", "Concurrency"]
 author: "Matthew Mattox - mmattox@support.tools"

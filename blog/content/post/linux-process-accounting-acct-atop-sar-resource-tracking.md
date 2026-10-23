@@ -1,7 +1,7 @@
 ---
 title: "Linux Process Accounting and Resource Tracking: acct, atop, and SAR"
 date: 2029-10-07T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Performance", "Monitoring", "acct", "atop", "SAR", "Capacity Planning"]
 categories:
 - Linux

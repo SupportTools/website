@@ -1,7 +1,7 @@
 ---
 title: "Velero: Kubernetes Cluster Backup, Restore, and Migration in Production"
 date: 2027-04-04T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Velero", "Backup", "Disaster Recovery", "Migration"]
 categories: ["Kubernetes", "Backup & Recovery", "Disaster Recovery"]
 author: "Matthew Mattox - mmattox@support.tools"

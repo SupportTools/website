@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Workload Resources: Understanding the Pod → ReplicaSet → Deployment Hierarchy"
 date: 2027-01-21T09:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Pods", "ReplicaSets", "Deployments", "Services", "Workloads", "Container Orchestration", "Resource Hierarchy", "Workload Management"]
 categories:
 - Kubernetes

@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Cluster Federation with KubeFed: Cross-Cluster Resource Propagation"
 date: 2031-03-17T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "KubeFed", "Federation", "Multi-Cluster", "ExternalDNS", "Ingress"]
 categories:
 - Kubernetes

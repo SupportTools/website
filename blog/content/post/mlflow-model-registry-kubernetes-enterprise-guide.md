@@ -1,7 +1,7 @@
 ---
 title: "MLflow on Kubernetes: Model Registry and Experiment Tracking at Enterprise Scale"
 date: 2027-02-05T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "MLflow", "MLOps", "Machine Learning", "Model Registry"]
 categories:
 - Kubernetes

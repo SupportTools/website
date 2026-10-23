@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Pod Overhead and Resource Accounting: Kata Containers, gVisor, and Accurate Capacity Planning"
 date: 2028-06-15T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Pod Overhead", "RuntimeClass", "Kata Containers", "gVisor", "Resource Management", "Capacity Planning"]
 categories: ["Kubernetes", "Resource Management"]
 author: "Matthew Mattox - mmattox@support.tools"

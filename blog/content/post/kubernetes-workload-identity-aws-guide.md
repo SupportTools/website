@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Workload Identity on AWS: IRSA and Pod Identity Deep Dive"
 date: 2028-02-01T00:00:00-05:00
-draft: false
+draft: true
 tags: ["AWS", "EKS", "IAM", "IRSA", "Pod Identity", "Security", "Kubernetes", "Workload Identity"]
 categories: ["AWS", "Kubernetes", "Security"]
 author: "Matthew Mattox - mmattox@support.tools"

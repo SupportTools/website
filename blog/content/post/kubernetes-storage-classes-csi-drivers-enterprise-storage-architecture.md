@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Storage Classes and CSI Drivers: Enterprise Storage Architecture Patterns"
 date: 2030-10-21T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Storage", "CSI", "StorageClass", "EBS", "Ceph", "Persistent Volumes", "StatefulSets"]
 categories:
 - Kubernetes

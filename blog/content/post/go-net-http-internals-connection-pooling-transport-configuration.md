@@ -1,7 +1,7 @@
 ---
 title: "Go net/http Internals: Connection Pooling, Keep-Alive Tuning, and Transport Configuration"
 date: 2030-11-02T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Golang", "HTTP", "Performance", "net/http", "Connection Pooling", "Production"]
 categories:
 - Go

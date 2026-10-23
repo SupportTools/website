@@ -1,7 +1,7 @@
 ---
 title: "eBPF Security Enforcement in Kubernetes: From Detection to Prevention"
 date: 2027-11-21T00:00:00-05:00
-draft: false
+draft: true
 tags: ["eBPF", "Kubernetes", "Security", "Tetragon", "Falco"]
 categories:
 - Kubernetes

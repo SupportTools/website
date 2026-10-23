@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Multi-Container Pod Patterns: Sidecar, Ambassador, and Adapter"
 date: 2029-02-17T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Sidecar", "Pod Patterns", "Service Mesh", "Design Patterns", "Containers"]
 categories:
 - Kubernetes

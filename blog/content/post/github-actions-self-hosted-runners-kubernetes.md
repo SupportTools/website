@@ -1,7 +1,7 @@
 ---
 title: "GitHub Actions Self-Hosted Runners on Kubernetes with ARC"
 date: 2027-11-14T00:00:00-05:00
-draft: false
+draft: true
 tags: ["GitHub Actions", "ARC", "Kubernetes", "CI/CD", "Self-Hosted Runners"]
 categories:
 - "CI & CD"

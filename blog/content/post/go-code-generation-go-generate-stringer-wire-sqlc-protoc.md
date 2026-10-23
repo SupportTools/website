@@ -1,7 +1,7 @@
 ---
 title: "Go Code Generation with go generate: stringer, enumer, wire, sqlc, and protoc Orchestration"
 date: 2031-12-26T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Golang", "Code Generation", "go generate", "wire", "sqlc", "protobuf", "stringer"]
 categories:
 - Go

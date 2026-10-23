@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Prometheus Thanos: Global Query View and Long-Term Metric Retention"
 date: 2031-01-29T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Prometheus", "Thanos", "Monitoring", "Observability", "S3", "Multi-Cluster", "Grafana"]
 categories:
 - Kubernetes

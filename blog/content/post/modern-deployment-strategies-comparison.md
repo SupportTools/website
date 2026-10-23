@@ -1,7 +1,7 @@
 ---
 title: "Modern Deployment Strategies: A Comprehensive Comparison"
 date: 2027-02-25T09:00:00-05:00
-draft: false
+draft: true
 tags: ["Deployment", "DevOps", "CI/CD", "Kubernetes", "Cloud Native", "Release Strategy"]
 categories:
 - DevOps

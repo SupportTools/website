@@ -1,7 +1,7 @@
 ---
 title: "Go High-Performance HTTP/2 and HTTP/3: QUIC with quic-go, Multiplexing, Server Push, and h2c Cleartext"
 date: 2031-11-02T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Golang", "HTTP/2", "HTTP/3", "QUIC", "Performance", "Networking", "quic-go"]
 categories:
 - Go

@@ -1,7 +1,7 @@
 ---
 title: "Loki Log Aggregation: Label Design, Query Optimization, and Production Scaling"
 date: 2030-09-15T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Loki", "Grafana", "Observability", "Logging", "Kubernetes", "LogQL", "Production"]
 categories:
 - Observability

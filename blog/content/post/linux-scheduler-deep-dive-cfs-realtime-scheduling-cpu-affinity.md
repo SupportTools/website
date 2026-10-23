@@ -1,7 +1,7 @@
 ---
 title: "Linux Scheduler Deep Dive: CFS, Real-Time Scheduling, and CPU Affinity"
 date: 2030-01-01T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Kernel", "Scheduler", "CFS", "Real-Time", "CPU Affinity", "NUMA", "cgroups", "Performance", "Latency"]
 categories:
 - Linux

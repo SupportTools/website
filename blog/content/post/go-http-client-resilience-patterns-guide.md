@@ -1,7 +1,7 @@
 ---
 title: "Go HTTP Client Resilience: Retries, Circuit Breakers, and Connection Pool Tuning"
 date: 2027-09-11T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "HTTP", "Resilience", "Microservices"]
 categories:
 - Go

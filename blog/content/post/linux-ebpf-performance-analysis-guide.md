@@ -1,7 +1,7 @@
 ---
 title: "Linux eBPF for Performance Analysis: Tracing System Calls, CPU Profiling, and Network IO"
 date: 2028-04-17T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "eBPF", "BCC", "bpftrace", "Performance", "Profiling"]
 categories: ["Linux", "Performance"]
 author: "Matthew Mattox - mmattox@support.tools"

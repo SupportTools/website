@@ -1,7 +1,7 @@
 ---
 title: "Scrum Master vs Product Owner: Defining Roles in Kubernetes and Cloud-Native Teams"
 date: 2027-04-22T09:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "DevOps", "Scrum", "Agile", "Team Structure", "Cloud Native"]
 categories:
 - DevOps

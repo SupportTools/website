@@ -1,7 +1,7 @@
 ---
 title: "AI Is No Longer Optional for Modern Infrastructure Teams"
 date: 2032-04-27T09:00:00-05:00
-draft: false
+draft: true
 tags: ["AI", "DevOps", "SRE", "Platform Engineering", "Kubernetes", "Terraform", "Incident Response", "Automation", "Engineering Culture", "Toil Reduction", "Runbooks", "Governance"]
 categories:
 - DevOps

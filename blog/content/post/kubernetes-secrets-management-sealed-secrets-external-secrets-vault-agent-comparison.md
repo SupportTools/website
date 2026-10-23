@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Sealed Secrets vs External Secrets vs Vault Agent: Choosing the Right Secrets Management Strategy"
 date: 2031-09-12T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Secrets", "Security", "Vault", "Sealed Secrets", "External Secrets Operator", "GitOps"]
 categories:
 - Kubernetes

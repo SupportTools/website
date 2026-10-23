@@ -1,7 +1,7 @@
 ---
 title: "Advanced tmux Terminal Multiplexing: Configuration and Productivity Patterns for Enterprise DevOps"
 date: 2026-12-05T00:00:00-05:00
-draft: false
+draft: true
 tags: ["tmux", "terminal", "productivity", "linux", "devops", "ssh", "configuration", "workflow-optimization"]
 categories:
 - Terminal

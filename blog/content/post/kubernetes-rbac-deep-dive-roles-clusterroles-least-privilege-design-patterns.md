@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes RBAC Deep Dive: Roles, ClusterRoles, and Least-Privilege Design Patterns"
 date: 2030-07-23T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "RBAC", "Security", "DevOps", "Access Control", "Audit Logging"]
 categories:
 - Kubernetes

@@ -1,7 +1,7 @@
 ---
 title: "Linux XDP (eXpress Data Path): Kernel Bypass Networking, DPDK Alternatives, and Packet Filtering at Line Rate"
 date: 2031-10-24T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "XDP", "eBPF", "Networking", "Performance", "Kernel Bypass", "DPDK"]
 categories:
 - Linux

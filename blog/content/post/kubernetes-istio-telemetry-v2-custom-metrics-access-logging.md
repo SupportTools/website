@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Istio Telemetry v2: Custom Metrics and Access Logging at Scale"
 date: 2030-12-04T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Istio", "Kubernetes", "Observability", "Metrics", "Prometheus", "Service Mesh", "WASM"]
 categories:
 - Kubernetes

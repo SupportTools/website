@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes SLO Management with Pyrra and OpenSLO: Reliability Engineering Automation"
 date: 2030-01-10T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "SLO", "SRE", "Pyrra", "OpenSLO", "Prometheus", "Reliability Engineering"]
 categories: ["Kubernetes", "Observability", "SRE"]
 author: "Matthew Mattox - mmattox@support.tools"

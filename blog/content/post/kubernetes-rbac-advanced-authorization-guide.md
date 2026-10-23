@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes RBAC Advanced Authorization: Roles, Bindings, and Audit Hardening"
 date: 2027-06-18T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "RBAC", "Security", "Authorization", "Audit"]
 categories:
 - Kubernetes

@@ -1,7 +1,7 @@
 ---
 title: "Go Compile-Time Safety with Generics: Type-Safe Collections, Compile-Time Constraints, Avoiding Runtime Panics, and Benchmarks"
 date: 2032-03-05T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Generics", "Type Safety", "Performance", "Benchmarks", "Enterprise"]
 categories:
 - Go

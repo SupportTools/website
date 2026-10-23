@@ -1,7 +1,7 @@
 ---
 title: "Go WebSocket Server: Gorilla WebSocket, Hub Pattern, and Horizontal Scaling"
 date: 2029-12-16T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "WebSocket", "Gorilla", "Redis", "Pub/Sub", "Concurrency", "Horizontal Scaling", "Real-Time"]
 categories:
 - Go

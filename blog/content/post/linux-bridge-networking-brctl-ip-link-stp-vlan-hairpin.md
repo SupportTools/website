@@ -1,7 +1,7 @@
 ---
 title: "Linux Bridge Networking with brctl and ip link: STP Configuration, VLAN Filtering, Hairpin Mode, and Kernel Bridge Internals"
 date: 2032-01-19T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Networking", "Bridge", "VLAN", "STP", "KVM", "Containers"]
 categories:
 - Linux

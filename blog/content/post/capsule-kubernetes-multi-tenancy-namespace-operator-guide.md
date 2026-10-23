@@ -1,7 +1,7 @@
 ---
 title: "Capsule: Kubernetes Multi-Tenancy with Namespace Operator and Tenant CRDs"
 date: 2027-01-27T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Multi-Tenancy", "Capsule", "Namespace", "Platform Engineering"]
 categories: ["Kubernetes", "Platform Engineering", "Security"]
 author: "Matthew Mattox - mmattox@support.tools"

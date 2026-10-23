@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Audit Policy: Comprehensive API Server Audit Logging for Security and Compliance"
 date: 2030-11-10T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Audit", "Security", "Compliance", "Logging", "Falco", "API Server"]
 categories:
 - Kubernetes

@@ -1,7 +1,7 @@
 ---
 title: "Go CLI Testing: Table-Driven Tests, Golden Files, and Integration Testing"
 date: 2029-02-05T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Testing", "CLI", "Cobra", "Integration Testing"]
 categories:
 - Go

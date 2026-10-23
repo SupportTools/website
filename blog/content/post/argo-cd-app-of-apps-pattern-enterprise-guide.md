@@ -1,7 +1,7 @@
 ---
 title: "ArgoCD App-of-Apps Pattern: Managing Large-Scale GitOps Deployments"
 date: 2027-04-26T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "ArgoCD", "GitOps", "App-of-Apps", "ApplicationSet"]
 categories: ["Kubernetes", "GitOps"]
 author: "Matthew Mattox - mmattox@support.tools"

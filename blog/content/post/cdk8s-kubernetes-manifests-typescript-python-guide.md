@@ -1,7 +1,7 @@
 ---
 title: "cdk8s: Kubernetes Manifests with TypeScript, Python, and Go"
 date: 2027-02-28T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "cdk8s", "Infrastructure as Code", "TypeScript", "Python"]
 categories: ["Kubernetes", "DevOps", "Infrastructure as Code"]
 author: "Matthew Mattox - mmattox@support.tools"

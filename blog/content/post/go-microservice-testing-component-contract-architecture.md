@@ -1,7 +1,7 @@
 ---
 title: "Go Microservice Testing: Component Tests, Contract Tests, and Testable Architecture"
 date: 2030-05-01T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Testing", "Contract Testing", "Component Testing", "Microservices", "Architecture"]
 categories: ["Go", "Testing"]
 author: "Matthew Mattox - mmattox@support.tools"

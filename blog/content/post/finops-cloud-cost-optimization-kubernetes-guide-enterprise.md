@@ -1,7 +1,7 @@
 ---
 title: "FinOps on Kubernetes: Cloud Cost Optimization, Chargeback, and Rightsizing"
 date: 2028-09-12T00:00:00-05:00
-draft: false
+draft: true
 tags: ["FinOps", "Kubernetes", "Cloud Cost", "Kubecost", "AWS"]
 categories:
 - FinOps

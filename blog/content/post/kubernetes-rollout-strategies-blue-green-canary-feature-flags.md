@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Rollout Strategies: Blue-Green, Canary, and Feature Flag Integration"
 date: 2031-04-26T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Deployments", "Canary", "Blue-Green", "Feature Flags", "Argo Rollouts"]
 categories:
 - Kubernetes

@@ -1,7 +1,7 @@
 ---
 title: "Go Cloud Storage: GCS, S3, and Azure Blob Abstractions"
 date: 2029-08-31T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Cloud Storage", "GCS", "S3", "Azure Blob", "gocloud", "Multi-Cloud"]
 categories: ["Go", "Cloud", "Architecture"]
 author: "Matthew Mattox - mmattox@support.tools"

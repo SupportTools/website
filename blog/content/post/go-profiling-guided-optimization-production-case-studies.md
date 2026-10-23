@@ -1,7 +1,7 @@
 ---
 title: "Go Profiling-Guided Optimization: Real Production Case Studies"
 date: 2029-10-15T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Performance", "Profiling", "pprof", "Optimization", "Memory", "CPU"]
 categories:
 - Go

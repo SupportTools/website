@@ -1,7 +1,7 @@
 ---
 title: "Go Actor Model: Implementing Message-Passing Concurrency"
 date: 2029-07-09T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Golang", "Actor Model", "Concurrency", "protoactor-go", "Distributed Systems", "Message Passing"]
 categories: ["Go", "Concurrency", "Distributed Systems"]
 author: "Matthew Mattox - mmattox@support.tools"

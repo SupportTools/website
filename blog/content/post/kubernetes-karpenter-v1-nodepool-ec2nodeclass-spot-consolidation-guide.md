@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Karpenter v1: NodePool, EC2NodeClass, Disruption Budgets, Spot Handling, and Consolidation"
 date: 2031-11-21T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Karpenter", "AWS", "EKS", "Spot Instances", "Autoscaling", "Cost Optimization", "NodePool"]
 categories:
 - Kubernetes

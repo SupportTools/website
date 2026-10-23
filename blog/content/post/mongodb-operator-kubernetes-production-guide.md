@@ -1,7 +1,7 @@
 ---
 title: "MongoDB Community Operator: Production Deployment on Kubernetes"
 date: 2027-03-25T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "MongoDB", "Operator", "Database", "ReplicaSet"]
 categories: ["Kubernetes", "Databases", "Operators"]
 author: "Matthew Mattox - mmattox@support.tools"

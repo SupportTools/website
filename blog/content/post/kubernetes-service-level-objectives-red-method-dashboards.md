@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Service Level Objectives: Implementing RED Method Dashboards"
 date: 2029-08-25T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "SLO", "SRE", "Prometheus", "Grafana", "RED Method", "Observability", "Monitoring"]
 categories: ["Kubernetes", "Observability", "SRE"]
 author: "Matthew Mattox - mmattox@support.tools"

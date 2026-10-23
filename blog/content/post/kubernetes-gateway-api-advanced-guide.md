@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Gateway API Advanced: HTTPRoute, GRPCRoute, and Multi-Cluster Patterns"
 date: 2027-08-07T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Gateway API", "Networking", "Service Mesh", "Traffic Management"]
 categories:
 - Kubernetes

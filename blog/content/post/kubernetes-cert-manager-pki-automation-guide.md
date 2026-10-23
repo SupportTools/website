@@ -1,7 +1,7 @@
 ---
 title: "cert-manager PKI Automation: ACME, Vault, and Private CA Integration"
 date: 2027-06-12T00:00:00-05:00
-draft: false
+draft: true
 tags: ["cert-manager", "Kubernetes", "PKI", "TLS", "Certificate Management", "Vault"]
 categories:
 - Kubernetes

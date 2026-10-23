@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Trident: NetApp Storage Integration for Enterprise Kubernetes Deployments"
 date: 2030-11-14T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Trident", "NetApp", "ONTAP", "Storage", "CSI", "Persistent Volumes", "Enterprise Storage", "Enterprise"]
 categories:
 - Kubernetes

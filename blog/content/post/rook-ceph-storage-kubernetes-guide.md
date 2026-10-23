@@ -1,7 +1,7 @@
 ---
 title: "Rook-Ceph Distributed Storage on Kubernetes: Block, Object, and Filesystem"
 date: 2027-07-26T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Rook", "Ceph", "Kubernetes", "Storage", "Block Storage"]
 categories:
 - Kubernetes

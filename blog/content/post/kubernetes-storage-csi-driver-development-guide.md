@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes CSI Driver Development: Building Custom Storage Integrations"
 date: 2028-10-08T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "CSI", "Storage", "Go", "Operators"]
 categories:
 - Kubernetes

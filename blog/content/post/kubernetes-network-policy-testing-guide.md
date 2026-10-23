@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes NetworkPolicy Testing: Automated Validation and Visualization"
 date: 2028-03-09T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "NetworkPolicy", "Security", "Cyclonus", "Cilium", "Network Testing", "Zero Trust"]
 categories: ["Kubernetes", "Security"]
 author: "Matthew Mattox - mmattox@support.tools"

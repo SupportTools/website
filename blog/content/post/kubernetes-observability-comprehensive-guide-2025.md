@@ -1,7 +1,7 @@
 ---
 title: "Comprehensive Kubernetes Observability Guide: Implementing Prometheus, Grafana, EFK, and Jaeger"
 date: 2026-12-08T09:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Observability", "Prometheus", "Grafana", "EFK", "Jaeger", "Monitoring", "Logging", "Tracing"]
 categories:
 - Kubernetes

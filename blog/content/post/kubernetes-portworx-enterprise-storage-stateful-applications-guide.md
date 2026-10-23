@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Portworx: Enterprise Storage for Stateful Applications at Scale"
 date: 2030-11-17T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Portworx", "Storage", "StatefulSets", "Snapshots", "Autopilot", "Backup", "Enterprise Storage", "Enterprise"]
 categories:
 - Kubernetes

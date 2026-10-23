@@ -1,7 +1,7 @@
 ---
 title: "Keycloak on Kubernetes: Enterprise SSO and Identity Federation"
 date: 2027-11-01T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Keycloak", "SSO", "OIDC", "Kubernetes", "Identity"]
 categories:
 - Security

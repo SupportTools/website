@@ -1,7 +1,7 @@
 ---
 title: "Runbook Automation Patterns: From Manual Procedures to Self-Healing Systems"
 date: 2026-11-08T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Runbooks", "Automation", "Incident Response", "SRE", "DevOps", "Self-Healing"]
 categories: ["DevOps", "SRE", "Automation"]
 author: "Matthew Mattox - mmattox@support.tools"

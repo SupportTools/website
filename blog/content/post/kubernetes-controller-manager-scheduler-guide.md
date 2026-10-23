@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Controller Manager and Scheduler: Configuration and Custom Scheduling"
 date: 2027-08-23T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Scheduler", "Controller Manager"]
 categories:
 - Kubernetes

@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Multi-Cloud Management: Anthos, Azure Arc, and Rancher"
 date: 2029-08-22T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Multi-Cloud", "Anthos", "Azure Arc", "Rancher", "Hybrid Cloud", "Fleet Management", "Enterprise"]
 categories: ["Kubernetes", "Cloud"]
 author: "Matthew Mattox - mmattox@support.tools"

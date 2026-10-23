@@ -1,7 +1,7 @@
 ---
 title: "Finite State Machines and Workflow Engines in Go: Production Patterns"
 date: 2028-10-20T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "State Machine", "Workflow", "Architecture", "Design Patterns"]
 categories:
 - Go

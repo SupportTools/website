@@ -1,7 +1,7 @@
 ---
 title: "Advanced Linux Networking: Traffic Control, Namespaces, and Performance"
 date: 2027-09-19T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Networking", "tc", "Namespaces", "Performance"]
 categories:
 - Linux

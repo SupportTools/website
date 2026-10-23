@@ -1,7 +1,7 @@
 ---
 title: "Actor Model in Go: Goroutine Supervision and Message-Passing Architectures"
 date: 2028-11-16T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Concurrency", "Actor Model", "Architecture", "Goroutines"]
 categories:
 - Go

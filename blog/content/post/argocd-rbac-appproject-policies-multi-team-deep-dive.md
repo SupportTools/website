@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes ArgoCD RBAC: Projects, AppProject Policies, and Multi-Team Access"
 date: 2029-02-28T00:00:00-05:00
-draft: false
+draft: true
 tags: ["ArgoCD", "Kubernetes", "RBAC", "GitOps", "Multi-Team", "Security"]
 categories:
 - Kubernetes

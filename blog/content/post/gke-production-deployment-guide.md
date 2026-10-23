@@ -1,7 +1,7 @@
 ---
 title: "GKE Production Deployment: Autopilot, Workload Identity, and Cost Controls"
 date: 2027-08-05T00:00:00-05:00
-draft: false
+draft: true
 tags: ["GKE", "Google Cloud", "Kubernetes", "Cloud", "Production"]
 categories:
 - GKE

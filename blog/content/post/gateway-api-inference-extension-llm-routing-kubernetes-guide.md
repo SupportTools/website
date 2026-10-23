@@ -1,7 +1,7 @@
 ---
 title: "Gateway API Inference Extension: LLM Traffic Management on Kubernetes"
 date: 2027-02-20T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Gateway API", "LLM", "AI/ML", "Inference"]
 categories: ["Kubernetes", "AI & ML", "Networking"]
 author: "Matthew Mattox - mmattox@support.tools"

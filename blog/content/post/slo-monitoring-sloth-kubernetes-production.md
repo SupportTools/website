@@ -1,7 +1,7 @@
 ---
 title: "SLO Monitoring with Sloth: Automated SLI/SLO Management and Error Budget Tracking"
 date: 2026-11-22T00:00:00-05:00
-draft: false
+draft: true
 tags: ["SLO", "SLI", "Sloth", "Monitoring", "Error Budget", "SRE", "Kubernetes", "Prometheus"]
 categories: ["Observability", "SRE", "Monitoring"]
 author: "Matthew Mattox - mmattox@support.tools"

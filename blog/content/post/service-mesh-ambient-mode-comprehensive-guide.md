@@ -1,7 +1,7 @@
 ---
 title: "Service Mesh Ambient Mode: Complete Guide to Istio Ambient Mesh Architecture"
 date: 2026-11-16T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Istio", "Service Mesh", "Ambient Mode", "Kubernetes", "Networking", "Sidecar-less", "eBPF"]
 categories: ["Kubernetes", "Networking", "Service Mesh"]
 author: "Matthew Mattox - mmattox@support.tools"

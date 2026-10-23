@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Namespace Lifecycle Automation: Auto-Provisioning with Operators"
 date: 2029-02-08T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Operators", "Namespaces", "Automation", "RBAC", "GitOps"]
 categories:
 - Kubernetes

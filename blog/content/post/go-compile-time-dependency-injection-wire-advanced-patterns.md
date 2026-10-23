@@ -1,7 +1,7 @@
 ---
 title: "Go Compile-Time Dependency Injection: Wire Advanced Patterns"
 date: 2029-10-12T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Wire", "Dependency Injection", "Architecture", "Testing", "DI"]
 categories:
 - Go

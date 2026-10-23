@@ -1,7 +1,7 @@
 ---
 title: "Linux Firewall Deep Dive: nftables, Conntrack, and Stateful Packet Filtering"
 date: 2030-02-27T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "nftables", "Firewall", "Networking", "Conntrack", "iptables", "Security"]
 categories: ["Linux", "Networking"]
 author: "Matthew Mattox - mmattox@support.tools"

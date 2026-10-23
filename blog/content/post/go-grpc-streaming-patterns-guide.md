@@ -1,7 +1,7 @@
 ---
 title: "gRPC Streaming in Go: Server-Side, Client-Side, and Bidirectional Patterns"
 date: 2028-03-03T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "gRPC", "Streaming", "Protobuf", "Microservices", "API"]
 categories: ["Go", "Microservices"]
 author: "Matthew Mattox - mmattox@support.tools"

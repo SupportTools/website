@@ -1,7 +1,7 @@
 ---
 title: "Tekton Cloud-Native CI/CD on Kubernetes: Pipelines, Triggers, and Chains"
 date: 2027-06-21T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Tekton", "CI/CD", "Kubernetes", "Supply Chain Security", "Pipeline"]
 categories:
 - Tekton

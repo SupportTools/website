@@ -1,7 +1,7 @@
 ---
 title: "Linux GlusterFS: Distributed Storage Clustering for Kubernetes Persistent Volumes"
 date: 2030-11-13T00:00:00-05:00
-draft: false
+draft: true
 tags: ["GlusterFS", "Kubernetes", "Storage", "CSI", "Heketi", "Distributed Storage", "Persistent Volumes", "Linux"]
 categories:
 - Kubernetes

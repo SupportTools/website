@@ -1,7 +1,7 @@
 ---
 title: "Learn Go in 24 Hours: A Practical Guide to Mastering the Basics"
 date: 2027-01-28T09:00:00-05:00
-draft: false
+draft: true
 tags: ["go", "golang", "programming", "learning", "tutorial"]
 categories: ["Programming", "Go"]
 ---

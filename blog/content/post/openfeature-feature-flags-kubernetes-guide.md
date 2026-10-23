@@ -1,7 +1,7 @@
 ---
 title: "OpenFeature: Standardizing Feature Flag Management in Kubernetes"
 date: 2027-03-09T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Feature Flags", "OpenFeature", "Progressive Delivery", "DevOps"]
 categories: ["Kubernetes", "DevOps", "Progressive Delivery"]
 author: "Matthew Mattox - mmattox@support.tools"

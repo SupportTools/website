@@ -1,7 +1,7 @@
 ---
 title: "Sealed Secrets for GitOps: Encrypting Kubernetes Secrets for Safe Git Storage"
 date: 2028-06-05T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "GitOps", "Sealed Secrets", "Security", "ArgoCD", "Flux"]
 categories: ["Kubernetes", "Security", "GitOps"]
 author: "Matthew Mattox - mmattox@support.tools"

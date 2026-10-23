@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Cluster Federation 2030: KubeFed, Admiral, and Multi-Cluster Service Mesh"
 date: 2030-04-12T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Federation", "Multi-Cluster", "KubeFed", "Admiral", "Istio", "Service Mesh", "ExternalDNS"]
 categories: ["Kubernetes", "Multi-Cluster", "Platform Engineering"]
 author: "Matthew Mattox - mmattox@support.tools"

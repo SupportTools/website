@@ -1,7 +1,7 @@
 ---
 title: "Linux Performance Tuning for Kubernetes Nodes: Kernel Parameters and System Optimization"
 date: 2027-12-01T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Performance", "Kubernetes", "Kernel", "Tuning"]
 categories:
 - Linux

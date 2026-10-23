@@ -1,7 +1,7 @@
 ---
 title: "Go Saga Pattern Implementation: Distributed Transactions Without Two-Phase Commit"
 date: 2028-05-11T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Saga Pattern", "Distributed Systems", "Microservices", "Transactions"]
 categories: ["Go", "Distributed Systems"]
 author: "Matthew Mattox - mmattox@support.tools"

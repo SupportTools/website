@@ -1,7 +1,7 @@
 ---
 title: "Elastic Cloud on Kubernetes (ECK): Production Elasticsearch and Kibana Deployment"
 date: 2027-03-26T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Elasticsearch", "ECK", "Kibana", "Logging", "Search"]
 categories: ["Kubernetes", "Logging"]
 author: "Matthew Mattox - mmattox@support.tools"

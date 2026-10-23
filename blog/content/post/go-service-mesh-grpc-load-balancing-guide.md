@@ -1,7 +1,7 @@
 ---
 title: "gRPC Load Balancing in Go: Client-Side, Service Mesh, and Headless Services"
 date: 2028-11-11T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "gRPC", "Load Balancing", "Kubernetes", "Service Mesh"]
 categories:
 - Go

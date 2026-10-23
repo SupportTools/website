@@ -1,7 +1,7 @@
 ---
 title: "eBPF Network Policy: Cilium L3/L4/L7 Policy Implementation Deep Dive"
 date: 2029-03-26T00:00:00-05:00
-draft: false
+draft: true
 tags: ["eBPF", "Cilium", "Kubernetes", "Network Policy", "Security", "Linux Networking"]
 categories:
 - Kubernetes

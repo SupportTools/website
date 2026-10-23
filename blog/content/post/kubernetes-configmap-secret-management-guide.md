@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes ConfigMap and Secret Lifecycle Management in Production"
 date: 2028-01-19T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "ConfigMap", "Secrets", "Security", "Reloader", "Production"]
 categories: ["Kubernetes", "Security"]
 author: "Matthew Mattox - mmattox@support.tools"

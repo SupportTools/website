@@ -1,7 +1,7 @@
 ---
 title: "Profiling Go Applications with pprof, Trace, and Continuous Profiling in Production"
 date: 2031-09-07T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Golang", "pprof", "Performance", "Profiling", "Observability", "Production"]
 categories:
 - Go

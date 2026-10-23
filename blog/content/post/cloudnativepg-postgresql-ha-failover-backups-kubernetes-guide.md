@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes CloudNativePG Operator: PostgreSQL High Availability, Automated Failover, and Backups"
 date: 2031-08-20T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "PostgreSQL", "CloudNativePG", "High Availability", "Backups", "Operators", "Database"]
 categories: ["Kubernetes", "Databases"]
 author: "Matthew Mattox - mmattox@support.tools"

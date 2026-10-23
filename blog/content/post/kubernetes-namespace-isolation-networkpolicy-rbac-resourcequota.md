@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Namespace-Level Isolation: Network Policies, RBAC, and ResourceQuota Patterns"
 date: 2030-08-28T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Namespace", "RBAC", "NetworkPolicy", "ResourceQuota", "Multi-tenancy", "Security"]
 categories:
 - Kubernetes

@@ -1,7 +1,7 @@
 ---
 title: "Linux inotify and fanotify: File System Event Monitoring, inotify Limits, fanotify Permission Events, and Container Use Cases"
 date: 2032-03-06T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "inotify", "fanotify", "Kernel", "Containers", "Security", "File System"]
 categories:
 - Linux

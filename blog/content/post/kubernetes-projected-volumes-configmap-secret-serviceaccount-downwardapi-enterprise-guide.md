@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Projected Volumes: Combining ConfigMaps, Secrets, Service Account Tokens, and DownwardAPI for Secure Configuration"
 date: 2032-02-09T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Projected Volumes", "ConfigMap", "Secrets", "Service Account", "DownwardAPI", "Security", "Storage"]
 categories: ["Kubernetes", "Security"]
 author: "Matthew Mattox - mmattox@support.tools"

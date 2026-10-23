@@ -1,7 +1,7 @@
 ---
 title: "Go Microservice Patterns: Saga, Circuit Breaker, and Bulkhead with go-micro and hystrix-go"
 date: 2030-04-16T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Microservices", "Saga Pattern", "Circuit Breaker", "Bulkhead", "Distributed Systems", "Resilience"]
 categories: ["Go", "Architecture"]
 author: "Matthew Mattox - mmattox@support.tools"

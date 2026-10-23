@@ -1,7 +1,7 @@
 ---
 title: "Rook Ceph Storage Orchestration on Kubernetes: Production Implementation Guide"
 date: 2026-11-07T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Rook", "Ceph", "Kubernetes", "Storage", "Block Storage", "File Storage", "Object Storage", "CSI", "Production"]
 categories: ["Storage", "Kubernetes", "DevOps"]
 author: "Matthew Mattox - mmattox@support.tools"

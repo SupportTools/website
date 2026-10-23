@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Horizontal Pod Autoscaler Custom Metrics: Scaling on Application Signals"
 date: 2031-01-06T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "HPA", "Autoscaling", "Prometheus", "Custom Metrics", "KEDA", "Performance"]
 categories:
 - Kubernetes

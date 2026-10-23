@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Security Scanning Pipeline: From Code to Runtime"
 date: 2028-03-29T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Security", "Trivy", "Cosign", "Falco", "SBOM", "CI/CD", "GitHub Actions"]
 categories: ["Kubernetes", "Security"]
 author: "Matthew Mattox - mmattox@support.tools"

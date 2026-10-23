@@ -1,7 +1,7 @@
 ---
 title: "Multi-Cloud Kubernetes Federation: Workload Distribution Across AWS, GCP, and Azure"
 date: 2028-01-05T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Multi-Cloud", "Federation", "KubeFed", "Admiralty", "Liqo", "AWS", "GCP", "Azure"]
 categories:
 - Kubernetes

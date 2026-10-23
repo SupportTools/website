@@ -1,7 +1,7 @@
 ---
 title: "Linux InfiniBand and RDMA: High-Performance Networking for HPC and AI Workloads"
 date: 2030-09-27T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "InfiniBand", "RDMA", "HPC", "AI", "Kubernetes", "High-Performance Networking", "RoCE"]
 categories:
 - Linux

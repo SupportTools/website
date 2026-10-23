@@ -1,7 +1,7 @@
 ---
 title: "The Ultimate Kubernetes Production Readiness Checklist: 50+ Best Practices"
 date: 2027-01-05T09:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "DevOps", "Production", "Best Practices", "Security", "Reliability", "Scaling", "Observability", "RBAC"]
 categories:
 - Kubernetes

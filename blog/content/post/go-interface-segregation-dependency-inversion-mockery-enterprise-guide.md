@@ -1,7 +1,7 @@
 ---
 title: "Go Interface Segregation in Large Codebases: Dependency Inversion, Mock Generation with mockery, and testify Expectations"
 date: 2031-12-06T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Golang", "Testing", "Interfaces", "mockery", "testify", "Software Design", "SOLID"]
 categories: ["Go", "Software Engineering"]
 author: "Matthew Mattox - mmattox@support.tools"

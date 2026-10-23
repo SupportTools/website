@@ -1,7 +1,7 @@
 ---
 title: "Distributed Tracing with OpenTelemetry and Tempo on Kubernetes"
 date: 2028-12-15T00:00:00-05:00
-draft: false
+draft: true
 tags: ["OpenTelemetry", "Tempo", "Distributed Tracing", "Kubernetes", "Observability", "Grafana"]
 categories:
 - Observability

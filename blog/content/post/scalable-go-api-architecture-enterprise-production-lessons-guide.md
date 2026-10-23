@@ -1,7 +1,7 @@
 ---
 title: "Building Scalable Go APIs: Enterprise Architecture Patterns and Production Lessons for High-Performance Systems"
 date: 2026-11-11T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "API Architecture", "Microservices", "Enterprise", "Scalability", "Production", "Performance"]
 categories: ["Architecture", "Development"]
 author: "Matthew Mattox - mmattox@support.tools"

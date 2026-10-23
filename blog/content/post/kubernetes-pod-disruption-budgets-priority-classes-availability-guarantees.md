@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Pod Disruption Budgets and Priority Classes: Production Availability Guarantees"
 date: 2030-08-11T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "PodDisruptionBudget", "PriorityClass", "High Availability", "Cluster Autoscaler", "Descheduler"]
 categories:
 - Kubernetes

@@ -1,7 +1,7 @@
 ---
 title: "Linux Kernel Lockdown: Secure Boot, Module Signing, and Integrity"
 date: 2029-08-08T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Security", "Kernel", "SecureBoot", "IMA", "TPM", "ModuleSigning"]
 categories: ["Linux", "Security"]
 author: "Matthew Mattox - mmattox@support.tools"

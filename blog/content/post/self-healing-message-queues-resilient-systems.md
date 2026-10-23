@@ -1,7 +1,7 @@
 ---
 title: "Building Self-Healing Message Queues for Resilient Systems"
 date: 2027-05-04T09:00:00-05:00
-draft: false
+draft: true
 tags: ["Message Queues", "Go", "RabbitMQ", "Kafka", "Resilience", "Distributed Systems", "Microservices"]
 categories:
 - Architecture

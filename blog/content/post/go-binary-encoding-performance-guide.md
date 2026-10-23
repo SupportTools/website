@@ -1,7 +1,7 @@
 ---
 title: "Go Binary Encoding Performance: Protocol Buffers, MessagePack, Cap'n Proto, and Zero-Copy Patterns"
 date: 2028-05-30T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Protocol Buffers", "MessagePack", "Cap'n Proto", "FlatBuffers", "Performance", "Serialization"]
 categories: ["Go", "Performance", "Backend Engineering"]
 author: "Matthew Mattox - mmattox@support.tools"

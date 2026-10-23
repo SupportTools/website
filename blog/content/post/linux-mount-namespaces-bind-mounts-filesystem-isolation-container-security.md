@@ -1,7 +1,7 @@
 ---
 title: "Linux Mount Namespaces and Bind Mounts: Filesystem Isolation for Container Security"
 date: 2030-11-09T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Namespaces", "Mount Namespaces", "Containers", "Security", "overlayfs", "bind mounts"]
 categories:
 - Linux

@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Envoy Proxy Configuration: Direct Deployment Without Service Mesh"
 date: 2031-05-02T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Envoy", "Kubernetes", "Proxy", "Load Balancing", "TLS", "Circuit Breaker", "Rate Limiting"]
 categories: ["Kubernetes", "Networking"]
 author: "Matthew Mattox - mmattox@support.tools"

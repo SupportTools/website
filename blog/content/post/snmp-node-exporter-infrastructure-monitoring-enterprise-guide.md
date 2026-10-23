@@ -1,7 +1,7 @@
 ---
 title: "SNMP Node Exporter Setup for Infrastructure Monitoring: Complete Enterprise Guide with Prometheus Integration"
 date: 2026-11-23T00:00:00-05:00
-draft: false
+draft: true
 tags: ["SNMP", "Prometheus", "Monitoring", "Infrastructure", "Observability", "Enterprise", "Kubernetes"]
 categories: ["Monitoring", "Infrastructure"]
 author: "Matthew Mattox - mmattox@support.tools"

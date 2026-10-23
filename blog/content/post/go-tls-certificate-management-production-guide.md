@@ -1,7 +1,7 @@
 ---
 title: "Go TLS Certificate Management: Auto-Renewal, mTLS, and Certificate Pinning"
 date: 2028-10-21T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "TLS", "Security", "Certificates", "HTTPS"]
 categories:
 - Go

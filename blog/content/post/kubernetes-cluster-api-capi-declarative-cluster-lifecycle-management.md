@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Cluster API (CAPI) Deep Dive: Declarative Cluster Lifecycle Management and Custom Providers"
 date: 2031-07-14T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Cluster API", "CAPI", "Infrastructure as Code", "GitOps", "Multi-cluster", "Operators"]
 categories: ["Kubernetes", "DevOps"]
 author: "Matthew Mattox - mmattox@support.tools"

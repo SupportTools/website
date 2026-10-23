@@ -1,7 +1,7 @@
 ---
 title: "Production Shell Scripting Patterns for DevOps Engineers"
 date: 2028-09-20T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Shell Scripting", "Bash", "DevOps", "Automation", "Linux"]
 categories:
 - Scripting

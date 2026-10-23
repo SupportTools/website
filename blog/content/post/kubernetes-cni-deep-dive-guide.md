@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes CNI Deep Dive: Understanding Container Network Interface Architecture"
 date: 2027-08-28T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "CNI", "Networking", "Cilium", "Calico"]
 categories:
 - Kubernetes

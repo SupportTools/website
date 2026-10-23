@@ -1,7 +1,7 @@
 ---
 title: "Crossplane Infrastructure Provisioning: Compositions, Claims, and Multi-Cloud Patterns"
 date: 2027-07-11T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Crossplane", "Infrastructure as Code", "Kubernetes", "Multi-Cloud", "Platform Engineering"]
 categories: ["Platform Engineering", "Kubernetes", "Infrastructure as Code"]
 author: "Matthew Mattox - mmattox@support.tools"

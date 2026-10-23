@@ -1,7 +1,7 @@
 ---
 title: "Tetragon: eBPF-Based Security Enforcement in Kubernetes"
 date: 2027-10-02T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Tetragon", "eBPF", "Security", "Kubernetes", "Cilium"]
 categories:
 - Security

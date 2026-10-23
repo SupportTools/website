@@ -1,7 +1,7 @@
 ---
 title: "Prometheus Remote Write and Thanos: Long-Term Metrics Storage Architecture"
 date: 2027-11-12T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Prometheus", "Thanos", "Remote Write", "Monitoring", "Storage"]
 categories:
 - Monitoring

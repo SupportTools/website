@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Operator Reconciliation Loop Patterns: Controller-Runtime Deep Dive"
 date: 2029-12-05T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Operator", "controller-runtime", "Go", "Reconciliation", "Finalizers", "Owner References"]
 categories:
 - Kubernetes

@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Ingress TLS Termination: cert-manager, ACME, and Certificate Rotation"
 date: 2027-05-20T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Ingress", "TLS", "cert-manager", "ACME", "Let's Encrypt", "Security"]
 categories: ["Kubernetes", "Security"]
 author: "Matthew Mattox - mmattox@support.tools"

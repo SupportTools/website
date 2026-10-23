@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes CIS Benchmark: Automated Security Assessment and Remediation"
 date: 2027-09-05T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Security", "CIS", "Compliance"]
 categories:
 - Kubernetes

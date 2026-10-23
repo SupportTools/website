@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Service Account Token Projection, Bound Tokens, and OIDC Identity Federation"
 date: 2028-08-28T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Service Account", "OIDC", "Token Projection", "Identity"]
 categories:
 - Kubernetes

@@ -1,7 +1,7 @@
 ---
 title: "Velero Kubernetes Backup: Disaster Recovery and Cross-Cluster Migration"
 date: 2028-09-27T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Velero", "Kubernetes", "Backup", "Disaster Recovery", "Storage"]
 categories:
 - Kubernetes

@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Karpenter Autoscaler: Node Provisioning, Consolidation, and Cost Optimization on AWS EKS"
 date: 2031-06-18T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Karpenter", "AWS", "EKS", "Autoscaling", "Cost Optimization", "Node Provisioning"]
 categories:
 - Kubernetes

@@ -1,7 +1,7 @@
 ---
 title: "Vue.js 3 Composition API: Enterprise Component Architecture"
 date: 2026-12-12T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Vue.js", "Composition API", "TypeScript", "Pinia", "Frontend", "Testing", "Performance", "Architecture"]
 categories:
 - Web Development

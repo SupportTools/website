@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Kubeconfig Management: Contexts, Service Accounts, and RBAC"
 date: 2029-02-23T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Kubeconfig", "RBAC", "Security", "Service Accounts", "Multi-Cluster"]
 categories:
 - Kubernetes

@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Velero 2.x: Incremental Backups, CSI Snapshots, and Cross-Cluster Migration"
 date: 2031-07-18T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Velero", "Backup", "CSI", "Disaster Recovery", "Migration"]
 categories:
 - Kubernetes

@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Multi-Region Deployments: Traffic Routing, Data Sync, and Failover"
 date: 2027-07-29T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Multi-Region", "High Availability", "Traffic Management", "Architecture"]
 categories:
 - Kubernetes

@@ -1,7 +1,7 @@
 ---
 title: "Linux Swap and Memory Pressure Management for Kubernetes Nodes"
 date: 2030-08-27T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Kubernetes", "Memory", "Swap", "OOM", "PSI", "Performance"]
 categories:
 - Linux

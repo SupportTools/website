@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Cert-Manager: Advanced Certificate Lifecycle Management"
 date: 2029-05-21T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "cert-manager", "TLS", "PKI", "ACME", "Let's Encrypt", "Certificates"]
 categories: ["Kubernetes", "Security"]
 author: "Matthew Mattox - mmattox@support.tools"

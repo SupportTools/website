@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Ingress Advanced Patterns: NGINX, Traefik, and Gateway API Migration"
 date: 2027-08-30T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Ingress", "NGINX", "Traefik", "Networking"]
 categories:
 - Kubernetes

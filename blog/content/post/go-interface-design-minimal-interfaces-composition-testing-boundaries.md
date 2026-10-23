@@ -1,7 +1,7 @@
 ---
 title: "Go Interface Design: Minimal Interfaces, Composition, and Testing Boundaries"
 date: 2031-01-07T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Golang", "Interfaces", "Design Patterns", "Testing", "Architecture", "Software Design"]
 categories:
 - Go

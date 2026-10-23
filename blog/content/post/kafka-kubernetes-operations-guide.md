@@ -1,7 +1,7 @@
 ---
 title: "Apache Kafka on Kubernetes: Strimzi Operator Production Operations"
 date: 2028-01-28T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kafka", "Strimzi", "Kubernetes", "Messaging", "Streaming", "Operators", "Production"]
 categories: ["Kubernetes", "Data Engineering", "Operations"]
 author: "Matthew Mattox - mmattox@support.tools"

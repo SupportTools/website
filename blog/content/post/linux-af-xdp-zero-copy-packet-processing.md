@@ -1,7 +1,7 @@
 ---
 title: "Linux AF_XDP: Zero-Copy Packet Processing in Userspace"
 date: 2029-07-22T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "AF_XDP", "Networking", "Performance", "eBPF", "Zero-Copy", "Kernel Bypass"]
 categories: ["Linux", "Networking"]
 author: "Matthew Mattox - mmattox@support.tools"

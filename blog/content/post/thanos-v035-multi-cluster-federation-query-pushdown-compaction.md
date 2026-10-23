@@ -1,7 +1,7 @@
 ---
 title: "Thanos v0.35+ Multi-Cluster Federation: Query Pushdown, Compaction Strategies, and Retention Policies"
 date: 2032-02-23T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Thanos", "Prometheus", "Kubernetes", "Observability", "Multi-Cluster", "Monitoring"]
 categories:
 - Kubernetes

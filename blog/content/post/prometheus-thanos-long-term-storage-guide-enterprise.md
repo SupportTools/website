@@ -1,7 +1,7 @@
 ---
 title: "Thanos: Long-Term Metrics Storage and High Availability for Prometheus"
 date: 2028-10-13T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Thanos", "Prometheus", "Monitoring", "Kubernetes", "Observability"]
 categories:
 - Prometheus

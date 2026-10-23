@@ -1,7 +1,7 @@
 ---
 title: "Go Context Propagation Patterns: Tracing, Cancellation, and Deadlines at Scale"
 date: 2028-12-28T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Context", "Distributed Tracing", "Cancellation", "Observability", "Microservices"]
 categories:
 - Go

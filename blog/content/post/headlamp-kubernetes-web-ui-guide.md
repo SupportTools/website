@@ -1,7 +1,7 @@
 ---
 title: "Headlamp: Extensible Open-Source Kubernetes Web UI"
 date: 2027-03-11T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Headlamp", "UI", "Dashboard", "Developer Tools"]
 categories: ["Kubernetes", "Developer Tools", "Operations"]
 author: "Matthew Mattox - mmattox@support.tools"

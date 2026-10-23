@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Velero 2.0 Backup Strategies: CSI Snapshots, Volume Backup Hooks, and Disaster Recovery Testing Automation"
 date: 2031-10-06T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Velero", "Backup", "CSI", "Disaster Recovery", "Storage", "DevOps"]
 categories:
 - Kubernetes

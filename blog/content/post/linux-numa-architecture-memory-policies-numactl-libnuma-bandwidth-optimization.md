@@ -1,7 +1,7 @@
 ---
 title: "Linux NUMA Architecture Deep Dive: Memory Policies, numactl, libnuma, Process Binding, and Memory Bandwidth Optimization"
 date: 2031-12-20T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "NUMA", "Performance", "Memory", "CPU", "numactl", "libnuma", "HPC", "Kernel"]
 categories:
 - Linux

@@ -1,7 +1,7 @@
 ---
 title: "Linux CPU Isolation: isolcpus, cpuset cgroups, and NUMA Topology for Latency-Critical Workloads"
 date: 2030-03-30T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "CPU Isolation", "NUMA", "cgroups", "Performance", "Latency", "Real-time", "Kubernetes"]
 categories: ["Linux", "Performance", "System Administration"]
 author: "Matthew Mattox - mmattox@support.tools"

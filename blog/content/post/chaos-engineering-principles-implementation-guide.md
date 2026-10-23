@@ -1,7 +1,7 @@
 ---
 title: "Chaos Engineering in Production: Principles, Tools, and GameDay Planning"
 date: 2027-11-29T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Chaos Engineering", "Resilience", "Kubernetes", "Litmus", "Reliability"]
 categories:
 - SRE

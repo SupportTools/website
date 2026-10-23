@@ -1,7 +1,7 @@
 ---
 title: "Go Serialization Performance: JSON, Protocol Buffers, MessagePack, and FlatBuffers"
 date: 2029-07-01T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Performance", "Serialization", "Protocol Buffers", "JSON", "MessagePack", "FlatBuffers", "Benchmarking"]
 categories: ["Go", "Performance"]
 author: "Matthew Mattox - mmattox@support.tools"

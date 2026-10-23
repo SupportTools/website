@@ -1,7 +1,7 @@
 ---
 title: "Go Messaging Patterns: RabbitMQ and Kafka for Reliable Event Processing"
 date: 2028-10-04T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "RabbitMQ", "Kafka", "Messaging", "Event-Driven"]
 categories:
 - Go

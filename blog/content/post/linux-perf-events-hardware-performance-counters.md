@@ -1,7 +1,7 @@
 ---
 title: "Linux Perf Events: Hardware Performance Counters for Application Profiling"
 date: 2031-03-16T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Performance", "Profiling", "perf", "CPU", "FlameGraph"]
 categories:
 - Linux

@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Rook-Ceph Advanced: CRUSH Maps, Erasure Coding, and Pool Optimization"
 date: 2030-12-11T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Rook", "Ceph", "Storage", "CRUSH", "Erasure Coding", "BlueStore", "Disaster Recovery"]
 categories:
 - Kubernetes

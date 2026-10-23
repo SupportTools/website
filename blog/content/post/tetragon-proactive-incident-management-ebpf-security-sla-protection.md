@@ -1,7 +1,7 @@
 ---
 title: "Tetragon Proactive Incident Management: eBPF Security for SLA Protection"
 date: 2026-12-02T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Tetragon", "eBPF", "Security", "Observability", "Kubernetes", "Incident Prevention", "SLA Management"]
 categories: ["Security", "Kubernetes", "Observability"]
 author: "Matthew Mattox - mmattox@support.tools"

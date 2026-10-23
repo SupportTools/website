@@ -1,7 +1,7 @@
 ---
 title: "Real-Time Linux Systems Programming and Latency Optimization: Building Deterministic Enterprise Applications"
 date: 2026-11-04T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Real-Time Linux", "RT-PREEMPT", "Latency Optimization", "Deterministic Systems", "Systems Programming", "Enterprise"]
 categories:
 - Systems Programming

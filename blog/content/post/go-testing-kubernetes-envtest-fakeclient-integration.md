@@ -1,7 +1,7 @@
 ---
 title: "Go Testing in Kubernetes: envtest, fakeclient, and Integration Test Patterns"
 date: 2029-03-14T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Kubernetes", "Testing", "envtest", "controller-runtime", "Integration Tests"]
 categories:
 - Go

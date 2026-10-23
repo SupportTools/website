@@ -1,7 +1,7 @@
 ---
 title: "Stop Building Platforms Nobody Uses: The Complete Guide to Developer-Centric Kubernetes Abstractions"
 date: 2026-12-15T09:00:00-05:00
-draft: false
+draft: true
 categories: ["Kubernetes", "Platform Engineering", "Developer Experience"]
 tags: ["Kubernetes", "Platform Engineering", "Developer Experience", "GitOps", "Kro", "Score", "Internal Developer Platforms", "Abstraction Layers", "YAML Engineering", "Security by Default", "DevOps", "Cloud Native"]
 ---

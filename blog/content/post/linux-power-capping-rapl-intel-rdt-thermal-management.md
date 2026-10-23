@@ -1,7 +1,7 @@
 ---
 title: "Linux Power Capping: RAPL, Intel RDT, and Thermal Management"
 date: 2029-11-19T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Power Management", "RAPL", "Intel RDT", "Datacenter", "Performance"]
 categories: ["Linux", "Systems Programming"]
 author: "Matthew Mattox - mmattox@support.tools"

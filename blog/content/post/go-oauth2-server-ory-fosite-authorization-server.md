@@ -1,7 +1,7 @@
 ---
 title: "Go OAuth2 Server: Building an Authorization Server with ory/fosite"
 date: 2029-11-14T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "OAuth2", "OIDC", "Security", "Authentication", "fosite", "JWT", "PKCE"]
 categories:
 - Go

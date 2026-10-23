@@ -1,7 +1,7 @@
 ---
 title: "Linux Kernel Tracing with BPFTrace: One-Liners, Scripts, USDT Probes, and Production Debugging"
 date: 2032-04-03T00:00:00-05:00
-draft: false
+draft: true
 tags: ["BPFTrace", "eBPF", "Linux", "Kernel Tracing", "USDT", "Performance", "Debugging", "Observability"]
 categories:
 - Linux

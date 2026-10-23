@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Cilium eBPF: L7 Policies, Hubble Observability, and BGP Control Plane"
 date: 2028-07-12T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Cilium", "eBPF", "Hubble", "BGP", "Networking"]
 categories:
 - Kubernetes

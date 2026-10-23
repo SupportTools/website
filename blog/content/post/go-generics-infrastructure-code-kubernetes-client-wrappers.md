@@ -1,7 +1,7 @@
 ---
 title: "Go Generics for Infrastructure Code: Type-Safe Kubernetes Client Wrappers"
 date: 2029-09-30T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Generics", "Kubernetes", "Controller-Runtime", "Type Safety", "Operators"]
 categories: ["Go", "Kubernetes"]
 author: "Matthew Mattox - mmattox@support.tools"

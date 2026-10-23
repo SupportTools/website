@@ -1,7 +1,7 @@
 ---
 title: "Linkerd 2.x Deep Dive: mTLS Everywhere, Authorization Policies, and Multicluster Mirroring"
 date: 2031-08-17T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linkerd", "Kubernetes", "Service Mesh", "mTLS", "Zero Trust", "Multicluster", "Security"]
 categories: ["Kubernetes", "Security", "Networking"]
 author: "Matthew Mattox - mmattox@support.tools"

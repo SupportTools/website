@@ -1,7 +1,7 @@
 ---
 title: "Go Task Queue Implementation: Asynq, River, and Production Job Processing"
 date: 2029-12-19T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Asynq", "River", "Task Queue", "Background Jobs", "Redis", "PostgreSQL", "Worker", "Concurrency"]
 categories:
 - Go

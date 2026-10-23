@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Topology Manager: NUMA-Aware Scheduling for Latency-Sensitive Workloads"
 date: 2028-12-01T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "NUMA", "Topology Manager", "Performance", "CPU"]
 categories:
 - Kubernetes

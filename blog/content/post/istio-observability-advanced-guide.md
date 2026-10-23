@@ -1,7 +1,7 @@
 ---
 title: "Istio Observability: Metrics, Traces, and Access Logs at Scale"
 date: 2028-01-27T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Istio", "Service Mesh", "Observability", "Prometheus", "Jaeger", "Kiali", "OpenTelemetry"]
 categories: ["Kubernetes", "Observability", "Service Mesh"]
 author: "Matthew Mattox - mmattox@support.tools"

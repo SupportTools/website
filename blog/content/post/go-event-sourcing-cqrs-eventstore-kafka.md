@@ -1,7 +1,7 @@
 ---
 title: "Go Event Sourcing: CQRS Pattern Implementation with EventStore and Kafka"
 date: 2030-12-28T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Golang", "Event Sourcing", "CQRS", "EventStore", "Kafka", "DDD", "Microservices"]
 categories:
 - Go

@@ -1,7 +1,7 @@
 ---
 title: "Linux DPDK: Kernel Bypass Networking for High-Performance Applications"
 date: 2029-07-25T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "DPDK", "Networking", "Performance", "NFV", "Kernel Bypass", "Telco"]
 categories: ["Linux", "Networking"]
 author: "Matthew Mattox - mmattox@support.tools"

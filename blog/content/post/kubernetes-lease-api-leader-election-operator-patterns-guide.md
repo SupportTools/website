@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Lease API and Leader Election Patterns for Operators"
 date: 2028-12-17T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Operator", "Leader Election", "Lease API", "Go", "High Availability"]
 categories:
 - Kubernetes

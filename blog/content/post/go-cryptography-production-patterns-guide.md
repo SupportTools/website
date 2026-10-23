@@ -1,7 +1,7 @@
 ---
 title: "Go Cryptography in Production: AES-GCM Encryption, Ed25519 Signatures, and Key Rotation Patterns"
 date: 2028-07-30T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Cryptography", "AES", "Ed25519", "Security", "Key Management"]
 categories:
 - Go

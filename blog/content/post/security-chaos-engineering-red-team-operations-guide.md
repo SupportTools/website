@@ -1,7 +1,7 @@
 ---
 title: "Security Chaos Engineering and Red Team Operations: Enterprise Adversarial Security Testing Framework"
 date: 2026-11-12T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Security Chaos Engineering", "Red Team", "Adversarial Testing", "Penetration Testing", "Security Resilience", "Attack Simulation", "Purple Team", "Threat Modeling"]
 categories:
 - Security

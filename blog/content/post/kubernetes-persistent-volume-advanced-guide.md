@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Persistent Volumes: Advanced Storage Architecture and CSI Driver Patterns"
 date: 2027-08-12T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Storage", "CSI", "PersistentVolumes"]
 categories:
 - Kubernetes

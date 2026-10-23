@@ -1,7 +1,7 @@
 ---
 title: "Go REST API Production Patterns: Chi, Middleware, and API Versioning"
 date: 2027-09-08T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "REST API", "Chi", "Backend"]
 categories:
 - Go

@@ -1,7 +1,7 @@
 ---
 title: "Flux v2 GitOps Enterprise: OCI Sources, Multi-Tenancy, and Progressive Delivery"
 date: 2027-06-20T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Flux", "GitOps", "Kubernetes", "CI/CD", "OCI"]
 categories:
 - Flux

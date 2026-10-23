@@ -1,7 +1,7 @@
 ---
 title: "Linux Memory Mapping: mmap, HugeTLB Mappings, and Memory-Mapped Database Patterns"
 date: 2030-04-14T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "mmap", "HugeTLB", "Memory Management", "LMDB", "SQLite", "Performance"]
 categories: ["Linux", "Systems Programming"]
 author: "Matthew Mattox - mmattox@support.tools"

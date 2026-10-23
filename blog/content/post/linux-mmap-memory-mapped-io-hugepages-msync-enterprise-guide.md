@@ -1,7 +1,7 @@
 ---
 title: "Linux Memory-Mapped I/O with mmap: File-Backed Maps, Anonymous Maps, MAP_HUGEPAGES, msync, and Process-Shared Memory"
 date: 2032-02-11T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "mmap", "Memory-Mapped I/O", "HugePages", "MAP_HUGETLB", "msync", "Shared Memory", "System Programming", "Performance"]
 categories: ["Linux", "Systems Programming", "Performance"]
 author: "Matthew Mattox - mmattox@support.tools"

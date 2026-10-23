@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Progressive Delivery with Flagger: Automated Canary Analysis and Rollback"
 date: 2030-10-11T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Flagger", "Canary", "Progressive Delivery", "GitOps", "Istio", "Prometheus"]
 categories:
 - Kubernetes

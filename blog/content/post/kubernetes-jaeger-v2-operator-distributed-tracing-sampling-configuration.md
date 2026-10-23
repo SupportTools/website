@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Jaeger v2 Operator: Distributed Tracing Deployment and Sampling Configuration"
 date: 2031-08-30T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Jaeger", "Distributed Tracing", "OpenTelemetry", "Observability", "Sampling"]
 categories:
 - Kubernetes

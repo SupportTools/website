@@ -1,7 +1,7 @@
 ---
 title: "Linux Observability with eBPF and bpftrace: Production Debugging Guide"
 date: 2027-09-18T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "eBPF", "bpftrace", "Observability", "Debugging"]
 categories:
 - Linux

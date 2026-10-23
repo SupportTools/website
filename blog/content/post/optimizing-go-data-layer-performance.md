@@ -1,7 +1,7 @@
 ---
 title: "Optimizing Go Data Layers: Performance Patterns for Modern Applications"
 date: 2027-03-23T09:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Golang", "Performance", "Database", "Caching", "SQL", "Data Layer", "Optimization"]
 categories:
 - Go

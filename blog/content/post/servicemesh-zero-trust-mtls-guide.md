@@ -1,7 +1,7 @@
 ---
 title: "Zero Trust Service Mesh: mTLS, SPIFFE, and Workload Identity"
 date: 2028-01-06T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Service Mesh", "Zero Trust", "mTLS", "SPIFFE", "SPIRE", "Istio", "Linkerd", "Security"]
 categories:
 - Kubernetes

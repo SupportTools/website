@@ -1,7 +1,7 @@
 ---
 title: "Linux TCP Stack Tuning: High-Throughput Network Optimization for Production Services"
 date: 2030-06-08T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "TCP", "Network Tuning", "Performance", "BBR", "Kernel", "System Administration"]
 categories:
 - Linux

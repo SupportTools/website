@@ -1,7 +1,7 @@
 ---
 title: "Go Profiling with pprof: CPU, Memory, and Goroutine Analysis"
 date: 2029-04-03T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Golang", "pprof", "Profiling", "Performance", "Memory", "Goroutines"]
 categories: ["Go", "Performance"]
 author: "Matthew Mattox - mmattox@support.tools"

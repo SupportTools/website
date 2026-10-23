@@ -1,7 +1,7 @@
 ---
 title: "SQL Query Optimization in Go Applications: A Comprehensive Guide"
 date: 2027-05-06T09:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "SQL", "PostgreSQL", "Database", "Performance", "Optimization"]
 categories: ["Databases", "Go"]
 ---

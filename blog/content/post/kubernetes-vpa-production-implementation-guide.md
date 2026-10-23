@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Vertical Pod Autoscaler Production Implementation: Modes, Limits, and Recommendations"
 date: 2028-05-01T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "VPA", "Autoscaling", "Resource Management", "Production"]
 categories: ["Kubernetes", "Performance"]
 author: "Matthew Mattox - mmattox@support.tools"

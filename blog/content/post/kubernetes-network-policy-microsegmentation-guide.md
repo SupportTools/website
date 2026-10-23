@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Network Policy Microsegmentation: Zero-Trust Workload Isolation"
 date: 2027-12-14T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "NetworkPolicy", "Security", "Zero-Trust", "Cilium", "Calico", "Microsegmentation", "Networking"]
 categories:
 - Kubernetes

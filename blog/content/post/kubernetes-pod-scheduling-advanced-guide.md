@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Pod Scheduling: Affinity, Anti-Affinity, Taints, Tolerations, and Priority Classes"
 date: 2027-05-18T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Scheduling", "Affinity", "Taints", "Priority", "Resource Management"]
 categories: ["Kubernetes", "Platform Engineering"]
 author: "Matthew Mattox - mmattox@support.tools"

@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes StatefulSet Patterns for Database Workloads: Production Best Practices"
 date: 2027-05-12T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "StatefulSet", "Database", "PostgreSQL", "MySQL", "Redis"]
 categories: ["Kubernetes", "Databases"]
 author: "Matthew Mattox - mmattox@support.tools"

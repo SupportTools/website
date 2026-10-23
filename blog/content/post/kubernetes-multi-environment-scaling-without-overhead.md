@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Multi-Environment Scaling Without Node or Cluster Overhead"
 date: 2026-11-26T09:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Autoscaling", "HPA", "VPA", "Kata Containers", "KEDA", "Cloud Bursting", "Multi-Environment", "RuntimeClass"]
 categories:
 - Kubernetes

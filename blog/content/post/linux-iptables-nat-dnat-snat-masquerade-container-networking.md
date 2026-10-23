@@ -1,7 +1,7 @@
 ---
 title: "Linux iptables NAT: DNAT, SNAT, and Masquerade for Container Networking"
 date: 2031-05-24T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "iptables", "NAT", "DNAT", "SNAT", "Networking", "Kubernetes", "Containers", "conntrack"]
 categories:
 - Linux

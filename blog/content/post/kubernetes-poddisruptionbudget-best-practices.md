@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes PodDisruptionBudget Best Practices: High Availability During Maintenance"
 date: 2029-01-22T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "PodDisruptionBudget", "High Availability", "Maintenance", "Operations", "SRE"]
 categories:
 - Kubernetes

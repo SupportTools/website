@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes ArgoCD ApplicationSet Controller: Generator Patterns for Multi-Cluster GitOps"
 date: 2028-05-09T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "ArgoCD", "ApplicationSet", "GitOps", "Multi-Cluster"]
 categories: ["Kubernetes", "GitOps"]
 author: "Matthew Mattox - mmattox@support.tools"

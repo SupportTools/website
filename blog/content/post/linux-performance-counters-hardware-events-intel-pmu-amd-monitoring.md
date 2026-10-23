@@ -1,7 +1,7 @@
 ---
 title: "Linux Performance Counters and Hardware Events: Intel PMU and AMD Performance Monitoring"
 date: 2030-08-20T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Performance", "Intel PMU", "AMD", "perf", "CPU", "Profiling", "Observability"]
 categories:
 - Linux

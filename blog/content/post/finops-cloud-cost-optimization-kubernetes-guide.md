@@ -1,7 +1,7 @@
 ---
 title: "FinOps and Cloud Cost Optimization for Kubernetes Workloads"
 date: 2027-09-28T00:00:00-05:00
-draft: false
+draft: true
 tags: ["FinOps", "Cost Optimization", "Kubernetes", "AWS", "GCP"]
 categories:
 - FinOps

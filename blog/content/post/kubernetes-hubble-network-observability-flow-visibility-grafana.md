@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Hubble Network Observability: Flow Visibility, Prometheus Metrics, Grafana Dashboards, and DNS Monitoring"
 date: 2032-02-26T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Hubble", "Cilium", "Kubernetes", "Observability", "Networking", "eBPF", "Grafana"]
 categories:
 - Kubernetes

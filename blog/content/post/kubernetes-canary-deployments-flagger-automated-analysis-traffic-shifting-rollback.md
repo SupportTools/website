@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Canary Deployments with Flagger: Automated Analysis, Traffic Shifting, and Rollback"
 date: 2031-09-15T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Flagger", "Canary Deployments", "Progressive Delivery", "Istio", "Service Mesh", "GitOps"]
 categories:
 - Kubernetes

@@ -1,7 +1,7 @@
 ---
 title: "Linux iptables and nftables Migration: Modern Firewall Management for Production Systems"
 date: 2030-11-06T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "iptables", "nftables", "Firewall", "Network Security", "Kubernetes", "netfilter"]
 categories:
 - Linux

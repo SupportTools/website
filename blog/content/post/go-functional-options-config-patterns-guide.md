@@ -1,7 +1,7 @@
 ---
 title: "Go Configuration Patterns: Functional Options, Builder, and Config Structs"
 date: 2028-10-27T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Software Design", "Configuration", "Architecture", "Patterns"]
 categories:
 - Go

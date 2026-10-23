@@ -1,7 +1,7 @@
 ---
 title: "Software-Defined Networking with OpenFlow and P4 Programming: A Comprehensive Enterprise Guide"
 date: 2026-11-25T00:00:00-05:00
-draft: false
+draft: true
 tags: ["SDN", "OpenFlow", "P4", "Networking", "Infrastructure", "DevOps", "Enterprise"]
 categories:
 - Networking

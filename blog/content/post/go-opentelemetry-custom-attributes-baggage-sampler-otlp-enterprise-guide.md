@@ -1,7 +1,7 @@
 ---
 title: "Go Telemetry with OpenTelemetry: Custom Attributes, Baggage Propagation, Sampler Configuration, and OTLP Exporter Tuning"
 date: 2032-02-04T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "OpenTelemetry", "OTLP", "Distributed Tracing", "Observability", "Prometheus", "Baggage", "Sampling"]
 categories: ["Go", "Observability", "DevOps"]
 author: "Matthew Mattox - mmattox@support.tools"

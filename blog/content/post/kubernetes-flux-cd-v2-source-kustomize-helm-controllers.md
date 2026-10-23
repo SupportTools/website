@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Flux CD v2: Source Controller, Kustomize Controller, and Helm Controller"
 date: 2031-03-07T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Flux", "GitOps", "CD", "Kustomize", "Helm", "ArgoCD"]
 categories:
 - Kubernetes

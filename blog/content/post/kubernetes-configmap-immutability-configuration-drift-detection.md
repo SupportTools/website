@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes ConfigMap Immutability and Configuration Drift Detection"
 date: 2029-10-05T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "ConfigMap", "GitOps", "ArgoCD", "Kustomize", "Configuration Management"]
 categories: ["Kubernetes", "GitOps"]
 author: "Matthew Mattox - mmattox@support.tools"

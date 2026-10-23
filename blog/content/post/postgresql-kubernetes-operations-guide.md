@@ -1,7 +1,7 @@
 ---
 title: "PostgreSQL on Kubernetes: CloudNativePG Production Operations"
 date: 2028-01-31T00:00:00-05:00
-draft: false
+draft: true
 tags: ["PostgreSQL", "Kubernetes", "CloudNativePG", "CNPG", "Databases", "High Availability", "Backup"]
 categories: ["Kubernetes", "Databases", "Operations"]
 author: "Matthew Mattox - mmattox@support.tools"

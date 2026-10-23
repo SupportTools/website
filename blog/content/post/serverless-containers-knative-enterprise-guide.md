@@ -1,7 +1,7 @@
 ---
 title: "Serverless Containers with Knative: Enterprise Implementation and Best Practices"
 date: 2026-11-14T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Knative", "Serverless", "Kubernetes", "Containers", "Event-Driven", "Auto-Scaling", "Cloud Native"]
 categories: ["Kubernetes", "Serverless", "DevOps"]
 author: "Matthew Mattox - mmattox@support.tools"

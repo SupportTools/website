@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Temporal Workflow Engine: Durable Execution for Microservices"
 date: 2031-04-03T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Temporal", "Workflows", "Microservices", "Go", "Distributed Systems"]
 categories:
 - Kubernetes

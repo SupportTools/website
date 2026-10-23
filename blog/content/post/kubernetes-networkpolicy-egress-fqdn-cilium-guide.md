@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes NetworkPolicy Advanced: Egress Control, FQDN Policies with Cilium, and Zero-Trust Microsegmentation"
 date: 2028-09-05T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "NetworkPolicy", "Cilium", "Egress", "Zero-Trust", "Security"]
 categories:
 - Kubernetes

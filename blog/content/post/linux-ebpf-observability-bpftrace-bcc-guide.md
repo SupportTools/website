@@ -1,7 +1,7 @@
 ---
 title: "Linux eBPF Observability: bpftrace Programs, BCC Tools, and Custom Kernel Instrumentation"
 date: 2028-07-16T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "eBPF", "bpftrace", "BCC", "Observability", "Performance"]
 categories:
 - Linux

@@ -1,7 +1,7 @@
 ---
 title: "Flux CD Multi-Tenancy: GitOps for Platform Teams and Tenant Isolation"
 date: 2028-01-25T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Flux", "GitOps", "Kubernetes", "Multi-Tenancy", "Platform Engineering", "Kustomize", "Helm"]
 categories: ["Kubernetes", "GitOps", "Platform Engineering"]
 author: "Matthew Mattox - mmattox@support.tools"

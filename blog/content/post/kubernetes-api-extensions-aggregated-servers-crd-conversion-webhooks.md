@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes API Extensions: Aggregated API Servers and CRD Conversion Webhooks"
 date: 2029-03-20T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "CRD", "API Extensions", "Webhooks", "Operators", "Go"]
 categories:
 - Kubernetes

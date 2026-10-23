@@ -1,7 +1,7 @@
 ---
 title: "Supply Chain Security with Sigstore: Implementing Cryptographic Verification for Container Images in Kubernetes"
 date: 2026-11-28T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Sigstore", "Supply Chain Security", "Kubernetes", "Cosign", "Rekor", "Container Security", "Image Signing"]
 categories: ["Kubernetes", "Security", "DevOps"]
 author: "Matthew Mattox - mmattox@support.tools"

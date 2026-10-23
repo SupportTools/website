@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes ConfigMap and Secret Management: Reloader, Vault Agent, and ESO Patterns"
 date: 2030-02-16T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "ConfigMap", "Secrets", "HashiCorp Vault", "External Secrets Operator", "Reloader", "Security"]
 categories: ["Kubernetes", "Security"]
 author: "Matthew Mattox - mmattox@support.tools"

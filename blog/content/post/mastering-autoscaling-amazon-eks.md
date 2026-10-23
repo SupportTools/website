@@ -1,7 +1,7 @@
 ---
 title: "Mastering Autoscaling in Amazon EKS: A Comprehensive Guide"
 date: 2027-02-16T09:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "AWS", "EKS", "Autoscaling", "HPA", "Cluster Autoscaler", "DevOps"]
 categories:
 - Kubernetes

@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Tracing: Jaeger Deployment, OpenTelemetry Collector, Tempo, and Sampling Strategies"
 date: 2028-08-16T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Tracing", "Jaeger", "OpenTelemetry", "Tempo", "Observability"]
 categories:
 - Kubernetes

@@ -1,7 +1,7 @@
 ---
 title: "Linux Kernel Compilation and Custom Kernel Configuration for Production Systems"
 date: 2030-09-20T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Kernel", "Kubernetes", "Performance", "Security", "Production", "kpatch"]
 categories:
 - Linux

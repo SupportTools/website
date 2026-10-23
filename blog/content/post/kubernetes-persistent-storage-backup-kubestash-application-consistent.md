@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Persistent Storage Backup with Stash/Kubestash: Application-Consistent Backups"
 date: 2030-05-03T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "KubeStash", "Stash", "Backup", "Storage", "Databases", "Disaster Recovery"]
 categories: ["Kubernetes", "Storage", "Disaster Recovery"]
 author: "Matthew Mattox - mmattox@support.tools"

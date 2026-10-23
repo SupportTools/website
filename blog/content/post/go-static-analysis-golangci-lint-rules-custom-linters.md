@@ -1,7 +1,7 @@
 ---
 title: "Go Static Analysis: golangci-lint Rules and Custom Linters"
 date: 2029-09-03T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Static Analysis", "golangci-lint", "Code Quality", "Security", "DevOps", "CI/CD"]
 categories: ["Go", "DevOps", "Best Practices"]
 author: "Matthew Mattox - mmattox@support.tools"

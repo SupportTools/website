@@ -1,7 +1,7 @@
 ---
 title: "SOPS: Encrypting Kubernetes Secrets for GitOps Workflows"
 date: 2027-01-03T00:00:00-05:00
-draft: false
+draft: true
 tags: ["SOPS", "Kubernetes", "GitOps", "Secrets", "Security"]
 categories:
 - Kubernetes

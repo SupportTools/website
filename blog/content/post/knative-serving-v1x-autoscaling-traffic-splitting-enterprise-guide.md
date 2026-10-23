@@ -1,7 +1,7 @@
 ---
 title: "Knative Serving v1.x: Autoscaling from Zero, Traffic Splitting, Revision Management, and Custom Domains"
 date: 2031-12-05T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Knative", "Kubernetes", "Serverless", "Autoscaling", "Traffic Management", "Service Mesh"]
 categories: ["Kubernetes", "Serverless"]
 author: "Matthew Mattox - mmattox@support.tools"

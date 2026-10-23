@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes ConfigMap and Secret Reloading: Reloader, Stakater, and Vault Agent Patterns"
 date: 2030-08-22T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "ConfigMap", "Secrets", "Vault", "Reloader", "Stakater", "DevOps"]
 categories:
 - Kubernetes

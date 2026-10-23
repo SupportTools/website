@@ -1,7 +1,7 @@
 ---
 title: "Linux Kernel Tuning for Kubernetes Nodes: sysctls, Huge Pages, and CPU Scheduling"
 date: 2028-04-07T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Kernel", "Kubernetes", "Performance", "sysctls"]
 categories: ["Linux", "Kubernetes", "Performance"]
 author: "Matthew Mattox - mmattox@support.tools"

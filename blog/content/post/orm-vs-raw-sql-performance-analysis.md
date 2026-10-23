@@ -1,7 +1,7 @@
 ---
 title: "Beyond ORMs: How Raw SQL Can Triple Your Application's Performance"
 date: 2027-03-25T09:00:00-05:00
-draft: false
+draft: true
 tags: ["Database", "SQL", "ORM", "Performance", "Optimization", "PostgreSQL", "MySQL"]
 categories:
 - Databases

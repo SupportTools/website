@@ -1,7 +1,7 @@
 ---
 title: "Building Secure Go Applications with OAuth 2.0 and JWT"
 date: 2027-03-16T09:00:00-05:00
-draft: false
+draft: true
 tags: ["golang", "oauth2", "jwt", "security", "authentication", "authorization", "web security"]
 categories: ["Development", "Go", "Security"]
 ---

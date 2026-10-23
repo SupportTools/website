@@ -1,7 +1,7 @@
 ---
 title: "Go Memory Optimization: Escape Analysis, Stack vs Heap, and Allocation Reduction"
 date: 2028-11-18T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Performance", "Memory", "GC", "Optimization"]
 categories:
 - Go

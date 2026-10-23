@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Pod Lifecycle: A Comprehensive Guide to States, Transitions, and Troubleshooting"
 date: 2026-12-17T09:00:00-05:00
-draft: false
+draft: true
 categories: ["Kubernetes", "Container Orchestration", "DevOps"]
 tags: ["Kubernetes", "Pods", "Container Lifecycle", "Pod Phases", "Troubleshooting", "CrashLoopBackOff", "Pod States", "Init Containers", "Readiness Probes", "Liveness Probes"]
 ---

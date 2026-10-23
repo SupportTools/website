@@ -1,7 +1,7 @@
 ---
 title: "Linux eBPF Tracing: Dynamic Instrumentation with bpftrace and BCC"
 date: 2030-06-28T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "eBPF", "bpftrace", "BCC", "Tracing", "Performance", "Observability", "Kernel"]
 categories:
 - Linux

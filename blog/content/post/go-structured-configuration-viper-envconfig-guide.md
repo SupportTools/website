@@ -1,7 +1,7 @@
 ---
 title: "Go Structured Configuration: Viper, envconfig, and Configuration Validation with Production Best Practices"
 date: 2028-08-23T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Configuration", "Viper", "envconfig", "Validation", "12-Factor"]
 categories:
 - Go

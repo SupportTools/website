@@ -1,7 +1,7 @@
 ---
 title: "Linux Virtualization with LXC and LXD: Container Alternatives to Docker"
 date: 2030-10-04T00:00:00-05:00
-draft: false
+draft: true
 tags: ["LXC", "LXD", "Linux", "Containers", "Virtualization", "Networking", "Storage"]
 categories:
 - Linux

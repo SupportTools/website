@@ -1,7 +1,7 @@
 ---
 title: "Go CGO and Native Library Integration: When and How to Use C Bindings"
 date: 2030-10-13T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "CGO", "C Bindings", "Performance", "Cross-Platform", "Native Libraries"]
 categories:
 - Go

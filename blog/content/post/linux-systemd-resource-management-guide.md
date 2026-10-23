@@ -1,7 +1,7 @@
 ---
 title: "systemd Resource Management: cgroups v2, CPU/Memory/IO Quotas, and Kubernetes Node Integration"
 date: 2028-05-27T00:00:00-05:00
-draft: false
+draft: true
 tags: ["systemd", "Linux", "cgroups", "Resource Management", "Kubernetes", "Performance"]
 categories: ["Linux", "System Administration", "Kubernetes"]
 author: "Matthew Mattox - mmattox@support.tools"

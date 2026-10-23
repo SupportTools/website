@@ -1,7 +1,7 @@
 ---
 title: "Go WebSocket: Real-Time Communication Patterns"
 date: 2029-05-13T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "WebSocket", "Real-Time", "Redis", "Golang", "gorilla", "Concurrency"]
 categories: ["Go", "Networking"]
 author: "Matthew Mattox - mmattox@support.tools"

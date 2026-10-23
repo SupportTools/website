@@ -1,7 +1,7 @@
 ---
 title: "Google Config Connector: Managing GCP Resources from Kubernetes"
 date: 2027-02-08T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "GCP", "Config Connector", "Infrastructure as Code", "GitOps"]
 categories: ["Cloud", "Kubernetes", "Infrastructure as Code"]
 author: "Matthew Mattox - mmattox@support.tools"

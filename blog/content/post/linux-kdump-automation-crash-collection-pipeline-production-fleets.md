@@ -1,7 +1,7 @@
 ---
 title: "Linux Kdump Automation: Crash Collection Pipeline for Production Fleets"
 date: 2031-01-28T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "kdump", "Kernel", "Debugging", "Ansible", "Automation", "Monitoring", "Production", "SRE"]
 categories:
 - Linux

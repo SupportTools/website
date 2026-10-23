@@ -1,7 +1,7 @@
 ---
 title: "Go SQL Transaction Patterns: Savepoints, Nested Transactions, and Optimistic Locking"
 date: 2031-04-27T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "SQL", "PostgreSQL", "Transactions", "Database", "Golang"]
 categories:
 - Go

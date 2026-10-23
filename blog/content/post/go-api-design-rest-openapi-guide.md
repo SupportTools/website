@@ -1,7 +1,7 @@
 ---
 title: "Go REST API Design: OpenAPI Specs, Middleware Chains, and Versioning Strategies"
 date: 2027-07-24T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "REST API", "OpenAPI", "Middleware", "API Design"]
 categories:
 - Go

@@ -1,7 +1,7 @@
 ---
 title: "Linux cgroup v2: Memory and CPU Isolation for Container Workloads"
 date: 2028-11-02T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "cgroups", "Containers", "Kubernetes", "Performance"]
 categories:
 - Linux

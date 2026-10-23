@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Disaster Recovery Runbooks: Tested Procedures for Common Failure Scenarios"
 date: 2030-10-25T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Disaster Recovery", "etcd", "Runbooks", "Incident Response", "SRE"]
 categories:
 - Kubernetes

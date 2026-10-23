@@ -1,7 +1,7 @@
 ---
 title: "Crossplane for Infrastructure Automation: Compositions, XRDs, and Multi-Cloud Managed Resources"
 date: 2028-05-24T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Crossplane", "Kubernetes", "Infrastructure as Code", "AWS", "GCP", "Azure", "Platform Engineering"]
 categories: ["Kubernetes", "Infrastructure", "DevOps"]
 author: "Matthew Mattox - mmattox@support.tools"

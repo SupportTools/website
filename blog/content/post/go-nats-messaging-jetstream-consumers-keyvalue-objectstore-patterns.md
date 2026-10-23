@@ -1,7 +1,7 @@
 ---
 title: "Go NATS Messaging: JetStream Consumers, Key-Value Store, and Object Store Patterns"
 date: 2030-11-05T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Golang", "NATS", "JetStream", "Messaging", "Distributed Systems", "Key-Value"]
 categories:
 - Go

@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Pods and Services: A Comprehensive Technical Guide"
 date: 2026-12-29T09:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Pods", "Services", "NodePort", "ClusterIP", "LoadBalancer", "Deployments", "StatefulSets", "DaemonSets", "Debugging", "Networking"]
 categories:
 - Kubernetes

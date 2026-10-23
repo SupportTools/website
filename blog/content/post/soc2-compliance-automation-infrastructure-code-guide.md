@@ -1,7 +1,7 @@
 ---
 title: "SOC 2 Compliance Automation with Infrastructure as Code: Enterprise Governance Framework"
 date: 2026-11-24T00:00:00-05:00
-draft: false
+draft: true
 tags: ["SOC 2", "Compliance", "Infrastructure as Code", "Governance", "Automation", "Security Controls", "Audit", "Terraform", "Policy as Code"]
 categories:
 - Compliance

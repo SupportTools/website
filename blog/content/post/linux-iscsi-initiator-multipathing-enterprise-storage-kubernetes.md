@@ -1,7 +1,7 @@
 ---
 title: "Linux iSCSI: Initiator Configuration and Multipathing for Enterprise Storage"
 date: 2030-12-13T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "iSCSI", "Storage", "Multipath", "Kubernetes", "Enterprise", "SAN", "CHAP"]
 categories:
 - Linux

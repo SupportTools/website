@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Observability 2030: OpenTelemetry Operator, Prometheus Agent, and Perses"
 date: 2030-01-02T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "OpenTelemetry", "Prometheus", "Perses", "Observability", "Monitoring", "Tracing", "Metrics", "OTel Operator"]
 categories:
 - Kubernetes

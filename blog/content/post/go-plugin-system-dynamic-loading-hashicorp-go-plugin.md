@@ -1,7 +1,7 @@
 ---
 title: "Go Plugin System: Dynamic Loading with hashicorp/go-plugin and Native Plugins"
 date: 2030-11-25T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Golang", "Plugins", "hashicorp/go-plugin", "gRPC", "Dynamic Loading", "Extensibility", "CLI"]
 categories:
 - Go

@@ -1,7 +1,7 @@
 ---
 title: "Go Graceful Shutdown Patterns for Production: SIGTERM, Connection Draining, and Kubernetes"
 date: 2028-05-18T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Kubernetes", "SIGTERM", "Graceful Shutdown", "Production", "HTTP Server", "Context"]
 categories: ["Go", "Kubernetes"]
 author: "Matthew Mattox - mmattox@support.tools"

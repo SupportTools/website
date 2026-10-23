@@ -1,7 +1,7 @@
 ---
 title: "Go Error Wrapping and Structured Errors: fmt.Errorf, errors.Is/As, and Custom Error Types in Production APIs"
 date: 2028-07-19T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Error Handling", "Error Wrapping", "Production", "API"]
 categories:
 - Go

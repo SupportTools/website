@@ -1,7 +1,7 @@
 ---
 title: "Thanos Long-Term Metrics: Object Storage, Compaction, Downsampling, and Multi-Cluster Federation"
 date: 2031-07-28T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Thanos", "Prometheus", "Kubernetes", "Observability", "Object Storage", "Metrics", "Federation"]
 categories:
 - Kubernetes

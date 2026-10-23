@@ -1,7 +1,7 @@
 ---
 title: "Linkerd Production Operations: mTLS, Traffic Policies, and Observability"
 date: 2027-07-01T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linkerd", "Service Mesh", "Kubernetes", "mTLS", "Observability", "Performance"]
 categories:
 - Kubernetes

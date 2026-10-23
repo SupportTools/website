@@ -1,7 +1,7 @@
 ---
 title: "Real-Time Data Pipeline Architecture with Apache Kafka and Flink"
 date: 2026-11-03T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Apache Kafka", "Apache Flink", "Real-Time Processing", "Data Engineering", "Stream Processing", "Event Streaming", "Data Pipeline", "Big Data"]
 categories:
 - Data Engineering

@@ -1,7 +1,7 @@
 ---
 title: "Go Monorepo Patterns: Module Management and Build Optimization"
 date: 2029-10-29T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Monorepo", "Build Optimization", "Module Management", "go.mod", "Build Cache"]
 categories: ["Go", "DevOps"]
 author: "Matthew Mattox - mmattox@support.tools"

@@ -1,7 +1,7 @@
 ---
 title: "Linux nftables Firewall: Stateful Filtering, NAT, Set-Based Rules, and Migrating from iptables"
 date: 2031-11-03T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "nftables", "Firewall", "Networking", "iptables", "NAT", "Security", "Kernel"]
 categories:
 - Linux

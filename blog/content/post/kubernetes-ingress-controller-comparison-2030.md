@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Ingress Controller Comparison 2030: Nginx, Traefik, Envoy Gateway, and HAProxy"
 date: 2030-02-13T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Ingress", "Nginx", "Traefik", "Envoy Gateway", "HAProxy", "Load Balancing", "Networking"]
 categories: ["Kubernetes", "Networking"]
 author: "Matthew Mattox - mmattox@support.tools"

@@ -1,7 +1,7 @@
 ---
 title: "Go Testing with Testify: Suites, Mocks, and Assertion Chains"
 date: 2029-10-20T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Testing", "Testify", "Mocks", "Unit Testing", "TDD"]
 categories: ["Go", "Testing", "Software Engineering"]
 author: "Matthew Mattox - mmattox@support.tools"

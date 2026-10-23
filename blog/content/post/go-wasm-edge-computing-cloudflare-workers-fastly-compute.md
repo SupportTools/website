@@ -1,7 +1,7 @@
 ---
 title: "Go WASM and Edge Computing: Cloudflare Workers, Fastly Compute, and Edge Functions in Go"
 date: 2030-04-01T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Golang", "WebAssembly", "WASM", "Cloudflare Workers", "Fastly Compute", "Edge Computing"]
 categories: ["Go", "Edge Computing", "Performance"]
 author: "Matthew Mattox - mmattox@support.tools"

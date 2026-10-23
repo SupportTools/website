@@ -1,7 +1,7 @@
 ---
 title: "Linux auditd Configuration for Compliance: Syscall Auditing, Log Management, and SIEM Integration"
 date: 2031-06-23T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "auditd", "Security", "Compliance", "SIEM", "Auditing", "SOC2", "PCI-DSS"]
 categories:
 - Linux

@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Node Lifecycle: Cordoning, Draining, and Maintenance Windows"
 date: 2029-11-13T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Node Management", "Maintenance", "Operations", "Pod Disruption Budgets", "Graceful Shutdown"]
 categories:
 - Kubernetes

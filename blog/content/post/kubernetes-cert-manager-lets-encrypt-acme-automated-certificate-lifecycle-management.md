@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes cert-manager with Let's Encrypt and ACME: Automated Certificate Lifecycle Management at Scale"
 date: 2031-06-21T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "cert-manager", "TLS", "Let's Encrypt", "ACME", "Certificates", "Security"]
 categories:
 - Kubernetes

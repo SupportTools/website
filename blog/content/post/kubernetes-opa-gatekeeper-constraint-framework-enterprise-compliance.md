@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes OPA Gatekeeper Policies: Constraint Framework for Enterprise Compliance"
 date: 2031-01-30T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "OPA", "Gatekeeper", "Policy-as-Code", "Compliance", "Rego", "GitOps"]
 categories:
 - Kubernetes

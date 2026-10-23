@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Local Persistent Volumes: High-Performance Storage for Stateful Workloads"
 date: 2028-01-16T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Storage", "Local Volumes", "StatefulSet", "NVMe", "Performance", "Database"]
 categories: ["Kubernetes", "Storage"]
 author: "Matthew Mattox - mmattox@support.tools"

@@ -1,7 +1,7 @@
 ---
 title: "Linux XFS Filesystem: Tuning and Recovery for High-Throughput Workloads"
 date: 2031-01-02T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "XFS", "Filesystem", "Performance Tuning", "Kubernetes", "Storage", "Recovery"]
 categories:
 - Linux

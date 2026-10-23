@@ -1,7 +1,7 @@
 ---
 title: "Go HTTP Middleware Chains: Logging, Auth, Rate Limiting, and Tracing"
 date: 2029-01-06T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "HTTP", "Middleware", "Observability", "Security"]
 categories:
 - Go

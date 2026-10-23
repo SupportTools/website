@@ -1,7 +1,7 @@
 ---
 title: "Go NATS JetStream Patterns: Durable Consumers, Key-Value Store, and Object Store"
 date: 2028-04-25T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "NATS", "JetStream", "Messaging", "Event Streaming"]
 categories: ["Go", "Messaging"]
 author: "Matthew Mattox - mmattox@support.tools"

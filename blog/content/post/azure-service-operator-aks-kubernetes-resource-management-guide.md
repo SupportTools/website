@@ -1,7 +1,7 @@
 ---
 title: "Azure Service Operator v2: Managing Azure Resources from Kubernetes"
 date: 2027-02-09T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Azure", "AKS", "Azure Service Operator", "Infrastructure as Code"]
 categories: ["Cloud", "Kubernetes", "Infrastructure as Code"]
 author: "Matthew Mattox - mmattox@support.tools"

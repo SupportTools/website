@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Cost Attribution with Kubecost: Namespace Chargebacks, Idle Resource Detection, and Rightsizing Recommendations"
 date: 2031-10-29T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Kubecost", "FinOps", "Cost Optimization", "Cloud Cost", "Chargeback", "Resource Management"]
 categories:
 - Kubernetes

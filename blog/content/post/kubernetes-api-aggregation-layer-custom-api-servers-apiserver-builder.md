@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes API Aggregation Layer: Custom API Servers with apiserver-builder and kube-aggregator"
 date: 2030-05-13T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "API Aggregation", "Custom API Server", "apiserver-builder", "kube-aggregator", "Go"]
 categories: ["Kubernetes", "Development"]
 author: "Matthew Mattox - mmattox@support.tools"

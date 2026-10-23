@@ -1,7 +1,7 @@
 ---
 title: "Linux iproute2 Advanced: tc qdisc, HTB Bandwidth Shaping, netem Network Emulation, and ip rule Policy Routing"
 date: 2032-02-05T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "iproute2", "tc", "Traffic Control", "HTB", "netem", "Policy Routing", "Networking", "QoS"]
 categories: ["Linux", "Networking", "Infrastructure"]
 author: "Matthew Mattox - mmattox@support.tools"

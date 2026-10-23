@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Cluster API Advanced Patterns: MachineHealthChecks, ClusterClasses, and Machine Rollout Strategies"
 date: 2032-04-13T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Cluster API", "CAPI", "MachineHealthCheck", "ClusterClass", "Infrastructure Automation"]
 categories:
 - Kubernetes

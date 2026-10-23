@@ -1,7 +1,7 @@
 ---
 title: "Go Context Cancellation: Production Patterns for Graceful Shutdown"
 date: 2027-11-16T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Context", "Concurrency", "Graceful Shutdown", "Production"]
 categories:
 - Go

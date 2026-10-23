@@ -1,7 +1,7 @@
 ---
 title: "Go Serverless on AWS Lambda: Cold Start Optimization and Production Patterns"
 date: 2030-09-23T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "AWS Lambda", "Serverless", "Cold Start", "X-Ray", "OpenTelemetry", "AWS"]
 categories:
 - Go

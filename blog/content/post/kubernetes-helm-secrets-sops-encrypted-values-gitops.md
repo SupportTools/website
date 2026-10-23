@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Helm Secrets and SOPS: Encrypted Values in GitOps Workflows"
 date: 2030-10-18T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Helm", "SOPS", "GitOps", "Secrets Management", "ArgoCD", "AWS KMS", "Security"]
 categories:
 - Kubernetes

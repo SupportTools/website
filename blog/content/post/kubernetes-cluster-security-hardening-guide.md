@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Cluster Security Hardening: CIS Benchmark Implementation"
 date: 2028-01-24T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Security", "CIS Benchmark", "RBAC", "Hardening", "etcd", "API Server", "Compliance"]
 categories: ["Kubernetes", "Security"]
 author: "Matthew Mattox - mmattox@support.tools"

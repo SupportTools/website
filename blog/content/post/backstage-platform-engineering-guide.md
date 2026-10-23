@@ -1,7 +1,7 @@
 ---
 title: "Backstage: Building a Production-Grade Internal Developer Portal"
 date: 2027-12-18T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Backstage", "Platform Engineering", "Developer Portal", "Kubernetes", "IDP", "TechDocs", "GitOps"]
 categories:
 - Platform Engineering

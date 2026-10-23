@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Windows Nodes: Running Windows Workloads in Mixed Clusters"
 date: 2027-02-11T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Windows", "Mixed Cluster", "Containers", "Enterprise"]
 categories: ["Kubernetes", "Windows"]
 author: "Matthew Mattox - mmattox@support.tools"

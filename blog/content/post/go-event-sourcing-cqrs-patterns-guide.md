@@ -1,7 +1,7 @@
 ---
 title: "Go Event Sourcing Patterns: CQRS, Event Store, and Projection Rebuilding"
 date: 2028-05-03T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Event Sourcing", "CQRS", "EventStore", "Architecture"]
 categories: ["Go", "Architecture"]
 author: "Matthew Mattox - mmattox@support.tools"

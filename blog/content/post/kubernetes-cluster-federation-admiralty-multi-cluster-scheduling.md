@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Cluster Federation with Admiralty: Multi-Cluster Scheduling, Cross-Cluster Service Discovery, and Workload Placement"
 date: 2031-10-15T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Federation", "Admiralty", "Multi-Cluster", "Service Discovery", "Scheduling"]
 categories:
 - Kubernetes

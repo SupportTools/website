@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Backstage Platform: Developer Portal with TechDocs and Software Catalog"
 date: 2031-04-29T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Backstage", "Kubernetes", "Developer Portal", "TechDocs", "Software Catalog", "Platform Engineering", "DevOps"]
 categories: ["Kubernetes", "Platform Engineering"]
 author: "Matthew Mattox - mmattox@support.tools"

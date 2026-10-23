@@ -1,7 +1,7 @@
 ---
 title: "Go Connection Pooling: pgxpool, sql.DB, and Redis Pool Optimization"
 date: 2029-01-13T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Golang", "PostgreSQL", "Redis", "Connection Pooling", "pgxpool", "Performance"]
 categories:
 - Go

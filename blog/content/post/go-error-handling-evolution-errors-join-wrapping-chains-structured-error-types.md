@@ -1,7 +1,7 @@
 ---
 title: "Go Error Handling Evolution: errors.Join, Wrapping Chains, and Structured Error Types"
 date: 2030-03-16T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Golang", "Error Handling", "errors.Join", "Observability", "gRPC"]
 categories: ["Go", "Software Engineering"]
 author: "Matthew Mattox - mmattox@support.tools"

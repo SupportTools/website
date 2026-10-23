@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Operator Pattern: Reconciliation Loops and Finalizers Best Practices"
 date: 2031-02-09T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Operator", "Go", "Controller Runtime", "Finalizers", "Reconciliation"]
 categories:
 - Kubernetes

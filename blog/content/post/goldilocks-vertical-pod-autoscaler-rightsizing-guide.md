@@ -1,7 +1,7 @@
 ---
 title: "Goldilocks: VPA-Based Resource Rightsizing for Kubernetes"
 date: 2027-02-22T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Goldilocks", "VPA", "Resource Optimization", "FinOps"]
 categories: ["Kubernetes", "FinOps", "Resource Management"]
 author: "Matthew Mattox - mmattox@support.tools"

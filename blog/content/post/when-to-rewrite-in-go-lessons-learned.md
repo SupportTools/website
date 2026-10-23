@@ -1,7 +1,7 @@
 ---
 title: "When (and When Not) to Rewrite Your Application in Go: Practical Lessons from the Trenches"
 date: 2027-06-03T09:00:00-05:00
-draft: false
+draft: true
 tags: ["go", "golang", "nodejs", "rewrites", "migration", "architecture", "engineering-decisions"]
 categories: ["Programming", "Go", "Architecture"]
 ---

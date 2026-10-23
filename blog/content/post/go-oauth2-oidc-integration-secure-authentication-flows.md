@@ -1,7 +1,7 @@
 ---
 title: "Go OAuth2 and OIDC Integration: Building Secure Authentication Flows"
 date: 2030-08-23T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "OAuth2", "OIDC", "Keycloak", "Auth0", "JWT", "Security", "Authentication"]
 categories:
 - Go

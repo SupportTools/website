@@ -1,7 +1,7 @@
 ---
 title: "Go Circuit Breaker and Retry Patterns: Resilience for Distributed Systems"
 date: 2030-07-20T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Golang", "Circuit Breaker", "Retry", "Resilience", "Distributed Systems", "gRPC"]
 categories:
 - Go

@@ -1,7 +1,7 @@
 ---
 title: "Linux SSH Hardening: Key Management, Certificate Authority, and Bastion Host Configuration"
 date: 2031-09-11T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "SSH", "Security", "Hardening", "PKI", "Bastion Host", "Infrastructure"]
 categories:
 - Linux

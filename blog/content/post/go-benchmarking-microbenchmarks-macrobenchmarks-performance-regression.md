@@ -1,7 +1,7 @@
 ---
 title: "Go Benchmarking: Micro-benchmarks, Macro-benchmarks, and Continuous Performance Testing"
 date: 2029-07-07T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Benchmarking", "Performance", "testing.B", "benchstat", "Profiling", "CI/CD"]
 categories: ["Go", "Performance", "Testing"]
 author: "Matthew Mattox - mmattox@support.tools"

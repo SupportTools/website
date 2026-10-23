@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Egress Traffic Control: NAT Gateways, FQDN Policies, and Cilium Egress"
 date: 2029-02-06T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Networking", "Cilium", "Security", "Egress", "CNI"]
 categories:
 - Kubernetes

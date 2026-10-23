@@ -1,7 +1,7 @@
 ---
 title: "Go Protocol Buffers and gRPC: Schema Evolution and Backwards Compatibility"
 date: 2030-09-03T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "gRPC", "Protocol Buffers", "Protobuf", "Schema Evolution", "Microservices", "API Design"]
 categories:
 - Go

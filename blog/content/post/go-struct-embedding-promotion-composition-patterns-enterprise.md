@@ -1,7 +1,7 @@
 ---
 title: "Go Struct Embedding and Promotion: Composition Patterns for Enterprise Code"
 date: 2031-02-23T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Struct Embedding", "Composition", "Design Patterns", "Enterprise Go", "Interfaces"]
 categories:
 - Go

@@ -1,7 +1,7 @@
 ---
 title: "Docker Build Optimization: Multi-Stage Builds, Cache Layers, and BuildKit"
 date: 2027-12-02T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Docker", "BuildKit", "Multi-Stage", "CI/CD", "Container"]
 categories:
 - Docker

@@ -1,7 +1,7 @@
 ---
 title: "Go Microservices with gRPC: Service Definition, Streaming, and Production Patterns"
 date: 2027-07-20T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "gRPC", "Microservices", "Protobuf", "Production"]
 categories:
 - Go

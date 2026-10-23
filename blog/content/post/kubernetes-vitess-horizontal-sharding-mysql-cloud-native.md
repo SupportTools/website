@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Vitess: Horizontally Sharding MySQL for Cloud-Native Applications"
 date: 2031-03-01T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Vitess", "MySQL", "Sharding", "Database", "Cloud-Native", "Operator"]
 categories:
 - Kubernetes

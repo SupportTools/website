@@ -1,7 +1,7 @@
 ---
 title: "BPF/eBPF for Production Performance Tracing: bpftrace, libbpf, and BCC Tools"
 date: 2028-05-17T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "eBPF", "BPF", "Performance", "Tracing", "bpftrace", "BCC", "Observability"]
 categories: ["Linux", "Performance"]
 author: "Matthew Mattox - mmattox@support.tools"

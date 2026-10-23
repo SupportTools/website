@@ -1,7 +1,7 @@
 ---
 title: "Cilium eBPF Advanced Networking: Beyond CNI in Production Kubernetes"
 date: 2027-06-14T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Cilium", "eBPF", "Kubernetes", "Networking", "CNI", "Security"]
 categories:
 - Kubernetes

@@ -1,7 +1,7 @@
 ---
 title: "Go Middleware Chains: Building Composable HTTP and gRPC Interceptors"
 date: 2031-01-01T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Golang", "Middleware", "gRPC", "HTTP", "Interceptors", "Context Propagation"]
 categories:
 - Go

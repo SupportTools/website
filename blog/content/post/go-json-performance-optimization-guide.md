@@ -1,7 +1,7 @@
 ---
 title: "Go JSON Performance Optimization: sonic vs jsoniter vs encoding/json Benchmarks, Streaming, and Zero-Allocation Patterns"
 date: 2028-06-22T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "JSON", "Performance", "Optimization", "sonic", "jsoniter", "Benchmarks"]
 categories: ["Go", "Performance"]
 author: "Matthew Mattox - mmattox@support.tools"

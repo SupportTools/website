@@ -1,7 +1,7 @@
 ---
 title: "The Practical Cron Guide: Scheduling Jobs on Linux the Right Way"
 date: 2032-05-09T09:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "cron", "crontab", "Scheduling", "systemd", "Kubernetes", "CronJob", "Automation", "SRE", "DevOps", "Bash", "flock"]
 categories:
 - Linux

@@ -1,7 +1,7 @@
 ---
 title: "Go OAuth2/OIDC Implementation: Authorization Code Flow, PKCE, Token Refresh, and Introspection"
 date: 2028-07-26T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "OAuth2", "OIDC", "Authentication", "Security", "JWT"]
 categories:
 - Go

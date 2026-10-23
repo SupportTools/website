@@ -1,7 +1,7 @@
 ---
 title: "Go gRPC Advanced: Bidirectional Streaming, Keepalives, Interceptors, Health Checking Protocol, and Reflection"
 date: 2031-12-22T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "gRPC", "Streaming", "Microservices", "Protobuf", "Networking", "Performance", "Interceptors"]
 categories:
 - Go

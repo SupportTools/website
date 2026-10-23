@@ -1,7 +1,7 @@
 ---
 title: "Linux Perf Subsystem: Hardware Performance Counters"
 date: 2029-06-23T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Performance", "perf", "PMU", "Profiling", "Flame Graphs", "CPU"]
 categories: ["Linux", "Performance"]
 author: "Matthew Mattox - mmattox@support.tools"

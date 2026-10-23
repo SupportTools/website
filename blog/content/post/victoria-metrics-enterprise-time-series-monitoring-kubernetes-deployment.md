@@ -1,7 +1,7 @@
 ---
 title: "Enterprise Time-Series Monitoring with Victoria Metrics: Production Kubernetes Deployment and Performance Optimization"
 date: 2026-12-10T00:00:00-05:00
-draft: false
+draft: true
 tags: ["VictoriaMetrics", "Kubernetes", "Monitoring", "Time-Series", "Prometheus", "Observability", "Performance"]
 categories: ["Monitoring", "Kubernetes", "DevOps"]
 author: "Matthew Mattox - mmattox@support.tools"

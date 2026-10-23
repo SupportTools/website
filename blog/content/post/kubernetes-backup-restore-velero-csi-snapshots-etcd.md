@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Backup and Restore: Velero with CSI Snapshots, etcd Backup, and DR Testing"
 date: 2030-04-30T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Velero", "Backup", "CSI", "etcd", "Disaster Recovery"]
 categories: ["Kubernetes", "Disaster Recovery"]
 author: "Matthew Mattox - mmattox@support.tools"

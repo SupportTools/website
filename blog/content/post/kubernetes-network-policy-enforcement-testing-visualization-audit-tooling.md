@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Network Policy Enforcement: Testing, Visualization, and Audit Tooling"
 date: 2030-10-01T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Network Policy", "Security", "Hubble", "Calico", "Cilium", "Zero Trust"]
 categories:
 - Kubernetes

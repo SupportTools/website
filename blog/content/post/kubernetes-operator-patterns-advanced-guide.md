@@ -1,7 +1,7 @@
 ---
 title: "Advanced Kubernetes Operator Patterns: Controller-Runtime Deep Dive"
 date: 2027-10-16T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Operators", "controller-runtime", "Go", "CRD"]
 categories:
 - Kubernetes

@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Flux v2 Advanced Patterns: Image Automation, Drift Detection, and Multi-Cluster GitOps"
 date: 2031-06-24T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Flux", "GitOps", "Image Automation", "Multi-Cluster", "Drift Detection", "CD"]
 categories:
 - Kubernetes

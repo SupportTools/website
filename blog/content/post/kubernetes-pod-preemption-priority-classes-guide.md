@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Pod Priority and Preemption: Ensuring Critical Workload Availability"
 date: 2028-11-05T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Scheduling", "Priority", "Resource Management", "SRE"]
 categories:
 - Kubernetes

@@ -1,7 +1,7 @@
 ---
 title: "Knative Serving and Eventing: Serverless Workloads on Kubernetes"
 date: 2027-12-27T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Knative", "Serverless", "Kubernetes", "Eventing", "CloudEvents", "Istio", "Kafka"]
 categories: ["Kubernetes", "Serverless"]
 author: "Matthew Mattox - mmattox@support.tools"

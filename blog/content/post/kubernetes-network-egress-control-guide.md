@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Egress Control: NetworkPolicies, Egress Gateways, and DNS Filtering"
 date: 2028-02-14T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Networking", "Egress", "NetworkPolicy", "Cilium", "Istio", "Security"]
 categories:
 - Kubernetes

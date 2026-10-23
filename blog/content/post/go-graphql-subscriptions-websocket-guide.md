@@ -1,7 +1,7 @@
 ---
 title: "GraphQL Subscriptions in Go: Real-Time APIs with WebSockets and gqlgen"
 date: 2028-11-30T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "GraphQL", "WebSocket", "Real-Time", "API"]
 categories:
 - Go

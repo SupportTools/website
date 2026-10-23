@@ -1,7 +1,7 @@
 ---
 title: "Linux Network Bridging and Bonding: High-Availability Network Interfaces"
 date: 2030-07-18T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Networking", "Bonding", "Bridging", "LACP", "High Availability", "Kubernetes"]
 categories:
 - Linux

@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes PodDisruptionBudgets v1: minAvailable vs maxUnavailable, Disruption Calculation, Eviction API, and Status Conditions"
 date: 2032-01-20T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "PodDisruptionBudget", "PDB", "High Availability", "Eviction API", "Node Maintenance"]
 categories:
 - Kubernetes

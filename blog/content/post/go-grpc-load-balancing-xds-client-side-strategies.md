@@ -1,7 +1,7 @@
 ---
 title: "Go gRPC Load Balancing: Client-Side with xDS and Server-Side Strategies"
 date: 2029-11-21T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "gRPC", "Load Balancing", "xDS", "Envoy", "Service Mesh"]
 categories: ["Go", "Distributed Systems"]
 author: "Matthew Mattox - mmattox@support.tools"

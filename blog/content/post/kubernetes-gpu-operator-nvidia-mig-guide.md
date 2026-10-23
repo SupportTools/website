@@ -1,7 +1,7 @@
 ---
 title: "NVIDIA GPU Operator on Kubernetes: MIG Partitioning and Multi-Tenant GPU Sharing"
 date: 2028-10-05T00:00:00-05:00
-draft: false
+draft: true
 tags: ["NVIDIA", "GPU", "Kubernetes", "AI/ML", "MIG"]
 categories:
 - NVIDIA

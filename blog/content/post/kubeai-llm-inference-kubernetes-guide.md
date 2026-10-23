@@ -1,7 +1,7 @@
 ---
 title: "KubeAI: Open-Source LLM Inference Platform on Kubernetes"
 date: 2027-03-12T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "KubeAI", "LLM", "AI/ML", "GPU", "Inference"]
 categories: ["Kubernetes", "AI & ML", "GPU Computing"]
 author: "Matthew Mattox - mmattox@support.tools"

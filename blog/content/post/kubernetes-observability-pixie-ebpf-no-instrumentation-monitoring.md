@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Observability with Pixie: eBPF-Based No-Instrumentation Monitoring"
 date: 2029-11-17T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Pixie", "eBPF", "Observability", "Monitoring", "OpenTelemetry"]
 categories: ["Kubernetes", "Observability"]
 author: "Matthew Mattox - mmattox@support.tools"

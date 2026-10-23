@@ -1,7 +1,7 @@
 ---
 title: "Contour and Envoy: Modern Ingress Controller for Production Kubernetes"
 date: 2027-04-22T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Contour", "Envoy", "Ingress", "HTTPProxy", "Load Balancing"]
 categories: ["Kubernetes", "Networking"]
 author: "Matthew Mattox - mmattox@support.tools"

@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes StatefulSet Headless Services: DNS, Stable Network Identities, and Peer Discovery"
 date: 2029-03-28T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "StatefulSet", "DNS", "Distributed Systems", "Database", "Networking"]
 categories:
 - Kubernetes

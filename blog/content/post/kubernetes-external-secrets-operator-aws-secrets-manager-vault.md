@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Secrets Management with External Secrets Operator: AWS Secrets Manager and HashiCorp Vault"
 date: 2031-08-03T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "External Secrets Operator", "AWS Secrets Manager", "HashiCorp Vault", "Secrets Management", "Security", "IRSA"]
 categories:
 - Kubernetes

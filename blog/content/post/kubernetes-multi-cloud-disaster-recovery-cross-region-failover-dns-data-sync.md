@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Multi-Cloud Disaster Recovery: Cross-Region Cluster Failover, DNS-Based Routing, and Data Synchronization"
 date: 2031-12-24T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Disaster Recovery", "Multi-Cloud", "DNS", "Failover", "Velero", "Backup", "High Availability", "Cross-Region"]
 categories:
 - Kubernetes

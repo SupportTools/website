@@ -1,7 +1,7 @@
 ---
 title: "Azure AKS Production Deployment: Managed Identity, Azure Policy, and AGIC"
 date: 2027-08-06T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Azure", "AKS", "Kubernetes", "Cloud", "Production"]
 categories:
 - Azure

@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Helm Advanced Patterns: Library Charts, Subcharts, and Post-Render Hooks"
 date: 2028-05-06T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Helm", "Library Charts", "Subcharts", "Templating"]
 categories: ["Kubernetes", "DevOps"]
 author: "Matthew Mattox - mmattox@support.tools"

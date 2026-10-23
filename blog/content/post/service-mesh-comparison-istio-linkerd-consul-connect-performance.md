@@ -1,7 +1,7 @@
 ---
 title: "Service Mesh Comparison: Istio vs Linkerd vs Consul Connect Performance"
 date: 2026-11-17T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Service Mesh", "Istio", "Linkerd", "Consul Connect", "Kubernetes", "Microservices", "Performance", "Cloud Native"]
 categories:
 - Kubernetes

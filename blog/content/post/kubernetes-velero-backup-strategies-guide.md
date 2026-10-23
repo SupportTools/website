@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Backup and Recovery with Velero: Enterprise Strategies"
 date: 2028-03-05T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Velero", "Backup", "Disaster Recovery", "Storage", "Restic", "Kopia"]
 categories: ["Kubernetes", "Disaster Recovery"]
 author: "Matthew Mattox - mmattox@support.tools"

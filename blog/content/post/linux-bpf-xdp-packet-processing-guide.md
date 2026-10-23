@@ -1,7 +1,7 @@
 ---
 title: "Linux XDP and BPF: High-Performance Packet Processing at the NIC"
 date: 2028-09-25T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "eBPF", "XDP", "Networking", "Performance"]
 categories:
 - Linux

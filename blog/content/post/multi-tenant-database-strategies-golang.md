@@ -1,7 +1,7 @@
 ---
 title: "Scaling Multi-Tenant Databases with Go: Patterns for Performance and Isolation"
 date: 2027-03-02T09:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Golang", "Database", "PostgreSQL", "MySQL", "Multi-tenancy", "Performance", "SaaS"]
 categories:
 - Databases

@@ -1,7 +1,7 @@
 ---
 title: "The Daily Linux Debugging Toolkit for Production and Kubernetes Environments"
 date: 2032-04-20T09:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Debugging", "Kubernetes", "strace", "tcpdump", "perf", "eBPF", "bpftrace", "Observability", "SRE", "Troubleshooting"]
 categories:
 - Linux

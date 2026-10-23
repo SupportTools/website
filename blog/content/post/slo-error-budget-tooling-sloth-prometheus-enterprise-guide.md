@@ -1,7 +1,7 @@
 ---
 title: "SLO Error Budget Management with Sloth and Prometheus: Enterprise Guide"
 date: 2026-12-26T00:00:00-05:00
-draft: false
+draft: true
 tags: ["SLO", "SLI", "Error Budget", "Sloth", "Prometheus", "Observability", "Site Reliability Engineering"]
 categories:
 - SRE

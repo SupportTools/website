@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Scheduling Framework: Custom Plugins and Profiles"
 date: 2029-09-15T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Scheduler", "Custom Plugins", "Scheduling Framework", "Profiles"]
 categories: ["Kubernetes", "Development"]
 author: "Matthew Mattox - mmattox@support.tools"

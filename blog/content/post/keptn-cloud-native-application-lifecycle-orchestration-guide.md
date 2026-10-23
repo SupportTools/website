@@ -1,7 +1,7 @@
 ---
 title: "Keptn Lifecycle Toolkit: Cloud-Native Deployment Observability and Quality Gates"
 date: 2027-02-14T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Keptn", "SLO", "Deployment", "Observability"]
 categories: ["Kubernetes", "Observability", "DevOps"]
 author: "Matthew Mattox - mmattox@support.tools"

@@ -1,7 +1,7 @@
 ---
 title: "Linux iptables and nftables: Firewall Rules for Kubernetes Node Security"
 date: 2029-03-09T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "iptables", "nftables", "Kubernetes", "Security", "Networking"]
 categories:
 - Linux

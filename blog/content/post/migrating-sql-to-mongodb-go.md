@@ -1,7 +1,7 @@
 ---
 title: "Migrating from SQL to MongoDB in Go: A Comprehensive Guide"
 date: 2027-02-23T09:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "MongoDB", "SQL", "Database", "Migration", "NoSQL"]
 categories: ["Databases", "Go"]
 ---

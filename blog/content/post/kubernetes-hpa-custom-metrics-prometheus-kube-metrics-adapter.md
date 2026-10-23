@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes HPA with Custom Metrics from Prometheus: Scaling on Business Metrics with kube-metrics-adapter"
 date: 2031-09-26T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "HPA", "Prometheus", "Custom Metrics", "Autoscaling", "kube-metrics-adapter"]
 categories: ["Kubernetes", "Observability"]
 author: "Matthew Mattox - mmattox@support.tools"

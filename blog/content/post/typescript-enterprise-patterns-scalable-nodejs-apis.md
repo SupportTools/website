@@ -1,7 +1,7 @@
 ---
 title: "TypeScript Enterprise Patterns: Building Scalable Node.js APIs"
 date: 2026-12-07T00:00:00-05:00
-draft: false
+draft: true
 tags: ["typescript", "nodejs", "enterprise", "api", "design-patterns", "microservices", "architecture", "backend"]
 categories: ["Programming", "Architecture"]
 author: "Matthew Mattox"

@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Operator Metrics: Exposing Custom Prometheus Metrics"
 date: 2029-10-14T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Operators", "Prometheus", "Metrics", "Monitoring", "controller-runtime", "Grafana"]
 categories:
 - Kubernetes

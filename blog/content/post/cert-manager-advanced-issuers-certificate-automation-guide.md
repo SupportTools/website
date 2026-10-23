@@ -1,7 +1,7 @@
 ---
 title: "cert-manager Advanced Issuers: ACME, Vault, Venafi, and Custom PKI"
 date: 2027-01-30T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "cert-manager", "TLS", "PKI", "Security"]
 categories: ["Kubernetes", "Security", "DevOps"]
 author: "Matthew Mattox - mmattox@support.tools"

@@ -1,7 +1,7 @@
 ---
 title: "Elasticsearch and Kibana on Kubernetes with ECK: Production Cluster Management"
 date: 2027-07-19T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Elasticsearch", "Kibana", "ECK", "Kubernetes", "Observability", "Search"]
 categories:
 - Elasticsearch

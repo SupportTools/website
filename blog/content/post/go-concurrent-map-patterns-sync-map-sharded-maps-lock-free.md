@@ -1,7 +1,7 @@
 ---
 title: "Go Concurrent Map Patterns: sync.Map, Sharded Maps, and Lock-Free Reads"
 date: 2030-05-05T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Concurrency", "Performance", "sync.Map", "Data Structures", "Benchmarking"]
 categories: ["Go", "Performance"]
 author: "Matthew Mattox - mmattox@support.tools"

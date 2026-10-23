@@ -1,7 +1,7 @@
 ---
 title: "SIEM Implementation and Log Analysis with ELK Stack and Splunk: Enterprise Security Operations Guide"
 date: 2026-11-20T00:00:00-05:00
-draft: false
+draft: true
 tags: ["SIEM", "ELK Stack", "Elasticsearch", "Logstash", "Kibana", "Splunk", "Log Analysis", "Security Operations", "SOC", "Threat Detection", "Security Monitoring"]
 categories:
 - Security

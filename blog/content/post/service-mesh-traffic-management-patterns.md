@@ -1,7 +1,7 @@
 ---
 title: "Service Mesh Traffic Management: Advanced Patterns for Production"
 date: 2027-11-20T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Istio", "Service Mesh", "Traffic Management", "Canary", "Circuit Breaker"]
 categories:
 - Kubernetes

@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Operator SDK v2: Building Production-Grade Operators with controller-gen"
 date: 2030-08-02T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Operator SDK", "controller-gen", "Go", "Operators", "OLM", "envtest"]
 categories:
 - Kubernetes

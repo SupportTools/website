@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Knative Eventing: CloudEvents-Based Event Broker Architecture"
 date: 2031-05-05T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Knative", "Kubernetes", "CloudEvents", "Event-Driven", "Kafka", "Eventing", "Serverless"]
 categories: ["Kubernetes", "Event-Driven Architecture"]
 author: "Matthew Mattox - mmattox@support.tools"

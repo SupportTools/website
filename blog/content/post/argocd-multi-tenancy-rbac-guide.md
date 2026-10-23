@@ -1,7 +1,7 @@
 ---
 title: "Argo CD Multi-Tenancy: RBAC, Projects, and Access Control at Scale"
 date: 2028-03-18T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Argo CD", "GitOps", "RBAC", "Multi-Tenancy", "Kubernetes", "Platform Engineering", "SSO"]
 categories: ["GitOps", "Platform Engineering"]
 author: "Matthew Mattox - mmattox@support.tools"

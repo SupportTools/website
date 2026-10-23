@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes GitOps: ArgoCD ApplicationSet Controller and Progressive Delivery"
 date: 2029-12-14T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "GitOps", "ArgoCD", "ApplicationSet", "Progressive Delivery", "Argo Rollouts", "Multi-environment"]
 categories:
 - Kubernetes

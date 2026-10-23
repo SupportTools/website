@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Goldilocks VPA Recommendations: LimitRange Integration, Namespace Annotations, Prometheus Queries, and Reports"
 date: 2032-02-29T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Goldilocks", "VPA", "Resource Management", "Cost Optimization", "Prometheus"]
 categories:
 - Kubernetes

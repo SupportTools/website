@@ -1,7 +1,7 @@
 ---
 title: "Structured Logging in Go with slog: Production Patterns and Observability"
 date: 2028-02-29T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "slog", "Logging", "Observability", "OpenTelemetry", "Structured Logging"]
 categories: ["Go", "Observability"]
 author: "Matthew Mattox - mmattox@support.tools"

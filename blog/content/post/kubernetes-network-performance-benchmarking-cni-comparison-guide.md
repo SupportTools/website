@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Network Performance Benchmarking: iperf3, netperf, Pod-to-Pod Latency, CNI Comparison Methodology"
 date: 2031-12-04T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Networking", "CNI", "Performance", "Benchmarking", "iperf3", "netperf", "Observability"]
 categories:
 - Kubernetes

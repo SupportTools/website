@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Automated Certificate Rotation: Best Practices"
 date: 2029-07-23T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Certificates", "TLS", "PKI", "Security", "cert-manager", "Automation"]
 categories: ["Kubernetes", "Security"]
 author: "Matthew Mattox - mmattox@support.tools"

@@ -1,7 +1,7 @@
 ---
 title: "Linux Container Image Security Scanning: Static Analysis with Trivy and Runtime with Falco"
 date: 2031-08-25T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Security", "Trivy", "Falco", "Container Security", "Kubernetes", "Vulnerability Scanning", "Runtime Security"]
 categories: ["Security", "Kubernetes"]
 author: "Matthew Mattox - mmattox@support.tools"

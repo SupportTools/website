@@ -1,7 +1,7 @@
 ---
 title: "Go OAuth2 Server Implementation: Authorization Code Flow with PKCE"
 date: 2031-04-07T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Golang", "OAuth2", "OIDC", "Security", "Authentication", "API Security"]
 categories:
 - Go

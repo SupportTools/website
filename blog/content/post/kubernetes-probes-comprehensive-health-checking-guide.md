@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Probes Deep Dive: Building Resilient Applications with Startup, Liveness, and Readiness Probes"
 date: 2026-12-31T09:00:00-05:00
-draft: false
+draft: true
 categories: ["Kubernetes", "DevOps", "Cloud Native"]
 tags: ["Kubernetes", "Probes", "Container Health", "Liveness Probe", "Readiness Probe", "Startup Probe", "Application Reliability", "High Availability", "Service Mesh", "Health Checks"]
 ---

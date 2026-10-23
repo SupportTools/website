@@ -1,7 +1,7 @@
 ---
 title: "Prometheus Cardinality Management: Preventing High-Cardinality Explosions"
 date: 2027-12-25T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Prometheus", "Cardinality", "Monitoring", "Thanos", "Recording Rules", "Metrics", "Observability", "Performance"]
 categories:
 - Monitoring

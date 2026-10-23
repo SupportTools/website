@@ -1,7 +1,7 @@
 ---
 title: "Velero Disaster Recovery: Full Cluster Backup, CSI Snapshots, and Cross-Cluster Migration"
 date: 2028-05-26T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Velero", "Kubernetes", "Disaster Recovery", "Backup", "CSI", "Migration"]
 categories: ["Kubernetes", "Operations", "Disaster Recovery"]
 author: "Matthew Mattox - mmattox@support.tools"

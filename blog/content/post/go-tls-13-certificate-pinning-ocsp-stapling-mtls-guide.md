@@ -1,7 +1,7 @@
 ---
 title: "Go TLS 1.3: Certificate Pinning, OCSP Stapling, and mTLS"
 date: 2029-10-09T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "TLS", "Security", "mTLS", "Certificates", "PKI", "OCSP"]
 categories:
 - Go

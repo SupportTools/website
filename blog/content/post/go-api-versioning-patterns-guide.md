@@ -1,7 +1,7 @@
 ---
 title: "API Versioning in Go: URL Paths, Headers, and Schema Evolution"
 date: 2028-03-14T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "API Design", "REST", "API Versioning", "OpenAPI", "Schema Evolution", "swaggo"]
 categories: ["Go", "API Design"]
 author: "Matthew Mattox - mmattox@support.tools"

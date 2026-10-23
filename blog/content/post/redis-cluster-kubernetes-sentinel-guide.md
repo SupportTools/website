@@ -1,7 +1,7 @@
 ---
 title: "Redis Cluster and Sentinel on Kubernetes: High Availability Caching at Scale"
 date: 2028-09-19T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Redis", "Kubernetes", "Caching", "High Availability", "Database"]
 categories:
 - Redis

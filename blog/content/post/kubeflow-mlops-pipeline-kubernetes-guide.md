@@ -1,7 +1,7 @@
 ---
 title: "Kubeflow MLOps Pipelines: Training, Serving, and Experiment Tracking on Kubernetes"
 date: 2027-07-18T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubeflow", "MLOps", "Kubernetes", "AI/ML", "Pipeline"]
 categories:
 - Kubernetes

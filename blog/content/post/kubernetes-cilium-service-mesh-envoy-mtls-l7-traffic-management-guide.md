@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Cilium Service Mesh: Envoy Integration, Sidecar-Free mTLS, and L7 Traffic Management"
 date: 2031-11-18T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Cilium", "Service Mesh", "eBPF", "Envoy", "mTLS", "L7", "Network Security"]
 categories:
 - Kubernetes

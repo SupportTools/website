@@ -1,7 +1,7 @@
 ---
 title: "Go HTTP Client Patterns: Connection Pooling, Retry Logic, Circuit Breakers, and Timeout Strategies"
 date: 2028-08-06T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "HTTP", "Connection Pooling", "Retry", "Circuit Breaker"]
 categories:
 - Go

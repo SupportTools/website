@@ -1,7 +1,7 @@
 ---
 title: "Go pprof Profiling in Production: CPU, Memory, and Goroutine Analysis"
 date: 2030-05-15T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "pprof", "Performance", "Profiling", "Pyroscope", "Memory Leaks", "Flame Graphs"]
 categories:
 - Go

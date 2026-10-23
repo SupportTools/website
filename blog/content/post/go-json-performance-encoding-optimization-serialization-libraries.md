@@ -1,7 +1,7 @@
 ---
 title: "Go JSON Performance: Encoding Optimization and Alternative Serialization Libraries"
 date: 2031-01-24T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Golang", "JSON", "Performance", "Serialization", "API", "Optimization", "jsoniter", "sonic"]
 categories:
 - Go

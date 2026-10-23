@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Multi-Cluster Service Discovery with Submariner and Skupper"
 date: 2031-01-19T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Multi-Cluster", "Submariner", "Skupper", "Service Discovery", "Networking", "Hybrid Cloud"]
 categories:
 - Kubernetes

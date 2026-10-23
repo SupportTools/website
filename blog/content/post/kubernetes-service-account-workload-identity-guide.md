@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Service Accounts and Workload Identity: IRSA, Workload Identity Federation, and Pod Identity"
 date: 2027-05-15T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Service Account", "IRSA", "Workload Identity", "AWS", "GCP", "Azure", "Security"]
 categories: ["Kubernetes", "Security"]
 author: "Matthew Mattox - mmattox@support.tools"

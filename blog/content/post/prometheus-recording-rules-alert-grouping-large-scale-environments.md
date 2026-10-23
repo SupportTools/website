@@ -1,7 +1,7 @@
 ---
 title: "Prometheus Recording Rules and Alert Grouping for Large-Scale Environments"
 date: 2028-12-25T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Prometheus", "Monitoring", "Alerting", "Recording Rules", "Alertmanager", "Observability"]
 categories:
 - Monitoring

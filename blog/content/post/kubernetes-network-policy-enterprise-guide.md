@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Network Policy Enterprise Guide: Zero-Trust Microsegmentation"
 date: 2027-06-10T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Network Policy", "Security", "Zero Trust", "Networking"]
 categories:
 - Kubernetes

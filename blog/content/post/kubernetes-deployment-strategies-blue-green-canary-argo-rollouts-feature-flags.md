@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Deployment Strategies Deep Dive: Blue-Green, Canary with Argo Rollouts, and Feature Flags"
 date: 2030-03-24T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Argo Rollouts", "Canary Deployment", "Blue-Green", "Progressive Delivery", "LaunchDarkly", "Feature Flags"]
 categories: ["Kubernetes", "DevOps"]
 author: "Matthew Mattox - mmattox@support.tools"

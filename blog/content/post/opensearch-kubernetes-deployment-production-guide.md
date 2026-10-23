@@ -1,7 +1,7 @@
 ---
 title: "OpenSearch on Kubernetes: Production Deployment with the OpenSearch Operator"
 date: 2027-01-20T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "OpenSearch", "Elasticsearch", "Logging", "Search"]
 categories: ["Kubernetes", "Observability", "DevOps"]
 author: "Matthew Mattox - mmattox@support.tools"

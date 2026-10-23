@@ -1,7 +1,7 @@
 ---
 title: "Crossplane Advanced Compositions: Building an Internal Cloud Platform"
 date: 2027-01-04T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Crossplane", "Kubernetes", "Platform Engineering", "Infrastructure as Code"]
 categories:
 - Kubernetes

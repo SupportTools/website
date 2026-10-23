@@ -1,7 +1,7 @@
 ---
 title: "Linux Power Management and CPU Frequency Scaling: Performance Tuning for Workload-Specific Needs"
 date: 2031-09-24T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Power Management", "CPU Scaling", "Performance", "Tuning", "cpupower"]
 categories:
 - Linux

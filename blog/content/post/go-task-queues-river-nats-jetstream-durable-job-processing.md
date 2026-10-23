@@ -1,7 +1,7 @@
 ---
 title: "Go Task Queues with River and NATS JetStream: Durable Job Processing"
 date: 2030-09-26T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "NATS", "JetStream", "River", "PostgreSQL", "Task Queue", "Background Jobs", "Background Processing"]
 categories:
 - Go

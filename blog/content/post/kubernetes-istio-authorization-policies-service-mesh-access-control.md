@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Istio Authorization Policies: Fine-Grained Access Control in Service Meshes"
 date: 2031-02-18T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Istio", "Service Mesh", "Security", "Authorization", "mTLS", "JWT"]
 categories:
 - Kubernetes

@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Multi-Cloud Federation: Kubefed and Admiralty for Global Workload Distribution"
 date: 2030-10-15T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Federation", "KubeFed", "Admiralty", "Multi-Cloud", "GitOps", "High Availability"]
 categories:
 - Kubernetes

@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Multi-Cluster Load Balancing with GSLB: Anycast and GeoDNS Routing"
 date: 2031-05-22T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "GSLB", "Load Balancing", "GeoDNS", "Anycast", "ExternalDNS", "Route53", "Cloudflare", "Multi-Cluster"]
 categories:
 - Kubernetes

@@ -1,7 +1,7 @@
 ---
 title: "Linux High Availability: Pacemaker, Corosync, and DRBD"
 date: 2029-10-27T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "High Availability", "Pacemaker", "Corosync", "DRBD", "STONITH", "Clustering"]
 categories: ["Linux", "High Availability"]
 author: "Matthew Mattox - mmattox@support.tools"

@@ -1,7 +1,7 @@
 ---
 title: "Linux Networking with DPDK: Kernel Bypass Networking for Ultra-Low Latency Applications"
 date: 2031-07-06T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "DPDK", "Networking", "Performance", "Low Latency", "NFV"]
 categories: ["Linux", "Networking"]
 author: "Matthew Mattox - mmattox@support.tools"

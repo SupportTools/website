@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Ingress Controller Comparison 2029: nginx, Traefik, Envoy, Cilium"
 date: 2029-09-02T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Ingress", "nginx", "Traefik", "Envoy", "Cilium", "Networking", "Performance"]
 categories: ["Kubernetes", "Networking"]
 author: "Matthew Mattox - mmattox@support.tools"

@@ -1,7 +1,7 @@
 ---
 title: "Go Performance Profiling in Production: Always-On Low-Overhead Techniques"
 date: 2029-08-20T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Performance", "Profiling", "Pyroscope", "pprof", "Observability", "Production"]
 categories: ["Go", "Performance", "Observability"]
 author: "Matthew Mattox - mmattox@support.tools"

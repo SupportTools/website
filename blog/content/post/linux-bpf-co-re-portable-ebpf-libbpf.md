@@ -1,7 +1,7 @@
 ---
 title: "Linux BPF CO-RE: Writing Portable eBPF Programs with libbpf"
 date: 2029-03-12T00:00:00-05:00
-draft: false
+draft: true
 tags: ["eBPF", "Linux", "BPF", "CO-RE", "libbpf", "Observability", "Security"]
 categories:
 - Linux

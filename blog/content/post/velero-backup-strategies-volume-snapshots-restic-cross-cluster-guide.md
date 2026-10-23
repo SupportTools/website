@@ -1,7 +1,7 @@
 ---
 title: "Velero Backup Strategies: Volume Snapshots, Restic, and Cross-Cluster Migration"
 date: 2028-12-19T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Velero", "Kubernetes", "Backup", "Disaster Recovery", "Volume Snapshots", "Migration"]
 categories:
 - Kubernetes

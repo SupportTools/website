@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Persistent Volume Claim Lifecycle: Reclaim Policies, Resize, and Volume Snapshots"
 date: 2030-04-09T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Storage", "PVC", "Volume Snapshots", "CSI", "StatefulSets", "Backup"]
 categories: ["Kubernetes", "Storage"]
 author: "Matthew Mattox - mmattox@support.tools"

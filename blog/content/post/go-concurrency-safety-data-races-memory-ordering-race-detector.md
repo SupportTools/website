@@ -1,7 +1,7 @@
 ---
 title: "Go Concurrency Safety: Data Races, Memory Ordering, and the Race Detector"
 date: 2029-11-24T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Concurrency", "Race Detector", "sync", "atomic", "Memory Model"]
 categories: ["Go", "Performance"]
 author: "Matthew Mattox - mmattox@support.tools"

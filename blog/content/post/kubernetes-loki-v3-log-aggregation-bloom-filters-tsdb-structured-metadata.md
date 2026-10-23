@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Loki v3.x Log Aggregation: Chunk Format, Bloom Filters, Query Acceleration, Structured Metadata, and TSDB Index"
 date: 2032-03-04T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Loki", "Kubernetes", "Observability", "Log Aggregation", "TSDB", "Bloom Filters", "Grafana"]
 categories:
 - Kubernetes

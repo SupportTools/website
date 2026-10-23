@@ -1,7 +1,7 @@
 ---
 title: "OpenTelemetry Collector on Kubernetes: Traces, Metrics, and Logs Pipeline"
 date: 2027-07-07T00:00:00-05:00
-draft: false
+draft: true
 tags: ["OpenTelemetry", "Kubernetes", "Observability", "Tracing", "Metrics"]
 categories:
 - OpenTelemetry

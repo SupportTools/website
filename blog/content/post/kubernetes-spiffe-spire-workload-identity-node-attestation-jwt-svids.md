@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes SPIFFE/SPIRE Workload Identity: Agent/Server Architecture, Node Attestation, Workload API, and JWT SVIDs"
 date: 2032-03-10T00:00:00-05:00
-draft: false
+draft: true
 tags: ["SPIFFE", "SPIRE", "Kubernetes", "Security", "mTLS", "Zero Trust", "Workload Identity", "Certificate Management"]
 categories:
 - Kubernetes

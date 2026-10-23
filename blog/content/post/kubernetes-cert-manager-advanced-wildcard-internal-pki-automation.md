@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Certificate Manager Advanced Patterns: Wildcard Certs, Internal PKI, and Automation"
 date: 2030-08-21T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "cert-manager", "PKI", "TLS", "HashiCorp Vault", "Certificates", "Security"]
 categories:
 - Kubernetes

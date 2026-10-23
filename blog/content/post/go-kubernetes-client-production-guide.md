@@ -1,7 +1,7 @@
 ---
 title: "Go Kubernetes Client: Building Production-Grade Controllers and Operators"
 date: 2027-09-07T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Kubernetes", "client-go", "Operators"]
 categories:
 - Go

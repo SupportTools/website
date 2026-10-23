@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Envoy Proxy as a Standalone Sidecar: Advanced Filter Chains and Dynamic Configuration with xDS"
 date: 2031-09-06T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Envoy", "xDS", "Service Mesh", "Sidecar", "Proxy", "Networking"]
 categories:
 - Kubernetes

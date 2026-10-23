@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Security Posture Management: kube-bench, Falco, and Policy Enforcement"
 date: 2027-07-15T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Security", "KSPM", "Falco", "Policy"]
 categories:
 - Kubernetes

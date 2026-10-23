@@ -1,7 +1,7 @@
 ---
 title: "Linux NFS and CIFS: Network File Systems for Kubernetes Shared Storage"
 date: 2030-10-27T00:00:00-05:00
-draft: false
+draft: true
 tags: ["NFS", "CIFS", "Samba", "Kubernetes", "Storage", "Linux", "CSI"]
 categories:
 - Linux

@@ -1,7 +1,7 @@
 ---
 title: "Linkerd Lightweight Service Mesh: Zero-Config mTLS and Real-Time Observability"
 date: 2027-06-17T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linkerd", "Service Mesh", "mTLS", "Kubernetes", "Observability"]
 categories:
 - Kubernetes

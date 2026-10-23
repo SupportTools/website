@@ -1,7 +1,7 @@
 ---
 title: "Linux iSCSI Initiator Configuration: Multipath I/O, CHAP Authentication, LIO Kernel Target, and NVMe-oF"
 date: 2031-10-31T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "iSCSI", "Multipath", "Storage", "NVMe-oF", "LIO", "CHAP", "SAN"]
 categories:
 - Linux

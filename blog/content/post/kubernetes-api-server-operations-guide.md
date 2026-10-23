@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes API Server Operations: Tuning, Auditing, and High Availability"
 date: 2027-08-22T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "API Server", "Security", "Operations"]
 categories:
 - Kubernetes

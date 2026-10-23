@@ -1,7 +1,7 @@
 ---
 title: "The Developer Experience Renaissance: Why Building and Operating Software Is Enjoyable Again"
 date: 2032-04-28T09:00:00-05:00
-draft: false
+draft: true
 tags: ["Developer Experience", "Platform Engineering", "Kubernetes", "DevOps", "Internal Developer Platform", "Golden Paths", "GitOps", "Observability", "AI", "Tooling", "Infrastructure as Code", "SRE"]
 categories:
 - Platform Engineering

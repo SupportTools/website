@@ -1,7 +1,7 @@
 ---
 title: "Dapr: Distributed Application Runtime for Kubernetes Microservices"
 date: 2027-02-16T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Dapr", "Microservices", "Service Mesh", "Distributed Systems"]
 categories: ["Kubernetes", "Microservices", "Cloud Native"]
 author: "Matthew Mattox - mmattox@support.tools"

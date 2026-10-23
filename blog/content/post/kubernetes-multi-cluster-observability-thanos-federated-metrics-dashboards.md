@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Multi-Cluster Observability: Federated Metrics with Thanos and Unified Dashboards"
 date: 2031-09-05T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Thanos", "Prometheus", "Observability", "Multi-Cluster", "Grafana", "Federation"]
 categories:
 - Kubernetes

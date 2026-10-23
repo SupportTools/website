@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes StatefulSets: Advanced Patterns for Distributed Stateful Applications"
 date: 2027-08-14T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "StatefulSets", "Databases", "Storage"]
 categories:
 - Kubernetes

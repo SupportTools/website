@@ -1,7 +1,7 @@
 ---
 title: "Linux IPC Deep Dive: Pipes, FIFOs, Message Queues, and Shared Memory Segments"
 date: 2030-04-08T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "IPC", "Systems Programming", "Performance", "Shared Memory", "Message Queues", "POSIX"]
 categories: ["Linux", "Systems Programming", "Performance"]
 author: "Matthew Mattox - mmattox@support.tools"

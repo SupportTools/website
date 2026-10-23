@@ -1,7 +1,7 @@
 ---
 title: "Linux Ceph Storage Cluster Administration: OSDs, Placement Groups, CRUSH Maps, and Maintenance"
 date: 2031-07-30T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Ceph", "Linux", "Storage", "Distributed Systems", "CRUSH", "OSD", "Block Storage", "Object Storage"]
 categories:
 - Linux

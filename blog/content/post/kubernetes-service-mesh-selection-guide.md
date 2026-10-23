@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Service Mesh Selection: Istio vs Linkerd vs Cilium vs Ambient"
 date: 2027-05-07T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Service Mesh", "Istio", "Linkerd", "Cilium", "mTLS", "Observability"]
 categories: ["Kubernetes", "Networking"]
 author: "Matthew Mattox - mmattox@support.tools"

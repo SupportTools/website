@@ -1,7 +1,7 @@
 ---
 title: "PostgreSQL JSONB and Full-Text Search: Advanced Query Patterns"
 date: 2028-11-12T00:00:00-05:00
-draft: false
+draft: true
 tags: ["PostgreSQL", "JSONB", "Full-Text Search", "Database", "SQL"]
 categories:
 - PostgreSQL

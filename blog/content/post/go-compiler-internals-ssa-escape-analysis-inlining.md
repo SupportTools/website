@@ -1,7 +1,7 @@
 ---
 title: "Go Compiler Internals: SSA, Escape Analysis, and Inlining"
 date: 2029-09-25T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Compiler", "SSA", "Escape Analysis", "Inlining", "Performance", "Optimization"]
 categories: ["Go", "Performance"]
 author: "Matthew Mattox - mmattox@support.tools"

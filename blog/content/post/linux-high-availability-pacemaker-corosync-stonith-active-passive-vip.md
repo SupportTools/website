@@ -1,7 +1,7 @@
 ---
 title: "Linux High Availability with Pacemaker/Corosync: Resource Agents, Cluster Quorum, STONITH Fencing, and Active-Passive VIPs"
 date: 2032-01-12T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "High Availability", "Pacemaker", "Corosync", "STONITH", "Clustering", "Infrastructure", "Enterprise"]
 categories:
 - Linux

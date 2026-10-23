@@ -1,7 +1,7 @@
 ---
 title: "Linux ZFS Administration: Pool Management, Snapshots, Replication, and Performance Tuning"
 date: 2031-06-20T00:00:00-05:00
-draft: false
+draft: true
 tags: ["ZFS", "Linux", "Storage", "Snapshots", "Replication", "Performance", "System Administration"]
 categories:
 - Linux

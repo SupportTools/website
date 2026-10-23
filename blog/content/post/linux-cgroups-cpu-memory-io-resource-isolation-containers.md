@@ -1,7 +1,7 @@
 ---
 title: "Linux Control Groups: CPU Scheduling, Memory Limits, and I/O Throttling"
 date: 2030-05-26T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "cgroups", "Containers", "Performance", "Kubernetes", "Resource Management", "Kernel"]
 categories:
 - Linux

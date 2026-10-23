@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Observability Stack 2030: VictoriaMetrics, Grafana Alloy, and Tempo"
 date: 2030-03-25T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "VictoriaMetrics", "Grafana", "Grafana Alloy", "Tempo", "Observability", "Prometheus", "Distributed Tracing"]
 categories: ["Kubernetes", "Observability", "DevOps"]
 author: "Matthew Mattox - mmattox@support.tools"

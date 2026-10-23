@@ -1,7 +1,7 @@
 ---
 title: "Linux Network Interface Management: ip command, NetworkManager, systemd-networkd Advanced Config"
 date: 2030-05-12T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Networking", "iproute2", "NetworkManager", "systemd-networkd", "VLAN", "Bonding", "LACP"]
 categories: ["Linux", "Networking"]
 author: "Matthew Mattox - mmattox@support.tools"

@@ -1,7 +1,7 @@
 ---
 title: "Grafana Alloy: The Unified Observability Pipeline for Kubernetes"
 date: 2027-01-06T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Grafana Alloy", "Kubernetes", "Observability", "OpenTelemetry", "Metrics", "Logs"]
 categories:
 - Kubernetes

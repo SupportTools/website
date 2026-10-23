@@ -1,7 +1,7 @@
 ---
 title: "Linux DPDK Data Plane: Huge Pages Setup, EAL Initialization, Poll-Mode Drivers, Packet I/O Patterns, and NUMA Affinity"
 date: 2032-01-22T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "DPDK", "Networking", "Performance", "NUMA", "High Performance Computing"]
 categories:
 - Linux

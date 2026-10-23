@@ -1,7 +1,7 @@
 ---
 title: "Linux perf for Kubernetes Workloads: CPU Profiling, Flamegraphs, and Hardware Counters Inside Containers"
 date: 2028-06-21T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "perf", "Profiling", "Kubernetes", "Performance", "Flamegraph", "Hardware Counters"]
 categories: ["Linux", "Performance"]
 author: "Matthew Mattox - mmattox@support.tools"

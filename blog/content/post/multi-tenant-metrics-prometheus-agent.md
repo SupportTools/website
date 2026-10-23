@@ -1,7 +1,7 @@
 ---
 title: "Building Multi-Tenant Observability with Prometheus Agent"
 date: 2027-03-04T09:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Prometheus", "Observability", "Multi-tenancy", "Monitoring"]
 categories:
 - Kubernetes

@@ -1,7 +1,7 @@
 ---
 title: "Go Reactive Streams with Channels: Backpressure, Fan-Out/Fan-In, Pipeline Stages, and Graceful Shutdown"
 date: 2031-11-06T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Golang", "Concurrency", "Channels", "Reactive Streams", "Pipelines", "Backpressure"]
 categories: ["Go", "Systems Programming"]
 author: "Matthew Mattox - mmattox@support.tools"

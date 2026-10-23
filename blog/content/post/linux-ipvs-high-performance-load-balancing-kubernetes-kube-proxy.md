@@ -1,7 +1,7 @@
 ---
 title: "Linux IPVS: High-Performance Load Balancing for Kubernetes kube-proxy"
 date: 2031-03-03T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "IPVS", "kube-proxy", "Networking", "Linux", "Load Balancing", "Performance"]
 categories:
 - Kubernetes

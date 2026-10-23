@@ -1,7 +1,7 @@
 ---
 title: "Apache Kafka on Kubernetes with Strimzi: Topics, Connectors, and Mirror Maker 2"
 date: 2027-06-26T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kafka", "Strimzi", "Kubernetes", "Streaming", "Event-Driven"]
 categories:
 - Kafka

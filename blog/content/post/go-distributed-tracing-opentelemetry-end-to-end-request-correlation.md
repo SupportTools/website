@@ -1,7 +1,7 @@
 ---
 title: "Go Distributed Tracing with OpenTelemetry: End-to-End Request Correlation"
 date: 2030-07-30T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "OpenTelemetry", "Distributed Tracing", "Observability", "Jaeger", "Tempo", "Monitoring"]
 categories:
 - Go

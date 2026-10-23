@@ -1,7 +1,7 @@
 ---
 title: "Linux Container Storage with OverlayFS: Layer Management, Metacopy Optimization, Native Diff, and Quotas"
 date: 2031-11-13T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "OverlayFS", "Container Storage", "containerd", "Docker", "Storage Driver", "Kernel"]
 categories: ["Linux", "Containers"]
 author: "Matthew Mattox - mmattox@support.tools"

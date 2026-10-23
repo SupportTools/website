@@ -1,7 +1,7 @@
 ---
 title: "Prometheus Recording Rules and Query Optimization: Production Performance Patterns"
 date: 2027-06-05T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Prometheus", "PromQL", "Recording Rules", "Performance", "Monitoring", "Observability"]
 categories: ["Monitoring", "Observability"]
 author: "Matthew Mattox - mmattox@support.tools"

@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes StatefulSet vs Deployment: When to Use Each, Migration Patterns"
 date: 2030-04-24T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "StatefulSet", "Deployment", "Databases", "PersistentVolumes", "Storage"]
 categories: ["Kubernetes", "Storage"]
 author: "Matthew Mattox - mmattox@support.tools"

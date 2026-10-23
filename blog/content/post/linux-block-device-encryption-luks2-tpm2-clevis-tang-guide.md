@@ -1,7 +1,7 @@
 ---
 title: "Linux Block Device Encryption: LUKS2 with Argon2id, TPM2 Binding, Clevis/Tang Network Unlock, dm-integrity"
 date: 2031-12-03T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Security", "LUKS", "Encryption", "TPM2", "Clevis", "Tang", "dm-crypt", "Block Device"]
 categories:
 - Linux

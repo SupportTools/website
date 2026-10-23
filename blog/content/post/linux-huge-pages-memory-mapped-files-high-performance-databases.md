@@ -1,7 +1,7 @@
 ---
 title: "Linux Huge Pages and Memory-Mapped Files for High-Performance Databases"
 date: 2030-08-24T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Huge Pages", "PostgreSQL", "Redis", "Performance", "Memory", "NUMA", "mmap"]
 categories:
 - Linux

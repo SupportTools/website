@@ -1,7 +1,7 @@
 ---
 title: "Flux Image Automation: Fully Automated GitOps Deployment Pipeline"
 date: 2027-04-03T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Flux", "GitOps", "Image Automation", "CI/CD"]
 categories: ["Kubernetes", "GitOps", "CI & CD"]
 author: "Matthew Mattox - mmattox@support.tools"

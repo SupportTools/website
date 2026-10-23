@@ -1,7 +1,7 @@
 ---
 title: "Go Message Queue Patterns: Pub/Sub with NATS JetStream, At-Least-Once Delivery, Consumer Groups, and Ack Management"
 date: 2031-12-09T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Golang", "NATS", "JetStream", "Message Queue", "Pub/Sub", "Distributed Systems", "Event Streaming"]
 categories: ["Go", "Distributed Systems"]
 author: "Matthew Mattox - mmattox@support.tools"

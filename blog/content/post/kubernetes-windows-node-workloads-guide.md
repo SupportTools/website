@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Windows Node Workloads: Running Windows Containers in Production"
 date: 2028-12-04T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Windows", "Containers", "Mixed Cluster", "DevOps"]
 categories:
 - Kubernetes

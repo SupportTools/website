@@ -1,7 +1,7 @@
 ---
 title: "Linux Container Image Internals: OCI Specification and Layer Management"
 date: 2029-07-12T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Containers", "OCI", "Docker", "overlayfs", "Container Images", "Kubernetes"]
 categories: ["Linux", "Containers", "DevOps"]
 author: "Matthew Mattox - mmattox@support.tools"

@@ -1,7 +1,7 @@
 ---
 title: "Flux and Flagger: Progressive Delivery with GitOps"
 date: 2027-10-12T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Flux", "Flagger", "GitOps", "Progressive Delivery", "Canary"]
 categories:
 - GitOps

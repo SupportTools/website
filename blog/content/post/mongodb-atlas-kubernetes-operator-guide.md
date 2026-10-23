@@ -1,7 +1,7 @@
 ---
 title: "MongoDB Atlas Kubernetes Operator: Declarative Database Management at Scale"
 date: 2027-06-27T00:00:00-05:00
-draft: false
+draft: true
 tags: ["MongoDB", "Kubernetes", "Database", "Atlas", "Operator"]
 categories:
 - MongoDB

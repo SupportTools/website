@@ -1,7 +1,7 @@
 ---
 title: "Self-Service Infrastructure Portals: Building Developer-Centric Platform Interfaces"
 date: 2026-11-13T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Self-Service", "Developer Portal", "Platform Engineering", "Internal Tools", "Developer Experience", "Infrastructure Automation"]
 categories: ["Platform Engineering", "Developer Tools"]
 author: "Matthew Mattox - mmattox@support.tools"

@@ -1,7 +1,7 @@
 ---
 title: "Reducing Kubernetes Cluster Sprawl with Virtual Clusters"
 date: 2027-04-06T09:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Vcluster", "Multitenancy", "DevOps", "Cluster Management"]
 categories:
 - Kubernetes

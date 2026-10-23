@@ -1,7 +1,7 @@
 ---
 title: "WebAssembly Workloads on Kubernetes: WasmEdge, Spin, and Wasm Node Classes"
 date: 2028-02-10T00:00:00-05:00
-draft: false
+draft: true
 tags: ["WebAssembly", "WASM", "WasmEdge", "SpinKube", "Kubernetes", "Karpenter", "WASI", "containerd"]
 categories:
 - Kubernetes

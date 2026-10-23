@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Container Storage Interface (CSI) Deep Dive"
 date: 2026-11-03T09:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Storage", "CSI", "Azure", "Persistent Volumes"]
 categories:
 - Kubernetes

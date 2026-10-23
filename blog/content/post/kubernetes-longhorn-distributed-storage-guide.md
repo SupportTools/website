@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Longhorn Distributed Storage: Backup to S3, Volume Snapshots, and Replica Management"
 date: 2028-07-22T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Longhorn", "Storage", "Backup", "S3", "Distributed Storage"]
 categories: ["Kubernetes", "Storage"]
 author: "Matthew Mattox - mmattox@support.tools"

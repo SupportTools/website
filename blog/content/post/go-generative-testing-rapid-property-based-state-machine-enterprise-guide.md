@@ -1,7 +1,7 @@
 ---
 title: "Go Generative Testing with rapid: Property-Based Testing, Generators, Shrinking, and State Machine Testing"
 date: 2031-12-16T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Testing", "Property-Based Testing", "rapid", "State Machines", "Quality Assurance", "TDD"]
 categories:
 - Go

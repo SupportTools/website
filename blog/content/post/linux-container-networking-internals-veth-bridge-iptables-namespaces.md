@@ -1,7 +1,7 @@
 ---
 title: "Linux Container Networking Internals: veth Pairs, Bridge Networking, iptables MASQUERADE, and Network Namespace Lifecycle"
 date: 2032-01-09T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Networking", "Containers", "Kubernetes", "iptables", "Network Namespaces", "Docker", "CNI"]
 categories:
 - Linux

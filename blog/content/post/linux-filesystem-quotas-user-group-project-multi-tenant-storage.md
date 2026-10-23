@@ -1,7 +1,7 @@
 ---
 title: "Linux Filesystem Quotas: User, Group, and Project Quotas for Multi-Tenant Storage"
 date: 2031-02-01T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Filesystem", "Quotas", "XFS", "ext4", "Kubernetes", "Multi-Tenant", "Storage"]
 categories:
 - Linux

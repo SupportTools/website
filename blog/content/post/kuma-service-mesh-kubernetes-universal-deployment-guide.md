@@ -1,7 +1,7 @@
 ---
 title: "Kuma Service Mesh: Universal Control Plane for Kubernetes and VMs"
 date: 2027-01-09T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Kuma", "Service Mesh", "Networking"]
 categories: ["Kubernetes", "Service Mesh", "Networking"]
 author: "Matthew Mattox - mmattox@support.tools"

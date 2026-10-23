@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Service Account Tokens: Bound Tokens, IRSA, and Workload Identity"
 date: 2028-03-20T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Security", "Service Accounts", "IRSA", "Workload Identity", "SPIFFE", "IAM"]
 categories: ["Kubernetes", "Security"]
 author: "Matthew Mattox - mmattox@support.tools"

@@ -1,7 +1,7 @@
 ---
 title: "Go Compile-Time Code Generation: go generate, stringer, and Wire"
 date: 2029-03-04T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Code Generation", "Wire", "stringer", "go generate", "Architecture"]
 categories:
 - Go

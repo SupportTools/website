@@ -1,7 +1,7 @@
 ---
 title: "Go Error Architecture: Sentinel Errors, Wrapping, and Structured Error Types"
 date: 2028-11-28T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "Error Handling", "Software Design", "Production", "Architecture"]
 categories:
 - Go
