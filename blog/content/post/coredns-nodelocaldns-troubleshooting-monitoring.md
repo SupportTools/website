@@ -1,55 +1,70 @@
 ---
-title: "Understanding CoreDNS and NodeLocalDNS: Troubleshooting and Monitoring"
+title: "CoreDNS and NodeLocal DNSCache: Troubleshoot and Monitor"
 date: 2025-01-14T00:00:00-05:00
+lastmod: 2026-10-23
 draft: false
 tags: ["CoreDNS", "NodeLocalDNS", "Kubernetes", "DNS", "RKE2"]
 categories:
 - Kubernetes
 - Networking
 author: "Matthew Mattox - mmattox@support.tools"
-description: "Dive into CoreDNS and NodeLocalDNS, learn troubleshooting techniques, and monitor DNS effectively in Kubernetes clusters."
+description: "Fix Kubernetes DNS failures and latency: test CoreDNS and NodeLocal DNSCache, enable NodeLocal on RKE2 with Canal or Cilium, and monitor the right metrics."
 more_link: "yes"
 url: "/coredns-nodelocaldns-troubleshooting-monitoring/"
+quick_fix: |
+  Start a test pod with `kubectl apply -f https://k8s.io/examples/admin/dns/dnsutils.yaml` and run
+  `kubectl exec -it dnsutils -- nslookup kubernetes.default`. If that fails, check `kubectl -n kube-system get pods -l k8s-app=kube-dns` and their logs.
+  With NodeLocal DNSCache, also query the node cache directly: `kubectl exec -it dnsutils -- nslookup kubernetes.default 169.254.20.10`.
+  If CoreDNS works but the node cache does not, the cache pod or its redirect (iptables, or a Cilium Local Redirect Policy) is the problem.
 ---
 
-DNS is the cornerstone of any Kubernetes cluster, enabling seamless communication between services. CoreDNS and NodeLocalDNS are key components in ensuring efficient DNS resolution. In this blog post, we explore what CoreDNS and NodeLocalDNS are, their role in RKE2 clusters, how to troubleshoot common issues, and techniques for effective monitoring.
+DNS is the cornerstone of any Kubernetes cluster. CoreDNS answers cluster DNS queries, and NodeLocal DNSCache puts a caching resolver on every node in front of it. This guide explains how both work on RKE2, how to enable NodeLocal DNSCache with Canal or Cilium, how to troubleshoot failures and latency, and which Prometheus metrics to watch.
+
+<!--more-->
 
 ### What is CoreDNS?
-CoreDNS is a flexible, extensible DNS server that serves as the default DNS provider for Kubernetes clusters. It performs name resolution within the cluster and provides:
+CoreDNS is a flexible, extensible DNS server and the default cluster DNS provider for Kubernetes. It provides:
 
-- Service discovery via DNS for Kubernetes services.
-- DNS query forwarding for external domains.
-- Plugin-based architecture for customization.
+- Service discovery via DNS for Kubernetes Services and Pods.
+- Forwarding of external names to upstream resolvers.
+- A plugin-based architecture for customization.
 
 ![CoreDNS](https://cdn.support.tools/posts/coredns/nodelocaldns.svg)
 
 #### CoreDNS in RKE2
-In RKE2, CoreDNS is deployed as a system Pod managed by the `rke2-coredns-addon`. It resides in the `kube-system` namespace and is integrated into the cluster's networking stack. RKE2 customizes CoreDNS through its ConfigMap, enabling features such as:
+RKE2 installs CoreDNS from its packaged `rke2-coredns` Helm chart into `kube-system`, together with the cluster-proportional-autoscaler that scales CoreDNS replicas with cluster size. Pods keep the `k8s-app=kube-dns` label and the Service is named `rke2-coredns-rke2-coredns`. You change it with a `HelmChartConfig` named `rke2-coredns`, not by editing the ConfigMap, because the Helm controller reverts manual edits. Disable it with `disable: rke2-coredns` in `/etc/rancher/rke2/config.yaml` only if you deploy another cluster DNS.
 
-- Cluster-wide DNS forwarding.
-- Integration with the cluster's service and pod network.
-- Compatibility with RKE2-specific components like Canal or Calico.
+Recent RKE2 releases (from the September 2026 releases, per the [RKE2 networking docs](https://docs.rke2.io/networking/networking_services)) also allow Corefile customization through the chart. The docs warn that only the default Corefile is tested, so keep changes small.
 
-### What is NodeLocalDNS?
-NodeLocalDNS is an extension to CoreDNS that runs as a DaemonSet on Kubernetes nodes. It improves DNS query performance by caching responses locally on each node. Benefits include:
+For deeper Corefile topics, see [CoreDNS with Rancher: Best Practices and Troubleshooting](/coredns-and-rancher/).
 
-- Reduced DNS query latency.
-- Improved cluster resilience by reducing CoreDNS load.
-- Optimized DNS performance for high-scale clusters.
+### What is NodeLocal DNSCache?
+NodeLocal DNSCache (often called NodeLocalDNS) runs a small CoreDNS-based cache as a DaemonSet on every node, listening on a link-local address (`169.254.20.10` by default). Pods send queries to the local cache, which answers from cache or forwards cluster names to CoreDNS over TCP. Benefits:
 
-#### NodeLocalDNS in RKE2
-In RKE2, NodeLocalDNS is optional but recommended for clusters with high DNS query volumes or latency-sensitive applications. When enabled:
+- Lower DNS latency, since most answers come from the same node.
+- Less load on the CoreDNS Deployment.
+- Avoids conntrack races on UDP DNS that cause intermittent 5 second lookups.
 
-- A dedicated IP is assigned for DNS caching on each node.
-- It intercepts DNS queries from Pods and serves cached responses or forwards them to CoreDNS.
-- The configuration is managed via the `nodelocaldns` Helm chart, part of the RKE2 addons.
+#### NodeLocal DNSCache in RKE2
+In RKE2, NodeLocal DNSCache is optional and is part of the `rke2-coredns` chart. Enable it with a `HelmChartConfig`, placed in `/var/lib/rancher/rke2/server/manifests/` on a server node or applied with `kubectl`.
 
-To enable NodeLocalDNS in RKE2, configure the following:
+**Canal or Calico with kube-proxy in iptables mode:**
 
-1. Update the RKE2 config file (`/etc/rancher/rke2/config.yaml`) to include NodeLocalDNS settings.
-2. Deploy the `nodelocaldns` Helm chart using RKE2's Helm controller.
+```yaml
+apiVersion: helm.cattle.io/v1
+kind: HelmChartConfig
+metadata:
+  name: rke2-coredns
+  namespace: kube-system
+spec:
+  valuesContent: |-
+    nodelocal:
+      enabled: true
+```
 
-Applying the following configuration to the RKE2 config file will enable NodeLocalDNS if you are running cilium as the CNI:
+**kube-proxy in IPVS mode:** add `ipvs: true` under `nodelocal`. In IPVS mode the cache cannot intercept the Service IP, so every node's kubelet must point at the node-local address instead, for example `kubelet-arg: ["cluster-dns=169.254.20.10"]` in the RKE2 config, followed by an RKE2 restart and a restart of running pods. Note that kube-proxy IPVS mode is deprecated starting in Kubernetes v1.35.
+
+**Cilium with kube-proxy replacement:** Cilium's eBPF datapath bypasses the iptables rules NodeLocal normally uses, so RKE2 uses a Cilium Local Redirect Policy instead (supported since v1.28.13+rke2r1, v1.29.8+rke2r1 and v1.30.4+rke2r1):
 
 ```yaml
 ---
@@ -61,7 +76,7 @@ metadata:
 spec:
   valuesContent: |-
     kubeProxyReplacement: true
-    k8sServiceHost: 127.0.0.1
+    k8sServiceHost: <api-server-ip>
     k8sServicePort: 6443
     localRedirectPolicy: true
 ---
@@ -75,69 +90,78 @@ spec:
     nodelocal:
       enabled: true
       use_cilium_lrp: true
----
 ```
 
-If you are using Canal as the CNI, you can enable NodeLocalDNS by applying the following configuration:
+Set `k8sServiceHost` to an address that reaches the API server from every node (RKE2's docs use your API server IP). The RKE2 docs still show the older `localRedirectPolicy: true` key, while the current [Cilium docs](https://docs.cilium.io/en/stable/network/kubernetes/local-redirect-policy/) enable the feature with `localRedirectPolicies.enabled: true`. Whichever key your Cilium chart version accepts, confirm the result with `kubectl -n kube-system get cm cilium-config -o yaml | grep local-redirect`, which should show `enable-local-redirect-policy: "true"`. For Cilium side debugging, see the [Cilium Troubleshooting Guide](/post/cilium-troubleshooting-2025/).
 
-```yaml
-apiVersion: helm.cattle.io/v1
-kind: HelmChartConfig
-metadata:
-  name: rke2-coredns
-  namespace: kube-system
-spec:
-  valuesContent: |-
-    nodelocal:
-      enabled: true
+Warning from the RKE2 docs: NodeLocal changes node iptables rules to intercept DNS, so enabling it and then disabling it without redeploying can break DNS until the rules are cleaned up.
+
+---
+
+### Troubleshooting CoreDNS and NodeLocal DNSCache
+
+Create a test pod first. The upstream `dnsutils` manifest uses `registry.k8s.io/e2e-test-images/agnhost`, which has reliable `nslookup` and `dig` (BusyBox `nslookup` gives misleading results with search domains):
+
+```bash
+kubectl apply -f https://k8s.io/examples/admin/dns/dnsutils.yaml
+kubectl wait --for=condition=Ready pod/dnsutils
+kubectl exec -it dnsutils -- cat /etc/resolv.conf
 ```
 
+The `nameserver` line tells you which path the pod uses: the CoreDNS Service IP, or `169.254.20.10` in IPVS-mode NodeLocal setups.
+
+#### Common CoreDNS issues and fixes
+
+**DNS resolution failures**
+
+- **Symptoms**: applications report "unknown host" or `SERVFAIL`, or fail to resolve Service names.
+- **Checks**:
+  - CoreDNS pods are running: `kubectl get pods -n kube-system -l k8s-app=kube-dns -o wide`.
+  - CoreDNS logs: `kubectl logs -n kube-system -l k8s-app=kube-dns --tail=50`.
+  - The Service has endpoints: `kubectl get endpointslices -n kube-system -l k8s-app=kube-dns`.
+  - Internal name: `kubectl exec -it dnsutils -- nslookup kubernetes.default`.
+  - Service in another namespace: `kubectl exec -it dnsutils -- nslookup <service>.<namespace>.svc.cluster.local`.
+  - External name: `kubectl exec -it dnsutils -- nslookup example.com`.
+- **Fixes**:
+  - Validate the Corefile for syntax errors; CoreDNS logs `plugin/...` errors at startup.
+  - Make sure the `forward` plugin points at working upstream resolvers. By default it uses the node's `/etc/resolv.conf`. On hosts with systemd-resolved that file points at `127.0.0.53`, which is unreachable from inside a pod; RKE2 and K3s detect this and hand kubelet `/run/systemd/resolve/resolv.conf` instead, and on other distributions you set kubelet's `--resolv-conf` yourself.
+  - If only pods on some nodes fail, test pod to pod connectivity across nodes (see the overlay test below); DNS is often the first symptom of a broken CNI overlay.
+  - Turn on query logging temporarily by adding the `log` plugin to the Corefile.
+
+**High latency in DNS queries**
+
+- **Symptoms**: slow first requests, or lookups that take about 5 seconds and then succeed.
+- **Checks**:
+  - CPU throttling or OOM restarts in CoreDNS pods: `kubectl top pods -n kube-system -l k8s-app=kube-dns`.
+  - Query time from a pod: `kubectl exec -it dnsutils -- dig +stats kubernetes.default.svc.cluster.local`.
+  - The `ndots:5` search path: an external name like `api.example.com` is first tried with every search domain. A trailing dot (`api.example.com.`) or a lower `ndots` in the pod `dnsConfig` avoids that.
+- **Fixes**:
+  - Keep the `cache` plugin enabled (it is in the default Corefile) and give CoreDNS enough CPU.
+  - Scale CoreDNS (adjust the autoscaler parameters in the `rke2-coredns` `HelmChartConfig`).
+  - Enable NodeLocal DNSCache to remove cross-node hops and the UDP conntrack race.
+
+More tuning ideas are in [Kubernetes DNS Optimization](/kubernetes-dns-optimization/).
+
+#### NodeLocal DNSCache troubleshooting
+
+**Local cache not responding**
+
+- **Symptoms**: DNS is slow or fails on some nodes, or pods bypass the cache.
+- **Checks**:
+  - The DaemonSet is running on every node: `kubectl get ds -n kube-system | grep -i node-local` and `kubectl get pods -n kube-system -o wide | grep -i node-local`.
+  - Query the cache directly from a pod on the affected node: `kubectl exec -it dnsutils -- nslookup kubernetes.default 169.254.20.10`.
+  - In iptables mode, check on the node that the link-local address exists: `ip addr show nodelocaldns`.
+  - With Cilium, confirm the redirect policy exists: `kubectl get ciliumlocalredirectpolicies -A`.
+- **Fixes**:
+  - Restart the NodeLocal pod on the affected node.
+  - If you just toggled NodeLocal on or off, restart RKE2 on the node and recreate pods so iptables rules and `resolv.conf` match.
+  - With Cilium, make sure `localRedirectPolicy` is enabled in `rke2-cilium` and the Cilium agents were restarted after the change.
+
 ---
 
-### Troubleshooting CoreDNS and NodeLocalDNS
+### Overlay test
 
-#### Common CoreDNS Issues and Fixes
-
-**DNS Resolution Failures**
-
-- **Symptoms**: Applications report "unknown host" or fail to resolve service names.
-- **Checks**:
-  - Ensure CoreDNS pods are running: `kubectl get pods -n kube-system -l k8s-app=kube-dns`.
-  - Review CoreDNS logs: `kubectl logs -n kube-system -l k8s-app=kube-dns`.
-  - Test resolution with `nslookup` or `dig`.
-  - Test internal DNS: `kubectl run dns-test --rm -it --image=busybox --restart=Never -- nslookup <service-name>.<namespace>.svc.cluster.local`.
-  - Test external DNS: `kubectl run dns-test --rm -it --image=busybox --restart=Never -- nslookup google.com`.
-- **Fixes**:
-  - Validate CoreDNS ConfigMap for syntax errors.
-  - Ensure correct upstream servers are specified in the forward plugin.
-
-**High Latency in DNS Queries**
-
-- **Symptoms**: Applications experience delays in resolving hostnames.
-- **Checks**:
-  - Look for high CPU or memory usage in CoreDNS pods.
-  - Monitor DNS query time with `kubectl exec` to test queries.
-- **Fixes**:
-  - Enable caching in the CoreDNS ConfigMap.
-  - Scale CoreDNS replicas for better load distribution.
-
-#### NodeLocalDNS Troubleshooting
-
-**Local Cache Not Responding**
-
-- **Symptoms**: DNS queries are slow, bypassing NodeLocalDNS.
-- **Checks**:
-  - Verify NodeLocalDNS DaemonSet is running: `kubectl get pods -n kube-system -l k8s-app=node-local-dns`.
-  - Test DNS resolution directly via NodeLocalDNS IP using a pod: `kubectl run dns-test --rm -it --image=busybox --restart=Never -- nslookup kubernetes.default.svc.cluster.local <NodeLocalDNS-IP>`.
-- **Fixes**:
-  - Restart NodeLocalDNS pods to reset cache.
-  - Verify node-level IP and configuration.
-
----
-
-### Overlay Test
-
-As part of Rancher's overlay test, which can be found [here](https://github.com/rancherlabs/support-tools), you can deploy it to the Rancher environment by running the following command:
+DNS failures on only some nodes usually mean pod to pod traffic between nodes is broken. Rancher's [support-tools overlay test](https://github.com/rancherlabs/support-tools) checks that. Deploy its DaemonSet:
 
 ```bash
 kubectl apply -f https://raw.githubusercontent.com/rancherlabs/support-tools/master/swiss-army-knife/overlaytest.yaml
@@ -175,7 +199,7 @@ To run the overlay test script, execute the following command:
 curl -sfL https://raw.githubusercontent.com/rancherlabs/support-tools/master/swiss-army-knife/overlaytest.sh | bash
 ```
 
-The overlay test script includes the option to enable DNS checks using the `--dns-check` flag. Here's an example script:
+The script below is a simplified version that adds optional DNS checks with a `--dns-check` flag:
 
 ```bash
 #!/bin/bash
@@ -252,34 +276,74 @@ This script allows for comprehensive testing of overlay network connectivity, in
 
 ---
 
-### Monitoring CoreDNS and NodeLocalDNS
+### Monitoring CoreDNS and NodeLocal DNSCache
 
-#### Using Metrics and Logs
+#### CoreDNS metrics
 
-**CoreDNS Metrics**
+CoreDNS exposes Prometheus metrics on port 9153 through the `prometheus` plugin. Many older guides use metric names that were removed in CoreDNS 1.7.0 (`coredns_dns_request_count_total`, `coredns_dns_request_error_count_total`). The current names are:
 
-CoreDNS exports Prometheus metrics that provide insights into:
+| Metric | What it tells you |
+|---|---|
+| `coredns_dns_requests_total` | Query rate, by server, zone, protocol and type |
+| `coredns_dns_responses_total` | Responses by `rcode` (`NOERROR`, `NXDOMAIN`, `SERVFAIL`, `REFUSED`) |
+| `coredns_dns_request_duration_seconds` | Latency histogram |
+| `coredns_cache_hits_total` / `coredns_cache_misses_total` | Cache effectiveness |
+| `coredns_proxy_request_duration_seconds`, `coredns_proxy_healthcheck_failures_total` | Upstream (forward plugin) latency and failed health checks; the older `coredns_forward_requests_total` family is deprecated |
+| `coredns_panics_total` | Crashes inside plugins |
 
-- DNS query rates (`coredns_dns_request_count_total`).
-- Errors in query processing (`coredns_dns_request_error_count_total`).
-- Cache hits and misses.
+Useful queries:
 
-**NodeLocalDNS Metrics**
+```promql
+# Queries per second
+sum(rate(coredns_dns_requests_total[5m]))
 
-Monitor node-level metrics for latency and cache performance. In RKE2, metrics can be scraped from NodeLocalDNS DaemonSet pods by integrating Prometheus.
+# SERVFAIL ratio
+sum(rate(coredns_dns_responses_total{rcode="SERVFAIL"}[5m]))
+  / sum(rate(coredns_dns_responses_total[5m]))
 
-#### Visualization with Grafana
+# 99th percentile latency
+histogram_quantile(0.99, sum by (le) (rate(coredns_dns_request_duration_seconds_bucket[5m])))
 
-- **Dashboards**:
-  - Import a Kubernetes DNS monitoring dashboard in Grafana (e.g., Dashboard ID: 14981).
-  - Display metrics like query rates, error rates, and latency.
+# Cache hit ratio
+sum(rate(coredns_cache_hits_total[5m]))
+  / (sum(rate(coredns_cache_hits_total[5m])) + sum(rate(coredns_cache_misses_total[5m])))
+```
 
-- **Alerting**:
-  - Configure alerts for high error rates or unusual latency.
+#### NodeLocal DNSCache metrics
+
+The node cache is CoreDNS-based, so it exports the same `coredns_*` metric names. In the upstream NodeLocal DNSCache manifest the metrics listen on port 9253; check the DaemonSet's container ports and annotations in your cluster before adding a scrape job, and add a `job` or `instance` filter so node cache metrics are not mixed with the CoreDNS Deployment.
+
+#### Visualization and alerting with Grafana
+
+- Import dashboard **14981** ("CoreDNS", built for the metric names used by CoreDNS 1.7.0 and later). Dashboards made for the old names show empty panels.
+- Alert on a sustained SERVFAIL ratio, on p99 latency above your target (for example 100 ms), and on CoreDNS pods not being ready.
+- Rancher Monitoring (kube-prometheus-stack) already scrapes CoreDNS on RKE2 and ships CoreDNS alert rules; check them before adding your own.
 
 ---
 
-### Conclusion
+### FAQ
 
-CoreDNS and NodeLocalDNS are critical to Kubernetes cluster operations, especially in RKE2. Understanding their configurations, troubleshooting effectively, and setting up robust monitoring can ensure your cluster's DNS subsystem operates smoothly. By leveraging tools like Prometheus and Grafana, you can proactively address issues and optimize DNS performance.
+#### What IP does NodeLocal DNSCache use?
 
+`169.254.20.10` by default, set by `nodelocal.ip_address` in the RKE2 chart. In iptables mode the cache also intercepts traffic sent to the CoreDNS Service IP, so pods do not need a different `nameserver`. In IPVS mode you point kubelet at `169.254.20.10` instead.
+
+#### Does NodeLocal DNSCache work with Cilium kube-proxy replacement?
+
+Yes, but not through iptables. On RKE2 set `nodelocal.use_cilium_lrp: true` and enable Local Redirect Policies in Cilium, as shown above.
+
+#### Why does DNS take 5 seconds and then work?
+
+The usual causes are the UDP conntrack race on parallel A and AAAA queries, or a lost packet across a broken overlay. NodeLocal DNSCache fixes the first; the overlay test above finds the second.
+
+#### Why do my CoreDNS Grafana panels show "No data"?
+
+The dashboard uses metric names from before CoreDNS 1.7.0. Use `coredns_dns_requests_total` and `coredns_dns_responses_total`, or import dashboard 14981.
+
+---
+
+### Related guides
+
+- [CoreDNS with Rancher: Best Practices and Troubleshooting](/coredns-and-rancher/)
+- [Kubernetes DNS Optimization](/kubernetes-dns-optimization/)
+- [Deploying an EKS Cluster with NodeLocal DNSCache](/post/deploy-eks-with-nodelocaldns/)
+- [Cilium Troubleshooting Guide](/post/cilium-troubleshooting-2025/)

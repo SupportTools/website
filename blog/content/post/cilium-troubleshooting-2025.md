@@ -1,6 +1,7 @@
 ---
-title: "Advanced Cilium Troubleshooting Guide for 2025"
+title: "Cilium Troubleshooting Guide: Commands That Work in 2026"
 date: 2025-03-14T14:00:00-05:00
+lastmod: 2026-10-23
 draft: false
 tags: ["Cilium", "Kubernetes", "Networking", "eBPF", "Troubleshooting"]
 categories:
@@ -8,827 +9,374 @@ categories:
 - Kubernetes
 - Security
 author: "Matthew Mattox - mmattox@support.tools"
-description: "A comprehensive, in-depth guide for troubleshooting Cilium issues within Kubernetes clusters in 2025 with advanced diagnostic techniques."
+description: "Troubleshoot Cilium 1.16 to 1.20: run cilium-dbg on the right node, find drops with Hubble, debug policy, DNS and services, and collect a sysdump."
 more_link: "yes"
+quick_fix: |
+  Run `cilium status --wait` and `cilium connectivity test` from your workstation with the cilium CLI.
+  Then exec into the agent **on the affected node** (not a random `ds/cilium` pod):
+  `kubectl -n kube-system exec <cilium-pod-on-that-node> -c cilium-agent -- cilium-dbg status --verbose`.
+  Find the dropped packets with `hubble observe --verdict DROPPED --pod <ns>/<pod>` or `cilium-dbg monitor --type drop`; the drop reason tells you whether it is policy, routing or a missing endpoint.
+  Since Cilium 1.15 the in-pod CLI is `cilium-dbg`, not `cilium`.
 ---
 
-Troubleshooting Cilium in Kubernetes environments remains challenging, especially as Cilium continues to evolve with more features and capabilities. This advanced guide expands on our [previous troubleshooting guide](../cilium-troubleshooting) with deeper insights, more detailed diagnostic approaches, and comprehensive resolution paths for complex Cilium issues in 2025.
+Troubleshooting Cilium is mostly about running the right command in the right place. This guide is a working reference for current Cilium releases (1.16 through 1.20, with 1.20.3 the current stable at the time of this update): the cilium CLI on your workstation, `cilium-dbg` inside the agent, and Hubble for flows. It builds on our earlier [Cilium Troubleshooting Guide](/post/cilium-troubleshooting/).
 
 <!--more-->
 
-## Introduction and Cilium Architecture Review
+## What changed since older Cilium guides
 
-Before diving into specific troubleshooting techniques, it's essential to understand Cilium's architecture and how its components interact. Cilium operates as a CNI plugin for Kubernetes and leverages eBPF technology to provide networking, security, and observability functions.
+- **`cilium` inside the agent pod is now `cilium-dbg`.** The in-agent debug CLI was renamed in Cilium 1.15. The name `cilium` now refers to the separate [cilium CLI](https://github.com/cilium/cilium-cli) you install on your workstation (`cilium status`, `cilium connectivity test`, `cilium sysdump`, `cilium hubble port-forward`, `cilium config`).
+- **Kernel requirement.** Current Cilium requires Linux 5.10 or later, or an equivalent backport such as RHEL 8.10's 4.18 kernel ([system requirements](https://docs.cilium.io/en/stable/operations/system_requirements/)).
+- **Sysdump.** The old standalone `cilium-sysdump` zip is gone; use `cilium sysdump`.
+- **Upgrades.** Only consecutive minor upgrades are tested (1.19 to 1.20, not 1.18 to 1.20).
 
-### Key Components
+Many commands in older blog posts, including the 2025 version of this page, used flags and subcommands that do not exist (`cilium kernel-check`, `cilium monitor -n <namespace>`, `cilium proxy get access-log`). The commands below are taken from the current Cilium docs and CLI help.
 
-- **Cilium Agent**: Runs on each node, responsible for programming eBPF programs
-- **Cilium Operator**: Cluster-scoped component that handles tasks requiring cluster-wide knowledge
-- **eBPF Programs**: The core of Cilium's functionality, injected into the kernel
-- **Hubble**: Optional observability layer for network traffic visualization
-- **Cilium CLI**: Command-line interface for interacting with Cilium components
+## Architecture in one minute
 
-### Network Flow Paths
+- **cilium-agent** (DaemonSet): programs eBPF on each node, manages endpoints, identities, policy and service load balancing.
+- **cilium-operator** (Deployment): cluster-wide tasks such as IPAM allocation and identity garbage collection.
+- **cilium-envoy** (DaemonSet in recent releases, or embedded): L7 policy, Ingress and Gateway API.
+- **Hubble** (in the agent) plus **hubble-relay** and **hubble-ui**: flow visibility.
 
-Understanding how packets flow through a Cilium-enabled cluster is crucial for troubleshooting:
+Packet paths to keep in mind:
 
-1. **Pod Egress**: Pod → veth pair → eBPF TC hook → routing decision → destination
-2. **Pod Ingress**: Source → node network interface → eBPF TC hook → veth pair → pod
-3. **Service Access**: Pod → eBPF service lookup → endpoint selection → destination pod
+1. **Pod egress**: pod, veth, eBPF program on the host side of the veth, routing (native routing or VXLAN/Geneve tunnel), destination.
+2. **Pod ingress**: node interface, eBPF on the node interface, veth, pod.
+3. **Service access**: the destination ClusterIP is translated to a backend by eBPF at the socket or TC layer, before the packet leaves the pod's node.
 
-This knowledge helps identify where in the path issues might be occurring.
+## Step 0: Talk to the agent on the right node
 
-## Diagnostic Foundations
-
-### Setting Proper Logging Levels
-
-Cilium's default logging level might not provide enough information for advanced troubleshooting. Modify it using:
+`kubectl exec ds/cilium` picks an arbitrary agent pod, which is the wrong one for node-specific problems. Select the agent on the node that runs the affected pod:
 
 ```bash
-# Check current logging configuration
-kubectl -n kube-system exec -it ds/cilium -- cilium config get debug
+NODE=$(kubectl get pod <pod> -n <namespace> -o jsonpath='{.spec.nodeName}')
+CILIUM_POD=$(kubectl -n kube-system get pod -l k8s-app=cilium --field-selector spec.nodeName="$NODE" -o name)
 
-# Enable more verbose logging
-kubectl -n kube-system exec -it ds/cilium -- cilium config set debug true
+cdbg() { kubectl -n kube-system exec "$CILIUM_POD" -c cilium-agent -- cilium-dbg "$@"; }
+
+cdbg status --verbose
 ```
 
-For even more granular control:
+The rest of this guide uses `cdbg` for `cilium-dbg` on the selected node. On RKE2 Cilium also runs in `kube-system`, installed by the `rke2-cilium` chart.
+
+## Cluster-level diagnostics
+
+### Overall health
 
 ```bash
-# Set specific logging levels for components
-kubectl -n kube-system exec -it ds/cilium -- cilium config set debug-verbose map[datapath:true policy:true]
-```
-
-### Understanding Cilium Logs
-
-Cilium logs contain valuable diagnostic information. Key patterns to look for:
-
-- `level=info msg="Initializing Cilium"`: Startup sequence
-- `level=debug msg="Endpoint starting regeneration"`: Endpoint configuration changes
-- `level=warning msg="Failed to"`: Indication of issues 
-- `level=error`: Critical issues requiring attention
-
-When analyzing logs, use a structured approach:
-
-```bash
-# Extract error messages
-kubectl -n kube-system logs ds/cilium | grep "level=error"
-
-# Look for policy-related messages
-kubectl -n kube-system logs ds/cilium | grep "level=debug.*policy"
-
-# Examine startup sequence
-kubectl -n kube-system logs ds/cilium | grep "Initializing"
-```
-
-### Establishing Baseline Metrics
-
-Before troubleshooting, establish performance baselines:
-
-```bash
-# Get current Cilium agent metrics
-kubectl -n kube-system exec -it ds/cilium -- cilium metrics list
-
-# Focus on key performance indicators
-kubectl -n kube-system exec -it ds/cilium -- cilium metrics list | grep "datapath\|endpoint\|policy"
-```
-
-Important metrics to monitor include:
-- `cilium_endpoint_regenerations_total`: Frequency of endpoint regenerations
-- `cilium_datapath_errors_total`: Datapath programming failures
-- `cilium_policy_import_errors_total`: Policy import issues
-- `cilium_datapath_conntrack_gc_duration_seconds`: Connection tracking garbage collection time
-
-## Cluster-Level Diagnostics
-
-### Agent Health Verification
-
-A thorough health check should be your first step:
-
-```bash
-# Get all Cilium pods and their status
+cilium status --wait
 kubectl -n kube-system get pods -l k8s-app=cilium -o wide
-
-# Check Cilium status on each node
-for pod in $(kubectl -n kube-system get pods -l k8s-app=cilium -o name); do
-  echo "Checking $pod..."
-  kubectl -n kube-system exec -it $pod -- cilium status --verbose
-done
+kubectl -n kube-system get pods -l name=cilium-operator -o wide
 ```
 
-The status output reveals critical information:
-- KVStore connectivity
-- Kubernetes API server connectivity
-- Controller status (should show "0/X failing")
-- Proxy status
-- Cluster health
+`cilium status` summarizes agent, operator, Hubble and Envoy readiness and any errors per node. On a single node, `cdbg status --verbose` shows:
 
-Any failing controllers warrant investigation:
+- **Kubernetes** API connectivity and **KVStore** (only relevant if you run an external etcd kvstore).
+- **Controller Status**: should read `0/N failing`. Any failing controller is named with its last error.
+- **Proxy Status**, **IPAM** allocation, **Encryption**, and **Cluster health** (node to node reachability).
+
+Node to node health is checked by `cilium-health`:
 
 ```bash
-# List failing controllers with details
-kubectl -n kube-system exec -it ds/cilium -- cilium status --verbose | grep -A 5 "Controller Status"
+kubectl -n kube-system exec "$CILIUM_POD" -c cilium-agent -- cilium-health status --verbose
 ```
 
-### Cilium Operator Troubleshooting
+Unreachable nodes here usually mean a firewall blocking VXLAN (UDP 8472) or Geneve (UDP 6081), the health port (TCP 4240), or an MTU mismatch.
 
-The Cilium Operator handles cluster-wide resources like CiliumNetworkPolicies:
+### Operator problems
 
 ```bash
-# Check operator logs
-kubectl -n kube-system logs -l name=cilium-operator
-
-# Check operator status
-kubectl -n kube-system get deployment cilium-operator
+kubectl -n kube-system logs deploy/cilium-operator --tail=100
+kubectl -n kube-system describe deploy/cilium-operator
 ```
 
-Common operator issues include:
-- CRD synchronization failures
-- Webhook configuration problems
-- Resource exhaustion (check for OOMKilled in pod events)
+Common causes: RBAC or API connectivity errors, IPAM exhaustion (no more pod CIDRs to hand out), and OOMKilled pods on large clusters.
 
-### Control Plane to Data Plane Synchronization
-
-Verify synchronization between Kubernetes and Cilium:
+### Logs and debug mode
 
 ```bash
-# Get all Kubernetes services
-kubectl get svc --all-namespaces
-
-# Compare with Cilium's service list on a node
-kubectl -n kube-system exec -it ds/cilium -- cilium service list
+kubectl -n kube-system logs "$CILIUM_POD" -c cilium-agent --tail=200 | grep -E 'level=(error|warn)'
 ```
 
-Any discrepancies indicate synchronization issues. Check for:
-- Services in Kubernetes not appearing in Cilium
-- Endpoints missing in Cilium's service backends
-
-### Kernel Compatibility Verification
-
-Cilium requires specific kernel features. Verify compatibility:
+To enable debug logging, set it in the `cilium-config` ConfigMap through the cilium CLI (which restarts the agents) or through your Helm values (`debug.enabled=true`, `debug.verbose=datapath`):
 
 ```bash
-# Run compatibility check
-kubectl -n kube-system exec -it ds/cilium -- cilium kernel-check
+cilium config set debug true
+cilium config set debug-verbose datapath
+kubectl -n kube-system get cm cilium-config -o yaml | grep debug
 ```
 
-Issues like missing eBPF maps or programs may indicate kernel incompatibility.
+Turn it off again afterwards; datapath debug is very noisy. On RKE2, set these through the `rke2-cilium` `HelmChartConfig` instead, or the Helm controller will revert them.
 
-### eBPF Map Diagnostics
-
-eBPF maps are key-value stores used by Cilium. Examine them:
+### Services: Kubernetes vs the datapath
 
 ```bash
-# List available maps
-kubectl -n kube-system exec -it ds/cilium -- cilium bpf maps list
-
-# Check specific map details
-kubectl -n kube-system exec -it ds/cilium -- cilium bpf ct list global
+kubectl get svc,endpointslices -n <namespace>
+cdbg service list
+cdbg bpf lb list
 ```
 
-Watch for these issues:
-- Maps at capacity (size vs max entries)
-- Stale entries
-- Unexpected entries
+A Service missing from `cdbg service list`, or a backend missing from its list, means the agent has not processed the update. Check the agent log for API errors before restarting anything.
 
-## Pod Connectivity Troubleshooting
-
-### Pod-to-Pod Communication Path Analysis
-
-When pods can't communicate, trace the path:
+### eBPF maps
 
 ```bash
-# Identify the Cilium endpoint IDs
-kubectl -n kube-system exec -it ds/cilium -- cilium endpoint list
-
-# Examine specific endpoints
-kubectl -n kube-system exec -it ds/cilium -- cilium endpoint get <id>
-
-# Trace traffic between endpoints
-kubectl -n kube-system exec -it ds/cilium -- cilium monitor --to-endpoint <destination-id> --from-endpoint <source-id>
+cdbg map list
+cdbg bpf ct list global | wc -l
 ```
 
-This traces live traffic between endpoints. Look for:
-- `DROP_POLICY`: Policy violations
-- `DROP_CT_INVALID`: Connection tracking issues
-- `Packet dropped`: Generic drops with reasons
+`cdbg map list` shows each map with its entry count. Watch the `cilium_bpf_map_pressure` metric for maps that are close to full; a full connection tracking or NAT map causes random new-connection failures. Size them with `bpf.mapDynamicSizeRatio` or the specific `bpf.*Max` Helm values.
 
-### Advanced Connectivity Testing
+## Pod connectivity
 
-For more structured testing:
+### Find the drop
+
+Hubble is the fastest way to see what happens to a flow:
 
 ```bash
-# Deploy the connectivity test
-kubectl create ns cilium-test
-kubectl apply -n cilium-test -f https://raw.githubusercontent.com/cilium/cilium/v1.15.x/examples/kubernetes/connectivity-check/connectivity-check.yaml
-
-# Verify all pods are running
-kubectl -n cilium-test get pods
+cilium hubble port-forward &
+hubble observe --pod <namespace>/<pod> --last 50
+hubble observe --verdict DROPPED --namespace <namespace> -f
 ```
 
-Analyze any failing pods:
+Without Hubble, use the monitor on the node of the source or destination pod:
 
 ```bash
-# Get details on failing pods
-kubectl -n cilium-test describe pod <failing-pod>
-
-# Check logs
-kubectl -n cilium-test logs <failing-pod>
+cdbg endpoint list
+cdbg monitor --type drop
+cdbg monitor --related-to <endpoint-id>
 ```
 
-### DNS Resolution Issues
+The drop reason is the key:
 
-Cilium can act as a DNS proxy. Check for DNS issues:
+| Drop reason | Usual cause |
+|---|---|
+| `Policy denied` | A network policy does not allow the flow (see policy section) |
+| `Stale or unroutable IP` | Traffic to an IP that is no longer a known endpoint, often after pod churn |
+| `CT: Map insertion failed` | Connection tracking map full |
+| `Invalid source ip` or `Unsupported L3 protocol` | Spoofed or unexpected traffic, or a misconfigured multi-homed pod |
+| `No tunnel/encapsulation endpoint` | The agent does not know the remote node; check `cilium-health` and node CIDRs |
+
+### Structured connectivity test
 
 ```bash
-# Verify DNS proxy status
-kubectl -n kube-system exec -it ds/cilium -- cilium status | grep DNS
-
-# Check DNS cache entries
-kubectl -n kube-system exec -it ds/cilium -- cilium fqdn cache list
+cilium connectivity test
 ```
 
-Common DNS troubleshooting steps:
-1. Verify CoreDNS/kube-dns is functioning
-2. Check Cilium's DNS proxy configuration
-3. Examine DNS policies if FQDN policies are in use
-4. Monitor DNS traffic:
+This creates test workloads in the `cilium-test-*` namespaces, runs pod to pod, pod to Service, node port, egress and policy scenarios, and cleans up after itself on success. Use `--test <name>` to run a subset. The [troubleshooting docs](https://docs.cilium.io/en/stable/operations/troubleshooting/) still publish the older static `connectivity-check.yaml` manifest per release if you cannot run the CLI.
+
+### MTU and encapsulation
+
+Large requests that hang while small ones work point to MTU. With VXLAN or Geneve, the pod MTU must be at least 50 bytes smaller than the underlay MTU. Check what Cilium chose:
 
 ```bash
-# Monitor DNS traffic
-kubectl -n kube-system exec -it ds/cilium -- cilium monitor --type L7 | grep DNS
+cdbg status --verbose | grep -i mtu
+kubectl -n kube-system get cm cilium-config -o yaml | grep -i mtu
 ```
 
-### Packet Capture and Analysis
+### DNS problems
 
-For deeper analysis, capture packets at the endpoint:
+Cilium only proxies DNS when an FQDN policy (`toFQDNs`) or DNS visibility rule applies to the pod. Check CoreDNS first (see [CoreDNS and NodeLocal DNSCache: Troubleshoot and Monitor](/coredns-nodelocaldns-troubleshooting-monitoring/)), then Cilium:
 
 ```bash
-# Find the endpoint ID and security ID
-kubectl -n kube-system exec -it ds/cilium -- cilium endpoint list
-
-# Capture traffic for a specific endpoint
-kubectl -n kube-system exec -it ds/cilium -- cilium monitor --type drop -n <namespace> -o json
-
-# Export to pcap for Wireshark analysis
-kubectl -n kube-system exec -it ds/cilium -- cilium monitor --type drop -n <namespace> --hexdump | cilium-monitor-format > capture.pcap
+hubble observe --pod <namespace>/<pod> --protocol dns
+cdbg fqdn cache list
 ```
 
-This provides visibility into:
-- Exactly which packets are being dropped
-- The drop reason coded in the eBPF programs
-- Packet contents for deeper inspection
+If pods with FQDN policies cannot resolve, make sure the policy also allows egress to `kube-dns` on port 53 with a `dns` rule, otherwise the DNS request itself is dropped. If you use NodeLocal DNSCache with kube-proxy replacement, it needs a Local Redirect Policy.
 
-### Traffic Flow Visualization with Hubble
+## Policy troubleshooting
 
-Hubble provides powerful visualization for Cilium traffic:
+### Audit mode
+
+Policy audit mode reports what would be denied without dropping it. Enable it cluster-wide with `cilium config set policy-audit-mode true` (or the Helm value `policyAuditMode=true`), then look for `audit` verdicts:
 
 ```bash
-# Check if Hubble is enabled
-kubectl -n kube-system get pods -l k8s-app=hubble
-
-# Enable Hubble if needed (example with Helm)
-helm upgrade cilium cilium/cilium --namespace kube-system --reuse-values --set hubble.enabled=true --set hubble.metrics.enabled="{dns,drop,tcp,flow,icmp,http}"
-
-# Access Hubble UI or CLI
-export POD_NAME=$(kubectl get pods -n kube-system -l k8s-app=hubble-relay -o name | head -n 1)
-kubectl -n kube-system port-forward $POD_NAME 4245:4245 &
-hubble status
-hubble observe
+hubble observe --verdict AUDIT --namespace <namespace>
 ```
 
-Hubble provides key insights:
-- Visual traffic flow between services and pods
-- Policy decision points
-- Drop reasons with rich context
-- L7 protocol insights (HTTP, gRPC, etc.)
+Turn it off when you are done; while it is on, policies do not block anything.
 
-## Advanced Policy Troubleshooting
+### Step-by-step policy debugging
 
-### Policy Audit Mode Usage
+1. **Labels on both pods**:
 
-Audit mode allows testing policies without enforcing them:
+   ```bash
+   kubectl get pod <source-pod> -n <ns> --show-labels
+   kubectl get pod <destination-pod> -n <ns> --show-labels
+   ```
+
+2. **Identities and endpoints**:
+
+   ```bash
+   cdbg endpoint list
+   cdbg identity list
+   ```
+
+3. **Policies that apply**:
+
+   ```bash
+   kubectl get networkpolicy,ciliumnetworkpolicy -n <namespace>
+   kubectl get ciliumclusterwidenetworkpolicy
+   cdbg policy selectors
+   cdbg endpoint get <endpoint-id>
+   cdbg bpf policy get <endpoint-id>
+   ```
+
+   The short names are `cnp` and `ccnp`.
+
+4. **Watch verdicts while you reproduce**:
+
+   ```bash
+   cdbg monitor --type policy-verdict
+   ```
+
+5. **Test with a narrow temporary allow policy**:
+
+   ```yaml
+   apiVersion: cilium.io/v2
+   kind: CiliumNetworkPolicy
+   metadata:
+     name: temp-allow
+     namespace: <namespace>
+   spec:
+     endpointSelector:
+       matchLabels:
+         app: <destination-app>
+     ingress:
+     - fromEndpoints:
+       - matchLabels:
+           app: <source-app>
+   ```
+
+   If this fixes it, the original policy's selectors or ports are wrong. Delete the temporary policy afterwards.
+
+Remember that as soon as any policy selects an endpoint in a direction (ingress or egress), everything not allowed in that direction is denied.
+
+## Performance
+
+### Connection tracking
 
 ```bash
-# Enable policy audit mode
-kubectl -n kube-system exec -it ds/cilium -- cilium config set policy-audit-mode true
-
-# Check policy violations in audit mode
-kubectl -n kube-system logs ds/cilium | grep "would be denied by policy"
+cdbg bpf ct list global | wc -l
+kubectl -n kube-system get cm cilium-config -o yaml | grep -E 'ct-|conntrack'
 ```
 
-This helps debug policy issues before enforcement.
+Flushing the table (`cdbg bpf ct flush global`) breaks established connections on that node; use it only as a last resort during an incident.
 
-### Analyzing Policy Enforcement Logs
-
-When policies block traffic, analyze the logs:
+### Agent resources
 
 ```bash
-# Monitor policy drops
-kubectl -n kube-system exec -it ds/cilium -- cilium monitor --type drop | grep "Policy denied"
-
-# Check specific policy status
-kubectl -n kube-system exec -it ds/cilium -- cilium policy get
-```
-
-Important details to extract:
-- Source and destination identity
-- Layer 3/4 information (IP, port, protocol)
-- Missing policy rule patterns
-
-### Step-by-Step Policy Debugging Workflow
-
-1. **Identify affected pods**:
-```bash
-# Get labels for source and destination pods
-kubectl get pod <source-pod> -o json | jq .metadata.labels
-kubectl get pod <destination-pod> -o json | jq .metadata.labels
-```
-
-2. **Check identity mapping**:
-```bash
-# Map labels to Cilium identities
-kubectl -n kube-system exec -it ds/cilium -- cilium identity list
-```
-
-3. **Verify policy rules**:
-```bash
-# Get policy for destination namespace
-kubectl get cnp,cclp -n <namespace> -o yaml
-```
-
-4. **Test with temporary allow policy**:
-```bash
-# Create a temporary allow policy
-cat <<EOF | kubectl apply -f -
-apiVersion: cilium.io/v2
-kind: CiliumNetworkPolicy
-metadata:
-  name: temp-allow
-  namespace: <namespace>
-spec:
-  endpointSelector:
-    matchLabels:
-      app: <destination-app>
-  ingress:
-  - fromEndpoints:
-    - matchLabels:
-        app: <source-app>
-EOF
-```
-
-5. **Monitor policy resolution**:
-```bash
-# Watch policy computation
-kubectl -n kube-system exec -it ds/cilium -- cilium monitor --type policy
-```
-
-### Policy Test Frameworks
-
-For automated policy testing, use the Cilium policy test framework:
-
-```bash
-# Clone Cilium repository for the test framework
-git clone https://github.com/cilium/cilium.git
-cd cilium/test/k8s/manifests
-
-# Deploy test pods
-kubectl apply -f policy-test/
-
-# Run connectivity tests
-cd ../../..
-go test ./test/k8s/policy_test.go -run TestPolicyEnforcement
-```
-
-## Performance Diagnostics
-
-### Identifying eBPF Program Bottlenecks
-
-Performance issues might stem from eBPF programs:
-
-```bash
-# Check eBPF program performance
-kubectl -n kube-system exec -it ds/cilium -- cilium bpf program list
-
-# Get detailed map information
-kubectl -n kube-system exec -it ds/cilium -- cilium bpf map list
-```
-
-Look for:
-- High iteration counts in maps
-- Programs with significant runtime
-- Map sizes approaching limits
-
-### Connection Tracking Table Troubleshooting
-
-Connection tracking (CT) tables can cause performance issues:
-
-```bash
-# Check CT table statistics
-kubectl -n kube-system exec -it ds/cilium -- cilium bpf ct list global | wc -l
-
-# Get CT timeouts
-kubectl -n kube-system exec -it ds/cilium -- cilium config | grep "conntrack-"
-```
-
-Common issues:
-- CT table at max capacity
-- Stale connections not being pruned
-- Aggressive timeout settings
-
-```bash
-# Manually trigger garbage collection
-kubectl -n kube-system exec -it ds/cilium -- cilium bpf ct flush global
-```
-
-### CPU and Memory Resource Constraints Analysis
-
-Resource constraints often manifest as performance issues:
-
-```bash
-# Check Cilium pod resource usage
 kubectl -n kube-system top pod -l k8s-app=cilium
-
-# Examine node capacity
-kubectl -n kube-system describe node <node-name> | grep -A 5 "Capacity"
+kubectl -n kube-system describe pod "${CILIUM_POD#pod/}" | grep -A3 -i 'last state'
 ```
 
-Look for:
-- CPU throttling
-- Memory pressure
-- OOMKilled events in pod logs
+OOMKilled agents or heavy CPU throttling show up as slow endpoint regeneration and delayed policy updates. Check `cilium_endpoint_regeneration_time_stats_seconds` and `cilium_endpoint_regenerations_total` in Prometheus.
 
-## Service Mesh Integration Issues
+### Useful metrics
 
-### Envoy Proxy Configuration Troubleshooting
+- `cilium_drop_count_total` by `reason` and `direction`
+- `cilium_bpf_map_pressure`
+- `cilium_endpoint_regenerations_total` by `outcome`
+- `cilium_unreachable_nodes`
+- `cilium_datapath_errors_total`
 
-When using Cilium's Envoy integration:
+## L7, Envoy, Ingress and Gateway API
 
 ```bash
-# Check Envoy status
-kubectl -n kube-system exec -it ds/cilium -- cilium status --verbose | grep -A 10 Proxy
-
-# Get Envoy config
-kubectl -n kube-system exec -it ds/cilium -- cilium bpf proxy list
-
-# View Envoy access logs
-kubectl -n kube-system exec -it ds/cilium -- cilium proxy get access-log
+cilium status | grep -i envoy
+kubectl -n kube-system get pods -l k8s-app=cilium-envoy -o wide
+kubectl -n kube-system logs ds/cilium-envoy --tail=100
+hubble observe --type l7 --namespace <namespace>
+cdbg monitor --type l7
 ```
 
-Common issues:
-- Certificate problems
-- XDS configuration failures
-- Listener configuration errors
+For HTTP policy problems: confirm that traffic reaches Envoy (L7 flows appear in Hubble), that the method, path and headers match the rule exactly, and that the L4 port in the rule matches the container port. If you manage Cilium with Argo CD on RKE2, see [Fixing Argo CD Out-of-Sync Due to Cilium Identity on RKE2](/cilium-identity-argo-out-of-sync-rke2/) for a related gotcha.
 
-### L7 Policy Enforcement Debugging
+## Upgrades and rollback
 
-L7 policies require special troubleshooting:
+Before a minor upgrade, run the preflight check from the [upgrade guide](https://docs.cilium.io/en/stable/operations/upgrade/), which pre-pulls images and validates existing policies:
 
 ```bash
-# Monitor L7 traffic
-kubectl -n kube-system exec -it ds/cilium -- cilium monitor --type l7
-
-# Check specific L7 policy
-kubectl -n kube-system exec -it ds/cilium -- cilium policy selectors | grep "L7"
+helm template cilium/cilium --version 1.20.3 \
+   --namespace kube-system \
+   --set preflight.enabled=true \
+   --set agent=false \
+   --set operator.enabled=false \
+   > cilium-preflight.yaml
+kubectl create -f cilium-preflight.yaml
+# wait until the preflight DaemonSet and Deployment are ready, then
+kubectl delete -f cilium-preflight.yaml
 ```
 
-For HTTP policy issues:
-1. Check if traffic is reaching Envoy
-2. Verify HTTP headers match policy requirements
-3. Examine Envoy logs for policy decisions
-
-## Upgrade and Migration Troubles
-
-### Pre-flight Checks for Upgrades
-
-Before upgrading Cilium:
+Upgrade with a values file, not `--reuse-values`, and set `upgradeCompatibility` to the version the cluster was first installed with:
 
 ```bash
-# Verify cluster health
-kubectl -n kube-system exec -it ds/cilium -- cilium status
-kubectl -n kube-system exec -it ds/cilium -- cilium connectivity test
-
-# Check for blocking issues
-kubectl -n kube-system exec -it ds/cilium -- cilium preflight verify --validate-cnp
+helm upgrade cilium cilium/cilium --version 1.20.3 \
+   --namespace kube-system \
+   -f my-values.yaml \
+   --set upgradeCompatibility=1.X
 ```
 
-### Common Upgrade Failure Patterns
+Read the upgrade notes for every minor version you cross. To roll back, `helm rollback cilium <revision> -n kube-system`, then `cilium status --wait`.
 
-During upgrades, watch for:
-- Configuration option deprecations
-- CRD version incompatibilities
-- Kernel feature requirements
-- IPAM mode migration issues
+On RKE2 the Cilium version is tied to the RKE2 release and configured through the `rke2-cilium` `HelmChartConfig`, so upgrade RKE2 rather than running `helm upgrade` yourself.
 
-If an upgrade fails:
+## Collect everything: sysdump
 
 ```bash
-# Check failed pods
-kubectl -n kube-system describe pod -l k8s-app=cilium | grep -A 10 "Events:"
-
-# Look for compatibility issues
-kubectl -n kube-system logs -l k8s-app=cilium | grep "incompatible"
+cilium sysdump
+# Large clusters: limit nodes and log size
+cilium sysdump --node-list <node1>,<node2> --logs-limit-bytes 1073741824
 ```
 
-### Rollback Procedures
+The resulting zip contains agent and operator logs, `cilium-dbg` output from every node, BPF maps, Hubble flows and the relevant Kubernetes objects. Attach it to GitHub issues or support cases.
 
-If rollback is necessary:
+## Case studies
 
-1. Restore the previous Cilium version:
-```bash
-# Example with Helm
-helm rollback cilium <previous-revision> -n kube-system
-```
+### Case 1: Intermittent pod connectivity
 
-2. Verify post-rollback:
-```bash
-kubectl -n kube-system wait --for=condition=ready pods -l k8s-app=cilium
-kubectl -n kube-system exec -it ds/cilium -- cilium status
-```
+1. `hubble observe --verdict DROPPED -f` while reproducing.
+2. `cdbg endpoint list` on both nodes: look for endpoints not in `ready` state.
+3. `cilium-health status --verbose` for node to node problems.
+4. `cdbg status --verbose` for failing controllers.
 
-## Advanced CLI Techniques
+Common causes: full CT or NAT maps, MTU mismatch on a tunnel, an endpoint stuck regenerating, or a policy that only matches some replicas' labels.
 
-### Deep Dive into Cilium Status Output
+### Case 2: Service load balancing failures
 
-The `cilium status` command provides extensive diagnostic information:
+1. `cdbg service list` and `cdbg bpf lb list` for the ClusterIP.
+2. `kubectl get endpointslices` to compare with Kubernetes.
+3. `hubble observe --to-ip <cluster-ip>` or `--to-service <ns>/<svc>`.
 
-```bash
-kubectl -n kube-system exec -it ds/cilium -- cilium status --verbose
-```
+Common causes: pods not Ready (so they are not in EndpointSlices), Service selector mismatch, `externalTrafficPolicy: Local` on a node without local backends, or a full LB map.
 
-Key sections to analyze:
-- **KVStore**: Must show "Connected" for proper operation
-- **Controllers**: Should show 0 failing controllers
-- **Proxy Status**: Should be "OK" if L7 policies are used
-- **IPAM**: Shows IP address allocation stats
-- **Encryption**: Shows encryption status if enabled
+### Case 3: Policy enforcement inconsistencies
 
-### Advanced Cilium Monitor Usage with Filters
+1. `cdbg policy selectors` to see which identities each selector matches.
+2. `cdbg monitor --type policy-verdict` during traffic.
+3. `cdbg identity list` to confirm identities match current labels.
 
-`cilium monitor` is a powerful tool with filtering capabilities:
+Common causes: label typos, namespace selectors missing the `k8s:io.kubernetes.pod.namespace` label, policies in both `NetworkPolicy` and `CiliumNetworkPolicy` form that combine unexpectedly, and stale identities after a label change (recreate the pod).
 
-```bash
-# Monitor specific endpoints
-kubectl -n kube-system exec -it ds/cilium -- cilium monitor --from-endpoint <id>
+## FAQ
 
-# Filter by verdict
-kubectl -n kube-system exec -it ds/cilium -- cilium monitor --type drop
+### Why does `kubectl exec ds/cilium -- cilium status` fail with "executable file not found"?
 
-# Filter by policy verdict
-kubectl -n kube-system exec -it ds/cilium -- cilium monitor --type policy-verdict
+On Cilium 1.15 and later, the binary inside the agent is `cilium-dbg`. Use `cilium-dbg status`, or run `cilium status` with the cilium CLI on your workstation.
 
-# Filter by protocol
-kubectl -n kube-system exec -it ds/cilium -- cilium monitor --type capture -n <namespace> | grep TCP
-```
+### Which Cilium versions are supported?
 
-For complex filtering, use the format option with jq:
+The Cilium project supports the three most recent minor releases. With 1.20 current, that is 1.18, 1.19 and 1.20. Check the [release notes](https://github.com/cilium/cilium/releases) for your exact patch level.
 
-```bash
-kubectl -n kube-system exec -it ds/cilium -- cilium monitor -o json | jq 'select(.summary.verdict == "DROPPED") | {source: .source, destination: .destination, drop_reason: .summary.reason}'
-```
+### How do I debug Cilium on a node that is NotReady?
 
-### BPF Map Inspection and Manipulation
+Use `kubectl debug node/<node> -it --image=<image-with-tools>` for host-level checks, and read the agent log with `kubectl -n kube-system logs <cilium-pod> -c cilium-agent --previous`. If the agent never starts, check the init containers (`mount-cgroup`, `apply-sysctl-overwrites`, `mount-bpf-fs`, `clean-cilium-state`) with `kubectl describe pod`.
 
-Advanced map troubleshooting techniques:
+## Related guides
 
-```bash
-# List all maps
-kubectl -n kube-system exec -it ds/cilium -- cilium bpf maps list
-
-# Examine neighbors table
-kubectl -n kube-system exec -it ds/cilium -- cilium bpf neighbor list
-
-# Check policy maps
-kubectl -n kube-system exec -it ds/cilium -- cilium bpf policy get <endpoint-id>
-
-# Inspect routing table
-kubectl -n kube-system exec -it ds/cilium -- cilium bpf lb list
-```
-
-For detailed policy analysis:
-
-```bash
-# Get endpoint policy by ID
-kubectl -n kube-system exec -it ds/cilium -- cilium bpf policy get <endpoint-id> -n <namespace> --all-layers
-```
-
-## Automated Troubleshooting
-
-### Building Diagnostic Automation
-
-Create scripts for common diagnostic tasks:
-
-```bash
-# Example bash script for comprehensive Cilium diagnostics
-cat > cilium-diag.sh << 'EOF'
-#!/bin/bash
-echo "===== Cilium Agent Status ====="
-kubectl -n kube-system exec -it ds/cilium -- cilium status --verbose
-
-echo "===== Controller Status ====="
-kubectl -n kube-system exec -it ds/cilium -- cilium status --verbose | grep -A 20 "Controller Status"
-
-echo "===== Policy Status ====="
-kubectl -n kube-system exec -it ds/cilium -- cilium policy get
-
-echo "===== Endpoint Status ====="
-kubectl -n kube-system exec -it ds/cilium -- cilium endpoint list
-
-echo "===== Service Status ====="
-kubectl -n kube-system exec -it ds/cilium -- cilium service list
-
-echo "===== BPF Maps ====="
-kubectl -n kube-system exec -it ds/cilium -- cilium bpf maps list
-
-echo "===== Recent Policy Drops ====="
-kubectl -n kube-system logs -l k8s-app=cilium --tail=50 | grep "Policy denied"
-EOF
-chmod +x cilium-diag.sh
-```
-
-### Continuous Verification Techniques
-
-Implement regular health checks:
-
-```bash
-# Kubernetes CronJob for regular Cilium health checks
-cat << EOF | kubectl apply -f -
-apiVersion: batch/v1
-kind: CronJob
-metadata:
-  name: cilium-health-check
-  namespace: kube-system
-spec:
-  schedule: "*/30 * * * *"
-  jobTemplate:
-    spec:
-      template:
-        spec:
-          serviceAccountName: cilium
-          containers:
-          - name: cilium-health
-            image: cilium/cilium:latest
-            command: 
-            - /bin/sh
-            - -c
-            - |
-              cilium status --verbose
-              cilium connectivity test
-          restartPolicy: OnFailure
-EOF
-```
-
-## Case Studies with Resolution Paths
-
-### Case 1: Intermittent Pod Connectivity
-
-**Symptoms**: Pods occasionally unable to communicate, with intermittent timeouts
-
-**Diagnostic Steps**:
-1. Check endpoint status:
-```bash
-kubectl -n kube-system exec -it ds/cilium -- cilium endpoint list
-```
-
-2. Look for "not-ready" or unhealthy endpoints:
-```bash
-kubectl -n kube-system exec -it ds/cilium -- cilium endpoint list | grep -v "ready"
-```
-
-3. Monitor for drops during connectivity attempts:
-```bash
-kubectl -n kube-system exec -it ds/cilium -- cilium monitor --type drop
-```
-
-4. Check for controller failures:
-```bash
-kubectl -n kube-system exec -it ds/cilium -- cilium status | grep "controller"
-```
-
-**Common Causes and Resolutions**:
-- **Connection tracking table full**: Increase CT table size or adjust timeouts
-- **Identity resolution failures**: Check kvstore connectivity
-- **Endpoint regeneration failures**: Examine agent logs for specific errors
-- **Network policy conflicts**: Audit policies and simplify where possible
-
-### Case 2: Service Load Balancing Failures
-
-**Symptoms**: Service backends unreachable or load balancing uneven
-
-**Diagnostic Steps**:
-1. Verify service is properly defined in Cilium:
-```bash
-kubectl -n kube-system exec -it ds/cilium -- cilium service list
-```
-
-2. Check backend selection:
-```bash
-kubectl -n kube-system exec -it ds/cilium -- cilium bpf lb list
-```
-
-3. Monitor service access attempts:
-```bash
-kubectl -n kube-system exec -it ds/cilium -- cilium monitor --type trace | grep <service-ip>
-```
-
-**Common Causes and Resolutions**:
-- **Backend sync issues**: Restart Cilium agent to force resync
-- **Selector issues**: Verify pod labels match service selectors
-- **BPF map limits**: Check if BPF LB map is at capacity
-- **Health checks failing**: Check readiness probe configuration
-
-### Case 3: Policy Enforcement Inconsistencies
-
-**Symptoms**: Unexpected traffic blocks or allowances across the cluster
-
-**Diagnostic Steps**:
-1. Check policy status and compute resources:
-```bash
-kubectl -n kube-system exec -it ds/cilium -- cilium policy get
-```
-
-2. Verify policy selectors match intended pods:
-```bash
-kubectl -n kube-system exec -it ds/cilium -- cilium policy selectors
-```
-
-3. Monitor policy verdicts during traffic:
-```bash
-kubectl -n kube-system exec -it ds/cilium -- cilium monitor --type policy-verdict
-```
-
-**Common Causes and Resolutions**:
-- **Policy ordering issues**: Check policy priorities and CRD evaluation order
-- **Selector mismatches**: Verify label selectors match intended pods
-- **Reserved labels conflicts**: Avoid conflicts with Cilium's reserved labels
-- **Stale identities**: Restart affected endpoints to refresh identity
-
-## Toolbox
-
-### Enhanced Collection Scripts
-
-For comprehensive diagnostics, use the Cilium sysdump tool:
-
-```bash
-# Download the latest sysdump
-curl -sLO https://github.com/cilium/cilium-sysdump/releases/latest/download/cilium-sysdump.zip
-python cilium-sysdump.zip --collector-params 'pod-logs=true' --since 1h
-```
-
-This collects:
-- Pod logs
-- Endpoint and service information
-- Controller status
-- BPF maps and programs
-- Kubernetes resources
-
-### Custom Debugging Environments
-
-For complex issues, create a debug pod with advanced tools:
-
-```bash
-# Deploy a debug pod
-cat << EOF | kubectl apply -f -
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: cilium-debug
-  namespace: kube-system
-spec:
-  selector:
-    matchLabels:
-      app: cilium-debug
-  template:
-    metadata:
-      labels:
-        app: cilium-debug
-    spec:
-      hostNetwork: true
-      containers:
-      - name: debug
-        image: cilium/cilium:latest
-        command: ["sleep", "1000000"]
-        securityContext:
-          privileged: true
-      nodeSelector:
-        kubernetes.io/hostname: <problematic-node>
-EOF
-
-# Access the debug pod
-kubectl -n kube-system exec -it $(kubectl -n kube-system get pod -l app=cilium-debug -o name) -- bash
-```
-
-This provides a full Cilium environment for debugging directly on the problematic node.
-
-## Conclusion
-
-Cilium troubleshooting in 2025 requires a methodical approach and understanding of its internal architecture. By following the diagnostic techniques in this guide, you can effectively identify and resolve even the most complex Cilium issues.
-
-Remember these key principles:
-1. Start with a systematic approach to narrow down the problem area
-2. Use the right diagnostic tools for each layer of the stack
-3. When in doubt, increase logging verbosity and use packet captures
-4. Leverage Hubble for visual traffic analysis when available
-5. For persistent issues, collect comprehensive diagnostics with sysdump
-
-For the latest updates and detailed documentation, always refer to the [official Cilium documentation](https://docs.cilium.io/).
+- [Cilium Troubleshooting Guide (original)](/post/cilium-troubleshooting/)
+- [Running K3s in an IPv6-Only Environment with Cilium](/k3s-ipv6-cilium/)
+- [CoreDNS and NodeLocal DNSCache: Troubleshoot and Monitor](/coredns-nodelocaldns-troubleshooting-monitoring/)
+- [Fixing Longhorn Volumes That Won't Attach](/post/fixing-longhorn-volume-issues/)

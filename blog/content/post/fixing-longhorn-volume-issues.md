@@ -1,94 +1,151 @@
 ---
-title: "Fixing Longhorn Volumes That Refuse to Attach"
+title: "Fix Longhorn Volumes That Won't Attach (Longhorn 1.5+)"
 date: 2023-10-13T13:30:00-05:00
+lastmod: 2026-10-23
 draft: false
 tags: ["Longhorn", "Kubernetes", "Troubleshooting"]
 categories:
 - Kubernetes
 - Storage
-author: "Matthew Mattox - mattox@support.tools."
-description: "Solutions to common issues with Longhorn volumes that won't attach."
+author: "Matthew Mattox - mmattox@support.tools"
+description: "Longhorn volume stuck attaching, detaching or faulted? Check attachment tickets, stale VolumeAttachments, Multi-Attach errors and salvage (Longhorn 1.5+)."
 more_link: "yes"
+quick_fix: |
+  First find out who holds the volume: `kubectl -n longhorn-system get volumes.longhorn.io <pv-name> -o wide` and
+  `kubectl -n longhorn-system get volumeattachments.longhorn.io <pv-name> -o yaml` (Longhorn 1.5+ tracks every attach request as a ticket there).
+  Then check Kubernetes' own attachment: `kubectl get volumeattachments.storage.k8s.io | grep <pv-name>`.
+  A stale ticket or VolumeAttachment pointing at a dead node is the usual cause. Scale the workload down, remove only the stale entry, then scale back up.
 ---
+
+Longhorn is a solid distributed block storage system for Kubernetes, but a volume that will not attach stops a workload cold. This guide covers the common causes and fixes, updated for how attachment works in Longhorn 1.5 and later (current release: v1.13.0).
+
+<!--more-->
 
 ## Fixing Longhorn Volumes That Refuse to Attach
 
-I've been using Longhorn for quite some time now, and while it's an impressive storage solution for Kubernetes, it's not without its quirks. If you've encountered issues with Longhorn volumes refusing to attach, you're not alone. Here are some common problems I've experienced and how to solve them.
+### First: how attachment works in Longhorn 1.5 and later
 
-### Volumes Get Detached Unexpectedly and Can't Reattach
+Longhorn 1.5 introduced a `VolumeAttachment` custom resource (`volumeattachments.longhorn.io`, one per volume, named after the volume) that lists **attachment tickets**: one for each requester, such as the CSI driver for a pod (`csi-attacher` type), the UI or API, backups and snapshot operations. The volume attaches to a node only when a ticket asks for it, and detaches when no ticket needs it.
 
-- If you're using self-managed Kubernetes (constructing the cluster yourself), it's common to experience node "disruptions," primarily if your nodes are hosted in shared VPS environments like Hetzner Cloud.
-- These disruptions can lead to all of your pods on a particular node being killed. Kubernetes won't create new pods in this situation but will instead restart the containers.
-- The problem arises when the container restarts and the Container Storage Interface (CSI) doesn't reattach the volume, leaving you with containers in an invalid state that can't access the volumes. This results in a restart loop.
+Older advice to edit `spec.nodeID` on the Longhorn `Volume` object predates this design. On current versions, look at tickets first.
 
-**How to Fix:**
-
-- Manually restart the Deployment/StatefulSet. This action recreates the pods, and Longhorn will reattach the volume.
-- Since Longhorn 1.2.0, a default behavior was implemented: if a volume detaches unexpectedly, the pods are recreated. You can modify this behavior by referring to the provided reference.
-
-### Volumes Can't Attach Even After Pod Recreation
-
-- Sometimes, even after recreating pods, volumes still can't attach. This issue may occur randomly when pods are moved to different nodes, typically due to eviction rules or when a node is cordoned/drained. Even if you recreate the pods multiple times, the event log indicates that it can't start the pod because it can't attach a set of volumes (it will specify which PVC can't be attached).
-
-**How to Fix:**
-
-- Identify the PVCs that can't be attached and trace down which PersistentVolume (PV) they are bound to. This problem occurs because Longhorn believes a different node still owns the volume attachment.
-- To resolve this issue, you'll need to access the attachment process logs and understand how Longhorn works. When Longhorn attaches a volume, it attaches a Replica. You can obtain the replicas from the Longhorn Volume Custom Resource Definition (CRD). From the Longhorn Replica CRD, you can find the name of the instance manager. You'll need to tail the logs of the instance manager pod responsible for the attachment.
-- Before proceeding, ensure that no one is actively accessing your volume. Scale down any pods that use the volume and provide the volumes are in a "Detached" state.
-- Open the Longhorn Volume CRD (not the Kubernetes core PersistentVolume object). You can use tools like Rancher to view the YAML manifests, or you can use the equivalent kubectl command:
+Useful commands:
 
 ```bash
-# If you don't know the full CRD name, list it using api-resources
-kubectl get api-resources | grep longhorn
-# You will see that the Longhorn Volume CRD is in volumes.longhorn.io API
-# The Volume itself is stored in your Longhorn namespace, usually in the longhorn-system
-kubectl -n longhorn-system edit volumes.longhorn.io <volume-name>
+# List the Longhorn CRDs (note: it is "kubectl api-resources", not "kubectl get api-resources")
+kubectl api-resources --api-group=longhorn.io
+
+# Volume state, node and robustness
+kubectl -n longhorn-system get volumes.longhorn.io <pv-name> -o wide
+
+# Who is asking for the volume to be attached, and where
+kubectl -n longhorn-system get volumeattachments.longhorn.io <pv-name> -o yaml
+
+# Kubernetes' view of the CSI attachment
+kubectl get volumeattachments.storage.k8s.io | grep <pv-name>
+
+# Pod events usually name the failing PVC
+kubectl describe pod <pod-name> -n <namespace>
 ```
 
-- Ensure that all the following fields are set to an empty string ("") to trigger Longhorn Manager to handle the detachment: spec.nodeID, status.currentNodeID, status.ownerID, and status.pendingNodeID.
-- Apply the changes. Attach the volume again by running the pods or scaling up. If your pod still doesn't run, recheck the pod events, as more than one volume may be stuck.
+The Longhorn volume name is the PV name (`pvc-...`), not the PVC name.
 
-### Volumes Can't Attach Because of Prior Volume Attachments
+### Volumes get detached unexpectedly and can't reattach
 
-- Longhorn supports RWO (ReadWriteOnce) volumes, meaning they can only be attached to a single node but can be accessed by multiple pods on the same node.
-- If you encounter an issue where the pod event states that the volume can't be attached because it has already been attached elsewhere, you only have a few options. With RWO volumes, you must schedule all pods that access the same volume to be on the same node. There is no other way.
+- Node "disruptions" (a short network partition, a VPS host hiccup, kubelet restarts) can make Longhorn lose the connection between the engine and the node.
+- Kubernetes then restarts the containers in place, but the block device underneath is gone, so the containers crash loop with I/O errors.
 
-**How to Fix:**
+**How to fix:**
 
-- To address this problem, you have several options. Refer to the Kubernetes documentation on how to schedule pods. Here are a few methods:
-- In the Pod template spec of your workload, assign spec.nodeName directly to the node's name where the volume is currently attached.
-- Use Pod Affinity so that one workload can decide where it will run, and other workloads' pods use Pod Affinity to be placed on the same node as the previous workload.
-- Alternatively, Longhorn now supports (somewhat experimental) RWX (ReadWriteMany) volumes, which are regular Longhorn volumes exposed via NFS by the Longhorn Share Manager. You can migrate your data to this new volume type and mount the volume from any node in the cluster without using affinity rules.
+- Longhorn has handled this automatically since v1.2.0 with the setting **Automatically Delete Workload Pod when The Volume Is Detached Unexpectedly** (`auto-delete-pod-when-volume-detached-unexpectedly`, default `true`). It deletes pods managed by a controller (Deployment, StatefulSet, and so on) so they are recreated and the volume reattaches. Make sure it has not been turned off.
+- Bare pods without a controller are not recreated; delete and recreate them, or restart the workload with `kubectl rollout restart`.
 
-### Volumes Can't Attach Due to Faulted Replicas
+### Volumes can't attach even after the pod is recreated
 
-- While it's rare, it can happen if you have only one replica, limited disk space, and your node experiences disruptions. If you have enough space, Longhorn can attempt to make a snapshot and recover the replica, even with just one replica. But if there is more space, it will know what to do. This situation requires a "Salvage" operation by Longhorn.
+This happens most often after a node is drained, fails, or is removed: pod events say the volume cannot be attached, and the volume stays `attaching` or `detaching`.
 
-**How to Fix:**
+**How to fix:**
 
-- You can try the "Salvage" button first from the Longhorn UI of the Volume. If that doesn't work, and you're sure it's a false-negative case (an error when it shouldn't be), or the pod can handle it gracefully, you can force-mount the volume. This is useful for scenarios like cache volumes where you can quickly regenerate content if the volume is corrupted.
-- To force-mount the volume, you need to trick Longhorn into thinking that the volume is okay. First, find your Faulted replica's name from the Longhorn UI. Take note of the replica name.
-- Now, edit the replica's resource YAML manifests using kubectl:
+1. Scale down every workload that uses the volume and wait until no pod references the PVC.
+2. Inspect the Longhorn attachment tickets:
 
-```bash
-# If you don't know the full CRD name, list it using api-resources
-kubectl get api-resources | grep longhorn
-# You will see that the Longhorn Replica CRD is in replicas.longhorn.io API
-# The Replica itself is stored in your Longhorn namespace, usually in the Longhorn system
-kubectl -n longhorn-system edit replicas.longhorn.io <replica-name>
-```
+   ```bash
+   kubectl -n longhorn-system get volumeattachments.longhorn.io <pv-name> -o yaml
+   ```
 
-- In the resource YAML, look for the spec.failedAt field, which contains information about when the replica faulted. Replace the value with an empty string ("") to make Longhorn think the replica is no longer faulty and can be attached.
-- This is a somewhat hacky solution. If you encounter this issue frequently and your data is critical, consider using multiple replicas to enhance reliability.
+   Look under `spec.attachmentTickets` for tickets whose `nodeID` is a node that no longer exists or whose pod is gone. Remove only those entries with `kubectl -n longhorn-system edit volumeattachments.longhorn.io <pv-name>`. A ticket with `id: longhorn-ui` and `type: longhorn-api` that you did not create is a known leftover documented in the [Longhorn KB](https://longhorn.io/kb/troubleshooting-volume-cannot-attach-due-to-orphan-pending-node-id-or-longhorn-ui-ad-ticket); remove that block.
+3. After an upgrade from 1.4.x to 1.5.0 through 1.5.4, a leftover `status.pendingNodeID` can also block attachment. Clear it through the status subresource:
 
-## Wrapping Up
+   ```bash
+   kubectl -n longhorn-system edit volumes.longhorn.io <pv-name> --subresource=status
+   ```
 
-- The issues mentioned above are the most common ones you may encounter when using Longhorn. Longhorn's snapshotting ability is crucial in such cases. Even with occasional faults, having snapshots can ensure your data remains safe. While Kubernetes defines alpha/beta volume snapshot specs, not all Container Storage Interface (CSI) drivers support them. Longhorn bridges this gap with a user-friendly UI and scheduled snapshot capabilities. This is why I continue to use Longhorn instead of the Hetzner CSI driver, as Hetzner volumes can't be snapshotted to the best of my knowledge.
+   Set `pendingNodeID` to `""`. That bug is fixed in 1.5.5 and later.
+4. Check the Kubernetes `VolumeAttachment` for the PV. If it still points at a dead node, see the next section.
+5. Check the `instance-manager` pod on the target node (`kubectl -n longhorn-system get pods -o wide | grep instance-manager`) and its logs. For v1 volumes, also confirm `iscsid` is running and the `iscsi_tcp` module is loaded on the node.
+6. Scale the workload back up.
 
-## Conclusion
+Do not remove tickets while the volume is in use. Removing a valid ticket detaches a volume under a running workload.
 
-- Longhorn is an impressive storage solution for Kubernetes, and its stability has improved over time by adding valuable features.
-- Despite its strengths, Longhorn users may encounter various issues, but many of these can be resolved with the proper knowledge and troubleshooting steps.
-- By understanding how to address common problems like detached volumes, attachment issues, and faulted replicas, you can make the most of Longhorn's capabilities and ensure the reliability of your Kubernetes storage.
+### "Multi-Attach error": the volume is attached to another node
 
-I hope you find this guide helpful for troubleshooting and resolving issues with Longhorn volumes. Feel free to ask if you have any further questions or need assistance with any other topics.
+- RWO (ReadWriteOnce) volumes attach to one node at a time; several pods can share them only if they run on that node.
+- After a node goes down, Kubernetes keeps the old `VolumeAttachment` until the attach/detach controller's force-detach timeout (about 6 minutes) or until the node is marked out of service, and new pods on other nodes report `Multi-Attach error for volume ... Volume is already exclusively attached to one node`.
+
+**How to fix:**
+
+- If the node is really gone, mark it out of service so Kubernetes can force-detach (non-graceful node shutdown, stable since Kubernetes v1.28):
+
+  ```bash
+  kubectl taint nodes <node-name> node.kubernetes.io/out-of-service=nodeshutdown:NoExecute
+  ```
+
+  Remove the taint after the node is repaired and rejoined.
+- Set **Pod Deletion Policy When Node is Down** (`node-down-pod-deletion-policy`, default `do-nothing`) to `delete-both-statefulset-and-deployment-pod` so Longhorn deletes stuck pods on a down node and the volume can move.
+- If several workloads must share the data from different nodes, use a **RWX** volume (`accessModes: [ReadWriteMany]`). Longhorn serves RWX volumes over NFSv4 through a share-manager pod; nodes need an NFSv4 client (`nfs-common` or `nfs-utils`) installed.
+- Otherwise keep pods that share an RWO volume on the same node with pod affinity.
+
+### Volumes can't attach because all replicas are faulted
+
+- This is most likely with a single replica, a full disk, or repeated node disruptions.
+- **Automatic Salvage** (`auto-salvage`, default `true`) tries to recover a volume when all replicas become faulty by picking the most recent usable replica.
+
+**How to fix:**
+
+- If automatic salvage did not run or failed, use **Salvage** on the volume in the Longhorn UI.
+- Check node disk space and the replica logs in the `instance-manager` pods before forcing anything.
+- As a last resort for disposable data (for example a cache volume), you can make Longhorn treat a faulted replica as usable. Scale the workload down, then edit the replica and clear `spec.failedAt`:
+
+  ```bash
+  kubectl -n longhorn-system get replicas.longhorn.io -l longhornvolume=<pv-name>
+  kubectl -n longhorn-system edit replicas.longhorn.io <replica-name>
+  ```
+
+  This can bring up stale or corrupted data. Do not do it for data you cannot afford to lose; restore from a backup instead.
+
+## Prevent it next time
+
+- Run at least 2, ideally 3 replicas on different nodes for anything important.
+- Configure a backup target and recurring backups, not only snapshots: snapshots live on the same replicas as the data.
+- Keep node clocks, kernels and `open-iscsi` consistent across nodes, and keep Longhorn on a supported release (v1.13.0 at the time of this update).
+- Restrict Longhorn to storage nodes if not every node should hold replicas; see [How to Restrict Longhorn to Specific Nodes in K3s](/how-to-restrict-longhorn-in-k3s-cluster/).
+- Make sure the CNI is healthy and MTU is consistent; replica traffic between nodes fails in ways that look like storage problems. See the [Cilium Troubleshooting Guide](/post/cilium-troubleshooting-2025/) if you run Cilium.
+
+## FAQ
+
+### Why is my Longhorn volume stuck in "attaching"?
+
+Usually a stale attachment ticket, a Kubernetes VolumeAttachment still bound to a dead node, an instance-manager pod that is not running on the target node, or missing `iscsid` on that node. Work through the checks above in that order.
+
+### Can I just delete the Kubernetes VolumeAttachment object?
+
+Only if you are sure the old node is gone or the volume is no longer mounted there. The safer route is the `node.kubernetes.io/out-of-service` taint, which lets Kubernetes clean up for you.
+
+### Is Longhorn RWX still experimental?
+
+No. RWX volumes have been a supported feature for several releases. They are NFSv4 exports of a regular Longhorn volume through a share-manager pod.
+
+## Related guides
+
+- [How to Restrict Longhorn to Specific Nodes in K3s](/how-to-restrict-longhorn-in-k3s-cluster/)
+- [Cilium Troubleshooting Guide](/post/cilium-troubleshooting-2025/)

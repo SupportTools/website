@@ -1,6 +1,7 @@
 ---
 title: "Ingress-NGINX Retirement on RKE2: Migrating to Traefik Without Downtime"
 date: 2026-02-04T00:00:00-05:00
+lastmod: 2026-10-23
 draft: false
 tags: ["RKE2", "Kubernetes", "Traefik", "Ingress-NGINX", "Migration", "Rancher", "Ingress Controller"]
 categories:
@@ -8,42 +9,95 @@ categories:
 - Kubernetes
 - DevOps
 author: "Matthew Mattox - mmattox@support.tools"
-description: "A practical guide to migrating from ingress-nginx to Traefik on RKE2 clusters. Covers side-by-side operation, annotation conversion, RKE2-specific configuration, and zero-downtime migration strategies for production environments."
+description: "Move RKE2 from ingress-nginx to Traefik without downtime: what v1.36 changed, the built-in rke2-traefik migration, side-by-side testing and annotations."
 more_link: "yes"
 url: "/ingress-nginx-retirement-rke2-migrating-traefik-without-downtime/"
 ---
 
-The Kubernetes community announced in November 2025 that Ingress-NGINX is being retired. Maintenance halts completely in March 2026 — no more releases, no more bug fixes, no more security patches. If you're running RKE2, which ships ingress-nginx by default, this directly affects you.
+The Kubernetes community announced in November 2025 that Ingress-NGINX is being retired. Best-effort maintenance ended in March 2026, and there are no more releases, bug fixes or security patches from upstream. RKE2 shipped ingress-nginx as its default ingress controller until v1.36, so most existing RKE2 clusters still run it.
 
 This post walks through the practical side of migrating RKE2 clusters from ingress-nginx to Traefik. The emphasis is on running both controllers side-by-side so you can migrate gradually without taking production offline.
 
 <!--more-->
 
+## Update, October 2026: what RKE2 ships now
+
+Per the [RKE2 networking docs](https://docs.rke2.io/networking/networking_services) and the [RKE2 ingress migration guide](https://docs.rke2.io/reference/ingress_migration):
+
+- **New RKE2 v1.36+ clusters install Traefik by default.** You no longer get ingress-nginx unless you ask for it with `ingress-controller: ingress-nginx` in `/etc/rancher/rke2/config.yaml`.
+- **Existing clusters are not switched automatically.** Upgrading an existing cluster to v1.36 keeps ingress-nginx running, now with deprecated status.
+- **v1.37 removes ingress-nginx for new clusters.** It is unavailable when creating a v1.37 cluster.
+- **Upstream is archived.** The [`kubernetes/ingress-nginx`](https://github.com/kubernetes/ingress-nginx) repository was archived on March 24, 2026. Its last listed release is controller v1.15.1 (chart 4.15.1). RKE2 continues to package its own hardened ingress-nginx build in current releases.
+- **Extended support.** SUSE states that Rancher Prime LTS customers get ingress-nginx support through December 2027.
+
+### What existing RKE2 clusters should do
+
+1. **Keep running, but plan the move.** Nothing breaks on upgrade, but there are no upstream security fixes. Make `spec.ingressClassName: nginx` explicit on every Ingress first, so nothing changes controller by accident.
+2. **Prefer RKE2's built-in Traefik over a separate Helm install.** RKE2 can run both packaged controllers at once:
+
+   ```yaml
+   # /etc/rancher/rke2/config.yaml on every server node
+   ingress-controller:
+     - ingress-nginx
+     - traefik
+   ```
+
+   During the overlap, move the packaged Traefik to temporary host ports and enable its ingress-nginx compatibility provider with a `HelmChartConfig` named `rke2-traefik` in `kube-system`:
+
+   ```yaml
+   apiVersion: helm.cattle.io/v1
+   kind: HelmChartConfig
+   metadata:
+     name: rke2-traefik
+     namespace: kube-system
+   spec:
+     valuesContent: |-
+       ports:
+         web:
+           hostPort: 8000
+         websecure:
+           hostPort: 8443
+       providers:
+         kubernetesIngressNGINX:
+           enabled: true
+           ingressClass: "rke2-ingress-nginx-migration"
+           controllerClass: "rke2.cattle.io/ingress-nginx-migration"
+   ```
+
+   The provider key is `kubernetesIngressNGINX` from v1.36.2+rke2r1, v1.35.6+rke2r1, v1.34.9+rke2r1 and v1.33.13+rke2r1; earlier releases use `kubernetesIngressNginx`. The migration guide lists v1.32.11, v1.33.7 or v1.34.3 (or any v1.35+) as the minimum RKE2 versions for this procedure.
+3. **Validate in parallel.** Copy each critical Ingress with `ingressClassName: rke2-ingress-nginx-migration`, then test `http://<node-ip>:8000` (Traefik) against `http://<node-ip>` (ingress-nginx). Traefik understands many `nginx.ingress.kubernetes.io/*` annotations through this provider, but not all, so check the [Traefik ingress-nginx provider docs](https://doc.traefik.io/traefik/reference/routing-configuration/kubernetes/ingress-nginx/). External load balancer health checks differ: ingress-nginx uses `/healthz`, Traefik uses `/ping`.
+4. **Switch over.** Set `ingress-controller: [traefik]`, remove the temporary `hostPort` settings (keep the `providers` block), and restart `rke2-server` on all server nodes. Traefik then takes ports 80 and 443.
+5. **Rancher's own Ingress** on the local cluster needs guidance from SUSE Rancher Support before you switch.
+
+For day-to-day ingress-nginx troubleshooting on RKE2 until you switch, see [RKE2 Ingress-NGINX: Troubleshooting and 2026 Retirement](/rke2-ingress-nginx/). If you rely on ModSecurity, read [ModSecurity on Ingress-NGINX](/modsecurity-kubernetes-ingress-nginx/) first: Traefik's ingress-nginx provider does not support it.
+
+The rest of this post covers the alternative where you install Traefik yourself with Helm, which is still useful on clusters older than the versions above or when you want Traefik behind its own LoadBalancer IP.
+
 ## What the Retirement Means
 
 The [official announcement](https://kubernetes.io/blog/2025/11/11/ingress-nginx-retirement/) is clear about the timeline:
 
-- **Now through March 2026**: Best-effort maintenance only (1-2 part-time maintainers)
-- **March 2026**: All maintenance stops
-- **After March 2026**: No security patches, no releases; repositories become read-only under `kubernetes-retired` for reference only
+- **November 2025 to March 2026**: best-effort maintenance only
+- **March 2026**: all maintenance stopped
+- **Since then**: no security patches and no releases; the repository was archived (read-only) on March 24, 2026
 
 **Important clarification:** This retirement refers specifically to the **Kubernetes community ingress-nginx** project ([`kubernetes/ingress-nginx`](https://github.com/kubernetes/ingress-nginx)), not F5 NGINX Ingress Controller or other NGINX-branded controllers. If you are using a commercially supported NGINX-based controller from F5, check with your vendor for their support timeline.
 
-Your existing ingress-nginx deployments will continue to function — nothing is being forcibly removed. But running an unmaintained ingress controller in production is a ticking clock. The ingress-nginx project has already had critical CVEs (like [CVE-2025-1974](https://support.tools/mitigating-cve-2025-1974-ingress-nginx-rke2/)), and those will stop getting patched.
+Your existing ingress-nginx deployments will continue to function; nothing is being forcibly removed. But running an unmaintained ingress controller in production is a ticking clock. The ingress-nginx project has already had critical CVEs (like [CVE-2025-1974](https://support.tools/mitigating-cve-2025-1974-ingress-nginx-rke2/)), and those will stop getting patched.
 
-The upstream recommendation is to migrate to the [Gateway API](https://gateway-api.sigs.k8s.io/) or to another actively maintained ingress controller. For RKE2 operators, Traefik is the most practical choice — it's a widely used open-source ingress controller maintained by Traefik Labs, it supports both Ingress resources and Gateway API, and it integrates well with the Rancher ecosystem.
+The upstream recommendation is to migrate to the [Gateway API](https://gateway-api.sigs.k8s.io/) or to another actively maintained ingress controller. For RKE2 operators, Traefik is the most practical choice: it's a widely used open-source ingress controller maintained by Traefik Labs, it supports both Ingress resources and Gateway API, and it integrates well with the Rancher ecosystem.
 
-> **SUSE/Rancher Extended Support:** SUSE has committed to [extended ingress-nginx support on RKE2](https://www.suse.com/c/trade-the-ingress-nginx-retirement-for-up-to-2-years-of-rke2-support-stability/) — up to 24 months on RKE2 v1.35 LTS (through December 2027). This gives you time to plan a careful migration rather than rushing. Start the migration now, but know that you have a supported runway if you're on an LTS release.
+> **SUSE/Rancher Extended Support:** SUSE has committed to [extended ingress-nginx support on RKE2](https://www.suse.com/c/trade-the-ingress-nginx-retirement-for-up-to-2-years-of-rke2-support-stability/): up to 24 months on RKE2 v1.35 LTS (through December 2027). This gives you time to plan a careful migration rather than rushing. Start the migration now, but know that you have a supported runway if you're on an LTS release.
 
 ## Why Traefik for RKE2
 
 Several ingress controllers could replace ingress-nginx, but Traefik has specific advantages for RKE2 environments:
 
-1. **K3s already ships it** — If you run both K3s and RKE2, Traefik standardizes your ingress layer
-2. **Gateway API support** — Traefik v3 has native Gateway API support, which is where the ecosystem is headed
-3. **CRD-based configuration** — IngressRoute CRDs are more expressive than annotation-heavy Ingress resources
-4. **Active maintenance** — Commercial backing from Traefik Labs with regular releases
-5. **Built-in middleware** — Rate limiting, circuit breakers, and retry logic without external modules
+1. **K3s already ships it**: if you run both K3s and RKE2, Traefik standardizes your ingress layer
+2. **Gateway API support**: Traefik v3 has native Gateway API support, which is where the ecosystem is headed
+3. **CRD-based configuration**: IngressRoute CRDs are more expressive than annotation-heavy Ingress resources
+4. **Active maintenance**: commercial backing from Traefik Labs with regular releases
+5. **Built-in middleware**: rate limiting, circuit breakers, and retry logic without external modules
 
 That said, Traefik is not a drop-in replacement for NGINX. The configuration model, default behaviors, and observability tooling are all different. Plan for a learning curve.
 
@@ -69,7 +123,7 @@ rke2-ingress-nginx-controller-8xj2p       1/1     Running   0          14d
 rke2-ingress-nginx-controller-tmn4r       1/1     Running   0          14d
 ```
 
-RKE2 deploys ingress-nginx as a DaemonSet by default. In the default configuration, the controller pods bind to ports 80 and 443 at the node level (the exact mechanism depends on your RKE2 version and any HelmChartConfig overrides). This is important — if ingress-nginx is binding host ports 80/443, Traefik cannot also bind to those same ports on the same nodes. However, Traefik behind a Service (LoadBalancer or NodePort) runs fine alongside ingress-nginx with no port conflict.
+RKE2 deploys ingress-nginx as a DaemonSet by default. In the default configuration, the controller pods bind to ports 80 and 443 at the node level (the exact mechanism depends on your RKE2 version and any HelmChartConfig overrides). This is important: if ingress-nginx is binding host ports 80/443, Traefik cannot also bind to those same ports on the same nodes. However, Traefik behind a Service (LoadBalancer or NodePort) runs fine alongside ingress-nginx with no port conflict.
 
 Inventory your Ingress resources:
 
@@ -150,8 +204,8 @@ kubectl create namespace traefik
 
 helm install traefik traefik/traefik \
   --namespace traefik \
-  --values traefik-values.yaml \
-  --version 34.3.0
+  --values traefik-values.yaml
+# Pin a chart version for production: helm search repo traefik/traefik --versions | head
 ```
 
 Test by hitting Traefik directly:
@@ -161,7 +215,7 @@ Test by hitting Traefik directly:
 curl -H "Host: myapp.example.com" http://<node-ip>:30080
 ```
 
-This approach is good for initial validation. The downside is that you're not testing the real traffic path — clients won't be hitting port 8080 in production.
+This approach is good for initial validation. The downside is that you're not testing the real traffic path, because clients won't be hitting port 8080 in production.
 
 ### Option 2: Traefik with a Separate LoadBalancer IP
 
@@ -299,7 +353,7 @@ At this point, ingress-nginx owns all existing Ingress resources (because they e
 
 Migrate one Ingress resource at a time by changing its `ingressClassName`. This is the lowest-risk approach.
 
-**Step 1:** Pick a low-risk workload to start with — an internal tool, a staging service, something where a few minutes of downtime won't page anyone.
+**Step 1:** Pick a low-risk workload to start with: an internal tool, a staging service, something where a few minutes of downtime won't page anyone.
 
 **Step 2:** Convert NGINX-specific annotations to Traefik equivalents (see the conversion table below).
 
@@ -334,7 +388,7 @@ spec:
 
 > **Traffic Steering Options:**
 > - **LB backend cutover:** Shift external load balancer backends or weights from ingress-nginx to Traefik. This gives you true zero-downtime cutover with instant rollback by shifting weights back.
-> - **DNS cutover:** Lower your DNS TTL well in advance (e.g., to 60s, at least 24 hours before), run both controllers in parallel, then update the DNS record. Drain the old controller after the TTL expires. Rollback means flipping the record back — but be aware of client-side DNS caching.
+> - **DNS cutover:** Lower your DNS TTL well in advance (e.g., to 60s, at least 24 hours before), run both controllers in parallel, then update the DNS record. Drain the old controller after the TTL expires. Rollback means flipping the record back, but be aware of client-side DNS caching.
 
 **Step 5:** Verify traffic is flowing through Traefik:
 
@@ -342,7 +396,7 @@ spec:
 # Check Traefik's access logs
 kubectl logs -n traefik -l app.kubernetes.io/name=traefik --tail=50
 
-# Or use the Traefik dashboard (if enabled) — port-forward to a pod's API port
+# Or use the Traefik dashboard (if enabled): port-forward to a pod's API port
 kubectl port-forward -n traefik deployment/traefik 9000:9000
 # Then open http://localhost:9000/dashboard/ in your browser
 # WARNING: Never expose the Traefik dashboard publicly. Use port-forward for debugging only.
@@ -365,11 +419,11 @@ for ing in $(kubectl get ingress -n my-app -o name); do
 done
 ```
 
-This is faster but riskier — if something is wrong with the Traefik configuration for that namespace, everything in it breaks at once.
+This is faster but riskier: if something is wrong with the Traefik configuration for that namespace, everything in it breaks at once.
 
 ### Rollback
 
-Rolling back is straightforward — change `ingressClassName` back to `nginx`:
+Rolling back is straightforward: change `ingressClassName` back to `nginx`:
 
 ```bash
 kubectl patch ingress internal-dashboard -n monitoring --type=merge \
@@ -382,16 +436,16 @@ If you also changed DNS, point it back at the ingress-nginx IP. Because both con
 
 ### Common Annotation Mappings
 
-**These mappings are conceptual starting points. Not all NGINX settings have 1:1 Traefik equivalents — test every conversion in a non-production environment before migrating.**
+**These mappings are conceptual starting points. Not all NGINX settings have 1:1 Traefik equivalents. Test every conversion in a non-production environment before migrating.**
 
 | NGINX Annotation | Traefik Equivalent | Notes |
 |---|---|---|
-| `nginx.ingress.kubernetes.io/proxy-body-size` | Traefik middleware: `buffering` | Use IngressRoute + Middleware CRD. Note: buffering middleware stores the full request/response in memory — verify behavior for large upload workloads |
+| `nginx.ingress.kubernetes.io/proxy-body-size` | Traefik middleware: `buffering` | Use IngressRoute + Middleware CRD. Note: buffering middleware stores the full request/response in memory, so verify behavior for large upload workloads |
 | `nginx.ingress.kubernetes.io/proxy-read-timeout` | Client timeouts: `entryPoints.*.transport.respondingTimeouts`; upstream timeouts: `ServersTransport` CRD | Client-facing and upstream timeouts are configured at different layers in Traefik |
 | `nginx.ingress.kubernetes.io/proxy-send-timeout` | Same as above | |
 | `nginx.ingress.kubernetes.io/ssl-redirect` | Entrypoint-level HTTP→HTTPS redirection (static config) or `redirectScheme` middleware (dynamic) | Configure `web.redirectTo.entryPoint: websecure` in Helm values for global redirect, or use a `redirectScheme` middleware per-route |
 | `nginx.ingress.kubernetes.io/force-ssl-redirect` | Traefik `redirectScheme` middleware | |
-| `nginx.ingress.kubernetes.io/rewrite-target` | Traefik `replacePathRegex` or `stripPrefix` middleware | Behavior differs — test carefully |
+| `nginx.ingress.kubernetes.io/rewrite-target` | Traefik `replacePathRegex` or `stripPrefix` middleware | Behavior differs, test carefully |
 | `nginx.ingress.kubernetes.io/auth-type` + `auth-secret` | Traefik `basicAuth` middleware | |
 | `nginx.ingress.kubernetes.io/cors-*` | Traefik `headers` middleware with CORS settings | |
 | `nginx.ingress.kubernetes.io/whitelist-source-range` | Traefik `ipAllowList` middleware | |
@@ -401,7 +455,7 @@ If you also changed DNS, point it back at the ingress-nginx IP. Because both con
 
 ### What Doesn't Translate Directly
 
-**Snippets**: NGINX's `configuration-snippet` and `server-snippet` annotations let you inject raw NGINX configuration. Traefik has no equivalent — it doesn't use a config-file-based architecture. Any raw NGINX directives need to be reimplemented using Traefik middlewares or plugins.
+**Snippets**: NGINX's `configuration-snippet` and `server-snippet` annotations let you inject raw NGINX configuration. Traefik's own Ingress and IngressRoute providers have no equivalent, so raw NGINX directives need to be reimplemented with middlewares or plugins. The exception is Traefik's ingress-nginx compatibility provider used in the RKE2 procedure above: it accepts a small set of directives inside snippets (such as `more_set_headers`, `add_header`, `proxy_set_header`, `rewrite` and `return`) and ignores the rest.
 
 Common snippet patterns and their Traefik solutions:
 
@@ -569,9 +623,9 @@ ports:
 NGINX is a reverse proxy configured through a generated `nginx.conf` that gets reloaded on changes. Traefik is a Go-native reverse proxy that watches Kubernetes resources directly and reconfigures in-memory without reloads.
 
 This means:
-- **No config reloads** — Traefik picks up changes within seconds without dropping connections
-- **No Lua** — NGINX uses Lua for dynamic behavior; Traefik uses middleware chains
-- **Different performance profile** — Performance characteristics differ between the two controllers; benchmark your own workload rather than relying on generic comparisons. Traefik's in-memory reconfiguration avoids reload-related connection drops
+- **No config reloads**: Traefik picks up changes within seconds without dropping connections
+- **No Lua**: NGINX uses Lua for dynamic behavior; Traefik uses middleware chains
+- **Different performance profile**: performance characteristics differ between the two controllers; benchmark your own workload rather than relying on generic comparisons. Traefik's in-memory reconfiguration avoids reload-related connection drops
 
 ### CRDs vs Annotations
 
@@ -599,7 +653,7 @@ spec:
     certResolver: letsencrypt
 ```
 
-IngressRoute CRDs are more expressive than Ingress resources. You don't need annotations for routing logic — it's all in the spec. For a migration, you can start with standard Ingress resources (just changing `ingressClassName`) and convert to IngressRoute CRDs later.
+IngressRoute CRDs are more expressive than Ingress resources. You don't need annotations for routing logic; it's all in the spec. For a migration, you can start with standard Ingress resources (just changing `ingressClassName`) and convert to IngressRoute CRDs later.
 
 ### Observability
 
@@ -662,8 +716,8 @@ RKE2 deploys ingress-nginx via a HelmChart. The primary documented knob to disab
 
 ```yaml
 # /etc/rancher/rke2/config.yaml (on each server node)
-# Option 1 (preferred): Set the ingress controller to "none" or "traefik"
-ingress-controller: none
+# Option 1 (preferred): switch to the packaged Traefik, or "none" if you run your own controller
+ingress-controller: traefik
 
 # Option 2 (alternative): Explicitly disable the rke2-ingress-nginx chart
 # disable:
@@ -722,7 +776,7 @@ defaultNamespace: traefik
 helm:
   repo: https://traefik.github.io/charts
   chart: traefik
-  version: "34.3.0"
+  version: "<pinned chart version>"
   releaseName: traefik
   valuesFiles:
     - values.yaml
@@ -748,7 +802,7 @@ kubectl get daemonset -n kube-system rke2-ingress-nginx-controller -o jsonpath='
 
 **2. HelmChartConfig conflicts**
 
-RKE2 deploys packaged components as HelmCharts. HelmChartConfig is the supported override mechanism for customizing these charts (e.g., changing ingress-nginx settings while it's still active). However, for disabling the ingress controller entirely, use the `disable` or `ingress-controller` config knobs in `/etc/rancher/rke2/config.yaml` rather than deleting the HelmChartConfig resource — RKE2 will reconcile it back.
+RKE2 deploys packaged components as HelmCharts. HelmChartConfig is the supported override mechanism for customizing these charts (e.g., changing ingress-nginx settings while it's still active). However, for disabling the ingress controller entirely, use the `disable` or `ingress-controller` config knobs in `/etc/rancher/rke2/config.yaml` rather than deleting the HelmChartConfig resource, because RKE2 will reconcile it back.
 
 **3. Ingress resources without an explicit ingressClassName**
 
@@ -839,15 +893,15 @@ spec:
 
 ## Related Resources
 
-- [SUSE: Trade the Ingress-NGINX Retirement for Up to 2 Years of RKE2 Support Stability](https://www.suse.com/c/trade-the-ingress-nginx-retirement-for-up-to-2-years-of-rke2-support-stability/) — SUSE's extended support commitment for ingress-nginx on RKE2 LTS
-- [How to Deploy NeuVector in an RKE2 Cluster with Traefik](https://support.scc.suse.com/s/kb/How-to-deploy-NeuVector-in-a-RKE2-cluster-with-Traefik?language=en_US) — SUSE KB for NeuVector + RKE2 + Traefik integration
-- [Official Ingress-NGINX Retirement Announcement](https://kubernetes.io/blog/2025/11/11/ingress-nginx-retirement/) — The Kubernetes project blog post announcing the retirement
-- [Gateway API Migration Guide](https://gateway-api.sigs.k8s.io/guides/migrating-from-ingress/) — For teams considering Gateway API as an alternative or future direction
+- [SUSE: Trade the Ingress-NGINX Retirement for Up to 2 Years of RKE2 Support Stability](https://www.suse.com/c/trade-the-ingress-nginx-retirement-for-up-to-2-years-of-rke2-support-stability/): SUSE's extended support commitment for ingress-nginx on RKE2 LTS
+- [How to Deploy NeuVector in an RKE2 Cluster with Traefik](https://support.scc.suse.com/s/kb/How-to-deploy-NeuVector-in-a-RKE2-cluster-with-Traefik?language=en_US): SUSE KB for NeuVector + RKE2 + Traefik integration
+- [Official Ingress-NGINX Retirement Announcement](https://kubernetes.io/blog/2025/11/11/ingress-nginx-retirement/): the Kubernetes project blog post announcing the retirement
+- [Gateway API Migration Guide](https://gateway-api.sigs.k8s.io/guides/migrating-from-ingress/): for teams considering Gateway API as an alternative or future direction
 
 ## Summary
 
-The ingress-nginx retirement is real and the timeline is tight. For RKE2 operators, the migration path to Traefik is well-defined but not trivial — especially if you rely heavily on NGINX-specific annotations or snippet-based configuration.
+The ingress-nginx retirement has happened, and new RKE2 clusters already default to Traefik. For existing RKE2 clusters, the migration path to Traefik is well-defined but not trivial, especially if you rely heavily on NGINX-specific annotations or snippet-based configuration.
 
 The key is to run both controllers side-by-side. This eliminates the "big bang" risk and lets you validate Traefik's behavior for each workload before committing. Start with your least critical services, build confidence, and work your way up to production-critical workloads.
 
-Don't wait until March 2026. Start the migration now while you still have ingress-nginx maintainers available to patch issues.
+Upstream maintenance has already ended. If you are still on ingress-nginx, start with the RKE2-native procedure in the October 2026 update above, and use SUSE's extended support window, if you have it, as a buffer rather than a plan.
