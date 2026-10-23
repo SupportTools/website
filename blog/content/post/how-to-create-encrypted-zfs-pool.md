@@ -1,6 +1,7 @@
 ---
-title: "How to Create a Fully Encrypted ZFS Pool on Linux (Updated)"
+title: "Create an Encrypted ZFS Pool on Linux (Native Encryption)"
 date: 2025-02-16T01:00:00-05:00
+lastmod: 2026-10-23
 draft: false
 tags: ["ZFS", "Encryption", "Linux", "Ubuntu", "RAIDZ", "Data Security"]
 categories:
@@ -8,10 +9,17 @@ categories:
 - Security
 - Data Protection
 author: "Matthew Mattox - mmattox@support.tools"
-description: "Comprehensive guide to setting up a fully encrypted ZFS pool with automated decryption and enhanced performance settings for 2025."
+description: "Create a ZFS pool with native encryption: generate a 32 byte raw key, run zpool create -O encryption=on, and unlock it automatically at boot."
 more_link: "yes"
 url: "/how-to-create-encrypted-zfs-pool/"
+quick_fix: |
+  Generate a 32 byte key, then create the pool with encryption on the root dataset:
+  `dd if=/dev/urandom of=/root/zfs.key bs=32 count=1` and
+  `zpool create -o ashift=12 -O encryption=on -O keyformat=raw -O keylocation=file:///root/zfs.key tank raidz1 /dev/disk/by-id/DISK1 /dev/disk/by-id/DISK2 /dev/disk/by-id/DISK3`.
+  For a passphrase instead of a key file, use `-O keyformat=passphrase -O keylocation=prompt`.
 ---
+
+This guide creates a ZFS pool with OpenZFS native encryption on Linux, unlocks it automatically at boot from a key file, and covers the tuning, monitoring and backup steps that matter once the pool holds real data.
 
 <!--more-->
 
@@ -29,6 +37,7 @@ url: "/how-to-create-encrypted-zfs-pool/"
 11. [Troubleshooting](#troubleshooting)
 12. [Creating Datasets](#creating-zfs-datasets)
 13. [TLER Configuration](#enabling-tler-for-raid-reliability)
+14. [FAQ](#faq)
 
 ## Why Encrypt Your ZFS Pool in 2025?
 With increasing concerns over data security, encrypting your **ZFS pool** ensures that backups, personal files, and archives remain inaccessible to unauthorized users. This updated guide covers the latest best practices for encryption, automation, and system compatibility.
@@ -56,26 +65,28 @@ First, install ZFS utilities:
 # For Ubuntu/Debian
 sudo apt install -y zfsutils-linux zfs-zed
 
-# For Fedora
-sudo dnf install -y zfs-dkms zfs-dracut zfs-utils
+# For Fedora, RHEL, Rocky and Alma: add the OpenZFS repository first
+# (the zfs-release package from https://openzfs.github.io/openzfs-docs/Getting%20Started/)
+sudo dnf install -y zfs
 
-# For RHEL/CentOS
-sudo dnf install -y epel-release
-sudo dnf install -y zfs-dkms zfs-dracut zfs-utils
-
-# For Arch Linux
-sudo pacman -S zfs-dkms zfs-utils
+# For Arch Linux: ZFS is not in the official repositories;
+# install zfs-dkms and zfs-utils from the archzfs repository or the AUR
 ```
+
+Load the module and confirm the version with `sudo modprobe zfs && zfs version`. Native encryption needs OpenZFS 0.8 or newer; every current distribution ships 2.x.
 
 ## Generating a Secure Encryption Key
-To encrypt/decrypt the file system, create a secure key file stored in `/root`:
+To encrypt/decrypt the file system, create a secure key file stored in `/root`. A raw key must be exactly 32 bytes; a longer file makes `zpool create` fail:
 ```bash
-sudo dd if=/dev/random of=/root/.zfs-encrypt.key bs=64 count=1
+sudo dd if=/dev/urandom of=/root/.zfs-encrypt.key bs=32 count=1
+sudo chmod 400 /root/.zfs-encrypt.key
 ```
-🔴 **Warning:** Losing this key means **permanent** data loss. Store it securely!
+
+> [!WARNING]
+> Losing this key means **permanent** data loss. Keep a copy somewhere other than the pool it unlocks.
 
 ## Creating an Encrypted ZFS Pool
-For stability, reference disks by their unique identifiers instead of `/dev/sdX`:
+For stability, reference disks by their unique identifiers (`ls -l /dev/disk/by-id/`) instead of `/dev/sdX`:
 ```bash
 sudo zpool create \
   -o ashift=12 \
@@ -84,17 +95,21 @@ sudo zpool create \
   -O keylocation=file:///root/.zfs-encrypt.key \
   -O keyformat=raw \
   tank raidz1 \
-    scsi-SATA_HGST_HUS724040AL_PK1331PAKDXUGS \
-    scsi-SATA_HGST_HUS724040AL_PK1334P1KUK10Y \
-    scsi-SATA_HGST_HUS724040AL_PK1334P1KUV2PY \
-    scsi-SATA_HGST_HUS724040AL_PK1334PAKTU7GS
+    /dev/disk/by-id/scsi-SATA_HGST_HUS724040AL_PK1331PAKDXUGS \
+    /dev/disk/by-id/scsi-SATA_HGST_HUS724040AL_PK1334P1KUK10Y \
+    /dev/disk/by-id/scsi-SATA_HGST_HUS724040AL_PK1334P1KUV2PY \
+    /dev/disk/by-id/scsi-SATA_HGST_HUS724040AL_PK1334PAKTU7GS
 ```
-### Key Configuration Updates:
-- `bs=64 count=1`: Uses a stronger encryption key.
-- `-O keyformat=raw`: Defaults to **AES-256-GCM encryption**.
+### What the Options Do
+- `-O encryption=on`: Encrypts the root dataset and every child dataset. With current OpenZFS `on` means **AES-256-GCM**.
+- `-O keyformat=raw`: The key is the 32 raw bytes in the file. Use `hex` for a 64 character hex key or `passphrase` for a typed passphrase.
+- `-O keylocation=file:///...`: Where `zfs load-key` reads the key. Use `prompt` to type it at boot instead.
+- `-o ashift=12`: 4K sectors, correct for nearly all current drives and SSDs.
+
+Verify with `zfs get encryption,keyformat,keylocation,keystatus tank`. Encryption must be set when a dataset is created; you cannot encrypt an existing unencrypted dataset in place (copy the data into a new encrypted dataset instead).
 
 ## Automating Decryption on Boot
-Avoid manual decryption after reboots by setting up a **systemd service**:
+The stock `zfs-mount.service` runs `zfs mount -a` without loading keys, so encrypted datasets stay unmounted after a reboot. Avoid manual decryption by setting up a **systemd service** that loads keys between import and mount:
 
 ```bash
 sudo tee /etc/systemd/system/zfs-load-key.service <<EOF
@@ -108,7 +123,6 @@ Before=zfs-mount.service
 Type=oneshot
 RemainAfterExit=yes
 ExecStart=/sbin/zfs load-key -a
-StandardInput=tty-force
 
 [Install]
 WantedBy=zfs-mount.service
@@ -133,14 +147,16 @@ sudo zfs set atime=off tank
 # Advanced Performance Tuning
 sudo zfs set xattr=sa tank
 sudo zfs set dnodesize=auto tank
-sudo zfs set recordsize=1M tank
+sudo zfs set recordsize=1M tank  # Good for large files and backups; keep 128K for mixed or VM workloads
 sudo zfs set primarycache=all tank
 sudo zfs set secondarycache=all tank
 sudo zfs set sync=standard tank
 
 # Memory Management
 sudo zfs set dedup=off tank  # Enable only if needed
-sudo zfs set metadata_cache:max=2g tank  # Adjust based on available RAM
+
+# Cap the ARC (in bytes; 8 GiB here), applied when the zfs module loads
+echo "options zfs zfs_arc_max=8589934592" | sudo tee /etc/modprobe.d/zfs.conf
 ```
 
 ### Performance Monitoring
@@ -247,9 +263,9 @@ if [ "$(date +%d)" = "01" ]; then
 fi
 
 # Backup snapshots to remote location
-# Using compression and progress monitoring
-zfs send -v tank@$SNAPSHOT_NAME | pv | zstd | \
-    ssh backup-server "zstd -d | zfs receive backup/tank"
+# -w sends the raw encrypted blocks: the backup server never needs the key
+zfs send -w -v tank@$SNAPSHOT_NAME | pv | \
+    ssh backup-server "zfs receive backup/tank"
 
 # Verify backup integrity
 ssh backup-server "zfs list -t snapshot backup/tank"
@@ -287,8 +303,8 @@ sudo zpool status tank
 
 3. **Performance Problems**
    ```bash
-   # Check fragmentation
-   sudo zpool status -v tank
+   # Check fragmentation and capacity (keep pools below about 80% full)
+   sudo zpool list -o name,size,alloc,free,frag,cap tank
    
    # Monitor cache hits
    arc_summary | grep "cache hit"
@@ -339,8 +355,27 @@ sudo chmod +x /etc/rc.local
 sudo systemctl enable rc-local.service
 ```
 
-## Conclusion
-By following this guide, you've successfully created an **encrypted ZFS pool** with automated decryption and enhanced system performance. Your data is now secure from unauthorized access, hardware failures, and performance issues. Regular monitoring, maintenance, and backups will ensure the integrity and availability of your data.
+## FAQ
+
+### Why does `zpool create` fail with a raw key error?
+A raw key must be exactly 32 bytes. Regenerate it with `dd if=/dev/urandom of=/root/.zfs-encrypt.key bs=32 count=1` and check the size with `stat -c %s /root/.zfs-encrypt.key`.
+
+### Can I encrypt an existing ZFS pool?
+Not in place. Create a new encrypted dataset (or a new pool) and copy the data in with `zfs send | zfs receive` or rsync. New child datasets inherit encryption from an encrypted parent.
+
+### How do I unlock the pool by hand after a reboot?
+Run `zfs load-key -a` (or `zfs load-key tank`), then `zfs mount -a`. `zfs mount -l -a` does both in one step.
+
+### Can I change the key or switch to a passphrase later?
+Yes. `zfs change-key -o keyformat=passphrase -o keylocation=prompt tank` rewraps the master key. The data is not re-encrypted, and the cipher suite cannot be changed.
+
+### Is the data encrypted in snapshots and backups?
+Snapshots on the pool are encrypted. A normal `zfs send` sends decrypted data; `zfs send -w` sends the raw encrypted stream so the receiving side stores it encrypted without the key.
+
+## Related Guides
+- [How to Grow a ZVOL](/post/how-to-grow-a-zvol/)
+- [OpenZFS Block Cloning in Production](/openzfs-block-cloning-brt-internals-corruption-incident-safe-rollout/)
+- [LUKS Remote Unlock and Full Disk Encryption](/luks-remote-unlock-enterprise-security-automation/)
 
 ## References
 1. [Encrypting ZFS Pools](https://serverfault.com/questions/972496/can-i-encrypt-a-whole-pool-with-zfsol-0-8-1)
