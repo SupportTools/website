@@ -12,6 +12,8 @@ more_link: "yes"
 url: "/kubernetes-v1-33-dynamic-resource-allocation/"
 ---
 
+{{% newer-version path="/post/kubernetes-v1-37-dra-extended-resources-device-taints.md" %}}
+
 # Kubernetes v1.33 Dynamic Resource Allocation: Advanced Hardware Management for AI, ML, and HPC Workloads
 
 ## Introduction
