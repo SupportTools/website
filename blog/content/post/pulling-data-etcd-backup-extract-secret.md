@@ -27,7 +27,7 @@ Everything below was run end to end with etcd 3.6.5 and kube-apiserver v1.34.1. 
 
 ## Two things that trip people up
 
-1. **`etcdctl` cannot read a snapshot file.** There is no `--snapshot` flag on `etcdctl get`. A snapshot is a bbolt database; you have to restore it into a data directory and run an etcd process on it. In etcd 3.6, `etcdctl snapshot restore` and `etcdctl snapshot status` were removed, so use `etcdutl` for both (it works on 3.5 as well).
+1. **`etcdctl` cannot read a snapshot file.** There is no `--snapshot` flag on `etcdctl get`. A snapshot is a bbolt database; you have to restore it into a data directory and run an etcd process on it. In etcd 3.6, `etcdctl snapshot restore` and `etcdctl snapshot status` were removed, so use `etcdutl` for both (it works on 3.5 as well). On etcd 3.4 and older there is no `etcdutl`; run `etcdctl snapshot status` and `etcdctl snapshot restore` with the same arguments. On 3.5 those `etcdctl` forms still work but print a deprecation warning. On 3.6 and later they are gone, and `etcdctl snapshot status file.db` just prints help and exits 0, so a script that checks the exit code will think it worked.
 2. **The value is protobuf, not JSON.** The kube-apiserver stores objects in a binary protobuf envelope that starts with the 4-byte magic `k8s\0`. `etcdctl get -w json` base64-encodes that binary, so decoding it with `base64 -d` gives you protobuf bytes, not a readable Secret.
 
 ## Step 1: Get the snapshot and the tools
@@ -60,7 +60,7 @@ docker run --rm -v "$PWD":/work --entrypoint etcdutl "$ETCD_IMG" \
 ```
 
 ```bash
-docker run --rm -v "$PWD":/work --entrypoint etcdutl "$ETCD_IMG" \
+docker run --rm --user "$(id -u):$(id -g)" -v "$PWD":/work --entrypoint etcdutl "$ETCD_IMG" \
   snapshot restore /work/snapshot.db --data-dir /work/restore
 ```
 
@@ -69,7 +69,7 @@ The restore writes a new single member data directory under `./restore` with a f
 ## Step 3: Start a throwaway etcd on loopback and find the key
 
 ```bash
-docker run -d --name etcd-recover -v "$PWD":/work "$ETCD_IMG" etcd \
+docker run -d --name etcd-recover --user "$(id -u):$(id -g)" -v "$PWD":/work "$ETCD_IMG" etcd \
   --data-dir=/work/restore \
   --listen-client-urls=http://127.0.0.1:2379 \
   --advertise-client-urls=http://127.0.0.1:2379 \

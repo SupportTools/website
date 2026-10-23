@@ -27,7 +27,7 @@ If your cluster does not encrypt secrets at rest, the shorter walkthrough in [Pu
 
 Three facts decide the whole procedure:
 
-1. **An etcd snapshot is a bbolt database file, not something `etcdctl get` can read directly.** You have to restore it into a data directory and run an etcd process on it. etcd 3.6 removed `etcdctl snapshot restore` and `etcdctl snapshot status`; use `etcdutl` for both (it also works on 3.5).
+1. **An etcd snapshot is a bbolt database file, not something `etcdctl get` can read directly.** You have to restore it into a data directory and run an etcd process on it. etcd 3.6 removed `etcdctl snapshot restore` and `etcdctl snapshot status`; use `etcdutl` for both (it also works on 3.5). On etcd 3.4 and older there is no `etcdutl`; run `etcdctl snapshot status` and `etcdctl snapshot restore` with the same arguments. On 3.5 those `etcdctl` forms still work but print a deprecation warning. On 3.6 and later they are gone, and `etcdctl snapshot status file.db` just prints help and exits 0, so a script that checks the exit code will think it worked.
 2. **The value of a Secret key is not JSON.** The kube-apiserver stores objects as protobuf with a `k8s\0` magic prefix. Even unencrypted, `base64 -d` on the value gives you binary, not YAML.
 3. **RKE2 encrypts Secrets at rest by default.** RKE2 generates an AES-CBC key, writes `/var/lib/rancher/rke2/server/cred/encryption-config.json` and passes it to the API server. Every Secret value in etcd therefore starts with `k8s:enc:aescbc:v1:<key-name>:`, and you need the key from that file to read it.
 
@@ -54,12 +54,12 @@ sudo chown "$USER" snapshot.db encryption-config.json
 chmod 600 snapshot.db encryption-config.json
 ```
 
-If the snapshot was taken with `--etcd-snapshot-compress`, run `file snapshot.db`; when it reports a Zip archive, `unzip` it and use the file inside.
+Snapshots taken with `--etcd-snapshot-compress` have a `.zip` suffix; copy that file instead, `unzip` it, and use the file inside as `snapshot.db`.
 
 > [!WARNING]
 > The encryption config must contain the key that was active **when the snapshot was taken**. After `rke2 secrets-encrypt rotate-keys` (or the older prepare, rotate, reencrypt sequence) finishes, the old key is dropped from the file and older snapshots can no longer be decrypted with the current config. Keep a copy of the config next to each snapshot you archive, or recover it from the snapshot itself as described in the FAQ.
 
-The config looks like this (RKE2 names keys `aescbckey-<date and time>`):
+The config looks like this (RKE2 names the first key `aescbckey`; keys created by `rke2 secrets-encrypt rotate-keys` are named `aescbckey-<RFC 3339 timestamp>`):
 
 ```json {filename="encryption-config.json"}
 {
@@ -81,13 +81,15 @@ The config looks like this (RKE2 names keys `aescbckey-<date and time>`):
 
 You need `etcdutl` and `etcd` binaries. Grab them from the [etcd releases page](https://github.com/etcd-io/etcd/releases) or use the upstream image, which ships `etcd`, `etcdctl` and `etcdutl`. The commands below use the image so nothing gets installed on the host.
 
+Do not try to run `etcdutl` on an RKE2 node. The `rancher/hardened-etcd` static pod image contains only `etcd` and `etcdctl` and has no shell, and RKE2 installs neither tool on the host. RKE2 v1.34 to v1.36 currently ship etcd 3.6.14 and v1.37 ships 3.7.1, so a 3.6.x upstream image matches.
+
 ```bash
 ETCD_IMG=registry.k8s.io/etcd:3.6.5-0
 
 docker run --rm -v "$PWD":/work --entrypoint etcdutl "$ETCD_IMG" \
   snapshot status /work/snapshot.db -w table
 
-docker run --rm -v "$PWD":/work --entrypoint etcdutl "$ETCD_IMG" \
+docker run --rm --user "$(id -u):$(id -g)" -v "$PWD":/work --entrypoint etcdutl "$ETCD_IMG" \
   snapshot restore /work/snapshot.db --data-dir /work/restore
 ```
 
@@ -100,7 +102,7 @@ If you are working from a raw `member/snap/db` file copied off a dead node inste
 Bind the scratch etcd to loopback only. There is no TLS and no auth on it, and it holds every Secret in the cluster.
 
 ```bash
-docker run -d --name etcd-recover -v "$PWD":/work "$ETCD_IMG" etcd \
+docker run -d --name etcd-recover --user "$(id -u):$(id -g)" -v "$PWD":/work "$ETCD_IMG" etcd \
   --data-dir=/work/restore \
   --listen-client-urls=http://127.0.0.1:2379 \
   --advertise-client-urls=http://127.0.0.1:2379 \
@@ -121,6 +123,8 @@ Secrets live under `/registry/secrets/<namespace>/<name>`. Look at the first byt
 head -c 48 raw.bin; echo
 # k8s:enc:aescbc:v1:aescbckey-2026-10-23T08:00:00Z:
 ```
+
+On a cluster that never rotated keys this reads `k8s:enc:aescbc:v1:aescbckey:`.
 
 If the prefix is `k8s` followed by a NUL byte instead, the Secret was stored unencrypted (encryption was off or the Secret predates it) and you can skip to Step 5.
 
