@@ -79,9 +79,11 @@ func TestQueryErrorIncludesStatus(t *testing.T) {
 
 var canned = map[string]string{
 	// window columns are always 1d, 7d, 28d
-	"NOT (NOT (":                               `[[10, 70, 280]]`,
-	"uniqIf":                                   `[[5, 40, 150, 4, 30, 100]]`,
-	"properties.$referring_domain":             `[["www.google.com", null, 3, 20, 90], ["$direct", null, 1, 5, 20], ["bsky.app", "bluesky", 0, 2, 4], ["chatgpt.com", null, 1, 1, 6], [null, null, 0, 0, 2]]`,
+	"NOT (NOT (": `[[10, 70, 280]]`,
+	"uniqIf":     `[[5, 40, 150, 4, 30, 100]]`,
+	// The bot filter in every query also reads $referring_domain, so match the referrer
+	// query by its SELECT, not by the property name alone.
+	"SELECT properties.$referring_domain":      `[["www.google.com", null, 3, 20, 90], ["$direct", null, 1, 5, 20], ["bsky.app", "bluesky", 0, 2, 4], ["chatgpt.com", null, 1, 1, 6], [null, null, 0, 0, 2]]`,
 	"properties.post_category":                 `[["networking", "$pageview", 2, 10, 40], ["networking", "article_read", 1, 3, 9], ["kubernetes", "$pageview", 1, 8, 50], [null, "$pageview", 2, 22, 60], ["", "$pageview", 0, 1, 1]]`,
 	"properties.post_kind":                     `[["guide", 3, 12, 60], ["troubleshooting", 1, 6, 30], [null, 1, 22, 60], ["bogus", 0, 0, 1]]`,
 	"INTERVAL 7 DAY AND properties.post_slug":  `[["curl-host-header", 9], ["ping-mtu", 4]]`,

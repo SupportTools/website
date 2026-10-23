@@ -12,6 +12,9 @@ enabled = true
 [assets]
 directory = "./blog/public"
 binding = "ASSETS"
+# Missing paths get Hugo's 404.html (status 404) instead of an empty body, so a
+# visitor on a broken link sees a way back and PostHog records the visit.
+not_found_handling = "404-page"
 
 [env.production]
 name = "support-tools"

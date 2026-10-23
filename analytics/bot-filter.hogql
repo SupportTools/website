@@ -1,1 +1,1 @@
-NOT (properties.$os = 'Linux' AND properties.$browser = 'Chrome' AND toInt(properties.$viewport_width) = 1919 AND toInt(properties.$viewport_height) = 992)
+NOT ((properties.$os = 'Linux' AND properties.$browser = 'Chrome' AND toInt(properties.$viewport_width) = 1919 AND toInt(properties.$viewport_height) = 992) OR (toInt(properties.$viewport_width) = 1280 AND toInt(properties.$viewport_height) = 720 AND properties.$referring_domain = '$direct' AND match(properties.$pathname, '^/(categories|tags)/')))
