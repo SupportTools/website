@@ -1,0 +1,37 @@
+diff --git a/scripts/build-blog-traffic.py b/scripts/build-blog-traffic.py
+index fc95868..adde2cc 100644
+--- a/scripts/build-blog-traffic.py
++++ b/scripts/build-blog-traffic.py
+@@ -96,6 +96,32 @@ d.ts("Search CTR and average position (7 days)", "CTR (left) and average positio
+                  "properties": [{"id": "unit", "value": "none"}, {"id": "custom.axisPlacement", "value": "right"}]}])
+ d.y += 12
+ 
++# --- AI answers vs ranking ------------------------------------------------------------------------
++# Read the three panels together. Top-3 CTR falling while the stable-query median position and
++# top-10 impressions hold means people see the result but click less (an AI answer above it). The
++# median position rising (worse) or top-10 impressions falling means a ranking loss instead.
++d.row("Search: click loss vs ranking loss")
++d.ts("Top-3 CTR", "Clicks per impression over visible queries whose average position is 3 or better. "
++     "Anonymized queries are not in query rows, so this covers visible queries only. A drop here with "
++     "a flat median position is a click-through loss, not a ranking loss.",
++     [T(f'blog_search_top3_ctr{J},window="7d"}}', "top-3 CTR 7d"),
++      T(f'blog_search_top3_ctr{J},window="28d"}}', "top-3 CTR 28d", ref="B"),
++      T(f'blog_search_ctr{J},window="7d"}}', "all-query CTR 7d", ref="C")],
++     "percentunit", x=0, w=8, h=8, minv=0, decimals=2)
++d.ts("Stable-query median position", "Median average position over visible queries with at least 10 "
++     "impressions in the window (lower is better). Insensitive to new long-tail queries diluting the "
++     "average, so a rise here is a real ranking loss.",
++     [T(f'blog_search_stable_query_median_position{J},window="7d"}}', "median 7d"),
++      T(f'blog_search_stable_query_median_position{J},window="28d"}}', "median 28d", ref="B"),
++      T(f'blog_search_position{J},window="7d"}}', "average position 7d (all)", ref="C")],
++     "none", x=8, w=8, h=8, minv=1, decimals=1)
++d.ts("Top-10 impressions", "Impressions over visible queries whose average position is 10 or better "
++     "(page one). Flat while clicks fall points at click-through; falling points at ranking.",
++     [T(f'blog_search_top10_impressions{J},window="7d"}}', "top-10 impressions 7d"),
++      T(f'blog_search_impressions{J},window="7d"}}', "all impressions 7d", ref="B")],
++     "short", x=16, w=8, h=8, minv=0, decimals=0)
++d.y += 8
++
+ # --- social and health ----------------------------------------------------------------------------
+ d.row("Social (Buffer) and exporter health")
+ d.ts("LinkedIn reach and impressions (7 days)", "From Buffer. Clicks to the site are in Channels (linkedin).",

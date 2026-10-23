@@ -27,8 +27,43 @@ type trafficReport struct {
 }
 
 type searchReport struct {
-	Totals  map[Window]Totals `json:"totals"`
-	Queries []Query           `json:"queries"`
+	Totals  map[Window]Totals     `json:"totals"`
+	SERP    map[Window]serpReport `json:"serp"`
+	Queries []Query               `json:"queries"`
+}
+
+// serpReport is one window's SERP numbers; a ratio or median with nothing to
+// measure is null.
+type serpReport struct {
+	QueryRows            int      `json:"query_rows"`
+	QueryImpressions     float64  `json:"query_impressions"`
+	Top3Clicks           float64  `json:"top3_clicks"`
+	Top3Impressions      float64  `json:"top3_impressions"`
+	Top3CTR              *float64 `json:"top3_ctr"`
+	Top10Impressions     float64  `json:"top10_impressions"`
+	StableMinImpressions int      `json:"stable_min_impressions"`
+	StableQueries        int      `json:"stable_queries"`
+	StableMedianPosition *float64 `json:"stable_median_position"`
+}
+
+func serpReports(m map[Window]SERP) map[Window]serpReport {
+	out := make(map[Window]serpReport, len(m))
+	for w, s := range m {
+		r := serpReport{
+			QueryRows: s.QueryRows, QueryImpressions: s.QueryImpressions,
+			Top3Clicks: s.Top3Clicks, Top3Impressions: s.Top3Impressions, Top10Impressions: s.Top10Impressions,
+			StableMinImpressions: StableMinImpressions, StableQueries: s.StableQueries,
+		}
+		if ctr, ok := s.Top3CTR(); ok {
+			r.Top3CTR = &ctr
+		}
+		if s.StableQueries > 0 {
+			pos := s.StableMedianPosition
+			r.StableMedianPosition = &pos
+		}
+		out[w] = r
+	}
+	return out
 }
 
 // ReportDoc is the /report JSON the weekly scorecard reads.
@@ -87,7 +122,7 @@ func Report(v View) ReportDoc {
 		},
 		Topics:   out,
 		TopPosts: t.TopPosts,
-		Search:   searchReport{Totals: s.Totals, Queries: s.Queries},
+		Search:   searchReport{Totals: s.Totals, SERP: serpReports(s.SERP), Queries: s.Queries},
 		Social:   v.Social.Metrics,
 	}
 }

@@ -16,7 +16,6 @@ const lagDays = 3
 const (
 	topTopics  = 20
 	topQueries = 50
-	queryRows  = 1000 // the API orders by clicks; take enough to re-rank by impressions
 	pageRows   = 5000
 	dateLayout = "2006-01-02"
 	otherTopic = "other"
@@ -40,17 +39,30 @@ func PrevWeek(now time.Time) [2]string {
 	return [2]string{day(now, lagDays+13), day(now, lagDays+7)}
 }
 
-// Collect reads totals, clicks and impressions by topic, and the top queries.
-// topics maps article slugs to topics (from post-index.json); pages that are not
-// articles count as "other".
+// Collect reads totals, clicks and impressions by topic, the SERP position bands,
+// and the top queries. topics maps article slugs to topics (from post-index.json);
+// pages that are not articles count as "other".
 func Collect(ctx context.Context, c *Client, topics map[string]string, now time.Time) (snapshot.Search, error) {
 	s := snapshot.Search{
 		Totals:             map[snapshot.Window]snapshot.Totals{},
 		ClicksByTopic:      map[snapshot.Window]map[string]float64{},
 		ImpressionsByTopic: map[snapshot.Window]map[string]float64{},
+		SERP:               map[snapshot.Window]snapshot.SERP{},
 	}
+	var week []Row // the 7d query rows, reused for the top queries
 	for w, r := range Windows(now) {
-		rows, err := c.Query(ctx, r[0], r[1], nil, 1)
+		// Every query row, not a click-ordered top N: the bands and the stable set
+		// need low-click rows too. Usually one request per window.
+		rows, err := c.QueryAll(ctx, r[0], r[1], []string{"query"})
+		if err != nil {
+			return s, fmt.Errorf("queries %s: %w", w, err)
+		}
+		s.SERP[w] = SERPStats(rows)
+		if w == snapshot.W7d {
+			week = rows
+		}
+
+		rows, err = c.Query(ctx, r[0], r[1], nil, 1)
 		if err != nil {
 			return s, fmt.Errorf("totals %s: %w", w, err)
 		}
@@ -83,11 +95,8 @@ func Collect(ctx context.Context, c *Client, topics map[string]string, now time.
 	}
 	s.ArticlesByTopic = articles
 
-	queries, err := topByImpressions(ctx, c, Windows(now)[snapshot.W7d])
-	if err != nil {
-		return s, err
-	}
-	prev, err := c.Query(ctx, PrevWeek(now)[0], PrevWeek(now)[1], []string{"query"}, pageRows)
+	queries := topByImpressions(week)
+	prev, err := c.QueryAll(ctx, PrevWeek(now)[0], PrevWeek(now)[1], []string{"query"})
 	if err != nil {
 		return s, fmt.Errorf("previous week queries: %w", err)
 	}
@@ -107,13 +116,10 @@ func Collect(ctx context.Context, c *Client, topics map[string]string, now time.
 	return s, nil
 }
 
-// topByImpressions returns the topQueries queries with the most impressions in r.
-func topByImpressions(ctx context.Context, c *Client, r [2]string) ([]Row, error) {
-	rows, err := c.Query(ctx, r[0], r[1], []string{"query"}, queryRows)
-	if err != nil {
-		return nil, fmt.Errorf("queries: %w", err)
-	}
-	kept := rows[:0]
+// topByImpressions returns the topQueries query rows with the most impressions.
+// It copies, so the caller's rows keep their order.
+func topByImpressions(rows []Row) []Row {
+	var kept []Row
 	for _, row := range rows {
 		if len(row.Keys) > 0 {
 			kept = append(kept, row)
@@ -123,5 +129,46 @@ func topByImpressions(ctx context.Context, c *Client, r [2]string) ([]Row, error
 	if len(kept) > topQueries {
 		kept = kept[:topQueries]
 	}
-	return kept, nil
+	return kept
+}
+
+// SERPStats bands query rows by average position and takes the median position
+// of the stable set (rows with at least snapshot.StableMinImpressions
+// impressions). Rows without a key are skipped.
+func SERPStats(rows []Row) snapshot.SERP {
+	var s snapshot.SERP
+	var stable []float64
+	for _, r := range rows {
+		if len(r.Keys) == 0 {
+			continue
+		}
+		s.QueryRows++
+		s.QueryImpressions += r.Impressions
+		if r.Position <= 3 {
+			s.Top3Clicks += r.Clicks
+			s.Top3Impressions += r.Impressions
+		}
+		if r.Position <= 10 {
+			s.Top10Impressions += r.Impressions
+		}
+		if r.Impressions >= snapshot.StableMinImpressions {
+			stable = append(stable, r.Position)
+		}
+	}
+	s.StableQueries = len(stable)
+	s.StableMedianPosition = median(stable)
+	return s
+}
+
+// median sorts xs in place and returns its median, 0 for an empty slice.
+func median(xs []float64) float64 {
+	n := len(xs)
+	if n == 0 {
+		return 0
+	}
+	sort.Float64s(xs)
+	if n%2 == 1 {
+		return xs[n/2]
+	}
+	return (xs[n/2-1] + xs[n/2]) / 2
 }

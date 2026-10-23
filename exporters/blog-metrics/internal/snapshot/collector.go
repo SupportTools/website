@@ -46,6 +46,9 @@ var (
 	dSPos        = desc("blog_search_position", "Google Search average position.", "window")
 	dSClicksT    = desc("blog_search_clicks_by_topic", "Google Search clicks by topic.", "window", "topic")
 	dSImprT      = desc("blog_search_impressions_by_topic", "Google Search impressions by topic.", "window", "topic")
+	dSTop3CTR    = desc("blog_search_top3_ctr", "Google Search click-through rate, 0 to 1, over visible query rows at average position <= 3 (anonymized queries excluded).", "window")
+	dSTop10Impr  = desc("blog_search_top10_impressions", "Google Search impressions over visible query rows at average position <= 10 (anonymized queries excluded).", "window")
+	dSStablePos  = desc("blog_search_stable_query_median_position", "Median average position of visible queries with at least "+strconv.Itoa(StableMinImpressions)+" impressions in the window.", "window")
 	dUp          = desc("blog_metrics_source_up", "1 when the source's last poll succeeded.", "source")
 	dLastSuccess = desc("blog_metrics_source_last_success_timestamp_seconds", "Unix time of the source's last successful poll.", "source")
 	dSocial      = map[string]*prometheus.Desc{}
@@ -138,6 +141,16 @@ func (c collector) Collect(ch chan<- prometheus.Metric) {
 		}
 		byKey(dSClicksT, bucket(v.Search.ClicksByTopic))
 		byKey(dSImprT, bucket(v.Search.ImpressionsByTopic))
+		// Ratios and medians with nothing to measure are left out, never NaN or 0.
+		for w, sp := range v.Search.SERP {
+			gauge(dSTop10Impr, sp.Top10Impressions, string(w))
+			if ctr, ok := sp.Top3CTR(); ok {
+				gauge(dSTop3CTR, ctr, string(w))
+			}
+			if sp.StableQueries > 0 {
+				gauge(dSStablePos, sp.StableMedianPosition, string(w))
+			}
+		}
 	}
 
 	if v.Status[SourceBuffer].HasData {

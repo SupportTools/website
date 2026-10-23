@@ -122,6 +122,7 @@ func TestMetricNamesMatchSpec(t *testing.T) {
 		Totals:             map[Window]Totals{W7d: {150, 30000, 0.005, 17.2}},
 		ClicksByTopic:      map[Window]map[string]float64{W7d: {"networking": 40}},
 		ImpressionsByTopic: map[Window]map[string]float64{W7d: {"networking": 900}},
+		SERP:               map[Window]SERP{W7d: {Top3Clicks: 1, Top3Impressions: 10, Top10Impressions: 50, StableQueries: 1, StableMedianPosition: 4}},
 	})
 	s.SetSocial(Social{Metrics: map[Window]map[string]map[string]float64{
 		W7d: {"linkedin": {"posts": 1, "reactions": 2, "comments": 3, "impressions": 4, "reach": 5}},
@@ -134,7 +135,8 @@ func TestMetricNamesMatchSpec(t *testing.T) {
 	want := strings.Fields(`blog_article_reads blog_bot_pageviews blog_metrics_source_last_success_timestamp_seconds
 		blog_metrics_source_up blog_pageviews blog_pageviews_by_channel blog_pageviews_by_kind blog_pageviews_by_topic
 		blog_read_rate blog_search_clicks blog_search_clicks_by_topic blog_search_ctr blog_search_impressions
-		blog_search_impressions_by_topic blog_search_position blog_social_comments blog_social_impressions
+		blog_search_impressions_by_topic blog_search_position blog_search_stable_query_median_position
+		blog_search_top10_impressions blog_search_top3_ctr blog_social_comments blog_social_impressions
 		blog_social_posts blog_social_reach blog_social_reactions blog_top_post_pageviews blog_visitors`)
 	if strings.Join(names, " ") != strings.Join(want, " ") {
 		t.Fatalf("metric names\n got %v\nwant %v", names, want)
@@ -239,4 +241,77 @@ func TestReportJoinsUnbucketedTopics(t *testing.T) {
 		}
 	}
 	t.Fatal("t00 missing from /report topics")
+}
+
+func byWindow(t *testing.T, mf *dto.MetricFamily) map[string]float64 {
+	t.Helper()
+	out := map[string]float64{}
+	for _, m := range mf.GetMetric() {
+		out[label(m, "window")] = m.GetGauge().GetValue()
+	}
+	return out
+}
+
+// The 7d window has data in every band; the 28d window had query rows but none
+// in the top 3 and none stable, so its CTR and median are omitted (never NaN),
+// while its top-10 impressions count is a real 0.
+func TestSERPMetrics(t *testing.T) {
+	s := NewStore(fixedNow())
+	s.SetSearch(Search{SERP: map[Window]SERP{
+		W7d:  {QueryRows: 9, Top3Clicks: 30, Top3Impressions: 600, Top10Impressions: 2000, StableQueries: 5, StableMedianPosition: 7.5},
+		W28d: {QueryRows: 2, QueryImpressions: 8},
+	}})
+	mfs := gather(t, s)
+	if got := byWindow(t, mfs["blog_search_top3_ctr"]); len(got) != 1 || got["7d"] != 0.05 {
+		t.Fatalf("top3 ctr = %v, want only 7d = 0.05", got)
+	}
+	if got := byWindow(t, mfs["blog_search_top10_impressions"]); len(got) != 2 || got["7d"] != 2000 || got["28d"] != 0 {
+		t.Fatalf("top10 impressions = %v", got)
+	}
+	if got := byWindow(t, mfs["blog_search_stable_query_median_position"]); len(got) != 1 || got["7d"] != 7.5 {
+		t.Fatalf("stable median position = %v, want only 7d = 7.5", got)
+	}
+}
+
+func TestSERPMetricsAbsentWithoutData(t *testing.T) {
+	s := NewStore(fixedNow())
+	s.SetSearch(Search{Totals: map[Window]Totals{W7d: {}}})
+	mfs := gather(t, s)
+	for _, n := range []string{"blog_search_top3_ctr", "blog_search_top10_impressions", "blog_search_stable_query_median_position"} {
+		if mfs[n] != nil {
+			t.Fatalf("%s exported without query rows: %v", n, mfs[n])
+		}
+	}
+}
+
+func TestReportSERP(t *testing.T) {
+	s := NewStore(fixedNow())
+	s.SetSearch(Search{SERP: map[Window]SERP{
+		W7d:  {QueryRows: 9, QueryImpressions: 2500, Top3Clicks: 30, Top3Impressions: 600, Top10Impressions: 2000, StableQueries: 5, StableMedianPosition: 7.5},
+		W28d: {QueryRows: 2, QueryImpressions: 8},
+	}})
+	b, err := json.Marshal(Report(s.Get()))
+	if err != nil {
+		t.Fatal(err)
+	}
+	var r struct {
+		Search struct {
+			SERP map[string]map[string]any `json:"serp"`
+		} `json:"search"`
+	}
+	if err := json.Unmarshal(b, &r); err != nil {
+		t.Fatal(err)
+	}
+	w7 := r.Search.SERP["7d"]
+	if w7["top3_ctr"] != 0.05 || w7["top10_impressions"] != 2000.0 || w7["stable_median_position"] != 7.5 ||
+		w7["stable_queries"] != 5.0 || w7["query_rows"] != 9.0 || w7["query_impressions"] != 2500.0 || w7["top3_clicks"] != 30.0 {
+		t.Fatalf("serp 7d = %v", w7)
+	}
+	w28 := r.Search.SERP["28d"]
+	if w28["top3_ctr"] != nil || w28["stable_median_position"] != nil || w28["top10_impressions"] != 0.0 {
+		t.Fatalf("serp 28d = %v, want null ctr and median, 0 top-10 impressions", w28)
+	}
+	if _, ok := w28["top3_ctr"]; !ok {
+		t.Fatalf("serp 28d lacks top3_ctr key (want explicit null): %s", b)
+	}
 }
