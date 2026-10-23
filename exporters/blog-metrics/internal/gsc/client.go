@@ -28,13 +28,48 @@ type Row struct {
 	Position    float64  `json:"position"`
 }
 
+// maxRowLimit is the API's largest rowLimit; maxPages caps a QueryAll at
+// 100,000 rows.
+const (
+	maxRowLimit = 25000
+	maxPages    = 4
+)
+
 // Query returns rows for [start, end] (YYYY-MM-DD, inclusive) grouped by dims.
 func (c *Client) Query(ctx context.Context, start, end string, dims []string, rowLimit int) ([]Row, error) {
+	return c.page(ctx, start, end, dims, rowLimit, 0)
+}
+
+// QueryAll returns every row for [start, end] grouped by dims, paging with
+// startRow. It fails rather than return a truncated result.
+func (c *Client) QueryAll(ctx context.Context, start, end string, dims []string) ([]Row, error) {
+	return c.queryAll(ctx, start, end, dims, maxRowLimit, maxPages)
+}
+
+func (c *Client) queryAll(ctx context.Context, start, end string, dims []string, pageSize, pages int) ([]Row, error) {
+	var all []Row
+	for p := 0; p < pages; p++ {
+		rows, err := c.page(ctx, start, end, dims, pageSize, len(all))
+		if err != nil {
+			return nil, err
+		}
+		all = append(all, rows...)
+		if len(rows) < pageSize {
+			return all, nil
+		}
+	}
+	return nil, fmt.Errorf("gsc query: result truncated at %d rows; raise maxPages", len(all))
+}
+
+func (c *Client) page(ctx context.Context, start, end string, dims []string, rowLimit, startRow int) ([]Row, error) {
 	tok, err := c.Tokens.Token(ctx)
 	if err != nil {
 		return nil, err
 	}
 	reqBody := map[string]any{"startDate": start, "endDate": end, "rowLimit": rowLimit}
+	if startRow > 0 {
+		reqBody["startRow"] = startRow
+	}
 	if len(dims) > 0 {
 		reqBody["dimensions"] = dims
 	}

@@ -109,14 +109,16 @@ func TestGSCWindowDates(t *testing.T) {
 	}
 }
 
-// fakeGSC answers searchAnalytics by the requested dimension.
-func fakeGSC(t *testing.T) *httptest.Server {
+// fakeGSC answers searchAnalytics by the requested dimension and counts the
+// searchAnalytics requests in queries.
+func fakeGSC(t *testing.T, queries *int) *httptest.Server {
 	t.Helper()
 	srv := testsrv.New(t, http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		if r.URL.Path == "/token" {
 			io.WriteString(w, `{"access_token":"tok","expires_in":3600}`)
 			return
 		}
+		*queries++
 		if r.Header.Get("Authorization") != "Bearer tok" {
 			t.Errorf("Authorization = %q", r.Header.Get("Authorization"))
 		}
@@ -153,7 +155,8 @@ func fakeGSC(t *testing.T) *httptest.Server {
 
 func TestSearchByTopic(t *testing.T) {
 	_, keyJSON := testKey(t)
-	srv := fakeGSC(t)
+	queries := 0
+	srv := fakeGSC(t, &queries)
 	now := time.Date(2026, 10, 23, 12, 0, 0, 0, time.UTC)
 	ts, err := NewTokenSource(keyJSON, srv.URL+"/token", func() time.Time { return now })
 	if err != nil {
@@ -180,6 +183,18 @@ func TestSearchByTopic(t *testing.T) {
 	q := s.Queries[1]
 	if q.Query != "curl host header" || q.Clicks != 30 || q.PrevClicks != 20 || q.PrevPosition != 5 {
 		t.Fatalf("query with previous week = %+v", q)
+	}
+	// Both windows' query rows: curl host header (30 clicks, 500 impressions,
+	// position 4) and ping mtu (1, 900, 12). Nothing in the top 3.
+	for _, w := range snapshot.LongWindows {
+		want := snapshot.SERP{QueryRows: 2, QueryImpressions: 1400, Top10Impressions: 500, StableQueries: 2, StableMedianPosition: 8}
+		if got := s.SERP[w]; got != want {
+			t.Fatalf("SERP %s = %+v, want %+v", w, got, want)
+		}
+	}
+	// Per window: totals, pages, queries (one page each), plus the previous week.
+	if queries != 7 {
+		t.Fatalf("searchAnalytics requests = %d, want 7", queries)
 	}
 }
 

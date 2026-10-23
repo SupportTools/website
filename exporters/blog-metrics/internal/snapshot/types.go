@@ -54,11 +54,39 @@ type Query struct {
 	PrevPosition    float64 `json:"prev_position"`
 }
 
+// SERP bands one window's query rows by average position, to tell a click-through
+// loss at a stable position (an AI answer above the result) from a ranking loss.
+// It covers visible queries only: Search Console leaves anonymized queries out of
+// query rows, so QueryImpressions is below the window's total impressions.
+type SERP struct {
+	QueryRows        int     // query rows in the window
+	QueryImpressions float64 // impressions over those rows
+	Top3Clicks       float64 // clicks over rows at position <= 3
+	Top3Impressions  float64 // impressions over rows at position <= 3
+	Top10Impressions float64 // impressions over rows at position <= 10
+	// StableQueries counts rows with at least StableMinImpressions impressions;
+	// StableMedianPosition is the median of their positions (0 when there are none).
+	StableQueries        int
+	StableMedianPosition float64
+}
+
+// StableMinImpressions is the impressions floor for the stable query set.
+const StableMinImpressions = 10
+
+// Top3CTR is clicks per impression at position <= 3; ok is false with no such impressions.
+func (s SERP) Top3CTR() (ctr float64, ok bool) {
+	if s.Top3Impressions <= 0 {
+		return 0, false
+	}
+	return s.Top3Clicks / s.Top3Impressions, true
+}
+
 // Search is what the Search Console source reports.
 type Search struct {
 	Totals             map[Window]Totals
 	ClicksByTopic      map[Window]map[string]float64
 	ImpressionsByTopic map[Window]map[string]float64
+	SERP               map[Window]SERP // set for each window whose query rows were read
 	Queries            []Query
 	ArticlesByTopic    map[string]float64 // published articles per topic, from post-index.json
 }
