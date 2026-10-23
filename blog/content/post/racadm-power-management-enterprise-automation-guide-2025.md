@@ -1,16 +1,52 @@
 ---
-title: "Dell RACADM Power Management & Automation Guide 2025: Enterprise Energy Optimization & Cost Control"
+title: "RACADM Power Commands: Power Cycle, Power Cap, Read Usage"
 date: 2025-09-09T10:00:00-08:00
+lastmod: 2026-10-23T00:00:00-05:00
 draft: false
 tags: ["racadm", "power-management", "dell-servers", "energy-efficiency", "automation", "idrac", "enterprise", "monitoring", "cost-optimization", "data-center", "server-management", "power-capping", "infrastructure", "devops", "Tech", "Misc"]
 categories: ["Infrastructure"]
 author: "Matthew Mattox - mmattox@support.tools"
-description: "Master Dell server power management with RACADM in 2025. Comprehensive guide covering enterprise automation, power capping strategies, energy monitoring dashboards, cost optimization, and large-scale deployment best practices for data center efficiency."
+description: "Dell iDRAC RACADM power commands: serveraction powercycle and graceshutdown, read power draw, set a power cap with System.Power.Cap, and script it."
 ---
 
-# Dell RACADM Power Management & Automation Guide 2025: Enterprise Energy Optimization & Cost Control
+# RACADM Power Commands: Power Cycle, Power Cap, Read Usage
 
-Managing power consumption across hundreds or thousands of Dell servers requires sophisticated automation and monitoring strategies. This comprehensive guide transforms basic RACADM power commands into enterprise-scale energy management solutions that can save organizations millions in operational costs while ensuring performance and reliability.
+The RACADM commands for powering a Dell PowerEdge server on, off and through a cycle, reading its power draw, and setting a power cap. After the quick answer, the rest of the page builds those commands into fleet-wide monitoring and capping scripts.
+
+## Quick answer
+
+Run these locally on the host, over SSH to the iDRAC, or remotely with `racadm -r <idrac-ip> -u <user> -p <password>`:
+
+```bash
+# Power state and power actions
+racadm serveraction powerstatus
+racadm serveraction graceshutdown   # ACPI shutdown through the OS
+racadm serveraction powerdown       # hard power off
+racadm serveraction powerup
+racadm serveraction powercycle      # off, then on
+racadm serveraction hardreset       # reset without removing power
+
+# Current power draw and PSU sensors
+racadm getsensorinfo
+
+# Every power attribute this iDRAC exposes
+racadm get System.Power
+
+# Set and enable a 400 W power cap
+racadm set System.Power.Cap.Watts 400
+racadm set System.Power.Cap.Enable Enabled
+racadm get System.Power.Cap
+```
+
+> [!NOTE]
+> Power capping needs an iDRAC Enterprise or Datacenter license. Attribute names differ between iDRAC generations and firmware versions, so list them with `racadm get System.Power` before scripting against them; the scripts below use the `System.Power.Cap.*` names from Dell's iDRAC9 documentation.
+
+Related guides on this site:
+
+- [Install RACADM and iDRAC tools on Ubuntu or Debian](/dell-idrac-racadm-installation-ubuntu-debian-2025/) if `racadm` is not installed yet.
+- [RACADM BIOS configuration](/racadm-bios-configuration-automation-guide-2025/) for the system profile settings that also change power use.
+- [iDRAC session management and troubleshooting](/idrac-session-management-troubleshooting-guide-2025/) when remote racadm calls fail with session limits.
+- [Serial over LAN with iDRAC](/sol-serial-over-lan-idrac-bmc-guide-2025/) to watch the console while you power cycle.
 
 ## Table of Contents
 
@@ -175,7 +211,7 @@ class PowerMonitor:
                 inlet_temp = self._parse_temperature(result.stdout)
                 
                 # Get power cap settings
-                result = await conn.run('racadm get System.Power.PowerCap')
+                result = await conn.run('racadm get System.Power.Cap')
                 power_cap = self._parse_power_cap(result.stdout)
                 
                 # Get PSU status
@@ -617,10 +653,10 @@ class DynamicPowerCapManager:
                 known_hosts=None
             ) as conn:
                 # Enable power capping
-                await conn.run('racadm set System.Power.PowerCap.Enabled 1')
+                await conn.run('racadm set System.Power.Cap.Enable Enabled')
                 
                 # Set power cap value
-                await conn.run(f'racadm set System.Power.PowerCap.Value {cap_watts}')
+                await conn.run(f'racadm set System.Power.Cap.Watts {cap_watts}')
                 
                 self.logger.info(
                     f"Set power cap for {server['id']} to {cap_watts}W "
