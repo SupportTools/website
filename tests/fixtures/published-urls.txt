@@ -161,6 +161,7 @@
 /categories/build-systems/
 /categories/business-continuity/
 /categories/cache/
+/categories/caching/
 /categories/capacity-planning/
 /categories/career-advice/
 /categories/career-development/
@@ -1468,6 +1469,7 @@
 /tags/application-performance/
 /tags/application-security/
 /tags/applicationsets/
+/tags/applitools/
 /tags/apt/
 /tags/architectural-patterns/
 /tags/architecture-patterns/
@@ -1486,6 +1488,7 @@
 /tags/audio/
 /tags/audit-logging/
 /tags/audit/
+/tags/auger/
 /tags/aurora-mysql/
 /tags/authentication/
 /tags/authorization/
@@ -1497,6 +1500,7 @@
 /tags/autoscaler/
 /tags/autoscaling/
 /tags/avx/
+/tags/aws-iam/
 /tags/aws-outposts/
 /tags/aws-s3/
 /tags/aws-secrets-manager/
@@ -1579,6 +1583,7 @@
 /tags/ca/
 /tags/cache-optimization/
 /tags/cache/
+/tags/cachefilesd/
 /tags/caching-layer/
 /tags/caching/
 /tags/caddy/
@@ -1906,6 +1911,8 @@
 /tags/distributed-systems/
 /tags/distributed-tracing/
 /tags/distributed-training/
+/tags/distroless/
+/tags/dive/
 /tags/dkms/
 /tags/dma/
 /tags/dns-architecture/
@@ -1968,6 +1975,7 @@
 /tags/embedded-systems/
 /tags/embedded/
 /tags/emergency-response/
+/tags/encryption-at-rest/
 /tags/encryption/
 /tags/endpoints/
 /tags/energy-efficiency/
@@ -2001,6 +2009,7 @@
 /tags/error-management/
 /tags/esxi/
 /tags/etcd/
+/tags/etcdutl/
 /tags/etl/
 /tags/event-driven-architecture/
 /tags/event-driven/
@@ -2067,6 +2076,7 @@
 /tags/fpga/
 /tags/frontend-architecture/
 /tags/frontend/
+/tags/fs-cache/
 /tags/fsmo/
 /tags/fstab/
 /tags/ftdi/
@@ -2482,6 +2492,7 @@
 /tags/multi-homing/
 /tags/multi-monitor/
 /tags/multi-region/
+/tags/multi-stage-builds/
 /tags/multi-tenancy/
 /tags/multi-tenant/
 /tags/multimedia-programming/
@@ -2595,6 +2606,7 @@
 /tags/openmp/
 /tags/openpgp/
 /tags/opensearch/
+/tags/openssh/
 /tags/openssl/
 /tags/opentelemetry/
 /tags/openvas/
@@ -2613,6 +2625,7 @@
 /tags/out-of-band-management/
 /tags/out-of-band/
 /tags/overlay-network/
+/tags/owasp-crs/
 /tags/owasp/
 /tags/package-management/
 /tags/packer/
@@ -2645,6 +2658,7 @@
 /tags/penetration-testing/
 /tags/pentesting/
 /tags/percona/
+/tags/percy/
 /tags/perf/
 /tags/performance-benchmarking/
 /tags/performance-monitoring/
@@ -2672,6 +2686,7 @@
 /tags/planning/
 /tags/platform-engineering/
 /tags/platform/
+/tags/playwright/
 /tags/pod-configuration/
 /tags/pod-dns/
 /tags/pod-eviction/
@@ -3020,6 +3035,7 @@
 /tags/ssh-keys/
 /tags/ssh-security/
 /tags/ssh/
+/tags/sshd/
 /tags/ssl/
 /tags/stable-features/
 /tags/stakeholder-management/
@@ -3119,6 +3135,7 @@
 /tags/timezone/
 /tags/tips/
 /tags/tls/
+/tags/tohavescreenshot/
 /tags/tolerations/
 /tags/tool-chain-integration/
 /tags/tool-integration/
@@ -3144,6 +3161,7 @@
 /tags/tutorial/
 /tags/tutorials/
 /tags/twelve-factor-app/
+/tags/tzdata/
 /tags/ubuntu-pro/
 /tags/ubuntu-router/
 /tags/ubuntu/
@@ -3156,6 +3174,7 @@
 /tags/unit-tests/
 /tags/unix-signals/
 /tags/unix/
+/tags/update-ca-certificates/
 /tags/upgrade-guide/
 /tags/upgrade/
 /tags/upgrades/
@@ -3174,7 +3193,11 @@
 /tags/validation/
 /tags/valkey/
 /tags/vapt/
+/tags/varnish/
+/tags/varnishlog/
+/tags/varnishstat/
 /tags/vcenter/
+/tags/vcl/
 /tags/vcops/
 /tags/vector-database/
 /tags/vectorization/
@@ -3186,10 +3209,12 @@
 /tags/vfs/
 /tags/victoriametrics/
 /tags/video-streaming/
+/tags/vinyl-cache/
 /tags/virtual-machine/
 /tags/virtual-media/
 /tags/virtual-memory/
 /tags/virtualization/
+/tags/visual-regression/
 /tags/visual-studio-code/
 /tags/visualization/
 /tags/vlan/
@@ -3270,6 +3295,7 @@
 /tags/zero-instrumentation/
 /tags/zero-trust/
 /tags/zfs/
+/tags/zizmor/
 /tags/zsh/
 /tags/zstd/
 /tags/zvol/
