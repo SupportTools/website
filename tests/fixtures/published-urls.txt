@@ -1112,6 +1112,7 @@
 /optimizing-kubernetes-resources/
 /optimizing-ssh-identity-usage/
 /pci-dss-compliance-cloud-native-applications-guide/
+/php2shell-cve-2026-109618-109619-fleet-wide-php-remediation/
 /ping-mtu-linux/
 /pixie-ebpf-observability-kubernetes-production/
 /platform-team-topology-patterns-enterprise-guide/
@@ -2556,6 +2557,7 @@
 /tags/networkpolicy/
 /tags/neural-networks/
 /tags/newman/
+/tags/nextcloud/
 /tags/nfs/
 /tags/nftables/
 /tags/nfv/
@@ -2669,9 +2671,11 @@
 /tags/permission-troubleshooting/
 /tags/persistent-storage/
 /tags/persistent-volumes/
+/tags/pfsense/
 /tags/pgp/
 /tags/phoenix/
 /tags/php-fpm/
+/tags/php/
 /tags/pi-agent/
 /tags/pi-hole/
 /tags/pi/
