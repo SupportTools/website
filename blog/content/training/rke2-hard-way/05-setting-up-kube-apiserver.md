@@ -17,7 +17,7 @@ In this part of the **"RKE2 the Hard Way"** training series, we will set up the 
 
 Using static pods for the API server is a key design principle in RKE2. This approach simplifies deployment and management, as kubelet will automatically start the API server and ensure it stays running. If an API server instance fails, kubelet will automatically restart it.
 
-> ✅ **Assumption:** We've already set up etcd as static pods in [Part 4](/training/rke2-hard-way/04-setting-up-etcd-cluster/) and have our certificates from [Part 3](/training/rke2-hard-way/03-certificate-authority-tls-certificates/).
+> ✅ **Assumption:** We've already set up etcd as static pods in [Part 4](/training/rke2-hard-way/04-setting-up-etcd-cluster/) and have our certificates from [Part 3](/training/rke2-hard-way/02-certificate-authority-tls-certificates/).
 
 ---
 

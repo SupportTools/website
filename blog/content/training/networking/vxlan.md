@@ -183,7 +183,7 @@ VXLAN plays a critical role in **network virtualization**, enabling scalable and
 
 Interested in more networking topics? Check out these related posts:
 - [Networking 101](../networking-101/)
-- [Kubernetes Networking with Flannel](../kubernetes-flannel/)
-- [Multi-Cloud Networking](../multi-cloud-networking/)
+- Kubernetes Networking with Flannel
+- Multi-Cloud Networking
 
 ---

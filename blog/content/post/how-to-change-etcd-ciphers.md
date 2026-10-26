@@ -1,10 +1,12 @@
-+++
-Categories = ["Rancher", "etcd"]
-Tags = ["rancher", "etcd"]
-date = "2021-02-28T23:22:00+00:00"
-more_link = "yes"
-title = "How to change etcd cipher suite in Rancher / RKE"
-+++
+---
+categories:
+- "Rancher"
+- "etcd"
+tags: ["rancher", "etcd"]
+date: "2021-02-28T23:22:00+00:00"
+more_link: "yes"
+title: "How to change etcd cipher suite in Rancher / RKE"
+---
 
 This article will walk Rancher administrators through hardening the cluster communication between etcd nodes. We'll go over configuring etcd to use specific ciphers which enable stronger encryption for securing intra-cluster etcd traffic.
 

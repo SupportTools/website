@@ -1,10 +1,12 @@
-+++
-Categories = ["Rancher", "SSL"]
-Tags = ["rancher", "ssl"]
-date = "2021-03-01T11:10:00+00:00"
-more_link = "yes"
-title = "How to change the Rancher v2.x Server certificate to an externally created certificate."
-+++
+---
+categories:
+- "Rancher"
+- "TLS & Certificates"
+tags: ["rancher", "ssl"]
+date: "2021-03-01T11:10:00+00:00"
+more_link: "yes"
+title: "How to change the Rancher v2.x Server certificate to an externally created certificate."
+---
 
 It's often necessary to migrate from a self-signed or LetsEncrypt certificate to an externally created certificate like DigiCert or Comodo in Rancher v2.x.
 

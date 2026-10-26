@@ -1,10 +1,12 @@
-+++
-Categories = ["Rancher", "AWS"]
-Tags = ["rancher", "aws"]
-date = "2020-10-23T14:28:00+00:00"
-more_link = "yes"
-title = "How to use External TLS Termination with AWS"
-+++
+---
+categories:
+- "Rancher"
+- "AWS"
+tags: ["rancher", "aws"]
+date: "2020-10-23T14:28:00+00:00"
+more_link: "yes"
+title: "How to use External TLS Termination with AWS"
+---
 
 This document covers setting up Rancher using an AWS SSL certificate and an ALB (Application Load Balancer).
 
@@ -94,4 +96,4 @@ Example output:
 * Connection #0 to host mmattox-example.support.rancher.space left intact
 ```
 
-NOTE: Some browsers will cache the certificate. [Details on how to clear the SSL state in a browser can be found here](a2hosting.com/kb/getting-started-guide/internet-and-networking/clearing-a-web-browsers-ssl-state).
+NOTE: Some browsers will cache the certificate. [Details on how to clear the SSL state in a browser can be found here](https://a2hosting.com/kb/getting-started-guide/internet-and-networking/clearing-a-web-browsers-ssl-state).

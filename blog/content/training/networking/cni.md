@@ -271,4 +271,4 @@ Choosing the right CNI plugin depends on your specific requirements:
 For more information, check out:
 - [Kubernetes VXLAN Networking](/training/networking/kubernetes-vxlan/)
 - [Container Network Security](/training/networking/container-security/)
-- [Network Performance](/training/networking/performance/)
+- Network Performance

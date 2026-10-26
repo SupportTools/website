@@ -1,7 +1,7 @@
 ---
 title: "Enterprise Backup and Disaster Recovery: Comprehensive Automation Framework for Production Infrastructure and Business Continuity"
 date: 2025-05-27T10:00:00-05:00
-draft: false
+draft: true
 tags: ["Backup", "Disaster Recovery", "Business Continuity", "Enterprise Infrastructure", "Automation", "Data Protection", "RPO", "RTO", "High Availability", "Compliance"]
 categories:
 - Data Protection

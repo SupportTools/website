@@ -1,10 +1,11 @@
-+++
-Categories = ["zfs"]
-Tags = ["zfs", "zvol"]
-date = "2021-06-24T23:58:00+00:00"
-more_link = "yes"
-title = "How to grow a zvol in ZFS"
-+++
+---
+categories:
+- "File Systems"
+tags: ["zfs", "zvol"]
+date: "2021-06-24T23:58:00+00:00"
+more_link: "yes"
+title: "How to grow a zvol in ZFS"
+---
 
 In ZFS, there are two types of filesystems (datasets and zvol). The ZFS dataset can be grown by setting the quota and reservation properties. But zvols have to extend by setting the volsize property to a new size.
 

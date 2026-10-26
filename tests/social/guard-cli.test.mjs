@@ -36,7 +36,9 @@ test('check reports bad scheduled links and draft links without changing anythin
       const nodes = status === 'scheduled'
         ? [node('good', 'scheduled', 'https://support.tools/curl-host-header/?utm_source=bluesky&utm_medium=social'),
            node('bad', 'scheduled', 'https://support.tools/kubernetes-cpu-limits-comprehensive-analysis-when-not-to-set-limits/?utm_source=bluesky&utm_medium=social')]
-        : [node('draft1', 'draft', 'https://support.tools/no-such-article/?utm_source=bluesky')];
+        : [node('draft1', 'draft', 'https://support.tools/no-such-article/?utm_source=bluesky'),
+           // Held on purpose: the article is draft: true, so this is not a link problem.
+           node('held1', 'draft', 'https://support.tools/post-mortem-template-automation-guide/?utm_source=bluesky')];
       res.end(JSON.stringify({ data: { posts: { edges: nodes.map((n) => ({ node: n })), pageInfo: { hasNextPage: false, endCursor: null } } } }));
     });
   });
@@ -44,7 +46,7 @@ test('check reports bad scheduled links and draft links without changing anythin
   // Async spawn: spawnSync would block this process, and with it the fake server.
   const r = await new Promise((resolve) => {
     const child = spawn('node', ['scripts/social/guard.mjs', 'check'], {
-      cwd: ROOT, env: { ...process.env, BUFFER_API_KEY: 'k', BUFFER_URL: `http://127.0.0.1:${port}`, PUSHGATEWAY_URL: '' },
+      cwd: ROOT, env: { ...process.env, BUFFER_API_KEY: 'k', BUFFER_URL: `http://127.0.0.1:${port}`, PUSHGATEWAY_URL: '', SOCIAL_GUARD_NOTIFY: '0' },
     });
     let stdout = '';
     let stderr = '';
@@ -57,5 +59,8 @@ test('check reports bad scheduled links and draft links without changing anythin
   assert.match(r.stdout, /PROBLEM .* bad .*\n\s+no page at \/kubernetes-cpu-limits-comprehensive-analysis-when-not-to-set-limits\/; the article is at \/post\//);
   assert.doesNotMatch(r.stdout, /PROBLEM .* good /);
   assert.match(r.stdout, /DRAFT PROBLEM .* draft1/);
+  assert.match(r.stdout, /HELD DRAFT .* held1/);
+  assert.doesNotMatch(r.stdout, /DRAFT PROBLEM .* held1/);
+  assert.match(r.stdout, /check: 2 problem\(s\)/);
   assert.equal(edits.length, 0);
 });

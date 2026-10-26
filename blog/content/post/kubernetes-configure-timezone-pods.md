@@ -262,5 +262,5 @@ Usually yes: UTC has no daylight saving jumps and makes logs from different regi
 ## Related guides
 
 - [Kubernetes: Setting the Timezone for CronJobs](/kubernetes-cronjob-timezone/)
-- [Securing Kubernetes Workloads with Pod Security Admission](/kubernetes-pod-security-admission/)
+- [Deep Dive into Kubernetes Pod Security Admission](/kubernetes-pod-security-admission-deep-dive/)
 - [Kubernetes Static vs Dynamic ConfigMaps](/kubernetes-static-vs-dynamic-configmaps/)

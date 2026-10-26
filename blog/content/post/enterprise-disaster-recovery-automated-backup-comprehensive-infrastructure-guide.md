@@ -2,7 +2,7 @@
 title: "Enterprise Disaster Recovery and Automated Backup Infrastructure: Comprehensive Multi-Cloud Data Protection Framework"
 date: 2025-08-19T10:00:00-05:00
 draft: false
-tags: ["Disaster Recovery", "Backup Automation", "rclone", "Backblaze B2", "Amazon S3", "Data Protection", "Enterprise Infrastructure", "Cloud Storage", "Compliance", "Security"]
+tags: ["Disaster Recovery", "Backup Automation", "rclone", "Backblaze B2", "Amazon S3", "Data Protection", "Enterprise Infrastructure", "Cloud Storage", "Compliance", "Security", "RPO", "RTO"]
 categories:
 - Disaster Recovery
 - Data Protection

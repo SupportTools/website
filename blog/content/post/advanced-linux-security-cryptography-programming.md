@@ -2,7 +2,7 @@
 title: "Advanced Linux Security and Cryptography Programming: Building Secure Systems and Encryption Frameworks"
 date: 2025-05-02T10:00:00-05:00
 draft: false
-tags: ["Linux", "Security", "Cryptography", "OpenSSL", "SELinux", "AppArmor", "Secure Coding", "Encryption"]
+tags: ["Linux", "Security", "Cryptography", "OpenSSL", "SELinux", "AppArmor", "Secure Coding", "Encryption", "Secure Programming"]
 categories:
 - Linux
 - Security

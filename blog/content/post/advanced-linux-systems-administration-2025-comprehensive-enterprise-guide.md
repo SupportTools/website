@@ -13,6 +13,7 @@ tags:
 - namespaces
 - security
 - monitoring
+- bind-mounts
 categories:
 - Linux
 - System Administration

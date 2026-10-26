@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
-# Cron wrapper for scripts/social/guard.mjs (social link guards). Times are
-# America/Chicago, the same clock as the Buffer posting slots:
-#   15 8  * * * .../scripts/social/guard.sh preflight   # before the 08:45/08:53 slots
-#   0  16 * * * .../scripts/social/guard.sh preflight   # before the 16:26/17:33 slots
-#   30 1  * * * .../scripts/social/guard.sh promote     # after the 06:00 UTC rebuild is live
-#   40 9  * * * .../scripts/social/guard.sh promote     # after the 09:10 rebuild is live
-# Reads the local checkout's content files (where posts are written), so no git pull.
+# Manual wrapper for scripts/social/guard.mjs (social link guards) on a workstation.
+# The scheduled runs (preflight 08:15 and 16:00, promote 01:30 and 09:40, check 18:45,
+# America/Chicago) moved to a1-ops-prd CronJobs on 2026-10-23: cluster-services
+# monitoring/a1-ops-prd/blog-social-guard.yaml. Do not also schedule this, or both
+# will edit the same Buffer posts.
+#   scripts/social/guard.sh check            # report only
+#   scripts/social/guard.sh preflight --dry-run
+# Reads the local checkout's content files as they are, so no git pull.
 set -uo pipefail
 export PATH="$HOME/.local/bin:/usr/local/bin:/usr/bin:/bin"
 REPO="$(cd "$(dirname "$0")/../.." && pwd)"

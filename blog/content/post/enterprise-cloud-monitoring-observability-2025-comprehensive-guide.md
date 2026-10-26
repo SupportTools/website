@@ -13,6 +13,10 @@ tags:
 - automation
 - aiops
 - distributed-tracing
+- Production Analytics
+- Infrastructure Monitoring
+- Application Performance
+- Site Reliability
 categories:
 - DevOps
 - SRE

@@ -256,8 +256,8 @@ If you encounter filesystem errors when mounting:
 
 ## Related Resources
 - [Understanding Longhorn Replicas in RKE2](/post/longhorn-deepdive/)
-- [RKE2 Disaster Recovery Strategies](/post/rke2-etcd-nfs-sync/)
-- [Backup Kubernetes Cluster to AWS S3 with Velero](/post/backup-kubernetes-cluster-aws-s3-velero/)
+- [RKE2 Disaster Recovery Strategies](/post/rke2-standalone-disaster-recovery/)
+- [Backup Kubernetes Cluster to AWS S3 with Velero](/backup-kubernetes-cluster-aws-s3-velero/)
 
 ## Conclusion
 

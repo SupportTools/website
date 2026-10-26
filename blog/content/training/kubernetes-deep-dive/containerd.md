@@ -303,6 +303,6 @@ ctr content garbage-collect
 ```
 
 For more information, check out:
-- [Container Runtime Interface](/training/kubernetes-deep-dive/cri/)
-- [Container Security](/training/kubernetes-deep-dive/container-security/)
-- [Runtime Best Practices](/training/kubernetes-deep-dive/runtime-best-practices/)
+- Container Runtime Interface
+- Container Security
+- Runtime Best Practices

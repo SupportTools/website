@@ -1,10 +1,12 @@
-+++
-Categories = ["Rancher", "NGINX"]
-Tags = ["Rancher", "NGINX", "ingress"]
-date = "2019-11-20T00:03:00+00:00"
-more_link = "yes"
-title = "Rancher SSL Passthrough for NGINX ingress"
-+++
+---
+categories:
+- "Rancher"
+- "NGINX"
+tags: ["Rancher", "NGINX", "ingress"]
+date: "2019-11-20T00:03:00+00:00"
+more_link: "yes"
+title: "Rancher SSL Passthrough for NGINX ingress"
+---
 
 Recently while setting up Vault inside Rancher. I ran into an issue with the NGINX ingress terminating TLS and forwarding traffic unencrypted to Vault.
 

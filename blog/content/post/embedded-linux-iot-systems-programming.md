@@ -2,7 +2,7 @@
 title: "Embedded Linux and IoT Systems Programming: Building Connected Device Platforms"
 date: 2025-03-26T10:00:00-05:00
 draft: false
-tags: ["Linux", "Embedded", "IoT", "Device Drivers", "Real-Time", "ARM", "Buildroot", "Yocto"]
+tags: ["Linux", "Embedded", "IoT", "Device Drivers", "Real-Time", "ARM", "Buildroot", "Yocto", "Industrial Control", "Microcontrollers"]
 categories:
 - Linux
 - Embedded Systems

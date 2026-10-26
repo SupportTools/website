@@ -223,6 +223,6 @@ By leveraging K10's backup and restore capabilities, you can significantly reduc
 
 ### Additional Resources
 - [Kasten K10 Documentation](https://docs.kasten.io/)
-- [RKE2, Helm, Cert-manager Cluster Installation Guide](https://support.tools/cert-manager-argo-rke2/)
+- RKE2, Helm, Cert-manager Cluster Installation Guide
 - [RKE1 to RKE2 Migration Strategies](https://support.tools/migrating-rke1-to-rke2/)
 - [SUSE RKE1 EOL Announcement](https://www.suse.com/support/kb/doc/?id=000021513)

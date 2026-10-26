@@ -35,34 +35,42 @@ export function parseCategories(text) {
 // Returns the parsed categories plus hard errors for frontmatter shapes this
 // checker cannot read, so such posts fail instead of going unchecked.
 export function parseFrontmatter(text) {
+  const { items, errors } = parseFrontmatterList(text, 'categories');
+  return { categories: items, errors };
+}
+
+// Reads one top-level YAML list key (for example categories or tags) from the
+// frontmatter. Returns the items plus hard errors for unsupported shapes.
+export function parseFrontmatterList(text, key) {
+  const keyRe = new RegExp(`^${key}\\s*:`, 'i');
   const lines = text.replace(/\r\n/g, '\n').split('\n');
   if (lines[0].trim() === '+++') {
     const close = lines.indexOf('+++', 1);
     const toml = lines.slice(1, close === -1 ? lines.length : close);
-    if (toml.some((l) => /^\s*categories\s*=/.test(l))) {
-      return { categories: [], errors: ['TOML (+++) frontmatter with categories is not supported; use YAML (---) frontmatter'] };
+    if (toml.some((l) => new RegExp(`^\\s*${key}\\s*=`, 'i').test(l))) {
+      return { items: [], errors: [`TOML (+++) frontmatter with ${key} is not supported; use YAML (---) frontmatter`] };
     }
-    return { categories: [], errors: [] };
+    return { items: [], errors: [] };
   }
-  if (lines[0].trim() !== '---') return { categories: [], errors: [] };
+  if (lines[0].trim() !== '---') return { items: [], errors: [] };
   const end = lines.indexOf('---', 1);
   const fm = lines.slice(1, end === -1 ? lines.length : end);
-  const i = fm.findIndex((l) => /^categories\s*:/.test(l));
-  if (i === -1) return { categories: [], errors: [] };
-  const rest = fm[i].replace(/^categories\s*:/, '').trim();
+  const i = fm.findIndex((l) => keyRe.test(l));
+  if (i === -1) return { items: [], errors: [] };
+  const rest = fm[i].replace(keyRe, '').trim();
   if (rest.startsWith('[')) {
     const close = rest.lastIndexOf(']');
     if (close === -1) {
-      return { categories: [], errors: ['multi-line "categories: [" list is not supported; put the list on one line or use a block list'] };
+      return { items: [], errors: [`multi-line "${key}: [" list is not supported; put the list on one line or use a block list`] };
     }
-    return { categories: splitInline(rest.slice(1, close)), errors: [] };
+    return { items: splitInline(rest.slice(1, close)), errors: [] };
   }
-  if (rest && !rest.startsWith('#')) return { categories: [unquote(rest)].filter(Boolean), errors: [] };
+  if (rest && !rest.startsWith('#')) return { items: [unquote(rest)].filter(Boolean), errors: [] };
   const items = [];
   for (const l of fm.slice(i + 1)) {
     const m = l.match(/^\s*-\s+(.*)$/);
     if (m) items.push(unquote(m[1]));
     else if (l.trim() !== '' && !/^\s*#/.test(l)) break;
   }
-  return { categories: items.filter(Boolean), errors: [] };
+  return { items: items.filter(Boolean), errors: [] };
 }

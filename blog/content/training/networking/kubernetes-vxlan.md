@@ -163,7 +163,7 @@ VXLAN plays a crucial role in **Kubernetes networking**, providing a scalable an
 
 Explore related topics:
 - [Networking 101](../networking-101/)
-- [Kubernetes CNI Plugins Overview](../cni-plugins/)
-- [Monitoring Kubernetes Networking with Prometheus](../monitoring-kubernetes/)
+- [Kubernetes CNI Plugins Overview](/training/networking/cni/)
+- Monitoring Kubernetes Networking with Prometheus
 
 ---

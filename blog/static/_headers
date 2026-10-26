@@ -1,0 +1,17 @@
+# Workers static assets apply these rules to files served straight from
+# blog/public; src/worker.js never sees those requests, so indexing headers for
+# static alternates must live here. Rules must never match an HTML page:
+# scripts/headers-guard.mjs refuses a production deploy if a noindex rule
+# reaches any built HTML page. Non-production deploys append a site-wide rule.
+
+# Markdown twins of every page (index.md): agents and llms.txt still fetch
+# them, but they are copies of the HTML page and should not be indexed.
+/*.md
+  X-Robots-Tag: noindex
+
+# Per-term RSS feeds. The home feed /index.xml stays indexable.
+/tags/*/index.xml
+  X-Robots-Tag: noindex
+
+/categories/*/index.xml
+  X-Robots-Tag: noindex

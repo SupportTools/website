@@ -16,3 +16,6 @@ node_modules/
 .theme-baseline-public/
 .theme-test-public/
 .og-work/
+
+# Local scratch: outreach drafts, agent notes (not for the repo)
+.context/

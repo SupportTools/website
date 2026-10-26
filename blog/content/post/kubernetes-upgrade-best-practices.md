@@ -165,4 +165,4 @@ Upgrading a Kubernetes cluster is a complex yet essential task that demands care
 
 Regular upgrades not only enhance security but also enable access to new features, aligning your cluster with the latest technological advancements. Always maintain a comprehensive disaster recovery plan to handle unexpected issues effectively.  
 
-For more Kubernetes insights and platform engineering tips, visit [Platform Engineers Blog](www.platformengineers.io/blogs).  
+For more Kubernetes insights and platform engineering tips, visit [Platform Engineers Blog](https://www.platformengineers.io/blogs).  

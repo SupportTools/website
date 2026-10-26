@@ -1,10 +1,12 @@
-+++
-Categories = ["VMware", "vCenter", "AD"]
-Tags = ["vmware", "vcenter", "ad"]
-date = "2022-02-15T22:21:00+00:00"
-more_link = "yes"
-title = "Removing vCenter from died Active Directory"
-+++
+---
+categories:
+- "VMware"
+- "Active Directory"
+tags: ["vmware", "vcenter", "ad"]
+date: "2022-02-15T22:21:00+00:00"
+more_link: "yes"
+title: "Removing vCenter from died Active Directory"
+---
 
 I lost both of my domain controllers earlier this week, even after I restored one from a VM backup. There was too much corruption. As a result, I rebuilt my domain with new domain controllers, joined all my Windows virtual machines to the new domain, recreated my user accounts, etc. One of the challenges I ran into was getting my vCenter to leave the old domain so it could join the new domain. The old domain was no longer available, so I could not leave it.
 

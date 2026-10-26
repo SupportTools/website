@@ -123,7 +123,7 @@ The conclusion worth internalizing: **self-hosting coding agents is a compliance
 
 ## Serving the Model: vLLM on Kubernetes for Agent Workloads
 
-vLLM is the default inference engine for this workload. Its OpenAI-compatible server, PagedAttention KV cache management, and continuous batching are covered thoroughly in [the vLLM production deployment guide](/vllm-production-deployment-kubernetes-llm-serving-enterprise-guide/). This section focuses on the configuration decisions that are specific to serving *agents* rather than chat traffic, because the defaults are wrong for agentic loops in three specific ways.
+vLLM is the default inference engine for this workload. Its OpenAI-compatible server, PagedAttention KV cache management, and continuous batching are covered thoroughly in the vLLM production deployment guide. This section focuses on the configuration decisions that are specific to serving *agents* rather than chat traffic, because the defaults are wrong for agentic loops in three specific ways.
 
 ### Why Agent Traffic Is Different
 

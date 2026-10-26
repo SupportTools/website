@@ -2,7 +2,7 @@
 title: "Advanced Linux Graphics Programming: DRM/KMS Development and GPU Driver Architecture"
 date: 2025-04-24T10:00:00-05:00
 draft: false
-tags: ["Linux", "Graphics", "DRM", "KMS", "GPU", "Vulkan", "OpenGL", "Mesa", "Wayland", "Graphics Programming"]
+tags: ["Linux", "Graphics", "DRM", "KMS", "GPU", "Vulkan", "OpenGL", "Mesa", "Wayland", "Graphics Programming", "Compute Shaders", "Rendering"]
 categories:
 - Linux
 author: "Matthew Mattox - mmattox@support.tools"

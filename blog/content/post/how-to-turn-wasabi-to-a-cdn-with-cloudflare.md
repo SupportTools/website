@@ -1,10 +1,12 @@
-+++
-Categories = ["CloudFlare", "Wasabi", "CDN"]
-Tags = ["cloudFlare", "wasabi", "cdn", "s3"]
-date = "2021-10-13T22:52:00+00:00"
-more_link = "yes"
-title = "How to turn Wasabi into a CDN with CloudFlare"
-+++
+---
+categories:
+- "Cloudflare"
+- "Storage"
+tags: ["cloudFlare", "wasabi", "cdn", "s3"]
+date: "2021-10-13T22:52:00+00:00"
+more_link: "yes"
+title: "How to turn Wasabi into a CDN with CloudFlare"
+---
 
 To improve the performance of this site. I use Cloudflare as my CDN. The problem is with is CloudFlare caching is not very helpful for infrequently accessed files or larger files. But services like Wasabi's S3 are excellent at hosting data at a low cost. Wasabi is terrific in the fact that they don't charge fees for egress or API requests. You need to pay for the storage. Wasabi does offer public access out-of-the-box, but the speed isn't the greatest, which is where Cloudflare comes into the picture. Wasabi and CloudFlare have a partnership. You can read more about it (here)[https://wasabi.com/solution-brief/cloudflare/].
 

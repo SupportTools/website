@@ -1,7 +1,7 @@
 ---
 title: "Linux Kernel Development and Advanced Module Programming: Building Custom Kernel Components"
 date: 2025-04-02T10:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Kernel", "Module Development", "Device Drivers", "Kernel Programming", "System Calls", "Kernel Debugging"]
 categories:
 - Linux

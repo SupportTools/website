@@ -1,7 +1,7 @@
 ---
 title: "Advanced Linux Embedded Systems Programming: Building Industrial IoT and Real-Time Control Applications"
 date: 2025-05-02T10:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Embedded Systems", "IoT", "Real-Time", "Industrial Control", "ARM", "Device Drivers", "Microcontrollers"]
 categories:
 - Linux

@@ -1,10 +1,12 @@
-+++
-Categories = ["pi", "raspberry pi", "lvm"]
-Tags = ["pi", "raspberry pi", "lvm"]
-date = "2021-03-21T20:10:00+00:00"
-more_link = "yes"
-title = "How to fix LVM Device /dev/sdb excluded by a filter."
-+++
+---
+categories:
+- "Hardware"
+- "Storage"
+tags: ["pi", "raspberry pi", "lvm"]
+date: "2021-03-21T20:10:00+00:00"
+more_link: "yes"
+title: "How to fix LVM Device /dev/sdb excluded by a filter."
+---
 
 When creating a new PV device using a previously partitioned disk, you may see the following error message.
 

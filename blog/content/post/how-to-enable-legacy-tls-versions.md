@@ -1,10 +1,12 @@
-+++
-Categories = ["Rancher", "NGINX"]
-Tags = ["rancher", "nginx"]
-date = "2020-10-23T14:28:00+00:00"
-more_link = "yes"
-title = "How to enable legacy TLS versions in Rancher's ingress-nginx"
-+++
+---
+categories:
+- "Rancher"
+- "NGINX"
+tags: ["rancher", "nginx"]
+date: "2020-10-23T14:28:00+00:00"
+more_link: "yes"
+title: "How to enable legacy TLS versions in Rancher's ingress-nginx"
+---
 
 This article details how to enable TLS 1.1 on the ingress-nginx controller in Rancher Kubernetes Engine (RKE) CLI or Rancher v2.x provisioned Kubernetes clusters.
 
