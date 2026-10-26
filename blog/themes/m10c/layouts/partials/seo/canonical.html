@@ -1,0 +1,18 @@
+{{- /*
+  Returns the canonical URL. Page N of a paginated list is its own canonical,
+  because it lists different posts than page 1. Only the templates that
+  paginate are asked for a pager (archive.html paginates site.RegularPages,
+  _default/list.html serves term pages and the post section); asking any other
+  page would create pagination it does not render.
+*/ -}}
+{{- $url := .Permalink -}}
+{{- $pager := false -}}
+{{- if eq .Layout "archive" -}}
+  {{- $pager = .Paginate site.RegularPages -}}
+{{- else if or (eq .Kind "term") (and (eq .Kind "section") (eq .Section "post")) -}}
+  {{- $pager = .Paginator -}}
+{{- end -}}
+{{- with $pager -}}
+  {{- if gt .PageNumber 1 -}}{{- $url = .URL | absURL -}}{{- end -}}
+{{- end -}}
+{{- return $url -}}

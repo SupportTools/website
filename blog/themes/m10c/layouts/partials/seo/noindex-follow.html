@@ -1,0 +1,10 @@
+{{- /*
+  Returns true for listing pages that stay crawlable (links still pass) but are
+  kept out of the index, and out of sitemap.xml:
+  - tag term pages with fewer than 3 pages, which are near-empty listings;
+  - the /post/ section list and its pagination, which repeat /archive/ page
+    for page. /archive/ stays indexable as the one full listing.
+*/ -}}
+{{- $thinTag := and (eq .Kind "term") (eq .Data.Plural "tags") (lt (len .Pages) 3) -}}
+{{- $postList := and (eq .Kind "section") (eq .Section "post") -}}
+{{- return (or $thinTag $postList) -}}
