@@ -18,6 +18,8 @@
     "check:headings": "node scripts/check-headings.mjs",
     "check:categories": "node scripts/check-categories.mjs",
     "check:paths": "node scripts/check-duplicate-paths.mjs",
+    "check:tags": "node scripts/check-tags.mjs",
+    "check:headers": "node scripts/headers-guard.mjs production blog/public",
     "test:theme": "node tests/theme/build-fixtures.mjs && node --test tests/theme/*.test.mjs",
     "test:og": "node --test tests/og/*.test.mjs",
     "og": "node scripts/og/run.mjs",
@@ -26,6 +28,7 @@
     "test:social": "node --test tests/social/*.test.mjs",
     "test:urls": "node --test tests/urls/*.test.mjs",
     "test:indexnow": "node --test tests/indexnow/*.test.mjs",
+    "test:seo": "node --test tests/seo/*.test.mjs",
     "indexnow": "node scripts/indexnow.mjs"
   },
   "devDependencies": {

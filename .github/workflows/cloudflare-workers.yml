@@ -101,6 +101,12 @@ jobs:
       - name: Check duplicate target paths
         run: npm run check:paths
 
+      - name: Check for new single-use tags
+        # A tag on only one post builds a thin /tags/ page (noindex, out of the
+        # sitemap). scripts/tag-baseline.json lists every tag known when this
+        # ratchet started, so only tags new to the repo can fail here.
+        run: npm run check:tags
+
       - name: Test Hugo build
         run: |
           npm run build:hugo -- --panicOnWarning
@@ -112,8 +118,12 @@ jobs:
         # renaming a page fails here until a redirect covers the old URL.
         run: npm run check:urls
 
-      - name: Unit tests (theme, social link guards, URL guard, IndexNow)
+      - name: Check _headers keeps noindex off HTML pages
+        run: npm run check:headers
+
+      - name: Unit tests (theme, social link guards, URL guard, IndexNow, SEO guards)
         run: |
+          npm run test:seo
           npm run test:social
           npm run test:urls
           npm run test:indexnow
@@ -191,9 +201,10 @@ jobs:
         run: |
           # Non-production hosts serve a full copy of the site. Without noindex,
           # Search Console (a Domain property covers every subdomain) counts them as
-          # duplicates of support.tools. Workers static assets apply _headers to
-          # every file; only these jobs write it, and production refuses it below.
-          printf '/*\n  X-Robots-Tag: noindex\n' > blog/public/_headers
+          # duplicates of support.tools. The build ships blog/public/_headers with
+          # narrow rules (Markdown twins, term feeds); this appends a site-wide
+          # /* noindex rule after them, which production refuses below.
+          node scripts/headers-guard.mjs nonprod blog/public
           echo "Deploying to ${{ matrix.environment }} environment"
           wrangler deploy --env ${{ matrix.environment }}
 
@@ -304,9 +315,10 @@ jobs:
         run: |
           # Non-production hosts serve a full copy of the site. Without noindex,
           # Search Console (a Domain property covers every subdomain) counts them as
-          # duplicates of support.tools. Workers static assets apply _headers to
-          # every file; only these jobs write it, and production refuses it below.
-          printf '/*\n  X-Robots-Tag: noindex\n' > blog/public/_headers
+          # duplicates of support.tools. The build ships blog/public/_headers with
+          # narrow rules (Markdown twins, term feeds); this appends a site-wide
+          # /* noindex rule after them, which production refuses below.
+          node scripts/headers-guard.mjs nonprod blog/public
           echo "Deploying to staging environment"
           wrangler deploy --env staging
 
@@ -385,9 +397,9 @@ jobs:
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         run: |
-          if grep -qi noindex blog/public/_headers 2>/dev/null; then
-            echo "blog/public/_headers marks pages noindex; refusing to deploy it to production"; exit 1
-          fi
+          # Refuses a site-wide noindex rule, or any noindex rule that matches a
+          # built HTML page; the narrow alternate rules in blog/static/_headers pass.
+          node scripts/headers-guard.mjs production blog/public
           echo "Deploying to production environment"
           wrangler deploy --env production
 
