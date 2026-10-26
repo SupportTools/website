@@ -31,6 +31,13 @@ test('a baseline URL that the Worker redirects to a built page passes', async ()
   assert.deepEqual(await unresolved(['/a/', '/categories/http/'], dir), []);
 });
 
+test('a retired post passes through src/post-redirects.json only while its replacement is built', async () => {
+  const keeper = '/nginx-ingress-controller-tuning-performance-optimization-enterprise-guide/';
+  assert.deepEqual(await unresolved(['/nginx-ingress-controller-tuning/'], site([keeper])), []);
+  const bad = await unresolved(['/nginx-ingress-controller-tuning/'], site(['/post/a/']));
+  assert.match(bad[0].why, new RegExp(`redirects to ${keeper} which returns 404`));
+});
+
 test('a baseline URL that no longer resolves fails, with what it returned', async () => {
   const dir = site(['/post/a/']);
   const bad = await unresolved(['/post/removed/', '/tags/gone/'], dir);

@@ -5,6 +5,7 @@ categories:
 tags: ["rancher", "nginx"]
 date: "2020-10-23T14:28:00+00:00"
 more_link: "yes"
+draft: true
 title: "How to enable legacy TLS versions in Rancher's ingress-nginx"
 ---
 

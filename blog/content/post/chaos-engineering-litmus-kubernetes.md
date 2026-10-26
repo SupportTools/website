@@ -2,7 +2,7 @@
 title: "Chaos Engineering Implementation with Litmus on Kubernetes"
 date: 2026-05-10T00:00:00-05:00
 draft: false
-tags: ["Chaos Engineering", "Litmus", "Kubernetes", "Reliability", "SRE", "DevOps", "Observability", "CI/CD"]
+tags: ["Chaos Engineering", "Litmus", "Kubernetes", "Reliability", "SRE", "DevOps", "Observability", "CI/CD", "Site Reliability Engineering", "Fault Injection"]
 categories:
 - Chaos Engineering
 - Kubernetes

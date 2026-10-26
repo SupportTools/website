@@ -1,4 +1,5 @@
 import CATEGORY_REDIRECTS from './category-redirects.json' with { type: 'json' };
+import POST_REDIRECTS from './post-redirects.json' with { type: 'json' };
 
 const AGENT_POLICY = 'ai-train=no, search=yes, ai-input=yes';
 
@@ -65,6 +66,17 @@ export default {
       if ((request.method === 'GET' || request.method === 'HEAD') && oldCategory
           && Object.hasOwn(CATEGORY_REDIRECTS, oldCategory[1])) {
         return Response.redirect(`${url.origin}/categories/${CATEGORY_REDIRECTS[oldCategory[1]]}/`, 301);
+      }
+
+      // Retired posts (stubs and near-duplicates) are held with `draft: true`, so
+      // the page is no longer built and the request reaches the Worker. 301 the
+      // exact old URL to the post that replaced it, keeping the query string. A
+      // /post/<slug>/ entry also covers the /<slug>/ form that links share.
+      if (request.method === 'GET' || request.method === 'HEAD') {
+        const postPath = url.pathname.endsWith('/') ? url.pathname : `${url.pathname}/`;
+        const target = (Object.hasOwn(POST_REDIRECTS, postPath) && POST_REDIRECTS[postPath])
+          || (Object.hasOwn(POST_REDIRECTS, `/post${postPath}`) && POST_REDIRECTS[`/post${postPath}`]);
+        if (target) return Response.redirect(`${url.origin}${target}${url.search}`, 301);
       }
 
       // The C++ tag page moved from /tags/c++/ (which Cloudflare answers with a 307

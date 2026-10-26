@@ -1,0 +1,6 @@
+{
+ "/chaos-engineering-implementation-litmus-kubernetes/": "/chaos-engineering-litmus-kubernetes/",
+ "/contract-testing-microservices-pact-spring-cloud-contract/": "/contract-testing-microservices-pact-vs-spring-cloud-contract/",
+ "/nginx-ingress-controller-tuning/": "/nginx-ingress-controller-tuning-performance-optimization-enterprise-guide/",
+ "/post/how-to-check-default-coredns-configmap-of-rke-k8s-version/": "/post/how-to-enable-legacy-tls-versions/"
+}

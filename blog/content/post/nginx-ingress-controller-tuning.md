@@ -1,7 +1,7 @@
 ---
 title: "NGINX Ingress Controller Tuning: Enterprise Performance Optimization"
 date: 2026-10-10T00:00:00-05:00
-draft: false
+draft: true
 tags: ["NGINX", "Ingress", "Kubernetes", "Load Balancing", "Performance", "TLS"]
 categories: ["Kubernetes", "Networking", "Performance"]
 author: "Matthew Mattox - mmattox@support.tools"
