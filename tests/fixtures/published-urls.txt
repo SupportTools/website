@@ -660,6 +660,7 @@
 /cilium-bgp-control-plane-kubernetes-enterprise-guide/
 /cilium-ebpf-networking-deep-dive/
 /cilium-identity-argo-out-of-sync-rke2/
+/cilium-mtu-linux-bridge-kubevirt-vxlan-blackhole-longhorn-degraded/
 /cka-practice-questions/
 /ckad-practice-questions/
 /cks-practice-questions/
