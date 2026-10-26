@@ -315,6 +315,6 @@ external:53 {
 ```
 
 For more information, check out:
-- [Service Discovery Deep Dive](/training/kubernetes-deep-dive/service-discovery/)
-- [Networking Deep Dive](/training/kubernetes-deep-dive/networking/)
-- [DNS Best Practices](/training/kubernetes-deep-dive/dns-best-practices/)
+- Service Discovery Deep Dive
+- [Networking Deep Dive](/training/networking/)
+- DNS Best Practices

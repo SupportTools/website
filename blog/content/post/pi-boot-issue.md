@@ -1,10 +1,12 @@
-+++
-Categories = ["Raspberry Pi", "Raspbian", "Linux"]
-Tags = ["raspberry", "pi", "raspbian", "linux"]
-date = "2021-09-08T04:24:00+00:00"
-more_link = "yes"
-title = "Raspberry Pi Boot Issue - Root account locked!"
-+++
+---
+categories:
+- "Hardware"
+- "Linux"
+tags: ["raspberry", "pi", "raspbian", "linux"]
+date: "2021-09-08T04:24:00+00:00"
+more_link: "yes"
+title: "Raspberry Pi Boot Issue - Root account locked!"
+---
 
 After a power outage, my [Raspberry Pi 400 Keyboard Computer](https://chicagodist.com/products/raspberry-pi-400?variant=32615079739471&gclid=CjwKCAjwvuGJBhB1EiwACU1AiXEUSYXNhjyvm-dqgy78kIz7TkfSkO2iPhVSAZ7CysvXoiDpFhNTGBoCiIwQAvD_BwE) wouldn't boot. The Pi would get stuck at boot with the following error message.
 

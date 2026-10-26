@@ -1,10 +1,12 @@
-+++
-Categories = ["Rancher", "Prometheus"]
-Tags = ["rancher", "prometheus"]
-date = "2021-02-28T23:11:00+00:00"
-more_link = "yes"
-title = "How to add additional scrape configs to a Rancher cluster or project monitoring Prometheus"
-+++
+---
+categories:
+- "Rancher"
+- "Prometheus"
+tags: ["rancher", "prometheus"]
+date: "2021-02-28T23:11:00+00:00"
+more_link: "yes"
+title: "How to add additional scrape configs to a Rancher cluster or project monitoring Prometheus"
+---
 
 [The Rancher cluster and project monitoring tools](https://rancher.com/docs/rancher/v2.x/en/cluster-admin/tools/monitoring/#monitoring-scope), allow you to monitor cluster components and nodes, as well as workloads and [custom metrics from any HTTP or TCP/UDP metrics endpoint](https://rancher.com/docs/rancher/v2.x/en/project-admin/tools/monitoring/#project-metrics) that these workloads expose.
 

@@ -51,6 +51,7 @@ var (
 	dSStablePos  = desc("blog_search_stable_query_median_position", "Median average position of visible queries with at least "+strconv.Itoa(StableMinImpressions)+" impressions in the window.", "window")
 	dUp          = desc("blog_metrics_source_up", "1 when the source's last poll succeeded.", "source")
 	dLastSuccess = desc("blog_metrics_source_last_success_timestamp_seconds", "Unix time of the source's last successful poll.", "source")
+	dSiteBuilt   = desc("blog_site_build_timestamp_seconds", "Unix time the live support.tools build was made (from /build.json); stops moving when deploys stop reaching production.")
 	dSocial      = map[string]*prometheus.Desc{}
 )
 
@@ -100,6 +101,10 @@ func (c collector) Collect(ch chan<- prometheus.Metric) {
 		if st.HasData {
 			gauge(dLastSuccess, float64(st.LastSuccess.Unix()), s)
 		}
+	}
+
+	if v.Status[SourceSite].HasData {
+		gauge(dSiteBuilt, float64(v.SiteBuiltAt.Unix()))
 	}
 
 	if v.Status[SourcePostHog].HasData {

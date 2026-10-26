@@ -1,10 +1,12 @@
-+++
-Categories = ["Linux", "openssl"]
-Tags = ["linux", "openssl"]
-date = "2021-10-21T00:04:00+00:00"
-more_link = "yes"
-title = "How to generate expired SSL certificates using OpenSSL and Faketime"
-+++
+---
+categories:
+- "Linux"
+- "TLS & Certificates"
+tags: ["linux", "openssl"]
+date: "2021-10-21T00:04:00+00:00"
+more_link: "yes"
+title: "How to generate expired SSL certificates using OpenSSL and Faketime"
+---
 
 While playing with SSL certificates and Kubernetes, I wanted to see how Kubernetes respond when its certificates have expired. Since Rancher/RKE uses self-signed certificates, I was able to play with different configurations. The lowest duration of validity we can give to the certificate is one day. I'm not patient enough to wait for a day to let the certificate expire. So I wanted to find a way to generate certificates that are expired at the time of generation itself.
 

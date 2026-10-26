@@ -57,11 +57,11 @@ We ensure that your data will not be disclosed to State institutions and authori
 Access to the personal data we may hold about you
 You can ask us, by:
 
-- [sending an email](editor@support.tools)
+- [sending an email](mailto:editor@support.tools)
 
 Whether we are keeping personal data about you. Upon request, which you can indicate by:
 
-- [sending an email](editor@support.tools)
+- [sending an email](mailto:editor@support.tools)
 
 We will provide you with a readable copy of the personal data we keep about you within a week. – although we may before require proof of your identity -. We will provide the information without any charge. We allow you to challenge the data that we hold about you and, where appropriate, you may have the data:
 

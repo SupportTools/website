@@ -20,6 +20,7 @@ type Config struct {
 	BufferOrgID      string
 	BufferChannels   map[string]string // label -> Buffer channel ID
 	PostIndexURL     string
+	BuildInfoURL     string
 	Listen           string
 }
 
@@ -47,6 +48,7 @@ func loadConfig(getenv func(string) string) (Config, error) {
 		BufferAPIKey:     get("BUFFER_API_KEY", ""),
 		BufferOrgID:      get("BUFFER_ORG_ID", ""),
 		PostIndexURL:     get("POST_INDEX_URL", "https://support.tools/post-index.json"),
+		BuildInfoURL:     get("BUILD_INFO_URL", "https://support.tools/build.json"),
 		Listen:           get("LISTEN_ADDR", ":8080"),
 	}
 	channels := get("BUFFER_CHANNELS", "")

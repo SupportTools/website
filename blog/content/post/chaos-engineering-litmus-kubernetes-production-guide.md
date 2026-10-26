@@ -1,7 +1,7 @@
 ---
 title: "Chaos Engineering with Litmus: Production-Ready Kubernetes Resilience Testing"
 date: 2026-05-11T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Chaos Engineering", "Litmus", "Kubernetes", "Resilience", "SRE", "Testing", "Production"]
 categories: ["DevOps", "Kubernetes", "SRE"]
 author: "Matthew Mattox - mmattox@support.tools"

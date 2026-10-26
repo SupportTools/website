@@ -2,7 +2,7 @@
 title: "Real-Time Linux Programming: Advanced Techniques for Deterministic Systems"
 date: 2025-03-12T10:00:00-05:00
 draft: false
-tags: ["Linux", "Real-Time", "RT", "Scheduling", "Latency", "Deterministic", "PREEMPT_RT"]
+tags: ["Linux", "Real-Time", "RT", "Scheduling", "Latency", "Deterministic", "PREEMPT_RT", "Low-Latency", "RTOS", "Control Systems"]
 categories:
 - Linux
 - Real-Time Systems

@@ -21,7 +21,7 @@ RKE2 brings enhanced security and performance improvements to Kubernetes cluster
 - [Harvester Cloud Provider for RKE2](/training/rke2/harvester-cloud-provider-rke2/)
 - [Hetzner Cloud Provider for RKE2](/training/rke2/hetzner-cloud-provider-rke2/)
 - [IBM Cloud Provider for RKE2](/training/rke2/ibm-cloud-provider-rke2/)
-- [Linode Cloud Provider for RKE2](/training/rke2/linode-cloud-provider-rke2/)
+- Linode Cloud Provider for RKE2
 - [Oracle Cloud Provider for RKE2](/training/rke2/oracle-cloud-provider-rke2/)
 - [vSphere In-Tree Cloud Provider for RKE2](/training/rke2/vsphere-in-tree-cloud-provider-rke2/)
 - [vSphere Out-of-Tree Cloud Provider for RKE2](/training/rke2/vsphere-out-of-tree-cloud-provider-rke2/)

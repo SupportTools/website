@@ -337,6 +337,6 @@ spec:
 ```
 
 For more information, check out:
-- [Cloud Provider Interface](/training/kubernetes-deep-dive/cloud-provider/)
-- [Load Balancer Management](/training/kubernetes-deep-dive/load-balancers/)
-- [Node Management](/training/kubernetes-deep-dive/node-management/)
+- Cloud Provider Interface
+- Load Balancer Management
+- Node Management

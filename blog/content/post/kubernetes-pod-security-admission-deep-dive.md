@@ -2,7 +2,7 @@
 title: "Deep Dive into Kubernetes Pod Security Admission"
 date: 2025-02-11T08:29:00-06:00
 draft: false
-tags: ["Kubernetes", "Security", "PSA", "PodSecurityAdmission", "K8s"]
+tags: ["Kubernetes", "Security", "PSA", "PodSecurityAdmission", "K8s", "Pod Security Admission"]
 categories:
 - Kubernetes
 - Security

@@ -1,7 +1,7 @@
 ---
 title: "Enterprise Go Memory Management: Weak Pointers & Performance Guide 2025"
 date: 2026-03-03T09:00:00-05:00
-draft: false
+draft: true
 description: "Comprehensive enterprise guide to Go memory management covering weak pointers, garbage collection optimization, performance tuning, and advanced memory patterns for production systems."
 tags: ["go", "memory-management", "weak-pointers", "garbage-collection", "performance", "optimization", "enterprise", "golang", "gc", "heap"]
 categories: ["Go", "Performance", "Programming"]

@@ -807,7 +807,7 @@ spec:
       annotations:
         summary: "SNMP Interface {{ $labels.ifDescr }} is down on {{ $labels.instance }}"
         description: "Interface {{ $labels.ifDescr }} on device {{ $labels.instance }} has been down for more than 2 minutes."
-        runbook_url: "https://support.tools/runbooks/network-interface-down"
+        runbook_url: "https://wiki.example.com/runbooks/network-interface-down"
 
     - alert: SNMPHighInterfaceUtilization
       expr: |

@@ -14,7 +14,11 @@
 // draft state, live time) and every share card. Results go to stdout, to the
 // Pushgateway (job blog_social_guard, alerts in cluster-services
 // monitoring/a1-ops-prd/blog-metrics-alerts.yaml) and, on problems, a desktop
-// notification. Exit 0 = clean, 2 = problems found, 1 = the run failed.
+// notification when there is a desktop. Exit 0 = clean, 2 = problems found, 1 = the run failed.
+//
+// The scheduled runs are a1-ops-prd CronJobs (cluster-services
+// monitoring/a1-ops-prd/blog-social-guard.yaml) that clone main and run this file;
+// scripts/social/guard.sh is for manual runs on a workstation.
 import { execFileSync } from 'node:child_process';
 import fs from 'node:fs';
 import os from 'node:os';
@@ -54,6 +58,8 @@ async function pushMetrics(cmd, m) {
 }
 
 function notify(summary) {
+  // Tests run the real CLI against a fake Buffer server; never pop a desktop alert for them.
+  if (process.env.SOCIAL_GUARD_NOTIFY === '0' || process.env.BUFFER_URL) return;
   try {
     execFileSync('notify-send', ['--urgency=critical', 'support.tools social links', summary], { stdio: 'ignore', timeout: 5000 });
   } catch { /* no desktop session */ }
@@ -94,12 +100,15 @@ async function main() {
     const drafts = await client.posts(ORG, ['draft']);
     if (cmd === 'check') {
       let draftProblems = 0;
+      let heldDrafts = 0;
       for (const d of drafts) {
         const p = linkProblems(d, pages).filter((x) => !x.startsWith('article is not live until'));
+        // A Buffer draft for an article held as draft: true is parked on purpose, not broken.
+        if (p.length && p.every((x) => x.endsWith(' is a draft'))) { heldDrafts++; console.log(`HELD DRAFT ${label(d)}`); continue; }
         if (p.length) { draftProblems++; console.log(`DRAFT PROBLEM ${label(d)}\n  ${p.join('\n  ')}`); }
       }
       problems += draftProblems;
-      metrics.draft_problems = draftProblems;
+      Object.assign(metrics, { draft_problems: draftProblems, held_drafts: heldDrafts });
     } else {
       const r = await promote(drafts, { pages, now });
       for (const { post, dueAt } of r.schedule) {

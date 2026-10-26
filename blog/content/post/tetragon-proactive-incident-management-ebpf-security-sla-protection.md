@@ -368,7 +368,7 @@ data:
         annotations:
           summary: "Persistent storage access failures detected"
           description: "Pod {{ $labels.pod }} experiencing storage access failures"
-          runbook: "https://support.tools/runbooks/storage-failures"
+          runbook: "https://wiki.example.com/runbooks/storage-failures"
 
       - alert: DiskSpaceExhaustion
         expr: |
@@ -382,7 +382,7 @@ data:
         annotations:
           summary: "Disk space exhaustion detected"
           description: "Node {{ $labels.node }} is out of disk space"
-          runbook: "https://support.tools/runbooks/disk-space"
+          runbook: "https://wiki.example.com/runbooks/disk-space"
 ```
 
 ### Deployment Spike Detection

@@ -13,6 +13,7 @@ tags:
 - profiling
 - enterprise
 - scalability
+- heap
 categories:
 - Go
 - Performance

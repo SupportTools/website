@@ -1,7 +1,7 @@
 ---
 title: "Go Compiler Development: Enterprise AST & Optimization Guide 2025"
 date: 2026-05-07T09:00:00-05:00
-draft: false
+draft: true
 description: "Comprehensive enterprise guide to Go compiler development covering AST manipulation, optimization passes, static analysis, and advanced compiler tooling for production systems."
 tags: ["go", "compiler", "ast", "optimization", "static-analysis", "enterprise", "tooling", "performance", "development", "golang", "Compiler Technology"]
 categories: ["Go", "Developer Tools"]

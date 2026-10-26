@@ -1,7 +1,7 @@
 ---
 title: "Advanced Linux Systems Administration: Enterprise Guide 2025"
 date: 2025-08-07T09:00:00-05:00
-draft: false
+draft: true
 description: "Comprehensive enterprise guide to advanced Linux systems administration covering bind mounts, namespaces, filesystems, security, automation, and production operations."
 tags: ["linux", "systems-administration", "enterprise", "bind-mounts", "namespaces", "filesystems", "automation", "security", "devops", "infrastructure"]
 categories: ["System Administration", "Operations", "Infrastructure"]

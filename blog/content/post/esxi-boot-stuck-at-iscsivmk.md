@@ -1,10 +1,11 @@
-+++
-Categories = ["VMware", "ESXi"]
-Tags = ["vmware", "esxi"]
-date = "2021-10-24T01:50:00+00:00"
-more_link = "yes"
-title = "ESXi boot stuck at iscsi_vmk load successfully"
-+++
+---
+categories:
+- "VMware"
+tags: ["vmware", "esxi"]
+date: "2021-10-24T01:50:00+00:00"
+more_link: "yes"
+title: "ESXi boot stuck at iscsi_vmk load successfully"
+---
 
 Problem: ESXi boot slow/stalled/stuck at “iscsi_vmk loaded successfully”
 

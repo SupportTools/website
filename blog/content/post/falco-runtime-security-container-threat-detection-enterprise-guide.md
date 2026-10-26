@@ -1,7 +1,7 @@
 ---
 title: "Falco Runtime Security: Enterprise Container Threat Detection and Response Guide"
 date: 2026-07-08T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Falco", "Security", "Kubernetes", "Runtime Security", "Container Security", "Threat Detection", "eBPF"]
 categories: ["Security", "Kubernetes", "DevSecOps"]
 author: "Matthew Mattox - mmattox@support.tools"

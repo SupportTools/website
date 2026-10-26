@@ -771,7 +771,7 @@ data:
         annotations:
           summary: "Certificate {{ $labels.name }} expiring soon"
           description: "Certificate {{ $labels.name }} in namespace {{ $labels.namespace }} expires in {{ $value | humanizeDuration }}"
-          runbook_url: "https://support.tools/runbooks/certificate-expiry"
+          runbook_url: "https://wiki.example.com/runbooks/certificate-expiry"
 
       - alert: CertificateExpiryCritical
         expr: |
@@ -784,7 +784,7 @@ data:
         annotations:
           summary: "Certificate {{ $labels.name }} expiring VERY soon"
           description: "Certificate {{ $labels.name }} in namespace {{ $labels.namespace }} expires in {{ $value | humanizeDuration }}. IMMEDIATE ACTION REQUIRED"
-          runbook_url: "https://support.tools/runbooks/certificate-expiry"
+          runbook_url: "https://wiki.example.com/runbooks/certificate-expiry"
 
       - alert: CertificateExpired
         expr: |
@@ -797,7 +797,7 @@ data:
         annotations:
           summary: "Certificate {{ $labels.name }} HAS EXPIRED"
           description: "Certificate {{ $labels.name }} in namespace {{ $labels.namespace }} has expired. Services may be impacted."
-          runbook_url: "https://support.tools/runbooks/certificate-expiry"
+          runbook_url: "https://wiki.example.com/runbooks/certificate-expiry"
 
       # Certificate renewal failures
       - alert: CertificateRenewalFailed
@@ -810,7 +810,7 @@ data:
         annotations:
           summary: "Certificate {{ $labels.name }} renewal failed"
           description: "Certificate {{ $labels.name }} in namespace {{ $labels.namespace }} has failed to renew. Check cert-manager logs."
-          runbook_url: "https://support.tools/runbooks/certificate-renewal-failure"
+          runbook_url: "https://wiki.example.com/runbooks/certificate-renewal-failure"
 
       # cert-manager controller health
       - alert: CertManagerControllerDown
@@ -824,7 +824,7 @@ data:
         annotations:
           summary: "cert-manager controller is down"
           description: "cert-manager controller has been down for more than 5 minutes. Certificate renewals will not occur."
-          runbook_url: "https://support.tools/runbooks/cert-manager-down"
+          runbook_url: "https://wiki.example.com/runbooks/cert-manager-down"
 
       # Kubernetes API server certificate monitoring
       - alert: KubernetesAPIServerCertExpiringSoon
@@ -837,7 +837,7 @@ data:
         annotations:
           summary: "Kubernetes API Server certificate expiring soon"
           description: "API server certificate expires in less than 30 days"
-          runbook_url: "https://support.tools/runbooks/api-server-cert-expiry"
+          runbook_url: "https://wiki.example.com/runbooks/api-server-cert-expiry"
 
       - alert: KubernetesAPIServerCertExpiryCritical
         expr: |
@@ -850,7 +850,7 @@ data:
         annotations:
           summary: "Kubernetes API Server certificate expiring VERY soon"
           description: "API server certificate expires in less than 7 days. IMMEDIATE ACTION REQUIRED"
-          runbook_url: "https://support.tools/runbooks/api-server-cert-expiry"
+          runbook_url: "https://wiki.example.com/runbooks/api-server-cert-expiry"
 ---
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor

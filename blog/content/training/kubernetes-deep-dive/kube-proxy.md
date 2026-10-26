@@ -287,6 +287,6 @@ featureGates:
 ```
 
 For more information, check out:
-- [Networking Deep Dive](/training/kubernetes-deep-dive/networking/)
-- [Service Deep Dive](/training/kubernetes-deep-dive/services/)
-- [Load Balancing](/training/kubernetes-deep-dive/load-balancing/)
+- [Networking Deep Dive](/training/networking/)
+- Service Deep Dive
+- Load Balancing

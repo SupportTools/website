@@ -436,7 +436,7 @@ groups:
         annotations:
           summary: "Namespace {{ $labels.namespace }} quota at {{ $value | humanizePercentage }}"
           description: "Resource {{ $labels.resource }} in namespace {{ $labels.namespace }} is {{ $value | humanizePercentage }} utilized."
-          runbook: "https://wiki.support.tools/runbooks/quota-exhaustion"
+          runbook: "https://wiki.example.com/runbooks/quota-exhaustion"
 
       - alert: NamespaceQuotaExhausted
         expr: |

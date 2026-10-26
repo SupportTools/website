@@ -1,10 +1,11 @@
-+++
-Categories = ["Ubuntu"]
-Tags = ["Ubuntu", "resolv.conf", "chattr"]
-date = "2020-12-09T20:47:00+00:00"
-more_link = "yes"
-title = "How to Fix 'rm: cannot remove '/etc/resolv.conf': Operation not permitted'"
-+++
+---
+categories:
+- "Ubuntu"
+tags: ["Ubuntu", "resolv.conf", "chattr"]
+date: "2020-12-09T20:47:00+00:00"
+more_link: "yes"
+title: "How to Fix 'rm: cannot remove '/etc/resolv.conf': Operation not permitted'"
+---
 
 In Ubuntu, you may run into an issue when updating /etc/resolv.conf even tho you have root permissions.
 

@@ -2,7 +2,7 @@
 title: "Linux Kernel Module Development: From Hello World to Device Drivers"
 date: 2025-02-12T10:00:00-05:00
 draft: false
-tags: ["Linux", "Kernel", "Drivers", "Modules", "Device Drivers", "Systems Programming", "Kernel Development"]
+tags: ["Linux", "Kernel", "Drivers", "Modules", "Device Drivers", "Systems Programming", "Kernel Development", "Module Development", "LKM", "DKMS"]
 categories:
 - Linux
 - Kernel Development

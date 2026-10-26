@@ -1,10 +1,11 @@
-+++
-Categories = ["kubernetes"]
-Tags = ["kubernetes"]
-date = "2021-09-13T21:14:00+00:00"
-more_link = "yes"
-title = "Forcefully Delete Kubernetes Pod"
-+++
+---
+categories:
+- "Kubernetes"
+tags: ["kubernetes"]
+date: "2021-09-13T21:14:00+00:00"
+more_link: "yes"
+title: "Forcefully Delete Kubernetes Pod"
+---
 
 A pod has been deleted and remains in a status of Terminated for more than a few seconds.
 This can happen because:

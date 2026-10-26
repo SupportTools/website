@@ -10,10 +10,11 @@ const (
 	SourcePostHog = "posthog"
 	SourceGSC     = "gsc"
 	SourceBuffer  = "buffer"
+	SourceSite    = "site"
 )
 
 // Sources lists every source in label order.
-var Sources = []string{SourcePostHog, SourceGSC, SourceBuffer}
+var Sources = []string{SourcePostHog, SourceGSC, SourceBuffer, SourceSite}
 
 // Status is one source's health.
 type Status struct {
@@ -24,11 +25,12 @@ type Status struct {
 
 // View is a consistent copy of everything the store holds.
 type View struct {
-	At      time.Time
-	Traffic Traffic
-	Search  Search
-	Social  Social
-	Status  map[string]Status
+	At          time.Time
+	Traffic     Traffic
+	Search      Search
+	Social      Social
+	SiteBuiltAt time.Time
+	Status      map[string]Status
 }
 
 // Store keeps each source's last good result. A failed poll marks the source
@@ -36,11 +38,12 @@ type View struct {
 type Store struct {
 	now func() time.Time
 
-	mu      sync.RWMutex
-	traffic Traffic
-	search  Search
-	social  Social
-	status  map[string]Status
+	mu          sync.RWMutex
+	traffic     Traffic
+	search      Search
+	social      Social
+	siteBuiltAt time.Time
+	status      map[string]Status
 }
 
 // NewStore returns an empty store; now is the clock used for success times.
@@ -80,6 +83,14 @@ func (s *Store) SetSocial(x Social) {
 	s.ok(SourceBuffer)
 }
 
+// SetSiteBuild stores the live site's build time from a successful fetch.
+func (s *Store) SetSiteBuild(t time.Time) {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+	s.siteBuiltAt = t
+	s.ok(SourceSite)
+}
+
 // Fail marks source down after a failed poll and keeps its last good data.
 func (s *Store) Fail(source string) {
 	s.mu.Lock()
@@ -98,5 +109,5 @@ func (s *Store) Get() View {
 	for k, v := range s.status {
 		st[k] = v
 	}
-	return View{At: s.now(), Traffic: s.traffic, Search: s.search, Social: s.social, Status: st}
+	return View{At: s.now(), Traffic: s.traffic, Search: s.search, Social: s.social, SiteBuiltAt: s.siteBuiltAt, Status: st}
 }

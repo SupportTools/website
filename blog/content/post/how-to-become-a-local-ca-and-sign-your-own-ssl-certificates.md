@@ -1,10 +1,12 @@
-+++
-Categories = ["Certificates", "Linux"]
-Tags = ["Certificates", "openssl"]
-date = "2019-11-19T20:17:00+00:00"
-more_link = "yes"
-title = "How to become a local CA, and sign your own SSL certificates"
-+++
+---
+categories:
+- "TLS & Certificates"
+- "Linux"
+tags: ["Certificates", "openssl"]
+date: "2019-11-19T20:17:00+00:00"
+more_link: "yes"
+title: "How to become a local CA, and sign your own SSL certificates"
+---
 
 Sometimes when you experiment with some apps and VMs (like hosting gitlab on a local server or running a Rancher lab cluster) you might want to setup SSL for the app to work, to mimic the live setup and to make the browser happy. In order to do that, you need a SSL certificate.
 

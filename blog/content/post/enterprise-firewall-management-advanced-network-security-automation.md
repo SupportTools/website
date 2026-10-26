@@ -2,7 +2,7 @@
 title: "Enterprise Firewall Management and Advanced Network Security: Comprehensive Automation Framework for Production Infrastructure"
 date: 2025-05-13T10:00:00-05:00
 draft: false
-tags: ["Firewall", "Network Security", "UFW", "iptables", "nftables", "Security Automation", "Zero Trust", "Enterprise", "Network Segmentation", "Compliance"]
+tags: ["Firewall", "Network Security", "UFW", "iptables", "nftables", "Security Automation", "Zero Trust", "Enterprise", "Network Segmentation", "Compliance", "Firewall Automation"]
 categories:
 - Network Security
 - Infrastructure

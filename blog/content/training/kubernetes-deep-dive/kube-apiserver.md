@@ -330,5 +330,5 @@ kubectl auth can-i --as=system:serviceaccount:default:default get pods
 
 For more information, check out:
 - [etcd Deep Dive](/training/kubernetes-deep-dive/etcd/)
-- [Authentication Deep Dive](/training/kubernetes-deep-dive/authentication/)
-- [RBAC Deep Dive](/training/kubernetes-deep-dive/rbac/)
+- Authentication Deep Dive
+- RBAC Deep Dive

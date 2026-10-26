@@ -82,7 +82,7 @@ To ensure backups are **consistent and automated**, use tools like **Velero, Lon
 - **[KubeBackup](https://support.tools/kubebackup/):**  
   Automates **YAML exports** of Kubernetes resources and **uploads them to S3**. Ideal for maintaining configuration backups over time.
 
-- **[Kasten K10](https://support.tools/kasten-k10/):**  
+- **[Kasten K10](https://support.tools/kasten-k10-backups/):**  
   A **data management platform** that provides **backup, disaster recovery, and mobility** for Kubernetes applications.
 
 - **[Rancher Backup Operator](https://support.tools/post/backup-rancher-and-its-clusters/):**  

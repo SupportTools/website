@@ -310,5 +310,5 @@ journalctl -u kubelet | grep "Volume Manager"
 
 For more information, check out:
 - [Container Runtime Deep Dive](/training/kubernetes-deep-dive/containerd/)
-- [Node Management](/training/kubernetes-deep-dive/node-management/)
-- [Resource Management](/training/kubernetes-deep-dive/resource-management/)
+- Node Management
+- Resource Management

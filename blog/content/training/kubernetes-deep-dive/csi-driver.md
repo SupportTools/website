@@ -337,6 +337,6 @@ spec:
 ```
 
 For more information, check out:
-- [Storage Deep Dive](/training/kubernetes-deep-dive/storage/)
-- [Volume Management](/training/kubernetes-deep-dive/volumes/)
-- [Storage Best Practices](/training/kubernetes-deep-dive/storage-best-practices/)
+- Storage Deep Dive
+- Volume Management
+- Storage Best Practices

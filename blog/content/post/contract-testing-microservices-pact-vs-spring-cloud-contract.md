@@ -2,7 +2,7 @@
 title: "Contract Testing for Microservices: Pact vs Spring Cloud Contract"
 date: 2026-05-26T00:00:00-05:00
 draft: false
-tags: ["Microservices", "Testing", "Pact", "Spring Cloud Contract", "API Testing", "Consumer-Driven Testing", "CI/CD", "DevOps"]
+tags: ["Microservices", "Testing", "Pact", "Spring Cloud Contract", "API Testing", "Consumer-Driven Testing", "CI/CD", "DevOps", "Contract Testing", "Consumer-Driven Contracts"]
 categories:
 - Microservices
 - Testing

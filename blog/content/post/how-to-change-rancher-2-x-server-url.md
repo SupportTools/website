@@ -1,10 +1,11 @@
-+++
-Categories = ["Rancher"]
-Tags = ["rancher"]
-date = "2021-02-17T19:21:00+00:00"
-more_link = "yes"
-title = "How to change the Rancher 2.x Server URL"
-+++
+---
+categories:
+- "Rancher"
+tags: ["rancher"]
+date: "2021-02-17T19:21:00+00:00"
+more_link: "yes"
+title: "How to change the Rancher 2.x Server URL"
+---
 
 This article details how to change the server URL for the Rancher v2.x cluster.
 

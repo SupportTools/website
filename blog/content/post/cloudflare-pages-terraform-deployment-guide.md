@@ -893,4 +893,4 @@ This infrastructure is fully managed as code, version-controlled, and can be dep
 - [Getting Started with Cloudflare Pages](https://developers.cloudflare.com/pages)
 - [KV Namespace Usage Guide](https://developers.cloudflare.com/workers/learning/how-kv-works)
 - [R2 Storage Documentation](https://developers.cloudflare.com/r2/get-started)
-- [Terraform Best Practices](/terraform-best-practices-infrastructure-as-code/)
+- [Terraform Best Practices](/infrastructure-as-code-best-practices-terraform-pulumi-enterprise-guide/)

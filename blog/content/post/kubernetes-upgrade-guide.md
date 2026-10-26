@@ -1,7 +1,7 @@
 ---
 title: "Upgrading Kubernetes: A Practical Guide"
 date: 2024-12-01T17:30:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Upgrades", "Best Practices", "Cluster Maintenance", "Maintenance"]
 categories:
 - Kubernetes

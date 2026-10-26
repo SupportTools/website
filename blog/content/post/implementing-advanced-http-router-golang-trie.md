@@ -1,7 +1,7 @@
 ---
 title: "Implementing an Advanced HTTP Router in Go Using Trie Data Structures"
 date: 2026-08-25T09:00:00-05:00
-draft: false
+draft: true
 tags: ["Go", "HTTP", "Router", "Trie", "Data Structures", "Performance", "Algorithms", "Web Development"]
 categories:
 - Go

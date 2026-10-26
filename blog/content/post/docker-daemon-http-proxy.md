@@ -1,7 +1,7 @@
 ---
 title: "Configuring Docker Daemon HTTP Proxy: A Complete Guide"
 date: 2026-03-01T09:00:00-06:00
-draft: false
+draft: true
 tags: ["Docker", "Proxy", "Networking", "DevOps", "Container", "System Administration"]
 categories:
 - Docker
