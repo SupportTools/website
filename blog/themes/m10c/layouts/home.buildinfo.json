@@ -1,0 +1,3 @@
+{{- /* /build.json: when this build ran. The blog-metrics exporter reads it and
+       BlogSiteDeployStale alerts when the live site stops getting new builds. */ -}}
+{"built_at":{{ now.Unix }}}

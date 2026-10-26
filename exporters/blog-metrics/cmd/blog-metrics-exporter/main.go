@@ -20,6 +20,7 @@ import (
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 
 	"github.com/supporttools/website/exporters/blog-metrics/internal/buffer"
+	"github.com/supporttools/website/exporters/blog-metrics/internal/buildinfo"
 	"github.com/supporttools/website/exporters/blog-metrics/internal/gsc"
 	"github.com/supporttools/website/exporters/blog-metrics/internal/posthog"
 	"github.com/supporttools/website/exporters/blog-metrics/internal/postindex"
@@ -30,6 +31,7 @@ const (
 	postHogEvery = time.Hour
 	dailyEvery   = 24 * time.Hour
 	retryAfter   = 15 * time.Minute
+	siteEvery    = 15 * time.Minute
 )
 
 func main() {
@@ -78,6 +80,14 @@ func main() {
 		s, err := buffer.Collect(ctx, buf, cfg.BufferChannels, time.Now())
 		if err == nil {
 			store.SetSocial(s)
+		}
+		return err
+	})
+
+	go poll(ctx, snapshot.SourceSite, siteEvery, store, func(ctx context.Context) error {
+		built, err := buildinfo.Fetch(ctx, cfg.BuildInfoURL, hc)
+		if err == nil {
+			store.SetSiteBuild(built)
 		}
 		return err
 	})

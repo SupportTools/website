@@ -63,7 +63,7 @@ func TestNoValuesBeforeFirstSuccess(t *testing.T) {
 		t.Fatalf("families = %v, want only blog_metrics_source_up", names)
 	}
 	up := mfs["blog_metrics_source_up"]
-	if up == nil || len(up.GetMetric()) != 3 {
+	if up == nil || len(up.GetMetric()) != 4 {
 		t.Fatalf("source_up = %v", up)
 	}
 	for _, m := range up.GetMetric() {
@@ -90,6 +90,21 @@ func TestSourceFailureKeepsLastGood(t *testing.T) {
 	ls := mfs["blog_metrics_source_last_success_timestamp_seconds"]
 	if ls == nil || len(ls.GetMetric()) != 1 || ls.GetMetric()[0].GetGauge().GetValue() != 1_800_000_000 {
 		t.Fatalf("last success = %v", ls)
+	}
+}
+
+// The live site's build time is what the deploy-staleness alert reads; a failed
+// fetch keeps the last good value instead of dropping the series.
+func TestSiteBuildTimestamp(t *testing.T) {
+	s := NewStore(fixedNow())
+	if _, ok := gather(t, s)["blog_site_build_timestamp_seconds"]; ok {
+		t.Fatal("site build time exported before any successful fetch")
+	}
+	s.SetSiteBuild(time.Unix(1_799_990_000, 0))
+	s.Fail(SourceSite)
+	got := gather(t, s)["blog_site_build_timestamp_seconds"].GetMetric()
+	if len(got) != 1 || got[0].GetGauge().GetValue() != 1_799_990_000 {
+		t.Fatalf("site build time = %v", got)
 	}
 }
 
@@ -127,6 +142,7 @@ func TestMetricNamesMatchSpec(t *testing.T) {
 	s.SetSocial(Social{Metrics: map[Window]map[string]map[string]float64{
 		W7d: {"linkedin": {"posts": 1, "reactions": 2, "comments": 3, "impressions": 4, "reach": 5}},
 	}})
+	s.SetSiteBuild(time.Unix(1_799_990_000, 0))
 	var names []string
 	for n := range gather(t, s) {
 		names = append(names, n)
@@ -136,8 +152,9 @@ func TestMetricNamesMatchSpec(t *testing.T) {
 		blog_metrics_source_up blog_pageviews blog_pageviews_by_channel blog_pageviews_by_kind blog_pageviews_by_topic
 		blog_read_rate blog_search_clicks blog_search_clicks_by_topic blog_search_ctr blog_search_impressions
 		blog_search_impressions_by_topic blog_search_position blog_search_stable_query_median_position
-		blog_search_top10_impressions blog_search_top3_ctr blog_social_comments blog_social_impressions
-		blog_social_posts blog_social_reach blog_social_reactions blog_top_post_pageviews blog_visitors`)
+		blog_search_top10_impressions blog_search_top3_ctr blog_site_build_timestamp_seconds blog_social_comments
+		blog_social_impressions blog_social_posts blog_social_reach blog_social_reactions blog_top_post_pageviews
+		blog_visitors`)
 	if strings.Join(names, " ") != strings.Join(want, " ") {
 		t.Fatalf("metric names\n got %v\nwant %v", names, want)
 	}

@@ -22,7 +22,8 @@ func TestConfigDefaultsAndChannels(t *testing.T) {
 		t.Fatal(err)
 	}
 	if c.PostHogURL != "https://us.posthog.com" || c.SiteHost != "support.tools" || c.GSCSite != "sc-domain:support.tools" ||
-		c.BufferURL != "https://api.buffer.com" || c.PostIndexURL != "https://support.tools/post-index.json" || c.Listen != ":8080" {
+		c.BufferURL != "https://api.buffer.com" || c.PostIndexURL != "https://support.tools/post-index.json" ||
+		c.BuildInfoURL != "https://support.tools/build.json" || c.Listen != ":8080" {
 		t.Fatalf("defaults = %+v", c)
 	}
 	if len(c.BufferChannels) != 2 || c.BufferChannels["linkedin"] != "a" || c.BufferChannels["bluesky"] != "b" {
