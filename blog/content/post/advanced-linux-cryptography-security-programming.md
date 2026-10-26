@@ -1,7 +1,7 @@
 ---
 title: "Advanced Linux Cryptography and Security Programming: Building Secure Applications and Cryptographic Systems"
 date: 2025-04-16T10:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Cryptography", "Security", "OpenSSL", "Encryption", "PKI", "TLS", "Secure Programming"]
 categories:
 - Linux

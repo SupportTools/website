@@ -1,7 +1,7 @@
 ---
 title: "Advanced Linux Audio and DSP Programming: Building Real-Time Audio Processing Systems"
 date: 2025-04-24T10:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Audio", "DSP", "ALSA", "JACK", "Real-Time", "Signal Processing", "Audio Programming"]
 categories:
 - Linux

@@ -1,7 +1,7 @@
 ---
 title: "Managing Nagios Downtime via Command Line Using cURL: A Complete Guide"
 date: 2026-03-15T09:00:00-06:00
-draft: false
+draft: true
 tags: ["Nagios", "Monitoring", "cURL", "Automation", "System Administration", "DevOps"]
 categories:
 - Monitoring

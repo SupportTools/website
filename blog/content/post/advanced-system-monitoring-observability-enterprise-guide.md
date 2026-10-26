@@ -1,7 +1,7 @@
 ---
 title: "Enterprise System Monitoring & Observability Guide 2025: Advanced Production Infrastructure Analytics"
 date: 2025-07-28T10:00:00-05:00
-draft: false
+draft: true
 tags: ["System Monitoring", "Observability", "Prometheus", "Grafana", "OpenTelemetry", "APM", "Enterprise Infrastructure", "Performance Monitoring", "DevOps", "SRE", "Kubernetes Monitoring", "Production Analytics", "Infrastructure Monitoring", "Application Performance", "Site Reliability"]
 categories:
 - System Administration

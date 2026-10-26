@@ -1,7 +1,7 @@
 ---
 title: "Running Nagios Checks as Root with NRPE: A Secure Implementation Guide"
 date: 2026-01-15T09:00:00-06:00
-draft: false
+draft: true
 tags: ["Nagios", "NRPE", "Monitoring", "Security", "System Administration", "Linux"]
 categories:
 - Monitoring

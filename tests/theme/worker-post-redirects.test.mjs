@@ -64,9 +64,9 @@ function posts() {
   const out = new Map();
   for (const f of fs.readdirSync(dir).filter((n) => n.endsWith('.md') && n !== '_index.md')) {
     const fm = (fs.readFileSync(path.join(dir, f), 'utf8').match(/^---\n([\s\S]*?)\n---/) || [, ''])[1];
-    let url = (fm.match(/^url:\s*["']?([^"'\n]+)["']?\s*$/m) || [])[1] || `/post/${f.replace(/\.md$/, '')}/`;
+    let url = (fm.match(/^url:\s*["']?([^"'\n]+)["']?\s*$/m) || [])[1]?.trim() || `/post/${f.replace(/\.md$/, '')}/`;
     if (!url.endsWith('/')) url += '/';
-    const date = new Date((fm.match(/^date:\s*["']?([^"'\n]+)["']?\s*$/m) || [])[1]);
+    const date = new Date((fm.match(/^date:\s*["']?([^"'\n]+)["']?\s*$/m) || [, ''])[1].trim());
     const draft = /^draft:\s*true\s*$/m.test(fm);
     out.set(url, { file: f, built: !draft && date <= today });
   }

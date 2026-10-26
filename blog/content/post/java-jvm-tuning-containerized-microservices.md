@@ -1,7 +1,7 @@
 ---
 title: "Java JVM Tuning for Containerized Microservices"
 date: 2026-08-14T00:00:00-05:00
-draft: false
+draft: true
 tags: ["java", "jvm", "containers", "microservices", "performance", "docker", "kubernetes", "tuning", "memory-management"]
 categories: ["Programming", "Performance", "Java"]
 author: "Matthew Mattox"

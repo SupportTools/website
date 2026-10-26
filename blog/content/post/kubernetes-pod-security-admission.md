@@ -1,7 +1,7 @@
 ---
 title: "Securing Kubernetes Workloads with Pod Security Admission"
 date: 2024-12-27T01:00:00-05:00
-draft: false
+draft: true
 tags: ["Kubernetes", "Security", "Pod Security Admission"]
 categories:
 - Kubernetes

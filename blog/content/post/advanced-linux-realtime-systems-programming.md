@@ -1,7 +1,7 @@
 ---
 title: "Advanced Linux Real-Time Systems Programming: Building Deterministic and Low-Latency Applications"
 date: 2025-05-10T10:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "Real-Time", "RT", "PREEMPT_RT", "Low-Latency", "Deterministic", "RTOS", "Control Systems"]
 categories:
 - Linux

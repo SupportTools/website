@@ -1,7 +1,7 @@
 ---
 title: "How to Install Nvidia GPU Drivers on K3s"
 date: 2024-10-15T10:00:00-05:00
-draft: false
+draft: true
 tags: ["Nvidia", "K3s", "GPU"]
 categories:
 - NVIDIA

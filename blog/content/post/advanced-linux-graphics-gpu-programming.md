@@ -1,7 +1,7 @@
 ---
 title: "Advanced Linux Graphics and GPU Programming: Building High-Performance Compute and Rendering Applications"
 date: 2025-04-28T10:00:00-05:00
-draft: false
+draft: true
 tags: ["Linux", "GPU", "Graphics", "OpenGL", "Vulkan", "CUDA", "OpenCL", "Compute Shaders", "Rendering"]
 categories:
 - Linux

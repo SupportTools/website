@@ -1,7 +1,7 @@
 ---
 title: "Advanced Firewall Automation and Configuration Management: Enterprise Security Guide"
 date: 2026-04-01T00:00:00-05:00
-draft: false
+draft: true
 tags: ["Firewall Automation", "Configuration Management", "Security", "Infrastructure", "Enterprise", "DevSecOps", "Networking"]
 categories:
 - Networking

@@ -179,4 +179,4 @@ In `~/.ollama/models` on macOS and Windows (`%HOMEPATH%\.ollama\models`), and in
 - [Qwen 2.5 Coder Models: Open-Weight LLMs for Self-Hosting](/qwen-coder-models-guide/)
 - [Self-Hosted Coding Agents on Kubernetes](/self-hosted-coding-agents-kubernetes-vllm-litellm-enterprise-guide/)
 - [GPU Cluster Management for AI Workloads with NVIDIA Operator](/gpu-cluster-management-ai-workloads-nvidia-operator/)
-- [How to Install Nvidia GPU Drivers on K3s](/nvidia-gpu-k3s/)
+- [Setting up Nvidia drivers for k3s](/post/nvidia-gpus-on-k3s/)
