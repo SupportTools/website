@@ -1,10 +1,11 @@
-+++
-Categories = ["Rancher", "Rancher v1.6"]
-Tags = ["rancher", "rancher v1.6"]
-date = "2021-02-28T23:26:00+00:00"
-more_link = "yes"
-title = "How to resolve a service stuck in Removing in Rancher v1.6"
-+++
+---
+categories:
+- "Rancher"
+tags: ["rancher", "rancher v1.6"]
+date: "2021-02-28T23:26:00+00:00"
+more_link: "yes"
+title: "How to resolve a service stuck in Removing in Rancher v1.6"
+---
 
 In Rancher v1.6, sometimes a service can be stuck in a `removing` state.
 

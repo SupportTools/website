@@ -1,10 +1,12 @@
-+++
-Categories = ["Rancher", "Alertmanager"]
-Tags = ["rancher", "alertmanager"]
-date = "2020-10-24T07:00:00+00:00"
-more_link = "yes"
-title = "How to enable debug level logging for the Rancher Cluster/Project Alerting Alertmanager instance, in a Rancher v2.x managed cluster?"
-+++
+---
+categories:
+- "Rancher"
+- "Alerting"
+tags: ["rancher", "alertmanager"]
+date: "2020-10-24T07:00:00+00:00"
+more_link: "yes"
+title: "How to enable debug level logging for the Rancher Cluster/Project Alerting Alertmanager instance, in a Rancher v2.x managed cluster?"
+---
 
 This article details how to enable debug level logging on the Alertmanager instance in a Rancher v2.x managed Kubernetes cluster, which may assist when troubleshooting [cluster](https://rancher.com/docs/rancher/v2.x/en/cluster-admin/tools/alerts/) or [project alerting](https://rancher.com/docs/rancher/v2.x/en/project-admin/tools/alerts/).
 

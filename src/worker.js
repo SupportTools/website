@@ -67,6 +67,13 @@ export default {
         return Response.redirect(`${url.origin}/categories/${CATEGORY_REDIRECTS[oldCategory[1]]}/`, 301);
       }
 
+      // The C++ tag page moved from /tags/c++/ (which Cloudflare answers with a 307
+      // to the %2B-encoded path) to /tags/cpp/ (blog/content/tags/c++/_index.md).
+      if ((request.method === 'GET' || request.method === 'HEAD')
+          && /^\/tags\/c(\+|%2b){2}\/?$/i.test(url.pathname)) {
+        return Response.redirect(`${url.origin}/tags/cpp/`, 301);
+      }
+
       // Serve the Hugo-generated Markdown representation to clients that ask
       // for it, while preserving the canonical HTML URL.
       const acceptsMarkdown = request.headers.get('accept')?.includes('text/markdown');

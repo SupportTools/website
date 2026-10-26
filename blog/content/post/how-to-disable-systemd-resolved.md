@@ -1,10 +1,11 @@
-+++
-Categories = ["Ubuntu"]
-Tags = ["Ubuntu", "resolv.conf"]
-date = "2021-03-01T01:14:00+00:00"
-more_link = "yes"
-title = "How to disable systemd-resolved in Ubuntu"
-+++
+---
+categories:
+- "Ubuntu"
+tags: ["Ubuntu", "resolv.conf"]
+date: "2021-03-01T01:14:00+00:00"
+more_link: "yes"
+title: "How to disable systemd-resolved in Ubuntu"
+---
 
 systemd-resolved can cause issues with Kubernetes (not to mention the time spent troubleshooting various issues).
 

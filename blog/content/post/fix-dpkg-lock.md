@@ -1,10 +1,11 @@
-+++
-Categories = ["Ubuntu"]
-Tags = ["Ubuntu", "dpkg", "APT"]
-date = "2020-10-22T10:52:00+00:00"
-more_link = "yes"
-title = "How to Fix 'E: Could not get lock /var/lib/dpkg/lock-frontend - open (11: Resource temporarily unavailable)'"
-+++
+---
+categories:
+- "Ubuntu"
+tags: ["Ubuntu", "dpkg", "APT"]
+date: "2020-10-22T10:52:00+00:00"
+more_link: "yes"
+title: "How to Fix 'E: Could not get lock /var/lib/dpkg/lock-frontend - open (11: Resource temporarily unavailable)'"
+---
 
 In Ubuntu, you may sometimes encounter an error when attempting to run an apt command:
 

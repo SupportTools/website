@@ -25,6 +25,16 @@ test('TOML frontmatter with categories fails hard', () => {
   assert.match(f[0], /^t\.md: TOML/);
 });
 
+// Hugo reads front matter keys case-insensitively, so "Categories" builds category
+// pages exactly like "categories". 33 old TOML posts used the capitalised key and
+// went unchecked, leaving off-list category pages in the sitemap.
+test('capitalised Categories key is checked in TOML and YAML', () => {
+  const t = checkFiles([['t.md', '+++\ntitle = "T"\nCategories = ["X"]\n+++\n']], allow);
+  assert.equal(t.length, 1);
+  assert.match(t[0], /^t\.md: TOML/);
+  assert.deepEqual(parseCategories('---\nCategories: ["Kubernetes"]\n---\n'), ['Kubernetes']);
+});
+
 test('multi-line flow list fails hard instead of being skipped', () => {
   const f = checkFiles([['m.md', '---\ncategories: [\n  "X",\n  "Y"\n]\n---\n']], allow);
   assert.equal(f.length, 1);

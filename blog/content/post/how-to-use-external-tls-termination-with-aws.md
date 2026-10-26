@@ -1,10 +1,12 @@
-+++
-Categories = ["Rancher", "AWS"]
-Tags = ["rancher", "aws"]
-date = "2020-10-23T14:28:00+00:00"
-more_link = "yes"
-title = "How to use External TLS Termination with AWS"
-+++
+---
+categories:
+- "Rancher"
+- "AWS"
+tags: ["rancher", "aws"]
+date: "2020-10-23T14:28:00+00:00"
+more_link: "yes"
+title: "How to use External TLS Termination with AWS"
+---
 
 This document covers setting up Rancher using an AWS SSL certificate and an ALB (Application Load Balancer).
 

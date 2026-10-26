@@ -1,10 +1,11 @@
-+++
-Categories = ["Rancher"]
-Tags = ["rancher"]
-date = "2021-02-28T16:26:00+00:00"
-more_link = "yes"
-title = "How to retrieve a kubeconfig from RKE v0.2.x+ or Rancher v2.2.x+"
-+++
+---
+categories:
+- "Rancher"
+tags: ["rancher"]
+date: "2021-02-28T16:26:00+00:00"
+more_link: "yes"
+title: "How to retrieve a kubeconfig from RKE v0.2.x+ or Rancher v2.2.x+"
+---
 
 During a Rancher outage or other disaster event, you may lose access to a downstream cluster via Rancher and be unable to manage your applications. This process allows to bypass Rancher and connects directly to the downstream cluster.
 

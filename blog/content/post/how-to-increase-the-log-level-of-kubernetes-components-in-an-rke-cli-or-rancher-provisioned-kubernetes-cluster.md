@@ -1,10 +1,11 @@
-+++
-Categories = ["Rancher"]
-Tags = ["rancher"]
-date = "2021-02-28T22:53:00+00:00"
-more_link = "yes"
-title = "How to increase the log level of Kubernetes components in an RKE CLI or Rancher provisioned Kubernetes cluster"
-+++
+---
+categories:
+- "Rancher"
+tags: ["rancher"]
+date: "2021-02-28T22:53:00+00:00"
+more_link: "yes"
+title: "How to increase the log level of Kubernetes components in an RKE CLI or Rancher provisioned Kubernetes cluster"
+---
 
 When troubleshooting an issue with an RKE CLI or Rancher provisioned Kubernetes cluster, it may help to increase the verbosity of logging on one or more of the Kubernetes components above the default level. This article details the process of increasing logging on both those components that use the Kubernetes hyperkube image (kubelet, kube-apiserver, kube-controller-manager, kube-scheduler, kube-proxy) as well as the etcd component.
 

@@ -1,10 +1,12 @@
-+++
-Categories = ["VMware", "vCenter", "SSL"]
-Tags = ["vmware", "vcenter", "ssl"]
-date = "2021-09-07T07:46:00+00:00"
-more_link = "yes"
-title = "vSphere 7 – Certificates with VMCA as Subordinate"
-+++
+---
+categories:
+- "VMware"
+- "TLS & Certificates"
+tags: ["vmware", "vcenter", "ssl"]
+date: "2021-09-07T07:46:00+00:00"
+more_link: "yes"
+title: "vSphere 7 – Certificates with VMCA as Subordinate"
+---
 
 For enterprises that need fully trusted SSL certificates for the vSphere 7.0 environment, you have two basic options:
 

@@ -1,10 +1,12 @@
-+++
-Categories = ["Rancher", "RancherOS", "ROS", "Docker"]
-Tags = ["Rancher", "RancherOS", "ROS", "Docker", "Storage"]
-date = "2019-11-19T21:05:00+00:00"
-more_link = "yes"
-title = "Persisting RancherOS state"
-+++
+---
+categories:
+- "Rancher"
+- "Docker"
+tags: ["Rancher", "RancherOS", "ROS", "Docker", "Storage"]
+date: "2019-11-19T21:05:00+00:00"
+more_link: "yes"
+title: "Persisting RancherOS state"
+---
 
 ![](/images/rancher/RancherOS-1088X725-678x381.png)
 

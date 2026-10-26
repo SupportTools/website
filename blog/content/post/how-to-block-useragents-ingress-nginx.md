@@ -1,10 +1,12 @@
-+++
-Categories = ["Rancher", "Ingress-Nginx"]
-Tags = ["rancher", "nginx"]
-date = "2021-02-28T16:49:00+00:00"
-more_link = "yes"
-title = "How to block specific user agents from connecting through the nginx ingress controller"
-+++
+---
+categories:
+- "Rancher"
+- "Ingress"
+tags: ["rancher", "nginx"]
+date: "2021-02-28T16:49:00+00:00"
+more_link: "yes"
+title: "How to block specific user agents from connecting through the nginx ingress controller"
+---
 
 At times it's necessary to block specific user agents from connecting to workloads within your cluster. Whether it's bad actors or for compliance reasons, we'll go through how to get it done with Rancher/RKE created clusters.
 

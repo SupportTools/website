@@ -1,10 +1,12 @@
-+++
-Categories = ["PowerDNS", "MySQL"]
-Tags = ["PowerDNS", "pdns", "MySQL"]
-date = "2020-12-09T20:32:00+00:00"
-more_link = "yes"
-title = "How to Fix 'Backend error: GSQLBackend unable to list keys' in PowerDNS"
-+++
+---
+categories:
+- "DNS"
+- "MySQL"
+tags: ["PowerDNS", "pdns", "MySQL"]
+date: "2020-12-09T20:32:00+00:00"
+more_link: "yes"
+title: "How to Fix 'Backend error: GSQLBackend unable to list keys' in PowerDNS"
+---
 
 After upgrading to Ubuntu 20.10, you may sometimes encounter an error when attempting to start PowerDNS:
 

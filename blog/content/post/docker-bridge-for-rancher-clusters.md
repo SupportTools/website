@@ -1,10 +1,13 @@
-+++
-Categories = ["Rancher", "Docker", "RancherOS", "Networking"]
-Tags = ["rancher", "docker", "rancheros", "networking"]
-date = "2019-11-20T13:18:00+00:00"
-more_link = "yes"
-title = "Updating the docker bridge for Rancher managed clusters"
-+++
+---
+categories:
+- "Rancher"
+- "Docker"
+- "Networking"
+tags: ["rancher", "docker", "rancheros", "networking"]
+date: "2019-11-20T13:18:00+00:00"
+more_link: "yes"
+title: "Updating the docker bridge for Rancher managed clusters"
+---
 
 The docker0 bridge network has a default IP range of 172.17.0.0/16 (with an additional docker-sys bridge for system-docker using 172.18.0.0/16 by default on RancherOS). These ranges will be routed to these interfaces, per the below example of the route output. If the range(s) overlap with the internal IP space usage in your own network, the host will not be able to route packets to other hosts in your network that lie within these ranges. As a result you may wish to change the bridge range(s) to enable successful routing to hosts within these.
 

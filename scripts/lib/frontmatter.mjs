@@ -39,7 +39,7 @@ export function parseFrontmatter(text) {
   if (lines[0].trim() === '+++') {
     const close = lines.indexOf('+++', 1);
     const toml = lines.slice(1, close === -1 ? lines.length : close);
-    if (toml.some((l) => /^\s*categories\s*=/.test(l))) {
+    if (toml.some((l) => /^\s*categories\s*=/i.test(l))) {
       return { categories: [], errors: ['TOML (+++) frontmatter with categories is not supported; use YAML (---) frontmatter'] };
     }
     return { categories: [], errors: [] };
@@ -47,9 +47,9 @@ export function parseFrontmatter(text) {
   if (lines[0].trim() !== '---') return { categories: [], errors: [] };
   const end = lines.indexOf('---', 1);
   const fm = lines.slice(1, end === -1 ? lines.length : end);
-  const i = fm.findIndex((l) => /^categories\s*:/.test(l));
+  const i = fm.findIndex((l) => /^categories\s*:/i.test(l));
   if (i === -1) return { categories: [], errors: [] };
-  const rest = fm[i].replace(/^categories\s*:/, '').trim();
+  const rest = fm[i].replace(/^categories\s*:/i, '').trim();
   if (rest.startsWith('[')) {
     const close = rest.lastIndexOf(']');
     if (close === -1) {

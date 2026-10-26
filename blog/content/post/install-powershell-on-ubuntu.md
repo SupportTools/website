@@ -1,10 +1,12 @@
-+++
-Categories = ["Ubuntu", "PowerShell"]
-Tags = ["Ubuntu", "PowerShell"]
-date = "2019-11-20T11:06:00+00:00"
-more_link = "yes"
-title = "Install PowerShell on Ubuntu"
-+++
+---
+categories:
+- "Ubuntu"
+- "PowerShell"
+tags: ["Ubuntu", "PowerShell"]
+date: "2019-11-20T11:06:00+00:00"
+more_link: "yes"
+title: "Install PowerShell on Ubuntu"
+---
 
 As part of my DevOps process, I needed to create some DNS records on my Windows DNS server. In order to script this out, I needed to install PowerShell on my Jenkins server which is running Ubuntu 18.04.
 
