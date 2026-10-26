@@ -339,7 +339,7 @@ groups:
     annotations:
       summary: "K3s certificate expiring soon on {{ $labels.instance }}"
       description: "Certificate {{ $labels.path }} on node {{ $labels.instance }} expires in less than 30 days"
-      runbook_url: "https://support.tools/k3s-certificate-expiration-troubleshooting-guide/"
+      runbook_url: "https://support.tools/k3s-certificate-expiration-unauthorized-access-troubleshooting-guide/"
 
   - alert: K3sCertificateExpiringCritical
     expr: x509_cert_not_after{job="certificate-exporter"} - time() < 86400 * 7
@@ -350,7 +350,7 @@ groups:
     annotations:
       summary: "K3s certificate expiring critically soon on {{ $labels.instance }}"
       description: "Certificate {{ $labels.path }} on node {{ $labels.instance }} expires in less than 7 days. Immediate action required."
-      runbook_url: "https://support.tools/k3s-certificate-expiration-troubleshooting-guide/"
+      runbook_url: "https://support.tools/k3s-certificate-expiration-unauthorized-access-troubleshooting-guide/"
 
   - alert: K3sCertificateExpired
     expr: x509_cert_not_after{job="certificate-exporter"} - time() < 0
@@ -361,7 +361,7 @@ groups:
     annotations:
       summary: "K3s certificate expired on {{ $labels.instance }}"
       description: "Certificate {{ $labels.path }} on node {{ $labels.instance }} has expired. Cluster access may be compromised."
-      runbook_url: "https://support.tools/k3s-certificate-expiration-troubleshooting-guide/"
+      runbook_url: "https://support.tools/k3s-certificate-expiration-unauthorized-access-troubleshooting-guide/"
 ```
 
 # Proactive Certificate Management Strategies

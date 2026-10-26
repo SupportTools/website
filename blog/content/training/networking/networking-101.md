@@ -125,9 +125,9 @@ Networking is a critical skill for IT professionals, as it underpins all modern 
 ## Next Steps
 
 Ready to dive deeper? Check out these related posts:
-- [Introduction to VLANs](../vlans/)
-- [How Firewalls Work](../firewalls/)
-- [DNS Deep Dive](../dns/)
+- Introduction to VLANs
+- How Firewalls Work
+- DNS Deep Dive
 
 ---
 

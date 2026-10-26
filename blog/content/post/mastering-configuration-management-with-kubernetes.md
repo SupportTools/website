@@ -45,7 +45,7 @@ For more information about Kubernetes and configuration management, visit [Kuber
 
 # [More Details](#more-details)
 
-To delve deeper into the world of ConfigMaps, explore the [ConfigMap documentation](/docs/user-guide/configmap/) for comprehensive insights and guides.
+To delve deeper into the world of ConfigMaps, explore the [ConfigMap documentation](https://kubernetes.io/docs/concepts/configuration/configmap/) for comprehensive insights and guides.
 
 Join the conversation and shape the future of Kubernetes configuration management by participating in the Kubernetes Configuration Special Interest Group and other community initiatives.
 

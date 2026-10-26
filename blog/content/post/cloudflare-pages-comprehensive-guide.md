@@ -1042,4 +1042,4 @@ By leveraging Cloudflare's global network and advanced features, you can build h
 - [KV Storage Guide](https://developers.cloudflare.com/workers/learning/how-kv-works/)
 - [R2 Storage Documentation](https://developers.cloudflare.com/r2/)
 - [Terraform Provider for Cloudflare](https://registry.terraform.io/providers/cloudflare/cloudflare/latest/docs)
-- [JAMstack Architecture Best Practices](/jamstack-architecture-best-practices/)
+- JAMstack Architecture Best Practices

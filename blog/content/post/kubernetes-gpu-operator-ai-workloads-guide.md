@@ -434,7 +434,7 @@ groups:
         annotations:
           summary: "GPU XID error detected"
           description: "GPU hardware error on node {{ $labels.node }}, GPU {{ $labels.gpu }}"
-          runbook: "https://wiki.support.tools/runbooks/gpu-xid-errors"
+          runbook: "https://wiki.example.com/runbooks/gpu-xid-errors"
 
       - alert: GPUMemoryHigh
         expr: |

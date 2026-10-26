@@ -21,7 +21,7 @@ When your Go microservices are running smoothly in development but struggling in
 
 Performance issues in production often differ dramatically from what you see in development environments. In our production systems, we've repeatedly found that theoretical optimizations don't always match real-world needs. The solution? Implementing robust profiling and tracing systems that can run continuously in production with minimal overhead.
 
-This article builds on our previous exploration of [optimizing Go data layers](/optimizing-go-data-layer-performance/) by focusing on how to identify exactly what needs optimization in the first place.
+This article builds on our previous exploration of optimizing Go data layers by focusing on how to identify exactly what needs optimization in the first place.
 
 ## Section 1: Continuous Profiling with pprof
 
@@ -991,4 +991,4 @@ The techniques presented in this article allow you to:
 
 Remember that optimization should always be data-driven. The combination of profiling and tracing provides the data you need to make informed decisions about where to focus your optimization efforts.
 
-For more on optimizing Go applications, see our related articles on [optimizing Go data layers](/optimizing-go-data-layer-performance/) and [benchmarking Go goroutines](/benchmarking-go-goroutines-scaling-limits-performance/).
+For more on optimizing Go applications, see our related articles on optimizing Go data layers and [benchmarking Go goroutines](/benchmarking-go-goroutines-scaling-limits-performance/).

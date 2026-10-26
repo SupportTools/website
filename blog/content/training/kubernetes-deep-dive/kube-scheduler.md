@@ -325,5 +325,5 @@ kubectl get pods -o wide
 
 For more information, check out:
 - [API Server Deep Dive](/training/kubernetes-deep-dive/kube-apiserver/)
-- [Resource Management](/training/kubernetes-deep-dive/resource-management/)
-- [Node Management](/training/kubernetes-deep-dive/node-management/)
+- Resource Management
+- Node Management

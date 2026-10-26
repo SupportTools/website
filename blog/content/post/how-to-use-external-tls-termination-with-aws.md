@@ -96,4 +96,4 @@ Example output:
 * Connection #0 to host mmattox-example.support.rancher.space left intact
 ```
 
-NOTE: Some browsers will cache the certificate. [Details on how to clear the SSL state in a browser can be found here](a2hosting.com/kb/getting-started-guide/internet-and-networking/clearing-a-web-browsers-ssl-state).
+NOTE: Some browsers will cache the certificate. [Details on how to clear the SSL state in a browser can be found here](https://a2hosting.com/kb/getting-started-guide/internet-and-networking/clearing-a-web-browsers-ssl-state).

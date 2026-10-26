@@ -72,7 +72,7 @@ The Certificate manager created two files:
 
 # [Signing the Subordinate Certificate](#signing-the-subca)
 
-How you will be minting your Certificate is highly dependent on your PKI infrastructure. In my case, I'm running a two-tier Windows Server 2019 CA. So I'll walk you through that process. The 2019 CA is configured exactly like I've written about in my [Windows Server 2019 Two-Tier PKI CA](TBD) series. Have a look at those three posts if you are in a lab and don't already have a running CA.
+How you will be minting your Certificate is highly dependent on your PKI infrastructure. In my case, I'm running a two-tier Windows Server 2019 CA. So I'll walk you through that process. The 2019 CA is configured exactly like I've written about in my Windows Server 2019 Two-Tier PKI CA series. Have a look at those three posts if you are in a lab and don't already have a running CA.
 
 # [Configuring the Subordinate Certificate Template](#configuring-subca-template)
 

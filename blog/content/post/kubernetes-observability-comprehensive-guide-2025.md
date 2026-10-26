@@ -261,7 +261,7 @@ spec:
       annotations:
         summary: "High CPU usage on {{$labels.instance}}"
         description: "CPU usage on node {{$labels.instance}} has exceeded 80% for more than 5 minutes."
-        runbook_url: "https://support.tools/docs/runbooks/high-cpu"
+        runbook_url: "https://wiki.example.com/runbooks/high-cpu"
 ```
 
 Apply this rule configuration:

@@ -321,5 +321,5 @@ kubectl get events --field-selector reason=FailedSync
 
 For more information, check out:
 - [API Server Deep Dive](/training/kubernetes-deep-dive/kube-apiserver/)
-- [Custom Controllers](/training/kubernetes-deep-dive/custom-controllers/)
-- [Resource Management](/training/kubernetes-deep-dive/resource-management/)
+- Custom Controllers
+- Resource Management

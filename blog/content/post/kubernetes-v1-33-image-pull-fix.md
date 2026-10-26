@@ -166,10 +166,10 @@ Track these enhancements via [KEP-2535](https://github.com/kubernetes/enhancemen
 
 This fix addresses one aspect of container image security. For comprehensive protection:
 
-- Implement [image scanning](/post/container-image-scanning-best-practices/) in your CI/CD pipeline
-- Use [admission controllers](/post/kubernetes-admission-controllers-explained/) to enforce image policy
-- Consider [sigstore](/post/securing-software-supply-chain-sigstore/) for validating image provenance
-- Deploy a [private registry](/post/harbor-registry-kubernetes-integration/) with proper access controls
+- Implement [image scanning](/container-image-vulnerability-scanning-trivy-production-guide/) in your CI/CD pipeline
+- Use [admission controllers](/admission-webhooks-security-enforcement-kubernetes-guide/) to enforce image policy
+- Consider [sigstore](/advanced-cicd-pipeline-security-supply-chain-protection/) for validating image provenance
+- Deploy a [private registry](/setting-up-harbor-registry-kubernetes-helm/) with proper access controls
 
 ## Conclusion
 

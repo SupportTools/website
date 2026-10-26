@@ -23,13 +23,13 @@ Welcome to our comprehensive networking training section. Here you'll find detai
 - [Service Mesh Architecture](/training/networking/service-mesh/): Modern microservices networking
 
 ## Advanced Topics
-- [Network Troubleshooting](/training/networking/troubleshooting/): Tools and techniques for debugging network issues
-- [Network Performance](/training/networking/performance/): Optimization and monitoring
-- [Software-Defined Networking](/training/networking/sdn/): Modern approaches to network management
+- Network Troubleshooting: Tools and techniques for debugging network issues
+- Network Performance: Optimization and monitoring
+- Software-Defined Networking: Modern approaches to network management
 
 ## Hands-on Labs
-- [Setting up a VXLAN Network](/training/networking/vxlan-lab/)
-- [Kubernetes CNI Implementation](/training/networking/kubernetes-cni-lab/)
-- [Network Monitoring Lab](/training/networking/monitoring-lab/)
+- Setting up a VXLAN Network
+- [Kubernetes CNI Implementation](/training/networking/cni-lab/)
+- Network Monitoring Lab
 
 Each section includes practical examples, diagrams, and real-world scenarios to help you understand and implement networking concepts effectively.
