@@ -30,7 +30,7 @@
   },
   "devDependencies": {
     "pagefind": "1.5.2",
-    "wrangler": "4.151.1"
+    "wrangler": "4.153.0"
   },
   "engines": {
     "node": ">=22.0.0"
