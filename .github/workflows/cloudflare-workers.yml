@@ -137,7 +137,9 @@ jobs:
   Deploy-NonProd:
     runs-on: self-hosted-linux
     needs: Test
-    if: github.event_name == 'pull_request' || (github.event_name == 'push' && github.ref != 'refs/heads/main') || (github.event_name == 'workflow_dispatch' && github.event.inputs.environment != 'production')
+    # Dependabot runs get only Dependabot secrets, so CLOUDFLARE_API_TOKEN is
+    # empty and wrangler fails. Test still covers those PRs.
+    if: github.actor != 'dependabot[bot]' && (github.event_name == 'pull_request' || (github.event_name == 'push' && github.ref != 'refs/heads/main') || (github.event_name == 'workflow_dispatch' && github.event.inputs.environment != 'production'))
     strategy:
       matrix:
         environment: 
