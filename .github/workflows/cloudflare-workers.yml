@@ -121,6 +121,9 @@ jobs:
       - name: Check _headers keeps noindex off HTML pages
         run: npm run check:headers
 
+      - name: Check code blocks use theme syntax colors, not inline styles
+        run: npm run check:inline-colors
+
       - name: Unit tests (theme, social link guards, URL guard, IndexNow, SEO guards)
         run: |
           npm run test:seo

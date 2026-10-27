@@ -15,6 +15,7 @@
     "build": "npm run build:hugo && npm run build:search",
     "serve": "cd blog && hugo server -D --bind=0.0.0.0 --baseURL=http://localhost:1313",
     "check:contrast": "node scripts/check-contrast.mjs",
+    "check:inline-colors": "node scripts/check-inline-colors.mjs blog/public",
     "check:headings": "node scripts/check-headings.mjs",
     "check:categories": "node scripts/check-categories.mjs",
     "check:paths": "node scripts/check-duplicate-paths.mjs",
