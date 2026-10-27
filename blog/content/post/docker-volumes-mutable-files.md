@@ -125,6 +125,8 @@ docker volume prune
 docker volume rm myapp_data
 ```
 
+On Docker 23 and later, `docker volume prune` only removes anonymous volumes; see [docker system prune -a --volumes: what it deletes](/docker-system-prune-a-volumes/) for how named volumes, images and build cache are handled.
+
 ## Best Practices
 
 ### 1. Volume Organization
