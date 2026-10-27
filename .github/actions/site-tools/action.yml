@@ -1,0 +1,63 @@
+name: Install Hugo and Dart Sass (ci-dist mirror)
+description: >-
+  Put the pinned Hugo extended and Dart Sass on PATH, copied out of the Harbor ci-dist
+  mirror images and sha256-checked.
+
+# Build-path tier: a mirror we run. The archives come from the public, tag-immutable Harbor
+# project ci-dist (supporttools-website-955), published once per version from
+# SupportTools/ci-runners (site-tools.pins, scripts/site-tools-dist.sh), which checked them
+# against upstream. Nothing here contacts github.com, and there is no upstream fallback: a
+# Harbor outage fails the job visibly. The pull is anonymous; Docker comes from the ARC dind
+# sidecar.
+#
+# To bump: change the pin in ci-runners site-tools.pins first and merge it (that publishes
+# the new tags), then the matching *_VERSION / *_SHA256 env in cloudflare-workers.yml.
+
+inputs:
+  hugo-version:
+    required: true
+  hugo-sha256:
+    required: true
+  dart-sass-version:
+    required: true
+  dart-sass-sha256:
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - shell: bash
+      env:
+        DIST: harbor.support.tools/ci-dist
+        HUGO_VERSION: ${{ inputs.hugo-version }}
+        HUGO_SHA256: ${{ inputs.hugo-sha256 }}
+        DART_SASS_VERSION: ${{ inputs.dart-sass-version }}
+        DART_SASS_SHA256: ${{ inputs.dart-sass-sha256 }}
+      run: |
+        set -euo pipefail
+        # copy_out <image> <file> <sha256>: one archive out of a FROM-scratch image, checked.
+        copy_out() {
+          local img="$1" file="$2" sum="$3" cid i
+          for i in 1 2 3; do
+            docker pull -q "${img}" >/dev/null && break
+            [[ "${i}" -lt 3 ]] || { echo "::error::cannot pull ${img} from the ci-dist mirror"; exit 1; }
+            sleep $((i * 5))
+          done
+          cid="$(docker create "${img}" /none)"
+          docker cp "${cid}:/${file}" "${RUNNER_TEMP}/${file}"
+          docker rm "${cid}" >/dev/null
+          echo "${sum}  ${RUNNER_TEMP}/${file}" | sha256sum -c -
+        }
+
+        hugo_file="hugo_extended_${HUGO_VERSION}_linux-amd64.tar.gz"
+        copy_out "${DIST}/hugo-dist:${HUGO_VERSION}-extended-linux-amd64" "${hugo_file}" "${HUGO_SHA256}"
+        mkdir -p "${RUNNER_TEMP}/hugo"
+        tar -xzf "${RUNNER_TEMP}/${hugo_file}" -C "${RUNNER_TEMP}/hugo" hugo
+        echo "${RUNNER_TEMP}/hugo" >>"${GITHUB_PATH}"
+        "${RUNNER_TEMP}/hugo/hugo" version
+
+        sass_file="dart-sass-${DART_SASS_VERSION}-linux-x64.tar.gz"
+        copy_out "${DIST}/dart-sass-dist:${DART_SASS_VERSION}-linux-x64" "${sass_file}" "${DART_SASS_SHA256}"
+        tar -xzf "${RUNNER_TEMP}/${sass_file}" -C "${RUNNER_TEMP}"
+        echo "${RUNNER_TEMP}/dart-sass" >>"${GITHUB_PATH}"
+        "${RUNNER_TEMP}/dart-sass/sass" --version

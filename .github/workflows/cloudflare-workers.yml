@@ -36,14 +36,14 @@ on:
 # used (4.86.0, run 39008946036); the old unpinned `npm install -g wrangler` took whatever was
 # latest. Bump deliberately.
 env:
-  # Dart Sass for the m10c theme's css.Sass (transpiler: dartsass). Hugo dropped
-  # libsass support (deprecated in v0.153.0), so every job that builds the site
-  # needs this on PATH. Build-path tier: pinned upstream fetch from GitHub
-  # releases, sha256-verified, bounded retries. These are GitHub-hosted runners
-  # with no runner image or mirror of ours yet; moving this onto a mirror is
-  # tracked separately. To bump: take the sha256 "digest" of
-  # dart-sass-<ver>-linux-x64.tar.gz from
-  # `gh api repos/sass/dart-sass/releases/tags/<ver>`.
+  # Hugo extended, and Dart Sass for the m10c theme's css.Sass (transpiler: dartsass; Hugo
+  # dropped libsass in v0.153.0). Build-path tier: a mirror we run. Every job copies both
+  # from the Harbor ci-dist mirror images via .github/actions/site-tools and re-checks these
+  # sha256 pins; nothing is fetched from github.com (supporttools-website-955). The images
+  # are published from SupportTools/ci-runners site-tools.pins, so bump there first, merge,
+  # then here. Hugo is pinned deliberately: bump after verifying the site builds clean.
+  HUGO_VERSION: '0.168.0'
+  HUGO_SHA256: '787f100057328824f38c6ad7c87ff10d6451ae0a7bc39cedaad0dd2bcde17e53'
   DART_SASS_VERSION: '1.105.1'
   DART_SASS_SHA256: '9046fdd4a31a524a0020298c55d9e155d4c22363ef268e8992574335a72c6a6f'
   NPM_REGISTRY: http://verdaccio.npm-proxy.svc.a1-ops-prd.local/
@@ -69,25 +69,13 @@ jobs:
         # (replace-registry-host defaults to npmjs).
         run: npm ci --no-fund --registry="${NPM_REGISTRY}"
 
-      - name: Setup Hugo
-        uses: peaceiris/actions-hugo@v2
+      - name: Install Hugo and Dart Sass (ci-dist mirror)
+        uses: ./.github/actions/site-tools
         with:
-          # Pinned deliberately. 'latest' makes peaceiris/actions-hugo resolve the
-          # version at build time via https://formulae.brew.sh/api/formula/hugo.json,
-          # so a Homebrew API outage fails every job before Hugo is even installed
-          # (run 29658115531). A pinned version downloads straight from GitHub
-          # releases. Bump intentionally after verifying the site builds clean.
-          hugo-version: '0.168.0'
-          extended: true
-
-      - name: Install Dart Sass
-        run: |
-          curl -fsSL --retry 3 --retry-all-errors -o "$RUNNER_TEMP/dart-sass.tar.gz" \
-            "https://github.com/sass/dart-sass/releases/download/${DART_SASS_VERSION}/dart-sass-${DART_SASS_VERSION}-linux-x64.tar.gz"
-          echo "${DART_SASS_SHA256}  $RUNNER_TEMP/dart-sass.tar.gz" | sha256sum -c -
-          tar -xzf "$RUNNER_TEMP/dart-sass.tar.gz" -C "$RUNNER_TEMP"
-          echo "$RUNNER_TEMP/dart-sass" >> "$GITHUB_PATH"
-          "$RUNNER_TEMP/dart-sass/sass" --version
+          hugo-version: ${{ env.HUGO_VERSION }}
+          hugo-sha256: ${{ env.HUGO_SHA256 }}
+          dart-sass-version: ${{ env.DART_SASS_VERSION }}
+          dart-sass-sha256: ${{ env.DART_SASS_SHA256 }}
 
       - name: Check theme color contrast
         run: npm run check:contrast
@@ -166,25 +154,13 @@ jobs:
         # (replace-registry-host defaults to npmjs).
         run: npm ci --no-fund --registry="${NPM_REGISTRY}"
 
-      - name: Setup Hugo
-        uses: peaceiris/actions-hugo@v2
+      - name: Install Hugo and Dart Sass (ci-dist mirror)
+        uses: ./.github/actions/site-tools
         with:
-          # Pinned deliberately. 'latest' makes peaceiris/actions-hugo resolve the
-          # version at build time via https://formulae.brew.sh/api/formula/hugo.json,
-          # so a Homebrew API outage fails every job before Hugo is even installed
-          # (run 29658115531). A pinned version downloads straight from GitHub
-          # releases. Bump intentionally after verifying the site builds clean.
-          hugo-version: '0.168.0'
-          extended: true
-
-      - name: Install Dart Sass
-        run: |
-          curl -fsSL --retry 3 --retry-all-errors -o "$RUNNER_TEMP/dart-sass.tar.gz" \
-            "https://github.com/sass/dart-sass/releases/download/${DART_SASS_VERSION}/dart-sass-${DART_SASS_VERSION}-linux-x64.tar.gz"
-          echo "${DART_SASS_SHA256}  $RUNNER_TEMP/dart-sass.tar.gz" | sha256sum -c -
-          tar -xzf "$RUNNER_TEMP/dart-sass.tar.gz" -C "$RUNNER_TEMP"
-          echo "$RUNNER_TEMP/dart-sass" >> "$GITHUB_PATH"
-          "$RUNNER_TEMP/dart-sass/sass" --version
+          hugo-version: ${{ env.HUGO_VERSION }}
+          hugo-sha256: ${{ env.HUGO_SHA256 }}
+          dart-sass-version: ${{ env.DART_SASS_VERSION }}
+          dart-sass-sha256: ${{ env.DART_SASS_SHA256 }}
 
       - name: Build Hugo site
         run: npm run build
@@ -280,25 +256,13 @@ jobs:
         # (replace-registry-host defaults to npmjs).
         run: npm ci --no-fund --registry="${NPM_REGISTRY}"
 
-      - name: Setup Hugo
-        uses: peaceiris/actions-hugo@v2
+      - name: Install Hugo and Dart Sass (ci-dist mirror)
+        uses: ./.github/actions/site-tools
         with:
-          # Pinned deliberately. 'latest' makes peaceiris/actions-hugo resolve the
-          # version at build time via https://formulae.brew.sh/api/formula/hugo.json,
-          # so a Homebrew API outage fails every job before Hugo is even installed
-          # (run 29658115531). A pinned version downloads straight from GitHub
-          # releases. Bump intentionally after verifying the site builds clean.
-          hugo-version: '0.168.0'
-          extended: true
-
-      - name: Install Dart Sass
-        run: |
-          curl -fsSL --retry 3 --retry-all-errors -o "$RUNNER_TEMP/dart-sass.tar.gz" \
-            "https://github.com/sass/dart-sass/releases/download/${DART_SASS_VERSION}/dart-sass-${DART_SASS_VERSION}-linux-x64.tar.gz"
-          echo "${DART_SASS_SHA256}  $RUNNER_TEMP/dart-sass.tar.gz" | sha256sum -c -
-          tar -xzf "$RUNNER_TEMP/dart-sass.tar.gz" -C "$RUNNER_TEMP"
-          echo "$RUNNER_TEMP/dart-sass" >> "$GITHUB_PATH"
-          "$RUNNER_TEMP/dart-sass/sass" --version
+          hugo-version: ${{ env.HUGO_VERSION }}
+          hugo-sha256: ${{ env.HUGO_SHA256 }}
+          dart-sass-version: ${{ env.DART_SASS_VERSION }}
+          dart-sass-sha256: ${{ env.DART_SASS_SHA256 }}
 
       - name: Build Hugo site
         run: npm run build
@@ -364,25 +328,13 @@ jobs:
         # (replace-registry-host defaults to npmjs).
         run: npm ci --no-fund --registry="${NPM_REGISTRY}"
 
-      - name: Setup Hugo
-        uses: peaceiris/actions-hugo@v2
+      - name: Install Hugo and Dart Sass (ci-dist mirror)
+        uses: ./.github/actions/site-tools
         with:
-          # Pinned deliberately. 'latest' makes peaceiris/actions-hugo resolve the
-          # version at build time via https://formulae.brew.sh/api/formula/hugo.json,
-          # so a Homebrew API outage fails every job before Hugo is even installed
-          # (run 29658115531). A pinned version downloads straight from GitHub
-          # releases. Bump intentionally after verifying the site builds clean.
-          hugo-version: '0.168.0'
-          extended: true
-
-      - name: Install Dart Sass
-        run: |
-          curl -fsSL --retry 3 --retry-all-errors -o "$RUNNER_TEMP/dart-sass.tar.gz" \
-            "https://github.com/sass/dart-sass/releases/download/${DART_SASS_VERSION}/dart-sass-${DART_SASS_VERSION}-linux-x64.tar.gz"
-          echo "${DART_SASS_SHA256}  $RUNNER_TEMP/dart-sass.tar.gz" | sha256sum -c -
-          tar -xzf "$RUNNER_TEMP/dart-sass.tar.gz" -C "$RUNNER_TEMP"
-          echo "$RUNNER_TEMP/dart-sass" >> "$GITHUB_PATH"
-          "$RUNNER_TEMP/dart-sass/sass" --version
+          hugo-version: ${{ env.HUGO_VERSION }}
+          hugo-sha256: ${{ env.HUGO_SHA256 }}
+          dart-sass-version: ${{ env.DART_SASS_VERSION }}
+          dart-sass-sha256: ${{ env.DART_SASS_SHA256 }}
 
       - name: Build Hugo site
         run: npm run build
