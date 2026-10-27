@@ -1,21 +1,50 @@
 ---
-title: "Subnet Mask Cheat Sheet"
+title: "What Is a Subnet Mask? Explanation and CIDR Cheat Sheet"
 date: 2024-10-19T14:00:00-05:00
+lastmod: 2026-10-27
 draft: false
 tags: ["Networking", "Subnetting", "IP"]
 categories:
 - Networking
 author: "Matthew Mattox - mmattox@support.tools"
-description: "A detailed cheat sheet for subnet masks, IP ranges, and their broadcast addresses."
+description: "What a subnet mask is, how it splits an IP address into network and host parts, and a CIDR table of masks, host counts and broadcast addresses."
 more_link: "yes"
 url: "/subnet-mask-cheat-sheet/"
 ---
 
-## Subnet Mask Cheat Sheet
+## What is a subnet mask?
 
-Understanding subnet masks is crucial for anyone managing networks, especially when dealing with IP address allocation and routing. In this cheat sheet, we’ll go over various subnet masks, their corresponding address ranges, host counts, and how they relate to a Class C network. If you're working with network segmentation, this guide will serve as a handy reference.
+A subnet mask is a 32-bit number that splits an IPv4 address into two parts: the **network** part, which every device on the same subnet shares, and the **host** part, which identifies one device on that subnet. Bits set to 1 in the mask mark the network part; bits set to 0 mark the host part.
+
+Take `192.168.1.10` with the mask `255.255.255.0`:
+
+```text
+IP address    192.168.1.10    11000000.10101000.00000001.00001010
+Subnet mask   255.255.255.0   11111111.11111111.11111111.00000000
+Network       192.168.1.0     (IP AND mask)
+Broadcast     192.168.1.255   (host bits all 1)
+Usable hosts  192.168.1.1 to 192.168.1.254
+```
+
+The first 24 bits of the mask are 1, so that mask is written `/24` in CIDR notation, and `192.168.1.10/24` means the same thing as `192.168.1.10` with mask `255.255.255.0`. A device compares the network part of a destination address with its own: if they match, it delivers the packet directly on the local network; if not, it sends the packet to its default gateway.
 
 <!--more-->
+
+### How many hosts does a subnet hold?
+
+A `/n` subnet has `32 - n` host bits, so it holds `2^(32 - n)` addresses. Two of them are reserved, the network address (all host bits 0) and the broadcast address (all host bits 1), which leaves `2^(32 - n) - 2` usable hosts. A `/26` has 6 host bits: 64 addresses, 62 usable.
+
+Two exceptions: a `/31` has no network or broadcast address and both addresses are usable on point-to-point links (RFC 3021), and a `/32` identifies exactly one host, which is how loopback addresses and single-host routes are written.
+
+### Find your subnet mask
+
+- **Linux:** `ip -4 addr show` prints the address in CIDR form, for example `inet 192.168.1.10/24`.
+- **Windows:** `ipconfig` shows a `Subnet Mask` line under each adapter.
+- **macOS:** `ifconfig en0` shows the mask in hex, so `netmask 0xffffff00` is `255.255.255.0`.
+
+## Subnet mask cheat sheet
+
+Understanding subnet masks is crucial for anyone managing networks, especially when dealing with IP address allocation and routing. The tables below list common subnet masks, their address ranges and host counts, and how they relate to a Class C network.
 
 ### Subnet Masks Overview
 
@@ -23,6 +52,8 @@ The table below lists common subnet masks, the number of available hosts, and th
 
 | **CIDR Notation** | **Addresses** | **Usable Hosts** | **Netmask**           | **Fraction of Class C** |
 |-------------------|---------------|------------------|-----------------------|-------------------------|
+| /32               | 1             | 1 (single host)  | 255.255.255.255        | 1/256                   |
+| /31               | 2             | 2 (RFC 3021)     | 255.255.255.254        | 1/128                   |
 | /30               | 4             | 2                | 255.255.255.252        | 1/64                    |
 | /29               | 8             | 6                | 255.255.255.248        | 1/32                    |
 | /28               | 16            | 14               | 255.255.255.240        | 1/16                    |
@@ -38,19 +69,21 @@ The table below lists common subnet masks, the number of available hosts, and th
 | /18               | 16384         | 16382            | 255.255.192.0          | 64                      |
 | /17               | 32768         | 32766            | 255.255.128.0          | 128                     |
 | /16               | 65536         | 65534            | 255.255.0.0            | 256                     |
+| /12               | 1048576       | 1048574          | 255.240.0.0            | 4096                    |
+| /8                | 16777216      | 16777214         | 255.0.0.0              | 65536                   |
 
 ### Subclassing a Class C Network
 
 Below are examples of how to break down a Class C network (`/24`) into smaller subnets, along with their corresponding IP ranges and broadcast addresses.
 
-#### /25 — 2 Subnets, 126 Hosts per Subnet
+#### /25: 2 Subnets, 126 Hosts per Subnet
 
 | **Network** | **IP Range**       | **Broadcast**  |
 |-------------|--------------------|----------------|
 | .0          | .1 - .126          | .127           |
 | .128        | .129 - .254        | .255           |
 
-#### /30 — 64 Subnets, 2 Hosts per Subnet
+#### /30: 64 Subnets, 2 Hosts per Subnet
 
 | **Network** | **IP Range**       | **Broadcast**  |
 |-------------|--------------------|----------------|
@@ -62,7 +95,7 @@ Below are examples of how to break down a Class C network (`/24`) into smaller s
 | .248        | .249 - .250        | .251           |
 | .252        | .253 - .254        | .255           |
 
-#### /26 — 4 Subnets, 62 Hosts per Subnet
+#### /26: 4 Subnets, 62 Hosts per Subnet
 
 | **Network** | **IP Range**       | **Broadcast**  |
 |-------------|--------------------|----------------|
@@ -71,7 +104,7 @@ Below are examples of how to break down a Class C network (`/24`) into smaller s
 | .128        | .129 - .190        | .191           |
 | .192        | .193 - .254        | .255           |
 
-#### /27 — 8 Subnets, 30 Hosts per Subnet
+#### /27: 8 Subnets, 30 Hosts per Subnet
 
 | **Network** | **IP Range**       | **Broadcast**  |
 |-------------|--------------------|----------------|
@@ -84,7 +117,7 @@ Below are examples of how to break down a Class C network (`/24`) into smaller s
 | .192        | .193 - .222        | .223           |
 | .224        | .225 - .254        | .255           |
 
-#### /28 — 16 Subnets, 14 Hosts per Subnet
+#### /28: 16 Subnets, 14 Hosts per Subnet
 
 | **Network** | **IP Range**       | **Broadcast**  |
 |-------------|--------------------|----------------|
@@ -105,7 +138,7 @@ Below are examples of how to break down a Class C network (`/24`) into smaller s
 | .224        | .225 - .238        | .239           |
 | .240        | .241 - .254        | .255           |
 
-#### /29 — 32 Subnets, 6 Hosts per Subnet
+#### /29: 32 Subnets, 6 Hosts per Subnet
 
 | **Network** | **IP Range**       | **Broadcast**  |
 |-------------|--------------------|----------------|
