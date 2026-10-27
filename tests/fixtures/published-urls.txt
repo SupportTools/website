@@ -1761,6 +1761,7 @@
 /tags/cost-optimization/
 /tags/cost-visibility/
 /tags/cpi/
+/tags/cpp/
 /tags/cpu-limits/
 /tags/cpu-requests/
 /tags/cpu-throttling/
@@ -3383,6 +3384,7 @@
 /training/rke2/harvester-cloud-provider-rke2/
 /training/rke2/hetzner-cloud-provider-rke2/
 /training/rke2/ibm-cloud-provider-rke2/
+/training/rke2/linode-cloud-provider-rke2/
 /training/rke2/oracle-cloud-provider-rke2/
 /training/rke2/vsphere-in-tree-cloud-provider-rke2/
 /training/rke2/vsphere-out-of-tree-cloud-provider-rke2/
