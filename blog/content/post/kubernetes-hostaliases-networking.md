@@ -1,13 +1,14 @@
 ---
-title: "HostAliases in Kubernetes: Enhancing Networking for Better Performance"
+title: "Kubernetes hostAliases: Add /etc/hosts Entries to Pods"
 date: 2024-11-26T01:00:00-05:00
+lastmod: 2026-10-27T00:00:00-05:00
 draft: false
 tags: ["Kubernetes", "HostAliases", "Networking", "Performance"]
 categories:
 - Kubernetes
 - Networking
 author: "Matthew Mattox - mmattox@support.tools"
-description: "Learn how to use HostAliases in Kubernetes to optimize networking, reduce latency, and enhance inter-domain communication within your cluster."
+description: "Use Kubernetes hostAliases to add custom /etc/hosts entries to Pods and Deployments: YAML examples, the resulting hosts file, and when to use it."
 more_link: "yes"
 url: "/kubernetes-hostaliases-networking/"
 ---
@@ -17,6 +18,23 @@ Kubernetes clusters often host multiple projects and domains on shared infrastru
 <!--more-->
 
 # [HostAliases in Kubernetes](#hostaliases-in-kubernetes)
+
+## Quick answer
+
+Add `hostAliases` to the Pod spec (for a Deployment, under `spec.template.spec`). The kubelet writes each entry into the container's `/etc/hosts`:
+
+```yaml
+spec:
+  template:
+    spec:
+      hostAliases:
+      - ip: "10.1.2.3"
+        hostnames:
+        - "foo.remote"
+        - "bar.remote"
+```
+
+Check the result with `kubectl exec <pod> -- cat /etc/hosts`; the entries appear under `# Entries added by HostAliases.` Do not edit `/etc/hosts` inside the container, because the kubelet manages that file and overwrites manual changes when the Pod is created or restarted. Changing `hostAliases` on a Deployment rolls out new Pods; a standalone Pod has to be recreated.
 
 ## The Latency Challenge  
 
@@ -57,7 +75,8 @@ spec:
             - "example-hostaliases.com"
       containers:
         - name: example-hostaliases
-          image: busybox:latest
+          image: busybox:1.36
+          command: ["sleep", "3600"]
 ```
 
 ### Key Points:

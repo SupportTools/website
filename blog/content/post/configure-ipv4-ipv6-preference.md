@@ -1,6 +1,7 @@
 ---
-title: "Configuring IPv4 and IPv6 Preferences in Linux Systems"
+title: "Force apt to Use IPv4 (Acquire::ForceIPv4) and Prefer IPv4"
 date: 2025-03-30T09:00:00-06:00
+lastmod: 2026-10-27T00:00:00-05:00
 draft: false
 tags: ["Networking", "Linux", "IPv4", "IPv6", "System Administration", "Performance"]
 categories:
@@ -8,7 +9,7 @@ categories:
 - System Administration
 - Configuration Management
 author: "Matthew Mattox - mmattox@support.tools"
-description: "Learn how to configure IPv4 and IPv6 preferences in Linux systems to optimize network performance and resolve connectivity issues. Includes practical examples and troubleshooting tips."
+description: "Force apt to use IPv4 with Acquire::ForceIPv4 in apt.conf.d or a one-off -o flag, and make Linux or Ubuntu prefer IPv4 system-wide with gai.conf."
 more_link: "yes"
 url: "/configure-ipv4-ipv6-preference/"
 ---
@@ -18,6 +19,24 @@ A comprehensive guide to managing IPv4 and IPv6 preferences in Linux systems, he
 <!--more-->
 
 # Managing IPv4 and IPv6 Preferences in Linux
+
+## Quick answer
+
+To make apt download over IPv4 only, set `Acquire::ForceIPv4` in a file under `/etc/apt/apt.conf.d/`:
+
+```bash
+# Permanent: every apt, apt-get, and unattended-upgrades run uses IPv4 only
+echo 'Acquire::ForceIPv4 "true";' | sudo tee /etc/apt/apt.conf.d/99force-ipv4
+
+# One-off: force IPv4 for a single command
+sudo apt-get -o Acquire::ForceIPv4=true update
+sudo apt -o Acquire::ForceIPv4=true upgrade
+
+# Prefer IPv4 system-wide without disabling IPv6 (glibc getaddrinfo)
+echo 'precedence ::ffff:0:0/96  100' | sudo tee -a /etc/gai.conf
+```
+
+apt only reads files in `apt.conf.d` that have no extension or a `.conf` extension, so `99force-ipv4` works but `99force-ipv4.txt` is ignored. The `gai.conf` line affects programs that resolve names through glibc's `getaddrinfo()`; it changes address ordering and does not turn IPv6 off.
 
 ## Understanding the Challenge
 
@@ -58,6 +77,9 @@ The gai.conf file allows for detailed control over address selection:
 ```bash
 # /etc/gai.conf
 
+# Note: a single "precedence" line replaces glibc's built-in precedence
+# table, and a single "label" line replaces the built-in label table.
+
 # Prefer IPv4 over IPv6
 precedence ::ffff:0:0/96  100
 
@@ -66,8 +88,6 @@ precedence ::ffff:0:0/96  100
 # precedence ::/0        40
 # precedence ::ffff:0:0/96  35
 
-# Label IPv4-only destinations
-label ::ffff:0:0/96  4
 ```
 
 ### 2. Application-Specific Configuration
@@ -84,14 +104,15 @@ wget -4 https://example.com
 
 ### 3. Network Manager Configuration
 
-If using NetworkManager, you can set IPv4 preference:
+If using NetworkManager, you can go further and disable IPv6 on a connection (this removes IPv6 rather than just preferring IPv4):
 
 ```bash
-# Create a new connection profile
-nmcli connection add type ethernet con-name "IPv4-Preferred" ifname eth0 ip4 auto ip6 ignore
+# Create a new connection profile with IPv6 disabled
+nmcli connection add type ethernet con-name "IPv4-Only" ifname eth0 ipv4.method auto ipv6.method disabled
 
-# Or modify existing connection
-nmcli connection modify "Wired connection 1" ipv6.method ignore
+# Or modify an existing connection, then re-activate it
+nmcli connection modify "Wired connection 1" ipv6.method disabled
+nmcli connection up "Wired connection 1"
 ```
 
 ## Troubleshooting
@@ -126,7 +147,11 @@ curl -6 -v http://archive.ubuntu.com/ubuntu/
 
 3. **DNS Resolution Problems**
 ```bash
-# Test DNS resolution
+# Check which address families a name resolves to
+dig A example.com
+dig AAAA example.com
+
+# Query the resolver over IPv4 or IPv6 transport
 dig -4 example.com
 dig -6 example.com
 ```
@@ -158,11 +183,11 @@ curl -6 -w "IPv6: %{time_total}\n" -o /dev/null -s https://example.com
 ```
 
 2. **Happy Eyeballs Algorithm**
-Modern systems use the Happy Eyeballs algorithm to optimize dual-stack connections. You can adjust its behavior through sysctl:
+Many clients use the Happy Eyeballs algorithm (RFC 8305) to race IPv6 and IPv4 connection attempts. It is implemented inside each application, not in the kernel, so there is no sysctl for it. Some tools expose their own setting, for example curl:
 
 ```bash
-# Adjust connection attempt delay
-sysctl -w net.ipv6.tcp_fastopen=3
+# Give IPv6 200 ms before curl also starts an IPv4 attempt
+curl --happy-eyeballs-timeout-ms 200 -o /dev/null -s https://example.com
 ```
 
 Remember that while forcing IPv4 can solve immediate issues, it's generally better to maintain dual-stack capability when possible. Only implement these preferences when necessary, and regularly review their necessity as IPv6 support continues to improve across the internet.

@@ -1,6 +1,7 @@
 ---
-title: "Reusing Existing Kubernetes Secrets in Helm Templates"  
+title: "Helm: Create a Secret Only If It Does Not Exist (lookup)"  
 date: 2024-10-07T19:26:00-05:00  
+lastmod: 2026-10-27T00:00:00-05:00
 draft: false  
 tags: ["Helm", "Kubernetes", "Secrets", "DevOps"]  
 categories:  
@@ -8,7 +9,7 @@ categories:
 - Helm  
 - Security  
 author: "Matthew Mattox - mmattox@support.tools"  
-description: "Learn how to efficiently reuse existing Kubernetes Secrets in your Helm templates, saving time and ensuring security across your cluster."  
+description: "Create a Kubernetes Secret in Helm only if it does not exist using lookup, keep generated passwords across upgrades, and reference it with secretKeyRef."  
 more_link: "yes"  
 url: "/reusing-kubernetes-secrets-helm-templates/"  
 ---
@@ -18,6 +19,29 @@ Kubernetes Secrets are an essential part of securing sensitive information such 
 In this post, we will explore how to reuse existing Kubernetes Secrets within your Helm templates, ensuring efficient management and security for your workloads.
 
 <!--more-->
+
+## Quick answer
+
+Use Helm's `lookup` function to read the Secret from the cluster. If it exists, reuse its value; if not, generate one. This keeps a generated password stable across `helm upgrade`:
+
+```yaml
+{{- $existing := lookup "v1" "Secret" .Release.Namespace "my-secret" }}
+apiVersion: v1
+kind: Secret
+metadata:
+  name: my-secret
+type: Opaque
+data:
+  {{- if $existing }}
+  password: {{ index $existing.data "password" }}
+  {{- else }}
+  password: {{ randAlphaNum 24 | b64enc }}
+  {{- end }}
+```
+
+To skip rendering the Secret entirely when it already exists, wrap the manifest in `{{- if not $existing }}` ... `{{- end }}` and add the `helm.sh/resource-policy: keep` annotation, so a later upgrade that no longer renders it does not delete it (Helm stops managing a kept resource).
+
+`lookup` returns an empty value under `helm template` and client-side `--dry-run`, because Helm does not contact the API server in those modes, so the "not found" branch renders there. Use `helm install|upgrade --dry-run=server` to test against the real cluster. Pods then consume the Secret with `valueFrom.secretKeyRef`, shown below.
 
 ### Why Reuse Existing Secrets?
 
@@ -121,7 +145,7 @@ data:
 {{- end }}
 ```
 
-In this example, the Secret is only created if `secret.create` is set to `true`. Otherwise, the existing Secret is used.
+In this example, the Secret is only created if `secret.create` is set to `true`. Otherwise, the existing Secret is used. This flag does not check the cluster; to create the Secret only when it is actually missing, use the `lookup` pattern from the Quick answer.
 
 ### Best Practices for Reusing Secrets
 

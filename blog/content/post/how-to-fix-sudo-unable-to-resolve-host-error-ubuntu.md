@@ -1,13 +1,14 @@
 ---
-title: "How to Fix 'sudo: unable to resolve host' Error in Ubuntu"
+title: "Fix 'sudo: unable to resolve host' on Ubuntu (/etc/hosts)"
 date: 2024-05-14T02:24:00-05:00
+lastmod: 2026-10-27T00:00:00-05:00
 draft: false
 tags: ["Ubuntu", "Linux", "sudo error", "host resolution"]
 categories:
 - Ubuntu
 - Linux
 author: "Matthew Mattox - mmattox@support.tools"
-description: "Step-by-step guide to resolving the 'sudo: unable to resolve host' error in Ubuntu by editing the /etc/hosts file."
+description: "Fix 'sudo: unable to resolve host' and 'Name or service not known' on Ubuntu: add a 127.0.1.1 hostname line to /etc/hosts and check hostnamectl."
 more_link: "yes"
 ---
 
@@ -18,6 +19,23 @@ Learn how to quickly fix the common 'sudo: unable to resolve host' error in Ubun
 
 Encountering the `sudo: unable to resolve host` error in Ubuntu can be frustrating. This error typically occurs because the hostname is not correctly mapped in the `/etc/hosts` file. Here’s how you can resolve this issue with a simple edit.
 
+## Quick answer
+
+`sudo` looks up the machine's own hostname. When that name is missing from `/etc/hosts` (often after a hostname change), the lookup fails. Add the hostname to `/etc/hosts`:
+
+```bash
+# 1. See which hostname sudo is trying to resolve
+hostname
+
+# 2. Map it on the 127.0.1.1 line (the Debian/Ubuntu convention)
+echo "127.0.1.1 $(hostname)" | sudo tee -a /etc/hosts
+
+# 3. Confirm it now resolves; sudo should run without the warning
+getent hosts "$(hostname)"
+```
+
+Step 2 prints the warning one last time, but it still writes the file. If the hostname itself is wrong, set it with `sudo hostnamectl hostname new-name` (`sudo hostnamectl set-hostname new-name` on Ubuntu 20.04 and older) and update the `/etc/hosts` line to match. On cloud instances where cloud-init has `manage_etc_hosts: true`, `/etc/hosts` is regenerated at boot, so edit `/etc/cloud/templates/hosts.debian.tmpl` instead.
+
 ## Error Message
 
 When you try to use `sudo`, you might see an error message like this:
@@ -26,6 +44,8 @@ When you try to use `sudo`, you might see an error message like this:
 ubuntu@ip-172-27-99-13:~$ sudo bash
 sudo: unable to resolve host ip-172-27-99-13
 ```
+
+Depending on the sudo version, the line may end with the resolver's reason, such as `: Name or service not known` or `: Temporary failure in name resolution`. The cause and the fix are the same.
 
 ## Why This Happens
 
@@ -58,7 +78,7 @@ Below this line, add your IP address and hostname. For example:
 172.27.99.13 ip-172-27-99-13
 ```
 
-Replace `172.27.99.13` with your actual IP address and `ip-172-27-99-13` with your hostname.
+Replace `172.27.99.13` with your actual IP address and `ip-172-27-99-13` with your hostname. Using the machine's permanent IP address is correct for a server with a static address; on a machine whose IP can change (DHCP), use `127.0.1.1 ip-172-27-99-13` instead, which is what the Debian and Ubuntu installers write.
 
 ### Step 3: Save and Close the File
 

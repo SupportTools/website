@@ -1,12 +1,13 @@
 ---
-title: "Kubernetes Apply: Client-Side vs. Server-Side - Choosing the Right Strategy"
+title: "kubectl apply --server-side: Server-Side Apply Explained"
 date: 2025-05-26T00:00:00-05:00
+lastmod: 2026-10-27T00:00:00-05:00
 draft: false
 tags: ["Kubernetes", "kubectl apply", "Client-Side Apply", "Server-Side Apply", "ResourceVersion", "Field Ownership", "GitOps"]
 categories:
   - Kubernetes
 author: "Matthew Mattox - mmattox@support.tools"
-description: "Understand the differences between Kubernetes client-side and server-side apply strategies, and learn when to use each approach for effective configuration management in collaborative environments."
+description: "How kubectl apply --server-side works: field managers, --force-conflicts, managedFields, and when to pick server-side over client-side apply."
 more_link: "yes"
 url: "/kubernetes-apply-client-side-vs-server-side/"
 ---
@@ -16,6 +17,29 @@ Explore the nuances of `kubectl apply`, including client-side and server-side st
 <!--more-->
 
 # Kubernetes Apply: Client-Side vs. Server-Side
+
+## Quick answer
+
+Server-side apply (SSA) has been stable since Kubernetes 1.22, but `kubectl apply` still runs client-side unless you pass `--server-side`:
+
+```bash
+# Run the apply on the API server (field manager defaults to "kubectl")
+kubectl apply --server-side -f deployment.yaml
+
+# Record a named owner for the fields in this file
+kubectl apply --server-side --field-manager=deployment-team -f deployment.yaml
+
+# Take ownership of fields another manager owns instead of failing on a conflict
+kubectl apply --server-side --force-conflicts -f deployment.yaml
+
+# Preview the result without persisting it
+kubectl apply --server-side --dry-run=server -f deployment.yaml
+
+# Show which manager owns which field
+kubectl get deployment nginx-deployment -o yaml --show-managed-fields
+```
+
+The first `--server-side` apply on an object previously managed with client-side apply takes over the fields listed in the `last-applied-configuration` annotation. Fields changed by something else, for example `kubectl scale` on `replicas`, raise a conflict until you drop them from the file or pass `--force-conflicts`.
 
 ## Section 1: The Configuration Management Challenge in Kubernetes
 
@@ -232,7 +256,7 @@ Each team can update their portion without conflict.
 
 Server-side apply still uses `ResourceVersion` for concurrency control but adds field management.
 
-1.  **ResourceVersion Check:** The API server checks the `ResourceVersion`.
+1.  **ResourceVersion Check:** If the applied object includes `metadata.resourceVersion`, the API server checks it. An apply request does not have to specify `resourceVersion`, and `kubectl apply --server-side` normally sends the manifest without one, so this check usually does not apply.
 2.  **Conflict Detection:** If a concurrency conflict exists (`ResourceVersion` mismatch), the request is rejected. If there's no concurrency conflict, but a field ownership conflict exists, a specific error appears.
 
 You can then resolve conflicts through coordination or by using `--force-conflicts`.
@@ -256,7 +280,7 @@ This dual-layer protection provides optimistic concurrency control and field-lev
 If no `ResourceVersion` conflict exists, but Team B's file includes `replicas`, an error occurs:
 
 ```text
-Error: Apply failed with 1 conflict: conflict with \"team-a\": .spec.replicas
+error: Apply failed with 1 conflict: conflict with "team-a" using apps/v1: .spec.replicas
 ```
 
 Team B can force the change with:
@@ -444,16 +468,16 @@ They can collaborate with server-side apply:
       selector:
         matchLabels:
           app: payment-service
-    template:
-      metadata:
-        labels:
-          app: payment-service
-      spec:
-        containers:
-        - name: payment-app
-          image: payment-service:1.0
-          ports:
-            - containerPort: 8080
+      template:
+        metadata:
+          labels:
+            app: payment-service
+        spec:
+          containers:
+          - name: payment-app
+            image: payment-service:1.0
+            ports:
+              - containerPort: 8080
     ```
 
     ```bash
