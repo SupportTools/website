@@ -39,6 +39,7 @@ const now = () => new Date().toISOString();
 const log = (slug, msg) => console.log(`${new Date().toTimeString().slice(0, 8)} ${slug}: ${msg}`);
 
 let uploadsDisabled = flag('--no-upload');
+let uploadsStopped = false; // Vault failed mid-run, as opposed to --no-upload
 let failsInARow = 0;
 let halted = '';
 
@@ -92,7 +93,7 @@ async function processPost(post) {
   } catch (e) {
     const msg = String(e.message || e).split('\n')[0];
     if (/Vault/.test(msg)) {
-      uploadsDisabled = true;
+      uploadsDisabled = uploadsStopped = true;
       console.error(`uploads stopped: ${msg}`);
       return;
     }
@@ -120,6 +121,7 @@ async function runAll() {
   }));
   status();
   if (halted) process.exitCode = 2;
+  else if (uploadsStopped) process.exitCode = 3;
 }
 
 function status() {

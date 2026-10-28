@@ -5,9 +5,12 @@
 #
 # Holds .og-work/run.lock for the whole run; daily-publish.sh waits on it so it
 # never commits a post whose manifest entry is mid-write. run.mjs stops on its
-# own after 5 failures in a row (e.g. the Codex usage limit) and exits 2.
+# own after 5 failures in a row (e.g. the Codex usage limit) and exits 2; it
+# exits 3 when Vault is unreachable and uploads stopped.
 set -euo pipefail
 export PATH="$HOME/.local/bin:/usr/local/bin:/usr/bin:/bin"
+# cron does not read ~/.bash_profile; without this the vault CLI tries 127.0.0.1:8200.
+export VAULT_ADDR="${VAULT_ADDR:-https://vault.support.tools}"
 REPO="$(cd "$(dirname "$0")/../.." && pwd)"
 LOG="${OG_NIGHTLY_LOG:-$HOME/.cache/og-nightly-cards.log}"
 mkdir -p "$(dirname "$LOG")" "$REPO/.og-work"
