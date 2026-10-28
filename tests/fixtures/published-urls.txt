@@ -741,6 +741,7 @@
 /docker-image-layer-caching-optimization-strategies/
 /docker-ssh-forwarding-buildkit-secure-builds/
 /docker-ssh-identity-management-enterprise-containerized-development-guide/
+/docker-system-prune-a-volumes/
 /docker-volumes-mutable-files/
 /dockerfile-best-practices-guide/
 /dockerizing-react-runtime-vs-buildtime-env-vars/
@@ -1117,6 +1118,7 @@
 /ping-mtu-linux/
 /pixie-ebpf-observability-kubernetes-production/
 /platform-team-topology-patterns-enterprise-guide/
+/plex-media-server-cve-2026-96656-check-and-patch/
 /pod-security-standards-implementation-enterprise-guide/
 /pods-environment-variable-not-resolving-reference/
 /polyglot-architecture-managing-multi-language-microservices/
