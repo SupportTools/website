@@ -12,6 +12,7 @@ description: "Exactly what docker system prune -a --volumes removes, why named v
 more_link: "yes"
 url: "/docker-system-prune-a-volumes/"
 quick_fix: "`docker system prune -a --volumes` removes stopped containers, unused networks, every image not used by a container, all build cache and unused anonymous volumes. Named volumes survive on Docker 23+; remove them with `docker volume prune -a`."
+images: ["https://cdn.support.tools/posts/docker-system-prune-a-volumes/og-60507d0dab.jpg"]
 ---
 
 `docker system prune -a --volumes` is the biggest single cleanup command in the Docker CLI, and it is also the one most often run without knowing what it will take. This guide covers exactly what each flag removes, the Docker 23 change that made named volumes survive the command, how to preview the damage first, and how to filter and script pruning on build hosts and CI runners.

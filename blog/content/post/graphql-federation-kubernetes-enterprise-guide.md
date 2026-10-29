@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to implementing GraphQL federation on Kubernetes, including federated schema design, Apollo Gateway deployment, performance optimization, and production-ready patterns for enterprise microservices."
 more_link: "yes"
 url: "/graphql-federation-kubernetes-enterprise-guide/"
+images: ["https://cdn.support.tools/posts/graphql-federation-kubernetes-enterprise-guide/og-9bc25ed4af.jpg"]
 ---
 
 GraphQL federation enables enterprises to build unified API gateways across distributed microservices while maintaining team autonomy. This comprehensive guide covers implementing production-grade GraphQL federation on Kubernetes, including schema design, gateway deployment, performance optimization, and operational best practices.

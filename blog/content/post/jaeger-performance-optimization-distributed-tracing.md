@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to optimizing Jaeger for high-throughput distributed tracing with Elasticsearch/Cassandra backends, sampling strategies, and query performance tuning."
 more_link: "yes"
 url: "/jaeger-performance-optimization-distributed-tracing/"
+images: ["https://cdn.support.tools/posts/jaeger-performance-optimization-distributed-tracing/og-9a99b709af.jpg"]
 ---
 
 Jaeger is the industry-standard distributed tracing system for microservices, but achieving high performance at enterprise scale requires careful optimization. This guide covers production deployment strategies, storage backend optimization, adaptive sampling, and query performance tuning for processing millions of spans per second.

@@ -4,6 +4,7 @@ date: 2026-08-13T09:00:00-05:00
 draft: false
 categories: ["MLOps", "GPU Computing"]
 tags: ["MLOps", "GPU Computing", "Distributed Training", "PyTorch", "CUDA", "ROCm", "UCC", "UCX", "Kubernetes", "AWS", "Mixed Vendor", "Vendor Lock-in", "HPC", "Machine Learning Infrastructure"]
+images: ["https://cdn.support.tools/posts/heterogeneous-gpu-clusters-mlops-distributed-training-guide/og-a4658bd911.jpg"]
 ---
 
 # Breaking GPU Vendor Lock-In: The Complete Guide to Heterogeneous MLOps Clusters with Mixed AMD and NVIDIA Infrastructure

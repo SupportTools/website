@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to building enterprise hybrid cloud connectivity using AWS Transit Gateway, including VPC peering, VPN connections, Direct Connect integration, and advanced routing patterns."
 more_link: "yes"
 url: "/hybrid-cloud-connectivity-aws-transit-gateway-enterprise-guide/"
+images: ["https://cdn.support.tools/posts/hybrid-cloud-connectivity-aws-transit-gateway-enterprise-guide/og-e9b89c72a1.jpg"]
 ---
 
 Hybrid cloud architectures require robust, scalable networking solutions that can connect on-premises data centers with cloud resources while maintaining security, performance, and manageability. AWS Transit Gateway provides a centralized hub for managing network connectivity across multiple VPCs, regions, and hybrid environments. This comprehensive guide explores enterprise-grade hybrid cloud connectivity patterns using Transit Gateway.

@@ -11,6 +11,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Exploring Gondola, a minimalist yet powerful Go-based reverse proxy that simplifies configuration with YAML and provides essential features for modern web applications"
 more_link: "yes"
 url: "/gondola-lightweight-yaml-reverse-proxy/"
+images: ["https://cdn.support.tools/posts/gondola-lightweight-yaml-reverse-proxy/og-73a4ced462.jpg"]
 ---
 
 For many DevOps engineers and site reliability engineers, configuring reverse proxies can be unnecessarily complex. Gondola offers a refreshing alternative - a lightweight, YAML-based reverse proxy written in Go that provides just enough features without the complexity of larger solutions.

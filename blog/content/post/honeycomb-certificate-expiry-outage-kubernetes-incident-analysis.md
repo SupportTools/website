@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Deep dive into Honeycomb's 2.5-hour production outage caused by expired Kubernetes API certificates, with comprehensive strategies for certificate lifecycle management, monitoring, and automation."
 more_link: "yes"
 url: "/honeycomb-certificate-expiry-outage-kubernetes-incident-analysis/"
+images: ["https://cdn.support.tools/posts/honeycomb-certificate-expiry-outage-kubernetes-incident-analysis/og-ffb868cca6.jpg"]
 ---
 
 On April 27, 2022, Honeycomb experienced a 2.5-hour production outage that affected their entire Kubernetes infrastructure. The root cause was deceptively simple: expired certificates for the Kubernetes API server. This incident highlights a critical blindspot in many production Kubernetes deployments—certificate lifecycle management. In this comprehensive analysis, we'll examine the incident, its root causes, and implement production-ready solutions to prevent similar failures.

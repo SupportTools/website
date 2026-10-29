@@ -9,6 +9,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Kubernetes v1.37 DRA changes: extended resource requests served by DRA (GA), device taints with DeviceTaintRule, device status, and the new betas."
 more_link: "yes"
 url: "/kubernetes-v1-37-dra-extended-resources-device-taints/"
+images: ["https://cdn.support.tools/posts/kubernetes-v1-37-dra-extended-resources-device-taints/og-db02796ce7.jpg"]
 ---
 
 Kubernetes v1.37 (released 2026-08-26) is the release where Dynamic Resource Allocation (DRA) can replace a device plugin without touching existing workloads: a Pod that asks for `example.com/gpu: 1` the old way can now be served by a DRA driver, and that path is GA. Device taints, the standard `numaNode` attribute and per-device status in ResourceClaims are stable too. This page shows the YAML for each, plus the betas and alphas worth tracking.

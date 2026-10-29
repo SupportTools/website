@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to deploying and managing Kong API Gateway on Kubernetes with advanced plugins, authentication, rate limiting, and enterprise-grade API management strategies."
 more_link: "yes"
 url: "/kong-api-gateway-kubernetes-deployment-management-guide/"
+images: ["https://cdn.support.tools/posts/kong-api-gateway-kubernetes-deployment-management-guide/og-5528c9bff2.jpg"]
 ---
 
 Kong API Gateway has emerged as the leading cloud-native API gateway, built on NGINX and designed specifically for microservices and distributed architectures. When deployed on Kubernetes, Kong provides a powerful platform for API management, authentication, rate limiting, traffic control, and observability with extensive plugin ecosystem and declarative configuration.

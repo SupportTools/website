@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to JVM tuning for containerized Java applications, including garbage collection optimization, memory management, and Kubernetes-specific configurations for production environments."
 more_link: "yes"
 url: "/jvm-tuning-containerized-applications-production-guide/"
+images: ["https://cdn.support.tools/posts/jvm-tuning-containerized-applications-production-guide/og-166c450fa0.jpg"]
 ---
 
 Master JVM tuning for containerized Java applications in Kubernetes. Learn garbage collection optimization, memory management strategies, container-aware JVM configurations, and production-ready performance tuning techniques for enterprise workloads.

@@ -4,6 +4,7 @@ date: 2026-08-18T09:00:00-05:00
 draft: false
 tags: ["Go", "Rust", "System Design", "Performance", "Microservices", "FFI"]
 categories: ["Architecture", "Programming"]
+images: ["https://cdn.support.tools/posts/hybrid-go-rust-architecture-patterns/og-f5076454c7.jpg"]
 ---
 
 Modern backend systems face competing demands: developer productivity, operational simplicity, runtime performance, and memory safety. Rather than selecting a single language that makes compromises across these domains, many engineering teams are adopting a hybrid approach that leverages the strengths of both Go and Rust. This article explores how to implement this pattern effectively, with concrete examples and architectural guidance.

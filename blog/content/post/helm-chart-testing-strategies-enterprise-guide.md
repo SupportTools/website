@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive Helm chart testing strategies including unit tests, integration tests, security scanning, and production-ready validation frameworks for enterprise Kubernetes deployments."
 more_link: "yes"
 url: "/helm-chart-testing-strategies-enterprise-guide/"
+images: ["https://cdn.support.tools/posts/helm-chart-testing-strategies-enterprise-guide/og-4e9653659d.jpg"]
 ---
 
 Master comprehensive Helm chart testing with unit tests, integration tests, security validation, automated testing pipelines, and production-ready quality assurance strategies for enterprise Kubernetes environments.

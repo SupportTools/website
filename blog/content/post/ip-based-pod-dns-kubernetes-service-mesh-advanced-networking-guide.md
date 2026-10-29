@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to implementing IP-based Pod DNS resolution in Kubernetes environments, featuring advanced service mesh integration, security patterns, and enterprise-grade networking architectures for direct pod communication."
 more_link: "yes"
 url: "/ip-based-pod-dns-kubernetes-service-mesh-advanced-networking-guide/"
+images: ["https://cdn.support.tools/posts/ip-based-pod-dns-kubernetes-service-mesh-advanced-networking-guide/og-d1d008db53.jpg"]
 ---
 
 IP-based Pod DNS resolution enables direct pod-to-pod communication patterns that are essential for advanced Kubernetes networking architectures, service mesh implementations, and enterprise applications requiring precise control over network connectivity. This comprehensive guide demonstrates production-ready configurations, security patterns, and operational strategies for implementing sophisticated pod networking solutions.

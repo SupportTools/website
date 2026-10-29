@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to implementing effective incident communication strategies for enterprise environments, including automated notifications, stakeholder management, status pages, and crisis communication templates."
 more_link: "yes"
 url: "/incident-communication-strategies-enterprise-guide/"
+images: ["https://cdn.support.tools/posts/incident-communication-strategies-enterprise-guide/og-ac1ba5efe1.jpg"]
 ---
 
 Effective communication during incidents is often the difference between controlled response and organizational chaos. This comprehensive guide provides enterprise-grade strategies, automation tools, and battle-tested templates for managing incident communications across all stakeholders.

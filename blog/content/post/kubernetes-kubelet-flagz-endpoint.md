@@ -10,6 +10,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "A deep dive into Kubernetes v1.33's new Kubelet /flagz endpoint that exposes runtime configuration flags, with practical examples for debugging, auditing, and cluster management"
 more_link: "yes"
 url: "/kubernetes-kubelet-flagz-endpoint/"
+images: ["https://cdn.support.tools/posts/kubernetes-kubelet-flagz-endpoint/og-64f1ca3253.jpg"]
 ---
 
 If you've ever spent hours trying to figure out why a Kubernetes node is behaving differently than expected, you know the frustration of digging through logs, SSH sessions, and manifests just to determine what flags your kubelet is actually running with. The good news? Kubernetes v1.33 introduces a simple yet powerful feature that will save operators countless troubleshooting hours: the kubelet `/flagz` endpoint. Let me show you how this endpoint works and why it's about to become an essential tool in your Kubernetes operations toolkit.

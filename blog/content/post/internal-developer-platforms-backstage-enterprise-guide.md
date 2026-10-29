@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to implementing Spotify's Backstage as an enterprise internal developer platform with service catalog, scaffolding templates, and plugin development."
 more_link: "yes"
 url: "/internal-developer-platforms-backstage-enterprise-guide/"
+images: ["https://cdn.support.tools/posts/internal-developer-platforms-backstage-enterprise-guide/og-e8fa6995f7.jpg"]
 ---
 
 Internal Developer Platforms (IDPs) have become essential for organizations scaling their engineering teams. Backstage, originally developed by Spotify, provides an open-source framework for building developer portals that unify infrastructure tooling, services, and documentation. This guide demonstrates how to implement Backstage at enterprise scale with production-ready configurations.

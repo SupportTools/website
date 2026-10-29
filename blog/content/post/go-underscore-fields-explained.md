@@ -4,6 +4,7 @@ date: 2026-07-30T09:00:00-05:00
 draft: false
 tags: ["golang", "programming", "struct design", "best practices"]
 categories: ["Development", "Go"]
+images: ["https://cdn.support.tools/posts/go-underscore-fields-explained/og-5e0241bc44.jpg"]
 ---
 
 ## Introduction

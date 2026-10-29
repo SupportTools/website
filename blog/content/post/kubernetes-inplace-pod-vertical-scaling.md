@@ -10,6 +10,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "A hands-on guide to using Kubernetes InPlacePodVerticalScaling to adjust CPU and memory resources without pod restarts, with real-world examples and performance implications"
 more_link: "yes"
 url: "/kubernetes-inplace-pod-vertical-scaling/"
+images: ["https://cdn.support.tools/posts/kubernetes-inplace-pod-vertical-scaling/og-c4e706ff3d.jpg"]
 ---
 
 One of Kubernetes' longstanding limitations has been the inability to change a running pod's resource allocations without completely restarting it. For stateless applications behind a service, this wasn't a big issue—but for stateful workloads, batch jobs, or any process where restarts are expensive, it created a significant operational challenge. Kubernetes v1.33 brings good news by promoting InPlacePodVerticalScaling to beta, allowing us to adjust CPU and memory resources on the fly without disrupting workloads. Here's my hands-on experience with this feature and how you can leverage it in your production environments.

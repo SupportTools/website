@@ -8,6 +8,7 @@ tags: ["cdc", "data-ingestion", "streaming", "real-time", "kafka", "debezium", "
 categories: ["Data Engineering", "Streaming", "Real-Time Systems"]
 author: "Support Tools Team"
 canonical: "https://support.tools/blog/high-performance-data-ingestion-cdc-implementation/"
+images: ["https://cdn.support.tools/posts/high-performance-data-ingestion-cdc-implementation/og-c0610a8e81.jpg"]
 ---
 
 # High-Performance Data Ingestion and CDC Implementation: Real-Time Change Data Capture at Scale

@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to deploying and optimizing HAProxy Ingress Controller in enterprise Kubernetes environments with advanced load balancing, SSL offloading, and high-availability configurations."
 more_link: "yes"
 url: "/haproxy-ingress-advanced-features-enterprise-kubernetes-guide/"
+images: ["https://cdn.support.tools/posts/haproxy-ingress-advanced-features-enterprise-kubernetes-guide/og-2c5c015e36.jpg"]
 ---
 
 HAProxy Ingress Controller brings the battle-tested performance and flexibility of HAProxy to Kubernetes environments. Known for its exceptional performance in high-traffic scenarios, advanced load balancing algorithms, and granular control over traffic routing, HAProxy Ingress is the choice of enterprises requiring maximum throughput and fine-grained configuration capabilities.

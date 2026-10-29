@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to implementing Open Service Broker API for creating service marketplaces that provision and manage backing services in Kubernetes platforms."
 more_link: "yes"
 url: "/open-service-broker-implementation-enterprise-guide/"
+images: ["https://cdn.support.tools/posts/open-service-broker-implementation-enterprise-guide/og-b937b94cdd.jpg"]
 ---
 
 The Open Service Broker API (OSBAPI) provides a standard way for platforms to provision and manage backing services. By implementing service brokers, platform teams can offer self-service catalogs of databases, message queues, and other dependencies. This guide demonstrates building production-grade service brokers for enterprise Kubernetes platforms.

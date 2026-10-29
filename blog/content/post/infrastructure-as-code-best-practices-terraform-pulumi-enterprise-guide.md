@@ -12,6 +12,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Master Infrastructure as Code best practices with Terraform and Pulumi for enterprise production environments. Complete guide to scalable infrastructure automation, multi-cloud deployment patterns, state management, and enterprise-grade IaC architectures."
 more_link: "yes"
 url: "/infrastructure-as-code-best-practices-terraform-pulumi-enterprise-guide/"
+images: ["https://cdn.support.tools/posts/infrastructure-as-code-best-practices-terraform-pulumi-enterprise-guide/og-4c96bb9341.jpg"]
 ---
 
 Infrastructure as Code (IaC) represents a fundamental shift toward programmatic infrastructure management, enabling reproducible, scalable, and auditable infrastructure deployment through declarative configuration and automation. This comprehensive guide explores advanced IaC implementation patterns using Terraform and Pulumi, covering enterprise-scale multi-cloud architectures, state management strategies, and production-ready automation frameworks.

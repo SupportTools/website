@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Complete troubleshooting guide for resolving K3s certificate expiration and unauthorized access errors in production Kubernetes environments with enterprise-grade solutions."
 more_link: "yes"
 url: "/k3s-certificate-expiration-unauthorized-access-troubleshooting-guide/"
+images: ["https://cdn.support.tools/posts/k3s-certificate-expiration-unauthorized-access-troubleshooting-guide/og-72939d3fe0.jpg"]
 ---
 
 Certificate expiration in K3s clusters represents one of the most critical operational challenges that can completely lock administrators out of their Kubernetes environments. When client certificates expire, the dreaded "Unauthorized" error appears, potentially rendering entire production clusters inaccessible and causing significant operational disruption.

@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive analysis of Reddit's cluster-wide outage during Kubernetes upgrade, including safe upgrade procedures, rollback strategies, and configuration compatibility testing for production environments."
 more_link: "yes"
 url: "/reddit-kubernetes-cluster-upgrade-failure-production-incident/"
+images: ["https://cdn.support.tools/posts/reddit-kubernetes-cluster-upgrade-failure-production-incident/og-d1a12c3fdd.jpg"]
 ---
 
 On March 14, 2023, Reddit experienced a multi-hour production outage affecting their entire platform during what should have been a routine Kubernetes cluster upgrade. The incident cascaded through their infrastructure, impacting millions of users and demonstrating how seemingly straightforward maintenance operations can become critical failures without proper planning, testing, and rollback procedures. This comprehensive analysis explores the technical details of the failure and provides production-ready strategies for safe Kubernetes upgrades.

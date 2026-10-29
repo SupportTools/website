@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Master rootless container image builds with Kaniko in Kubernetes environments. Production-ready configurations, performance optimization, multi-stage builds, and security best practices for enterprise CI/CD pipelines."
 more_link: "yes"
 url: "/kaniko-rootless-container-builds-kubernetes-guide/"
+images: ["https://cdn.support.tools/posts/kaniko-rootless-container-builds-kubernetes-guide/og-008c1a8dca.jpg"]
 ---
 
 Learn how to implement secure, rootless container image builds using Kaniko in Kubernetes with advanced caching strategies, multi-stage build optimization, credential management, and production-ready CI/CD pipeline integration.

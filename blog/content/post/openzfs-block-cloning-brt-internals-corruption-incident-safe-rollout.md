@@ -10,6 +10,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "How OpenZFS block cloning works, what the Block Reference Table actually stores, why the 2.2.0 rollout corrupted data, and how to enable, verify, and monitor reflink copies safely in production."
 more_link: "yes"
 url: "/openzfs-block-cloning-brt-internals-corruption-incident-safe-rollout/"
+images: ["https://cdn.support.tools/posts/openzfs-block-cloning-brt-internals-corruption-incident-safe-rollout/og-3c62fc4e93.jpg"]
 ---
 
 Copying a 21 GiB virtual machine image on a pool with block cloning enabled finishes in about a quarter of a second and consumes no additional space. The copy is a real, independent file: it has its own inode, its own permissions, and its own future. It simply points at the same on-disk blocks as the original until one of them is modified. This is **block cloning**, the OpenZFS implementation of what XFS, Btrfs, and Windows ReFS call a reflink, and it is one of the highest leverage storage features available to anyone running VM fleets, container image caches, or backup pipelines.

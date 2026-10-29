@@ -10,6 +10,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "What changed in Go 1.27: generic methods, encoding/json/v2 behind encoding/json, the uuid package, goroutine leak profiles, ML-DSA and upgrade traps."
 more_link: "yes"
 url: "/go-1-27-release-generic-methods-json-v2/"
+images: ["https://cdn.support.tools/posts/go-1-27-release-generic-methods-json-v2/og-454cfb2eae.jpg"]
 ---
 
 Go 1.27 shipped on 2026-08-19 (the current patch release is 1.27.3). It is the release where methods can finally have their own type parameters, `encoding/json` moves onto the v2 engine, and the standard library gains a `uuid` package. This page covers what changed, what can break when you bump the `go` line in `go.mod`, and how to use the new APIs.

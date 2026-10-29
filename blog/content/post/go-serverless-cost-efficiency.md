@@ -11,6 +11,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "A practical guide to transitioning from always-on to on-demand Go applications for true cloud-native cost efficiency."
 more_link: "yes"
 url: "/go-serverless-cost-efficiency/"
+images: ["https://cdn.support.tools/posts/go-serverless-cost-efficiency/og-962b0aae50.jpg"]
 ---
 
 Cloud providers promise you'll only pay for what you use. Yet most organizations still architect applications with an always-on mindset, leaving containers running 24/7 and resources provisioned regardless of actual demand. This guide shows how to implement truly cost-efficient Go applications through serverless and event-driven patterns.

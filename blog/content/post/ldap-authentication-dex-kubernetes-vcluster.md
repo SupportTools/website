@@ -11,6 +11,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive guide to implementing LDAP authentication for Kubernetes using Dex as an OIDC provider with vcluster, allowing seamless integration with existing directory services"
 more_link: "yes"
 url: "/ldap-authentication-dex-kubernetes-vcluster/"
+images: ["https://cdn.support.tools/posts/ldap-authentication-dex-kubernetes-vcluster/og-b255db87e3.jpg"]
 ---
 
 In multi-tenant Kubernetes environments, connecting cluster authentication to your organization's existing identity management system is crucial. This guide shows how to implement LDAP authentication for Kubernetes using Dex as an OpenID Connect provider with vcluster.

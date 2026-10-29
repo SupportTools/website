@@ -10,6 +10,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive troubleshooting guide for Kubernetes namespaces stuck in Terminating state, including causes, diagnostic techniques, and proven solutions from real-world scenarios"
 more_link: "yes"
 url: "/kubernetes-terminating-namespaces-troubleshooting-guide/"
+images: ["https://cdn.support.tools/posts/kubernetes-terminating-namespaces-troubleshooting-guide/og-b1eaaac5c6.jpg"]
 ---
 
 If you've worked with Kubernetes long enough, you've likely encountered the frustrating scenario where a namespace refuses to be deleted, remaining perpetually in the "Terminating" state. This issue can block CI/CD pipelines, complicate cluster maintenance, and confuse team members. After resolving this issue across dozens of production clusters, I've compiled this guide to help you understand why namespaces get stuck and how to effectively resolve the problem without risking cluster integrity.

@@ -12,6 +12,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Master high-availability network design patterns for enterprise infrastructure. Learn advanced redundancy strategies, failover mechanisms, and production-ready resilient architectures."
 more_link: "yes"
 url: "/high-availability-network-design-patterns-enterprise-guide/"
+images: ["https://cdn.support.tools/posts/high-availability-network-design-patterns-enterprise-guide/og-4dcd82318a.jpg"]
 ---
 
 High-availability network design patterns are essential for enterprise environments that require continuous uptime and resilient infrastructure. This comprehensive guide explores advanced redundancy strategies, failover mechanisms, and production-ready design patterns that ensure network resilience and business continuity.

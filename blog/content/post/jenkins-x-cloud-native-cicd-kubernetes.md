@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Master Jenkins X for cloud-native CI/CD on Kubernetes. Learn automated environment promotion, preview environments, GitOps workflows, and enterprise-scale pipeline orchestration with Tekton integration."
 more_link: "yes"
 url: "/jenkins-x-cloud-native-cicd-kubernetes/"
+images: ["https://cdn.support.tools/posts/jenkins-x-cloud-native-cicd-kubernetes/og-9b60e7bcd6.jpg"]
 ---
 
 Jenkins X revolutionizes cloud-native CI/CD by providing opinionated, automated pipelines built on Kubernetes and Tekton. This comprehensive guide explores Jenkins X architecture, automated promotion strategies, preview environments, GitOps workflows, and production-scale implementations for enterprise Kubernetes platforms.

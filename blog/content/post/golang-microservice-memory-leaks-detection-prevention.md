@@ -10,6 +10,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "A practical guide to identifying, debugging, and fixing memory leaks in Golang microservices"
 more_link: "yes"
 url: "/golang-microservice-memory-leaks-detection-prevention/"
+images: ["https://cdn.support.tools/posts/golang-microservice-memory-leaks-detection-prevention/og-d2a652f947.jpg"]
 ---
 
 Golang is often praised for its efficient memory management and garbage collection, but that doesn't mean your Go microservices are immune to memory leaks. This article examines common causes of memory leaks in Go applications and provides practical strategies to detect and fix them.

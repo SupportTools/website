@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to advanced Istio traffic management patterns including canary deployments, circuit breakers, fault injection, and multi-cluster service mesh for enterprise Kubernetes environments."
 more_link: "yes"
 url: "/istio-traffic-management-patterns/"
+images: ["https://cdn.support.tools/posts/istio-traffic-management-patterns/og-038c1ac814.jpg"]
 ---
 
 Istio has emerged as the leading service mesh platform, providing sophisticated traffic management, security, and observability capabilities for microservices architectures. This comprehensive guide explores advanced Istio traffic management patterns, including intelligent routing, resilience features, and multi-cluster configurations for production environments.

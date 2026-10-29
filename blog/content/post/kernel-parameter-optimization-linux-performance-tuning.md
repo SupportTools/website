@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to Linux kernel parameter optimization for production systems, covering network tuning, memory management, I/O scheduling, and workload-specific configurations for maximum performance."
 more_link: "yes"
 url: "/kernel-parameter-optimization-linux-performance-tuning/"
+images: ["https://cdn.support.tools/posts/kernel-parameter-optimization-linux-performance-tuning/og-7032c9082c.jpg"]
 ---
 
 Master Linux kernel parameter optimization for production systems with this comprehensive guide covering network tuning, memory management, I/O scheduling, and workload-specific configurations to maximize system performance and reliability.
