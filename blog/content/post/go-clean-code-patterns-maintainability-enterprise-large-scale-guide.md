@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to writing clean, maintainable Go code for enterprise applications, featuring proven patterns for organizing 50,000+ line codebases, domain-driven design, and long-term code quality strategies."
 more_link: "yes"
 url: "/go-clean-code-patterns-maintainability-enterprise-large-scale-guide/"
+images: ["https://cdn.support.tools/posts/go-clean-code-patterns-maintainability-enterprise-large-scale-guide/og-53754ff7b1.jpg"]
 ---
 
 Writing clean, maintainable Go code becomes increasingly critical as enterprise applications grow beyond 50,000 lines of code. While Go's simplicity is an asset, large-scale enterprise development demands sophisticated patterns for code organization, domain modeling, dependency management, and architectural clarity that enable teams to maintain development velocity while ensuring long-term maintainability. Clean code principles, when properly applied to Go, provide the foundation for applications that can evolve gracefully over years of development.

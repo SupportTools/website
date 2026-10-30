@@ -12,6 +12,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Deep dive into building robust event-driven architectures using NATS JetStream, covering stream processing patterns, guaranteed delivery mechanisms, clustering for high availability, microservices integration, and performance optimization techniques"
 more_link: "yes"
 url: "/event-driven-architecture-nats-jetstream/"
+images: ["https://cdn.support.tools/posts/event-driven-architecture-nats-jetstream/og-0aa344d01a.jpg"]
 ---
 
 Event-driven architectures have become fundamental to building scalable, resilient microservices systems. NATS JetStream emerges as a powerful solution that combines the simplicity of NATS Core with the persistence and reliability required for mission-critical applications. This comprehensive guide explores how to architect, implement, and optimize event-driven systems using NATS JetStream, from basic streaming patterns to advanced clustering configurations.

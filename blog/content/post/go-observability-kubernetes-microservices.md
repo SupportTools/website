@@ -11,6 +11,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive guide to implementing observability in Go microservices running on Kubernetes using OpenTelemetry, Prometheus, and distributed tracing."
 more_link: "yes"
 url: "/go-observability-kubernetes-microservices/"
+images: ["https://cdn.support.tools/posts/go-observability-kubernetes-microservices/og-e2dc90046e.jpg"]
 ---
 
 In today's complex distributed systems, particularly microservices deployed on Kubernetes, understanding what's happening inside your applications is crucial. This article provides a comprehensive guide to implementing observability in Go microservices through structured logging, metrics collection, and distributed tracing.

@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to Go best practices for enterprise teams, covering code organization, error handling, security standards, and production-ready development patterns that scale across large engineering organizations."
 more_link: "yes"
 url: "/go-best-practices-enterprise-development-team-standards-guide/"
+images: ["https://cdn.support.tools/posts/go-best-practices-enterprise-development-team-standards-guide/og-b87b01a902.jpg"]
 ---
 
 Enterprise Go development demands more than understanding language syntax—it requires comprehensive standards, practices, and patterns that enable large teams to collaborate effectively while maintaining code quality, security, and operational excellence. Through analysis of successful enterprise Go deployments and industry best practices, specific patterns have emerged that consistently enable teams to build maintainable, scalable, and reliable systems at scale.

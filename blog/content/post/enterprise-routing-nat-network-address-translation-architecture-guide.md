@@ -11,6 +11,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Master enterprise routing and Network Address Translation (NAT) architectures with comprehensive implementation patterns. Complete guide to static NAT, dynamic NAT, PAT/NAT overload, and production routing configurations."
 more_link: "yes"
 url: "/enterprise-routing-nat-network-address-translation-architecture-guide/"
+images: ["https://cdn.support.tools/posts/enterprise-routing-nat-network-address-translation-architecture-guide/og-42379868ab.jpg"]
 ---
 
 Network Address Translation (NAT) and routing form the foundation of modern enterprise network architectures, enabling IP address conservation, security boundary enforcement, and flexible network topology design. This comprehensive guide covers production NAT implementations, routing patterns, and enterprise networking best practices.

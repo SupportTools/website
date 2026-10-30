@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to deploying production-ready Erlang clusters in Kubernetes with mutual TLS authentication, automated certificate management, and enterprise security patterns."
 more_link: "yes"
 url: "/enterprise-erlang-clustering-kubernetes-mtls-security/"
+images: ["https://cdn.support.tools/posts/enterprise-erlang-clustering-kubernetes-mtls-security/og-19b890947f.jpg"]
 ---
 
 Building fault-tolerant distributed systems requires robust clustering mechanisms that can handle network partitions, node failures, and security threats. Erlang's legendary clustering capabilities, combined with Kubernetes orchestration and modern certificate management, create a powerful foundation for enterprise-grade distributed applications. This comprehensive guide demonstrates how to implement secure Erlang clusters with mutual TLS authentication, automated certificate lifecycle management, and production-ready monitoring.

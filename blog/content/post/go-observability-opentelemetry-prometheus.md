@@ -4,6 +4,7 @@ date: 2026-07-02T09:00:00-05:00
 draft: false
 tags: ["go", "golang", "observability", "opentelemetry", "prometheus", "logging", "monitoring", "tracing"]
 categories: ["Programming", "Go", "DevOps"]
+images: ["https://cdn.support.tools/posts/go-observability-opentelemetry-prometheus/og-ca86d78fbb.jpg"]
 ---
 
 Modern applications, especially those built using microservices architecture, can be challenging to debug and monitor. Observability—the ability to understand a system's internal state by examining its outputs—has become essential for maintaining reliable services. For Go applications, implementing comprehensive observability involves three pillars: logging, metrics, and distributed tracing.

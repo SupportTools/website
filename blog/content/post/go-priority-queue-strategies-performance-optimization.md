@@ -11,6 +11,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to implement advanced queue strategies in Go that can dramatically reduce latency and improve throughput with practical code examples and benchmarks"
 more_link: "yes"
 url: "/go-priority-queue-strategies-performance-optimization/"
+images: ["https://cdn.support.tools/posts/go-priority-queue-strategies-performance-optimization/og-5e54620991.jpg"]
 ---
 
 Background processing is a crucial component of many Go applications, from API servers to data pipelines. A well-designed job queue can mean the difference between a responsive application and one that buckles under load. This article explores how restructuring a naive queue implementation into a priority-based worker pool can dramatically reduce latency and improve throughput in Go applications.

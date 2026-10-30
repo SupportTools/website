@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to implementing enterprise-grade MetalLB for bare-metal Kubernetes clusters with advanced BGP routing, multi-protocol support, and high availability patterns."
 more_link: "yes"
 url: "/enterprise-metallb-bare-metal-load-balancing-kubernetes/"
+images: ["https://cdn.support.tools/posts/enterprise-metallb-bare-metal-load-balancing-kubernetes/og-fff94db45f.jpg"]
 ---
 
 Bare-metal Kubernetes clusters lack cloud provider load balancer integration, creating challenges for exposing services externally. MetalLB bridges this gap by providing native load balancer capabilities for on-premises deployments. This comprehensive guide demonstrates enterprise-grade MetalLB implementation with advanced BGP routing, Layer 2 failover, multi-protocol support, and production monitoring strategies for mission-critical infrastructure.

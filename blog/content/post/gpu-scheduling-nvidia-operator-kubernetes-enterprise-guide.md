@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to implementing GPU scheduling in Kubernetes using NVIDIA GPU Operator, including resource allocation, multi-instance GPU, time-slicing, and production optimization strategies."
 more_link: "yes"
 url: "/gpu-scheduling-nvidia-operator-kubernetes-enterprise-guide/"
+images: ["https://cdn.support.tools/posts/gpu-scheduling-nvidia-operator-kubernetes-enterprise-guide/og-34598c6171.jpg"]
 ---
 
 Master GPU scheduling in Kubernetes with NVIDIA GPU Operator for high-performance AI/ML workloads. This comprehensive guide covers GPU resource management, Multi-Instance GPU (MIG), time-slicing, scheduling strategies, and production optimization for enterprise environments.

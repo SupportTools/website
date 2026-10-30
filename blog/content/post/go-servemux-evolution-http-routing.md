@@ -10,6 +10,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "An in-depth look at Go 1.22's enhanced ServeMux routing features, performance comparisons with third-party routers, and practical guidance on HTTP router selection for your Go applications"
 more_link: "yes"
 url: "/go-servemux-evolution-http-routing/"
+images: ["https://cdn.support.tools/posts/go-servemux-evolution-http-routing/og-d35a10609e.jpg"]
 ---
 
 Go 1.22 introduced significant enhancements to the standard library's HTTP router, ServeMux. These improvements bring the built-in router closer to feature parity with many third-party HTTP routers, potentially eliminating the need for external dependencies in many web applications.

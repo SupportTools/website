@@ -10,6 +10,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Enumerate every namespaced Kubernetes resource, CRDs included, with the Discovery API and dynamic client in Go, then harden the crawler against partial discovery, RBAC gaps, and unrestorable output."
 more_link: "yes"
 url: "/kubernetes-resource-crawler-discovery-api-dynamic-client/"
+images: ["https://cdn.support.tools/posts/kubernetes-resource-crawler-discovery-api-dynamic-client/og-caec6a4655.jpg"]
 ---
 
 Ask most engineers to export everything in a namespace and they reach for `kubectl get all -o yaml`. It feels comprehensive. It is not. The `all` category is a hardcoded shortlist inside kubectl, and it silently omits ConfigMaps, Secrets, PersistentVolumeClaims, Ingresses, NetworkPolicies, ServiceAccounts, RBAC bindings, and every Custom Resource an operator ever installed. Anything worth auditing is exactly the set `all` leaves out.

@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Enterprise-grade video streaming architecture patterns, CDN integration strategies, and scalability lessons learned from building production video platforms in Go."
 more_link: "yes"
 url: "/enterprise-video-streaming-architecture-go-lessons-learned/"
+images: ["https://cdn.support.tools/posts/enterprise-video-streaming-architecture-go-lessons-learned/og-e198aaa112.jpg"]
 ---
 
 Building a video streaming platform at enterprise scale requires careful consideration of architecture, performance, and operational excellence. Drawing from real-world experience building YouTube-scale video platforms in Go, this comprehensive guide covers the essential patterns, pitfalls, and production-ready strategies that separate hobby projects from enterprise-grade streaming services.

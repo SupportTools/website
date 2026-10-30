@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to implementing secure Erlang/Elixir clustering in Kubernetes environments using cookies, advanced secret management, distributed system security patterns, and enterprise-grade cluster coordination strategies."
 more_link: "yes"
 url: "/erlang-cookies-kubernetes-distributed-security-cluster-management-guide/"
+images: ["https://cdn.support.tools/posts/erlang-cookies-kubernetes-distributed-security-cluster-management-guide/og-ccbb0de369.jpg"]
 ---
 
 Erlang and Elixir distributed systems rely on authentication cookies for secure node communication in clustered environments. When deploying these systems in Kubernetes, proper cookie management becomes critical for both security and operational reliability. This comprehensive guide demonstrates enterprise-grade approaches to Erlang cookie management, distributed system security, and cluster coordination patterns for production Kubernetes environments.

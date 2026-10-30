@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to deploying Grafana Loki for log aggregation at enterprise scale with microservices mode, multi-tenancy, and S3 storage backend."
 more_link: "yes"
 url: "/grafana-loki-log-aggregation-scale-production/"
+images: ["https://cdn.support.tools/posts/grafana-loki-log-aggregation-scale-production/og-cbfb79187a.jpg"]
 ---
 
 Centralized log aggregation is essential for troubleshooting and monitoring distributed systems, but traditional solutions like Elasticsearch can be resource-intensive and complex to operate. Grafana Loki provides a cost-effective, scalable alternative designed specifically for Kubernetes environments. This guide covers production-grade Loki deployment in microservices mode with multi-tenancy, object storage backends, and high-performance querying.

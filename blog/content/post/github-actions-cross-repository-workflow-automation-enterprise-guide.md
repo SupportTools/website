@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Master cross-repository GitHub Actions workflows with repository dispatch triggers, advanced automation patterns, and enterprise-grade CI/CD orchestration strategies for complex microservices architectures."
 more_link: "yes"
 url: "/github-actions-cross-repository-workflow-automation-enterprise-guide/"
+images: ["https://cdn.support.tools/posts/github-actions-cross-repository-workflow-automation-enterprise-guide/og-1d22810ad6.jpg"]
 ---
 
 Cross-repository workflow automation represents one of the most powerful yet underutilized capabilities in GitHub Actions, enabling sophisticated CI/CD orchestration across complex microservices architectures. This comprehensive guide explores advanced patterns for implementing repository dispatch triggers, managing workflow dependencies, and building enterprise-grade automation pipelines that scale across hundreds of repositories.

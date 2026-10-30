@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Master Flux v2 progressive delivery patterns including canary deployments, blue-green strategies, and automated rollbacks for production-grade Kubernetes deployments with Flagger integration."
 more_link: "yes"
 url: "/flux-v2-progressive-delivery-patterns-gitops/"
+images: ["https://cdn.support.tools/posts/flux-v2-progressive-delivery-patterns-gitops/og-b238f6aadf.jpg"]
 ---
 
 Flux v2 brings GitOps to the next level with native support for progressive delivery patterns through Flagger integration. This comprehensive guide explores advanced deployment strategies including canary analysis, blue-green deployments, A/B testing, and automated rollbacks for enterprise Kubernetes environments.

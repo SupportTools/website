@@ -9,6 +9,7 @@ description: "Comprehensive performance comparison of FastAPI and Flask for ente
 toc: true
 keywords: ["python performance", "fastapi vs flask", "python api frameworks", "enterprise python", "async python", "python optimization", "api performance", "python microservices"]
 url: "/enterprise-python-performance-optimization-fastapi-flask/"
+images: ["https://cdn.support.tools/posts/enterprise-python-performance-optimization-fastapi-flask/og-7b718a349b.jpg"]
 ---
 
 ## Introduction

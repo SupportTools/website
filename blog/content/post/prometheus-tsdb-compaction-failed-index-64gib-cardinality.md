@@ -11,6 +11,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Prometheus TSDB compaction failing with 'exceeding max size of 64GiB': why the index format has a hard ceiling, how to tell whether it is cardinality or churn, promtool triage commands, emergency containment, and the sharding fix."
 more_link: "yes"
 url: "/prometheus-tsdb-compaction-failed-index-64gib-cardinality/"
+images: ["https://cdn.support.tools/posts/prometheus-tsdb-compaction-failed-index-64gib-cardinality/og-5031853382.jpg"]
 ---
 
 Prometheus compaction had been running fine for months. Then this showed up in the logs, and kept showing up every couple of hours:

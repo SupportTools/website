@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to Go garbage collection tuning for production environments, including GC algorithms, memory management, GOGC optimization, and performance profiling for enterprise Go applications."
 more_link: "yes"
 url: "/go-garbage-collection-tuning-production-guide/"
+images: ["https://cdn.support.tools/posts/go-garbage-collection-tuning-production-guide/og-0ec953c68b.jpg"]
 ---
 
 Master Go garbage collection tuning for production applications. Learn GC algorithms, memory management strategies, GOGC parameter optimization, memory profiling techniques, and enterprise-grade performance tuning for high-throughput Go services.

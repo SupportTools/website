@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to deploying and managing Gloo Edge API Gateway on Kubernetes with advanced Envoy features, function-level routing, GraphQL, and enterprise-grade traffic management."
 more_link: "yes"
 url: "/gloo-edge-modern-api-gateway-kubernetes-enterprise-guide/"
+images: ["https://cdn.support.tools/posts/gloo-edge-modern-api-gateway-kubernetes-enterprise-guide/og-8a138e5f5d.jpg"]
 ---
 
 Gloo Edge represents the next generation of API gateways, built on Envoy Proxy and designed specifically for modern cloud-native architectures. Unlike traditional API gateways, Gloo Edge provides function-level routing, GraphQL stitching, transformation capabilities, and advanced traffic management while maintaining the performance and extensibility of Envoy Proxy.

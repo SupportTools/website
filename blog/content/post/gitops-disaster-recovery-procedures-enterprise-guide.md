@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive GitOps disaster recovery strategies including backup procedures, recovery automation, multi-cluster failover, and production-ready business continuity planning for enterprise Kubernetes environments."
 more_link: "yes"
 url: "/gitops-disaster-recovery-procedures-enterprise-guide/"
+images: ["https://cdn.support.tools/posts/gitops-disaster-recovery-procedures-enterprise-guide/og-5bdd830760.jpg"]
 ---
 
 Master GitOps disaster recovery with comprehensive backup strategies, automated recovery procedures, multi-cluster failover, state restoration, and production-ready business continuity planning for enterprise Kubernetes deployments.

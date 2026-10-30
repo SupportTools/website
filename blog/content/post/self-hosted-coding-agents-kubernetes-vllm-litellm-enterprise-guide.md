@@ -11,6 +11,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Run coding agents inside your own cluster. Serve open-weight models with vLLM on Kubernetes, front them with a LiteLLM gateway, and point Pi, Claude Code, Cline, and Aider at self-hosted endpoints."
 more_link: "yes"
 url: "/self-hosted-coding-agents-kubernetes-vllm-litellm-enterprise-guide/"
+images: ["https://cdn.support.tools/posts/self-hosted-coding-agents-kubernetes-vllm-litellm-enterprise-guide/og-4c480d6b3d.jpg"]
 ---
 
 Every agentic coding session ships source code to a third party. An agent that reads forty files to answer one question has transmitted forty files, and the enterprises that care about this are discovering an uncomfortable detail: the coding agent is not the problem. Every major agent CLI in 2026 is a protocol client that accepts a custom endpoint. The model is the only part that has to be somewhere else, and open-weight models now clear 70-80% on SWE-bench Verified under MIT and Apache 2.0 licenses. The infrastructure to keep the entire loop inside a cluster boundary already exists.

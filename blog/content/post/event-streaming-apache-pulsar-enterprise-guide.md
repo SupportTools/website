@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to implementing Apache Pulsar for enterprise event streaming, including multi-tenancy configuration, geo-replication, Functions deployment, and production-ready architecture patterns on Kubernetes."
 more_link: "yes"
 url: "/event-streaming-apache-pulsar-enterprise-guide/"
+images: ["https://cdn.support.tools/posts/event-streaming-apache-pulsar-enterprise-guide/og-960bc72068.jpg"]
 ---
 
 Apache Pulsar provides a unified messaging and streaming platform with native multi-tenancy, geo-replication, and serverless functions. This comprehensive guide covers implementing production-grade Pulsar clusters on Kubernetes, including architecture design, multi-tenant configuration, stream processing, and operational excellence.

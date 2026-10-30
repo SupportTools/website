@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to planning and executing game day exercises for incident response training, including scenario design, team coordination, and post-game analysis."
 more_link: "yes"
 url: "/game-day-planning-execution-incident-response/"
+images: ["https://cdn.support.tools/posts/game-day-planning-execution-incident-response/og-f3d2c65154.jpg"]
 ---
 
 Game days are essential for building resilient teams and validating incident response procedures. This comprehensive guide covers planning, executing, and analyzing game day exercises to improve team readiness and system reliability.

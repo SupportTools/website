@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Master enterprise Git identity management with conditional configurations, SSH key strategies, and automated workflow patterns for managing multiple Git accounts across complex organizational structures."
 more_link: "yes"
 url: "/enterprise-git-identity-management-conditional-configuration-guide/"
+images: ["https://cdn.support.tools/posts/enterprise-git-identity-management-conditional-configuration-guide/og-8201c4e7fb.jpg"]
 ---
 
 Enterprise development environments frequently require developers to maintain multiple Git identities across different organizations, projects, and security contexts. Managing these identities effectively while maintaining security isolation and preventing credential leakage represents one of the most critical aspects of modern development workflow configuration.
