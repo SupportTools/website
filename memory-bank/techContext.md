@@ -1,3 +1,6 @@
+> **Outdated (2026-10-29):** the Go server, Docker image, Kubernetes/Argo CD deployment and
+> `deploy.sh` described below are retired. The site is served by a Cloudflare Worker; see AGENTS.md.
+
 # Technical Context: SupportTools Website
 
 ## Technologies Used

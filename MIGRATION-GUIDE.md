@@ -83,8 +83,7 @@ Trigger deployments:
 ├── wrangler.toml              # Wrangler configuration
 ├── blog/public/               # Hugo static output (auto-generated)
 ├── .github/workflows/
-│   ├── pipeline.yml           # Original Kubernetes workflow
-│   └── cloudflare-workers.yml # New Workers workflow
+│   └── cloudflare-workers.yml # Workers workflow
 └── makefile                   # Updated with Workers commands
 ```
 
@@ -116,11 +115,9 @@ Trigger deployments:
 
 ## Rollback Plan
 
-The original Kubernetes deployment remains intact. To rollback:
-
-1. Switch DNS back to Kubernetes load balancer
-2. Resume using the original pipeline.yml workflow
-3. The Docker images and Helm charts are still maintained
+The Kubernetes deployment was retired in Phase 0 of the v2 design: the Go server, its Docker
+image, Helm chart, Argo CD apps and `pipeline.yml` are gone. To roll back a bad deploy, use
+`npx wrangler rollback --env production` or redeploy an earlier commit.
 
 ## Health Checks
 

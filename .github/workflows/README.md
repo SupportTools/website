@@ -32,11 +32,8 @@ publishing platform design. `wrangler.toml` sets `workers_dev = false` and
 `preview_urls = false`, so no workers.dev or Version URL serves the site either. Previews
 move in-cluster on internal DNS in a later phase.
 
-### 2. pipeline.yml - Legacy Kubernetes Deployment (Deprecated)
-
-**Status**: DEPRECATED - Use cloudflare-workers.yml instead
-
-**Purpose**: Previously deployed to Kubernetes clusters via ArgoCD
+The legacy `pipeline.yml` (Docker image to Kubernetes via Argo CD) was removed along with the
+old Go web server.
 
 ## Required Secrets
 
