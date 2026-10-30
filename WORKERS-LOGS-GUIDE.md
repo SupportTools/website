@@ -1,6 +1,6 @@
 # Cloudflare Workers Logs Guide
 
-Workers Logs are now enabled for all environments. Here's how to access and use them:
+Workers Logs are enabled for the production Worker (`support-tools`), the only environment since Phase 0 of the v2 design. Here's how to access and use them:
 
 ## Viewing Logs
 
@@ -11,12 +11,6 @@ Stream logs in real-time from your terminal:
 ```bash
 # Production logs
 wrangler tail --env production
-
-# Development logs  
-wrangler tail --env development
-
-# Staging logs
-wrangler tail --env staging
 
 # Filter by status code
 wrangler tail --env production --status 404

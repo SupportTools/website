@@ -9,35 +9,28 @@ This directory contains automated workflows for the Support Tools website.
 **Purpose**: Deploy the Hugo static site to Cloudflare Workers
 
 **Triggers**:
-- **Push to main**: Deploys to staging, then production
-- **Pull Request**: Deploys to development for preview
-- **Manual dispatch**: Deploy to any specific environment
-- **Schedule**: Daily at midnight UTC (content refresh)
+- **Push to main**: Tests, then deploys to production
+- **Pull Request**: Builds and runs the check gates only; never deploys
+- **Manual dispatch**: Runs the Test job only (the production deploy does not match dispatch)
+- **Schedule**: 06:00, 14:10 and 15:10 UTC daily (picks up scheduled posts), then deploys production
 
 **Deployment Flow**:
 
 ```mermaid
 graph TD
     A[Trigger] --> B[Test/Build Hugo]
-    B --> C{Branch?}
-    C -->|PR| D[Deploy to Dev]
-    C -->|main| E[Deploy to Staging]
-    E --> F[Deploy to Production]
-    C -->|manual| G[Deploy to Selected Env]
+    B --> C{Event?}
+    C -->|PR or manual| D[Stop: no deploy]
+    C -->|push to main or schedule| F[Deploy to Production]
 ```
 
 **Environments**:
-- `development` - https://dev.support.tools
-- `mst` - https://mst.support.tools
-- `qas` - https://qas.support.tools
-- `tst` - https://tst.support.tools
-- `staging` - https://stg.support.tools
-- `production` - https://support.tools
+- `production` - https://support.tools (the only one)
 
-**Environment Protection**:
-- Production requires manual approval
-- Staging auto-deploys from main branch
-- Development auto-deploys for PRs
+The staging, development, mst, qas and tst Workers were retired in Phase 0 of the v2
+publishing platform design. `wrangler.toml` sets `workers_dev = false` and
+`preview_urls = false`, so no workers.dev or Version URL serves the site either. Previews
+move in-cluster on internal DNS in a later phase.
 
 ### 2. pipeline.yml - Legacy Kubernetes Deployment (Deprecated)
 
@@ -58,14 +51,12 @@ Configure these in Settings → Secrets → Actions:
 1. Go to Actions tab
 2. Select "Deploy to Cloudflare Workers"
 3. Click "Run workflow"
-4. Select environment
-5. Click "Run workflow"
+4. Click "Run workflow" (this runs the Test job; production deploys from `main` and the schedule)
 
 ### Automatic Deployments
 
-- **Production**: Push to `main` branch
-- **Development**: Create a pull request
-- **Daily refresh**: Automatic at midnight UTC
+- **Production**: Push to `main` branch, or a scheduled run
+- **Pull requests**: Test only, no deploy
 
 ## Monitoring Deployments
 
@@ -81,12 +72,7 @@ gh run view <run-id>
 
 ### Check Status
 ```bash
-# Check all environments
-for env in dev mst qas tst stg ""; do
-  url="https://${env}${env:+.}support.tools"
-  echo -n "$url: "
-  curl -s -o /dev/null -w "%{http_code}\n" $url
-done
+curl -s -o /dev/null -w "%{http_code}\n" https://support.tools
 ```
 
 ## Rollback Procedure

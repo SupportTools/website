@@ -12,14 +12,14 @@ Single deployment path: **Cloudflare Workers** via `cloudflare-workers.yml`.
 
 ## Environments
 
-Cloudflare Workers: `development`, `mst`, `qas`, `tst`, `staging`, `production` (wrangler `--env` flag)
+Cloudflare Workers: `production` only (wrangler `--env production`). The development, mst, qas, tst and staging envs were removed in Phase 0 of the v2 design; PRs build and test but never deploy.
 
 ## Developer commands
 
 ```bash
 make dev              # Hugo dev server at http://localhost:1313 (runs from blog/ subdir)
-make deploy-workers env=production  # Cloudflare Workers deploy
-make deploy-all-workers             # Deploy all CF envs except production
+make deploy-workers                 # Cloudflare Workers deploy (production, the only env)
+make deploy-production              # Build Hugo, then deploy production
 ```
 
 **Gotcha:** `makefile` is lowercase. `Makefile` does not exist.

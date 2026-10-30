@@ -6,13 +6,12 @@ IMAGENAME=website
 REPO=docker.io/supporttools
 IMAGEFULLNAME=${REPO}/${IMAGENAME}:${TAG}
 
-.PHONY: help build push all dev build-hugo deploy-workers deploy-dev deploy-mst deploy-qas deploy-tst deploy-staging deploy-production deploy-all-workers
+.PHONY: help build push all dev build-hugo deploy-workers deploy-production
 
 help:
 	    @echo "Makefile arguments:"
 	    @echo ""
 	    @echo "tag - Docker Tag"
-	    @echo "env - Environment (dev/staging/production)"
 	    @echo ""
 	    @echo "Makefile commands:"
 	    @echo "build       - Build the Docker image"
@@ -21,10 +20,8 @@ help:
 	    @echo "all         - Build and push the Docker image"
 		@echo "dev         - Run local development server"
 		@echo "build-hugo  - Build Hugo static site"
-		@echo "deploy-workers - Deploy to Cloudflare Workers"
-		@echo "deploy-dev  - Deploy to development environment"
-		@echo "deploy-staging - Deploy to staging environment"
-		@echo "deploy-production - Deploy to production environment"
+		@echo "deploy-workers - Deploy to Cloudflare Workers (production, the only environment)"
+		@echo "deploy-production - Build Hugo, then deploy to production"
 
 .DEFAULT_GOAL := all
 
@@ -48,42 +45,16 @@ build-hugo:
 	@echo "Building Hugo static site..."
 	@cd blog && hugo --minify --gc --cleanDestinationDir --baseURL https://support.tools
 
+# Production is the only Worker environment (v2 design, Phase 0); the dev, mst, qas, tst
+# and staging targets were removed along with their wrangler.toml envs.
 deploy-workers:
-	@echo "Deploying to Cloudflare Workers..."
-	@npx wrangler deploy --env $(or $(env),production)
-
-deploy-dev:
-	@make build-hugo
-	@make deploy-workers env=development
-
-deploy-mst:
-	@make build-hugo
-	@make deploy-workers env=mst
-
-deploy-qas:
-	@make build-hugo
-	@make deploy-workers env=qas
-
-deploy-tst:
-	@make build-hugo
-	@make deploy-workers env=tst
-
-deploy-staging:
-	@make build-hugo
-	@make deploy-workers env=staging
+	@if [ -n "$(env)" ] && [ "$(env)" != "production" ]; then echo "env=$(env) no longer exists; production is the only Worker environment" >&2; exit 1; fi
+	@echo "Deploying to Cloudflare Workers (production)..."
+	@npx wrangler deploy --env production
 
 deploy-production:
 	@make build-hugo
-	@make deploy-workers env=production
-
-deploy-all-workers:
-	@echo "Deploying to all Cloudflare Workers environments..."
-	@make deploy-dev
-	@make deploy-mst
-	@make deploy-qas
-	@make deploy-tst
-	@make deploy-staging
-	@echo "WARNING: Skipping production deployment. Run 'make deploy-production' separately."
+	@make deploy-workers
 
 # Install wrangler if not present
 install-wrangler:

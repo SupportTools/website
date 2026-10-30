@@ -40,9 +40,8 @@ Add the following secret to your GitHub repository:
 ### 4. Domain Configuration
 
 Ensure your domains are configured in Cloudflare with the following routes:
-- `support.tools/*` → Production environment
-- `stg.support.tools/*` → Staging environment  
-- `dev.support.tools/*` → Development environment
+- `support.tools/*` → Production environment (the only environment; the staging,
+  development, mst, qas and tst Workers were retired in Phase 0 of the v2 design)
 
 ## Deployment Commands
 
@@ -59,12 +58,6 @@ make build-hugo
 ```bash
 # Deploy to production
 make deploy-production
-
-# Deploy to staging
-make deploy-staging
-
-# Deploy to development
-make deploy-dev
 ```
 
 ### GitHub Actions Deployment
@@ -78,7 +71,7 @@ The new workflow `.github/workflows/cloudflare-workers.yml` automatically:
 
 Trigger deployments:
 - **Automatic**: Push to `main` branch deploys to production
-- **Manual**: Use GitHub Actions workflow dispatch to choose environment
+- **Pull requests**: Build and run the check gates only; they never deploy
 - **Scheduled**: Daily builds at midnight UTC
 
 ## File Structure
@@ -98,7 +91,7 @@ Trigger deployments:
 ## Configuration Details
 
 ### wrangler.toml
-- Defines environments (development, staging, production)
+- Defines one environment, `production`; `workers_dev` and `preview_urls` are off
 - Maps routes to custom domains
 - Configures static assets binding
 
