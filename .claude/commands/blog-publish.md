@@ -116,7 +116,7 @@ Get the run ID for the commit just pushed, then watch it:
 gh run watch <run-id> --repo SupportTools/website
 ```
 
-Report each job's status as it completes (Test → Deploy-Staging → Deploy-Production).
+Report each job's status as it completes (Test → Deploy-Production).
 If any job fails, report the failure and stop — do not attempt to re-push.
 
 ---

@@ -4,6 +4,12 @@ compatibility_date = "2025-01-13"
 compatibility_flags = ["nodejs_compat"]
 account_id = "d2264bbcd4403af8321dab6b9dd66dad"
 
+# Production is the only public surface (docs/designs/v2-publishing-platform.md, Phase 0).
+# No <name>.<subdomain>.workers.dev route and no per-version Preview URLs. Both keys are
+# inheritable, so [env.production] picks them up from here.
+workers_dev = false
+preview_urls = false
+
 # Enable Workers Logs
 [observability]
 enabled = true
@@ -16,38 +22,9 @@ binding = "ASSETS"
 # visitor on a broken link sees a way back and PostHog records the visit.
 not_found_handling = "404-page"
 
+# The only environment. The stg, dev, mst, qas and tst envs were removed in Phase 0.
 [env.production]
 name = "support-tools"
 routes = [
   { pattern = "support.tools/*", zone_id = "fde9d47ab90d79ebdce1e1825880ea79" }
-]
-
-[env.staging]
-name = "support-tools-staging"
-routes = [
-  { pattern = "stg.support.tools/*", zone_id = "fde9d47ab90d79ebdce1e1825880ea79" }
-]
-
-[env.development]
-name = "support-tools-dev"
-routes = [
-  { pattern = "dev.support.tools/*", zone_id = "fde9d47ab90d79ebdce1e1825880ea79" }
-]
-
-[env.mst]
-name = "support-tools-mst"
-routes = [
-  { pattern = "mst.support.tools/*", zone_id = "fde9d47ab90d79ebdce1e1825880ea79" }
-]
-
-[env.qas]
-name = "support-tools-qas"
-routes = [
-  { pattern = "qas.support.tools/*", zone_id = "fde9d47ab90d79ebdce1e1825880ea79" }
-]
-
-[env.tst]
-name = "support-tools-tst"
-routes = [
-  { pattern = "tst.support.tools/*", zone_id = "fde9d47ab90d79ebdce1e1825880ea79" }
 ]
