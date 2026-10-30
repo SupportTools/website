@@ -8,7 +8,7 @@ Single deployment path: **Cloudflare Workers** via `cloudflare-workers.yml`.
 |---|---|---|---|
 | `cloudflare-workers.yml` | push to main, PR, daily 06:00 UTC | Cloudflare Workers (Wrangler) | `wrangler.toml`, `src/worker.js` |
 
-**Retired:** `pipeline.yml` (Docker → K8s via ArgoCD) — disabled. `charts/`, `argocd/`, `Dockerfile`, `deploy.sh` are legacy artifacts.
+**Retired:** the old Go web server and its Docker → K8s via Argo CD path (`pipeline.yml`, `charts/`, `argocd/`, `Dockerfile`, `deploy.sh`) were removed from the repo, and their Argo CD apps were deleted.
 
 ## Environments
 
@@ -33,14 +33,9 @@ make deploy-production              # Build Hugo, then deploy production
 - Hugo config: `blog/config.toml` (theme: m10c, pagination: 8)
 - Theme fix: `blog/themes/m10c/layouts/partials/icon.html` uses `hugo.Data` (not deprecated `.Site.Data`)
 
-## Go webserver
+## Go code
 
-- Entry point: `main.go` — serves Hugo static files with gzip + Prometheus metrics
-- Two modes: filesystem serving (default) or in-memory (`USE_MEMORY=true`)
-- Ports: HTTP `8080` (default), metrics `9090`
-- Config via env vars only: `DEBUG`, `PORT`, `METRICS_PORT`, `WEBROOT`, `USE_MEMORY`, `LOG_FILE_PATH`
-- No Go tests exist in this repo
-- Go 1.22.2, minimal deps (prometheus client, logrus)
+- The only Go code is the `blog-metrics` exporter, its own module under `exporters/blog-metrics/`.
 
 ## CI specifics
 
