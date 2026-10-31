@@ -12,6 +12,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Master advanced eBPF programming techniques for building high-performance monitoring and security tools. Learn kernel programming, BPF maps, verifier internals, and production deployment strategies."
 more_link: "yes"
 url: "/ebpf-programming-performance-monitoring-security/"
+images: ["https://cdn.support.tools/posts/ebpf-programming-performance-monitoring-security/og-a7da9152aa.jpg"]
 ---
 
 Extended Berkeley Packet Filter (eBPF) has revolutionized the way we approach performance monitoring and security in Linux systems. This comprehensive guide explores advanced eBPF programming techniques, from kernel-level programming to production deployment strategies for enterprise environments.

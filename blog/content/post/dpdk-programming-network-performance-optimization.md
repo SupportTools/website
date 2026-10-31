@@ -12,6 +12,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Master DPDK programming for building high-performance network applications. Learn packet processing, memory management, multi-core scaling, and enterprise deployment strategies for ultra-low latency systems."
 more_link: "yes"
 url: "/dpdk-programming-network-performance-optimization/"
+images: ["https://cdn.support.tools/posts/dpdk-programming-network-performance-optimization/og-5aebbf4748.jpg"]
 ---
 
 Data Plane Development Kit (DPDK) enables unprecedented network performance by bypassing the kernel and providing direct userspace access to network hardware. This comprehensive guide explores advanced DPDK programming techniques for building enterprise-grade high-speed packet processing applications.

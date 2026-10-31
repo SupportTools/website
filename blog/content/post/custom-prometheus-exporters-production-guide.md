@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Complete guide to building custom Prometheus exporters for enterprise systems, including best practices, performance optimization, and production deployment patterns."
 more_link: "yes"
 url: "/custom-prometheus-exporters-production-guide/"
+images: ["https://cdn.support.tools/posts/custom-prometheus-exporters-production-guide/og-99f25ae9cf.jpg"]
 ---
 
 While Prometheus provides hundreds of community exporters, enterprises often need custom exporters for proprietary systems, legacy applications, or specialized monitoring requirements. This guide covers building production-grade Prometheus exporters from scratch, including best practices, performance optimization, and deployment strategies.

@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to Docker image layer caching strategies, including multi-stage builds, BuildKit optimization, cache mount strategies, and production CI/CD integration for maximum build performance."
 more_link: "yes"
 url: "/docker-image-layer-caching-optimization-strategies/"
+images: ["https://cdn.support.tools/posts/docker-image-layer-caching-optimization-strategies/og-636fe66c77.jpg"]
 ---
 
 Master Docker image layer caching for dramatically faster build times with this comprehensive guide covering layer optimization, multi-stage builds, BuildKit features, cache mount strategies, and CI/CD integration techniques for production environments.

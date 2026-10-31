@@ -12,6 +12,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Master Docker SSH forwarding with BuildKit for secure private repository access during container builds. Comprehensive guide to SSH agent forwarding, build secrets, host key verification, and enterprise-grade security practices for CI/CD pipelines."
 more_link: "yes"
 url: "/docker-ssh-forwarding-buildkit-secure-builds/"
+images: ["https://cdn.support.tools/posts/docker-ssh-forwarding-buildkit-secure-builds-enterprise-guide/og-e71ff6c5aa.jpg"]
 ---
 
 Docker SSH forwarding represents a critical capability for enterprise container builds that require secure access to private git repositories, enabling teams to leverage SSH authentication during the build process without embedding credentials in images. This comprehensive guide explores advanced SSH forwarding techniques with BuildKit, secure credential management, and production-ready patterns for enterprise CI/CD pipelines.

@@ -4,6 +4,7 @@ date: 2026-06-09T09:00:00-05:00
 draft: false
 tags: ["golang", "kubernetes", "devops", "gitops", "microservices", "multi-environment"]
 categories: ["Development", "Go", "Kubernetes", "DevOps"]
+images: ["https://cdn.support.tools/posts/go-kubernetes-multi-environment/og-c305d030f5.jpg"]
 ---
 
 ## Introduction

@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to distributed system debugging tools and techniques for Kubernetes environments, including distributed tracing, log aggregation, and advanced troubleshooting workflows for enterprise production systems."
 more_link: "yes"
 url: "/distributed-system-debugging-tools-kubernetes-guide/"
+images: ["https://cdn.support.tools/posts/distributed-system-debugging-tools-kubernetes-guide/og-ccc8fc0c0a.jpg"]
 ---
 
 Master distributed system debugging in Kubernetes with comprehensive tools and techniques for tracing, log analysis, performance profiling, and troubleshooting complex microservices architectures in enterprise production environments.

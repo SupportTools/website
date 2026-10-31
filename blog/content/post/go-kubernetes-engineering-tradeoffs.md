@@ -4,6 +4,7 @@ date: 2026-06-04T09:00:00-05:00
 draft: false
 tags: ["go", "golang", "kubernetes", "cloud-native", "software-architecture", "k8s"]
 categories: ["Programming", "Go", "Kubernetes"]
+images: ["https://cdn.support.tools/posts/go-kubernetes-engineering-tradeoffs/og-b482803802.jpg"]
 ---
 
 Kubernetes has become the de facto standard for container orchestration, powering everything from startups to enterprise infrastructure. Its implementation language, Go, has similarly grown in popularity, particularly in the cloud-native ecosystem. However, as Kubernetes has evolved into a massive project with over a million lines of code, questions have emerged about how Go's design philosophy impacts a project of this scale. Rather than taking an absolutist stance, let's explore the nuanced tradeoffs of using Go for large-scale systems like Kubernetes.

@@ -10,6 +10,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Master DFS Replication storage optimization with comprehensive ConflictAndDeleted quota management procedures. Complete guide to reclaiming disk space and tuning DFSR for enterprise file servers."
 more_link: "yes"
 url: "/dfs-replication-storage-optimization-conflictanddeleted-cleanup-guide/"
+images: ["https://cdn.support.tools/posts/dfs-replication-storage-optimization-conflictanddeleted-cleanup-guide/og-c0c27817dc.jpg"]
 ---
 
 Distributed File System Replication (DFSR) maintains conflict resolution and deleted file storage that can consume significant disk space over time. This comprehensive guide covers DFSR storage optimization, ConflictAndDeleted quota management, and production-ready disk space recovery procedures for enterprise file servers.

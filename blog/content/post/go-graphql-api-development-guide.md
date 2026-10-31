@@ -4,6 +4,7 @@ date: 2026-06-02T09:00:00-05:00
 draft: false
 tags: ["go", "golang", "graphql", "api", "gqlgen", "web-development"]
 categories: ["Programming", "Go", "API Design"]
+images: ["https://cdn.support.tools/posts/go-graphql-api-development-guide/og-56a571f37c.jpg"]
 ---
 
 GraphQL has revolutionized API development by enabling clients to request exactly the data they need, nothing more and nothing less. When combined with Go's performance characteristics and strong typing, it creates a powerful foundation for building efficient, maintainable, and type-safe APIs. This guide walks through the entire process of building a GraphQL API with Go, from basic setup to production-ready implementation.

@@ -10,6 +10,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive guide to designing and implementing Go-based Kubernetes operators that can handle large datasets by overcoming ETCD limitations."
 more_link: "yes"
 url: "/go-kubernetes-operators-scalable-data/"
+images: ["https://cdn.support.tools/posts/go-kubernetes-operators-scalable-data/og-8a1d1aaa51.jpg"]
 ---
 
 Kubernetes operators have revolutionized how we manage applications on Kubernetes, but they face significant scalability challenges when dealing with large datasets due to ETCD's limitations. This article explores patterns and solutions for building truly scalable operators in Go, with practical approaches to handle high-volume data requirements.

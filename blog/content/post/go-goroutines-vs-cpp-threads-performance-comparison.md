@@ -11,6 +11,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "A detailed comparison of Go's lightweight goroutines versus C++'s native threads, with benchmarks and code examples to help you choose the right concurrency model for high-load applications"
 more_link: "yes"
 url: "/go-goroutines-vs-cpp-threads-performance-comparison/"
+images: ["https://cdn.support.tools/posts/go-goroutines-vs-cpp-threads-performance-comparison/og-01e5f709cc.jpg"]
 ---
 
 When building applications that must handle high concurrency, choosing the right programming language and concurrency model can dramatically impact performance, resource usage, and scalability. Two popular approaches stand out: Go's lightweight goroutines and C++'s native threads. This article presents a thorough comparison of both models under real-world load scenarios, complete with code examples and performance benchmarks.

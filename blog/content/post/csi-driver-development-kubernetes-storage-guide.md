@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to developing production-grade CSI (Container Storage Interface) drivers for Kubernetes with complete implementation examples, testing strategies, and deployment patterns."
 more_link: "yes"
 url: "/csi-driver-development-kubernetes-storage-guide/"
+images: ["https://cdn.support.tools/posts/csi-driver-development-kubernetes-storage-guide/og-e3caa89b3c.jpg"]
 ---
 
 The Container Storage Interface (CSI) standardizes storage provisioning in Kubernetes, enabling third-party storage vendors to develop plugins without modifying Kubernetes core. This comprehensive guide covers CSI driver architecture, complete implementation in Go, testing strategies, and production deployment patterns.

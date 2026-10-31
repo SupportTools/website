@@ -12,6 +12,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "An in-depth guide to finding, preventing, and fixing common bugs and performance issues in Go-based microservices running on Kubernetes, with real-world examples and practical solutions"
 more_link: "yes"
 url: "/go-microservices-common-bugs-pitfalls-solutions/"
+images: ["https://cdn.support.tools/posts/go-microservices-common-bugs-pitfalls-solutions/og-19ca3d2a32.jpg"]
 ---
 
 Go has become a dominant language for building microservices, particularly those deployed on Kubernetes. Its lightweight concurrency model, strong standard library, and excellent performance make it an ideal choice for distributed systems. However, with these advantages come unique challenges and potential pitfalls that can lead to subtle bugs, memory leaks, and performance issues.

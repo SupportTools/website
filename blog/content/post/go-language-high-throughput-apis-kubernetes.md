@@ -12,6 +12,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive analysis of why Go has become the preferred language for building high-performance, scalable APIs in Kubernetes environments, with real-world performance benchmarks and implementation strategies"
 more_link: "yes"
 url: "/go-language-high-throughput-apis-kubernetes/"
+images: ["https://cdn.support.tools/posts/go-language-high-throughput-apis-kubernetes/og-057f40cf45.jpg"]
 ---
 
 In the ever-evolving landscape of cloud computing and microservices, choosing the right programming language for API development can significantly impact performance, scalability, and operational efficiency. Go (or Golang) has emerged as a standout choice for building high-throughput APIs, particularly in Kubernetes environments where performance under pressure is non-negotiable.

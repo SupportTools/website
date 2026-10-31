@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Master Docker SSH identity management for enterprise containerized development with secure multi-key authentication, build secrets, and production-ready deployment strategies."
 more_link: "yes"
 url: "/docker-ssh-identity-management-enterprise-containerized-development-guide/"
+images: ["https://cdn.support.tools/posts/docker-ssh-identity-management-enterprise-containerized-development-guide/og-d7ec59189f.jpg"]
 ---
 
 Enterprise containerized development environments require sophisticated SSH identity management strategies that balance security, flexibility, and operational efficiency. Managing multiple SSH identities within Docker containers presents unique challenges, particularly when dealing with different repositories, environments, and security requirements across large-scale development teams.

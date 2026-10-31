@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Master Elasticsearch cluster sizing with comprehensive guidance on capacity planning, hardware selection, shard optimization, and performance tuning for enterprise search workloads."
 more_link: "yes"
 url: "/elasticsearch-cluster-sizing-production-guide/"
+images: ["https://cdn.support.tools/posts/elasticsearch-cluster-sizing-production-guide/og-0a6e901147.jpg"]
 ---
 
 Elasticsearch cluster sizing is one of the most critical aspects of deploying a production-ready search infrastructure. Improper sizing leads to performance degradation, data loss, and costly over-provisioning. This comprehensive guide covers enterprise-grade cluster sizing, capacity planning, and optimization strategies based on real-world production deployments.

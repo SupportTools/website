@@ -4,6 +4,7 @@ date: 2026-11-13T09:00:00-06:00
 draft: false
 categories: ["MySQL", "AWS"]
 tags: ["MySQL", "AWS RDS", "Aurora MySQL", "Authentication", "Database Security", "caching_sha2_password", "mysql_native_password", "Database Migration", "RDS Proxy", "Security Hardening"]
+images: ["https://cdn.support.tools/posts/mysql-authentication-plugins-aws-rds-migration-guide/og-ae12cf11d4.jpg"]
 ---
 
 # MySQL Authentication Plugin Migration: Navigating the Shift from mysql_native_password to caching_sha2_password in AWS RDS

@@ -10,6 +10,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "A practical guide to choosing between monolithic and microservices architectures for your Go applications, with real-world examples and migration strategies."
 more_link: "yes"
 url: "/go-monolith-vs-microservices/"
+images: ["https://cdn.support.tools/posts/go-monolith-vs-microservices/og-b4236582eb.jpg"]
 ---
 
 Choosing the right architectural approach—monolithic or microservices—is one of the most consequential decisions you'll make when building Go applications. This guide explores both architectures through a Go-centric lens, providing concrete examples and practical advice for making the best choice for your specific situation.

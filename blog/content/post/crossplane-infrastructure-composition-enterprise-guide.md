@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to implementing Crossplane for infrastructure composition, creating reusable abstractions, and building cloud-agnostic control planes for enterprise platforms."
 more_link: "yes"
 url: "/crossplane-infrastructure-composition-enterprise-guide/"
+images: ["https://cdn.support.tools/posts/crossplane-infrastructure-composition-enterprise-guide/og-d307372a7f.jpg"]
 ---
 
 Crossplane transforms Kubernetes into a universal control plane for managing infrastructure across multiple cloud providers. By defining infrastructure as Kubernetes custom resources and using composition to create higher-level abstractions, platform teams can provide self-service capabilities while maintaining governance and best practices. This guide demonstrates enterprise-grade Crossplane implementations.

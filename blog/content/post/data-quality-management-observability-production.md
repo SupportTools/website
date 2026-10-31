@@ -8,6 +8,7 @@ tags: ["data-quality", "observability", "monitoring", "validation", "reliability
 categories: ["Data Engineering", "Observability"]
 author: "Support Tools Team"
 canonical: "https://support.tools/blog/data-quality-management-observability-production/"
+images: ["https://cdn.support.tools/posts/data-quality-management-observability-production/og-98d80b18b7.jpg"]
 ---
 
 # Data Quality Management and Observability in Production: Comprehensive Monitoring, Validation, and Incident Response

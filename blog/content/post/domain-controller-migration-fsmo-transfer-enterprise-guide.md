@@ -11,6 +11,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Master Active Directory domain controller migration with comprehensive FSMO role transfer and SYSVOL replication procedures. Complete guide to zero-downtime DC replacement and infrastructure modernization."
 more_link: "yes"
 url: "/domain-controller-migration-fsmo-transfer-enterprise-guide/"
+images: ["https://cdn.support.tools/posts/domain-controller-migration-fsmo-transfer-enterprise-guide/og-4793b4acaf.jpg"]
 ---
 
 Active Directory domain controller migration requires systematic planning and precise execution to maintain directory service availability during infrastructure transitions. This comprehensive guide covers domain controller deployment, FSMO role transfers, SYSVOL migration from FRS to DFSR, and production-ready decommissioning procedures.

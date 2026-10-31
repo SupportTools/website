@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to implementing enterprise-grade PKI management with cert-manager, covering automated certificate provisioning, rotation, compliance, and security best practices for production Kubernetes environments."
 more_link: "yes"
 url: "/enterprise-cert-manager-pki-automation-kubernetes/"
+images: ["https://cdn.support.tools/posts/enterprise-cert-manager-pki-automation-kubernetes/og-6e428193b0.jpg"]
 ---
 
 Managing digital certificates at scale across distributed Kubernetes environments presents significant operational challenges for enterprise organizations. cert-manager transforms certificate lifecycle management from a manual, error-prone process into an automated, policy-driven system that ensures security compliance and operational efficiency. This comprehensive guide demonstrates enterprise-grade PKI implementation patterns, advanced automation strategies, and production-ready security practices for mission-critical infrastructure.

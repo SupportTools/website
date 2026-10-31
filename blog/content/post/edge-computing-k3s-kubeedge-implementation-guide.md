@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to implementing edge computing infrastructure with K3s and KubeEdge, including architecture patterns, deployment strategies, and production-ready configurations for enterprise edge workloads."
 more_link: "yes"
 url: "/edge-computing-k3s-kubeedge-implementation-guide/"
+images: ["https://cdn.support.tools/posts/edge-computing-k3s-kubeedge-implementation-guide/og-9158e24c02.jpg"]
 ---
 
 Edge computing brings computation and data storage closer to data sources, reducing latency and bandwidth usage. This comprehensive guide covers implementing enterprise-grade edge computing infrastructure using K3s and KubeEdge, including architecture design, deployment automation, and operational best practices.

@@ -11,6 +11,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive guide to setting up and developing a Go microservice with MongoDB using Docker for seamless local development."
 more_link: "yes"
 url: "/go-mongodb-docker-development/"
+images: ["https://cdn.support.tools/posts/go-mongodb-docker-development/og-37f92d47f4.jpg"]
 ---
 
 Developing microservices locally can be challenging, especially when dealing with databases and their dependencies. This guide demonstrates how to create a robust Go microservice that interacts with MongoDB, all containerized with Docker for a consistent development experience.

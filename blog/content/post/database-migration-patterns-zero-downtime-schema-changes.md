@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to implementing zero-downtime database migrations using blue-green deployments, expand-contract patterns, version compatibility strategies, rollback procedures, and comparing migration tools like Flyway, Liquibase, and custom solutions."
 more_link: "yes"
 url: "/database-migration-patterns-zero-downtime-schema-changes/"
+images: ["https://cdn.support.tools/posts/database-migration-patterns-zero-downtime-schema-changes/og-fb3ac57078.jpg"]
 ---
 
 ## Executive Summary

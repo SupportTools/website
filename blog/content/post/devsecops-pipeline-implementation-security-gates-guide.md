@@ -11,6 +11,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to implementing DevSecOps pipelines with automated security gates, including security testing integration, compliance validation, and production-ready CI/CD security frameworks for enterprise environments."
 more_link: "yes"
 url: "/devsecops-pipeline-implementation-security-gates-guide/"
+images: ["https://cdn.support.tools/posts/devsecops-pipeline-implementation-security-gates-guide/og-a7b951fda6.jpg"]
 ---
 
 DevSecOps represents the integration of security practices throughout the software development lifecycle, embedding security controls directly into CI/CD pipelines. This comprehensive guide provides enterprise-grade implementations for automated security testing, compliance validation, and security gate enforcement in modern development workflows.

@@ -8,6 +8,7 @@ tags: ["dask", "ray", "distributed-computing", "data-science", "machine-learning
 categories: ["Distributed Systems", "AI & ML"]
 author: "Support Tools Team"
 canonical: "https://support.tools/blog/distributed-computing-dask-ray-data-science/"
+images: ["https://cdn.support.tools/posts/distributed-computing-dask-ray-data-science/og-8aef24298b.jpg"]
 ---
 
 # Distributed Computing with Dask and Ray for Data Science: Scalable Analytics and Machine Learning

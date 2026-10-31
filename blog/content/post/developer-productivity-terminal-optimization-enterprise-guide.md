@@ -12,6 +12,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Master developer productivity with advanced terminal optimization, shell configuration, and development environment setup. Comprehensive guide to tab completion, history search, prompt customization, aliases, and enterprise-grade development workflows."
 more_link: "yes"
 url: "/developer-productivity-terminal-optimization/"
+images: ["https://cdn.support.tools/posts/developer-productivity-terminal-optimization-enterprise-guide/og-32289dc2d0.jpg"]
 ---
 
 Developer productivity optimization through terminal and environment configuration represents a critical investment in engineering efficiency, where strategic automation and workflow enhancement can multiply output while reducing cognitive load and repetitive strain. This comprehensive guide explores enterprise-grade terminal optimization, advanced shell configurations, and productivity frameworks that transform development workflows.

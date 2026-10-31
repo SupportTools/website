@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to measuring developer experience with actionable metrics, implementing DORA and SPACE frameworks, and using data to improve platform effectiveness."
 more_link: "yes"
 url: "/developer-experience-metrics-measurement-enterprise-guide/"
+images: ["https://cdn.support.tools/posts/developer-experience-metrics-measurement-enterprise-guide/og-54a60e7b03.jpg"]
 ---
 
 Measuring developer experience (DX) is essential for platform teams to understand their impact and drive continuous improvement. This guide explores comprehensive metrics frameworks including DORA, SPACE, and DX-specific measurements to quantify and optimize developer productivity and satisfaction.

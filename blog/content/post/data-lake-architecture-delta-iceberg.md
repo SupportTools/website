@@ -10,6 +10,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Build modern data lake architectures using Delta Lake and Apache Iceberg for ACID transactions, schema evolution, and time travel capabilities. Learn implementation patterns, performance optimization, and production deployment strategies."
 more_link: "yes"
 url: "/data-lake-architecture-delta-iceberg/"
+images: ["https://cdn.support.tools/posts/data-lake-architecture-delta-iceberg/og-e5be5d10ca.jpg"]
 ---
 
 Modern data lake architectures require sophisticated table formats that provide ACID transactions, schema evolution, and time travel capabilities while maintaining the scalability and flexibility of traditional data lakes. Delta Lake and Apache Iceberg represent the next generation of table formats that solve many challenges of traditional data lakes.

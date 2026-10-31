@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to implementing cost allocation and chargeback systems for platform resources, enabling financial accountability and optimization across teams."
 more_link: "yes"
 url: "/cost-allocation-chargeback-implementation-enterprise-guide/"
+images: ["https://cdn.support.tools/posts/cost-allocation-chargeback-implementation-enterprise-guide/og-88ccf19203.jpg"]
 ---
 
 Cost allocation and chargeback systems bring financial accountability to platform resource consumption. By attributing costs to teams and applications, organizations can drive optimization, justify platform investments, and enable informed resource decisions. This guide demonstrates implementing production-grade cost management for enterprise platforms.

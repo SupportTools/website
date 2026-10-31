@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Production deployment guide for Cortex multi-tenant Prometheus with horizontal scalability, per-tenant limits, and high availability for enterprise monitoring platforms."
 more_link: "yes"
 url: "/cortex-multi-tenant-monitoring-production/"
+images: ["https://cdn.support.tools/posts/cortex-multi-tenant-monitoring-production/og-6f86a08637.jpg"]
 ---
 
 Cortex provides horizontally scalable, multi-tenant Prometheus as a service, enabling organizations to offer monitoring capabilities to multiple teams or customers with isolation, custom limits, and high availability. This guide covers deploying Cortex in production with microservices architecture, per-tenant configuration, and performance optimization.
