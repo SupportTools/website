@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to implementing Azure Kubernetes Service (AKS) with Managed Identity and OIDC workload identity federation for secure, scalable enterprise authentication and authorization patterns."
 more_link: "yes"
 url: "/aks-managed-identity-oidc-integration-enterprise-guide/"
+images: ["https://cdn.support.tools/posts/aks-managed-identity-oidc-integration-enterprise-guide/og-5481a0ad09.jpg"]
 ---
 
 Azure Kubernetes Service (AKS) provides multiple authentication and authorization mechanisms for securing workload access to Azure resources. Managed Identity and OpenID Connect (OIDC) workload identity federation represent the modern approach to eliminating credential management overhead while maintaining strong security boundaries. This comprehensive guide covers enterprise implementation patterns, security best practices, and production-ready configurations for AKS identity management.

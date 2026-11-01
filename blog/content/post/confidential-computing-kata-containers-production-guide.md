@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to implementing confidential computing with Kata Containers in Kubernetes, including hardware-based isolation, encrypted memory, and secure enclave deployment patterns."
 more_link: "yes"
 url: "/confidential-computing-kata-containers-production-guide/"
+images: ["https://cdn.support.tools/posts/confidential-computing-kata-containers-production-guide/og-a69d87999f.jpg"]
 ---
 
 Confidential computing represents the next frontier in cloud security, providing hardware-based protection for data in use. This comprehensive guide explores implementing confidential computing with Kata Containers in Kubernetes, leveraging technologies like Intel SGX, AMD SEV, and ARM TrustZone for enterprise-grade workload isolation and memory encryption.

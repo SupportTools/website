@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to implementing cloud-native disaster recovery architectures with Kubernetes, including RTO/RPO strategies, backup automation, cross-region replication, and business continuity patterns for enterprise environments."
 more_link: "yes"
 url: "/cloud-native-disaster-recovery-architectures-enterprise-guide/"
+images: ["https://cdn.support.tools/posts/cloud-native-disaster-recovery-architectures-enterprise-guide/og-21fb681aa7.jpg"]
 ---
 
 Disaster recovery (DR) in cloud-native environments requires fundamentally different approaches compared to traditional infrastructure. With Kubernetes orchestrating containerized workloads across distributed systems, organizations must implement sophisticated DR strategies that account for application state, persistent data, configuration, and infrastructure-as-code. This comprehensive guide covers enterprise-grade disaster recovery architectures, automation patterns, and operational procedures for cloud-native environments.

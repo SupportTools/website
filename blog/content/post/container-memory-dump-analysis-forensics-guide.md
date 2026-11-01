@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to container memory dump analysis for forensic investigation, including memory capture techniques, artifact extraction, and malware detection in containerized environments."
 more_link: "yes"
 url: "/container-memory-dump-analysis-forensics-guide/"
+images: ["https://cdn.support.tools/posts/container-memory-dump-analysis-forensics-guide/og-17b723a867.jpg"]
 ---
 
 Master container memory dump analysis for forensic investigations with comprehensive techniques for capturing, analyzing, and extracting artifacts from container memory in enterprise Kubernetes and Docker environments.

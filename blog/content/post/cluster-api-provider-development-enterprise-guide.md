@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to developing custom Cluster API providers for managing Kubernetes infrastructure across any platform with production-ready implementation examples."
 more_link: "yes"
 url: "/cluster-api-provider-development-enterprise-guide/"
+images: ["https://cdn.support.tools/posts/cluster-api-provider-development-enterprise-guide/og-2fff5f5803.jpg"]
 ---
 
 Cluster API (CAPI) provides a declarative API for cluster lifecycle management. While providers exist for major clouds, many organizations need custom providers for on-premises infrastructure, specialized clouds, or unique requirements. This guide demonstrates how to build production-grade Cluster API providers from scratch.

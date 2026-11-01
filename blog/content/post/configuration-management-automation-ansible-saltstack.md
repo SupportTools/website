@@ -12,6 +12,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Master configuration management automation with Ansible and SaltStack for enterprise infrastructure environments. Comprehensive guide to automated configuration, compliance management, and enterprise-grade infrastructure orchestration."
 more_link: "yes"
 url: "/configuration-management-automation-ansible-saltstack/"
+images: ["https://cdn.support.tools/posts/configuration-management-automation-ansible-saltstack/og-81d33c63de.jpg"]
 ---
 
 Configuration management automation represents a cornerstone of modern infrastructure operations, enabling consistent, repeatable, and scalable system configuration across diverse enterprise environments. This comprehensive guide explores advanced Ansible and SaltStack implementations, enterprise orchestration patterns, and production-ready automation frameworks for managing complex infrastructure at scale.

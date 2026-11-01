@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to implementing AI/ML workloads with Kubeflow on Kubernetes, including pipeline orchestration, distributed training, model serving, experiment tracking, and production-ready MLOps patterns."
 more_link: "yes"
 url: "/aiml-workloads-kubeflow-enterprise-guide/"
+images: ["https://cdn.support.tools/posts/aiml-workloads-kubeflow-enterprise-guide/og-296d9d35d0.jpg"]
 ---
 
 Kubeflow provides a comprehensive machine learning platform on Kubernetes, enabling end-to-end ML workflows from experimentation to production. This guide covers implementing enterprise-grade ML infrastructure with Kubeflow, including pipeline orchestration, distributed training, model serving, and operational best practices.

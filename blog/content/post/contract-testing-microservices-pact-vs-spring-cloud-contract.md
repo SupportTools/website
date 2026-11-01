@@ -12,6 +12,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to contract testing in microservices architectures, comparing Pact and Spring Cloud Contract frameworks with practical implementation examples, CI/CD integration, and production-ready strategies."
 more_link: "yes"
 url: "/contract-testing-microservices-pact-vs-spring-cloud-contract/"
+images: ["https://cdn.support.tools/posts/contract-testing-microservices-pact-vs-spring-cloud-contract/og-5a13980a6b.jpg"]
 ---
 
 In microservices architectures, ensuring reliable communication between services is paramount. Contract testing emerges as a critical testing strategy that validates the interactions between service consumers and providers without requiring full end-to-end testing. This comprehensive guide explores contract testing fundamentals and provides detailed comparisons between two leading frameworks: Pact and Spring Cloud Contract.

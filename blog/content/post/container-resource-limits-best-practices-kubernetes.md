@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to container resource limits in Kubernetes, covering requests, limits, QoS classes, resource quotas, and best practices for production workload resource management."
 more_link: "yes"
 url: "/container-resource-limits-best-practices-kubernetes/"
+images: ["https://cdn.support.tools/posts/container-resource-limits-best-practices-kubernetes/og-2f4846cfa4.jpg"]
 ---
 
 Master container resource management in Kubernetes with this comprehensive guide covering resource requests and limits, QoS classes, limit ranges, resource quotas, and production best practices for optimal cluster utilization and application performance.

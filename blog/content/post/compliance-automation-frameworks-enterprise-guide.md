@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to implementing automated compliance frameworks for platform engineering, covering policy as code, continuous compliance monitoring, and regulatory requirements."
 more_link: "yes"
 url: "/compliance-automation-frameworks-enterprise-guide/"
+images: ["https://cdn.support.tools/posts/compliance-automation-frameworks-enterprise-guide/og-99537d98a7.jpg"]
 ---
 
 Compliance automation transforms manual audit processes into continuous validation, reducing risk and enabling faster deployment cycles. This guide demonstrates implementing comprehensive compliance frameworks using policy as code, automated scanning, and continuous monitoring for enterprise Kubernetes platforms.

@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to implementing and optimizing Cilium eBPF-based networking in Kubernetes, including advanced network policies, service mesh features, and performance tuning for enterprise environments."
 more_link: "yes"
 url: "/cilium-ebpf-networking-deep-dive/"
+images: ["https://cdn.support.tools/posts/cilium-ebpf-networking-deep-dive/og-efbc50eb8b.jpg"]
 ---
 
 Cilium represents a paradigm shift in Kubernetes networking by leveraging eBPF (extended Berkeley Packet Filter) technology to provide high-performance, secure, and observable networking capabilities. This comprehensive guide explores advanced Cilium implementation patterns, performance optimization techniques, and enterprise-grade configurations for production Kubernetes clusters.

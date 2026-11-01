@@ -12,6 +12,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to implementing chaos engineering with Litmus on Kubernetes, covering setup, experiment design, automated testing, and production-ready practices for building resilient systems."
 more_link: "yes"
 url: "/chaos-engineering-litmus-kubernetes/"
+images: ["https://cdn.support.tools/posts/chaos-engineering-litmus-kubernetes/og-f643921f46.jpg"]
 ---
 
 Chaos Engineering has emerged as a critical discipline for building resilient distributed systems. As organizations increasingly rely on Kubernetes for production workloads, the need for systematic failure testing becomes paramount. Litmus, a Cloud Native Computing Foundation (CNCF) project, provides a comprehensive chaos engineering platform specifically designed for Kubernetes environments.

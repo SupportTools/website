@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to build time optimization in CI/CD pipelines, covering parallelization strategies, dependency caching, artifact management, and platform-specific optimizations for faster software delivery."
 more_link: "yes"
 url: "/build-time-optimization-techniques-cicd-performance/"
+images: ["https://cdn.support.tools/posts/build-time-optimization-techniques-cicd-performance/og-6172215a15.jpg"]
 ---
 
 Master CI/CD build time optimization with this comprehensive guide covering parallelization strategies, intelligent caching, artifact management, resource optimization, and platform-specific tuning for GitLab CI, GitHub Actions, and Jenkins to dramatically reduce pipeline execution times.

@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to optimizing Calico network policies for Kubernetes, including advanced security patterns, eBPF dataplane, policy tiering, and performance tuning for enterprise production environments."
 more_link: "yes"
 url: "/calico-network-policy-optimization/"
+images: ["https://cdn.support.tools/posts/calico-network-policy-optimization/og-2689b6ccbe.jpg"]
 ---
 
 Calico has become the de facto standard for Kubernetes network policy enforcement, offering powerful security controls combined with high-performance networking. This comprehensive guide explores advanced Calico optimization techniques, including policy tiering, eBPF dataplane configuration, and enterprise-grade security patterns for production environments.

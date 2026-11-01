@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to Consul Connect service mesh implementation including service discovery, mTLS, intentions-based access control, and multi-platform integration for enterprise Kubernetes and VM workloads."
 more_link: "yes"
 url: "/consul-connect-service-mesh/"
+images: ["https://cdn.support.tools/posts/consul-connect-service-mesh/og-586f39d352.jpg"]
 ---
 
 Consul Connect extends HashiCorp Consul's service discovery capabilities into a full-featured service mesh that spans Kubernetes, VMs, and cloud platforms. This comprehensive guide explores advanced Consul Connect patterns, including intentions-based security, multi-datacenter federation, and hybrid cloud deployments.

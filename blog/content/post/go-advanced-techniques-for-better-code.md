@@ -11,6 +11,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn five powerful Go programming techniques that will significantly improve your code quality, performance, and maintainability"
 more_link: "yes"
 url: "/go-advanced-techniques-for-better-code/"
+images: ["https://cdn.support.tools/posts/go-advanced-techniques-for-better-code/og-6d4ea57427.jpg"]
 ---
 
 Go (Golang) has become a cornerstone language for building high-performance, scalable applications. Its simplicity and pragmatic design make it approachable, but mastering certain patterns and language features can dramatically improve your code quality. This article explores five powerful Go techniques that experienced developers leverage to write more elegant, efficient, and maintainable code.

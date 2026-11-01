@@ -11,6 +11,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive guide to the essential tools, libraries, and development environments that every Go developer should know to maximize productivity and code quality"
 more_link: "yes"
 url: "/go-developers-toolkit-essential-resources/"
+images: ["https://cdn.support.tools/posts/go-developers-toolkit-essential-resources/og-2e7ab4295c.jpg"]
 ---
 
 Building efficient, scalable applications with Go requires more than just understanding the language syntax. The most productive Go developers rely on a carefully selected toolkit of libraries, development tools, and environments to streamline their workflow. This guide explores the essential components of a modern Go developer's toolkit, with practical examples and configuration tips to help you build better software faster.

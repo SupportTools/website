@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Master ArgoCD ApplicationSets for managing multi-environment, multi-cluster, and multi-tenant Kubernetes deployments at enterprise scale. Learn advanced patterns, generators, and automation strategies."
 more_link: "yes"
 url: "/argocd-applicationsets-multi-environment-deployment/"
+images: ["https://cdn.support.tools/posts/argocd-applicationsets-multi-environment-deployment/og-030319eb9f.jpg"]
 ---
 
 ArgoCD ApplicationSets revolutionize how enterprises manage applications across multiple environments, clusters, and tenants. This comprehensive guide explores advanced ApplicationSet patterns, generators, and automation strategies for production-scale GitOps implementations.

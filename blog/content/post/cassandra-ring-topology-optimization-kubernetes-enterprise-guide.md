@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to optimizing Apache Cassandra ring topology on Kubernetes, covering rack awareness, token allocation, replication strategies, and performance tuning for enterprise workloads."
 more_link: "yes"
 url: "/cassandra-ring-topology-optimization-kubernetes-enterprise-guide/"
+images: ["https://cdn.support.tools/posts/cassandra-ring-topology-optimization-kubernetes-enterprise-guide/og-c56f804a7b.jpg"]
 ---
 
 Apache Cassandra's ring topology and distributed architecture require careful configuration for optimal performance on Kubernetes. This comprehensive guide covers enterprise-grade Cassandra deployments with focus on ring topology optimization, rack awareness, replication strategies, and performance tuning.

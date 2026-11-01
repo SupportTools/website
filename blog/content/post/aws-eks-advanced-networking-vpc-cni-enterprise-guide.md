@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Complete guide to advanced AWS EKS networking with VPC CNI, including custom networking, security groups for pods, IP prefix delegation, and production optimization strategies for enterprise Kubernetes clusters."
 more_link: "yes"
 url: "/aws-eks-advanced-networking-vpc-cni-enterprise-guide/"
+images: ["https://cdn.support.tools/posts/aws-eks-advanced-networking-vpc-cni-enterprise-guide/og-ddef20132c.jpg"]
 ---
 
 AWS Elastic Kubernetes Service (EKS) uses the Amazon VPC Container Network Interface (CNI) plugin as its default networking solution. While the basic setup is straightforward, enterprise production environments require advanced networking configurations to optimize IP address utilization, implement fine-grained security controls, and ensure high performance at scale. This comprehensive guide explores advanced VPC CNI features, custom networking patterns, and production-ready configurations for enterprise EKS deployments.

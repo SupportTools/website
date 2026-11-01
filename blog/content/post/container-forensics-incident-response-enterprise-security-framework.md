@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to container forensics and incident response for enterprise environments, covering evidence collection, threat hunting, compliance requirements, and automated investigation workflows for Kubernetes and Docker security incidents."
 more_link: "yes"
 url: "/container-forensics-incident-response-enterprise-security-framework/"
+images: ["https://cdn.support.tools/posts/container-forensics-incident-response-enterprise-security-framework/og-4c2fcfacb4.jpg"]
 ---
 
 At 2:47 AM, our Security Operations Center detected anomalous network traffic from a production container. Within minutes, we discovered a sophisticated attack: an attacker had exploited a vulnerability, gained container access, and was actively exfiltrating customer data. This incident exposed a critical gap in our security posture - we had no forensics capability for containerized environments. By the time we understood what happened, evidence was gone, containers deleted, and logs incomplete. This is the complete story of how we built an enterprise-grade container forensics and incident response framework that has since detected and contained 23 security incidents with zero data loss.

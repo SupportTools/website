@@ -10,6 +10,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive guide to implementing secure authentication and authorization mechanisms in Go applications, with detailed benchmarks and best practices"
 more_link: "yes"
 url: "/go-authentication-authorization-guide/"
+images: ["https://cdn.support.tools/posts/go-authentication-authorization-guide/og-a70418059c.jpg"]
 ---
 
 Authentication and authorization are fundamental pillars of web application security. Choosing the right authentication mechanism for your Go application can significantly impact both security and performance. This guide examines various authentication strategies, implementation techniques, and performance considerations to help you make the best decision for your specific requirements.

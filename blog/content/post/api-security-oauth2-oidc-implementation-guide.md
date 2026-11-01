@@ -9,6 +9,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to implementing advanced API security with OAuth 2.0 and OpenID Connect for enterprise environments, including secure authentication flows, token management, and production-ready API protection strategies."
 more_link: "yes"
 url: "/api-security-oauth2-oidc-implementation-guide/"
+images: ["https://cdn.support.tools/posts/api-security-oauth2-oidc-implementation-guide/og-46f2271cae.jpg"]
 ---
 
 Modern enterprise APIs require robust security mechanisms that provide fine-grained access control while maintaining scalability and user experience. This comprehensive guide covers advanced API security implementations using OAuth 2.0 and OpenID Connect, including secure authentication flows, token lifecycle management, and enterprise-grade protection strategies for distributed systems.

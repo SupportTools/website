@@ -11,6 +11,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Build a powerful GitHub PR analytics system with Python and GitHub Actions. This comprehensive guide covers advanced API integration, pagination handling, rich HTML reports, and secure token management for tracking merged pull requests across your entire organization."
 more_link: "yes"
 url: "/github-pull-request-reporting-automation/"
+images: ["https://cdn.support.tools/posts/github-pull-request-reporting-automation/og-a9a8537918.jpg"]
 ---
 
 ![GitHub PR Reporting System](/images/posts/github/pr-reporting-dashboard.svg)

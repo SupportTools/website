@@ -4,6 +4,7 @@ date: 2026-05-12T09:00:00-05:00
 draft: false
 tags: ["go", "golang", "concurrency", "waitgroup", "sync.Cond", "goroutines"]
 categories: ["Programming", "Go", "Concurrency"]
+images: ["https://cdn.support.tools/posts/go-concurrency-sync-waitgroup-cond/og-ce555f0a2d.jpg"]
 ---
 
 Go's approach to concurrency is one of its most powerful features, offering a balance of simplicity and capability that few other languages can match. At the core of Go's concurrency model are goroutines—lightweight threads managed by the Go runtime—and a rich set of synchronization primitives to coordinate them. In this article, we'll explore two essential synchronization tools: `sync.WaitGroup` and `sync.Cond`, with practical examples to demonstrate their use in real-world scenarios.

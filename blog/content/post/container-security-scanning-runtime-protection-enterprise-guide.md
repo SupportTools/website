@@ -12,6 +12,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to implementing container security scanning and runtime protection in enterprise environments, including vulnerability assessment, compliance checking, and automated security enforcement for containerized applications."
 more_link: "yes"
 url: "/container-security-scanning-runtime-protection-enterprise-guide/"
+images: ["https://cdn.support.tools/posts/container-security-scanning-runtime-protection-enterprise-guide/og-55502b3706.jpg"]
 ---
 
 Container security encompasses the entire lifecycle from image creation to runtime protection, requiring comprehensive scanning, monitoring, and enforcement mechanisms. This guide provides enterprise-grade implementations for container security scanning, vulnerability management, and runtime threat protection across development and production environments.

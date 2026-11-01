@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to implementing enterprise-grade LoadBalancer DNS with CoreDNS, featuring advanced service discovery patterns, high availability configurations, and production networking strategies for Kubernetes environments."
 more_link: "yes"
 url: "/coredns-loadbalancer-service-discovery-enterprise-networking-kubernetes-guide/"
+images: ["https://cdn.support.tools/posts/coredns-loadbalancer-service-discovery-enterprise-networking-kubernetes-guide/og-8392e85992.jpg"]
 ---
 
 CoreDNS serves as the cornerstone of modern Kubernetes networking, providing sophisticated DNS resolution and service discovery capabilities that enable enterprise-grade LoadBalancer implementations. This comprehensive guide demonstrates advanced CoreDNS deployment patterns, custom service discovery architectures, and production-ready networking strategies for large-scale Kubernetes environments.
