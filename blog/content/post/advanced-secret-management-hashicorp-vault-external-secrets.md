@@ -12,6 +12,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Master advanced secret management with HashiCorp Vault and External Secrets for enterprise environments. Comprehensive guide to secure credential management, automated secret rotation, and enterprise-grade security frameworks."
 more_link: "yes"
 url: "/advanced-secret-management-hashicorp-vault-external-secrets/"
+images: ["https://cdn.support.tools/posts/advanced-secret-management-hashicorp-vault-external-secrets/og-e8e0de55c6.jpg"]
 ---
 
 Advanced secret management represents a critical foundation of enterprise security architecture, requiring sophisticated approaches to credential storage, rotation, and access control that integrate seamlessly with modern cloud-native applications and infrastructure. This comprehensive guide explores enterprise HashiCorp Vault implementations, External Secrets Operator integration, and production-ready security frameworks for managing sensitive data at scale.

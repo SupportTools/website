@@ -10,6 +10,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive guide to implementing security headers in web applications to protect against common vulnerabilities like clickjacking, XSS, and content type sniffing"
 more_link: "yes"
 url: "/essential-website-security-headers/"
+images: ["https://cdn.support.tools/posts/essential-website-security-headers/og-9c81dbde24.jpg"]
 ---
 
 Security headers are a crucial but often overlooked aspect of web application security. Properly configured HTTP security headers can significantly enhance your website's security posture with minimal effort, acting as an additional layer of defense against various common attacks.

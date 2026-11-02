@@ -12,6 +12,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Master advanced GitOps implementation with ArgoCD and Flux for enterprise production environments. Complete guide to declarative continuous delivery, multi-cluster management, progressive delivery patterns, and enterprise-grade GitOps architectures."
 more_link: "yes"
 url: "/advanced-gitops-implementation-argocd-flux-enterprise-guide/"
+images: ["https://cdn.support.tools/posts/advanced-gitops-implementation-argocd-flux-enterprise-guide/og-0627a1a303.jpg"]
 ---
 
 GitOps represents a paradigm shift in how we approach continuous delivery and infrastructure management, leveraging Git as the single source of truth for declarative infrastructure and application deployment. This comprehensive guide explores advanced GitOps implementation patterns using ArgoCD and Flux, covering enterprise-scale multi-cluster architectures, progressive delivery strategies, and production-ready automation frameworks.

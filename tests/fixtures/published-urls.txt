@@ -1348,6 +1348,7 @@
 /react-runtime-config-k8s/
 /readding-failed-drive-mdadm/
 /real-time-linux-programming-advanced/
+/reddit-kubernetes-cluster-upgrade-failure-production-incident/
 /redis-open-source-again/
 /reduce-docker-image-size/
 /rekuberate-io-sleepcycles/
@@ -1682,6 +1683,7 @@
 /tags/cluster-security/
 /tags/cluster-services/
 /tags/cluster-sizing/
+/tags/cluster-upgrades/
 /tags/clustering/
 /tags/clusterissuer/
 /tags/cncf/
@@ -3214,6 +3216,7 @@
 /tags/vendor-lock-in/
 /tags/verification/
 /tags/version-control/
+/tags/version-management/
 /tags/vfs/
 /tags/victoriametrics/
 /tags/video-streaming/

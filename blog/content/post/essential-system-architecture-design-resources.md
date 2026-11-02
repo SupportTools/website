@@ -10,6 +10,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive collection of high-quality resources for learning system architecture and design principles, from fundamentals to advanced distributed systems concepts, organized by learning stages and topics"
 more_link: "yes"
 url: "/essential-system-architecture-design-resources/"
+images: ["https://cdn.support.tools/posts/essential-system-architecture-design-resources/og-a4d486e7e4.jpg"]
 ---
 
 System architecture and design are critical skills for software engineers, yet they can be challenging to learn without structured guidance. This curated collection brings together the most valuable resources for engineers at all levels looking to strengthen their system design capabilities.

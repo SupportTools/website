@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to implementing advanced DNS forwarding patterns with CoreDNS, featuring split-horizon DNS architectures, conditional forwarding strategies, and enterprise-grade network segmentation for complex organizational requirements."
 more_link: "yes"
 url: "/advanced-coredns-dns-forwarding-split-horizon-enterprise-architecture-guide/"
+images: ["https://cdn.support.tools/posts/advanced-coredns-dns-forwarding-split-horizon-enterprise-architecture-guide/og-d669c5395e.jpg"]
 ---
 
 Advanced DNS forwarding architectures enable organizations to implement sophisticated network topologies with precise control over domain resolution across different network segments. CoreDNS provides the flexibility needed to build complex split-horizon DNS systems that support enterprise requirements for network segmentation, security isolation, and performance optimization.

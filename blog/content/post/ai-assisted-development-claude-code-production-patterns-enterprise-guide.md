@@ -11,6 +11,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Master AI-assisted development with comprehensive Claude Code patterns and workflows. Complete guide to shipping production features faster with LLM-powered development tools, context management, and enterprise-grade practices."
 more_link: "yes"
 url: "/ai-assisted-development-claude-code-production-patterns-enterprise-guide/"
+images: ["https://cdn.support.tools/posts/ai-assisted-development-claude-code-production-patterns-enterprise-guide/og-ba3e1e76ea.jpg"]
 ---
 
 AI-assisted development with tools like Claude Code fundamentally transforms software engineering workflows, enabling rapid feature delivery while maintaining code quality. This comprehensive guide covers 50 production-tested patterns for maximizing LLM development productivity in enterprise environments.

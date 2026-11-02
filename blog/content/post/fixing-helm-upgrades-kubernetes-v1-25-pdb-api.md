@@ -10,6 +10,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "How to fix Helm upgrade failures in Kubernetes v1.25+ due to removed PodDisruptionBudget API versions using helm-mapkubeapis, with step-by-step instructions and real-world examples"
 more_link: "yes"
 url: "/fixing-helm-upgrades-kubernetes-v1-25-pdb-api/"
+images: ["https://cdn.support.tools/posts/fixing-helm-upgrades-kubernetes-v1-25-pdb-api/og-fdbe627958.jpg"]
 ---
 
 During a recent production cluster upgrade from v1.23 to v1.25, we hit a brick wall with Helm that temporarily halted our maintenance window. All our chart updates were properly tested, our backups were verified, and our rollback plan was ready—but Helm stubbornly refused to upgrade critical workloads with a cryptic error about PodDisruptionBudgets. Here's what happened, how we solved it, and the important lessons that will save you considerable headaches in your future upgrades.

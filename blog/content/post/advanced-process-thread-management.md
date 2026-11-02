@@ -8,6 +8,7 @@ tags: ["process management", "thread management", "Linux scheduling", "cgroups",
 keywords: ["Linux process management", "thread management", "process scheduling", "cgroups", "namespaces", "IPC mechanisms", "thread pools", "resource control", "process orchestration", "enterprise process management"]
 draft: false
 toc: true
+images: ["https://cdn.support.tools/posts/advanced-process-thread-management/og-c525a7e0b6.jpg"]
 ---
 
 Advanced process and thread management forms the backbone of high-performance enterprise systems. This comprehensive guide explores sophisticated techniques for controlling, orchestrating, and optimizing processes and threads in Linux environments, covering everything from low-level scheduling mechanisms to enterprise-scale process orchestration patterns.

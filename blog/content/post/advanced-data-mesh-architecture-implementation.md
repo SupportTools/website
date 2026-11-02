@@ -8,6 +8,7 @@ tags: ["data-mesh", "data-architecture", "domain-driven", "data-product", "gover
 categories: ["Data Engineering", "Architecture"]
 author: "Support Tools Team"
 canonical: "https://support.tools/blog/advanced-data-mesh-architecture-implementation/"
+images: ["https://cdn.support.tools/posts/advanced-data-mesh-architecture-implementation/og-31d1832bdd.jpg"]
 ---
 
 # Advanced Data Mesh Architecture and Implementation: Decentralized Data Infrastructure at Scale

@@ -9,6 +9,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Build advanced ETL/ELT pipelines using Apache Airflow and Prefect for robust data orchestration. Learn workflow design patterns, error handling, monitoring, and production deployment strategies for enterprise data platforms."
 more_link: "yes"
 url: "/advanced-etl-elt-pipeline-airflow-prefect/"
+images: ["https://cdn.support.tools/posts/advanced-etl-elt-pipeline-airflow-prefect/og-e774481fb7.jpg"]
 ---
 
 Modern data engineering requires sophisticated orchestration tools to manage complex ETL/ELT pipelines. Apache Airflow and Prefect represent the current generation of workflow orchestration platforms that enable building scalable, maintainable, and observable data pipelines with advanced features like dynamic task generation, robust error handling, and comprehensive monitoring.

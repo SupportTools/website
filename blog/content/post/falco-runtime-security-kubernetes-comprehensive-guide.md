@@ -4,6 +4,7 @@ date: 2026-04-14T09:00:00-05:00
 draft: false
 categories: ["Security", "Kubernetes", "DevOps", "Monitoring"]
 tags: ["Falco", "Runtime Security", "Kubernetes Security", "SIEM", "Threat Detection", "Compliance", "Container Security", "Cloud Native Security", "Incident Response", "Security Monitoring", "eBPF", "Syscall Monitoring"]
+images: ["https://cdn.support.tools/posts/falco-runtime-security-kubernetes-comprehensive-guide/og-e6a5d31926.jpg"]
 ---
 
 # Falco Mastery: The Complete Guide to Runtime Security in Kubernetes Environments

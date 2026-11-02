@@ -10,6 +10,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Master advanced BGP routing protocols and multi-homing strategies for enterprise network resilience. Learn sophisticated traffic engineering, path selection optimization, and production-ready BGP configurations."
 more_link: "yes"
 url: "/advanced-bgp-routing-multi-homing-strategies-enterprise-guide/"
+images: ["https://cdn.support.tools/posts/advanced-bgp-routing-multi-homing-strategies-enterprise-guide/og-cd0a7a06fa.jpg"]
 ---
 
 Border Gateway Protocol (BGP) serves as the backbone of internet routing, enabling autonomous systems to exchange routing information and implement sophisticated traffic engineering policies. This comprehensive guide explores advanced BGP configurations, multi-homing strategies, and enterprise-grade network resilience patterns for production environments.

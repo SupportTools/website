@@ -8,6 +8,7 @@ tags: ["signal processing", "DSP", "real-time", "Linux", "SIMD", "FFT", "digital
 keywords: ["signal processing", "digital signal processing", "real-time DSP", "Linux signal processing", "SIMD optimization", "FFT implementation", "digital filters", "audio processing", "kernel bypass", "high performance DSP"]
 draft: false
 toc: true
+images: ["https://cdn.support.tools/posts/advanced-signal-processing-linux-systems/og-06c4c4d963.jpg"]
 ---
 
 Advanced signal processing in Linux systems requires deep understanding of both mathematical algorithms and system-level optimization techniques. This comprehensive guide explores real-time digital signal processing (DSP) implementation, from low-level kernel interfaces to high-performance algorithmic optimization, enabling the development of professional-grade signal processing applications.

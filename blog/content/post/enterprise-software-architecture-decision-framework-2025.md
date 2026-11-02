@@ -17,6 +17,7 @@ categories:
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Master enterprise software architecture decisions with comprehensive frameworks, advanced patterns, strategic evaluation methods, and production-scale architecture governance for building resilient distributed systems."
 keywords: "software architecture, microservices architecture, enterprise architecture, distributed systems, cloud-native architecture, architecture patterns, system design, scalability, architecture governance"
+images: ["https://cdn.support.tools/posts/enterprise-software-architecture-decision-framework-2025/og-11d2d82d18.jpg"]
 ---
 
 Enterprise software architecture decision-making in 2025 extends far beyond basic pattern selection and simple architectural styles. This comprehensive guide transforms foundational architecture concepts into production-ready strategic frameworks, covering advanced architectural patterns, comprehensive evaluation methodologies, governance frameworks, and enterprise-scale decision-making processes that senior architects need to design resilient, scalable systems at massive scale.

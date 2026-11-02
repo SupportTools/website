@@ -13,6 +13,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Configure 802.1ad QinQ on Linux with ip link, a VLAN-aware bridge and Open vSwitch dot1q-tunnel, fix the MTU, and verify the 0x88a8 outer tag with tcpdump."
 more_link: "yes"
 url: "/advanced-vlan-network-virtualization-enterprise-guide/"
+images: ["https://cdn.support.tools/posts/advanced-vlan-network-virtualization-enterprise-guide/og-6d24aabbf3.jpg"]
 ---
 
 IEEE 802.1ad (QinQ, or stacked VLANs) puts a second VLAN tag in front of the normal 802.1Q tag, so a provider or a virtualization host can carry each tenant's full VLAN range inside one outer "service" VLAN. This page shows the Linux commands for QinQ on a plain interface, on a Linux bridge and on Open vSwitch, then covers the wider VLAN and overlay design for multi-tenant networks.

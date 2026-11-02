@@ -8,6 +8,7 @@ keywords: ["data warehousing", "Snowflake", "BigQuery", "cloud data warehouse", 
 tags: ["data-engineering", "snowflake", "bigquery", "data-warehouse", "cloud", "analytics", "performance", "optimization"]
 categories: ["Data Engineering", "Analytics", "Cloud"]
 author: "Matthew Mattox - mmattox@support.tools"
+images: ["https://cdn.support.tools/posts/advanced-data-warehousing-snowflake-bigquery/og-9489fc87a4.jpg"]
 ---
 
 # Snowflake QUERY_HISTORY: Find COMMIT and ROLLBACK Queries

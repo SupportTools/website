@@ -12,6 +12,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Master advanced CI/CD pipeline security and supply chain protection for enterprise environments. Comprehensive guide to DevSecOps automation, secure pipeline design, vulnerability management, and enterprise-grade security frameworks."
 more_link: "yes"
 url: "/advanced-cicd-pipeline-security-supply-chain-protection/"
+images: ["https://cdn.support.tools/posts/advanced-cicd-pipeline-security-supply-chain-protection/og-334e579a4e.jpg"]
 ---
 
 CI/CD pipeline security and software supply chain protection have become critical components of enterprise security strategies, requiring sophisticated approaches to threat detection, vulnerability management, and compliance automation. This comprehensive guide explores advanced DevSecOps implementation patterns, secure pipeline architectures, and enterprise-grade security automation frameworks for protecting software delivery processes.

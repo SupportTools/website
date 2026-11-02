@@ -8,6 +8,7 @@ tags: ["data-governance", "data-lineage", "compliance", "data-classification", "
 categories: ["Compliance", "Data Management"]
 author: "Support Tools Team"
 canonical: "https://support.tools/blog/advanced-data-governance-lineage-tracking/"
+images: ["https://cdn.support.tools/posts/advanced-data-governance-lineage-tracking/og-5b97394197.jpg"]
 ---
 
 # Advanced Data Governance and Lineage Tracking: Enterprise-Grade Data Management and Compliance

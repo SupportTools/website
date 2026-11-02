@@ -11,6 +11,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to implementing advanced PKI certificate management for enterprise infrastructure, including automated certificate lifecycle management, multi-tier CA hierarchies, and production-ready certificate operations."
 more_link: "yes"
 url: "/advanced-pki-certificate-management-enterprise-infrastructure-guide/"
+images: ["https://cdn.support.tools/posts/advanced-pki-certificate-management-enterprise-infrastructure-guide/og-be1cec459b.jpg"]
 ---
 
 Public Key Infrastructure (PKI) forms the backbone of modern enterprise security, enabling secure communications, authentication, and data integrity across distributed systems. This comprehensive guide covers advanced PKI certificate management strategies, from establishing certificate authorities to implementing automated certificate lifecycle management in large-scale enterprise environments.

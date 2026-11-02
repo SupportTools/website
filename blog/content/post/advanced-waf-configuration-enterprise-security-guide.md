@@ -9,6 +9,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to implementing advanced Web Application Firewall configurations for enterprise environments, including custom rule development, threat intelligence integration, and automated security response mechanisms."
 more_link: "yes"
 url: "/advanced-waf-configuration-enterprise-security-guide/"
+images: ["https://cdn.support.tools/posts/advanced-waf-configuration-enterprise-security-guide/og-ff96ac60bc.jpg"]
 ---
 
 Web Application Firewalls serve as critical defense mechanisms protecting web applications from sophisticated attacks including SQL injection, XSS, and DDoS attacks. This comprehensive guide provides enterprise-grade WAF implementations with advanced rule configurations, threat intelligence integration, and automated response capabilities.

@@ -12,6 +12,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Master advanced monitoring and observability with Prometheus and Grafana for enterprise production environments. Comprehensive guide to metrics collection, alerting strategies, dashboard design, and enterprise-grade observability frameworks."
 more_link: "yes"
 url: "/advanced-monitoring-observability-prometheus-grafana-enterprise/"
+images: ["https://cdn.support.tools/posts/advanced-monitoring-observability-prometheus-grafana-enterprise/og-129230b435.jpg"]
 ---
 
 Advanced monitoring and observability form the foundation of reliable enterprise systems, requiring sophisticated metrics collection, intelligent alerting, and comprehensive visualization strategies that provide actionable insights into system performance and behavior. This comprehensive guide explores enterprise-grade Prometheus and Grafana implementations, advanced observability patterns, and production-ready monitoring frameworks.

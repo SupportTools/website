@@ -11,6 +11,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Master advanced deployment strategies including blue-green, canary, and rolling updates for enterprise production environments. Comprehensive guide to progressive delivery, risk mitigation, and zero-downtime deployment frameworks."
 more_link: "yes"
 url: "/advanced-deployment-strategies-blue-green-canary-rolling-updates/"
+images: ["https://cdn.support.tools/posts/advanced-deployment-strategies-blue-green-canary-rolling-updates/og-78f6483116.jpg"]
 ---
 
 Advanced deployment strategies represent critical capabilities for modern enterprise applications, enabling zero-downtime deployments while minimizing risk through progressive delivery patterns and sophisticated traffic management. This comprehensive guide explores enterprise-grade deployment architectures, risk mitigation strategies, and production-ready frameworks for managing complex application releases.

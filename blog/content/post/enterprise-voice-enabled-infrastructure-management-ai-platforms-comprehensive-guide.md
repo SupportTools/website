@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Complete enterprise guide to building production-grade voice-enabled infrastructure management platforms with advanced AI integration, multi-modal interfaces, enterprise security frameworks, and scalable conversational operations for large-scale environments."
 more_link: "yes"
 url: "/enterprise-voice-enabled-infrastructure-management-ai-platforms-comprehensive-guide/"
+images: ["https://cdn.support.tools/posts/enterprise-voice-enabled-infrastructure-management-ai-platforms-comprehensive-guide/og-b59ec7e8cb.jpg"]
 ---
 
 ## Table of Contents
