@@ -35,11 +35,12 @@ move in-cluster on internal DNS in a later phase.
 The legacy `pipeline.yml` (Docker image to Kubernetes via Argo CD) was removed along with the
 old Go web server.
 
-## Required Secrets
+## Secrets
 
-Configure these in Settings → Secrets → Actions:
-
-- `CLOUDFLARE_API_TOKEN` - API token with Workers:Edit permissions
+None. The production deploy logs in to Vault with GitHub OIDC (role `gha-website-cf-deploy`,
+which only accepts main-branch runs of `cloudflare-workers.yml`) and reads an account-owned
+Cloudflare token scoped to the `support-tools` Worker and the `support.tools` routes. The job
+needs `id-token: write`; no Cloudflare credential is stored in GitHub.
 
 ## Usage Examples
 
@@ -97,7 +98,7 @@ curl -s -o /dev/null -w "%{http_code}\n" https://support.tools
 ### Deployment Fails
 
 1. Check GitHub Actions logs
-2. Verify CLOUDFLARE_API_TOKEN is set
+2. Check the "Deploy to Cloudflare Workers" step: a Vault login error means the run was not a main-branch run of this workflow; "token is not active" means the Cloudflare token in `secret/cloudflare/workers-deploy-support-tools` expired or was revoked
 3. Check Hugo build output
 4. Verify DNS is pointing to Cloudflare
 
