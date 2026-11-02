@@ -128,6 +128,9 @@ jobs:
     runs-on: self-hosted-linux
     needs: Test
     if: (github.event_name == 'push' && github.ref == 'refs/heads/main') || github.event_name == 'schedule'
+    permissions:
+      contents: read
+      id-token: write # GitHub OIDC -> Vault jwt role gha-website-cf-deploy
     environment:
       name: production
       url: https://support.tools
@@ -172,8 +175,35 @@ jobs:
 
       - name: Deploy to Cloudflare Workers
         env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: d2264bbcd4403af8321dab6b9dd66dad
+          VAULT_ADDR: https://vault.support.tools
+          VAULT_ROLE: gha-website-cf-deploy
         run: |
+          set -euo pipefail
+          # The deploy token is an account-owned Cloudflare token that can edit only the
+          # support-tools Worker and the support.tools routes. It lives in Vault, and the
+          # gha-website-cf-deploy role only accepts main-branch runs of this workflow, so PR
+          # runs can never read it. It is fetched in this step only; later steps never see it.
+          # Fetch tiers: Actions OIDC (runner-provided auth), Vault (a service we run) and the
+          # Cloudflare API (the runtime deploy API). No package or toolchain is fetched.
+          JWT=$(curl -sfS --retry 3 --max-time 15 -H "Authorization: bearer ${ACTIONS_ID_TOKEN_REQUEST_TOKEN}" \
+            "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=https://github.com/SupportTools" | jq -r '.value')
+          echo "::add-mask::${JWT}"
+          VT=$(jq -n --arg r "$VAULT_ROLE" --arg j "$JWT" '{role:$r,jwt:$j}' \
+            | curl -sfS --retry 3 --max-time 15 -X POST --data @- "${VAULT_ADDR}/v1/auth/github-actions/login" \
+            | jq -r '.auth.client_token')
+          echo "::add-mask::${VT}"
+          CLOUDFLARE_API_TOKEN=$(curl -sfS --retry 3 --max-time 15 -H "X-Vault-Token: ${VT}" \
+            "${VAULT_ADDR}/v1/secret/data/cloudflare/workers-deploy-support-tools" | jq -j '.data.data["api-token"]')
+          curl -sfS --max-time 15 -X POST -H "X-Vault-Token: ${VT}" "${VAULT_ADDR}/v1/auth/token/revoke-self" >/dev/null || true
+          case "$CLOUDFLARE_API_TOKEN" in ""|null) echo "::error::empty Cloudflare token from Vault"; exit 1;; esac
+          echo "::add-mask::${CLOUDFLARE_API_TOKEN}"
+          export CLOUDFLARE_API_TOKEN
+          # Fail fast on an expired or revoked token (account-owned, so the account verify endpoint).
+          curl -sfS --max-time 15 -H "Authorization: Bearer ${CLOUDFLARE_API_TOKEN}" \
+            "https://api.cloudflare.com/client/v4/accounts/${CLOUDFLARE_ACCOUNT_ID}/tokens/verify" \
+            | jq -e '.success and .result.status == "active"' >/dev/null \
+            || { echo "::error::Cloudflare deploy token is not active"; exit 1; }
           # Refuses a site-wide noindex rule, or any noindex rule that matches a
           # built HTML page; the narrow alternate rules in blog/static/_headers pass.
           node scripts/headers-guard.mjs production blog/public
