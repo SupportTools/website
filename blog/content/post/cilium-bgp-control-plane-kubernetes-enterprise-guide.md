@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Complete guide to Cilium BGP Control Plane for Kubernetes, covering v1 and v2 APIs, LB-IPAM integration, MetalLB migration, BGP communities, graceful restart, and production troubleshooting."
 more_link: "yes"
 url: "/cilium-bgp-control-plane-kubernetes-enterprise-guide/"
+images: ["https://cdn.support.tools/posts/cilium-bgp-control-plane-kubernetes-enterprise-guide/og-44a8df38d1.jpg"]
 ---
 
 Bare-metal and on-premises Kubernetes clusters face a fundamental networking challenge that cloud providers solve transparently: making Services and Pods reachable from outside the cluster. In cloud environments, a LoadBalancer Service automatically provisions an external IP and programs the cloud provider's network fabric. On bare metal, that integration does not exist. **Border Gateway Protocol (BGP)** fills this gap by enabling Kubernetes nodes to advertise routes for Pod CIDRs, LoadBalancer IPs, and custom prefixes directly to the upstream network infrastructure.

@@ -11,6 +11,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "An efficient approach to implementing distributed request throttling across multiple API gateway instances without per-request centralized coordination"
 more_link: "yes"
 url: "/decentralized-request-throttling-for-distributed-api-gateways/"
+images: ["https://cdn.support.tools/posts/decentralized-request-throttling-for-distributed-api-gateways/og-2b3e7e4381.jpg"]
 ---
 
 Rate limiting is a critical aspect of API management, but implementing it in distributed environments presents unique challenges. This article explores a practical approach to decentralized request throttling that works efficiently across multiple API gateway instances without requiring per-request coordination.

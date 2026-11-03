@@ -10,6 +10,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "A detailed performance analysis of database query operations across multiple languages with real-world benchmarks and optimization techniques"
 more_link: "yes"
 url: "/database-performance-comparison-java-go-rust/"
+images: ["https://cdn.support.tools/posts/database-performance-comparison-java-go-rust/og-61906c3f8d.jpg"]
 ---
 
 When building high-performance backend applications, database interactions often become a critical bottleneck. This comprehensive benchmark compares how different programming languages perform when executing database queries, with detailed analysis and optimization techniques.

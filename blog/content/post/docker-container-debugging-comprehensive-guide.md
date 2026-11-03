@@ -11,6 +11,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Master Docker container debugging with this comprehensive guide covering logs analysis, interactive debugging, network troubleshooting, resource optimization, security scanning, and automation techniques for resolving production container issues."
 more_link: "yes"
 url: "/docker-container-debugging-comprehensive-guide/"
+images: ["https://cdn.support.tools/posts/docker-container-debugging-comprehensive-guide/og-9f0ad4a8fd.jpg"]
 ---
 
 ![Docker Container Debugging](/images/posts/docker/docker-debugging-workflow.svg)

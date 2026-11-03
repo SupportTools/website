@@ -11,6 +11,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "A detailed comparison of concurrency models in Reactive Java and Golang with real-world benchmarks, code examples, and performance analysis for modern distributed systems"
 more_link: "yes"
 url: "/concurrency-comparison-reactive-java-vs-golang/"
+images: ["https://cdn.support.tools/posts/concurrency-comparison-reactive-java-vs-golang/og-b6be63d704.jpg"]
 ---
 
 Modern distributed systems demand efficient concurrency models to handle large numbers of simultaneous operations. Two prominent approaches have emerged in enterprise development: Reactive programming in Java and Go's native concurrency primitives. This article provides an in-depth comparison of both models, complete with benchmarks, code examples, and practical guidance on when to use each approach.

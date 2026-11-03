@@ -10,6 +10,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to create an elegant virtual bookshelf using Hugo and PaperMod theme. Complete guide with custom layouts, styling, and organization features."
 more_link: "yes"
 url: "/hugo-papermod-virtual-bookshelf/"
+images: ["https://cdn.support.tools/posts/hugo-papermod-virtual-bookshelf/og-89123f7181.jpg"]
 ---
 
 Master the art of creating a beautiful and functional virtual bookshelf using Hugo and the PaperMod theme, complete with custom layouts and organization features.

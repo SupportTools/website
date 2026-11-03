@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive enterprise guide to Infrastructure as Code implementation strategies, advanced IaC vs imperative tool integration patterns, enterprise orchestration frameworks, and production-grade automation architectures for large-scale cloud operations."
 more_link: "yes"
 url: "/enterprise-infrastructure-as-code-implementation-strategies-advanced-iac-imperative-integration/"
+images: ["https://cdn.support.tools/posts/enterprise-infrastructure-as-code-implementation-strategies-advanced-iac-imperative-integration/og-ef5ddc1ccf.jpg"]
 ---
 
 ## Table of Contents

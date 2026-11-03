@@ -30,6 +30,7 @@ editPost:
     URL: "https://github.com/supporttools/website/tree/main/blog/content"
     Text: "Suggest Changes"
     appendFilePath: true
+images: ["https://cdn.support.tools/posts/enterprise-kubectl-kubeconfig-operations-security-guide-2025/og-20c869d2f4.jpg"]
 ---
 
 # Enterprise kubectl & kubeconfig Operations Security Guide 2025

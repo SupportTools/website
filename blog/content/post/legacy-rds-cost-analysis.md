@@ -11,6 +11,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to analyze and optimize costs for legacy Amazon RDS systems. Discover strategies for modernization, cost reduction, and efficient database management in AWS."
 more_link: "yes"
 url: "/legacy-rds-cost-analysis/"
+images: ["https://cdn.support.tools/posts/legacy-rds-cost-analysis/og-1c321be4c3.jpg"]
 ---
 
 Master the art of managing and optimizing costs for legacy Amazon RDS systems while maintaining performance and reliability.

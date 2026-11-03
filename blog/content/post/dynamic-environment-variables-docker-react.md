@@ -10,6 +10,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "A battle-tested solution for injecting environment-specific configuration into React applications at container runtime, with performance optimizations for production deployments"
 more_link: "yes"
 url: "/dynamic-environment-variables-docker-react/"
+images: ["https://cdn.support.tools/posts/dynamic-environment-variables-docker-react/og-141c796e68.jpg"]
 ---
 
 One of the most challenging aspects of containerizing React applications is handling environment-specific configuration. Unlike backend services where environment variables are naturally accessed at runtime, React applications bundle these values during the build process. This creates a dilemma: how do you maintain a single container image while deploying to multiple environments? After implementing this pattern across dozens of production applications, I've refined an approach that elegantly solves this problem without compromising performance or security.

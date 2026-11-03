@@ -4,6 +4,7 @@ date: 2026-01-01T09:00:00-05:00
 draft: false
 tags: ["golang", "devops", "microservices", "kubernetes", "ci/cd", "observability", "infrastructure"]
 categories: ["Development", "DevOps", "Go"]
+images: ["https://cdn.support.tools/posts/devops-strategies-microservices-golang/og-600737551e.jpg"]
 ---
 
 ## Introduction

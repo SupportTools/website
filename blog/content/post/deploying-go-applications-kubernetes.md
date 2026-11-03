@@ -4,6 +4,7 @@ date: 2025-12-30T09:00:00-05:00
 draft: false
 tags: ["golang", "kubernetes", "microservices", "devops", "containers", "cloud-native"]
 categories: ["Development", "Go", "Kubernetes", "DevOps"]
+images: ["https://cdn.support.tools/posts/deploying-go-applications-kubernetes/og-3894482653.jpg"]
 ---
 
 ## Introduction

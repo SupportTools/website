@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Complete enterprise guide to implementing AI-powered GitOps automation for release management. From production CI/CD pipelines to intelligent documentation generation at scale."
 more_link: "yes"
 url: "/enterprise-ai-gitops-automation-comprehensive-release-management-guide/"
+images: ["https://cdn.support.tools/posts/enterprise-ai-gitops-automation-comprehensive-release-management-guide/og-31d66755c5.jpg"]
 ---
 
 Transform your GitOps workflows with enterprise-grade AI automation. This comprehensive guide demonstrates how to build production-scale AI-powered release management systems that automatically generate polished documentation, manage complex deployments, and maintain compliance across distributed teams.

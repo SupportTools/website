@@ -8,6 +8,7 @@ tags: ["database-performance", "query-optimization", "indexing", "partitioning",
 categories: ["Databases", "Performance", "Analytics"]
 author: "Support Tools Team"
 canonical: "https://support.tools/blog/advanced-analytics-database-performance-tuning/"
+images: ["https://cdn.support.tools/posts/advanced-analytics-database-performance-tuning/og-3f404ef033.jpg"]
 ---
 
 # Advanced Analytics Database Performance Tuning: Optimization Strategies for High-Scale Data Workloads

@@ -12,6 +12,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Move RKE2 from ingress-nginx to Traefik without downtime: what v1.36 changed, the built-in rke2-traefik migration, side-by-side testing and annotations."
 more_link: "yes"
 url: "/ingress-nginx-retirement-rke2-migrating-traefik-without-downtime/"
+images: ["https://cdn.support.tools/posts/ingress-nginx-retirement-rke2-migrating-traefik-without-downtime/og-e2df9b7bfe.jpg"]
 ---
 
 The Kubernetes community announced in November 2025 that Ingress-NGINX is being retired. Best-effort maintenance ended in March 2026, and there are no more releases, bug fixes or security patches from upstream. RKE2 shipped ingress-nginx as its default ingress controller until v1.36, so most existing RKE2 clusters still run it.

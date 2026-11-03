@@ -12,6 +12,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Master Linux directory permissions troubleshooting with comprehensive path analysis tools. Complete guide to namei command, permission debugging, security auditing, Apache 403 fixes, and enterprise access control management."
 more_link: "yes"
 url: "/linux-directory-permissions-troubleshooting-guide-2025/"
+images: ["https://cdn.support.tools/posts/linux-directory-permissions-troubleshooting-guide-2025/og-8183582a33.jpg"]
 ---
 
 Understanding and troubleshooting directory permissions is crucial for Linux system administration, security, and application deployment. This comprehensive guide covers advanced permission analysis tools, security auditing techniques, common permission issues, and enterprise-grade access control management strategies.

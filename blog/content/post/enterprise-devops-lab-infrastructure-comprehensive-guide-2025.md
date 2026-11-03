@@ -9,6 +9,7 @@ description: "Complete enterprise guide to building production-grade DevOps lab 
 more_link: "yes"
 url: "/enterprise-devops-lab-infrastructure-comprehensive-guide-2025/"
 showToc: true
+images: ["https://cdn.support.tools/posts/enterprise-devops-lab-infrastructure-comprehensive-guide-2025/og-9c160cb7fe.jpg"]
 ---
 
 # Enterprise DevOps Lab Infrastructure 2025: Comprehensive Guide to Production-Ready Development Environments

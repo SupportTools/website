@@ -4,6 +4,7 @@ date: 2026-01-08T09:00:00-05:00
 draft: false
 categories: ["Docker", "DevOps", "Container Security"]
 tags: ["Docker", "Dockerfile", "Build Checks", "Container Security", "DevOps", "CI/CD", "Docker Best Practices", "Container Optimization", "Image Security", "Build Automation"]
+images: ["https://cdn.support.tools/posts/docker-build-checks-dockerfile-best-practices-guide/og-5eaefd3fbb.jpg"]
 ---
 
 # Docker Build Checks and Dockerfile Best Practices: Building Bulletproof Container Images in 2026

@@ -10,6 +10,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Claude Code answers feel terse and shallow? The cause is architectural, not model degradation. Claude Code's built-in system prompt enforces brevity and minimal changes at a higher priority than your CLAUDE.md. Learn the instruction hierarchy, why CLAUDE.md loses on tone conflicts, and the exact workarounds—output style modes, the --system-prompt flag, and targeted CLAUDE.md patterns—that actually work."
 more_link: "yes"
 url: "/claude-code-system-prompt-behavior-claude-md-optimization-guide/"
+images: ["https://cdn.support.tools/posts/claude-code-system-prompt-behavior-claude-md-optimization-guide/og-9b9eafcd38.jpg"]
 ---
 
 If Claude Code has felt less capable lately — giving one-sentence answers where it used to reason through edge cases, refusing to explain its decisions, skipping the exploration you relied on — you are not imagining it, and the model has not degraded. The cause is architectural: a structural tension between Claude Code's built-in system prompt and your project-level instructions.

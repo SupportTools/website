@@ -11,6 +11,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to securely recover and analyze saved passwords in Remmina remote desktop client. Includes security implications, best practices, and mitigation strategies."
 more_link: "yes"
 url: "/extracting-remmina-passwords/"
+images: ["https://cdn.support.tools/posts/extracting-remmina-passwords/og-450e068db5.jpg"]
 ---
 
 Master the process of securely recovering saved passwords from Remmina while understanding the security implications and implementing proper safeguards.

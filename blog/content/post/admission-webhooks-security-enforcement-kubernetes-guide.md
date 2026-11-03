@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to implementing Kubernetes admission webhooks for security enforcement, including validating and mutating webhooks, custom policy controllers, and production-ready implementations."
 more_link: "yes"
 url: "/admission-webhooks-security-enforcement-kubernetes-guide/"
+images: ["https://cdn.support.tools/posts/admission-webhooks-security-enforcement-kubernetes-guide/og-a97a3fb9ff.jpg"]
 ---
 
 Kubernetes admission webhooks provide a powerful mechanism for enforcing custom security policies and transforming resources before they're persisted to etcd. This comprehensive guide explores building production-grade admission controllers using both validating and mutating webhooks, covering architecture patterns, implementation strategies, and real-world security enforcement scenarios.

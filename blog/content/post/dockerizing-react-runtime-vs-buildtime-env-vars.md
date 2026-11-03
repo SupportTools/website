@@ -10,6 +10,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "A practical comparison of build-time vs. runtime environment variable injection for containerized React applications, with implementation examples and production deployment considerations"
 more_link: "yes"
 url: "/dockerizing-react-runtime-vs-buildtime-env-vars/"
+images: ["https://cdn.support.tools/posts/dockerizing-react-runtime-vs-buildtime-env-vars/og-5899ede038.jpg"]
 ---
 
 When containerizing React applications for deployment across multiple environments, one of the most critical architectural decisions is how to handle environment-specific configuration. After implementing both approaches across numerous production deployments, I've developed strong opinions about the tradeoffs between injecting environment variables at build time versus runtime. This post dives into both methods with practical examples and explains which approach I recommend for most production scenarios.

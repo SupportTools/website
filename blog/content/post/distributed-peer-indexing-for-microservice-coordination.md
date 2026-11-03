@@ -11,6 +11,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "A practical approach to dynamic task distribution in scalable microservice environments without central coordination, using Redis as a lightweight consensus mechanism"
 more_link: "yes"
 url: "/distributed-peer-indexing-for-microservice-coordination/"
+images: ["https://cdn.support.tools/posts/distributed-peer-indexing-for-microservice-coordination/og-f0135ebe8e.jpg"]
 ---
 
 Distributed systems face a fundamental challenge: how to coordinate work across dynamically scaling instances without a central coordinator. This article explores a practical approach to distributed peer indexing that allows microservices to autonomously determine their role in processing tasks, using Redis as a lightweight consensus mechanism.

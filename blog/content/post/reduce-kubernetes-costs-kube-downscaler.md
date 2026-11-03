@@ -10,6 +10,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "A practical guide to implementing kube-downscaler for automatic scaling down of Kubernetes workloads during off-hours, with real-world examples and configuration patterns"
 more_link: "yes"
 url: "/reduce-kubernetes-costs-kube-downscaler/"
+images: ["https://cdn.support.tools/posts/reduce-kubernetes-costs-kube-downscaler/og-616e88402b.jpg"]
 ---
 
 If you're running multiple Kubernetes environments, you're likely all too familiar with the silent budget drain of idle workloads. After helping dozens of organizations optimize their Kubernetes spend, I've found that non-production clusters often run at less than 10% utilization during nights and weekends—yet typically consume 100% of the resources they're allocated. Here's how a simple tool called kube-downscaler helped us dramatically reduce costs without sacrificing development velocity.

@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Complete enterprise guide to implementing Anthropic's Model Context Protocol (MCP) for AI-powered DevOps automation. From production infrastructure to intelligent troubleshooting systems."
 more_link: "yes"
 url: "/enterprise-anthropic-mcp-devops-automation-comprehensive-production-guide/"
+images: ["https://cdn.support.tools/posts/enterprise-anthropic-mcp-devops-automation-comprehensive-production-guide/og-02fa3fabbd.jpg"]
 ---
 
 Transform your DevOps operations with Anthropic's revolutionary Model Context Protocol (MCP). This comprehensive enterprise guide demonstrates how to build production-grade AI-powered infrastructure management systems that eliminate 3 AM troubleshooting sessions and automate complex operational workflows.

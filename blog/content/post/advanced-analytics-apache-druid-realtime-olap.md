@@ -8,6 +8,7 @@ tags: ["apache-druid", "real-time-analytics", "olap", "time-series", "streaming"
 categories: ["Data Engineering", "Analytics", "Real-Time Systems"]
 author: "Support Tools Team"
 canonical: "https://support.tools/blog/advanced-analytics-apache-druid-realtime-olap/"
+images: ["https://cdn.support.tools/posts/advanced-analytics-apache-druid-realtime-olap/og-9f52921749.jpg"]
 ---
 
 # Advanced Analytics with Apache Druid and Real-Time OLAP: High-Performance Time-Series and Event Analysis

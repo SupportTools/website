@@ -11,6 +11,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to effectively configure and optimize IPv4 and IPv6 preferences in Linux systems. Includes configuration examples, performance tuning, and troubleshooting guides."
 more_link: "yes"
 url: "/configuring-ipv4-ipv6-preferences/"
+images: ["https://cdn.support.tools/posts/configuring-ipv4-ipv6-preferences/og-39f213ca40.jpg"]
 ---
 
 Master the art of configuring IPv4 and IPv6 preferences in Linux systems to optimize network performance and reliability.

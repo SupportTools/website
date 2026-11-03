@@ -11,6 +11,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Master RACADM BIOS configuration and automation for Dell PowerEdge servers. Complete guide to remote BIOS management, job queue automation, boot order configuration, and enterprise-scale server deployment strategies."
 more_link: "yes"
 url: "/racadm-bios-configuration-automation-guide-2025/"
+images: ["https://cdn.support.tools/posts/racadm-bios-configuration-automation-guide-2025/og-f241688b23.jpg"]
 ---
 
 RACADM provides powerful remote BIOS configuration capabilities for Dell PowerEdge servers, enabling automated deployment and management at scale. This comprehensive guide covers advanced BIOS settings management, job queue automation, enterprise deployment strategies, and troubleshooting techniques for modern data center operations.

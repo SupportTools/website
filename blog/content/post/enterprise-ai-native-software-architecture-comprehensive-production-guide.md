@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Complete enterprise guide to AI-native software architecture patterns, production implementation strategies, advanced AI integration frameworks, and scalable system design for AI-symbiotic enterprise applications."
 more_link: "yes"
 url: "/enterprise-ai-native-software-architecture-comprehensive-production-guide/"
+images: ["https://cdn.support.tools/posts/enterprise-ai-native-software-architecture-comprehensive-production-guide/og-d3f4ea2232.jpg"]
 ---
 
 ## Table of Contents

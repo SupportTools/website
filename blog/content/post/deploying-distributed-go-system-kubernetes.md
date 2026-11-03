@@ -4,6 +4,7 @@ date: 2025-12-25T09:00:00-05:00
 draft: false
 tags: ["golang", "kubernetes", "microservices", "distributed systems", "observability", "kind"]
 categories: ["Development", "Go", "Kubernetes"]
+images: ["https://cdn.support.tools/posts/deploying-distributed-go-system-kubernetes/og-2e5349958c.jpg"]
 ---
 
 ## Introduction

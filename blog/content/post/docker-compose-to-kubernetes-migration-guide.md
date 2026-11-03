@@ -11,6 +11,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "A practical, step-by-step guide for migrating your Docker Compose applications to Kubernetes with minimal effort, focusing on real-world examples and best practices"
 more_link: "yes"
 url: "/docker-compose-to-kubernetes-migration-guide/"
+images: ["https://cdn.support.tools/posts/docker-compose-to-kubernetes-migration-guide/og-7ba4f2493c.jpg"]
 ---
 
 You've got a working Docker Compose setup, but it's getting unwieldy as your application grows. Kubernetes offers the scaling and orchestration features you need, but the migration path seems daunting. This guide provides a pragmatic, no-nonsense approach to moving from Docker Compose to Kubernetes without rewriting your entire application stack.

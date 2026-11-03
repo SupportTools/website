@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Deploy a production-grade EFK stack on Kubernetes using ECK Operator for Elasticsearch and Kibana lifecycle management and Fluent Operator for declarative Fluent Bit CRD-based configuration."
 more_link: "yes"
 url: "/efk-stack-kubernetes-production-eck-fluent-operator/"
+images: ["https://cdn.support.tools/posts/efk-stack-kubernetes-production-eck-fluent-operator/og-036a5ae090.jpg"]
 ---
 
 Container logs are ephemeral by design — when a pod restarts, its logs vanish unless captured externally. At scale, that means thousands of log streams rotating across hundreds of nodes, with no reliable way to correlate events across service boundaries without centralized log aggregation. The **EFK stack** — Elasticsearch, Fluent Bit, and Kibana — solves this by collecting every log line at the node level, indexing it in a searchable store, and surfacing it through a powerful query interface.

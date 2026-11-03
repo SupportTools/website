@@ -11,6 +11,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Master Active Directory domain controller in-place upgrades with comprehensive adprep preparation workflows. Complete guide to forest and domain preparation for Windows Server 2012 through 2025 upgrade paths."
 more_link: "yes"
 url: "/active-directory-domain-controller-upgrade-adprep-enterprise-guide/"
+images: ["https://cdn.support.tools/posts/active-directory-domain-controller-upgrade-adprep-enterprise-guide/og-2c200dac78.jpg"]
 ---
 
 Active Directory domain controller upgrades require meticulous planning and systematic execution to maintain directory service integrity across enterprise forests. This comprehensive guide covers adprep preparation, supported upgrade paths, and production-ready procedures for Windows Server domain controller in-place upgrades.
