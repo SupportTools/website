@@ -111,12 +111,13 @@ jobs:
       - name: Check code blocks use theme syntax colors, not inline styles
         run: npm run check:inline-colors
 
-      - name: Unit tests (theme, social link guards, URL guard, IndexNow, SEO guards)
+      - name: Unit tests (theme, social link guards, URL guard, IndexNow, SEO guards, share cards)
         run: |
           npm run test:seo
           npm run test:social
           npm run test:urls
           npm run test:indexnow
+          npm run test:og
           npm run test:theme
 
       - name: Check for expired content
