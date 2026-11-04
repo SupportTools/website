@@ -1,11 +1,13 @@
 #!/usr/bin/env node
-// Share-card pipeline: for each post, Codex draws an illustration, a script adds
+// Share-card pipeline: for each post, Codex or OpenAI draws an illustration, a script adds
 // the title overlay, Claude reviews the card, and passing cards are uploaded to
 // cdn.support.tools and linked from the post's frontmatter "images" field.
 // See scripts/og/README.md.
 //
 // Usage:
-//   node scripts/og/run.mjs [--limit N] [--slug S] [--concurrency N] [--no-upload]
+//   node scripts/og/run.mjs [--limit N] [--slug S] [--concurrency N] [--no-upload] [--only-drawn]
+//   node scripts/og/run.mjs submit-batch [--limit N] [--slug S]  # OpenAI Batch: queue art for the next cards
+//   node scripts/og/run.mjs collect-batch [batch_id] [--wait MIN] # fetch finished batch art as raw.png
 //   node scripts/og/run.mjs status
 //   node scripts/og/run.mjs flagged            # contact sheet of cards waiting for you
 //   node scripts/og/run.mjs approve <slug>     # next run uploads it as is
@@ -18,13 +20,17 @@ import { fileURLToPath } from 'node:url';
 import { listPosts, prioritize, excerpt, setImages, cdnKey, readPost } from './lib/posts.mjs';
 import { loadManifest, saveManifest, needsWork } from './lib/manifest.mjs';
 import { composeCard } from './lib/compose.mjs';
-import { imagePrompt, generateImage, reviewCard, PROMPT_VERSION } from './lib/ai.mjs';
+import { imagePrompt, generateImage, reviewCard, imageProvider, PROMPT_VERSION } from './lib/ai.mjs';
 import { uploadCard, verifyServed } from './lib/upload.mjs';
+import { submitBatch, collectBatch, pendingBatchIds } from './lib/batch.mjs';
+import { ledgerPath, imageConfig, BATCH_PENDING } from './lib/openai.mjs';
+import { loadLedger, spent, capUsd, monthKey } from './lib/budget.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..', '..');
 const CONTENT = join(ROOT, 'blog', 'content', 'post');
 const WORK = join(ROOT, '.og-work');
 const MANIFEST = join(ROOT, 'scripts', 'og', 'manifest.json');
+const LEDGER = ledgerPath(process.env, WORK);
 const ATTEMPTS = 2;
 // A Codex usage limit fails every card in seconds; stop instead of marking the whole queue failed.
 const MAX_FAILS_IN_A_ROW = Number(process.env.OG_MAX_FAILS_IN_A_ROW || 5);
@@ -42,13 +48,20 @@ let uploadsDisabled = flag('--no-upload');
 let uploadsStopped = false; // Vault failed mid-run, as opposed to --no-upload
 let failsInARow = 0;
 let halted = '';
+let haltCode = 2;
 
-async function makeCard(post, dir, note) {
-  const prompt = imagePrompt(post, excerpt(post.body), note);
-  const raw = await generateImage({ dir, prompt });
+async function compose(post, dir) {
   const card = join(dir, 'card.jpg');
-  await composeCard({ raw, out: card, title: post.title, categories: post.categories });
+  await composeCard({ raw: join(dir, 'raw.png'), out: card, title: post.title, categories: post.categories });
   return card;
+}
+
+async function makeCard(post, dir, note, entry) {
+  const provider = imageProvider();
+  const prompt = imagePrompt(post, excerpt(post.body), note, provider);
+  await generateImage({ dir, prompt, workDir: WORK });
+  entry.provider = provider;
+  return compose(post, dir);
 }
 
 async function publish(post, card, entry) {
@@ -69,11 +82,18 @@ async function processPost(post) {
     const humanApproved = entry.status === 'approved' && existsSync(card);
     if (!(entry.status === 'ready' && existsSync(card)) && !humanApproved) {
       let note = entry.status === 'rejected' ? entry.note || entry.reason : '';
+      // Art a batch already drew is composed as is; a retry draws with the configured provider.
+      const drawn = entry.status === 'drawn' && existsSync(join(dir, 'raw.png'));
       let verdict;
       for (let i = 0; i < ATTEMPTS; i++) {
-        log(post.slug, i ? `retry: ${note}` : 'generating');
-        await makeCard(post, dir, note);
-        entry.attempts += 1;
+        if (i === 0 && drawn) {
+          log(post.slug, 'composing batch art');
+          await compose(post, dir);
+        } else {
+          log(post.slug, i ? `retry: ${note}` : 'generating');
+          await makeCard(post, dir, note, entry);
+          entry.attempts += 1;
+        }
         verdict = await reviewCard({ card, post });
         if (verdict.verdict === 'pass') break;
         note = verdict.reason;
@@ -92,6 +112,12 @@ async function processPost(post) {
     await publish(post, card, entry);
   } catch (e) {
     const msg = String(e.message || e).split('\n')[0];
+    if (e.halt) {
+      // Monthly cap reached, no API key, or the key was refused: every further card
+      // would fail the same way, so stop without marking this one failed.
+      if (!halted) { halted = msg; haltCode = e.name === 'BudgetError' ? 4 : 2; console.error(`stopping: ${msg}`); }
+      return;
+    }
     if (/Vault/.test(msg)) {
       uploadsDisabled = uploadsStopped = true;
       console.error(`uploads stopped: ${msg}`);
@@ -113,14 +139,16 @@ async function runAll() {
   const limit = Number(opt('--limit', Infinity));
   const concurrency = Number(opt('--concurrency', 2));
   let posts = slug ? [readPost(join(CONTENT, `${slug}.md`))] : prioritize(listPosts(CONTENT));
-  posts = posts.filter((p) => p && (slug || needsWork(manifest[p.slug]))).slice(0, limit);
+  posts = posts.filter((p) => p && (slug || needsWork(manifest[p.slug])));
+  if (flag('--only-drawn')) posts = posts.filter((p) => manifest[p.slug]?.status === 'drawn');
+  posts = posts.slice(0, limit);
   console.log(`${posts.length} posts to process, concurrency ${concurrency}${uploadsDisabled ? ', uploads off' : ''}`);
   let next = 0;
   await Promise.all(Array.from({ length: concurrency }, async () => {
     while (next < posts.length && !halted) await processPost(posts[next++]);
   }));
   status();
-  if (halted) process.exitCode = 2;
+  if (halted) process.exitCode = haltCode;
   else if (uploadsStopped) process.exitCode = 3;
 }
 
@@ -129,6 +157,42 @@ function status() {
   for (const e of Object.values(manifest)) counts[e.status] = (counts[e.status] || 0) + 1;
   const total = listPosts(CONTENT).length;
   console.log(`posts ${total}, no card yet ${total - Object.keys(manifest).length},`, counts);
+  const ledger = loadLedger(LEDGER);
+  const month = monthKey();
+  if (Object.keys(ledger.months).length) {
+    console.log(`openai ${month}: estimated $${spent(ledger, month).toFixed(4)} of $${capUsd().toFixed(2)} cap`
+      + `, ${ledger.months[month]?.images || 0} images, ${pendingBatchIds(manifest).length} batches pending`);
+  }
+}
+
+// OpenAI Batch: queue art for the next cards that need it, in the same order as a
+// normal run, up to --limit and the monthly cap.
+async function submit() {
+  const slug = opt('--slug');
+  const limit = Number(opt('--limit', Infinity));
+  const posts = slug ? [readPost(join(CONTENT, `${slug}.md`))] : prioritize(listPosts(CONTENT));
+  const cfg = imageConfig();
+  console.log(`submit-batch: ${cfg.model} ${cfg.size} ${cfg.quality}, cap $${capUsd().toFixed(2)}/month`);
+  const res = await submitBatch({
+    manifest, posts, workDir: WORK, ledgerFile: LEDGER, limit, save,
+    promptFor: (post, entry) => imagePrompt(post, excerpt(post.body), entry?.status === 'rejected' ? entry.note || entry.reason : '', 'openai'),
+  });
+  if (res.capped) process.exitCode = 4;
+}
+
+// Collects one batch, or every batch with cards still waiting. --wait MIN polls
+// once a minute until each is finished or MIN minutes have passed.
+async function collect() {
+  const ids = argv[1] && !argv[1].startsWith('--') ? [argv[1]] : pendingBatchIds(manifest);
+  if (!ids.length) { console.log('collect-batch: no batches pending'); return; }
+  const deadline = Date.now() + Number(opt('--wait', 0)) * 60000;
+  for (const id of ids) {
+    for (;;) {
+      const { state } = await collectBatch({ manifest, id, workDir: WORK, ledgerFile: LEDGER, save });
+      if (!BATCH_PENDING.includes(state) || Date.now() >= deadline) break;
+      await new Promise((r) => setTimeout(r, Math.min(60000, Math.max(0, deadline - Date.now()))));
+    }
+  }
 }
 
 function flagged() {
@@ -171,4 +235,13 @@ else if (cmd === 'flagged') flagged();
 else if (cmd === 'approve') mark('approved');
 else if (cmd === 'reject') mark('rejected');
 else if (cmd === 'recompose') await recompose();
+else if (cmd === 'submit-batch' || cmd === 'collect-batch') {
+  try {
+    if (!process.env.OPENAI_API_KEY) throw new Error('OPENAI_API_KEY is not set');
+    await (cmd === 'submit-batch' ? submit() : collect());
+  } catch (e) {
+    console.error(`${cmd}: ${e.message}`);
+    process.exitCode = e.name === 'BudgetError' ? 4 : 1;
+  }
+}
 else await runAll();

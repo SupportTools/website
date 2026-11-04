@@ -10,8 +10,15 @@ import { readFileSync, writeFileSync, existsSync, renameSync } from 'node:fs';
 //   approved  a human approved a flagged card; next run uploads it
 //   rejected  a human rejected it; next run generates a fresh image
 //   failed    generation or upload errored; next run retries
+//   batched   sent to an OpenAI batch (batchId); collect-batch fetches the art
+//   drawn     a batch drew raw.png; next run composes, reviews and uploads it
 // Card files live in the gitignored .og-work/<slug>/ on the machine that ran.
-export const STATUSES = ['live', 'ready', 'flagged', 'approved', 'rejected', 'failed'];
+//
+// Optional entry fields: provider ("codex" or "openai", which drew the art; absent
+// on entries from before providers existed means codex) and batchId (the OpenAI
+// batch that drew or is drawing it, the same value as cards.batch_id in the
+// publisher database). Older manifests without them load unchanged.
+export const STATUSES = ['live', 'ready', 'flagged', 'approved', 'rejected', 'failed', 'batched', 'drawn'];
 
 export function loadManifest(path) {
   if (!existsSync(path)) return {};
@@ -34,5 +41,5 @@ export function saveManifest(path, manifest) {
 // Whether a run should (re)make this post's card.
 export function needsWork(entry) {
   // No status means a run stopped mid-card; redo it.
-  return !entry || !entry.status || ['ready', 'approved', 'rejected', 'failed'].includes(entry.status);
+  return !entry || !entry.status || ['ready', 'approved', 'rejected', 'failed', 'drawn'].includes(entry.status);
 }
