@@ -12,6 +12,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Cloudflare Pages build command and output directory per framework, Next.js static export (out), Workers for full-stack Next.js, and R2 bucket setup via API."
 more_link: "yes"
 url: "/cloudflare-pages-comprehensive-guide/"
+images: ["https://cdn.support.tools/posts/cloudflare-pages-comprehensive-guide/og-5b59d57945.jpg"]
 ---
 
 ![Cloudflare Pages Architecture](/images/posts/cloudflare/cloudflare-pages-architecture.svg)

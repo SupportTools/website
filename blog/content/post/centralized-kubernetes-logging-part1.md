@@ -10,6 +10,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive guide to implementing a scalable, multi-tenant logging architecture for Kubernetes clusters using FluentBit, FluentD, and OpenSearch"
 more_link: "yes"
 url: "/centralized-kubernetes-logging-part1/"
+images: ["https://cdn.support.tools/posts/centralized-kubernetes-logging-part1/og-9c3a97dec6.jpg"]
 ---
 
 Managing logs across multiple Kubernetes clusters presents a significant operational challenge, especially in multi-tenant environments where data isolation is critical. In this three-part series, I'll share a battle-tested architecture for implementing centralized, multi-tenant logging using FluentBit, FluentD, and OpenSearch. This first installment covers the foundational architecture and implementation details to get your logging pipeline established.

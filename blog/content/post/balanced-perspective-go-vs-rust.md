@@ -4,6 +4,7 @@ date: 2025-09-16T09:00:00-05:00
 draft: false
 tags: ["golang", "rust", "programming languages", "production systems", "microservices"]
 categories: ["Development", "Programming"]
+images: ["https://cdn.support.tools/posts/balanced-perspective-go-vs-rust/og-20bda3e246.jpg"]
 ---
 
 ## Introduction

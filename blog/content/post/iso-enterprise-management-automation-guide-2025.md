@@ -6,6 +6,7 @@ tags: ["iso", "mounting", "virtualization", "automation", "pxe", "network-boot",
 categories: ["Infrastructure"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Master enterprise ISO management in 2025. Comprehensive guide covering automated ISO deployment, virtual media management, network boot infrastructure, mass installation automation, and advanced troubleshooting for large-scale server deployments."
+images: ["https://cdn.support.tools/posts/iso-enterprise-management-automation-guide-2025/og-8121e3c863.jpg"]
 ---
 
 # Enterprise ISO Management & Automation Guide 2025: Mass Deployment, Virtual Media & Network Boot

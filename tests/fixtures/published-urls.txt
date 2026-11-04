@@ -821,6 +821,7 @@
 /gloo-edge-modern-api-gateway-kubernetes-enterprise-guide/
 /go-1-24-features-performance-improvements/
 /go-1-24-weak-pointers-efficient-caching/
+/go-1-27-release-generic-methods-json-v2/
 /go-advanced-techniques-for-better-code/
 /go-authentication-authorization-guide/
 /go-best-practices-enterprise-development-team-standards-guide/
@@ -1982,6 +1983,7 @@
 /tags/embedded-systems/
 /tags/embedded/
 /tags/emergency-response/
+/tags/encoding/json/
 /tags/encryption-at-rest/
 /tags/encryption/
 /tags/endpoints/
@@ -2104,6 +2106,7 @@
 /tags/gcp/
 /tags/gdb/
 /tags/gdpr/
+/tags/generics/
 /tags/ghostcms/
 /tags/git-workflow/
 /tags/git/
@@ -2116,6 +2119,7 @@
 /tags/global-infrastructure/
 /tags/gloo-edge/
 /tags/gnupg/
+/tags/go-1.27/
 /tags/go/
 /tags/go1.24/
 /tags/gobgp/

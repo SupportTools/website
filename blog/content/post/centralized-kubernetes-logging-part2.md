@@ -10,6 +10,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Implementing advanced multi-tenancy in OpenSearch with document-level security and shared indexes to optimize performance while maintaining secure tenant isolation"
 more_link: "yes"
 url: "/centralized-kubernetes-logging-part2/"
+images: ["https://cdn.support.tools/posts/centralized-kubernetes-logging-part2/og-dd6b2e1539.jpg"]
 ---
 
 In [Part 1](/centralized-kubernetes-logging-part1/) of this series, we established a robust logging architecture using FluentBit, FluentD, and OpenSearch. While that setup works well, it creates separate indices for each tenant, which can lead to resource inefficiency and increased operational complexity as your tenant count grows. In this second installment, I'll show you how to optimize the architecture using shared indices with document-level security to maintain tenant isolation while maximizing efficiency.

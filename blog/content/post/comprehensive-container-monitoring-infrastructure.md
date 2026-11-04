@@ -12,6 +12,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Grafana Tempo default ports (3200 HTTP, 9095 gRPC, 4317/4318 OTLP), why receivers bind to localhost, and a working OTel Collector and Tempo Compose stack."
 more_link: "yes"
 url: "/comprehensive-container-monitoring-infrastructure/"
+images: ["https://cdn.support.tools/posts/comprehensive-container-monitoring-infrastructure/og-72c7ffa80a.jpg"]
 ---
 
 Which port does Grafana Tempo listen on, and why does the collector get "connection refused" on 4317? This page answers that first, then builds a complete container monitoring stack (Prometheus, Grafana, Alertmanager, EFK, OpenTelemetry Collector, Jaeger and Tempo) with Docker Compose.

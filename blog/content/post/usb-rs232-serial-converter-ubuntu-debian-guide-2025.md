@@ -11,6 +11,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Complete guide to using USB to RS232 serial converters on Ubuntu/Debian Linux. Learn device detection, driver installation, serial console access, troubleshooting, and advanced serial communication techniques for embedded systems and network equipment."
 more_link: "yes"
 url: "/usb-rs232-serial-converter-ubuntu-debian-guide-2025/"
+images: ["https://cdn.support.tools/posts/usb-rs232-serial-converter-ubuntu-debian-guide-2025/og-9afa83a231.jpg"]
 ---
 
 USB to RS232 serial converters provide essential console access to network equipment, embedded systems, and legacy hardware. This comprehensive guide covers device detection, driver configuration, serial communication setup, and advanced troubleshooting techniques for Ubuntu and Debian systems.

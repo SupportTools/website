@@ -4,6 +4,7 @@ date: 2025-10-23T09:00:00-05:00
 draft: false
 tags: ["go", "golang", "grpc", "microservices", "protocol-buffers", "distributed-systems"]
 categories: ["Programming", "Go", "Microservices"]
+images: ["https://cdn.support.tools/posts/building-microservices-go-grpc-protobuf/og-e403749915.jpg"]
 ---
 
 In modern software development, microservices architecture has become the standard approach for building large-scale, distributed systems. This architectural pattern allows teams to develop, deploy, and scale components independently, improving both development velocity and system resilience. When implementing microservices, the choice of communication protocol and programming language significantly impacts your system's performance, maintainability, and scalability.

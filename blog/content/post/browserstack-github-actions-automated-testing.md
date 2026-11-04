@@ -11,6 +11,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to implementing automated cross-browser and cross-platform testing using BrowserStack with GitHub Actions. Learn how to set up matrix testing for web and mobile applications with detailed workflows, configuration patterns, and best practices."
 more_link: "yes"
 url: "/browserstack-github-actions-automated-testing/"
+images: ["https://cdn.support.tools/posts/browserstack-github-actions-automated-testing/og-51fa3ceca8.jpg"]
 ---
 
 ![BrowserStack GitHub Actions Integration](/images/posts/testing/browserstack-github-actions.svg)

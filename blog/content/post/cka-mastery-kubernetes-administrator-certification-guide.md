@@ -4,6 +4,7 @@ date: 2025-11-25T09:00:00-05:00
 draft: false
 categories: ["Kubernetes", "Kubernetes Certification", "DevOps", "Infrastructure"]
 tags: ["CKA", "Kubernetes", "Certification", "kubectl", "Cluster Administration", "DevOps", "Cloud Native", "Infrastructure Management", "Linux Foundation", "Career Development", "System Administration", "Container Orchestration"]
+images: ["https://cdn.support.tools/posts/cka-mastery-kubernetes-administrator-certification-guide/og-eef75ef24b.jpg"]
 ---
 
 # CKA Mastery: The Complete Guide to Kubernetes Administration and Certification Excellence

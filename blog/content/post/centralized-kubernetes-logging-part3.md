@@ -10,6 +10,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Implementing comprehensive monitoring for your Kubernetes logging infrastructure with Prometheus and Grafana to ensure reliability and performance"
 more_link: "yes"
 url: "/centralized-kubernetes-logging-part3/"
+images: ["https://cdn.support.tools/posts/centralized-kubernetes-logging-part3/og-fb054f2773.jpg"]
 ---
 
 In the [first part](/centralized-kubernetes-logging-part1/) of this series, we set up a centralized logging infrastructure using FluentBit, FluentD, and OpenSearch. In [part two](/centralized-kubernetes-logging-part2/), we optimized our architecture with shared indices and document-level security. Now, we'll complete our logging platform by implementing comprehensive monitoring to ensure we have full visibility into the health and performance of the entire system.

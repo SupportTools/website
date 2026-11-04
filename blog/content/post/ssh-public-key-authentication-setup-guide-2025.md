@@ -12,6 +12,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Master SSH public key authentication for secure passwordless server access. Complete guide to generating SSH keys, configuring remote servers, troubleshooting connection issues, and automating secure remote access for DevOps workflows."
 more_link: "yes"
 url: "/ssh-public-key-authentication-setup-guide-2025/"
+images: ["https://cdn.support.tools/posts/ssh-public-key-authentication-setup-guide-2025/og-9eec79f284.jpg"]
 ---
 
 SSH public key authentication provides secure, passwordless access to remote Linux servers and is essential for modern DevOps workflows. This comprehensive guide covers SSH key generation, server configuration, security best practices, and automation integration for enterprise environments.

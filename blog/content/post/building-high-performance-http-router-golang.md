@@ -11,6 +11,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive guide to implementing your own blazing-fast HTTP router in Go using trie and radix tree data structures, with optimizations and advanced features"
 more_link: "yes"
 url: "/building-high-performance-http-router-golang/"
+images: ["https://cdn.support.tools/posts/building-high-performance-http-router-golang/og-dc8627bc9b.jpg"]
 ---
 
 HTTP routers are fundamental components of web applications, directing incoming requests to the appropriate handlers. While Go's standard library provides a basic router with `http.ServeMux`, building your own gives you deeper insights into web internals and allows for custom routing capabilities. This guide walks through implementing a high-performance HTTP router from scratch.

@@ -12,6 +12,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive guide to implementing chaos engineering practices in Kubernetes environments to improve microservice resilience, with practical examples using Chaos Toolkit, Chaos Monkey, and Istio"
 more_link: "yes"
 url: "/chaos-engineering-kubernetes-microservices-resilience/"
+images: ["https://cdn.support.tools/posts/chaos-engineering-kubernetes-microservices-resilience/og-cdc464a0a3.jpg"]
 ---
 
 In an era of distributed systems and cloud-native architectures, unexpected failures are inevitable. Chaos engineering has emerged as a disciplined approach to building resilience by proactively identifying weaknesses through controlled experiments. This comprehensive guide explores how to implement chaos engineering in Kubernetes environments to create more robust microservice architectures.

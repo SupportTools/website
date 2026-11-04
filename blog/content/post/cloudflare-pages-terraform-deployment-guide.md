@@ -11,6 +11,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to implementing Cloudflare Pages, KV-Namespace, and R2 storage using Terraform with secure credential management, modular configuration, and production-ready deployment practices."
 more_link: "yes"
 url: "/cloudflare-pages-terraform-deployment-guide/"
+images: ["https://cdn.support.tools/posts/cloudflare-pages-terraform-deployment-guide/og-a665992a93.jpg"]
 ---
 
 ![Cloudflare Terraform Architecture](/images/posts/terraform/cloudflare-terraform-architecture.svg)

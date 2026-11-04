@@ -10,6 +10,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Discover effective ways to keep your coding skills sharp with coding challenges and problem-solving platforms."
 more_link: "yes"
 url: "/keeping-your-code-skills-sharp/"
+images: ["https://cdn.support.tools/posts/keeping-your-code-skills-sharp/og-4ba2d5fd8a.jpg"]
 ---
 
 In the fast-paced world of technology, keeping your coding skills sharp is essential. A colleague recently mentioned how "programming interview problems" are a fun way to practice coding and problem-solving skills. Intrigued, I decided to try them out for a month to see how they could benefit me.

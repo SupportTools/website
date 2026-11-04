@@ -4,6 +4,7 @@ date: 2025-10-28T09:00:00-05:00
 draft: false
 tags: ["go", "golang", "websockets", "real-time", "gorilla", "concurrency"]
 categories: ["Programming", "Go", "Web Development"]
+images: ["https://cdn.support.tools/posts/building-realtime-apps-go-websockets/og-258eefeb76.jpg"]
 ---
 
 In today's web landscape, users expect immediate responses and real-time updates. From collaborative editors and live dashboards to chat applications and multiplayer games, real-time functionality has become a standard feature. WebSockets enable this by providing full-duplex communication between clients and servers over a persistent connection.

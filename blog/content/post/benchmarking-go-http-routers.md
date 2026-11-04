@@ -11,6 +11,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive performance analysis of popular Go HTTP routers including httprouter, gin, chi, echo and more, with detailed benchmark results and architectural insights"
 more_link: "yes"
 url: "/benchmarking-go-http-routers/"
+images: ["https://cdn.support.tools/posts/benchmarking-go-http-routers/og-867a6404ad.jpg"]
 ---
 
 When building web applications or APIs in Go, choosing the right HTTP router can significantly impact performance, especially at scale. This article analyzes and compares the performance characteristics of popular Go HTTP routers to help you make an informed choice for your next project.

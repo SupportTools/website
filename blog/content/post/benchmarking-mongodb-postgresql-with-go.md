@@ -4,6 +4,7 @@ date: 2025-09-25T09:00:00-05:00
 draft: false
 tags: ["Go", "MongoDB", "PostgreSQL", "Database", "Performance", "Benchmarking"]
 categories: ["Databases", "Go"]
+images: ["https://cdn.support.tools/posts/benchmarking-mongodb-postgresql-with-go/og-80c8f1190c.jpg"]
 ---
 
 When selecting a database for a production application, theoretical comparisons only get you so far. What matters is how the database performs with your specific workloads and access patterns. In this article, we'll explore how to build a comprehensive benchmarking suite in Go to compare MongoDB and PostgreSQL across common real-world operations, providing actionable insights for your next project.

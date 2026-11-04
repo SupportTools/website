@@ -10,6 +10,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive benchmark analysis of Go's goroutine performance and scalability when pushed to extreme concurrency levels"
 more_link: "yes"
 url: "/benchmarking-go-goroutines-scaling-limits-performance/"
+images: ["https://cdn.support.tools/posts/benchmarking-go-goroutines-scaling-limits-performance/og-c86dabb5c1.jpg"]
 ---
 
 Goroutines are Go's flagship feature for building concurrent applications, but how do they perform when scaled to extreme levels? This article shares the results of comprehensive benchmarks running 10K, 100K, and 1 million concurrent goroutines.

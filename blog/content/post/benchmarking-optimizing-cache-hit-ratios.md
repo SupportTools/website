@@ -10,6 +10,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to identify, measure, and fix poor cache hit ratios in your Go applications to dramatically improve performance without adding hardware resources"
 more_link: "yes"
 url: "/benchmarking-optimizing-cache-hit-ratios/"
+images: ["https://cdn.support.tools/posts/benchmarking-optimizing-cache-hit-ratios/og-4578a76d18.jpg"]
 ---
 
 When applications start slowing down, our instinct is often to throw more hardware at the problem or spend days optimizing database queries. However, one of the most significant yet overlooked performance culprits is poor cache utilization. This article explores how cache misses silently degrade performance and provides practical strategies to benchmark and optimize your cache hit ratios.

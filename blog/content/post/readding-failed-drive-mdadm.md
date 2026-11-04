@@ -11,6 +11,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to safely re-add failed drives to your mdadm RAID array. A comprehensive guide to recovery procedures, testing, and best practices for Linux software RAID management."
 more_link: "yes"
 url: "/readding-failed-drive-mdadm/"
+images: ["https://cdn.support.tools/posts/readding-failed-drive-mdadm/og-318715eeff.jpg"]
 ---
 
 Master the process of recovering and re-adding failed drives to your mdadm RAID array while ensuring data integrity and optimal performance.

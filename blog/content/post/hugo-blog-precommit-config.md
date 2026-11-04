@@ -11,6 +11,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to implement robust pre-commit hooks for your Hugo blog to ensure content quality, formatting consistency, and prevent common errors before they reach your repository."
 more_link: "yes"
 url: "/hugo-blog-precommit-config/"
+images: ["https://cdn.support.tools/posts/hugo-blog-precommit-config/og-f6b044462e.jpg"]
 ---
 
 Master the art of maintaining high-quality Hugo blog content with automated pre-commit checks and validations.

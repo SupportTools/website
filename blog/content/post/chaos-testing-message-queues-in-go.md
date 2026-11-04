@@ -4,6 +4,7 @@ date: 2025-11-20T09:00:00-05:00
 draft: false
 tags: ["golang", "message queues", "kafka", "rabbitmq", "chaos testing", "reliability engineering"]
 categories: ["Development", "Go"]
+images: ["https://cdn.support.tools/posts/chaos-testing-message-queues-in-go/og-028327bbc9.jpg"]
 ---
 
 ## Introduction

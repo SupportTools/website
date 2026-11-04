@@ -11,6 +11,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive guide to benchmarking, analyzing, and optimizing HTTP routers in Go, with practical strategies for improving routing performance in high-traffic applications"
 more_link: "yes"
 url: "/benchmarking-optimizing-go-http-routers/"
+images: ["https://cdn.support.tools/posts/benchmarking-optimizing-go-http-routers/og-89d438a297.jpg"]
 ---
 
 HTTP routers form the backbone of web applications, determining how quickly incoming requests are directed to appropriate handlers. As applications scale, router performance becomes increasingly critical. This guide explores strategies for benchmarking and optimizing HTTP routers in Go, with practical techniques to squeeze out maximum throughput and minimize latency.

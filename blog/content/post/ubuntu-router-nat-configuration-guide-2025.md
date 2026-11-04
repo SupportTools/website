@@ -12,6 +12,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Master Ubuntu router configuration with NAT, iptables, and advanced networking. Complete guide to Linux gateway setup, IP forwarding, firewall rules, traffic shaping, VPN integration, and enterprise network management."
 more_link: "yes"
 url: "/ubuntu-router-nat-configuration-guide-2025/"
+images: ["https://cdn.support.tools/posts/ubuntu-router-nat-configuration-guide-2025/og-e971bb51b1.jpg"]
 ---
 
 Ubuntu servers can function as powerful network routers with NAT capabilities, providing enterprise-grade routing, firewall protection, and network services. This comprehensive guide covers router configuration, iptables management, advanced networking features, and enterprise deployment strategies.

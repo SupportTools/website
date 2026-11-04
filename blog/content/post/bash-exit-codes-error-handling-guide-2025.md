@@ -12,6 +12,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Master Bash exit codes and error handling with comprehensive command status management. Complete guide to exit code checking, error handling patterns, script debugging, and robust automation techniques for enterprise shell scripting."
 more_link: "yes"
 url: "/bash-exit-codes-error-handling-guide-2025/"
+images: ["https://cdn.support.tools/posts/bash-exit-codes-error-handling-guide-2025/og-ad9c703868.jpg"]
 ---
 
 Bash exit codes provide essential feedback about command execution success or failure, enabling robust error handling and automation. This comprehensive guide covers exit code fundamentals, advanced error handling patterns, debugging techniques, and enterprise-grade script reliability practices.

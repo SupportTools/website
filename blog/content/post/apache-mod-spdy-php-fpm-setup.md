@@ -11,6 +11,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to optimize your Apache web server performance by implementing mod_spdy with PHP-FPM. A comprehensive guide to configuration, optimization, and troubleshooting."
 more_link: "yes"
 url: "/apache-mod-spdy-php-fpm-setup/"
+images: ["https://cdn.support.tools/posts/apache-mod-spdy-php-fpm-setup/og-18a9b62181.jpg"]
 ---
 
 Master the art of high-performance web serving by combining Apache's mod_spdy with PHP-FPM for optimal speed and resource utilization.

@@ -10,6 +10,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to optimize Hugo sitemaps to improve search engine crawling efficiency by prioritizing content pages over taxonomy listings. Includes configuration examples and best practices."
 more_link: "yes"
 url: "/optimizing-hugo-sitemaps/"
+images: ["https://cdn.support.tools/posts/optimizing-hugo-sitemaps/og-988dbbcf4e.jpg"]
 ---
 
 Master the art of optimizing Hugo sitemaps to ensure search engines focus on your valuable content first, improving crawl efficiency and SEO performance.

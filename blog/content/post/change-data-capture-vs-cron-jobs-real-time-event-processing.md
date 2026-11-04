@@ -12,6 +12,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive guide to replacing traditional cron jobs with Change Data Capture (CDC) patterns for real-time, efficient, and scalable event processing in Kubernetes environments"
 more_link: "yes"
 url: "/change-data-capture-vs-cron-jobs-real-time-event-processing/"
+images: ["https://cdn.support.tools/posts/change-data-capture-vs-cron-jobs-real-time-event-processing/og-51466f032a.jpg"]
 ---
 
 Traditional cron jobs have long been the default approach for scheduled tasks in backend systems. However, as applications scale and real-time processing becomes increasingly important, the limitations of polling-based cron jobs become apparent. Change Data Capture (CDC) offers a modern, event-driven alternative that can significantly reduce latency, database load, and operational complexity.

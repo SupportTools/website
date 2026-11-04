@@ -11,6 +11,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to implement circuit breakers and priority queues in Rust to create fault-tolerant microservices that gracefully handle failures and prioritize critical workloads"
 more_link: "yes"
 url: "/building-resilient-rust-microservices-circuit-breaker-priority-queues/"
+images: ["https://cdn.support.tools/posts/building-resilient-rust-microservices-circuit-breaker-priority-queues/og-3b7b689520.jpg"]
 ---
 
 In modern distributed systems, microservices must cope with unreliable dependencies and varying workloads. Two patterns — circuit breaker and priority queues — help make services more resilient and responsive. This comprehensive guide explores how to build a Rust microservice that combines both, ensuring graceful degradation under failure and preferential handling of critical tasks.

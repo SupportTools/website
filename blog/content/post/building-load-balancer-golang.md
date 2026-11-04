@@ -11,6 +11,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive guide to implementing a high-performance, feature-rich load balancer in Go with multiple distribution strategies, health checks, and production optimizations"
 more_link: "yes"
 url: "/building-load-balancer-golang/"
+images: ["https://cdn.support.tools/posts/building-load-balancer-golang/og-6e16a67083.jpg"]
 ---
 
 Load balancers are critical components in modern distributed systems, ensuring reliability, scalability, and high availability. This guide walks through building a robust load balancer in Go, from fundamental concepts to advanced features and optimizations.

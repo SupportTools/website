@@ -12,6 +12,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Master mounting Windows/Samba shares on Ubuntu/Debian systems. Complete guide to CIFS/SMB configuration, persistent mounting, Active Directory integration, security best practices, and enterprise network storage management."
 more_link: "yes"
 url: "/mount-windows-samba-shares-ubuntu-debian-guide-2025/"
+images: ["https://cdn.support.tools/posts/mount-windows-samba-shares-ubuntu-debian-guide-2025/og-7e21647b1b.jpg"]
 ---
 
 Mounting Windows/Samba shares on Ubuntu and Debian systems enables seamless access to network storage, file servers, and NAS devices. This comprehensive guide covers CIFS/SMB configuration, persistent mounting, Active Directory integration, and enterprise-grade network storage management techniques.

@@ -11,6 +11,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to optimize Apache web server performance by implementing precompressed static files with gzip. Includes configuration examples, automation scripts, and performance monitoring techniques."
 more_link: "yes"
 url: "/apache-precompressed-static-files/"
+images: ["https://cdn.support.tools/posts/apache-precompressed-static-files/og-f1c59f2a90.jpg"]
 ---
 
 Master the art of optimizing Apache web server performance by implementing precompressed static files with gzip compression.

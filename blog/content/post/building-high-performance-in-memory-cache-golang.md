@@ -11,6 +11,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive guide to designing and implementing scalable, thread-safe in-memory caching systems in Go, with advanced features and production optimization techniques"
 more_link: "yes"
 url: "/building-high-performance-in-memory-cache-golang/"
+images: ["https://cdn.support.tools/posts/building-high-performance-in-memory-cache-golang/og-00478ba6f5.jpg"]
 ---
 
 In-memory caching is a fundamental technique for building high-performance applications. This guide walks through implementing a robust in-memory cache in Go, from basic concepts to production-ready features like automatic expiration, thread safety, and distributed capabilities.

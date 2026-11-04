@@ -11,6 +11,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Master XFS filesystem management with a comprehensive guide to inode handling, monitoring, and optimization. Learn how to prevent inode exhaustion and maintain optimal filesystem performance."
 more_link: "yes"
 url: "/understanding-xfs-inodes/"
+images: ["https://cdn.support.tools/posts/understanding-xfs-inodes/og-c4de14ced5.jpg"]
 ---
 
 Learn how to effectively manage and monitor XFS filesystem inodes to prevent exhaustion and maintain optimal system performance.
