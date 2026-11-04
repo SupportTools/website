@@ -1,11 +1,22 @@
-// The two model calls: Codex draws the illustration, Claude judges the finished
-// card. Both run as local CLIs under the operator's existing logins.
+// The two model calls: an image provider draws the illustration, Claude judges the
+// finished card. The provider is OG_IMAGE_PROVIDER: "codex" (the default, the local
+// CLI under the operator's login) or "openai" (the images API, lib/openai.mjs).
+// The reviewer is always the local claude CLI.
 import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
 
 const run = promisify(execFile);
 import { existsSync, writeFileSync, rmSync } from 'node:fs';
 import { join } from 'node:path';
+import { generateImageOpenAI } from './openai.mjs';
+
+export const PROVIDERS = ['codex', 'openai'];
+
+export function imageProvider(env = process.env) {
+  const p = env.OG_IMAGE_PROVIDER || 'codex';
+  if (!PROVIDERS.includes(p)) throw new Error(`OG_IMAGE_PROVIDER must be one of ${PROVIDERS.join('|')}, got ${p}`);
+  return p;
+}
 
 // Bump when the style text changes, so the manifest shows which cards used it.
 export const PROMPT_VERSION = 1;
@@ -18,11 +29,18 @@ const STYLE = [
   'One clear focal subject on the right that reads at small thumbnail size.',
 ].join(' ');
 
-export function imagePrompt(post, excerptText, retryNote) {
+// The codex prompt tells the agent to draw and save the file; the openai prompt is
+// sent straight to the images endpoint, so it only describes the picture.
+export function imagePrompt(post, excerptText, retryNote, provider = 'codex') {
+  const lead = provider === 'openai'
+    ? ['A landscape social-share header image for a technical blog article.']
+    : [
+      'Use your image generation tool to create ONE landscape social-share header image',
+      '(about 1.91:1, e.g. 1536x804 or the closest landscape size you support) and save it',
+      'in the current directory as raw.png. Do not create any other files.',
+    ];
   return [
-    'Use your image generation tool to create ONE landscape social-share header image',
-    '(about 1.91:1, e.g. 1536x804 or the closest landscape size you support) and save it',
-    'in the current directory as raw.png. Do not create any other files.',
+    ...lead,
     `Style: ${STYLE}`,
     'Subject: a visual metaphor for the specific problem, mechanism or trade-off this article is',
     'about (not a generic "cloud" or "server rack" picture). Pick one concrete scene a reader of',
@@ -35,7 +53,13 @@ export function imagePrompt(post, excerptText, retryNote) {
   ].filter((l) => l !== '').join('\n');
 }
 
-export async function generateImage({ dir, prompt, timeoutMs = 600000 }) {
+// Writes <dir>/raw.png with the configured provider and returns its path.
+export async function generateImage({ dir, prompt, timeoutMs, workDir }) {
+  if (imageProvider() === 'openai') return generateImageOpenAI({ dir, prompt, workDir, timeoutMs });
+  return generateImageCodex({ dir, prompt, timeoutMs });
+}
+
+async function generateImageCodex({ dir, prompt, timeoutMs = 600000 }) {
   writeFileSync(join(dir, 'prompt.txt'), prompt);
   const raw = join(dir, 'raw.png');
   rmSync(raw, { force: true });

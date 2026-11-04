@@ -46,9 +46,74 @@ scripts/og/daily-publish.sh           # commit + push new cards (deploys); cron 
 and logs to `~/.cache/og-daily-publish.log`. `OG_PUBLISH_DRY_RUN=1` checks
 without committing.
 
+## Image provider: Codex or OpenAI
+
+`OG_IMAGE_PROVIDER` picks who draws `raw.png`: `codex` (the default, as above) or
+`openai` (the images API). Unset, nothing changes: the workstation cron keeps using
+Codex. Compose, review (still `claude -p`) and upload are the same either way.
+
+With `openai`, a normal run (`--slug`, `--limit`) calls
+`POST https://api.openai.com/v1/images/generations` synchronously for each card:
+use this for a single "publish today" card. Backfill and nightly runs go through the
+Batch API instead, at half the price:
+
+```bash
+export OG_IMAGE_PROVIDER=openai OPENAI_API_KEY=...   # key from the environment only
+npm run og -- --slug <post>                     # one card now, synchronous
+npm run og -- submit-batch --limit 200          # queue art for the next 200 cards
+npm run og -- collect-batch [batch_id] [--wait 60]  # fetch finished art as raw.png
+npm run og -- --only-drawn                      # compose, review, upload what came back
+```
+
+- `submit-batch` takes cards in the same order as a normal run (no card yet,
+  `failed` or `rejected`; a rejection note goes into the prompt), writes a JSONL
+  file (`custom_id` is the post slug, one `POST /v1/images/generations` per line;
+  a copy is kept in `.og-work/batches/`), uploads it with `purpose=batch` and
+  creates a batch with `completion_window: 24h`. Batches hold at most 100 cards
+  (`DEFAULT_BATCH_MAX` in `lib/batch.mjs`),
+  because each image is a few MB of base64 in the output file. Each card becomes
+  `batched` with `batchId` in the manifest.
+- `collect-batch` with no id checks every batch that still has `batched` cards. A
+  batch still running is left alone. When it has finished (completed, expired,
+  cancelled or failed), each image is decoded to `.og-work/<slug>/raw.png` and the
+  card becomes `drawn`; a card the batch did not draw becomes `failed` with the
+  reason (the API error, an unusable image, or the batch status), so the next run
+  retries it. Collecting twice is harmless.
+- A normal run composes `drawn` cards from their batch art and reviews them; a
+  doubted card is redrawn with the configured provider.
+- `nightly-cards.sh` runs collect, `--only-drawn` and submit when
+  `OG_IMAGE_PROVIDER=openai` is set in its environment (with `OPENAI_API_KEY`).
+
+Settings: `OG_OPENAI_MODEL` (default `gpt-image-1-mini`), `OG_OPENAI_SIZE`
+(`1536x1024`, cropped to 1200x630 by compose), `OG_OPENAI_QUALITY` (`medium`). Every
+request has a timeout; 429 and 5xx responses are retried up to 4 times with
+exponential backoff (`Retry-After` honoured). A synchronous generation is not
+retried after a timeout or dropped connection, since it may already be billed.
+A missing key, a 401/403 or the cap stops the run without marking cards failed.
+
+`gpt-image-1-mini` is deprecated by OpenAI and shuts down on 2026-12-01; switching
+model means adding its prices to `lib/budget.mjs` first (unknown models are refused).
+
+### Monthly spend cap
+
+`OG_OPENAI_MONTHLY_CAP_USD` (default 25) caps the estimated OpenAI spend per UTC
+calendar month. Each request is priced before it is sent from the per-image table in
+`lib/budget.mjs` (from OpenAI's model and pricing pages, dated in the file) plus the
+prompt's text tokens, with the 50% Batch discount for batches. Anything that would
+push the month over the cap is refused with a message and nothing is sent;
+`submit-batch` queues as many cards as fit and stops there (exit 4). Spend is
+recorded before the request goes out, credited back when a request fails without
+being billed, and settled per card by `collect-batch`.
+
+The ledger is `.og-work/openai-ledger.json` (override with `OG_OPENAI_LEDGER`):
+gitignored and machine-local like the card files and `run.lock`, so it never shows
+up as a change for `daily-publish.sh` and is never published. It is an estimate on
+one machine, not OpenAI's bill; set a matching hard limit in the OpenAI project too.
+`npm run og -- status` shows the month so far.
+
 ## Requirements
 
-- `codex` logged in (image generation). It runs with `--ignore-user-config`, so
+- `codex` logged in (image generation, default provider). It runs with `--ignore-user-config`, so
   `~/.codex/config.toml` (MCP servers, plugins) is not loaded per card; the model
   is pinned by `OG_CODEX_MODEL` (default `gpt-5.6-sol`) and `OG_CODEX_EFFORT`
   (default `high`).

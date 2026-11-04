@@ -6,7 +6,8 @@
 # Holds .og-work/run.lock for the whole run; daily-publish.sh waits on it so it
 # never commits a post whose manifest entry is mid-write. run.mjs stops on its
 # own after 5 failures in a row (e.g. the Codex usage limit) and exits 2; it
-# exits 3 when Vault is unreachable and uploads stopped.
+# exits 3 when Vault is unreachable and uploads stopped, and 4 at the OpenAI
+# monthly cap. OG_IMAGE_PROVIDER unset (codex) runs exactly as before.
 set -euo pipefail
 export PATH="$HOME/.local/bin:/usr/local/bin:/usr/bin:/bin"
 # cron does not read ~/.bash_profile; without this the vault CLI tries 127.0.0.1:8200.
@@ -29,6 +30,15 @@ if [ -s "$tokfile" ]; then
     || echo "WARNING: vault token renew failed; re-mint it (scripts/og/README.md)"
 fi
 rc=0
-node scripts/og/run.mjs --limit "${OG_NIGHTLY_LIMIT:-40}" --concurrency 2 || rc=$?
+if [ "${OG_IMAGE_PROVIDER:-codex}" = openai ]; then
+  # Opt-in OpenAI Batch flow (needs OPENAI_API_KEY in the environment): fetch art
+  # from earlier batches, finish those cards (compose, review, upload), then queue
+  # the next OG_NIGHTLY_LIMIT cards. Each step stops at the monthly cap (exit 4).
+  node scripts/og/run.mjs collect-batch || rc=$?
+  node scripts/og/run.mjs --only-drawn --concurrency 2 || rc=$?
+  node scripts/og/run.mjs submit-batch --limit "${OG_NIGHTLY_LIMIT:-40}" || rc=$?
+else
+  node scripts/og/run.mjs --limit "${OG_NIGHTLY_LIMIT:-40}" --concurrency 2 || rc=$?
+fi
 echo "run.mjs exit $rc"
 exit "$rc"
