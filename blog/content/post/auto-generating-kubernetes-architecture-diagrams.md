@@ -10,6 +10,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "How to automatically generate accurate Kubernetes architecture diagrams directly from your live clusters or manifests using KubeDiagrams, eliminating outdated documentation and simplifying knowledge sharing"
 more_link: "yes"
 url: "/auto-generating-kubernetes-architecture-diagrams/"
+images: ["https://cdn.support.tools/posts/auto-generating-kubernetes-architecture-diagrams/og-8161634219.jpg"]
 ---
 
 As a Kubernetes administrator, I've repeatedly faced this scenario: a new engineer joins the team and asks for an architecture diagram of our cluster. I point them to our "documentation" only to realize with embarrassment that the supposedly current diagram shows a setup we abandoned three months ago. If you've ever had to explain "well, this part isn't accurate anymore," then you understand the frustration of keeping architectural documentation in sync with rapidly evolving Kubernetes environments. After countless hours wasted manually updating diagrams, I discovered a solution that has completely transformed how we maintain our cluster documentation.

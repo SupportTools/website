@@ -11,6 +11,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Master SOL (Serial Over LAN) with Dell iDRAC and BMC for enterprise remote console management. Complete guide to IPMI configuration, troubleshooting, automation, security, and advanced out-of-band management strategies."
 more_link: "yes"
 url: "/sol-serial-over-lan-idrac-bmc-guide-2025/"
+images: ["https://cdn.support.tools/posts/sol-serial-over-lan-idrac-bmc-guide-2025/og-9b77a1ae63.jpg"]
 ---
 
 Serial Over LAN (SOL) provides critical out-of-band console access to Dell PowerEdge servers through iDRAC and BMC interfaces. This comprehensive guide covers SOL implementation, advanced configuration, enterprise security, automation strategies, and troubleshooting techniques for reliable remote server management.

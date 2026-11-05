@@ -6,6 +6,7 @@ tags: ["ipmi", "dell", "poweredge", "c-series", "automation", "security", "monit
 categories: ["Infrastructure"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Master enterprise-scale Dell PowerEdge C-series management with IPMI in 2025. Comprehensive guide covering secure automation, monitoring frameworks, compliance hardening, mass deployment, and advanced troubleshooting for data center operations."
+images: ["https://cdn.support.tools/posts/ipmi-poweredge-c-series-enterprise-management-guide-2025/og-1e61df992e.jpg"]
 ---
 
 # Dell PowerEdge C-Series IPMI Management Guide 2025: Enterprise Automation & Security

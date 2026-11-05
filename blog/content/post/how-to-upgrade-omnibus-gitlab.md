@@ -10,6 +10,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to safely upgrade your Omnibus GitLab installation with this comprehensive, step-by-step guide."
 more_link: "yes"
 url: "/how-to-upgrade-omnibus-gitlab/"
+images: ["https://cdn.support.tools/posts/how-to-upgrade-omnibus-gitlab/og-c0a7973fc8.jpg"]
 ---
 
 Upgrading your GitLab instance is essential to leverage new features, security patches, and performance improvements. In this comprehensive guide, we'll walk you through the easiest and most secure way to upgrade your Omnibus GitLab installation on a Linux system.

@@ -11,6 +11,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to optimize your website's performance and security using CloudFlare's advanced features. Comprehensive guide to caching, security rules, and performance tuning."
 more_link: "yes"
 url: "/cloudflare-performance-security-tuning/"
+images: ["https://cdn.support.tools/posts/cloudflare-performance-security-tuning/og-ba42cec93c.jpg"]
 ---
 
 Master the art of optimizing your website's performance and security using CloudFlare's powerful features and advanced configuration options.

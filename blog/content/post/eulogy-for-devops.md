@@ -9,6 +9,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "An in-depth look at the rise and fall of DevOps, its impact on software development, and the emerging shift towards platform engineering."
 more_link: "yes"
 url: "/eulogy-for-devops/"
+images: ["https://cdn.support.tools/posts/eulogy-for-devops/og-9092bd9703.jpg"]
 ---
 
 DevOps, once a revolutionary concept reshaping the software development lifecycle, has now entered a phase of reflection and critique. While its initial promise delivered faster deployments and tighter integration between development and operations, its journey revealed significant gaps in execution and practicality.

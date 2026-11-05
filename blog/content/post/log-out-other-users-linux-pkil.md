@@ -10,6 +10,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to manage user sessions in Linux by logging out other users using the pkill command."
 more_link: "yes"
 url: "/log-out-other-users-linux-pkill/"
+images: ["https://cdn.support.tools/posts/log-out-other-users-linux-pkil/og-3389f74694.jpg"]
 ---
 
 Managing user sessions is a crucial aspect of Linux system administration. Whether it's for system maintenance, freeing up resources, or enhancing security, there are times when you need to log out other users from your Linux system. In this comprehensive guide, we'll show you how to use the `pkill` command to terminate user sessions effectively.

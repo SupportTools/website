@@ -973,6 +973,7 @@
 /kubernetes-hpa-configurable-tolerance-v1-33/
 /kubernetes-in-docker-with-kind/
 /kubernetes-ingress-external-apps/
+/kubernetes-inplace-pod-vertical-scaling/
 /kubernetes-job-cronjob-failure-handling/
 /kubernetes-label-selector-mismatches/
 /kubernetes-liveness-probe-saves-the-day/
@@ -3221,6 +3222,7 @@
 /tags/verification/
 /tags/version-control/
 /tags/version-management/
+/tags/vertical-scaling/
 /tags/vfs/
 /tags/victoriametrics/
 /tags/video-streaming/

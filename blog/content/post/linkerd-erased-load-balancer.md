@@ -11,6 +11,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "A deep dive into how CRD conflicts between Linkerd and Gateway API caused a catastrophic load balancer failure in GKE."
 more_link: "yes"
 url: "/linkerd-erased-load-balancer/"
+images: ["https://cdn.support.tools/posts/linkerd-erased-load-balancer/og-3f22ab6d66.jpg"]
 ---
 
 Kubernetes is an incredibly flexible system, but that flexibility sometimes comes with pitfalls. This is the story of how a CRD conflict between Linkerd and the Gateway API in GKE led to an unexpected and dramatic production outage. Hopefully, by sharing my experiences, I can help others avoid a similar fate.

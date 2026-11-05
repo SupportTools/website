@@ -11,6 +11,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Boost your Git workflow efficiency with powerful aliases and productivity hacks. Learn time-saving techniques that will streamline your version control process."
 more_link: "yes"
 url: "/git-productivity-hacks-aliases/"
+images: ["https://cdn.support.tools/posts/git-productivity-hacks-aliases/og-13ec813e73.jpg"]
 ---
 
 Master the art of Git productivity with these essential aliases and time-saving techniques that will streamline your daily workflow.

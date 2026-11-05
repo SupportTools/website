@@ -7,6 +7,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 draft: false
 categories: ["AWS", "Databases", "Cloud"]
 tags: ["AWS", "RDS", "RDS Proxy", "Redis", "ElastiCache", "Performance Optimization", "Database Architecture", "Scalability", "High Availability", "Connection Pooling"]
+images: ["https://cdn.support.tools/posts/aws-database-services-architecture-guide/og-f66f757b34.jpg"]
 ---
 
 # ElastiCache Redis Replication Group and RDS Proxy Limits

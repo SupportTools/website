@@ -11,6 +11,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Why 43 Longhorn 1.12 volumes stayed degraded for hours with no rebuilds after a network flap, why deleting replicas failed, why a published zombie-replica jq filter is unsafe on 1.12, and the one-field fix."
 more_link: "yes"
 url: "/longhorn-degraded-volumes-rebuild-retry-count-exhausted/"
+images: ["https://cdn.support.tools/posts/longhorn-degraded-volumes-rebuild-retry-count-exhausted/og-9d86eeda72.jpg"]
 ---
 
 After a cluster-wide maintenance outage, every node was back, `Ready`, and quiet. Cilium health checks were green. The network had been stable for hours. And 43 Longhorn volumes were still `degraded`, with **zero** replicas rebuilding, an empty `status.rebuildStatus` on every affected engine, and twelve volumes running on a single healthy replica. Nothing was wrong with the cluster anymore. Longhorn had simply stopped trying.

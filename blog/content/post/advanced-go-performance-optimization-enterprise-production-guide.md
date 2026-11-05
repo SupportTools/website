@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive enterprise guide to Go performance optimization techniques, profiling strategies, memory management, concurrency patterns, and production deployment optimizations for high-performance applications."
 more_link: "yes"
 url: "/advanced-go-performance-optimization-enterprise-production-guide/"
+images: ["https://cdn.support.tools/posts/advanced-go-performance-optimization-enterprise-production-guide/og-3e3be1911f.jpg"]
 ---
 
 ## Executive Summary

@@ -10,6 +10,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Master Dell iDRAC session management, troubleshooting stuck sessions, and monitoring connections. Complete guide to RACADM session control, automated cleanup, enterprise monitoring, and preventing session exhaustion."
 more_link: "yes"
 url: "/idrac-session-management-troubleshooting-guide-2025/"
+images: ["https://cdn.support.tools/posts/idrac-session-management-troubleshooting-guide-2025/og-7463465a59.jpg"]
 ---
 
 Dell iDRAC session management is critical for maintaining reliable remote access to PowerEdge servers. This comprehensive guide covers session troubleshooting, automated monitoring, connection pooling, enterprise-scale management strategies, and prevention techniques for session exhaustion issues.

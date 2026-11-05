@@ -11,6 +11,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to effectively configure and customize the Docker daemon in Rancher Desktop. Master advanced settings, troubleshooting, and performance optimization."
 more_link: "yes"
 url: "/configure-docker-daemon-rancher-desktop/"
+images: ["https://cdn.support.tools/posts/configure-docker-daemon-rancher-desktop/og-bd2198c5ac.jpg"]
 ---
 
 A comprehensive guide to configuring and optimizing the Docker daemon in Rancher Desktop for improved performance and functionality.

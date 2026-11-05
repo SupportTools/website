@@ -11,6 +11,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to set up and use X11 forwarding in Linux to run graphical applications on remote servers."
 more_link: "yes"
 url: "/mastering-x11-forwarding-linux-beginners-guide/"
+images: ["https://cdn.support.tools/posts/mastering-x11-forwarding-linux-beginners-guide/og-0fe9cb4b7b.jpg"]
 ---
 
 Are you looking to run graphical applications on a remote Linux server and display them locally? X11 forwarding is the feature you need. In this comprehensive guide, we'll walk you through the steps to set up X11 forwarding in Linux, enabling you to harness the power of remote GUI applications seamlessly.

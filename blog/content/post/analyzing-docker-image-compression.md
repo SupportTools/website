@@ -11,6 +11,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to analyze and optimize Docker image compression to reduce storage costs and improve deployment times. Includes practical tools and techniques for measuring and reducing image sizes."
 more_link: "yes"
 url: "/analyzing-docker-image-compression/"
+images: ["https://cdn.support.tools/posts/analyzing-docker-image-compression/og-a2a5afbc60.jpg"]
 ---
 
 Master the techniques for analyzing and optimizing Docker image sizes to improve deployment efficiency and reduce storage costs.

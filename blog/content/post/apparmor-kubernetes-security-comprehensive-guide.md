@@ -4,6 +4,7 @@ date: 2025-08-19T09:00:00-05:00
 draft: false
 categories: ["Security", "Kubernetes", "Linux", "Container Security"]
 tags: ["AppArmor", "Container Security", "Kubernetes Security", "Linux Security", "Mandatory Access Control", "MAC", "Security Profiles", "LSM", "Zero Trust", "Defense in Depth", "Application Security", "Compliance"]
+images: ["https://cdn.support.tools/posts/apparmor-kubernetes-security-comprehensive-guide/og-e120fa1880.jpg"]
 ---
 
 # AppArmor Mastery: The Complete Guide to Container Security and Mandatory Access Control in Kubernetes

@@ -10,6 +10,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive guide to implementing the right caching strategy at different levels of your application stack"
 more_link: "yes"
 url: "/application-level-vs-cdn-level-caching-strategy/"
+images: ["https://cdn.support.tools/posts/application-level-vs-cdn-level-caching-strategy/og-3fa3e28b09.jpg"]
 ---
 
 Effective caching is fundamental to scaling web applications. This article explores the strategic differences between application-level and CDN-level caching, with practical guidance on what to cache where and why.

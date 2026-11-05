@@ -4,6 +4,7 @@ date: 2025-08-28T09:00:00-05:00
 draft: false
 categories: ["AWS", "Databases", "DevOps"]
 tags: ["Aurora MySQL", "Blue/Green Deployment", "Database Migration", "High Availability", "Rollback Strategy", "Binary Logs", "RDS", "Database Replication", "Zero-Downtime", "Disaster Recovery"]
+images: ["https://cdn.support.tools/posts/aurora-mysql-blue-green-deployment-rollback-strategy/og-a1cf392c29.jpg"]
 ---
 
 # Amazon Aurora MySQL Blue/Green Deployments: Comprehensive Rollback Strategy Guide

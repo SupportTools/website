@@ -7,6 +7,7 @@ tags: ["racadm", "power-management", "dell-servers", "energy-efficiency", "autom
 categories: ["Infrastructure"]
 author: "Matthew Mattox - mmattox@support.tools"
 description: "Dell iDRAC RACADM power commands: serveraction powercycle and graceshutdown, read power draw, set a power cap with System.Power.Cap, and script it."
+images: ["https://cdn.support.tools/posts/racadm-power-management-enterprise-automation-guide-2025/og-dea603c825.jpg"]
 ---
 
 # RACADM Power Commands: Power Cycle, Power Cap, Read Usage

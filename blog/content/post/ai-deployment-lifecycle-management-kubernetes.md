@@ -12,6 +12,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive guide to managing AI model deployments in production with automated lifecycle management, intelligent rollback strategies, and cloud migration paths using Kubernetes"
 more_link: "yes"
 url: "/ai-deployment-lifecycle-management-kubernetes/"
+images: ["https://cdn.support.tools/posts/ai-deployment-lifecycle-management-kubernetes/og-e629366dc1.jpg"]
 ---
 
 As organizations increasingly rely on AI models for critical business functions, the need for robust deployment strategies has never been more important. This article explores comprehensive approaches to AI model lifecycle management in Kubernetes environments, from initial deployment through monitoring, rollback mechanisms, and cloud migration strategies.

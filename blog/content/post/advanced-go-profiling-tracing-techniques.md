@@ -11,6 +11,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to effectively profile and trace Go applications in production to identify bottlenecks and optimize performance without disrupting users"
 more_link: "yes"
 url: "/advanced-go-profiling-tracing-techniques/"
+images: ["https://cdn.support.tools/posts/advanced-go-profiling-tracing-techniques/og-d7202b46ae.jpg"]
 ---
 
 When your Go microservices are running smoothly in development but struggling in production, you need advanced profiling and tracing techniques that work without impacting your users. This comprehensive guide shows you how to implement low-overhead continuous profiling and distributed tracing to identify performance bottlenecks in your Go applications.

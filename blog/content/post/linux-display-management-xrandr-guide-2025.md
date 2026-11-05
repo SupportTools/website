@@ -11,6 +11,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Add a missing resolution with cvt and xrandr --newmode, arrange multiple monitors, make it persistent, and what to use instead of xrandr on Wayland."
 more_link: "yes"
 url: "/linux-display-management-xrandr-guide-2025/"
+images: ["https://cdn.support.tools/posts/linux-display-management-xrandr-guide-2025/og-f1d418ac43.jpg"]
 ---
 
 The two things people reach for xrandr to do are adding a resolution the monitor does not advertise and arranging two or more screens. Both take three or four commands on X11. This page starts with those commands, then covers persistence, Wayland (where xrandr cannot change outputs), and scripts for automatic profile switching.

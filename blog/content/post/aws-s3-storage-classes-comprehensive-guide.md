@@ -7,6 +7,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 draft: false
 categories: ["AWS", "Storage", "Cost Optimization"]
 tags: ["AWS", "S3", "S3 Storage Classes", "Data Lifecycle Management", "Cloud Architecture", "Cost Optimization", "Glacier", "S3 Intelligent-Tiering", "S3 Standard-IA", "AWS Outposts"]
+images: ["https://cdn.support.tools/posts/aws-s3-storage-classes-comprehensive-guide/og-af887e2952.jpg"]
 ---
 
 # S3 Storage Classes: Minimum Duration, Size, Retrieval Fees

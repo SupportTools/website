@@ -11,6 +11,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive guide to building a robust Markdown to PDF conversion toolkit that supports Mermaid diagrams, emojis, table of contents, and advanced styling"
 more_link: "yes"
 url: "/advanced-markdown-to-pdf-conversion-toolkit/"
+images: ["https://cdn.support.tools/posts/advanced-markdown-to-pdf-conversion-toolkit/og-a668f925e3.jpg"]
 ---
 
 Technical documentation is a critical component of modern software projects. While Markdown provides an excellent format for writing and maintaining documentation in code repositories, many situations require PDF output for formal distribution, compliance requirements, or offline reading. This guide will show you how to build a powerful Markdown to PDF conversion toolkit that supports advanced features.

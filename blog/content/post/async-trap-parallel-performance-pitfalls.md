@@ -10,6 +10,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "A data-driven exploration of why asynchronous and parallel programming don't always deliver the performance gains you expect"
 more_link: "yes"
 url: "/async-trap-parallel-performance-pitfalls/"
+images: ["https://cdn.support.tools/posts/async-trap-parallel-performance-pitfalls/og-e875d729e1.jpg"]
 ---
 
 Asynchronous and parallel programming are often presented as universal solutions for performance bottlenecks. However, there are many scenarios where these approaches can actually decrease performance rather than improve it. This article explores the hidden costs of concurrency with benchmark data across different programming models.

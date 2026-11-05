@@ -11,6 +11,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Complete guide to installing Dell iDRAC tools and RACADM on Ubuntu/Debian systems. Learn RPM-to-DEB conversion, advanced RACADM commands, PowerEdge server management, firmware updates, and enterprise server administration techniques."
 more_link: "yes"
 url: "/dell-idrac-racadm-installation-ubuntu-debian-2025/"
+images: ["https://cdn.support.tools/posts/dell-idrac-tools-installation-ubuntu-debian/og-7d9897f425.jpg"]
 ---
 
 Dell's Integrated Dell Remote Access Controller (iDRAC) provides powerful out-of-band management capabilities for PowerEdge servers. While Dell only officially supports RHEL and SUSE distributions, this guide demonstrates how to successfully install and utilize iDRAC tools, particularly RACADM, on Ubuntu and Debian systems through RPM-to-DEB conversion.

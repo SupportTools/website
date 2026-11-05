@@ -11,6 +11,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive guide to implementing effective observability in Kubernetes environments with modern tooling and practices for 2025"
 more_link: "yes"
 url: "/kubernetes-observability-best-practices-2025/"
+images: ["https://cdn.support.tools/posts/kubernetes-observability-best-practices-2025/og-2f14c0a3bf.jpg"]
 ---
 
 As Kubernetes environments grow in complexity, implementing effective observability becomes increasingly critical. In 2025, organizations face new challenges in monitoring and troubleshooting distributed systems, requiring a modernized approach to observability.
