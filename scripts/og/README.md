@@ -119,12 +119,21 @@ job (`scripts/jobs/cards-nightly.sh`) sets them.
 - `OG_WORK_DIR`: where card files, batch JSONL and both spend ledgers live
   (default `.og-work/`). The job points it at a PVC (`/work/og`) so raw images and
   ledgers survive between runs of a fresh clone.
-- `OG_REVIEW_PROVIDER`: `claude-cli` (default, the local `claude -p`) or `anthropic`
+- `OG_REVIEW_PROVIDER`: `claude-cli` (default, the local `claude -p`), `anthropic`
   (the Messages API, `ANTHROPIC_API_KEY`, model `claude-haiku-5-5`, override with
   `OG_ANTHROPIC_REVIEW_MODEL`; the card goes up as a base64 image). Spend is
   recorded in `<work dir>/anthropic-ledger.json` (`OG_ANTHROPIC_LEDGER`) against
   `OG_ANTHROPIC_MONTHLY_CAP_USD` (default 10, per UTC month, shared with the weekly
   social drafter). At the cap the run stops with exit 4, as for OpenAI.
+  INTERIM (TaskForge supporttools-website-990), a third value, `openai`: Chat
+  Completions with `OPENAI_API_KEY`, the card attached as a base64 JPEG data URL,
+  model `gpt-6-luna` (the cheapest non-deprecated vision model on
+  developers.openai.com/api/docs/pricing and its model page, read 2026-11-04;
+  override with `OG_OPENAI_REVIEW_MODEL`, which must have a price in
+  `lib/openai-review.mjs`). Same prompt and verdict as the others. Spend goes in
+  the OpenAI ledger (`OG_OPENAI_LEDGER`, counted as `reviews`, not `images`) under
+  `OG_OPENAI_MONTHLY_CAP_USD`, shared with the art; at the cap the run exits 4. The
+  nightly job uses it until #990 brings the Anthropic key.
 - `OG_WASABI_ACCESS_KEY_ID` and `OG_WASABI_SECRET_ACCESS_KEY` (plus optional
   `OG_WASABI_BUCKET`, `OG_WASABI_ENDPOINT`, `OG_WASABI_REGION`, `OG_WASABI_PREFIX`):
   when both key halves are set the upload is a signed S3 PUT in plain node

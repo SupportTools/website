@@ -3,7 +3,10 @@
 // CLI under the operator's login) or "openai" (the images API, lib/openai.mjs).
 // The reviewer is OG_REVIEW_PROVIDER: "claude-cli" (the default, the local claude CLI
 // under the operator's login) or "anthropic" (the Messages API with the card attached
-// as an image, metered by lib/anthropic.mjs; for the in-cluster job).
+// as an image, metered by lib/anthropic.mjs; for the in-cluster job) or, INTERIM
+// until TaskForge supporttools-website-990 brings the job an Anthropic key, "openai"
+// (Chat Completions with the card attached, metered in the OpenAI ledger by
+// lib/openai-review.mjs).
 import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
 
@@ -12,6 +15,7 @@ import { existsSync, writeFileSync, rmSync, readFileSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { generateImageOpenAI } from './openai.mjs';
 import { makeClient, meteredCreate, anthropicLedgerPath, REVIEW_MODEL } from './anthropic.mjs';
+import { reviewCardOpenAI } from './openai-review.mjs';
 
 export const PROVIDERS = ['codex', 'openai'];
 
@@ -108,7 +112,8 @@ export function parseVerdict(out) {
   }
 }
 
-export const REVIEW_PROVIDERS = ['claude-cli', 'anthropic'];
+// "openai" is INTERIM (#990): see lib/openai-review.mjs.
+export const REVIEW_PROVIDERS = ['claude-cli', 'anthropic', 'openai'];
 
 export function reviewProvider(env = process.env) {
   const p = env.OG_REVIEW_PROVIDER || 'claude-cli';
@@ -136,7 +141,9 @@ export function reviewPrompt(post, card) {
 
 // workDir holds the Anthropic ledger (default: the card's parent, i.e. the run's work dir).
 export async function reviewCard({ card, post, timeoutMs = 180000, workDir }) {
-  if (reviewProvider() === 'anthropic') return reviewCardAnthropic({ card, post, workDir });
+  const provider = reviewProvider();
+  if (provider === 'anthropic') return reviewCardAnthropic({ card, post, workDir });
+  if (provider === 'openai') return reviewCardOpenAI({ card, prompt: reviewPrompt(post), parse: parseVerdict, workDir });
   const prompt = reviewPrompt(post, card);
   const dir = card.replace(/\/[^/]+$/, '');
   const pending = run('claude', [

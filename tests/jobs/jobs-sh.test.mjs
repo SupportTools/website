@@ -25,7 +25,8 @@ function gitEnv() {
 function sh(script, extraEnv = {}) {
   const r = spawnSync('bash', ['-c', `set -euo pipefail; . scripts/jobs/lib.sh; ${script}`], {
     cwd: clone, encoding: 'utf8',
-    env: { ...gitEnv(), PATH: `${join(root, 'bin')}:${process.env.PATH}`, FAKE_GH_LOG: ghLog, ...extraEnv },
+    // App mode (GH_TOKEN set) unless a test passes GH_TOKEN: '' for deploy-key mode.
+    env: { ...gitEnv(), PATH: `${join(root, 'bin')}:${process.env.PATH}`, FAKE_GH_LOG: ghLog, GH_TOKEN: 'fake-app-token', ...extraEnv },
   });
   return { code: r.status, out: `${r.stdout}${r.stderr}` };
 }
@@ -167,6 +168,41 @@ test('baked node_modules at another version are not used; with no mirror the ins
   assert.equal(existsSync(join(clone, 'node_modules')), false);
 });
 
+// Deploy-key mode (INTERIM, TaskForge supporttools-website-990): no GH_TOKEN, so no gh.
+test('deploy-key mode: pushes the bot branch only, never main, and never calls gh', () => {
+  writeFileSync(join(clone, 'blog/content/post/a.md'), post('a', `images: ["${URL1}"]\n`));
+  writeFileSync(join(clone, 'scripts/og/manifest.json'), JSON.stringify({ a: { status: 'live', url: URL1 } }, null, 1));
+  const mainBefore = git(bare, 'rev-parse', 'main');
+  const r = sh('stage_card_changes; check_live_cards_linked; publish_changes nightly-cards "chore(og): 1 more share cards (1 live)"', { GH_TOKEN: '' });
+  assert.equal(r.code, 0, r.out);
+  const branch = `bot/nightly-cards-${day()}`;
+  assert.equal(git(bare, 'rev-parse', 'main'), mainBefore);
+  assert.equal(git(bare, 'log', '-1', '--format=%s', branch), 'chore(og): 1 more share cards (1 live)');
+  assert.match(r.out, new RegExp(`the bot-pr workflow opens the PR for ${branch}`));
+  assert.equal(existsSync(ghLog), false);
+});
+
+test('deploy-key mode: an earlier bot branch on the remote stops the job; today\'s and other kinds do not', () => {
+  git(clone, 'push', '-q', 'origin', `main:refs/heads/bot/nightly-cards-${day()}`);
+  git(clone, 'push', '-q', 'origin', 'main:refs/heads/bot/daily-publish-20000101');
+  git(clone, 'push', '-q', 'origin', 'main:refs/heads/bot/nightly-cards-20000101');
+  let r = sh('refuse_if_earlier_bot_pr nightly-cards', { GH_TOKEN: '' });
+  assert.equal(r.code, 1, r.out);
+  assert.match(r.out, /earlier nightly-cards PR still open \(bot\/nightly-cards-20000101 \)/);
+  // The merged PR's branch is deleted: the job runs again.
+  git(clone, 'push', '-q', 'origin', ':refs/heads/bot/nightly-cards-20000101');
+  r = sh('refuse_if_earlier_bot_pr nightly-cards', { GH_TOKEN: '' });
+  assert.equal(r.code, 0, r.out);
+  assert.equal(existsSync(ghLog), false);
+});
+
+test('deploy-key mode: an unreachable remote stops the job instead of reading as "no branch"', () => {
+  git(clone, 'remote', 'set-url', 'origin', join(root, 'missing.git'));
+  const r = sh('refuse_if_earlier_bot_pr nightly-cards', { GH_TOKEN: '' });
+  assert.equal(r.code, 1, r.out);
+  assert.match(r.out, /cannot list remote bot\/nightly-cards-\* branches; refusing to run/);
+});
+
 test('cards-nightly: a live card its post does not link still commits the manifest alone, then exits 1', () => {
   copyFileSync(resolve('scripts/jobs/cards-nightly.sh'), join(clone, 'scripts/jobs/cards-nightly.sh'));
   const dir = bakedModules('0.137.0');
@@ -194,6 +230,37 @@ test('cards-nightly: a live card its post does not link still commits the manife
   assert.match(git(bare, 'log', '-1', '--format=%s', branch), /^chore\(og\): nightly card state only, live cards not linked \(1 live\)$/);
   assert.deepEqual(git(bare, 'diff', '--name-only', `${branch}~1`, branch).split('\n'), ['scripts/og/manifest.json']);
   assert.match(git(bare, 'show', `${branch}:scripts/og/manifest.json`), /batch_1/);
+  // No GH_TOKEN in env: deploy-key mode, so the earlier-PR check and the push made no gh call.
+  assert.equal(existsSync(ghLog), false);
+  assert.match(out, /review provider: anthropic/);
+});
+
+test('cards-nightly: OG_REVIEW_PROVIDER=openai (INTERIM, #990) needs no Anthropic key and reaches run.mjs with openai', () => {
+  copyFileSync(resolve('scripts/jobs/cards-nightly.sh'), join(clone, 'scripts/jobs/cards-nightly.sh'));
+  const dir = bakedModules('0.137.0');
+  git(clone, 'add', '-A');
+  git(clone, 'commit', '-q', '-m', 'job script');
+  const seen = join(root, 'node-env.log');
+  writeFileSync(join(root, 'bin/node'), `#!/usr/bin/env bash\necho "$OG_IMAGE_PROVIDER $OG_REVIEW_PROVIDER \${ANTHROPIC_API_KEY:-none}" >> '${seen}'\n`);
+  chmodSync(join(root, 'bin/node'), 0o755);
+  const env = {
+    ...gitEnv(), PATH: `${join(root, 'bin')}:${process.env.PATH}`, FAKE_GH_LOG: ghLog, JOB_NODE_MODULES: dir,
+    OG_WORK_DIR: join(root, 'work'), OPENAI_API_KEY: 'x', OG_WASABI_ACCESS_KEY_ID: 'x', OG_WASABI_SECRET_ACCESS_KEY: 'x',
+    OG_REVIEW_PROVIDER: 'openai',
+  };
+  delete env.ANTHROPIC_API_KEY;
+  const r = spawnSync('bash', ['scripts/jobs/cards-nightly.sh'], { cwd: clone, encoding: 'utf8', env });
+  const out = `${r.stdout}${r.stderr}`;
+  assert.equal(r.status, 0, out);
+  assert.match(out, /review provider: openai/);
+  assert.match(out, /nothing new/);
+  const lines = readFileSync(seen, 'utf8').trim().split('\n');
+  assert.equal(lines.length, 4);
+  for (const l of lines) assert.equal(l, 'openai openai none');
+  // Any other provider (the workstation claude-cli included) is refused in the job.
+  const bad = spawnSync('bash', ['scripts/jobs/cards-nightly.sh'], { cwd: clone, encoding: 'utf8', env: { ...env, OG_REVIEW_PROVIDER: 'claude-cli' } });
+  assert.equal(bad.status, 1);
+  assert.match(bad.stderr, /OG_REVIEW_PROVIDER must be anthropic or openai in the job, got claude-cli/);
 });
 
 test('require_env names what is missing without printing values; npm never falls back to the public registry', () => {
@@ -214,6 +281,11 @@ test('the job scripts refuse to start without their credentials', () => {
     assert.equal(r.status, 1, script);
     assert.match(r.stderr, want);
   }
+  const env = { ...gitEnv(), OG_REVIEW_PROVIDER: 'openai' };
+  for (const k of ['OG_WORK_DIR', 'OPENAI_API_KEY', 'ANTHROPIC_API_KEY', 'OG_WASABI_ACCESS_KEY_ID', 'OG_WASABI_SECRET_ACCESS_KEY']) delete env[k];
+  const r = spawnSync('bash', [resolve('scripts/jobs/cards-nightly.sh')], { encoding: 'utf8', env });
+  assert.equal(r.status, 1);
+  assert.match(r.stderr, /missing environment: OG_WORK_DIR OPENAI_API_KEY OG_WASABI_ACCESS_KEY_ID OG_WASABI_SECRET_ACCESS_KEY$/m);
 });
 
 test('weekly-social needs OG_WORK_DIR (the shared monthly ledger) for any run that calls Anthropic', () => {
