@@ -80,7 +80,7 @@ test('openai review sends the card as a data URL image to gpt-6-luna and parses 
   // review and not as an image.
   const m = loadLedger(ledgerPath(process.env, work)).months[monthKey()];
   assert.equal(m.usd, reviewUsageCost('gpt-6-luna', USAGE));
-  assert.equal(m.usd, 0.00027);
+  assert.equal(m.usd, 0.0003);
   assert.equal(m.images, 0);
   assert.equal(m.reviews, 1);
 });
@@ -140,10 +140,11 @@ test('a missing OpenAI key halts without touching the ledger', async () => {
 });
 
 test('pricing: cached input and the long-prompt multipliers', () => {
-  // $0.10/M input, $0.01/M cached, $0.50/M output.
-  assert.equal(reviewUsageCost('gpt-6-luna', { prompt_tokens: 200_000, completion_tokens: 200_000 }), 0.12);
+  // $0.10/M input, $0.01/M cached, $0.125/M cache write, $0.50/M output. Uncached input
+  // is charged at the cache-write price, since usage does not say what was written.
+  assert.equal(reviewUsageCost('gpt-6-luna', { prompt_tokens: 200_000, completion_tokens: 200_000 }), 0.125);
   assert.equal(reviewUsageCost('gpt-6-luna', { prompt_tokens: 200_000, completion_tokens: 0, prompt_tokens_details: { cached_tokens: 200_000 } }), 0.002);
   // Over 272K input tokens: 2x input, 1.5x output.
-  assert.equal(reviewUsageCost('gpt-6-luna', { prompt_tokens: 300_000, completion_tokens: 1_000_000 }), 0.81);
-  assert.equal(reviewEstimateUsd('gpt-6-luna', { textChars: 3000, images: 1, maxTokens: 2000 }), 0.0013);
+  assert.equal(reviewUsageCost('gpt-6-luna', { prompt_tokens: 300_000, completion_tokens: 1_000_000 }), 0.825);
+  assert.equal(reviewEstimateUsd('gpt-6-luna', { textChars: 3000, images: 1, maxTokens: 2000 }), 0.001375);
 });

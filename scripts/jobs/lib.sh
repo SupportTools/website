@@ -17,7 +17,8 @@
 # Deploy-key mode, INTERIM (TaskForge supporttools-website-990 replaces it with the
 # GitHub App): when website-job has no App credentials it clones and pushes over SSH
 # with a write deploy key (GIT_DEPLOY_KEY), exports WEBSITE_GIT_MODE=deploy-key and
-# does NOT export GH_TOKEN. With GH_TOKEN unset these helpers make no gh call at all:
+# does NOT export GH_TOKEN. With GH_TOKEN unset (and WEBSITE_GIT_MODE=deploy-key; an
+# empty token without it stops the job) these helpers make no gh call at all:
 # publish_changes pushes bot/<kind>-<YYYYMMDD> only (never main) and the bot-pr
 # workflow (.github/workflows/bot-pr.yml) opens the PR for a human to merge, and the
 # earlier-PR check reads the remote's bot/<kind>-* branches with git ls-remote.
@@ -64,8 +65,17 @@ ensure_node_deps() {
   npm ci --omit=dev --ignore-scripts --no-audit --no-fund --prefer-offline --registry="$NPM_REGISTRY"
 }
 
-# True when there is no gh token: deploy-key mode (INTERIM, #990), see the header.
-deploy_key_mode() { [ -z "${GH_TOKEN:-}" ]; }
+# Deploy-key mode (INTERIM, #990), see the header. App mode whenever GH_TOKEN is set.
+# Without a token, deploy-key mode needs WEBSITE_GIT_MODE=deploy-key as well: an App
+# token that failed to mint and was exported empty must stop the job, not quietly
+# switch it to deploy-key mode. Exits (not returns) so an `if` cannot swallow it.
+deploy_key_mode() {
+  [ -z "${GH_TOKEN:-}" ] || return 1
+  if [ "${WEBSITE_GIT_MODE:-}" != deploy-key ]; then
+    echo "GH_TOKEN is empty and WEBSITE_GIT_MODE is not deploy-key; refusing to run" >&2
+    exit 1
+  fi
+}
 
 # Exits 1 when a PR from an earlier bot/<kind>-* branch is still open: its changes
 # (for nightly-cards, the batch ids of art already paid for) are not on main yet,
@@ -157,9 +167,13 @@ publish_changes() {
     return 0
   fi
   case "$branch" in bot/*) ;; *) echo "refusing to push $branch: only bot/* branches" >&2; return 1 ;; esac
+  # The mode is settled before the push, so an empty token without
+  # WEBSITE_GIT_MODE=deploy-key stops here with nothing pushed (INTERIM, #990).
+  local dk=
+  if deploy_key_mode; then dk=1; fi
   # A rerun on the same day replaces the branch (and so updates its open PR).
   git push -q --force origin "HEAD:refs/heads/${branch}"
-  if deploy_key_mode; then
+  if [ -n "$dk" ]; then
     # INTERIM (#990): the deploy key can push but there is no gh token here, so the
     # bot-pr workflow opens the PR on this push; it never merges, a human does.
     echo "pushed $branch ($(git rev-parse --short HEAD)): $title"

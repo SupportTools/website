@@ -40,7 +40,9 @@ run with a write deploy key instead. `website-job` uses the App whenever `GH_APP
 is set; otherwise, with `GIT_DEPLOY_KEY` set (Vault `secret/publisher/github-deploy-key`,
 chart externalSecrets item `githubDeployKey`), it clones and pushes over SSH with
 GitHub's host keys baked into the image, exports `WEBSITE_GIT_MODE=deploy-key` and
-does not export `GH_TOKEN`. With `GH_TOKEN` unset, `lib.sh` makes no `gh` call:
+does not export `GH_TOKEN`. With `GH_TOKEN` unset, `lib.sh` makes no `gh` call. An
+empty `GH_TOKEN` without `WEBSITE_GIT_MODE=deploy-key` (an App token that failed to
+mint) stops the job before any push instead of falling into deploy-key mode:
 
 - `publish_changes` pushes `bot/<kind>-<YYYYMMDD>` only (never main) and prints that
   the bot-pr workflow opens the PR. No auto-merge is requested.

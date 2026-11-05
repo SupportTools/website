@@ -25,7 +25,8 @@ function gitEnv() {
 function sh(script, extraEnv = {}) {
   const r = spawnSync('bash', ['-c', `set -euo pipefail; . scripts/jobs/lib.sh; ${script}`], {
     cwd: clone, encoding: 'utf8',
-    // App mode (GH_TOKEN set) unless a test passes GH_TOKEN: '' for deploy-key mode.
+    // App mode (GH_TOKEN set) unless a test passes GH_TOKEN: '' and
+    // WEBSITE_GIT_MODE: 'deploy-key' for deploy-key mode.
     env: { ...gitEnv(), PATH: `${join(root, 'bin')}:${process.env.PATH}`, FAKE_GH_LOG: ghLog, GH_TOKEN: 'fake-app-token', ...extraEnv },
   });
   return { code: r.status, out: `${r.stdout}${r.stderr}` };
@@ -173,7 +174,7 @@ test('deploy-key mode: pushes the bot branch only, never main, and never calls g
   writeFileSync(join(clone, 'blog/content/post/a.md'), post('a', `images: ["${URL1}"]\n`));
   writeFileSync(join(clone, 'scripts/og/manifest.json'), JSON.stringify({ a: { status: 'live', url: URL1 } }, null, 1));
   const mainBefore = git(bare, 'rev-parse', 'main');
-  const r = sh('stage_card_changes; check_live_cards_linked; publish_changes nightly-cards "chore(og): 1 more share cards (1 live)"', { GH_TOKEN: '' });
+  const r = sh('stage_card_changes; check_live_cards_linked; publish_changes nightly-cards "chore(og): 1 more share cards (1 live)"', { GH_TOKEN: '', WEBSITE_GIT_MODE: 'deploy-key' });
   assert.equal(r.code, 0, r.out);
   const branch = `bot/nightly-cards-${day()}`;
   assert.equal(git(bare, 'rev-parse', 'main'), mainBefore);
@@ -186,21 +187,35 @@ test('deploy-key mode: an earlier bot branch on the remote stops the job; today\
   git(clone, 'push', '-q', 'origin', `main:refs/heads/bot/nightly-cards-${day()}`);
   git(clone, 'push', '-q', 'origin', 'main:refs/heads/bot/daily-publish-20000101');
   git(clone, 'push', '-q', 'origin', 'main:refs/heads/bot/nightly-cards-20000101');
-  let r = sh('refuse_if_earlier_bot_pr nightly-cards', { GH_TOKEN: '' });
+  let r = sh('refuse_if_earlier_bot_pr nightly-cards', { GH_TOKEN: '', WEBSITE_GIT_MODE: 'deploy-key' });
   assert.equal(r.code, 1, r.out);
   assert.match(r.out, /earlier nightly-cards PR still open \(bot\/nightly-cards-20000101 \)/);
   // The merged PR's branch is deleted: the job runs again.
   git(clone, 'push', '-q', 'origin', ':refs/heads/bot/nightly-cards-20000101');
-  r = sh('refuse_if_earlier_bot_pr nightly-cards', { GH_TOKEN: '' });
+  r = sh('refuse_if_earlier_bot_pr nightly-cards', { GH_TOKEN: '', WEBSITE_GIT_MODE: 'deploy-key' });
   assert.equal(r.code, 0, r.out);
   assert.equal(existsSync(ghLog), false);
 });
 
 test('deploy-key mode: an unreachable remote stops the job instead of reading as "no branch"', () => {
   git(clone, 'remote', 'set-url', 'origin', join(root, 'missing.git'));
-  const r = sh('refuse_if_earlier_bot_pr nightly-cards', { GH_TOKEN: '' });
+  const r = sh('refuse_if_earlier_bot_pr nightly-cards', { GH_TOKEN: '', WEBSITE_GIT_MODE: 'deploy-key' });
   assert.equal(r.code, 1, r.out);
   assert.match(r.out, /cannot list remote bot\/nightly-cards-\* branches; refusing to run/);
+});
+
+test('deploy-key mode: an empty GH_TOKEN without WEBSITE_GIT_MODE=deploy-key stops the job before any push', () => {
+  writeFileSync(join(clone, 'blog/content/post/a.md'), post('a', `images: ["${URL1}"]\n`));
+  writeFileSync(join(clone, 'scripts/og/manifest.json'), JSON.stringify({ a: { status: 'live', url: URL1 } }, null, 1));
+  let r = sh('refuse_if_earlier_bot_pr nightly-cards; echo reached', { GH_TOKEN: '' });
+  assert.equal(r.code, 1, r.out);
+  assert.match(r.out, /GH_TOKEN is empty and WEBSITE_GIT_MODE is not deploy-key; refusing to run/);
+  assert.doesNotMatch(r.out, /reached/);
+  r = sh('stage_card_changes; publish_changes nightly-cards "chore(og): x"; echo reached', { GH_TOKEN: '', WEBSITE_GIT_MODE: 'app' });
+  assert.equal(r.code, 1, r.out);
+  assert.doesNotMatch(r.out, /reached/);
+  assert.equal(git(bare, 'ls-remote', '--heads', bare, 'refs/heads/bot/*'), '');
+  assert.equal(existsSync(ghLog), false);
 });
 
 test('cards-nightly: a live card its post does not link still commits the manifest alone, then exits 1', () => {
@@ -219,6 +234,7 @@ test('cards-nightly: a live card its post does not link still commits the manife
   const env = {
     ...gitEnv(), PATH: `${join(root, 'bin')}:${process.env.PATH}`, FAKE_GH_LOG: ghLog, JOB_NODE_MODULES: dir,
     OG_WORK_DIR: join(root, 'work'), OPENAI_API_KEY: 'x', ANTHROPIC_API_KEY: 'x', OG_WASABI_ACCESS_KEY_ID: 'x', OG_WASABI_SECRET_ACCESS_KEY: 'x',
+    WEBSITE_GIT_MODE: 'deploy-key',
   };
   const mainBefore = git(bare, 'rev-parse', 'main');
   const r = spawnSync('bash', ['scripts/jobs/cards-nightly.sh'], { cwd: clone, encoding: 'utf8', env });
@@ -246,7 +262,7 @@ test('cards-nightly: OG_REVIEW_PROVIDER=openai (INTERIM, #990) needs no Anthropi
   const env = {
     ...gitEnv(), PATH: `${join(root, 'bin')}:${process.env.PATH}`, FAKE_GH_LOG: ghLog, JOB_NODE_MODULES: dir,
     OG_WORK_DIR: join(root, 'work'), OPENAI_API_KEY: 'x', OG_WASABI_ACCESS_KEY_ID: 'x', OG_WASABI_SECRET_ACCESS_KEY: 'x',
-    OG_REVIEW_PROVIDER: 'openai',
+    OG_REVIEW_PROVIDER: 'openai', WEBSITE_GIT_MODE: 'deploy-key',
   };
   delete env.ANTHROPIC_API_KEY;
   const r = spawnSync('bash', ['scripts/jobs/cards-nightly.sh'], { cwd: clone, encoding: 'utf8', env });

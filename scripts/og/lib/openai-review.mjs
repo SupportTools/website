@@ -38,9 +38,12 @@ export const REVIEW_MODEL = 'gpt-6-luna';
 
 // USD per 1M tokens, same sources. Prompts over 272K input tokens cost 2x input and
 // 1.5x output on gpt-6-luna; a card review is a few thousand tokens, but the rule is
-// applied anyway so a cap is never under-counted.
+// applied anyway so a cap is never under-counted. Cache writes are listed at $0.125/M
+// and Chat Completions usage does not say which uncached input tokens were written
+// to the cache, so every uncached input token is charged at the higher of the input
+// and cache-write prices: an upper bound, never an under-count (INTERIM, #990).
 export const REVIEW_PRICES = {
-  'gpt-6-luna': { in: 0.10, cachedIn: 0.01, out: 0.50, longAbove: 272_000, longIn: 2, longOut: 1.5 },
+  'gpt-6-luna': { in: 0.10, cachedIn: 0.01, cacheWrite: 0.125, out: 0.50, longAbove: 272_000, longIn: 2, longOut: 1.5 },
 };
 
 // Reasoning and visible tokens both count against this; a one-line JSON verdict at
@@ -67,7 +70,8 @@ export function reviewUsageCost(model, usage = {}) {
   const long = prompt > p.longAbove;
   const inMul = long ? p.longIn : 1;
   const outMul = long ? p.longOut : 1;
-  return round(((prompt - cached) * p.in * inMul + cached * p.cachedIn * inMul
+  const uncachedIn = Math.max(p.in, p.cacheWrite || 0);
+  return round(((prompt - cached) * uncachedIn * inMul + cached * p.cachedIn * inMul
     + (usage.completion_tokens || 0) * p.out * outMul) / 1e6);
 }
 
