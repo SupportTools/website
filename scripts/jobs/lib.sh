@@ -8,8 +8,11 @@
 # author to support-tools-publisher[bot] and runs scripts/jobs/<script> from the clone.
 #
 # Changes never go to main directly: publish_changes commits on bot/<kind>-<YYYYMMDD>,
-# pushes that branch, opens (or reuses) its PR and turns on auto-merge (squash), so
-# the PR lands only once CI passes.
+# pushes that branch, opens (or reuses) its PR and asks for auto-merge (squash). The
+# PR merges only when main's branch protection is satisfied: with the repo's
+# auto-merge setting on, the CI `Test` check required, and the publisher App allowed
+# past the review rule, that is once CI passes; otherwise a human approves and merges
+# it. A failed auto-merge request is reported, not fatal (the PR is already open).
 
 JOB_REPO="${WEBSITE_REPO:-SupportTools/website}"
 JOB_DAY="$(TZ=America/Chicago date +%Y%m%d)"
@@ -26,12 +29,25 @@ require_env() {
   fi
 }
 
-# Installs runtime npm dependencies (only @anthropic-ai/sdk; dev tools are skipped)
-# into the fresh clone. Fetch tier: the npm mirror named by NPM_REGISTRY (the
-# in-cluster Verdaccio pull-through cache), with the image's npm cache tried first.
-# Refuses to fall back to the public registry.
+# Provides the runtime npm dependencies (only @anthropic-ai/sdk) to the fresh clone.
+# Fetch tier, in order:
+#   1. baked into the job image: JOB_NODE_MODULES (default /opt/website-node/node_modules)
+#      is symlinked to ./node_modules when its @anthropic-ai/sdk is the version
+#      package.json pins. A symlink, not NODE_PATH: ESM import() ignores NODE_PATH.
+#   2. fallback, a mirror we run: `npm ci --omit=dev` from NPM_REGISTRY (CI uses the
+#      in-cluster Verdaccio pull-through cache, cluster-services npm-proxy/).
+# Never falls back to the public registry.
 ensure_node_deps() {
   if [ -d node_modules/@anthropic-ai/sdk ]; then return 0; fi
+  local baked=${JOB_NODE_MODULES:-/opt/website-node/node_modules} want have
+  want=$(jq -r '.dependencies["@anthropic-ai/sdk"] // empty' package.json 2>/dev/null || true)
+  have=$(jq -r .version "$baked/@anthropic-ai/sdk/package.json" 2>/dev/null || true)
+  if [ -n "$have" ] && [ "$have" = "$want" ] && [ ! -e node_modules ]; then
+    ln -s "$baked" node_modules
+    job_log "node_modules: baked into the image (@anthropic-ai/sdk $have)"
+    return 0
+  fi
+  [ -z "$have" ] || echo "baked @anthropic-ai/sdk is $have, package.json pins $want; installing from the mirror" >&2
   if [ -z "${NPM_REGISTRY:-}" ]; then
     echo "NPM_REGISTRY is not set; refusing to install npm dependencies from the public registry" >&2
     return 1
@@ -44,9 +60,11 @@ ensure_node_deps() {
 # (for nightly-cards, the batch ids of art already paid for) are not on main yet,
 # and running again from main would lose or repeat them.
 refuse_if_earlier_bot_pr() {
-  local kind=$1 open
-  open=$(gh pr list -R "$JOB_REPO" --state open --limit 100 --json headRefName -q '.[].headRefName' \
-    | grep "^bot/${kind}-" | grep -vx "bot/${kind}-${JOB_DAY}" || true)
+  local kind=$1 prs open
+  # A gh failure (auth, rate limit, network) must stop the job, not read as "no PR".
+  prs=$(gh pr list -R "$JOB_REPO" --state open --limit 100 --json headRefName -q '.[].headRefName') \
+    || { echo "cannot list open PRs; refusing to run" >&2; return 1; }
+  open=$(grep "^bot/${kind}-" <<<"$prs" | grep -vx "bot/${kind}-${JOB_DAY}" || true)
   if [ -n "$open" ]; then
     echo "earlier ${kind} PR still open ($(echo "$open" | tr '\n' ' ')); merge or close it first" >&2
     return 1
@@ -62,7 +80,10 @@ stage_card_changes() {
   CARD_POSTS_SKIPPED=0
   while IFS= read -r f; do
     [ -n "$f" ] || continue
-    other=$(git diff -U0 -- "$f" | grep -E '^[-+][^-+]' | grep -vcE '^\+images *[:=] *\["https://cdn\.support\.tools/posts/' || true)
+    # Every added or removed line after the first hunk header (so a `+- item` or a
+    # blank `+` counts), other than the one images line.
+    other=$(git diff -U0 -- "$f" | awk '/^@@/ { h = 1; next } h && /^[-+]/' \
+      | grep -vcE '^\+images *[:=] *\["https://cdn\.support\.tools/posts/' || true)
     if [ "$other" = 0 ]; then
       git add -- "$f"
       CARD_POSTS_STAGED=$((CARD_POSTS_STAGED + 1))
@@ -97,8 +118,8 @@ live_card_count() {
   git show :scripts/og/manifest.json | jq '[.[] | select(.status=="live")] | length'
 }
 
-# Commits what is staged on bot/<kind>-<day>, pushes it and opens or reuses its PR
-# with auto-merge. Prints "nothing new" and returns 0 when nothing is staged.
+# Commits what is staged on bot/<kind>-<day>, pushes it, opens or reuses its PR and
+# asks for auto-merge. Prints "nothing new" and returns 0 when nothing is staged.
 # JOB_DRY_RUN=1 commits locally and prints what it would push, without pushing.
 publish_changes() {
   local kind=$1 title=$2 body=${3:-}
@@ -120,8 +141,12 @@ publish_changes() {
   state=$(gh pr view "$branch" -R "$JOB_REPO" --json state -q .state 2>/dev/null || true)
   if [ "$state" != OPEN ]; then
     gh pr create -R "$JOB_REPO" --base main --head "$branch" --title "$title" \
-      --body "${body:-Opened by the ${kind} job (publisher). Auto-merges (squash) once CI passes.}"
+      --body "${body:-Opened by the ${kind} job (publisher). Auto-merge (squash) is requested; it lands once the branch protection on main is satisfied.}"
   fi
-  gh pr merge "$branch" -R "$JOB_REPO" --auto --squash
+  # Fails while the repo's auto-merge setting is off. The PR is open either way, so
+  # this only warns; the next run's refuse_if_earlier_bot_pr still guards against a
+  # PR nobody merged.
+  gh pr merge "$branch" -R "$JOB_REPO" --auto --squash \
+    || echo "WARNING: auto-merge not enabled for $branch (is the repo's auto-merge setting on?); a human must merge it" >&2
   echo "pushed $branch ($(git rev-parse --short HEAD)): $title"
 }

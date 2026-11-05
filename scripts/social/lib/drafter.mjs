@@ -290,6 +290,15 @@ export function makeTools({ plan, articles, pages, buffer, dryRun, log = console
     } else {
       const post = await buffer.create(draft);
       id = post.id;
+      if (post.status !== 'draft') {
+        // Buffer did not save it as a draft (saveToDraft ignored or read differently),
+        // so it may publish on its own. Stop the whole run; this is not something the
+        // model can retry its way around.
+        const e = new Error(`Buffer created ${channel} post ${id} for ${slug} with status ${post.status}, not draft; `
+          + 'stopping. Delete or re-draft that post in Buffer by hand.');
+        e.halt = true;
+        throw e;
+      }
       log(`DRAFTED ${channel} ${dueAt} ${slug} ${id}`);
     }
     if (channel === 'bluesky') blueskyDone.add(slug);
@@ -336,7 +345,12 @@ export async function runDrafter({
       const results = [];
       for (const b of message.content.filter((x) => x.type === 'tool_use')) {
         let out;
-        try { out = await tools.run(b.name, b.input || {}); } catch (e) { out = { error: e.message }; }
+        try {
+          out = await tools.run(b.name, b.input || {});
+        } catch (e) {
+          if (e.halt) throw e;
+          out = { error: e.message };
+        }
         results.push({ type: 'tool_result', tool_use_id: b.id, content: JSON.stringify(out), ...(out.error ? { is_error: true } : {}) });
       }
       messages.push({ role: 'user', content: results });

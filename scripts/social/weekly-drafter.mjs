@@ -24,11 +24,22 @@ import {
   ORG_ID, weekDays, weekArticles, loadManifest, planWeek, runDrafter, chicagoParts,
 } from './lib/drafter.mjs';
 import { makeClient, anthropicLedgerPath, DRAFTER_MODEL } from '../og/lib/anthropic.mjs';
+import { BudgetError } from '../og/lib/budget.mjs';
 
 const REPO = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const argv = process.argv.slice(2);
 const flag = (n) => argv.includes(n);
 const opt = (n, d) => (argv.includes(n) ? argv[argv.indexOf(n) + 1] : d);
+
+// SOCIAL_ANTHROPIC_RUN_CAP_USD, checked like OG_ANTHROPIC_MONTHLY_CAP_USD: a value
+// that is not a finite number >= 0 would disable the per-run limit (x > NaN is false).
+function runCapUsd(env) {
+  const raw = env.SOCIAL_ANTHROPIC_RUN_CAP_USD;
+  if (raw === undefined || raw === '') return 3;
+  const n = Number(raw);
+  if (!Number.isFinite(n) || n < 0) throw new BudgetError(`SOCIAL_ANTHROPIC_RUN_CAP_USD is not a non-negative number: ${raw}`);
+  return n;
+}
 
 async function main() {
   const dryRun = flag('--dry-run');
@@ -56,7 +67,7 @@ async function main() {
   if (planOnly) return 0;
 
   const workDir = process.env.OG_WORK_DIR ? path.resolve(process.env.OG_WORK_DIR) : path.join(REPO, '.og-work');
-  const runCap = Number(process.env.SOCIAL_ANTHROPIC_RUN_CAP_USD || 3);
+  const runCap = runCapUsd(process.env);
   const r = await runDrafter({
     client: plan.days.length ? await makeClient() : null,
     model: process.env.SOCIAL_DRAFTER_MODEL || DRAFTER_MODEL,

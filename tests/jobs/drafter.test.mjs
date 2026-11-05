@@ -6,7 +6,7 @@ import assert from 'node:assert/strict';
 import { mkdtempSync, writeFileSync, mkdirSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
-import { execFileSync } from 'node:child_process';
+import { execFileSync, spawnSync } from 'node:child_process';
 import {
   weekDays, chicagoIso, weekArticles, planWeek, copyProblems, draftInput, runDrafter, CHANNELS, linkFor,
 } from '../../scripts/social/lib/drafter.mjs';
@@ -252,4 +252,36 @@ test('weekly-drafter --plan-only needs no keys and calls nothing', () => {
   for (const k of ['ANTHROPIC_API_KEY', 'BUFFER_API_KEY', 'OPENAI_API_KEY']) delete env[k];
   const out = execFileSync(process.execPath, [resolve('scripts/social/weekly-drafter.mjs'), '--plan-only', '--week-start', '2026-11-09'], { env, encoding: 'utf8' });
   assert.match(out, /^week 2026-11-09\.\.2026-11-15: \d+ articles, 0 Buffer posts checked/);
+});
+
+test('a Buffer post that was not saved as a draft stops the run; the model never sees it as a retryable error', async () => {
+  const { arts, plan } = smallWeek();
+  const logs = [];
+  const claude = anthropicScript([
+    { stop_reason: 'tool_use', content: [toolUse('t1', 'create_draft', { channel: 'bluesky', slug: 'a-incident', text: 'etcd falls over when disks are slow.' })] },
+    { content: [{ type: 'text', text: 'should never be reached' }] },
+  ]);
+  const calls = routeFetch((call) => {
+    if (call.url === BUFFER) {
+      return json({ data: { createPost: { __typename: 'PostActionSuccess', post: { id: 'p-live', status: 'scheduled', dueAt: call.body.variables.input.dueAt } } } });
+    }
+    return claude(call);
+  });
+  await assert.rejects(runDrafter({
+    client: await makeClient(), model: 'claude-sonnet-5-5', plan, articles: arts, pages: loadPages(join(repo, 'blog/content')),
+    buffer: createClient({ apiKey: 'buf-test', url: BUFFER }), dryRun: false, ledgerFile: join(repo, 'l.json'), runCapUsd: 3,
+    today: '2026-11-08', days: days(), log: (l) => logs.push(l),
+  }), (e) => e.halt === true && /post p-live .*status scheduled, not draft/.test(e.message));
+  assert.equal(calls.filter((c) => isMessagesApi(c.url)).length, 1);
+  assert.equal(calls.filter((c) => c.url === BUFFER).length, 1);
+});
+
+test('weekly-drafter: a per-run cap that is not a number >= 0 exits 4 before any API call', () => {
+  for (const bad of ['abc', '-1']) {
+    const env = { ...process.env, SOCIAL_ANTHROPIC_RUN_CAP_USD: bad, OG_ANTHROPIC_LEDGER: join(repo, 'l.json') };
+    for (const k of ['ANTHROPIC_API_KEY', 'BUFFER_API_KEY', 'OPENAI_API_KEY']) delete env[k];
+    const r = spawnSync(process.execPath, [resolve('scripts/social/weekly-drafter.mjs'), '--dry-run', '--week-start', '2026-11-09'], { env, encoding: 'utf8' });
+    assert.equal(r.status, 4, `${bad}: ${r.stdout}${r.stderr}`);
+    assert.match(r.stderr, new RegExp(`SOCIAL_ANTHROPIC_RUN_CAP_USD is not a non-negative number: ${bad}`));
+  }
 });

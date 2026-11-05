@@ -6,9 +6,10 @@
 #   2. --only-drawn: compose, review (Anthropic API) and upload those cards
 #   3. submit-batch: queue art for the next OG_NIGHTLY_LIMIT cards (default 40)
 # then commits the manifest (and posts that gained a card) on bot/nightly-cards-<day>
-# and opens an auto-merge PR. The manifest is committed even when a step failed:
-# it records which batches are in flight, so the next night collects them instead
-# of paying for them again. Exit: the last failing step's code (2 halted, 3 uploads
+# and opens a PR with auto-merge requested. The manifest is committed even when a
+# step failed or a live card is not linked from its post (then alone, with a "state
+# only" title, and exit 1): it records which batches are in flight, so the next night
+# collects them instead of paying for them again. Exit: the last failing step's code (2 halted, 3 uploads
 # stopped, 4 a monthly spend cap), else 0.
 set -euo pipefail
 cd "$(dirname "$0")/../.."
@@ -35,7 +36,14 @@ if git diff --cached --quiet; then
   echo "nothing new"
   exit "$rc"
 fi
-check_live_cards_linked || exit 1
+if ! check_live_cards_linked; then
+  # The posts are not committed, but the manifest still is: it holds tonight's
+  # in-flight batch ids, and dropping it would pay for that art again tomorrow.
+  git add -- scripts/og/manifest.json
+  publish_changes nightly-cards "chore(og): nightly card state only, live cards not linked ($(live_card_count) live)" \
+    "Opened by the nightly-cards job (publisher). State only: some live cards are not linked from their posts (see the job log for MISMATCH lines), so no posts are included. Fix the links by hand; the batch ids here must land so they are not submitted again."
+  exit 1
+fi
 live=$(live_card_count)
 if [ "$CARD_POSTS_STAGED" -gt 0 ]; then
   title="chore(og): $CARD_POSTS_STAGED more share cards ($live live)"

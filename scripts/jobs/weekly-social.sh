@@ -11,14 +11,14 @@ cd "$(dirname "$0")/../.."
 # shellcheck source=scripts/jobs/lib.sh
 . scripts/jobs/lib.sh
 
+# OG_WORK_DIR (the PVC) holds the monthly Anthropic ledger shared with the card
+# reviewer; without it the ledger would start empty in every fresh clone and the
+# monthly cap could not hold, so any run that calls Anthropic requires it.
 case " $* " in
   *" --plan-only "*) ;;
-  *" --dry-run "*) require_env ANTHROPIC_API_KEY ;;
-  *) require_env ANTHROPIC_API_KEY BUFFER_API_KEY ;;
+  *" --dry-run "*) require_env ANTHROPIC_API_KEY OG_WORK_DIR ;;
+  *) require_env ANTHROPIC_API_KEY BUFFER_API_KEY OG_WORK_DIR ;;
 esac
-# The monthly Anthropic ledger is shared with the card reviewer; without the PVC it
-# would start empty every run and the monthly cap could not hold.
-[ -n "${OG_WORK_DIR:-}" ] || echo "WARNING: OG_WORK_DIR is not set; the Anthropic ledger will not persist"
 ensure_node_deps
 
 rc=0
