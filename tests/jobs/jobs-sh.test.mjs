@@ -170,8 +170,8 @@ test('baked node_modules at another version are not used; with no mirror the ins
   assert.equal(existsSync(join(clone, 'node_modules')), false);
 });
 
-// Push-only mode (INTERIM, TaskForge supporttools-website-990): no gh call, whatever
-// GH_TOKEN holds. deploy-key has no token; app-push-only has an App token without
+// Push-only fallbacks (TaskForge supporttools-website-990, unused today): no gh call,
+// whatever GH_TOKEN holds. deploy-key has no token; app-push-only has an App token without
 // pull-requests permission, so a gh call would be refused.
 const PUSH_ONLY = {
   'deploy-key': { GH_TOKEN: '', WEBSITE_GIT_MODE: 'deploy-key' },
@@ -188,7 +188,7 @@ for (const [mode, env] of Object.entries(PUSH_ONLY)) {
     const branch = `bot/nightly-cards-${day()}`;
     assert.equal(git(bare, 'rev-parse', 'main'), mainBefore);
     assert.equal(git(bare, 'log', '-1', '--format=%s', branch), 'chore(og): 1 more share cards (1 live)');
-    assert.match(r.out, new RegExp(`${mode} mode: no PR opened here; the bot-pr workflow opens the PR for ${branch}`));
+    assert.match(r.out, new RegExp(`${mode} mode: no PR opened here; a human opens the PR for ${branch}`));
     assert.equal(existsSync(ghLog), false);
   });
 
@@ -282,7 +282,7 @@ test('cards-nightly: OG_REVIEW_PROVIDER=openai (INTERIM, #990) needs no Anthropi
   const env = {
     ...gitEnv(), PATH: `${join(root, 'bin')}:${process.env.PATH}`, FAKE_GH_LOG: ghLog, JOB_NODE_MODULES: dir,
     OG_WORK_DIR: join(root, 'work'), OPENAI_API_KEY: 'x', OG_WASABI_ACCESS_KEY_ID: 'x', OG_WASABI_SECRET_ACCESS_KEY: 'x',
-    // The interim config: the push-only App (a token gh must never use) and OpenAI review.
+    // A push-only App (a token gh must never use) and OpenAI review.
     OG_REVIEW_PROVIDER: 'openai', WEBSITE_GIT_MODE: 'app-push-only', GH_TOKEN: 'fake-app-token',
   };
   delete env.ANTHROPIC_API_KEY;
