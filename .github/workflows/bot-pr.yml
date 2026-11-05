@@ -1,0 +1,72 @@
+name: Bot PR
+
+# INTERIM (TaskForge supporttools-website-990): the in-cluster publisher jobs run in
+# push-only mode (WEBSITE_GIT_MODE deploy-key or app-push-only) while they have no
+# GitHub App that can open PRs. A deploy key, or the supporttools-chart-publisher App
+# (contents:write, no pull-requests permission), can push bot/<kind>-<YYYYMMDD> but
+# cannot open a PR, so this workflow opens one for each pushed bot branch. It never merges and never enables auto-merge: a human reviews and merges.
+# #990 gives the jobs a GitHub App that opens its own PRs (scripts/jobs/lib.sh), after
+# which this workflow finds the PR already open and does nothing; remove it then.
+#
+# Needs the repository setting "Allow GitHub Actions to create and approve pull
+# requests" (Settings > Actions > General), otherwise `gh pr create` is refused.
+# A PR opened with GITHUB_TOKEN does not trigger pull_request workflows, so the Test
+# job runs from the push to the bot branch instead (cloudflare-workers.yml lists
+# bot/** under push) and its check shows on the PR's head commit.
+#
+# Fetch tiers: none. gh is baked into the self-hosted-linux runner image and talks
+# only to the GitHub API with the run's GITHUB_TOKEN; nothing is downloaded and the
+# repository is not checked out.
+
+on:
+  push:
+    branches:
+      - 'bot/**'
+
+permissions:
+  contents: read
+  pull-requests: write
+
+concurrency:
+  group: bot-pr-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  open-pr:
+    runs-on: self-hosted-linux
+    timeout-minutes: 6
+    # A push that deletes the branch has no commit to open a PR for.
+    if: ${{ !github.event.deleted }}
+    steps:
+      - name: Open a PR to main for this bot branch (never merges)
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          BRANCH: ${{ github.ref_name }}
+          # Data, not code: passed through env, never interpolated into the script.
+          SUBJECT: ${{ github.event.head_commit.message }}
+        run: |
+          set -euo pipefail
+          command -v gh >/dev/null || { echo "::error::gh is not installed on this runner"; exit 1; }
+          # A job with the GitHub App opens its own PR right after the push; give it
+          # that chance first so the two never race to create the same PR.
+          sleep 60
+          open=$(gh pr list -R "$REPO" --head "$BRANCH" --base main --state open --json number -q '.[0].number // empty')
+          if [ -n "$open" ]; then
+            echo "PR #$open is already open for $BRANCH; nothing to do"
+            exit 0
+          fi
+          title=$(printf '%s\n' "$SUBJECT" | head -n 1)
+          [ -n "$title" ] || title="chore: ${BRANCH}"
+          kind=${BRANCH#bot/}
+          kind=${kind%-*}
+          body=$(printf '%s\n' \
+            "Opened by the bot-pr workflow for the in-cluster \`${kind}\` publisher job, which pushed \`${BRANCH}\` with a credential that cannot open PRs (interim push-only mode, TaskForge supporttools-website-990)." \
+            "" \
+            "Nothing merges this PR automatically: auto-merge is not enabled. A human reviews it and merges it once the Test check passes." \
+            "" \
+            "While this PR is open (or its branch is not deleted), the next \`${kind}\` run refuses to start, so merge it or close it and delete the branch.")
+          if ! gh pr create -R "$REPO" --base main --head "$BRANCH" --title "$title" --body "$body"; then
+            echo "::error::gh pr create failed. If the message says GitHub Actions is not permitted to create pull requests, enable 'Allow GitHub Actions to create and approve pull requests' in Settings > Actions > General."
+            exit 1
+          fi
