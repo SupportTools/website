@@ -111,13 +111,16 @@ jobs:
       - name: Check code blocks use theme syntax colors, not inline styles
         run: npm run check:inline-colors
 
-      - name: Unit tests (theme, social link guards, URL guard, IndexNow, SEO guards, share cards)
+      - name: Unit tests (theme, social link guards, URL guard, IndexNow, SEO guards, share cards, in-cluster jobs)
+        # The job tests mock every API (Anthropic, OpenAI, Buffer, Wasabi, GitHub via a
+        # fake gh) and fail on any unmocked fetch; no key is needed or used.
         run: |
           npm run test:seo
           npm run test:social
           npm run test:urls
           npm run test:indexnow
           npm run test:og
+          env -u ANTHROPIC_API_KEY -u OPENAI_API_KEY npm run test:jobs
           npm run test:theme
 
       - name: Check for expired content

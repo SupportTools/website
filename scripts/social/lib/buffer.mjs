@@ -32,6 +32,15 @@ const EDIT = `mutation($input: EditPostInput!) {
   }
 }`;
 
+// Used by the weekly drafter (scripts/social/weekly-drafter.mjs). Only the success
+// shape is selected: any other result type is reported by its __typename.
+const CREATE = `mutation($input: CreatePostInput!) {
+  createPost(input: $input) {
+    __typename
+    ... on PostActionSuccess { post { id status dueAt } }
+  }
+}`;
+
 const URL_RE = /https?:\/\/\S+/;
 
 // The fields the guards work with, plus the raw node for editing.
@@ -106,6 +115,14 @@ export function createClient({ apiKey, url = 'https://api.buffer.com', fetch = g
         after = data.posts.pageInfo.hasNextPage ? data.posts.pageInfo.endCursor : null;
       } while (after);
       return out;
+    },
+    // input is a CreatePostInput (channelId, schedulingType, mode, dueAt, saveToDraft,
+    // text, metadata, assets). Returns { id, status, dueAt }.
+    async create(input) {
+      const data = await call(CREATE, { input });
+      const r = data.createPost;
+      if (r.__typename !== 'PostActionSuccess') throw new Error(`buffer: createPost returned ${r.__typename}${r.message ? `: ${r.message}` : ''}`);
+      return r.post;
     },
     async edit(node, change) {
       const data = await call(EDIT, { input: editInput(node, change) });

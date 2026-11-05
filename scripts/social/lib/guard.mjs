@@ -38,7 +38,7 @@ export async function checkLink(url, fetchFn = globalThis.fetch, method = 'GET')
 }
 
 // The UTC instant of a Chicago wall-clock time on the given Chicago calendar day.
-function chicagoTime(y, m, d, hh, mm) {
+export function chicagoTime(y, m, d, hh, mm) {
   let guess = Date.UTC(y, m - 1, d, hh, mm);
   for (let i = 0; i < 2; i++) {
     const parts = Object.fromEntries(new Intl.DateTimeFormat('en-US', {

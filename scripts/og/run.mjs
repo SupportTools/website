@@ -15,7 +15,7 @@
 //   node scripts/og/run.mjs recompose          # re-lay out unuploaded cards after a compose.mjs change
 import { mkdirSync, readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { createHash } from 'node:crypto';
-import { join, dirname } from 'node:path';
+import { join, dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { listPosts, prioritize, excerpt, setImages, cdnKey, readPost } from './lib/posts.mjs';
 import { loadManifest, saveManifest, needsWork } from './lib/manifest.mjs';
@@ -25,10 +25,13 @@ import { uploadCard, verifyServed } from './lib/upload.mjs';
 import { submitBatch, collectBatch, pendingBatchIds } from './lib/batch.mjs';
 import { ledgerPath, imageConfig, BATCH_PENDING } from './lib/openai.mjs';
 import { loadLedger, spent, capUsd, monthKey } from './lib/budget.mjs';
+import { anthropicLedgerPath, anthropicCapUsd } from './lib/anthropic.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..', '..');
 const CONTENT = join(ROOT, 'blog', 'content', 'post');
-const WORK = join(ROOT, '.og-work');
+// Card files, batch JSONL and the spend ledgers. OG_WORK_DIR moves them (the
+// in-cluster job points it at a PVC so they survive between nightly runs).
+const WORK = process.env.OG_WORK_DIR ? resolve(process.env.OG_WORK_DIR) : join(ROOT, '.og-work');
 const MANIFEST = join(ROOT, 'scripts', 'og', 'manifest.json');
 const LEDGER = ledgerPath(process.env, WORK);
 const ATTEMPTS = 2;
@@ -94,7 +97,7 @@ async function processPost(post) {
           await makeCard(post, dir, note, entry);
           entry.attempts += 1;
         }
-        verdict = await reviewCard({ card, post });
+        verdict = await reviewCard({ card, post, workDir: WORK });
         if (verdict.verdict === 'pass') break;
         note = verdict.reason;
       }
@@ -118,7 +121,7 @@ async function processPost(post) {
       if (!halted) { halted = msg; haltCode = e.name === 'BudgetError' ? 4 : 2; console.error(`stopping: ${msg}`); }
       return;
     }
-    if (/Vault/.test(msg)) {
+    if (/Vault|OG_WASABI_/.test(msg)) {
       uploadsDisabled = uploadsStopped = true;
       console.error(`uploads stopped: ${msg}`);
       return;
@@ -162,6 +165,10 @@ function status() {
   if (Object.keys(ledger.months).length) {
     console.log(`openai ${month}: estimated $${spent(ledger, month).toFixed(4)} of $${capUsd().toFixed(2)} cap`
       + `, ${ledger.months[month]?.images || 0} images, ${pendingBatchIds(manifest).length} batches pending`);
+  }
+  const al = loadLedger(anthropicLedgerPath(process.env, WORK));
+  if (al.months[month]) {
+    console.log(`anthropic ${month}: $${al.months[month].usd.toFixed(4)} of $${anthropicCapUsd().toFixed(2)} cap, ${al.months[month].requests} requests`);
   }
 }
 
