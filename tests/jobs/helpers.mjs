@@ -39,3 +39,9 @@ export function routeFetch(handler) {
 export function message({ content, stop_reason = 'end_turn', usage = { input_tokens: 1000, output_tokens: 200 }, model = 'claude-haiku-5-5' }) {
   return json({ id: `msg_${Math.random().toString(36).slice(2)}`, type: 'message', role: 'assistant', model, content, stop_reason, usage });
 }
+
+// True for a Messages API request (exact origin and path, not a prefix match).
+export function isMessagesApi(url) {
+  const u = new URL(url);
+  return u.origin === 'https://api.anthropic.com' && u.pathname === '/v1/messages';
+}

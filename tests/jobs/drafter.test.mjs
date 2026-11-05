@@ -14,7 +14,7 @@ import { loadPages } from '../../scripts/social/lib/links.mjs';
 import { createClient } from '../../scripts/social/lib/buffer.mjs';
 import { makeClient } from '../../scripts/og/lib/anthropic.mjs';
 import { loadLedger, monthKey } from '../../scripts/og/lib/budget.mjs';
-import { failClosedFetch, saveEnv, routeFetch, message, json } from './helpers.mjs';
+import { failClosedFetch, saveEnv, routeFetch, message, json, isMessagesApi } from './helpers.mjs';
 
 const ENV = ['ANTHROPIC_API_KEY', 'OG_ANTHROPIC_LEDGER', 'OG_ANTHROPIC_MONTHLY_CAP_USD', 'OG_ANTHROPIC_MAX_RETRIES',
   'ANTHROPIC_BASE_URL', 'ANTHROPIC_AUTH_TOKEN'];
@@ -149,7 +149,7 @@ test('draft inputs: LinkedIn link in the first comment with the card, Bluesky li
 function anthropicScript(script) {
   let i = 0;
   return (call) => {
-    if (!call.url.startsWith('https://api.anthropic.com/v1/messages')) return null;
+    if (!isMessagesApi(call.url)) return null;
     const r = script[i++];
     if (!r) throw new Error('script ran out');
     return message({ model: 'claude-sonnet-5-5', usage: { input_tokens: 3000, output_tokens: 400 }, ...r });
@@ -200,7 +200,7 @@ test('the agent loop drafts through the tools, fixes rejected copy, and creates 
     [CHANNELS.bluesky, '2026-11-09T16:26:00-06:00'], [CHANNELS.linkedin, '2026-11-09T17:33:00-06:00'],
   ]);
 
-  const api = calls.filter((c) => c.url.startsWith('https://api.anthropic.com'));
+  const api = calls.filter((c) => isMessagesApi(c.url));
   assert.equal(api.length, 5);
   const first = api[0];
   assert.equal(first.body.model, 'claude-sonnet-5-5');

@@ -10,7 +10,7 @@ import {
   usageCost, estimateUsd, anthropicCapUsd, anthropicLedgerPath, scrubKey, meteredCreate, RunBudget,
 } from '../../scripts/og/lib/anthropic.mjs';
 import { loadLedger, saveLedger, monthKey } from '../../scripts/og/lib/budget.mjs';
-import { failClosedFetch, saveEnv, routeFetch, message, json } from './helpers.mjs';
+import { failClosedFetch, saveEnv, routeFetch, message, json, isMessagesApi } from './helpers.mjs';
 
 const ENV = ['OG_REVIEW_PROVIDER', 'ANTHROPIC_API_KEY', 'OG_ANTHROPIC_LEDGER', 'OG_ANTHROPIC_MONTHLY_CAP_USD',
   'OG_ANTHROPIC_REVIEW_MODEL', 'OG_ANTHROPIC_MAX_RETRIES', 'ANTHROPIC_BASE_URL', 'ANTHROPIC_AUTH_TOKEN'];
@@ -47,7 +47,7 @@ test('the default review provider is the local claude CLI', () => {
 });
 
 test('anthropic review sends the card as an image to claude-haiku-5-5 and parses the verdict', async () => {
-  const calls = routeFetch(({ url }) => (url.startsWith('https://api.anthropic.com/v1/messages')
+  const calls = routeFetch(({ url }) => (isMessagesApi(url)
     ? message({ content: [{ type: 'text', text: '{"verdict":"pass","reason":"clear etcd disk scene"}' }] })
     : null));
   const v = await reviewCard({ card, post, workDir: work });
