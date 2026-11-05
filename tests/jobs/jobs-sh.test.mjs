@@ -19,14 +19,15 @@ function gitEnv() {
   const env = { ...process.env, GIT_AUTHOR_NAME: 't', GIT_AUTHOR_EMAIL: 't@example.invalid', GIT_COMMITTER_NAME: 't', GIT_COMMITTER_EMAIL: 't@example.invalid' };
   delete env.GITHUB_TOKEN;
   delete env.GH_TOKEN;
+  delete env.WEBSITE_GIT_MODE;
   return env;
 }
 
 function sh(script, extraEnv = {}) {
   const r = spawnSync('bash', ['-c', `set -euo pipefail; . scripts/jobs/lib.sh; ${script}`], {
     cwd: clone, encoding: 'utf8',
-    // App mode (GH_TOKEN set) unless a test passes GH_TOKEN: '' and
-    // WEBSITE_GIT_MODE: 'deploy-key' for deploy-key mode.
+    // Full App mode (GH_TOKEN set, WEBSITE_GIT_MODE unset) unless a test passes a
+    // push-only WEBSITE_GIT_MODE (see PUSH_ONLY below).
     env: { ...gitEnv(), PATH: `${join(root, 'bin')}:${process.env.PATH}`, FAKE_GH_LOG: ghLog, GH_TOKEN: 'fake-app-token', ...extraEnv },
   });
   return { code: r.status, out: `${r.stdout}${r.stderr}` };
@@ -169,51 +170,70 @@ test('baked node_modules at another version are not used; with no mirror the ins
   assert.equal(existsSync(join(clone, 'node_modules')), false);
 });
 
-// Deploy-key mode (INTERIM, TaskForge supporttools-website-990): no GH_TOKEN, so no gh.
-test('deploy-key mode: pushes the bot branch only, never main, and never calls gh', () => {
-  writeFileSync(join(clone, 'blog/content/post/a.md'), post('a', `images: ["${URL1}"]\n`));
-  writeFileSync(join(clone, 'scripts/og/manifest.json'), JSON.stringify({ a: { status: 'live', url: URL1 } }, null, 1));
-  const mainBefore = git(bare, 'rev-parse', 'main');
-  const r = sh('stage_card_changes; check_live_cards_linked; publish_changes nightly-cards "chore(og): 1 more share cards (1 live)"', { GH_TOKEN: '', WEBSITE_GIT_MODE: 'deploy-key' });
-  assert.equal(r.code, 0, r.out);
-  const branch = `bot/nightly-cards-${day()}`;
-  assert.equal(git(bare, 'rev-parse', 'main'), mainBefore);
-  assert.equal(git(bare, 'log', '-1', '--format=%s', branch), 'chore(og): 1 more share cards (1 live)');
-  assert.match(r.out, new RegExp(`the bot-pr workflow opens the PR for ${branch}`));
-  assert.equal(existsSync(ghLog), false);
-});
+// Push-only mode (INTERIM, TaskForge supporttools-website-990): no gh call, whatever
+// GH_TOKEN holds. deploy-key has no token; app-push-only has an App token without
+// pull-requests permission, so a gh call would be refused.
+const PUSH_ONLY = {
+  'deploy-key': { GH_TOKEN: '', WEBSITE_GIT_MODE: 'deploy-key' },
+  'app-push-only': { GH_TOKEN: 'fake-app-token', WEBSITE_GIT_MODE: 'app-push-only' },
+};
 
-test('deploy-key mode: an earlier bot branch on the remote stops the job; today\'s and other kinds do not', () => {
-  git(clone, 'push', '-q', 'origin', `main:refs/heads/bot/nightly-cards-${day()}`);
-  git(clone, 'push', '-q', 'origin', 'main:refs/heads/bot/daily-publish-20000101');
-  git(clone, 'push', '-q', 'origin', 'main:refs/heads/bot/nightly-cards-20000101');
-  let r = sh('refuse_if_earlier_bot_pr nightly-cards', { GH_TOKEN: '', WEBSITE_GIT_MODE: 'deploy-key' });
-  assert.equal(r.code, 1, r.out);
-  assert.match(r.out, /earlier nightly-cards PR still open \(bot\/nightly-cards-20000101 \)/);
-  // The merged PR's branch is deleted: the job runs again.
-  git(clone, 'push', '-q', 'origin', ':refs/heads/bot/nightly-cards-20000101');
-  r = sh('refuse_if_earlier_bot_pr nightly-cards', { GH_TOKEN: '', WEBSITE_GIT_MODE: 'deploy-key' });
-  assert.equal(r.code, 0, r.out);
-  assert.equal(existsSync(ghLog), false);
-});
+for (const [mode, env] of Object.entries(PUSH_ONLY)) {
+  test(`${mode} mode: pushes the bot branch only, never main, and never calls gh`, () => {
+    writeFileSync(join(clone, 'blog/content/post/a.md'), post('a', `images: ["${URL1}"]\n`));
+    writeFileSync(join(clone, 'scripts/og/manifest.json'), JSON.stringify({ a: { status: 'live', url: URL1 } }, null, 1));
+    const mainBefore = git(bare, 'rev-parse', 'main');
+    const r = sh('stage_card_changes; check_live_cards_linked; publish_changes nightly-cards "chore(og): 1 more share cards (1 live)"', env);
+    assert.equal(r.code, 0, r.out);
+    const branch = `bot/nightly-cards-${day()}`;
+    assert.equal(git(bare, 'rev-parse', 'main'), mainBefore);
+    assert.equal(git(bare, 'log', '-1', '--format=%s', branch), 'chore(og): 1 more share cards (1 live)');
+    assert.match(r.out, new RegExp(`${mode} mode: no PR opened here; the bot-pr workflow opens the PR for ${branch}`));
+    assert.equal(existsSync(ghLog), false);
+  });
 
-test('deploy-key mode: an unreachable remote stops the job instead of reading as "no branch"', () => {
-  git(clone, 'remote', 'set-url', 'origin', join(root, 'missing.git'));
-  const r = sh('refuse_if_earlier_bot_pr nightly-cards', { GH_TOKEN: '', WEBSITE_GIT_MODE: 'deploy-key' });
-  assert.equal(r.code, 1, r.out);
-  assert.match(r.out, /cannot list remote bot\/nightly-cards-\* branches; refusing to run/);
-});
+  test(`${mode} mode: an earlier bot branch on the remote stops the job; today's and other kinds do not`, () => {
+    git(clone, 'push', '-q', 'origin', `main:refs/heads/bot/nightly-cards-${day()}`);
+    git(clone, 'push', '-q', 'origin', 'main:refs/heads/bot/daily-publish-20000101');
+    git(clone, 'push', '-q', 'origin', 'main:refs/heads/bot/nightly-cards-20000101');
+    let r = sh('refuse_if_earlier_bot_pr nightly-cards', env);
+    assert.equal(r.code, 1, r.out);
+    assert.match(r.out, /earlier nightly-cards PR still open \(bot\/nightly-cards-20000101 \)/);
+    // The merged PR's branch is deleted: the job runs again.
+    git(clone, 'push', '-q', 'origin', ':refs/heads/bot/nightly-cards-20000101');
+    r = sh('refuse_if_earlier_bot_pr nightly-cards', env);
+    assert.equal(r.code, 0, r.out);
+    assert.equal(existsSync(ghLog), false);
+  });
 
-test('deploy-key mode: an empty GH_TOKEN without WEBSITE_GIT_MODE=deploy-key stops the job before any push', () => {
+  test(`${mode} mode: an unreachable remote stops the job instead of reading as "no branch"`, () => {
+    git(clone, 'remote', 'set-url', 'origin', join(root, 'missing.git'));
+    const r = sh('refuse_if_earlier_bot_pr nightly-cards', env);
+    assert.equal(r.code, 1, r.out);
+    assert.match(r.out, /cannot list remote bot\/nightly-cards-\* branches; refusing to run/);
+    assert.equal(existsSync(ghLog), false);
+  });
+}
+
+test('an empty GH_TOKEN with WEBSITE_GIT_MODE unset, or an unknown mode, stops the job before any push', () => {
   writeFileSync(join(clone, 'blog/content/post/a.md'), post('a', `images: ["${URL1}"]\n`));
   writeFileSync(join(clone, 'scripts/og/manifest.json'), JSON.stringify({ a: { status: 'live', url: URL1 } }, null, 1));
   let r = sh('refuse_if_earlier_bot_pr nightly-cards; echo reached', { GH_TOKEN: '' });
   assert.equal(r.code, 1, r.out);
-  assert.match(r.out, /GH_TOKEN is empty and WEBSITE_GIT_MODE is not deploy-key; refusing to run/);
+  assert.match(r.out, /GH_TOKEN is empty and WEBSITE_GIT_MODE is not deploy-key or app-push-only; refusing to run/);
   assert.doesNotMatch(r.out, /reached/);
-  r = sh('stage_card_changes; publish_changes nightly-cards "chore(og): x"; echo reached', { GH_TOKEN: '', WEBSITE_GIT_MODE: 'app' });
+  r = sh('stage_card_changes; publish_changes nightly-cards "chore(og): x"; echo reached', { GH_TOKEN: '' });
   assert.equal(r.code, 1, r.out);
   assert.doesNotMatch(r.out, /reached/);
+  // A token does not make an unknown mode full App mode: a typo must not reach gh.
+  for (const [i, extra] of [{ GH_TOKEN: '' }, {}].entries()) {
+    // A refused publish_changes has already committed locally: stage a fresh change.
+    writeFileSync(join(clone, 'scripts/og/manifest.json'), JSON.stringify({ a: { status: 'batched', batch: `batch_${i}` } }));
+    r = sh('stage_card_changes; publish_changes nightly-cards "chore(og): x"; echo reached', { ...extra, WEBSITE_GIT_MODE: 'app-pushonly' });
+    assert.equal(r.code, 1, r.out);
+    assert.match(r.out, /unknown WEBSITE_GIT_MODE app-pushonly; refusing to run/);
+    assert.doesNotMatch(r.out, /reached/);
+  }
   assert.equal(git(bare, 'ls-remote', '--heads', bare, 'refs/heads/bot/*'), '');
   assert.equal(existsSync(ghLog), false);
 });
@@ -262,7 +282,8 @@ test('cards-nightly: OG_REVIEW_PROVIDER=openai (INTERIM, #990) needs no Anthropi
   const env = {
     ...gitEnv(), PATH: `${join(root, 'bin')}:${process.env.PATH}`, FAKE_GH_LOG: ghLog, JOB_NODE_MODULES: dir,
     OG_WORK_DIR: join(root, 'work'), OPENAI_API_KEY: 'x', OG_WASABI_ACCESS_KEY_ID: 'x', OG_WASABI_SECRET_ACCESS_KEY: 'x',
-    OG_REVIEW_PROVIDER: 'openai', WEBSITE_GIT_MODE: 'deploy-key',
+    // The interim config: the push-only App (a token gh must never use) and OpenAI review.
+    OG_REVIEW_PROVIDER: 'openai', WEBSITE_GIT_MODE: 'app-push-only', GH_TOKEN: 'fake-app-token',
   };
   delete env.ANTHROPIC_API_KEY;
   const r = spawnSync('bash', ['scripts/jobs/cards-nightly.sh'], { cwd: clone, encoding: 'utf8', env });
@@ -270,6 +291,7 @@ test('cards-nightly: OG_REVIEW_PROVIDER=openai (INTERIM, #990) needs no Anthropi
   assert.equal(r.status, 0, out);
   assert.match(out, /review provider: openai/);
   assert.match(out, /nothing new/);
+  assert.equal(existsSync(ghLog), false);
   const lines = readFileSync(seen, 'utf8').trim().split('\n');
   assert.equal(lines.length, 4);
   for (const l of lines) assert.equal(l, 'openai openai none');

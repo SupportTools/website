@@ -14,10 +14,10 @@ image) clones main into `/tmp/website` with a GitHub App installation token, exp
 
 A script that changes files commits on `bot/<kind>-<YYYYMMDD>` (America/Chicago),
 pushes that branch, opens a PR and requests auto-merge (squash); it never pushes
-main. In deploy-key mode (below) it only pushes the branch and the bot-pr workflow
+main. In push-only mode (below) it only pushes the branch and the bot-pr workflow
 opens the PR. Nothing changed: `nothing new`, exit 0. `cards-nightly.sh` refuses to run while
 an earlier `bot/nightly-cards-*` PR is open (or while open PRs cannot be listed; in
-deploy-key mode, while an earlier such branch is on the remote),
+push-only mode, while an earlier such branch is on the remote),
 because the batch ids in that PR's manifest would otherwise be lost and paid for
 twice. When a live card is not linked from its post, it still commits the manifest
 alone ("state only") and exits 1. `JOB_DRY_RUN=1` commits locally and pushes nothing.
@@ -33,16 +33,26 @@ job stops at the next run while yesterday's PR is open.
 3. The publisher GitHub App able to pass the review rule (a ruleset bypass actor for
    the App on `bot/*` PRs), or no approving review required for those PRs.
 
-## Deploy-key mode (INTERIM, TaskForge supporttools-website-990)
+## Push-only mode (INTERIM, TaskForge supporttools-website-990)
 
-Until #990 gives the jobs the publisher GitHub App (and the Anthropic key), they can
-run with a write deploy key instead. `website-job` uses the App whenever `GH_APP_*`
-is set; otherwise, with `GIT_DEPLOY_KEY` set (Vault `secret/publisher/github-deploy-key`,
-chart externalSecrets item `githubDeployKey`), it clones and pushes over SSH with
-GitHub's host keys baked into the image, exports `WEBSITE_GIT_MODE=deploy-key` and
-does not export `GH_TOKEN`. With `GH_TOKEN` unset, `lib.sh` makes no `gh` call. An
-empty `GH_TOKEN` without `WEBSITE_GIT_MODE=deploy-key` (an App token that failed to
-mint) stops the job before any push instead of falling into deploy-key mode:
+Until #990 gives the jobs the publisher GitHub App with pull-requests access (and the
+Anthropic key), they run with a git credential that can push but cannot open PRs.
+`website-job` exports `WEBSITE_GIT_MODE` to say which:
+
+- `app-push-only`: the CronJob sets `WEBSITE_PUSH_ONLY=1` and the `GH_APP_*`
+  credentials are the existing supporttools-chart-publisher App, which has
+  `contents: write` but no `pull-requests` permission. `GH_TOKEN` is set (git pushes
+  with it), but `gh pr list/create/merge` would be refused.
+- `deploy-key`: no App; with `GIT_DEPLOY_KEY` set (Vault
+  `secret/publisher/github-deploy-key`, chart externalSecrets item `githubDeployKey`)
+  it clones and pushes over SSH with GitHub's host keys baked into the image and
+  does not export `GH_TOKEN`. (Deploy keys turned out to be blocked by an enterprise
+  policy, so `app-push-only` is the mode in use.)
+
+In both, whatever `GH_TOKEN` holds, `lib.sh` makes no `gh` call. Full App mode (gh
+opens the PR and requests auto-merge) is `WEBSITE_GIT_MODE` unset with `GH_TOKEN`
+set. An empty `GH_TOKEN` with `WEBSITE_GIT_MODE` unset (an App token that failed to
+mint), or any other `WEBSITE_GIT_MODE` value, stops the job before any push:
 
 - `publish_changes` pushes `bot/<kind>-<YYYYMMDD>` only (never main) and prints that
   the bot-pr workflow opens the PR. No auto-merge is requested.
@@ -50,7 +60,7 @@ mint) stops the job before any push instead of falling into deploy-key mode:
   `contents: read`, `pull-requests: write`) and opens a PR to main titled with the
   head commit subject, unless one is already open for that branch. It never merges
   and never enables auto-merge; a human merges. It waits 60s first so that a job in
-  App mode, which opens its own PR, is never raced.
+  full App mode, which opens its own PR, is never raced.
 - PRs opened with `GITHUB_TOKEN` do not trigger `pull_request` workflows, so
   `cloudflare-workers.yml` also runs on pushes to `bot/**`: the Test check lands on
   the PR's head commit. Deploy-Production only runs for `refs/heads/main` (and the
@@ -84,7 +94,8 @@ Environment (from the chart's externalSecrets, names as in Vault):
   ledger; required except for `--plan-only`), optional `SOCIAL_ANTHROPIC_RUN_CAP_USD`
   (default 3; a value that is not a number >= 0 exits 4), `PUSHGATEWAY_URL`.
 - all: `GH_TOKEN` and git push credentials from `website-job` (App mode), or
-  `GIT_DEPLOY_KEY` and no `GH_TOKEN` (deploy-key mode, above). Runtime npm
+  `WEBSITE_GIT_MODE=app-push-only` or `deploy-key` with its push credential
+  (push-only mode, above). Runtime npm
   dependencies (`@anthropic-ai/sdk`, the version `package.json` pins) come from the
   image: `JOB_NODE_MODULES` (default `/opt/website-node/node_modules`) is symlinked
   to `./node_modules` (a symlink because ESM `import()` ignores `NODE_PATH`). Only

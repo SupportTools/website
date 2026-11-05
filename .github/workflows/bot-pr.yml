@@ -1,9 +1,10 @@
 name: Bot PR
 
 # INTERIM (TaskForge supporttools-website-990): the in-cluster publisher jobs run in
-# deploy-key mode while they have no GitHub App. A deploy key can push
-# bot/<kind>-<YYYYMMDD> but cannot open a PR, so this workflow opens one for each pushed
-# bot branch. It never merges and never enables auto-merge: a human reviews and merges.
+# push-only mode (WEBSITE_GIT_MODE deploy-key or app-push-only) while they have no
+# GitHub App that can open PRs. A deploy key, or the supporttools-chart-publisher App
+# (contents:write, no pull-requests permission), can push bot/<kind>-<YYYYMMDD> but
+# cannot open a PR, so this workflow opens one for each pushed bot branch. It never merges and never enables auto-merge: a human reviews and merges.
 # #990 gives the jobs a GitHub App that opens its own PRs (scripts/jobs/lib.sh), after
 # which this workflow finds the PR already open and does nothing; remove it then.
 #
@@ -60,7 +61,7 @@ jobs:
           kind=${BRANCH#bot/}
           kind=${kind%-*}
           body=$(printf '%s\n' \
-            "Opened by the bot-pr workflow for the in-cluster \`${kind}\` publisher job, which pushed \`${BRANCH}\` with its deploy key (interim deploy-key mode, TaskForge supporttools-website-990)." \
+            "Opened by the bot-pr workflow for the in-cluster \`${kind}\` publisher job, which pushed \`${BRANCH}\` with a credential that cannot open PRs (interim push-only mode, TaskForge supporttools-website-990)." \
             "" \
             "Nothing merges this PR automatically: auto-merge is not enabled. A human reviews it and merges it once the Test check passes." \
             "" \

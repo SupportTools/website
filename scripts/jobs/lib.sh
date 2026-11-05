@@ -14,14 +14,19 @@
 # past the review rule, that is once CI passes; otherwise a human approves and merges
 # it. A failed auto-merge request is reported, not fatal (the PR is already open).
 #
-# Deploy-key mode, INTERIM (TaskForge supporttools-website-990 replaces it with the
-# GitHub App): when website-job has no App credentials it clones and pushes over SSH
-# with a write deploy key (GIT_DEPLOY_KEY), exports WEBSITE_GIT_MODE=deploy-key and
-# does NOT export GH_TOKEN. With GH_TOKEN unset (and WEBSITE_GIT_MODE=deploy-key; an
-# empty token without it stops the job) these helpers make no gh call at all:
+# Push-only mode, INTERIM (TaskForge supporttools-website-990 replaces it with the
+# full GitHub App): website-job exports WEBSITE_GIT_MODE as one of
+#   deploy-key     cloned and pushing over SSH with a write deploy key (GIT_DEPLOY_KEY),
+#                  no GH_TOKEN;
+#   app-push-only  the CronJob set WEBSITE_PUSH_ONLY=1: GH_TOKEN comes from an App
+#                  (supporttools-chart-publisher) with contents:write but no
+#                  pull-requests permission, so gh pr list/create/merge would fail.
+# In either, regardless of GH_TOKEN, these helpers make no gh call at all:
 # publish_changes pushes bot/<kind>-<YYYYMMDD> only (never main) and the bot-pr
 # workflow (.github/workflows/bot-pr.yml) opens the PR for a human to merge, and the
 # earlier-PR check reads the remote's bot/<kind>-* branches with git ls-remote.
+# WEBSITE_GIT_MODE unset with GH_TOKEN set is full App mode (above); anything else
+# stops the job.
 
 JOB_REPO="${WEBSITE_REPO:-SupportTools/website}"
 JOB_DAY="$(TZ=America/Chicago date +%Y%m%d)"
@@ -65,16 +70,25 @@ ensure_node_deps() {
   npm ci --omit=dev --ignore-scripts --no-audit --no-fund --prefer-offline --registry="$NPM_REGISTRY"
 }
 
-# Deploy-key mode (INTERIM, #990), see the header. App mode whenever GH_TOKEN is set.
-# Without a token, deploy-key mode needs WEBSITE_GIT_MODE=deploy-key as well: an App
-# token that failed to mint and was exported empty must stop the job, not quietly
-# switch it to deploy-key mode. Exits (not returns) so an `if` cannot swallow it.
-deploy_key_mode() {
-  [ -z "${GH_TOKEN:-}" ] || return 1
-  if [ "${WEBSITE_GIT_MODE:-}" != deploy-key ]; then
-    echo "GH_TOKEN is empty and WEBSITE_GIT_MODE is not deploy-key; refusing to run" >&2
+# Push-only mode (INTERIM, #990), see the header. Returns 0 for push-only (deploy-key
+# or app-push-only, whatever GH_TOKEN holds) and 1 for full App mode (WEBSITE_GIT_MODE
+# unset, GH_TOKEN set). An App token that failed to mint and was exported empty, or an
+# unknown WEBSITE_GIT_MODE, must stop the job, not quietly pick a mode. Exits (not
+# returns) so an `if` cannot swallow it.
+push_only_mode() {
+  case "${WEBSITE_GIT_MODE:-}" in
+    deploy-key | app-push-only) return 0 ;;
+    '') ;;
+    *)
+      echo "unknown WEBSITE_GIT_MODE ${WEBSITE_GIT_MODE}; refusing to run" >&2
+      exit 1
+      ;;
+  esac
+  if [ -z "${GH_TOKEN:-}" ]; then
+    echo "GH_TOKEN is empty and WEBSITE_GIT_MODE is not deploy-key or app-push-only; refusing to run" >&2
     exit 1
   fi
+  return 1
 }
 
 # Exits 1 when a PR from an earlier bot/<kind>-* branch is still open: its changes
@@ -82,8 +96,8 @@ deploy_key_mode() {
 # and running again from main would lose or repeat them.
 refuse_if_earlier_bot_pr() {
   local kind=$1 prs open
-  if deploy_key_mode; then
-    # INTERIM (#990): no gh token, so any earlier bot/<kind>-* branch still on the
+  if push_only_mode; then
+    # INTERIM (#990): no gh (no token, or one without pull-requests access), so any earlier bot/<kind>-* branch still on the
     # remote counts as an open PR. A merged PR's branch is deleted (the repo's
     # "Automatically delete head branches" setting); a branch left behind by a PR
     # closed without merging must be deleted by hand. A failed ls-remote stops the job.
@@ -150,7 +164,8 @@ live_card_count() {
 }
 
 # Commits what is staged on bot/<kind>-<day>, pushes it, opens or reuses its PR and
-# asks for auto-merge (deploy-key mode: pushes only, the bot-pr workflow opens the PR). Prints "nothing new" and returns 0 when nothing is staged.
+# asks for auto-merge (push-only mode: pushes only, the bot-pr workflow opens the PR).
+# Prints "nothing new" and returns 0 when nothing is staged.
 # JOB_DRY_RUN=1 commits locally and prints what it would push, without pushing.
 publish_changes() {
   local kind=$1 title=$2 body=${3:-}
@@ -167,17 +182,18 @@ publish_changes() {
     return 0
   fi
   case "$branch" in bot/*) ;; *) echo "refusing to push $branch: only bot/* branches" >&2; return 1 ;; esac
-  # The mode is settled before the push, so an empty token without
-  # WEBSITE_GIT_MODE=deploy-key stops here with nothing pushed (INTERIM, #990).
-  local dk=
-  if deploy_key_mode; then dk=1; fi
+  # The mode is settled before the push, so an empty token or an unknown
+  # WEBSITE_GIT_MODE stops here with nothing pushed (INTERIM, #990).
+  local push_only=
+  if push_only_mode; then push_only=1; fi
   # A rerun on the same day replaces the branch (and so updates its open PR).
   git push -q --force origin "HEAD:refs/heads/${branch}"
-  if [ -n "$dk" ]; then
-    # INTERIM (#990): the deploy key can push but there is no gh token here, so the
-    # bot-pr workflow opens the PR on this push; it never merges, a human does.
+  if [ -n "$push_only" ]; then
+    # INTERIM (#990): the credential can push but cannot open PRs (a deploy key, or an
+    # App without pull-requests permission), so the bot-pr workflow opens the PR on
+    # this push; it never merges, a human does.
     echo "pushed $branch ($(git rev-parse --short HEAD)): $title"
-    echo "deploy-key mode: no PR opened here; the bot-pr workflow opens the PR for $branch and a human merges it"
+    echo "${WEBSITE_GIT_MODE} mode: no PR opened here; the bot-pr workflow opens the PR for $branch and a human merges it"
     return 0
   fi
   local state

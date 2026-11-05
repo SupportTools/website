@@ -18,7 +18,7 @@ on:
     branches:
       - main
       # INTERIM (TaskForge supporttools-website-990): the in-cluster jobs push
-      # bot/<kind>-<YYYYMMDD> with a deploy key and bot-pr.yml opens the PR with
+      # bot/<kind>-<YYYYMMDD> in push-only mode and bot-pr.yml opens the PR with
       # GITHUB_TOKEN, which does not trigger pull_request runs. This push run gives
       # the PR's head commit its Test check. Deploy-Production's `if:` requires
       # refs/heads/main (or the schedule), so a bot branch push never deploys.

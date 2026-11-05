@@ -6,7 +6,7 @@
 #   2. --only-drawn: compose, review (Anthropic API, or OpenAI: see below) and upload those cards
 #   3. submit-batch: queue art for the next OG_NIGHTLY_LIMIT cards (default 40)
 # then commits the manifest (and posts that gained a card) on bot/nightly-cards-<day>
-# and opens a PR with auto-merge requested (or, in deploy-key mode, pushes the
+# and opens a PR with auto-merge requested (or, in push-only mode, pushes the
 # branch only and the bot-pr workflow opens the PR; see lib.sh). The manifest is
 # committed even when a step failed or a live card is not linked from its post (then alone, with a "state
 # only" title, and exit 1): it records which batches are in flight, so the next night

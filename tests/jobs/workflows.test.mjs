@@ -1,4 +1,4 @@
-// Guards on the INTERIM (TaskForge supporttools-website-990) deploy-key workflows:
+// Guards on the INTERIM (TaskForge supporttools-website-990) push-only workflows:
 // bot-pr.yml opens PRs and never merges; bot branch pushes run Test but never deploy.
 // Text checks on the shipped YAML (no YAML parser in the dependencies).
 import test from 'node:test';
