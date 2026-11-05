@@ -1,14 +1,17 @@
 // The two model calls: an image provider draws the illustration, Claude judges the
 // finished card. The provider is OG_IMAGE_PROVIDER: "codex" (the default, the local
 // CLI under the operator's login) or "openai" (the images API, lib/openai.mjs).
-// The reviewer is always the local claude CLI.
+// The reviewer is OG_REVIEW_PROVIDER: "claude-cli" (the default, the local claude CLI
+// under the operator's login) or "anthropic" (the Messages API with the card attached
+// as an image, metered by lib/anthropic.mjs; for the in-cluster job).
 import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
 
 const run = promisify(execFile);
-import { existsSync, writeFileSync, rmSync } from 'node:fs';
-import { join } from 'node:path';
+import { existsSync, writeFileSync, rmSync, readFileSync } from 'node:fs';
+import { join, dirname } from 'node:path';
 import { generateImageOpenAI } from './openai.mjs';
+import { makeClient, meteredCreate, anthropicLedgerPath, REVIEW_MODEL } from './anthropic.mjs';
 
 export const PROVIDERS = ['codex', 'openai'];
 
@@ -105,9 +108,21 @@ export function parseVerdict(out) {
   }
 }
 
-export async function reviewCard({ card, post, timeoutMs = 180000 }) {
-  const prompt = [
-    `You review social share images for a technical blog. Read the image file ${card}.`,
+export const REVIEW_PROVIDERS = ['claude-cli', 'anthropic'];
+
+export function reviewProvider(env = process.env) {
+  const p = env.OG_REVIEW_PROVIDER || 'claude-cli';
+  if (!REVIEW_PROVIDERS.includes(p)) throw new Error(`OG_REVIEW_PROVIDER must be one of ${REVIEW_PROVIDERS.join('|')}, got ${p}`);
+  return p;
+}
+
+// The reviewer's instructions; `card` names the file for the CLI, which reads it
+// itself. The API path attaches the image instead.
+export function reviewPrompt(post, card) {
+  return [
+    card
+      ? `You review social share images for a technical blog. Read the image file ${card}.`
+      : 'You review social share images for a technical blog. The attached image is the card.',
     `Article title: ${JSON.stringify(post.title)}.`,
     post.description ? `Article summary: ${JSON.stringify(post.description)}.` : '',
     'Judge strictly: (1) the illustration plausibly depicts this specific article topic,',
@@ -117,6 +132,12 @@ export async function reviewCard({ card, post, timeoutMs = 180000 }) {
     'Reply with exactly one line of JSON:',
     '{"verdict":"pass"|"doubt","reason":"<one short sentence>"}',
   ].filter(Boolean).join(' ');
+}
+
+// workDir holds the Anthropic ledger (default: the card's parent, i.e. the run's work dir).
+export async function reviewCard({ card, post, timeoutMs = 180000, workDir }) {
+  if (reviewProvider() === 'anthropic') return reviewCardAnthropic({ card, post, workDir });
+  const prompt = reviewPrompt(post, card);
   const dir = card.replace(/\/[^/]+$/, '');
   const pending = run('claude', [
     '-p', '--model', 'sonnet', '--strict-mcp-config', '--setting-sources', '',
@@ -126,4 +147,28 @@ export async function reviewCard({ card, post, timeoutMs = 180000 }) {
   pending.child.stdin.end();
   const { stdout } = await pending;
   return parseVerdict(stdout);
+}
+
+// Same verdict from the Messages API. A missing key, a refused key (401/403) or the
+// monthly cap halts the run (run.mjs exits 2, or 4 at the cap); anything the model
+// says that is not a clean pass counts as doubt.
+export async function reviewCardAnthropic({ card, post, workDir, client }) {
+  const ledgerFile = anthropicLedgerPath(process.env, workDir || join(dirname(card), '..'));
+  const params = {
+    model: process.env.OG_ANTHROPIC_REVIEW_MODEL || REVIEW_MODEL,
+    max_tokens: 4000,
+    output_config: { effort: 'low' },
+    messages: [{
+      role: 'user',
+      content: [
+        { type: 'image', source: { type: 'base64', media_type: 'image/jpeg', data: readFileSync(card).toString('base64') } },
+        { type: 'text', text: reviewPrompt(post) },
+      ],
+    }],
+  };
+  const c = client || await makeClient();
+  const { message } = await meteredCreate({ ledgerFile, params, send: (p) => c.messages.create(p) });
+  if (message.stop_reason === 'refusal') return { verdict: 'doubt', reason: 'reviewer declined to judge the card' };
+  const text = (message.content || []).filter((b) => b.type === 'text').map((b) => b.text).join('\n');
+  return parseVerdict(text);
 }

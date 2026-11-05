@@ -1,6 +1,13 @@
 // Uploads a card to the Wasabi bucket behind cdn.support.tools and proves it is
-// served. The Wasabi key is read from Vault at run time into this process and
-// the aws child's environment only; it is never printed, logged or written.
+// served. Two credential sources:
+//   - OG_WASABI_ACCESS_KEY_ID and OG_WASABI_SECRET_ACCESS_KEY in the environment (the
+//     in-cluster job, from secret/publisher/wasabi-og), with OG_WASABI_BUCKET,
+//     OG_WASABI_ENDPOINT, OG_WASABI_REGION and OG_WASABI_PREFIX optional. The upload
+//     is a signed PUT in plain node (lib/s3.mjs): no aws or vault CLI needed.
+//   - otherwise the workstation path as before: the key is read from Vault at run
+//     time and the aws CLI uploads.
+// Either way the key lives only in this process (and the aws child's environment);
+// it is never printed, logged or written.
 import { execFile } from 'node:child_process';
 import { readFileSync } from 'node:fs';
 import { homedir } from 'node:os';
@@ -8,6 +15,7 @@ import { join } from 'node:path';
 import { promisify } from 'node:util';
 
 import { CDN_BASE } from './posts.mjs';
+import { putObject } from './s3.mjs';
 
 const run = promisify(execFile);
 
@@ -31,8 +39,26 @@ async function vaultRead(token) {
   return stdout;
 }
 
+// Credentials from OG_WASABI_* when both key halves are set, else null.
+// OG_WASABI_PREFIX is the key prefix the IAM user may write (for example "posts/");
+// it is checked, never prepended, because the CDN URL is CDN_BASE/<key>.
+export function envCredentials(env = process.env) {
+  if (!env.OG_WASABI_ACCESS_KEY_ID || !env.OG_WASABI_SECRET_ACCESS_KEY) return null;
+  return {
+    source: 'env',
+    accessKeyId: env.OG_WASABI_ACCESS_KEY_ID,
+    secretAccessKey: env.OG_WASABI_SECRET_ACCESS_KEY,
+    bucket: env.OG_WASABI_BUCKET || DEFAULT_BUCKET,
+    endpoint: env.OG_WASABI_ENDPOINT || DEFAULT_ENDPOINT,
+    region: env.OG_WASABI_REGION || DEFAULT_REGION,
+    prefix: env.OG_WASABI_PREFIX || '',
+  };
+}
+
 export async function wasabiCredentials() {
   if (cached) return cached;
+  const fromEnv = envCredentials();
+  if (fromEnv) { cached = fromEnv; return cached; }
   let raw;
   let fileToken = '';
   try { fileToken = readFileSync(VAULT_TOKEN_FILE, 'utf8').trim(); } catch { /* no token file */ }
@@ -57,6 +83,22 @@ export async function wasabiCredentials() {
 // cache them forever; a regenerated card gets a new key instead.
 export async function uploadCard({ file, key }) {
   const c = await wasabiCredentials();
+  if (c.source === 'env') {
+    if (c.prefix && !key.startsWith(c.prefix)) throw new Error(`key ${key} is outside OG_WASABI_PREFIX ${c.prefix}`);
+    try {
+      await putObject({
+        endpoint: c.endpoint, region: c.region, bucket: c.bucket, key, body: readFileSync(file),
+        contentType: 'image/jpeg', cacheControl: 'public, max-age=31536000, immutable',
+        accessKeyId: c.accessKeyId, secretAccessKey: c.secretAccessKey,
+      });
+    } catch (e) {
+      // A refused key fails every card the same way: say so in a form run.mjs
+      // treats like a Vault failure (uploads stop, cards wait as "ready", exit 3).
+      if (/HTTP (401|403)\b/.test(e.message)) throw new Error(`Wasabi refused the OG_WASABI_* key: ${e.message}`);
+      throw e;
+    }
+    return `${CDN_BASE}/${key}`;
+  }
   // Only the Wasabi key may reach aws: drop any ambient AWS profile or session.
   const env = Object.fromEntries(Object.entries(process.env).filter(([k]) => !k.startsWith('AWS_')));
   await run('aws', [
@@ -67,6 +109,9 @@ export async function uploadCard({ file, key }) {
   ], { env: { ...env, ...c.env } });
   return `${CDN_BASE}/${key}`;
 }
+
+// Test hook: forget cached credentials.
+export function resetCredentials() { cached = undefined; }
 
 export async function verifyServed(url, attempts = 4) {
   let last = '';

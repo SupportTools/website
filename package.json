@@ -21,6 +21,7 @@
     "check:headers": "node scripts/headers-guard.mjs production blog/public",
     "test:theme": "node tests/theme/build-fixtures.mjs && node --test tests/theme/*.test.mjs",
     "test:og": "node --test tests/og/*.test.mjs",
+    "test:jobs": "node --test tests/jobs/*.test.mjs",
     "og": "node scripts/og/run.mjs",
     "check:urls": "node scripts/check-published-urls.mjs",
     "urls:update": "node scripts/check-published-urls.mjs --update",
@@ -44,5 +45,8 @@
     "blog"
   ],
   "author": "Support Tools",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "@anthropic-ai/sdk": "0.137.0"
+  }
 }

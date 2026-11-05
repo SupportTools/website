@@ -111,6 +111,27 @@ up as a change for `daily-publish.sh` and is never published. It is an estimate 
 one machine, not OpenAI's bill; set a matching hard limit in the OpenAI project too.
 `npm run og -- status` shows the month so far.
 
+## In-cluster settings (work dir, reviewer, upload key)
+
+These keep the workstation behaviour unchanged when unset; the publisher's nightly
+job (`scripts/jobs/cards-nightly.sh`) sets them.
+
+- `OG_WORK_DIR`: where card files, batch JSONL and both spend ledgers live
+  (default `.og-work/`). The job points it at a PVC (`/work/og`) so raw images and
+  ledgers survive between runs of a fresh clone.
+- `OG_REVIEW_PROVIDER`: `claude-cli` (default, the local `claude -p`) or `anthropic`
+  (the Messages API, `ANTHROPIC_API_KEY`, model `claude-haiku-5-5`, override with
+  `OG_ANTHROPIC_REVIEW_MODEL`; the card goes up as a base64 image). Spend is
+  recorded in `<work dir>/anthropic-ledger.json` (`OG_ANTHROPIC_LEDGER`) against
+  `OG_ANTHROPIC_MONTHLY_CAP_USD` (default 10, per UTC month, shared with the weekly
+  social drafter). At the cap the run stops with exit 4, as for OpenAI.
+- `OG_WASABI_ACCESS_KEY_ID` and `OG_WASABI_SECRET_ACCESS_KEY` (plus optional
+  `OG_WASABI_BUCKET`, `OG_WASABI_ENDPOINT`, `OG_WASABI_REGION`, `OG_WASABI_PREFIX`):
+  when both key halves are set the upload is a signed S3 PUT in plain node
+  (`lib/s3.mjs`), with no `aws` or `vault` CLI. `OG_WASABI_PREFIX` is the key prefix
+  the key may write (e.g. `posts/`): checked, never prepended. A refused key stops
+  uploads (exit 3) like a Vault failure.
+
 ## Requirements
 
 - `codex` logged in (image generation, default provider). It runs with `--ignore-user-config`, so
