@@ -2,31 +2,31 @@
 # Shared helpers for the in-cluster job scripts in scripts/jobs/. Sourced, not run.
 #
 # The publisher CronJobs run `publisher job run --kind <kind> -- website-job <script>`.
-# website-job (in the job image) mints a GitHub App installation token, shallow-clones
-# SupportTools/website main into /tmp/website, exports GH_TOKEN for gh, configures git
-# so `git push origin` authenticates without the token in argv or logs, sets the git
-# author to support-tools-publisher[bot] and runs scripts/jobs/<script> from the clone.
+# website-job (in the job image) mints an installation token for the dedicated
+# supporttools-publisher-bot GitHub App (contents and pull-requests write, installed
+# on this repo only), shallow-clones SupportTools/website main into /tmp/website,
+# exports GH_TOKEN for gh, configures git so `git push origin` authenticates without
+# the token in argv or logs, sets the git author (the job env sets GIT_BOT_NAME to
+# supporttools-publisher-bot[bot]) and runs scripts/jobs/<script> from the clone.
 #
 # Changes never go to main directly: publish_changes commits on bot/<kind>-<YYYYMMDD>,
 # pushes that branch, opens (or reuses) its PR and asks for auto-merge (squash). The
-# PR merges only when main's branch protection is satisfied: with the repo's
-# auto-merge setting on, the CI `Test` check required, and the publisher App allowed
-# past the review rule, that is once CI passes; otherwise a human approves and merges
-# it. A failed auto-merge request is reported, not fatal (the PR is already open).
+# PR merges once main's branch protection is satisfied: auto-merge is on and the CI
+# `Test` check is required, so that is once CI passes on the branch push. A failed
+# auto-merge request is reported, not fatal (the PR is already open).
 #
-# Push-only mode, INTERIM (TaskForge supporttools-website-990 replaces it with the
-# full GitHub App): website-job exports WEBSITE_GIT_MODE as one of
+# Push-only fallbacks (TaskForge supporttools-website-990; nothing uses them today):
+# website-job can export WEBSITE_GIT_MODE as one of
 #   deploy-key     cloned and pushing over SSH with a write deploy key (GIT_DEPLOY_KEY),
 #                  no GH_TOKEN;
 #   app-push-only  the CronJob set WEBSITE_PUSH_ONLY=1: GH_TOKEN comes from an App
-#                  (supporttools-chart-publisher) with contents:write but no
-#                  pull-requests permission, so gh pr list/create/merge would fail.
+#                  with contents:write but no pull-requests permission, so gh pr
+#                  list/create/merge would fail.
 # In either, regardless of GH_TOKEN, these helpers make no gh call at all:
-# publish_changes pushes bot/<kind>-<YYYYMMDD> only (never main) and the bot-pr
-# workflow (.github/workflows/bot-pr.yml) opens the PR for a human to merge, and the
-# earlier-PR check reads the remote's bot/<kind>-* branches with git ls-remote.
-# WEBSITE_GIT_MODE unset with GH_TOKEN set is full App mode (above); anything else
-# stops the job.
+# publish_changes pushes bot/<kind>-<YYYYMMDD> only (never main) and opens no PR (a
+# human opens and merges it), and the earlier-PR check reads the remote's
+# bot/<kind>-* branches with git ls-remote. WEBSITE_GIT_MODE unset with GH_TOKEN set
+# is full App mode (above), the mode in use; anything else stops the job.
 
 JOB_REPO="${WEBSITE_REPO:-SupportTools/website}"
 JOB_DAY="$(TZ=America/Chicago date +%Y%m%d)"
@@ -70,9 +70,9 @@ ensure_node_deps() {
   npm ci --omit=dev --ignore-scripts --no-audit --no-fund --prefer-offline --registry="$NPM_REGISTRY"
 }
 
-# Push-only mode (INTERIM, #990), see the header. Returns 0 for push-only (deploy-key
-# or app-push-only, whatever GH_TOKEN holds) and 1 for full App mode (WEBSITE_GIT_MODE
-# unset, GH_TOKEN set). An App token that failed to mint and was exported empty, or an
+# Push-only fallbacks (#990, unused today), see the header. Returns 0 for push-only
+# (deploy-key or app-push-only, whatever GH_TOKEN holds) and 1 for full App mode
+# (WEBSITE_GIT_MODE unset, GH_TOKEN set). An App token that failed to mint and was exported empty, or an
 # unknown WEBSITE_GIT_MODE, must stop the job, not quietly pick a mode. Exits (not
 # returns) so an `if` cannot swallow it.
 push_only_mode() {
@@ -97,7 +97,7 @@ push_only_mode() {
 refuse_if_earlier_bot_pr() {
   local kind=$1 prs open
   if push_only_mode; then
-    # INTERIM (#990): no gh (no token, or one without pull-requests access), so any earlier bot/<kind>-* branch still on the
+    # Push-only fallback (#990): no gh (no token, or one without pull-requests access), so any earlier bot/<kind>-* branch still on the
     # remote counts as an open PR. A merged PR's branch is deleted (the repo's
     # "Automatically delete head branches" setting); a branch left behind by a PR
     # closed without merging must be deleted by hand. A failed ls-remote stops the job.
@@ -164,7 +164,7 @@ live_card_count() {
 }
 
 # Commits what is staged on bot/<kind>-<day>, pushes it, opens or reuses its PR and
-# asks for auto-merge (push-only mode: pushes only, the bot-pr workflow opens the PR).
+# asks for auto-merge (push-only fallback: pushes only and opens no PR).
 # Prints "nothing new" and returns 0 when nothing is staged.
 # JOB_DRY_RUN=1 commits locally and prints what it would push, without pushing.
 publish_changes() {
@@ -183,23 +183,23 @@ publish_changes() {
   fi
   case "$branch" in bot/*) ;; *) echo "refusing to push $branch: only bot/* branches" >&2; return 1 ;; esac
   # The mode is settled before the push, so an empty token or an unknown
-  # WEBSITE_GIT_MODE stops here with nothing pushed (INTERIM, #990).
+  # WEBSITE_GIT_MODE stops here with nothing pushed (#990).
   local push_only=
   if push_only_mode; then push_only=1; fi
   # A rerun on the same day replaces the branch (and so updates its open PR).
   git push -q --force origin "HEAD:refs/heads/${branch}"
   if [ -n "$push_only" ]; then
-    # INTERIM (#990): the credential can push but cannot open PRs (a deploy key, or an
-    # App without pull-requests permission), so the bot-pr workflow opens the PR on
-    # this push; it never merges, a human does.
+    # Push-only fallback (#990): the credential can push but cannot open PRs (a deploy
+    # key, or an App without pull-requests permission), so nothing here opens the PR;
+    # a human opens and merges it.
     echo "pushed $branch ($(git rev-parse --short HEAD)): $title"
-    echo "${WEBSITE_GIT_MODE} mode: no PR opened here; the bot-pr workflow opens the PR for $branch and a human merges it"
+    echo "${WEBSITE_GIT_MODE} mode: no PR opened here; a human opens the PR for $branch and merges it"
     return 0
   fi
   local state
   state=$(gh pr view "$branch" -R "$JOB_REPO" --json state -q .state 2>/dev/null || true)
   if [ "$state" != OPEN ]; then
-    # The bot-pr workflow (INTERIM, #990) may have opened it in the meantime; that is fine.
+    # A PR opened by hand in the meantime is fine: create fails and the recheck sees it.
     gh pr create -R "$JOB_REPO" --base main --head "$branch" --title "$title" \
       --body "${body:-Opened by the ${kind} job (publisher). Auto-merge (squash) is requested; it lands once the branch protection on main is satisfied.}" \
       || [ "$(gh pr view "$branch" -R "$JOB_REPO" --json state -q .state 2>/dev/null || true)" = OPEN ] \

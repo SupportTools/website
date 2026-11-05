@@ -10,8 +10,9 @@ This directory contains automated workflows for the Support Tools website.
 
 **Triggers**:
 - **Push to main**: Tests, then deploys to production
-- **Push to `bot/**`** (INTERIM, TaskForge supporttools-website-990): Test only, so a
-  bot PR opened by `bot-pr.yml` gets its check; the deploy job requires `refs/heads/main`
+- **Push to `bot/**`** (in-cluster publisher jobs, TaskForge supporttools-website-990):
+  Test only, so the PR the `supporttools-publisher-bot` App opens for the branch gets its
+  required check; the deploy job requires `refs/heads/main`
 - **Pull Request**: Builds and runs the check gates only; never deploys
 - **Manual dispatch**: Runs the Test job only (the production deploy does not match dispatch)
 - **Schedule**: 06:00, 14:10 and 15:10 UTC daily (picks up scheduled posts), then deploys production
@@ -36,15 +37,6 @@ move in-cluster on internal DNS in a later phase.
 
 The legacy `pipeline.yml` (Docker image to Kubernetes via Argo CD) was removed along with the
 old Go web server.
-
-### 2. bot-pr.yml - Open PRs for in-cluster job branches (INTERIM)
-
-While the publisher jobs push with a deploy key (TaskForge supporttools-website-990
-replaces this with a GitHub App), a push to `bot/**` runs this workflow, which opens
-a PR to main titled with the head commit subject if none is open for the branch. It
-uses `GITHUB_TOKEN` with `contents: read` and `pull-requests: write`, never merges
-and never enables auto-merge. It needs "Allow GitHub Actions to create and approve
-pull requests" enabled in the repository settings. See `scripts/jobs/README.md`.
 
 ## Secrets
 

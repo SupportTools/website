@@ -17,17 +17,17 @@ on:
   push:
     branches:
       - main
-      # INTERIM (TaskForge supporttools-website-990): the in-cluster jobs push
-      # bot/<kind>-<YYYYMMDD> in push-only mode and bot-pr.yml opens the PR with
-      # GITHUB_TOKEN, which does not trigger pull_request runs. This push run gives
-      # the PR's head commit its Test check. Deploy-Production's `if:` requires
-      # refs/heads/main (or the schedule), so a bot branch push never deploys.
+      # The in-cluster publisher jobs (TaskForge supporttools-website-990) push
+      # bot/<kind>-<YYYYMMDD> and the supporttools-publisher-bot App opens the PR
+      # with auto-merge. This push run gives the branch head its required Test
+      # check. Deploy-Production's `if:` requires refs/heads/main (or the
+      # schedule), so a bot branch push never deploys.
       - 'bot/**'
   pull_request:
     branches:
       - main
   schedule:
-    - cron: "0 6 * * *" # Daily at 06:00 UTC (01:00 EST) — picks up scheduled posts
+    - cron: "0 6 * * *" # Daily at 06:00 UTC (01:00 EST), picks up scheduled posts
     # Posts dated 09:00 America/Chicago would otherwise wait until the 06:00 UTC build,
     # and the afternoon social slots (16:26/17:33) would link to a 404. One of these is
     # 09:10 local in each half of the year (CDT 14:10 UTC, CST 15:10 UTC).
