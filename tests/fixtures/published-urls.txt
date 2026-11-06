@@ -1015,6 +1015,7 @@
 /kubernetes-v1-33-dynamic-resource-allocation/
 /kubernetes-v1-33-image-volumes/
 /kubernetes-v1-33-security-image-pull-credential-validation/
+/kubernetes-v1-37-dra-extended-resources-device-taints/
 /kubernetes-vagrant-local-cluster/
 /kubernetes-vertical-pod-autoscaler-implementation/
 /kubevirt-vm-in-my-pod/
@@ -3202,6 +3203,7 @@
 /tags/v1.25/
 /tags/v1.32/
 /tags/v1.33/
+/tags/v1.37/
 /tags/v8/
 /tags/vagrant/
 /tags/validating-webhooks/
