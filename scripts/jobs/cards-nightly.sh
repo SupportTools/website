@@ -3,7 +3,8 @@
 # flow of scripts/og/nightly-cards.sh without the workstation parts (Vault token,
 # flock, log file, codex):
 #   1. collect-batch: fetch art from earlier batches (raw.png into OG_WORK_DIR)
-#   2. --only-drawn: compose, review (Anthropic API, or OpenAI: see below) and upload those cards
+#   2. --only-drawn: compose, review (Anthropic API, or OpenAI: see below) and upload those cards,
+#      plus reviewed cards whose upload stopped on an earlier night
 #   3. submit-batch: queue art for the next OG_NIGHTLY_LIMIT cards (default 40)
 # then commits the manifest (and posts that gained a card) on bot/nightly-cards-<day>
 # and opens a PR with auto-merge requested (or, in the unused push-only fallback,

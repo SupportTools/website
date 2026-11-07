@@ -18,7 +18,7 @@ import { createHash } from 'node:crypto';
 import { join, dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { listPosts, prioritize, excerpt, setImages, cdnKey, readPost } from './lib/posts.mjs';
-import { loadManifest, saveManifest, needsWork } from './lib/manifest.mjs';
+import { loadManifest, saveManifest, needsWork, finishable } from './lib/manifest.mjs';
 import { composeCard } from './lib/compose.mjs';
 import { imagePrompt, generateImage, reviewCard, imageProvider, PROMPT_VERSION } from './lib/ai.mjs';
 import { uploadCard, verifyServed } from './lib/upload.mjs';
@@ -143,7 +143,9 @@ async function runAll() {
   const concurrency = Number(opt('--concurrency', 2));
   let posts = slug ? [readPost(join(CONTENT, `${slug}.md`))] : prioritize(listPosts(CONTENT));
   posts = posts.filter((p) => p && (slug || needsWork(manifest[p.slug])));
-  if (flag('--only-drawn')) posts = posts.filter((p) => manifest[p.slug]?.status === 'drawn');
+  if (flag('--only-drawn')) {
+    posts = posts.filter((p) => finishable(manifest[p.slug], existsSync(join(WORK, p.slug, 'card.jpg'))));
+  }
   posts = posts.slice(0, limit);
   console.log(`${posts.length} posts to process, concurrency ${concurrency}${uploadsDisabled ? ', uploads off' : ''}`);
   let next = 0;

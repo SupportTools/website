@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { readPost, setImages, prioritize, excerpt, cdnKey } from '../../scripts/og/lib/posts.mjs';
 import { shortTitle, chipLabel, titlePointsize } from '../../scripts/og/lib/compose.mjs';
 import { parseVerdict } from '../../scripts/og/lib/ai.mjs';
-import { serialize, needsWork } from '../../scripts/og/lib/manifest.mjs';
+import { serialize, needsWork, finishable } from '../../scripts/og/lib/manifest.mjs';
 
 const URL1 = 'https://cdn.support.tools/posts/a/og-1.jpg';
 const URL2 = 'https://cdn.support.tools/posts/a/og-2.jpg';
@@ -77,4 +77,14 @@ test('manifest helpers', () => {
   assert.ok(!needsWork({ status: 'flagged' }));
   assert.equal(cdnKey('s', 'abc'), 'posts/s/og-abc.jpg');
   assert.equal(excerpt('a\n```\ncode\n```\nb'), 'a\n\nb');
+});
+
+test('finishable: --only-drawn also retries composed cards whose upload stopped', () => {
+  assert.ok(finishable({ status: 'drawn' }, false));
+  assert.ok(finishable({ status: 'ready' }, true));
+  assert.ok(finishable({ status: 'approved' }, true));
+  assert.ok(!finishable({ status: 'ready' }, false), 'no card on disk: leave it for a full run, do not redraw at sync prices');
+  assert.ok(!finishable({ status: 'failed' }, true));
+  assert.ok(!finishable({ status: 'live' }, true));
+  assert.ok(!finishable(undefined, true));
 });

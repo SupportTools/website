@@ -43,3 +43,12 @@ export function needsWork(entry) {
   // No status means a run stopped mid-card; redo it.
   return !entry || !entry.status || ['ready', 'approved', 'rejected', 'failed', 'drawn'].includes(entry.status);
 }
+
+// Whether --only-drawn picks this post up: art a batch drew, or a card that was
+// already composed and passed review (or a human approved) but whose upload did not
+// happen (uploads stopped, or the job died). Without the second half a stopped
+// upload strands the card: the next night skips it, and nothing else uploads it.
+export function finishable(entry, hasCard) {
+  if (entry?.status === 'drawn') return true;
+  return hasCard && ['ready', 'approved'].includes(entry?.status);
+}
