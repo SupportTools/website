@@ -11,6 +11,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to Unix signals, advanced process management techniques, signal handling strategies, enterprise automation frameworks, and production-grade process control for Linux systems"
 more_link: "yes"
 url: "/unix-signals-advanced-process-management-guide/"
+images: ["https://cdn.support.tools/posts/unix-signals-advanced-process-management-guide/og-e11dc3ac49.jpg"]
 ---
 
 Unix signals represent the fundamental inter-process communication mechanism in Linux and Unix systems, providing precise process control, graceful shutdown procedures, and advanced automation capabilities. This comprehensive guide covers signal fundamentals, advanced handling techniques, enterprise automation frameworks, and production-grade process management strategies for critical systems.

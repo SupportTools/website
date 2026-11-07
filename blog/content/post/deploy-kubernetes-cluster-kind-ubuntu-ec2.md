@@ -11,6 +11,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to quickly deploy a Kubernetes cluster using KinD on an Ubuntu EC2 instance in just 60 seconds."
 more_link: "yes"
 url: "/deploy-kubernetes-cluster-kind-ubuntu-ec2/"
+images: ["https://cdn.support.tools/posts/deploy-kubernetes-cluster-kind-ubuntu-ec2/og-825aad7708.jpg"]
 ---
 
 Deploying a Kubernetes cluster doesn't have to be a complex, time-consuming task. With **KinD (Kubernetes in Docker)**, you can set up a fully functional Kubernetes cluster in just 60 seconds using an Ubuntu EC2 instance on AWS. This guide will walk you through the process step-by-step, making it easy to test applications or set up a development environment quickly.

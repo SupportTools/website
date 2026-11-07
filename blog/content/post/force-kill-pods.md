@@ -11,6 +11,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Discover why force killing Kubernetes pods with --grace-period=0 --force is dangerous, learn proper pod termination practices, and get practical solutions for stuck pods. Essential guide for Kubernetes administrators and DevOps engineers."
 more_link: "yes"
 url: "/kubernetes-pod-termination-force-kill-dangers/"
+images: ["https://cdn.support.tools/posts/force-kill-pods/og-4425c0db52.jpg"]
 ---
 
 Force killing a pod in Kubernetes with `--grace-period=0 --force` might seem like a quick fix when dealing with stuck or misbehaving pods, but it can cause unintended consequences that are often more troublesome than the initial issue. This guide explains the risks and provides better alternatives.

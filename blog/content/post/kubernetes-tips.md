@@ -9,6 +9,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Ten practical, experience-driven tips for making Kubernetes more manageable in production—covering local dev, autoscaling, secrets, RBAC, Helm, monitoring, and more."
 more_link: "true"
 url: "/kubernetes-practical-tips/"
+images: ["https://cdn.support.tools/posts/kubernetes-tips/og-aae4891b67.jpg"]
 ---
 
 Kubernetes is a powerful tool for managing containerized workloads—but with great power comes great complexity. Whether you're just starting with Kubernetes or looking to tighten up your production clusters, these **10 practical tips (plus a bonus)** will help you reduce pain, improve resilience, and simplify day-to-day operations.

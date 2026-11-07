@@ -11,6 +11,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to implement robust DDoS protection mechanisms similar to CloudFlare's approach. This comprehensive guide covers rate limiting, connection tracking, and other essential security measures for web servers."
 more_link: "yes"
 url: "/cloudflare-style-dos-protection/"
+images: ["https://cdn.support.tools/posts/cloudflare-style-dos-protection/og-3bd4c4a66b.jpg"]
 ---
 
 Discover how to protect your web infrastructure against DDoS attacks using techniques inspired by CloudFlare's approach, implemented with common Linux tools.

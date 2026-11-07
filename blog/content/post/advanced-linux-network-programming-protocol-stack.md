@@ -10,6 +10,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Master advanced Linux network programming including custom protocol implementations, kernel networking, eBPF/XDP packet processing, and high-performance networking with DPDK"
 more_link: "yes"
 url: "/advanced-linux-network-programming-protocol-stack/"
+images: ["https://cdn.support.tools/posts/advanced-linux-network-programming-protocol-stack/og-e72f81663a.jpg"]
 ---
 
 Advanced Linux network programming requires deep understanding of the kernel networking stack, protocol implementation, and high-performance packet processing techniques. This comprehensive guide explores building custom network protocols, implementing kernel-level networking components, and utilizing modern technologies like eBPF/XDP and DPDK for maximum performance.

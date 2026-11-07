@@ -11,6 +11,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive guide to configuring network interfaces in K3s using NMState Operator and Multus CNI. Learn how to set up advanced networking, create network bridges, and manage multiple interfaces in Kubernetes clusters."
 more_link: "yes"
 url: "/configuring-network-nmstate-k3s/"
+images: ["https://cdn.support.tools/posts/configuring-network-nmstate-k3s/og-02000a88f3.jpg"]
 ---
 
 Managing network interfaces in Kubernetes can be challenging, especially when dealing with multiple networks or complex configurations. This comprehensive guide demonstrates how to use the NMState Operator and Multus CNI in K3s to implement advanced networking configurations, create network bridges, and manage multiple network interfaces effectively.

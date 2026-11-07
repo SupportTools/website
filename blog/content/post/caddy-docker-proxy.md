@@ -10,6 +10,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Streamline SSL management and simplify proxy configuration using Caddy Docker Proxy as an alternative to Nginx and Let’s Encrypt."
 more_link: "yes"
 url: "/caddy-docker-proxy/"
+images: ["https://cdn.support.tools/posts/caddy-docker-proxy/og-5f13e93632.jpg"]
 ---
 
 Managing SSL certificates and proxying Docker applications has traditionally required a combination of Nginx and Let’s Encrypt. While effective, this setup can feel overly complex for many use cases. Enter **Caddy Docker Proxy**, a tool that simplifies this process, making it ideal for small applications or CI/CD pipelines.

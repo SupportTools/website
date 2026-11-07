@@ -12,6 +12,7 @@ more_link: "yes"
 url: "/aws-elastic-kubernetes-service-review/"
 socialMedia:
   buffer: true
+images: ["https://cdn.support.tools/posts/aws-elastic-kubernetes-service-review/og-3cafbeb1c8.jpg"]
 ---
 
 **AWS Elastic Kubernetes Service (EKS): A Journey Through Its Evolution**

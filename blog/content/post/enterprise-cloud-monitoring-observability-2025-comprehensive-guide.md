@@ -24,6 +24,7 @@ categories:
 author: mmattox
 description: "Master enterprise cloud monitoring and observability with advanced SRE practices, distributed tracing, AIOps, intelligent alerting, and comprehensive observability frameworks. Complete guide for monitoring engineers and SRE teams."
 keywords: "enterprise monitoring, cloud observability, SRE practices, prometheus monitoring, grafana dashboards, distributed tracing, AIOps, incident management, SLI SLO, error budgets, monitoring automation, observability engineering"
+images: ["https://cdn.support.tools/posts/enterprise-cloud-monitoring-observability-2025-comprehensive-guide/og-98efacf895.jpg"]
 ---
 
 Enterprise cloud monitoring and observability in 2025 extends far beyond basic metric collection and dashboard visualization. This comprehensive guide transforms foundational monitoring concepts into enterprise-ready observability frameworks, covering advanced SRE practices, distributed tracing, AIOps integration, intelligent alerting, and production-scale monitoring that infrastructure teams need to achieve operational excellence.

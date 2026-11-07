@@ -11,6 +11,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "A detailed guide to migrating workloads from RKE1 to RKE2 using Kasten K10 by Veeam, covering installation, backup, restore, and validation steps."
 more_link: "yes"
 url: "/migrating-rke1-to-rke2-k10/"
+images: ["https://cdn.support.tools/posts/migrating-rke1-to-rke2-k10/og-d4498946d1.jpg"]
 ---
 
 With RKE1's end-of-life approaching on July 31, 2025, organizations need efficient strategies to migrate to RKE2. Kasten K10 by Veeam provides a powerful Kubernetes-native solution for this migration that handles both application state and data persistence.

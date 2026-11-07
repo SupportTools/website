@@ -9,6 +9,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Discover how to use Kubernetes Endpoint objects to bridge your in-cluster applications with external services, providing a unified and manageable access point."
 more_link: "yes"
 url: "/kubernetes-endpoints-external-services/"
+images: ["https://cdn.support.tools/posts/kubernetes-endpoints-external-services/og-d455225650.jpg"]
 ---
 
 Learn how Kubernetes Endpoints facilitate communication between your in-cluster applications and services residing outside the Kubernetes environment.

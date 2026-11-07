@@ -13,6 +13,7 @@ more_link: "yes"
 url: "/megacli-cheat-sheet/"
 quick_fix: |
   Check every drive with `megacli -PDList -aALL | grep -E "Slot Number|Firmware state"` and every array with `megacli -LDInfo -Lall -aALL | grep -E "Virtual Drive|State"`. Watch a rebuild with `megacli -PDRbld -ShowProg -PhysDrv [E:S] -a0`, using the enclosure and slot numbers from `-PDList`.
+images: ["https://cdn.support.tools/posts/megacli-cheat-sheet/og-43a1bb682c.jpg"]
 ---
 
 MegaCLI manages LSI MegaRAID controllers, including the Dell PERC H700, H710 and H730 family. Its syntax is cryptic, so this cheat sheet collects the commands you actually need when a drive fails: status checks, rebuilds, drive replacement and foreign configurations.

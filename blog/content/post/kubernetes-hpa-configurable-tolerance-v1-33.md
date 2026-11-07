@@ -10,6 +10,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Deep dive into Kubernetes v1.33's new configurable HPA tolerance feature that lets you customize scaling sensitivity for different workloads"
 more_link: "yes"
 url: "/kubernetes-hpa-configurable-tolerance-v1-33/"
+images: ["https://cdn.support.tools/posts/kubernetes-hpa-configurable-tolerance-v1-33/og-0400f8f294.jpg"]
 ---
 
 Kubernetes v1.33 introduces a game-changing enhancement to the Horizontal Pod Autoscaler (HPA): custom tolerance values for each workload. This long-requested feature gives platform engineers granular control over scaling behavior, addressing one of the most significant limitations in Kubernetes autoscaling.

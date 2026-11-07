@@ -11,6 +11,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to monitor PostgreSQL databases using PostgreSQL Exporter on Kubernetes for enhanced performance and reliability."
 more_link: "yes"
 url: "/monitoring-postgresql-exporter-kubernetes/"
+images: ["https://cdn.support.tools/posts/monitoring-postgresql-exporter-kubernetes/og-9b44e2e81a.jpg"]
 ---
 
 Effective database monitoring is crucial for maintaining the performance, availability, and reliability of modern applications. **PostgreSQL**, a widely used open-source relational database, can be efficiently monitored using tools like **PostgreSQL Exporter**. In this guide, we'll walk you through setting up PostgreSQL monitoring using PostgreSQL Exporter on a Kubernetes cluster.

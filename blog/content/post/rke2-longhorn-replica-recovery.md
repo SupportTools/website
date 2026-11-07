@@ -12,6 +12,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Step-by-step guide to recover and export critical Longhorn volume data from a single replica in RKE2 Kubernetes clusters, even when the API server is offline."
 more_link: "yes"
 url: "/rke2-longhorn-replica-recovery/"
+images: ["https://cdn.support.tools/posts/rke2-longhorn-replica-recovery/og-12e5082459.jpg"]
 ---
 
 When disaster strikes and your entire RKE2 cluster or Longhorn control plane becomes unavailable, you can still **recover critical data from a single Longhorn volume replica** using a static pod definition. This emergency recovery method works even when the Kubernetes API server is completely offline and Docker is not available on your RKE2 nodes.

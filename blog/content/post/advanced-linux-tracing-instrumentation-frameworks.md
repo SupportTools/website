@@ -10,6 +10,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Master advanced Linux tracing and instrumentation using eBPF, SystemTap, ftrace, and custom observability frameworks for deep system analysis and performance optimization"
 more_link: "yes"
 url: "/advanced-linux-tracing-instrumentation-frameworks/"
+images: ["https://cdn.support.tools/posts/advanced-linux-tracing-instrumentation-frameworks/og-74b54136e2.jpg"]
 ---
 
 Modern Linux systems require sophisticated tracing and instrumentation capabilities for performance analysis, debugging, and observability. This comprehensive guide explores advanced tracing frameworks including eBPF, SystemTap, ftrace, and building custom instrumentation solutions for production environments.

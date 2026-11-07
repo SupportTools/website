@@ -9,6 +9,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Master high-performance computing on Linux including CUDA programming, OpenCL development, GPU cluster management, and building scalable parallel computing solutions"
 more_link: "yes"
 url: "/high-performance-computing-gpu-programming-linux/"
+images: ["https://cdn.support.tools/posts/high-performance-computing-gpu-programming-linux/og-f250993930.jpg"]
 ---
 
 High-performance computing (HPC) on Linux platforms requires sophisticated understanding of parallel programming paradigms, GPU architectures, and distributed computing frameworks. This comprehensive guide explores advanced HPC techniques, from CUDA and OpenCL programming to building scalable GPU clusters and optimizing computational workloads.

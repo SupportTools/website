@@ -10,6 +10,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "How kubectl apply --server-side works: field managers, --force-conflicts, managedFields, and when to pick server-side over client-side apply."
 more_link: "yes"
 url: "/kubernetes-apply-client-side-vs-server-side/"
+images: ["https://cdn.support.tools/posts/kubernetes-apply-client-side-vs-server-side/og-bea8c494c9.jpg"]
 ---
 
 Explore the nuances of `kubectl apply`, including client-side and server-side strategies, to optimize configuration management and prevent conflicts in Kubernetes.

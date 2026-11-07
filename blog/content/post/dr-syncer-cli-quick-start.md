@@ -10,6 +10,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive guide to getting started with the DR-Syncer CLI tool for Kubernetes disaster recovery operations."
 more_link: "yes"
 url: "/dr-syncer-cli-quick-start/"
+images: ["https://cdn.support.tools/posts/dr-syncer-cli-quick-start/og-3596cadb70.jpg"]
 ---
 
 The DR-Syncer CLI provides a powerful yet simple way to perform disaster recovery operations between Kubernetes clusters without needing to deploy any additional components.

@@ -12,6 +12,7 @@ more_link: "yes"
 url: "/ollama-server-logs-guide/"
 quick_fix: |
   macOS: `cat ~/.ollama/logs/server.log`. Linux (systemd install): `journalctl -u ollama --no-pager --follow`. Windows: `explorer %LOCALAPPDATA%\Ollama` and open `server.log`. Docker: `docker logs -f <container-name>`. For more detail, restart the server with `OLLAMA_DEBUG=1`.
+images: ["https://cdn.support.tools/posts/ollama-server-logs-guide/og-89559d546c.jpg"]
 ---
 
 When a model will not load, runs on the CPU instead of the GPU, or the API returns errors, the Ollama server log is the first place to look. This guide lists where the log lives on each platform, how to follow it live, and how to turn on debug logging.

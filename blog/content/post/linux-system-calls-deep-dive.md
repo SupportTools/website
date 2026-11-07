@@ -10,6 +10,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "An in-depth exploration of Linux system calls, their implementation, performance characteristics, and practical usage patterns for systems programmers"
 more_link: "yes"
 url: "/linux-system-calls-deep-dive/"
+images: ["https://cdn.support.tools/posts/linux-system-calls-deep-dive/og-3d8906889c.jpg"]
 ---
 
 System calls are the fundamental interface between user-space applications and the Linux kernel. Every interaction with hardware, every file operation, and every network communication ultimately goes through system calls. Understanding them is crucial for writing efficient, secure, and robust Linux applications.

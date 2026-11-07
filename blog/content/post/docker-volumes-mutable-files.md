@@ -11,6 +11,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to effectively use Docker volumes for managing mutable and temporary files. Improve container performance, maintainability, and data persistence with proper volume management."
 more_link: "yes"
 url: "/docker-volumes-mutable-files/"
+images: ["https://cdn.support.tools/posts/docker-volumes-mutable-files/og-da2eed905f.jpg"]
 ---
 
 Master the art of managing mutable and temporary files in Docker containers using volumes, improving performance and maintainability.

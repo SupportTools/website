@@ -10,6 +10,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to effectively profile and optimize Go applications using pprof with practical examples and visualization techniques."
 more_link: "yes"
 url: "/golang-pprof-profiling-guide/"
+images: ["https://cdn.support.tools/posts/golang-pprof-profiling-guide/og-a18cf434af.jpg"]
 ---
 
 Golang's built-in tooling is one of its greatest strengths for developers. While many appreciate `go fmt` for consistent code formatting and `go test` for testing, fewer developers leverage Go's powerful profiling capabilities. This guide demonstrates how to use pprof to identify performance bottlenecks in your Go applications.

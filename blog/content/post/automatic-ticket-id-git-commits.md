@@ -11,6 +11,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to automatically prepend ticket IDs to your Git commit messages using Git hooks. Improve traceability and maintain consistent commit message formatting across your team."
 more_link: "yes"
 url: "/automatic-ticket-id-git-commits/"
+images: ["https://cdn.support.tools/posts/automatic-ticket-id-git-commits/og-a2dbfff7f7.jpg"]
 ---
 
 Discover how to automate the process of adding ticket IDs to Git commit messages, improving traceability and maintaining consistent commit message formatting across your development team.

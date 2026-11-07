@@ -11,6 +11,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Master the most useful Docker commands for efficient container management. This guide covers essential commands for development, debugging, and production environments."
 more_link: "yes"
 url: "/essential-docker-commands-guide/"
+images: ["https://cdn.support.tools/posts/essential-docker-commands-guide/og-20336bfde3.jpg"]
 ---
 
 A comprehensive collection of essential Docker commands that every DevOps engineer should know, from basic container management to advanced debugging techniques.

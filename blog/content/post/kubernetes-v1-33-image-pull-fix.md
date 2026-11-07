@@ -10,6 +10,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how Kubernetes v1.33 closes a critical security loophole that allowed unauthorized access to private container images for over a decade."
 more_link: "yes"
 url: "/kubernetes-v1-33-security-image-pull-credential-validation/"
+images: ["https://cdn.support.tools/posts/kubernetes-v1-33-image-pull-fix/og-307dd8950c.jpg"]
 ---
 
 Kubernetes v1.33 delivers a vital security enhancement that resolves a decade-old vulnerability in how private container images are accessed. This fix—addressing issue [#18787](https://github.com/kubernetes/kubernetes/issues/18787)—closes a security loophole that could allow unauthorized workloads to access cached private images without proper authentication.

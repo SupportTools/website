@@ -10,6 +10,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to configure environment variables in a React app at runtime using Apache and Kubernetes, following Twelve-Factor principles for portable and reusable Docker images."
 more_link: "yes"
 url: "/react-runtime-config-k8s/"
+images: ["https://cdn.support.tools/posts/react-runtime-config-k8s/og-64a7cf71ea.jpg"]
 ---
 
 Building React apps once and deploying them across multiple environments—without rebuilding—is a common challenge. Most frontend apps hardcode environment variables at build time, meaning any change (like an API URL or login redirect) requires a full rebuild and redeploy. That’s slow, error-prone, and breaks the Twelve-Factor App principle of separating config from code.

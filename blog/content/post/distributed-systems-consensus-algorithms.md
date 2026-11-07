@@ -10,6 +10,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Master distributed systems programming with advanced consensus algorithms, fault tolerance mechanisms, and building resilient distributed applications from first principles"
 more_link: "yes"
 url: "/distributed-systems-consensus-algorithms/"
+images: ["https://cdn.support.tools/posts/distributed-systems-consensus-algorithms/og-13b059f6e7.jpg"]
 ---
 
 Distributed systems form the backbone of modern computing infrastructure, from databases to microservices. Understanding consensus algorithms, fault tolerance, and distributed system principles is essential for building reliable, scalable systems. This comprehensive guide explores advanced distributed systems concepts and implementations.
