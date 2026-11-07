@@ -6,7 +6,7 @@ import { mkdtempSync, readFileSync, existsSync, mkdirSync, rmSync } from 'node:f
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { generateImage, imageProvider, imagePrompt } from '../../scripts/og/lib/ai.mjs';
-import { scrub, pngSize, API } from '../../scripts/og/lib/openai.mjs';
+import { scrub, pngSize, API, DEFAULT_MODEL, DEFAULT_SIZE, DEFAULT_QUALITY, imageConfig } from '../../scripts/og/lib/openai.mjs';
 import { submitBatch, collectBatch, needsArt, pendingBatchIds } from '../../scripts/og/lib/batch.mjs';
 import {
   estimateCost, loadLedger, saveLedger, reserve, spent, remaining, monthKey, capUsd, BudgetError,
@@ -92,12 +92,12 @@ test('sync: openai provider writes raw.png, sends the documented body, charges t
   assert.equal(init.headers.Authorization, `Bearer ${KEY}`);
   assert.ok(init.signal, 'every fetch has a timeout signal');
   assert.deepEqual(JSON.parse(init.body), {
-    model: 'gpt-image-1-mini', prompt: 'draw a thing', n: 1, size: '1536x1024', quality: 'medium', output_format: 'png',
+    model: DEFAULT_MODEL, prompt: 'draw a thing', n: 1, size: '1536x1024', quality: 'medium', output_format: 'png',
   });
   assert.equal(readFileSync(join(dir, 'prompt.txt'), 'utf8'), 'draw a thing');
   const ledgerText = readFileSync(process.env.OG_OPENAI_LEDGER, 'utf8');
   assert.ok(!ledgerText.includes(KEY));
-  assert.equal(spent(loadLedger(process.env.OG_OPENAI_LEDGER)), estimateCost({ model: 'gpt-image-1-mini', quality: 'medium', size: '1536x1024', prompt: 'draw a thing' }));
+  assert.equal(spent(loadLedger(process.env.OG_OPENAI_LEDGER)), estimateCost({ model: DEFAULT_MODEL, quality: 'medium', size: '1536x1024', prompt: 'draw a thing' }));
 });
 
 test('sync: retries 429 and 5xx with backoff, then succeeds', async () => {
@@ -149,6 +149,26 @@ test('budget: cap env, unknown prices refused, batch discount', () => {
   assert.equal(estimateCost({ model: 'gpt-image-1-mini', quality: 'medium', size: '1536x1024', batch: true }), 0.0075);
 });
 
+test('budget: the default model, size and quality always have a price, sync and Batch', () => {
+  // The cap refuses any unpriced combination, so an unpriced default would stop every run.
+  const cfg = imageConfig({});
+  assert.deepEqual(cfg, { model: DEFAULT_MODEL, size: DEFAULT_SIZE, quality: DEFAULT_QUALITY });
+  assert.notEqual(DEFAULT_MODEL, 'gpt-image-1-mini', 'gpt-image-1-mini shuts down 2026-12-01');
+  const sync = estimateCost({ ...cfg, prompt: 'p' });
+  assert.ok(sync > 0);
+  assert.equal(estimateCost({ ...cfg, prompt: 'p', batch: true }), Math.round(sync * 0.5 * 1e6) / 1e6);
+});
+
+test('budget: GPT Image 2.5 prices (343 output tokens at $30 per 1M, text $5 per 1M)', () => {
+  for (const model of ['gpt-image-2.5-sunburst', 'gpt-image-2.5-flare']) {
+    assert.equal(estimateCost({ model, quality: 'medium', size: '1536x1024' }), 0.01029);
+    assert.equal(estimateCost({ model, quality: 'medium', size: '1536x1024', batch: true }), 0.005145);
+    // 4000 chars = 1000 estimated text tokens = $0.005 sync on top of the image.
+    assert.equal(estimateCost({ model, quality: 'medium', size: '1536x1024', prompt: 'x'.repeat(4000) }), 0.01529);
+    assert.throws(() => estimateCost({ model, quality: 'high', size: '1536x1024' }), /no price/, 'unmeasured combinations are refused');
+  }
+});
+
 test('budget: ledger month rollover (UTC calendar months)', () => {
   const path = join(work, 'l.json');
   const ledger = loadLedger(path);
@@ -189,7 +209,7 @@ test('submit-batch: JSONL shape, manifest batchId, ledger reservation', async ()
   assert.deepEqual(lines.map((l) => l.custom_id), ['new', 'rej']);
   assert.deepEqual(lines[1], {
     custom_id: 'rej', method: 'POST', url: '/v1/images/generations',
-    body: { model: 'gpt-image-1-mini', prompt: 'prompt for rej (too busy)', n: 1, size: '1536x1024', quality: 'medium', output_format: 'png' },
+    body: { model: DEFAULT_MODEL, prompt: 'prompt for rej (too busy)', n: 1, size: '1536x1024', quality: 'medium', output_format: 'png' },
   });
   assert.equal(state.create.input_file_id, 'file-in');
   assert.equal(state.create.endpoint, '/v1/images/generations');
@@ -208,7 +228,7 @@ test('submit-batch: JSONL shape, manifest batchId, ledger reservation', async ()
 });
 
 test('submit-batch: refuses at the cap, stops cleanly part way', async () => {
-  const one = estimateCost({ model: 'gpt-image-1-mini', quality: 'medium', size: '1536x1024', prompt: 'p', batch: true });
+  const one = estimateCost({ model: DEFAULT_MODEL, quality: 'medium', size: '1536x1024', prompt: 'p', batch: true });
   // Room for two cards this month.
   process.env.OG_OPENAI_MONTHLY_CAP_USD = String(one * 2.5);
   mockFetch(batchRoutes());
