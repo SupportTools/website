@@ -975,6 +975,7 @@
 /kubernetes-ingress-external-apps/
 /kubernetes-inplace-pod-vertical-scaling/
 /kubernetes-job-cronjob-failure-handling/
+/kubernetes-kubelet-flagz-endpoint/
 /kubernetes-label-selector-mismatches/
 /kubernetes-liveness-probe-saves-the-day/
 /kubernetes-logging-grafana-loki-promtail/
@@ -2301,6 +2302,7 @@
 /tags/kasten-k10/
 /tags/kata-containers/
 /tags/kcs/
+/tags/kep-4828/
 /tags/kernel-bypass/
 /tags/kernel-debugging/
 /tags/kernel-development/
