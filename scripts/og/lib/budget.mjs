@@ -24,10 +24,25 @@ export const IMAGE_PRICES = {
     medium: { '1024x1024': 0.011, '1024x1536': 0.015, '1536x1024': 0.015 },
     high: { '1024x1024': 0.036, '1024x1536': 0.052, '1536x1024': 0.052 },
   },
+  // GPT Image 2.5 (flare and sunburst) is billed by tokens only: image output $30
+  // per 1M Standard, $15 per 1M Batch (developers.openai.com/api/docs/pricing and
+  // the two model pages, read 2026-11-07). OpenAI publishes no per-image table for
+  // 2.5 and warns token use differs by model and quality, so the per-image price
+  // is measured: 8 sync test cards (4 per model) at medium 1536x1024 on 2026-11-07
+  // each returned usage.output_tokens = 343, so 343 x $30 / 1M = $0.01029. Only
+  // the measured combination is listed; anything else is refused until measured.
+  'gpt-image-2.5-sunburst': {
+    medium: { '1536x1024': 0.01029 },
+  },
+  'gpt-image-2.5-flare': {
+    medium: { '1536x1024': 0.01029 },
+  },
 };
 // Text prompt tokens are billed on top of the image: $2 per 1M for gpt-image-1-mini
-// (same pricing page, read 2026-11-03). Estimated at 4 characters per token.
-export const TEXT_INPUT_USD_PER_M = { 'gpt-image-1-mini': 2 };
+// (same pricing page, read 2026-11-03) and $5 per 1M for GPT Image 2.5 (read
+// 2026-11-07). Estimated at 4 characters per token, which over-counts real card
+// prompts by about 30%, so the cap errs high.
+export const TEXT_INPUT_USD_PER_M = { 'gpt-image-1-mini': 2, 'gpt-image-2.5-sunburst': 5, 'gpt-image-2.5-flare': 5 };
 export const BATCH_DISCOUNT = 0.5;
 export const DEFAULT_CAP_USD = 25;
 

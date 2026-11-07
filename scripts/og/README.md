@@ -84,15 +84,19 @@ npm run og -- --only-drawn                      # compose, review, upload what c
 - `nightly-cards.sh` runs collect, `--only-drawn` and submit when
   `OG_IMAGE_PROVIDER=openai` is set in its environment (with `OPENAI_API_KEY`).
 
-Settings: `OG_OPENAI_MODEL` (default `gpt-image-1-mini`), `OG_OPENAI_SIZE`
+Settings: `OG_OPENAI_MODEL` (default `gpt-image-2.5-sunburst`), `OG_OPENAI_SIZE`
 (`1536x1024`, cropped to 1200x630 by compose), `OG_OPENAI_QUALITY` (`medium`). Every
 request has a timeout; 429 and 5xx responses are retried up to 4 times with
 exponential backoff (`Retry-After` honoured). A synchronous generation is not
 retried after a timeout or dropped connection, since it may already be billed.
 A missing key, a 401/403 or the cap stops the run without marking cards failed.
 
-`gpt-image-1-mini` is deprecated by OpenAI and shuts down on 2026-12-01; switching
-model means adding its prices to `lib/budget.mjs` first (unknown models are refused).
+The default moved off `gpt-image-1-mini`, which OpenAI shuts down on 2026-12-01.
+`gpt-image-2.5-flare` is also priced and can be chosen with `OG_OPENAI_MODEL`. GPT
+Image 2.5 bills by tokens, so its per-image price in `lib/budget.mjs` is measured
+from the API's `usage` (about $0.014 per card sync, half that in a Batch). Switching
+model, size or quality means adding that price to `lib/budget.mjs` first (unknown
+combinations are refused).
 
 ### Monthly spend cap
 

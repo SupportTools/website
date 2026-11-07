@@ -18,7 +18,9 @@ import { join } from 'node:path';
 import { estimateCost, loadLedger, saveLedger, reserve, refund, capUsd } from './budget.mjs';
 
 export const API = 'https://api.openai.com/v1';
-export const DEFAULT_MODEL = 'gpt-image-1-mini';
+// gpt-image-1-mini shuts down 2026-12-01. Sunburst costs the same as flare per card
+// and followed the no-text, no-logo style rules more reliably in side-by-side tests.
+export const DEFAULT_MODEL = 'gpt-image-2.5-sunburst';
 // 1536x1024 is the widest standard size; compose.mjs crops it to 1200x630.
 export const DEFAULT_SIZE = '1536x1024';
 export const DEFAULT_QUALITY = 'medium';
