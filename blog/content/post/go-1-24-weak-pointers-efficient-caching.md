@@ -10,6 +10,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "A detailed exploration of Go 1.24's weak pointer implementation and how it can dramatically reduce memory usage in caching scenarios"
 more_link: "yes"
 url: "/go-1-24-weak-pointers-efficient-caching/"
+images: ["https://cdn.support.tools/posts/go-1-24-weak-pointers-efficient-caching/og-b6de72a7a3.jpg"]
 ---
 
 Go 1.24 brings a long-awaited feature to the language: weak references. This addition opens up new possibilities for efficient memory management, particularly for applications that need to cache large amounts of data. This article explores how to implement memory-efficient caches using this new capability.

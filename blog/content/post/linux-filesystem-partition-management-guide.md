@@ -11,6 +11,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to Linux filesystem and partition management covering advanced resizing techniques, modern storage technologies, enterprise best practices, and automated management solutions"
 more_link: "yes"
 url: "/linux-filesystem-partition-management-guide/"
+images: ["https://cdn.support.tools/posts/linux-filesystem-partition-management-guide/og-d5533e1311.jpg"]
 ---
 
 Linux filesystem and partition management represents a critical skillset for systems administrators managing enterprise storage infrastructure. This comprehensive guide covers traditional and modern storage technologies, advanced resizing techniques, enterprise-grade management practices, and automated solutions for production environments.

@@ -11,6 +11,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive guide to migrating workloads from RKE1 to RKE2 using CloudCasa's backup and restore functionality, with step-by-step instructions and best practices."
 more_link: "yes"
 url: "/migrating-rke1-to-rke2-cloudcasa/"
+images: ["https://cdn.support.tools/posts/migrating-rke1-to-rke2-cloudcasa/og-2d689ef359.jpg"]
 ---
 
 With RKE1 reaching end-of-life on July 31, 2025, organizations need reliable strategies to migrate their workloads to RKE2. CloudCasa offers a powerful backup and restore approach for this migration, providing a comprehensive solution that handles both stateless and stateful workloads.

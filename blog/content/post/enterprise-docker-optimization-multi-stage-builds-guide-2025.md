@@ -15,6 +15,7 @@ more_link: "yes"
 quick_fix: |
   Build dependencies in a stage that has compilers, then copy only the result into a slim runtime stage: `COPY --from=build /opt/venv /opt/venv` for a Python virtualenv, or `COPY --from=deps /app/node_modules ./node_modules` after `npm ci --omit=dev` for Node.js.
   Measure before and after with `docker image ls` and `docker history`; deleting files in a later `RUN` never shrinks an image.
+images: ["https://cdn.support.tools/posts/enterprise-docker-optimization-multi-stage-builds-guide-2025/og-b55630ee78.jpg"]
 ---
 
 Multi-stage builds are easy to explain with Go, where the final stage holds one static binary. Python and Node.js are harder: the runtime needs an interpreter, a dependency tree, and sometimes native libraries, so you cannot just copy one file into `scratch`. This guide builds a real FastAPI service and a real Express service three ways, measures each image, and shows the stage layout that actually removes the weight.

@@ -10,6 +10,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Master container internals from namespaces and cgroups to building your own container runtime, including advanced isolation techniques and security considerations"
 more_link: "yes"
 url: "/container-internals-namespaces-deep-dive/"
+images: ["https://cdn.support.tools/posts/container-internals-namespaces-deep-dive/og-aa646bd40e.jpg"]
 ---
 
 Containers have revolutionized application deployment and isolation, but their magic lies in fundamental Linux kernel features. Understanding namespaces, cgroups, and container runtimes at a deep level is essential for building secure, efficient containerized systems and troubleshooting complex container environments.

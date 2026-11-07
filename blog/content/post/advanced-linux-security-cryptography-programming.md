@@ -10,6 +10,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Master advanced Linux security programming including cryptographic implementations, secure system design, SELinux/AppArmor development, and building hardened applications"
 more_link: "yes"
 url: "/advanced-linux-security-cryptography-programming/"
+images: ["https://cdn.support.tools/posts/advanced-linux-security-cryptography-programming/og-9213353b45.jpg"]
 ---
 
 Advanced Linux security programming requires comprehensive understanding of cryptographic principles, secure coding practices, and system-level security mechanisms. This guide explores building robust security frameworks, implementing custom cryptographic solutions, and developing applications that meet the highest security standards for enterprise and government environments.

@@ -10,6 +10,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Explore Kubernetes v1.33's major updates to Dynamic Resource Allocation (DRA) including device partitioning, taints, prioritized device selection, and upcoming GA release features. Essential reading for AI/ML, HPC, and specialized hardware deployments."
 more_link: "yes"
 url: "/kubernetes-v1-33-dynamic-resource-allocation/"
+images: ["https://cdn.support.tools/posts/kubernetes-v1-33-dynamic-resource-allocation/og-d5bc9e5da9.jpg"]
 ---
 
 {{% newer-version path="/post/kubernetes-v1-37-dra-extended-resources-device-taints.md" %}}

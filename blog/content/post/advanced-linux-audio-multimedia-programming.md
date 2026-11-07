@@ -9,6 +9,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Master advanced Linux audio and multimedia programming including real-time audio processing, custom media frameworks, DSP algorithms, and building professional audio applications"
 more_link: "yes"
 url: "/advanced-linux-audio-multimedia-programming/"
+images: ["https://cdn.support.tools/posts/advanced-linux-audio-multimedia-programming/og-13c3aaf971.jpg"]
 ---
 
 Linux multimedia programming requires deep understanding of audio subsystems, real-time processing constraints, and multimedia framework architectures. This comprehensive guide explores advanced audio programming techniques, from low-level ALSA development to building complete multimedia processing pipelines with FFmpeg and custom DSP implementations.

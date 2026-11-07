@@ -10,6 +10,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Master advanced Linux database programming including custom storage engines, transaction processing, MVCC, query optimization, and building high-performance database systems from scratch"
 more_link: "yes"
 url: "/advanced-linux-database-systems-programming/"
+images: ["https://cdn.support.tools/posts/advanced-linux-database-systems-programming/og-860ff7e2d8.jpg"]
 ---
 
 Advanced Linux database systems programming requires deep understanding of storage engines, transaction processing, concurrency control, and query optimization. This comprehensive guide explores building custom database systems including B-tree implementations, Write-Ahead Logging, MVCC, and creating production-grade ACID-compliant database engines.

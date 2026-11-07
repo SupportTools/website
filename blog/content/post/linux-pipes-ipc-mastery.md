@@ -10,6 +10,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Deep dive into Linux Inter-Process Communication mechanisms, from simple pipes to high-performance shared memory, with practical examples and performance comparisons"
 more_link: "yes"
 url: "/linux-pipes-ipc-mastery/"
+images: ["https://cdn.support.tools/posts/linux-pipes-ipc-mastery/og-f9dc4af217.jpg"]
 ---
 
 Inter-Process Communication (IPC) is fundamental to building complex Linux systems. Whether you're implementing a microservice architecture, building a high-performance daemon, or creating a simple shell pipeline, understanding the various IPC mechanisms and their trade-offs is crucial. This guide explores Linux IPC from basic pipes to advanced shared memory techniques.

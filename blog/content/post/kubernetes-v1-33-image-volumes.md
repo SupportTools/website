@@ -10,6 +10,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Discover how Kubernetes v1.33 Image Volumes transforms container image management with read-only, immutable volumes for AI/ML workloads, CI/CD pipelines, and secure deployments. Complete implementation guide with examples and troubleshooting tips."
 more_link: "yes"
 url: "/kubernetes-v1-33-image-volumes/"
+images: ["https://cdn.support.tools/posts/kubernetes-v1-33-image-volumes/og-5f3289f398.jpg"]
 ---
 
 # Kubernetes v1.33 Image Volumes: The Complete Guide to Container Image Mounting in Kubernetes

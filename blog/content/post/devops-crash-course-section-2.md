@@ -10,6 +10,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn the fundamentals of managing servers in DevOps environments, from configuration drift to containerization, in this in-depth crash course section."
 more_link: "yes"
 url: "/devops-crash-course-section-2/"
+images: ["https://cdn.support.tools/posts/devops-crash-course-section-2/og-7a5e34adfe.jpg"]
 ---
 
 **Welcome to Section 2 of the DevOps Crash Course!**  

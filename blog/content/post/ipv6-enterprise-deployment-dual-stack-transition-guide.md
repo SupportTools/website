@@ -10,6 +10,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive enterprise guide to IPv6 deployment, dual-stack implementation, network migration strategies, tunneling solutions, and production-grade IPv6 infrastructure for modern data centers"
 more_link: "yes"
 url: "/ipv6-enterprise-deployment-dual-stack-transition-guide/"
+images: ["https://cdn.support.tools/posts/ipv6-enterprise-deployment-dual-stack-transition-guide/og-cd883da5f8.jpg"]
 ---
 
 IPv6 deployment in enterprise environments requires comprehensive planning, strategic implementation approaches, and sophisticated transition mechanisms to ensure business continuity while modernizing network infrastructure. This guide covers enterprise IPv6 architecture design, dual-stack implementation strategies, migration methodologies, and production-grade deployment frameworks for large-scale organizational networks.

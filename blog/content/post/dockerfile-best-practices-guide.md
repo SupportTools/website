@@ -11,6 +11,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Master the art of writing efficient and secure Dockerfiles. Learn best practices for creating optimized container images, from layer caching to security considerations."
 more_link: "yes"
 url: "/dockerfile-best-practices-guide/"
+images: ["https://cdn.support.tools/posts/dockerfile-best-practices-guide/og-03c670be04.jpg"]
 ---
 
 Learn how to write efficient, secure, and maintainable Dockerfiles following industry best practices and proven patterns.

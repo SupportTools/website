@@ -10,6 +10,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Master advanced kernel debugging techniques including KGDB, crash dump analysis, live kernel probing with SystemTap and eBPF, and building custom debugging tools"
 more_link: "yes"
 url: "/advanced-kernel-debugging-techniques/"
+images: ["https://cdn.support.tools/posts/advanced-kernel-debugging-techniques/og-53b7295b6a.jpg"]
 ---
 
 Kernel debugging represents one of the most challenging aspects of systems programming. Unlike userspace debugging, kernel issues require specialized tools and techniques. This comprehensive guide explores advanced kernel debugging methodologies, from analyzing kernel crashes to live system tracing and performance analysis.

@@ -11,6 +11,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive guide to migrating persistent volumes from RKE1 to RKE2 using pv-migrate, a specialized tool for Kubernetes storage migration."
 more_link: "yes"
 url: "/migrating-rke1-to-rke2-pv-migrate/"
+images: ["https://cdn.support.tools/posts/migrating-rke1-to-rke2-pv-migrate/og-da09601cdf.jpg"]
 ---
 
 With RKE1 reaching end-of-life on July 31, 2025, organizations need efficient solutions for migrating their persistent data to RKE2 clusters. For teams focused specifically on storage migration, pv-migrate offers a specialized, lightweight approach for transferring Persistent Volume Claims (PVCs) across clusters.

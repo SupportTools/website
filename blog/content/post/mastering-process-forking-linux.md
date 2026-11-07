@@ -10,6 +10,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive guide to process forking in Linux, covering fork(), exec family, process hierarchies, and advanced patterns for robust multi-process applications"
 more_link: "yes"
 url: "/mastering-process-forking-linux/"
+images: ["https://cdn.support.tools/posts/mastering-process-forking-linux/og-b136906015.jpg"]
 ---
 
 Process forking is the foundation of Unix's process model and a critical concept for systems programmers. Understanding how to properly create, manage, and coordinate processes is essential for building robust Linux applications, from simple utilities to complex system daemons.

@@ -11,6 +11,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Complete enterprise guide to ESXi OEM image management, automated ISO discovery and deployment, comprehensive driver integration frameworks, and production-scale virtualization infrastructure"
 more_link: "yes"
 url: "/enterprise-esxi-oem-image-management-automated-deployment-infrastructure/"
+images: ["https://cdn.support.tools/posts/enterprise-esxi-oem-image-management-automated-deployment-infrastructure/og-8d3d0358a0.jpg"]
 ---
 
 Enterprise ESXi deployments require sophisticated OEM image management systems, automated driver integration pipelines, and comprehensive deployment frameworks to ensure consistent infrastructure provisioning across diverse hardware platforms at scale. This guide covers advanced ESXi image discovery automation, enterprise OEM ISO management, production deployment pipelines, and comprehensive driver integration strategies for global virtualization infrastructures.

@@ -13,6 +13,7 @@ description: "Stable Playwright toHaveScreenshot tests: deterministic clock, fon
 more_link: "yes"
 quick_fix: |
   Generate and compare baselines in the same container image as CI (`mcr.microsoft.com/playwright:v1.64.1-noble`), freeze time with `page.clock.setFixedTime()`, set `timezoneId` and `locale` in `use`, mask dynamic regions with `mask: [locator]`, and use `maxDiffPixelRatio` without an absolute `maxDiffPixels` for full-page shots. Re-bake with `npx playwright test --update-snapshots` inside that image.
+images: ["https://cdn.support.tools/posts/enterprise-ai-visual-testing-comprehensive-production-guide/og-fd21ca3b54.jpg"]
 ---
 
 Visual regression tests catch the bugs functional tests cannot: a CSS change that pushes the checkout button under the footer, a font that failed to load, a dark mode that renders black text on a black background. They also have a reputation for flaking, and most teams that give up on them do so because baselines fail for reasons nobody can see in the diff. Nearly all of that flakiness comes from four sources: time, randomness, fonts and rendering environment. This guide shows how to remove each one with Playwright's built-in `toHaveScreenshot`, then takes an honest look at where AI-assisted visual diffing tools help.

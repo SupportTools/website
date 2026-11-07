@@ -10,6 +10,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Master advanced networking techniques including raw socket programming, custom protocol implementation, high-performance packet processing, and building network stacks from scratch"
 more_link: "yes"
 url: "/advanced-networking-protocol-implementation/"
+images: ["https://cdn.support.tools/posts/advanced-networking-protocol-implementation/og-295e11f264.jpg"]
 ---
 
 Advanced networking programming requires deep understanding of protocol stacks, packet processing, and high-performance networking techniques. This comprehensive guide explores building custom protocols, implementing network stacks from scratch, and optimizing network performance for demanding applications.

@@ -8,6 +8,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Complete production guide to Kubernetes 1.33 enterprise features, performance optimizations, migration strategies, and advanced deployment patterns for large-scale production environments."
 more_link: "yes"
 url: "/kubernetes-1-33-comprehensive-production-guide-enterprise-features/"
+images: ["https://cdn.support.tools/posts/kubernetes-1-33-comprehensive-production-guide-enterprise-features/og-23a3ff85f7.jpg"]
 ---
 
 ## Executive Summary

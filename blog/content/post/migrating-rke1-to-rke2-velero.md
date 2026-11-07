@@ -11,6 +11,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive guide to migrating workloads from RKE1 to RKE2 using Velero, an open-source backup and restore solution, with practical examples and configuration tips."
 more_link: "yes"
 url: "/migrating-rke1-to-rke2-velero/"
+images: ["https://cdn.support.tools/posts/migrating-rke1-to-rke2-velero/og-dea670c5d5.jpg"]
 ---
 
 With RKE1 approaching its end-of-life date on July 31, 2025, organizations need reliable migration strategies to transition to RKE2. Velero, an open-source backup and restore tool for Kubernetes, offers a cost-effective approach for this migration that works across diverse environments.

@@ -11,6 +11,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "An in-depth analysis of official Docker image ages and their security implications. Learn how to assess and maintain secure container images in your infrastructure."
 more_link: "yes"
 url: "/analyzing-docker-image-age-2025/"
+images: ["https://cdn.support.tools/posts/analyzing-docker-image-age-2025/og-ab0385ccd7.jpg"]
 ---
 
 Understanding the age of Docker images is crucial for maintaining secure and up-to-date container infrastructure. Let's dive into a comprehensive analysis of official Docker image ages in 2025.

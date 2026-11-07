@@ -10,6 +10,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Master embedded Linux development for IoT devices, including custom kernel configurations, device tree programming, real-time constraints, and building complete embedded systems"
 more_link: "yes"
 url: "/embedded-linux-iot-systems-programming/"
+images: ["https://cdn.support.tools/posts/embedded-linux-iot-systems-programming/og-3870112978.jpg"]
 ---
 
 Embedded Linux has become the foundation for countless IoT devices, from industrial controllers to smart home systems. This comprehensive guide explores embedded Linux development, device driver programming, real-time considerations, and building complete IoT platforms with modern tools and techniques.

@@ -11,6 +11,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide for enterprise SMB/CIFS deployment covering advanced Samba configuration, Active Directory integration, security hardening, performance optimization, and high availability strategies"
 more_link: "yes"
 url: "/smb-cifs-enterprise-deployment-guide/"
+images: ["https://cdn.support.tools/posts/smb-cifs-enterprise-deployment-guide/og-832f2d65d8.jpg"]
 ---
 
 Server Message Block (SMB) and Common Internet File System (CIFS) protocols provide enterprise-grade network file sharing capabilities across heterogeneous environments. This comprehensive guide covers advanced Samba deployment, Active Directory integration, security hardening, performance optimization, and high availability strategies for production enterprise environments.

@@ -11,6 +11,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Complete enterprise guide to creating custom ESXi installers with advanced driver integration, automated deployment frameworks, production imaging pipelines, and comprehensive infrastructure automation"
 more_link: "yes"
 url: "/enterprise-esxi-custom-installer-automation-comprehensive-deployment-guide/"
+images: ["https://cdn.support.tools/posts/enterprise-esxi-custom-installer-automation-comprehensive-deployment-guide/og-9df2919b07.jpg"]
 ---
 
 Enterprise ESXi deployment requires sophisticated installer customization, automated driver integration, and robust deployment frameworks to ensure consistent infrastructure provisioning across diverse hardware platforms. This guide covers comprehensive ESXi image building automation, enterprise deployment strategies, advanced driver management, and production-grade installation frameworks for large-scale VMware environments.

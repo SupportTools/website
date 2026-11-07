@@ -15,6 +15,7 @@ more_link: "yes"
 quick_fix: |
   Delete stored cloud keys and use OIDC: give the job `permissions: id-token: write`, call `aws-actions/configure-aws-credentials` with `role-to-assume`, and restrict the IAM trust policy `sub` to `repo:ORG/REPO:environment:production`.
   Set `permissions: {}` at the top of every workflow, grant per job, and pin every third-party action to a full commit SHA.
+images: ["https://cdn.support.tools/posts/enterprise-github-actions-security-secret-management-guide-2025/og-ec286d00fc.jpg"]
 ---
 
 Most GitHub Actions secret leaks are not clever. A long-lived AWS key sits in repository secrets for three years, a `pull_request_target` workflow checks out a fork and runs its `npm install` with that key in the environment, or a tag on a popular action gets repointed to malicious code. This guide fixes each of those with concrete workflow YAML, in the order that removes the most risk first.
