@@ -10,6 +10,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide for deploying and securing Tor Hidden Services with enterprise-grade security practices, monitoring, and operational considerations"
 more_link: "yes"
 url: "/tor-hidden-service-deployment-security-guide/"
+images: ["https://cdn.support.tools/posts/tor-hidden-service-deployment-security-guide/og-086134b54d.jpg"]
 ---
 
 Tor Hidden Services (Onion Services) provide end-to-end encrypted, anonymized web services accessible exclusively through the Tor network. This comprehensive guide covers secure deployment, hardening practices, monitoring strategies, and enterprise operational considerations for running production Hidden Services on Linux systems.

@@ -10,6 +10,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive guide to POSIX threads (pthreads) covering advanced synchronization, thread pools, lock-free programming, and performance optimization techniques for multi-threaded Linux applications"
 more_link: "yes"
 url: "/pthread-programming-mastery/"
+images: ["https://cdn.support.tools/posts/pthread-programming-mastery/og-69bcf2fdda.jpg"]
 ---
 
 POSIX threads (pthreads) form the backbone of multi-threaded programming in Linux. While creating threads is straightforward, building efficient, scalable, and correct multi-threaded applications requires deep understanding of synchronization primitives, memory models, and performance characteristics. This guide explores advanced pthread patterns and optimization techniques used in production systems.

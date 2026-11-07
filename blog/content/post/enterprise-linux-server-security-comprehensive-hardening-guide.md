@@ -11,6 +11,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Complete enterprise guide to Linux server security hardening, advanced threat protection, automated security frameworks, compliance management, and production-grade security operations for critical infrastructure"
 more_link: "yes"
 url: "/enterprise-linux-server-security-comprehensive-hardening-guide/"
+images: ["https://cdn.support.tools/posts/enterprise-linux-server-security-comprehensive-hardening-guide/og-890459e5ca.jpg"]
 ---
 
 Enterprise Linux server security requires comprehensive hardening strategies, advanced threat detection systems, and automated security frameworks that protect critical infrastructure while maintaining operational efficiency. This guide covers multi-layered security architectures, enterprise-grade hardening procedures, automated threat response systems, and compliance frameworks for production environments.

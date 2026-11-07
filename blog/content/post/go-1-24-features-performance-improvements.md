@@ -10,6 +10,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "An in-depth look at Go 1.24's most important features, performance improvements, and their practical impact on production systems"
 more_link: "yes"
 url: "/go-1-24-features-performance-improvements/"
+images: ["https://cdn.support.tools/posts/go-1-24-features-performance-improvements/og-d3eeb71c1c.jpg"]
 ---
 
 {{% newer-version path="/post/go-1-27-release-generic-methods-json-v2.md" %}}

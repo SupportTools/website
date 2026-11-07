@@ -11,6 +11,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to implement reliable daily MySQL backups using Percona XtraBackup. This comprehensive guide covers installation, configuration, automation, and restoration procedures."
 more_link: "yes"
 url: "/mysql-backups-xtrabackup-guide/"
+images: ["https://cdn.support.tools/posts/mysql-backups-xtrabackup-guide/og-482fbede15.jpg"]
 ---
 
 Master the art of MySQL backup management using Percona XtraBackup, a powerful tool for creating consistent, efficient database backups without downtime.

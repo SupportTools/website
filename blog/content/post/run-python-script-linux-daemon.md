@@ -11,6 +11,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to run your Python scripts as Linux daemons using systemd services for continuous background execution."
 more_link: "yes"
 url: "/run-python-script-linux-daemon/"
+images: ["https://cdn.support.tools/posts/run-python-script-linux-daemon/og-1371c706c4.jpg"]
 ---
 
 Do you have a Python script that needs to run continuously in the background? Converting your script into a Linux daemon ensures it operates reliably without manual intervention. In this guide, we'll walk you through the process of turning your Python script into a systemd service, allowing it to run as a daemon on your Linux system.

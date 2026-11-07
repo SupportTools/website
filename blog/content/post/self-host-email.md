@@ -10,6 +10,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Discover why I self-host my email using iRedMail for complete control, enhanced privacy, and freedom from commercial email restrictions. Plus, how I use SpamHero to overcome ISP port blocks and improve spam protection."
 more_link: "yes"
 url: "/self-host-email/"
+images: ["https://cdn.support.tools/posts/self-host-email/og-f319a91f7a.jpg"]
 ---
 
 Self-hosting your own email server might sound daunting, but it offers unmatched control, privacy, and customization. In this blog post, I explain why I chose to self-host my email and how tools like **iRedMail** and services like **SpamHero** empower me to run a secure, reliable, and flexible email infrastructure—without relying on Gmail, Outlook, or other commercial providers.

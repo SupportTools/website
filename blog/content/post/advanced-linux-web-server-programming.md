@@ -10,6 +10,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Master advanced Linux web server programming including high-performance HTTP servers, async I/O with epoll, WebSocket support, and building scalable web applications"
 more_link: "yes"
 url: "/advanced-linux-web-server-programming/"
+images: ["https://cdn.support.tools/posts/advanced-linux-web-server-programming/og-e8acc950de.jpg"]
 ---
 
 Advanced Linux web server programming requires deep understanding of network programming, async I/O, and high-performance server architectures. This comprehensive guide explores building custom HTTP servers using epoll, implementing WebSocket support, SSL/TLS integration, and creating scalable web applications that can handle thousands of concurrent connections.

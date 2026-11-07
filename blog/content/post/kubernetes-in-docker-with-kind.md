@@ -9,6 +9,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to quickly set up a local Kubernetes cluster using Kind (Kubernetes IN Docker) for development, testing, and experimentation."
 more_link: "yes"
 url: "/kubernetes-in-docker-with-kind/"
+images: ["https://cdn.support.tools/posts/kubernetes-in-docker-with-kind/og-a8703a84f7.jpg"]
 ---
 
 Discover how to use Kind to create lightweight Kubernetes clusters within Docker containers for streamlined local development.

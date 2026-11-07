@@ -10,6 +10,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Master advanced Linux machine learning systems including custom neural network implementations, GPU acceleration, distributed training, and building production ML infrastructure"
 more_link: "yes"
 url: "/advanced-linux-machine-learning-systems/"
+images: ["https://cdn.support.tools/posts/advanced-linux-machine-learning-systems/og-527c9e44a7.jpg"]
 ---
 
 Advanced Linux machine learning systems require deep understanding of neural network architectures, GPU acceleration, and distributed computing. This comprehensive guide explores building custom ML frameworks, implementing efficient inference engines, GPU optimization with CUDA, and creating production-grade machine learning infrastructure.

@@ -9,6 +9,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive guide to Qwen 2.5 Coder models - high-performance, open-weight LLMs that can be self-hosted on consumer hardware with impressive code generation capabilities."
 more_link: "yes"
 url: "/qwen-coder-models-guide/"
+images: ["https://cdn.support.tools/posts/qwen-coder-models-guide/og-163e322d2f.jpg"]
 ---
 
 Qwen's latest code-specialized language models are creating significant excitement throughout the AI community. The Qwen 2.5 Coder model family stands out by offering fully accessible weights and exceptional performance even on modest consumer hardware - a rarity in today's landscape of increasingly resource-hungry AI systems.

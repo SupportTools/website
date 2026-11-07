@@ -10,6 +10,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Dockerfiles have been an integral part of container development, but are they still the best tool for the job? Let’s explore alternatives and their potential to improve your container workflow."
 more_link: "yes"
 url: "/the-hunt-for-a-better-dockerfile/"
+images: ["https://cdn.support.tools/posts/the-hunt-for-a-better-dockerfile/og-e3ef80db53.jpg"]
 ---
 
 **Time to Thank Dockerfiles for Their Service and Send Them on Their Way**

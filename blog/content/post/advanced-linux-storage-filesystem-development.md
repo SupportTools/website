@@ -10,6 +10,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Master advanced Linux storage systems including custom filesystem development, FUSE programming, block device drivers, and building high-performance storage solutions"
 more_link: "yes"
 url: "/advanced-linux-storage-filesystem-development/"
+images: ["https://cdn.support.tools/posts/advanced-linux-storage-filesystem-development/og-ed06ac0e91.jpg"]
 ---
 
 Modern Linux storage systems require sophisticated understanding of filesystem architectures, block device management, and performance optimization techniques. This comprehensive guide explores advanced storage concepts, from building custom filesystems with FUSE to developing kernel-level block device drivers and implementing high-performance storage solutions.

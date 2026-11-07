@@ -10,6 +10,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Guide for configuring RKE2 ingress-nginx behind a LoadBalancer on AWS, GCP, Azure, or MetalLB."
 more_link: "yes"
 url: "/rke2-ingress-nginx-external-lb/"
+images: ["https://cdn.support.tools/posts/rke2-ingress-nginx-external-lb/og-0268e7292d.jpg"]
 ---
 
 This article provides step-by-step guidance for configuring RKE2’s built-in `ingress-nginx` controller to run behind an external LoadBalancer. It supports environments like AWS, GCP, Azure, and MetalLB, and replaces the default hostNetwork + DaemonSet configuration with a Deployment and LoadBalancer service.

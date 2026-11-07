@@ -10,6 +10,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Master advanced Linux performance profiling and optimization techniques using perf, flame graphs, CPU profiling, memory analysis, and system-wide performance tuning"
 more_link: "yes"
 url: "/linux-performance-profiling-optimization/"
+images: ["https://cdn.support.tools/posts/linux-performance-profiling-optimization/og-04e2d004a4.jpg"]
 ---
 
 Performance optimization is a critical skill for systems programmers and administrators. Linux provides powerful tools for analyzing CPU usage, memory patterns, I/O bottlenecks, and system behavior. This comprehensive guide explores advanced profiling techniques, performance analysis methodologies, and optimization strategies for high-performance Linux systems.

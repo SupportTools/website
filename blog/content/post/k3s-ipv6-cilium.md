@@ -10,6 +10,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "A complete guide to configuring a single-node K3s cluster using IPv6-only networking with Cilium, including BGP routing and LoadBalancer support."
 more_link: "yes"
 url: "/k3s-ipv6-cilium/"
+images: ["https://cdn.support.tools/posts/k3s-ipv6-cilium/og-92ee7935d3.jpg"]
 ---
 
 Most guides for Kubernetes focus on IPv4 by default, but IPv6 is no longer a second-class citizen. In this post, I walk through configuring a **K3s cluster using only IPv6**, with **Cilium** as the CNI, and **BGP** to announce addresses to my router. This setup runs entirely on a public IPv6 prefix—no dual-stack, no IPv4 fallback.

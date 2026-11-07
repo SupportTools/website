@@ -9,6 +9,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Master advanced Linux compiler and runtime development including custom language design, virtual machines, JIT compilation, garbage collection, and building production-grade language implementations"
 more_link: "yes"
 url: "/advanced-linux-compiler-runtime-development/"
+images: ["https://cdn.support.tools/posts/advanced-linux-compiler-runtime-development/og-bcca0c6f33.jpg"]
 ---
 
 Advanced Linux compiler and language runtime development requires deep understanding of language design, code generation, virtual machines, and execution optimization. This comprehensive guide explores building custom programming languages from scratch, implementing JIT compilers, garbage collectors, and creating high-performance language runtimes for modern applications.

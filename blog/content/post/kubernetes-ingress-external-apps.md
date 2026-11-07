@@ -10,6 +10,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Learn how to leverage Kubernetes Ingress controllers to provide domain names and automated TLS certificates for applications running outside your cluster."
 more_link: "yes"
 url: "/kubernetes-ingress-external-apps/"
+images: ["https://cdn.support.tools/posts/kubernetes-ingress-external-apps/og-ca6499ae90.jpg"]
 ---
 
 Kubernetes excels at managing domains and TLS certificates for applications running inside the cluster, but what about your legacy applications, standalone Docker containers, or specialized hardware that lives outside Kubernetes? This practical guide demonstrates a clever technique to extend Kubernetes' powerful Ingress capabilities to any external application.

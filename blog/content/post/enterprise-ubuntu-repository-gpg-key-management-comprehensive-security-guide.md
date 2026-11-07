@@ -11,6 +11,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Complete enterprise guide to Ubuntu repository GPG key management, advanced package security frameworks, automated trust infrastructure, and comprehensive supply chain security implementations"
 more_link: "yes"
 url: "/enterprise-ubuntu-repository-gpg-key-management-comprehensive-security-guide/"
+images: ["https://cdn.support.tools/posts/enterprise-ubuntu-repository-gpg-key-management-comprehensive-security-guide/og-17af48961b.jpg"]
 ---
 
 Enterprise Ubuntu repository management requires sophisticated GPG key infrastructure, automated trust validation systems, and comprehensive security frameworks to ensure package integrity across thousands of systems while maintaining supply chain security. This guide covers advanced repository key management, enterprise package security architectures, automated trust validation systems, and production-grade APT repository infrastructures.

@@ -10,6 +10,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Master advanced Makefile techniques including pattern rules, automatic dependencies, parallel builds, and cross-platform portability for efficient build automation"
 more_link: "yes"
 url: "/makefile-mastery-advanced-techniques/"
+images: ["https://cdn.support.tools/posts/makefile-mastery-advanced-techniques/og-a542240c62.jpg"]
 ---
 
 Make remains one of the most powerful and ubiquitous build automation tools in Unix-like systems. While simple Makefiles are easy to write, mastering advanced techniques can dramatically improve build times, maintainability, and portability. This guide explores sophisticated Makefile patterns used in production build systems.

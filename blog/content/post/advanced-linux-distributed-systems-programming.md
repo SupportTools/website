@@ -10,6 +10,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Master advanced Linux distributed systems programming including consensus algorithms, distributed data structures, fault-tolerant architectures, and building large-scale distributed applications"
 more_link: "yes"
 url: "/advanced-linux-distributed-systems-programming/"
+images: ["https://cdn.support.tools/posts/advanced-linux-distributed-systems-programming/og-2740e4c87f.jpg"]
 ---
 
 Advanced Linux distributed systems programming requires understanding of consensus algorithms, distributed coordination, fault tolerance patterns, and scalable architectures. This comprehensive guide explores building robust distributed applications using Raft consensus, distributed hash tables, leader election, and implementing production-grade clustering solutions.

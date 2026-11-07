@@ -10,6 +10,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Master real-time Linux programming with advanced techniques for building deterministic systems, including RT scheduling, latency optimization, and lock-free programming"
 more_link: "yes"
 url: "/real-time-linux-programming-advanced/"
+images: ["https://cdn.support.tools/posts/real-time-linux-programming-advanced/og-879b2afe7a.jpg"]
 ---
 
 Real-time Linux programming demands precision, predictability, and deep understanding of system behavior. Building deterministic systems requires mastering specialized techniques, from RT scheduling policies to lock-free algorithms and latency optimization. This comprehensive guide explores advanced real-time programming techniques for mission-critical applications.

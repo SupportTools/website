@@ -10,6 +10,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Use Kubernetes-native Prometheus to monitor external services like VMs, NGINX, and APIs using ServiceMonitor and manually defined Endpoints. Includes Node Exporter and TLS tips."
 more_link: "yes"
 url: "/prometheus-monitor-external-services/"
+images: ["https://cdn.support.tools/posts/prometheus-monitor-external-services/og-f49438aabb.jpg"]
 ---
 
 Monitoring external systems—like bare-metal servers, APIs, or other cloud services—from within Kubernetes can help unify your observability pipeline. With **Prometheus Operator**, you don’t need to deploy a second Prometheus instance. Instead, you can expose external targets using Kubernetes-native manifests: `Service`, `Endpoints`, and `ServiceMonitor`.

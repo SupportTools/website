@@ -10,6 +10,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "New to DevOps? This crash course is your survival guide to understanding and managing infrastructure effectively. Learn key concepts, tools, and best practices."
 more_link: "yes"
 url: "/devops-crash-course-section-1/"
+images: ["https://cdn.support.tools/posts/devops-crash-course-section-1/og-63666973d0.jpg"]
 ---
 
 **DevOps Crash Course - Section 1: Into the Fray**

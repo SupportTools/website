@@ -32,6 +32,7 @@ editPost:
     URL: "https://github.com/supporttools/website/tree/main/blog/content"
     Text: "Suggest Changes"
     appendFilePath: true
+images: ["https://cdn.support.tools/posts/enterprise-kubernetes-operators-comprehensive-development-guide-2025/og-7a04cba8e6.jpg"]
 ---
 
 # Enterprise Kubernetes Operators 2025: The Complete Production Development Guide

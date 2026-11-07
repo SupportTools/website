@@ -11,6 +11,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Comprehensive guide to enterprise serial console configuration, IPMI/BMC management, automation tools, and advanced remote server administration techniques for production environments"
 more_link: "yes"
 url: "/serial-console-ipmi-enterprise-management-guide/"
+images: ["https://cdn.support.tools/posts/serial-console-ipmi-enterprise-management-guide/og-8675e1965d.jpg"]
 ---
 
 Serial console management and IPMI (Intelligent Platform Management Interface) controllers form the backbone of enterprise remote server administration. This comprehensive guide covers advanced serial console configuration, modern IPMI/BMC management practices, automation frameworks, and enterprise-grade remote administration strategies for production data center environments.

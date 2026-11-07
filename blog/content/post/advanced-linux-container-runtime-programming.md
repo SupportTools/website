@@ -10,6 +10,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Master advanced Linux container runtime programming including building custom container engines, implementing orchestration systems, and working with namespaces, cgroups, and container networking"
 more_link: "yes"
 url: "/advanced-linux-container-runtime-programming/"
+images: ["https://cdn.support.tools/posts/advanced-linux-container-runtime-programming/og-632b52d445.jpg"]
 ---
 
 Advanced Linux container runtime programming requires deep understanding of kernel namespaces, cgroups, and container orchestration principles. This comprehensive guide explores building custom container runtimes, implementing orchestration features, container networking, and creating production-grade container management systems.

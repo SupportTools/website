@@ -11,6 +11,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "A comprehensive guide to migrating from RKE1 to RKE2 using SUSE Rancher Prime, covering migration strategies, data migration methods, and troubleshooting common issues."
 more_link: "yes"
 url: "/migrating-rke1-to-rke2/"
+images: ["https://cdn.support.tools/posts/migrating-rke1-to-rke2/og-7770ccf6aa.jpg"]
 ---
 
 Migrating from RKE1 to RKE2 is an essential transition for organizations relying on Rancher-managed Kubernetes clusters. With **RKE1 reaching end-of-life (EOL) on July 31, 2025**, moving to **RKE2** ensures ongoing support, security updates, and performance improvements.

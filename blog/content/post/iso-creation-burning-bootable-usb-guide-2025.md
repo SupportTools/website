@@ -10,6 +10,7 @@ author: "Matthew Mattox - mmattox@support.tools"
 description: "Master ISO creation, DVD burning, and bootable USB creation on Linux. Complete guide to dd command, growisofs, wodim, USB installation media, disk imaging, and enterprise deployment strategies."
 more_link: "yes"
 url: "/iso-creation-burning-bootable-usb-guide-2025/"
+images: ["https://cdn.support.tools/posts/iso-creation-burning-bootable-usb-guide-2025/og-6a5ed30115.jpg"]
 ---
 
 Creating ISO images, burning optical media, and crafting bootable USB drives are essential skills for system administrators, developers, and IT professionals. This comprehensive guide covers modern media creation techniques, enterprise deployment strategies, and advanced disk imaging workflows for Linux systems.

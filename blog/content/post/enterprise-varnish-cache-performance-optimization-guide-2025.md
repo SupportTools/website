@@ -14,6 +14,7 @@ more_link: "yes"
 quick_fix: |
   Low hit rate is almost always cookies or query strings fragmenting the cache key. Check with `varnishncsa -d -F '%{Varnish:handling}x %U%q' | sort | uniq -c`: lots of `pass` means cookies (strip them with `import cookie;` and `cookie.keep()`), lots of `miss` on the same path means unnormalized query strings (`std.querysort()` and strip `utm_*`).
   Add `set beresp.grace = 6h;` so a sick backend serves stale content instead of errors.
+images: ["https://cdn.support.tools/posts/enterprise-varnish-cache-performance-optimization-guide-2025/og-9aec92368a.jpg"]
 ---
 
 Varnish ships with a built-in VCL that is deliberately conservative: any request with a `Cookie` or `Authorization` header goes straight to the backend, and any response with `Set-Cookie` is not cached. On a real site, where every browser sends analytics cookies, that means the cache does almost nothing. This guide covers the VCL changes that actually move the hit rate, how to keep serving during backend outages, how to invalidate content safely, how to size storage, and how to prove each change with `varnishstat` and `varnishlog`.
